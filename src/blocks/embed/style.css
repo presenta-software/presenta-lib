@@ -1,0 +1,46 @@
+.embed{
+    background-color: var(--backcolor);
+}
+
+.inner{
+    padding: var(--embedpadding);
+    position: relative;
+}
+
+.frame{
+    background-color: var(--embedbackcolor);
+    position: relative;
+}
+
+.embed, .inner, .frame{
+    width: 100%;
+    height: 100%;
+}
+
+iframe{
+    width: 100%;
+    height: 100%;
+    border: none;
+}
+
+.loading{
+    position: absolute;
+    top:0;
+    left:0;
+    width: 100%;
+    height: 100%;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    color:var(--forecolor);
+    font-family: var(--fontText);
+    background-color: var(--backcolor);
+}
+
+.blockmouse{
+    position: absolute;
+    top:0;
+    left:0;
+    width: 100%;
+    height: 100%;
+}

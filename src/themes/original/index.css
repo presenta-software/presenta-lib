@@ -1,0 +1,29 @@
+@import url('https://fonts.googleapis.com/css2?family=Montserrat:wght@600&family=Roboto+Mono:ital,wght@0,400;0,700;1,400&display=swap');
+.theme__original{
+  --fontHeading: 'Roboto Mono', monospace;
+  --fontText: 'Montserrat', sans-serif;
+}
+
+.theme__original,
+.theme__original.colorvar__a,
+.theme__original .colorvar__a {
+  --backcolor: #ebded1;
+  --forecolor: #0a47d1;
+  --accentcolor: #fb4138;
+  --otheraccentcolor: #ffffff;
+}
+.theme__original.colorvar__b,
+.theme__original .colorvar__b {
+  --backcolor: #0a47d1;
+  --forecolor: #ebded1;
+  --accentcolor: #ffffff;
+  --otheraccentcolor: #fb4138;
+}
+.theme__original.colorvar__c,
+.theme__original .colorvar__c {
+  --backcolor: #fb4138;
+  --forecolor: #ffffff;
+  --accentcolor: #ebded1;
+  --otheraccentcolor: #0a47d1;
+}
+  

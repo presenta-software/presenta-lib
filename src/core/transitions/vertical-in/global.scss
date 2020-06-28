@@ -1,0 +1,22 @@
+
+.verticalIn{
+  .p-scene-enter-transition {
+    transition: all 1s cubic-bezier(0.95, 0.05, 0.05, 0.95);
+  }
+  .p-scene-enter-start {
+    transform: translateY(150%);
+  }
+  .p-scene-enter-end {
+    transform: translateY(0);
+  }
+
+  .p-scene-leave-transition {
+    transition: all 1s cubic-bezier(0.95, 0.05, 0.05, 0.95);
+  }
+  .p-scene-leave-start {
+    transform: scale(1);
+  }
+  .p-scene-leave-end {
+    transform: scale(0.5);
+  }
+}

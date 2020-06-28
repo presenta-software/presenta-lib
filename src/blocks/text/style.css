@@ -1,0 +1,185 @@
+.text{
+    width: 100%;
+    height: 100%;
+    background-position: center;
+    background-size: cover;
+    background-color: var(--backcolor);
+    position: relative;
+    
+}
+
+.inner{
+    position: relative;
+    width: 100%;
+    height: 100%;
+}
+
+.pretext{
+    display: flex;
+    width: 100%;
+    height: 100%;
+    align-items: center;
+    justify-content: center;
+}
+
+.textbox{
+    padding: var(--textboxpadding);
+    text-align: var(--textalign);
+    /*overflow: hidden; */ /* removed for shadow, maybe neccessary */
+    font-size: var(--textsize);
+    color: var(--forecolor);
+    --backmark: var(--accentcolor);
+    --foremark: var(--backcolor);
+    --textaccentcolor: var(--accentcolor);
+    font-family: var(--fontHeading);
+}
+
+.itext{
+    border: var(--textborder) solid var(--forecolor);
+    padding: var(--textpadding);
+    border-radius: var(--textboxradius);
+    box-shadow: var(--textboxshadow);
+    background-color: var(--textboxbackcolor);
+}
+
+.itext img{
+    object-fit: contain;
+    height: 4em;
+    vertical-align: middle;
+}
+
+
+.itext mark {
+  background-color: var(--backmark);
+  color: var(--foremark);
+  padding: 0 0.5rem;
+}
+.itext high {
+  color: var(--textaccentcolor);
+}
+.itext bord {
+  border: 8px solid var(--backmark);
+  padding: 0 0.5rem;
+}
+.itext a {
+  color: var(--textaccentcolor);
+}
+
+.itext blockquote {
+  font-size: 2em;
+  font-weight: 400;
+  font-style: italic;
+}
+
+.itext h1,
+.itext h2,
+.itext h3,
+.itext h4,
+.itext h5,
+.itext h6,
+.itext p,
+.itext ul,
+.itext blockquote {
+  margin: 0;
+}
+
+.itext ul,
+.itext ol {
+  font-size: 1.5em;
+  line-height: 1.1em;
+  text-align: left;
+  margin: 0;
+  padding: 0;
+  list-style-type: none;
+  counter-reset: li;
+  padding: 0.5rem 0;
+}
+
+.itext li{
+  padding: 0.25rem 0;
+  list-style-position:inside;
+  margin-bottom: 2px;
+  padding: .25em;
+  padding-left: 0.8em;
+}
+.itext ul li::before {
+  content: "–"; 
+  display: inline-block; 
+  width: 0.8em;
+  margin-left: -0.8em;
+}
+.itext ol li::before {
+  counter-increment: li;  
+  content:  "." counter(li); 
+  display: inline-block; 
+  width: 1.1em; 
+  margin-left: -1.3em;
+  margin-right: 0.2em; 
+  text-align: right; 
+  direction: rtl;
+}
+
+.itext li p{
+  display: inline;
+}
+
+
+.itext h1,
+.itext h2,
+.itext h3,
+.itext h4,
+.itext h5,
+.itext h6 {
+  font-family: var(--fontText);
+  padding: .5rem 0;
+}
+
+.itext h1{
+  font-size: 2em;
+}
+.itext h2{
+  font-size: 1.5em;
+}
+.itext h3{
+  font-size: 1.17em;
+}
+.itext h4{
+  font-size: 1em;
+}
+.itext h5{
+  font-size: 0.83em;
+}
+.itext h6{
+  font-size: 0.67em;
+}
+
+.itext p{
+  padding: .5rem 0;
+}
+
+.itext hr{
+  border: 1px solid var(--foremark);
+  margin: .5rem 0;
+}
+
+.itext h1:first-child,
+.itext h2:first-child,
+.itext h3:first-child,
+.itext h1:last-child,
+.itext h2:last-child,
+.itext h3:last-child{
+    padding: 0;
+}
+
+.itext table{
+    width: 100%;
+}
+.itext tr{
+    padding: 0;
+}
+
+.itext td, .itext th{
+    padding:.5rem;
+    border-bottom:1px solid var(--forecolor);
+}
+

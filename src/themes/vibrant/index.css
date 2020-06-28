@@ -1,0 +1,29 @@
+@import url('https://fonts.googleapis.com/css2?family=Playfair+Display:wght@600&family=Work+Sans&display=swap');
+.theme__vibrant{
+  --fontHeading: 'Work Sans', sans-serif;
+  --fontText: 'Playfair Display', serif;
+}
+
+
+.theme__vibrant,
+.theme__vibrant.colorvar__a,
+.theme__vibrant .colorvar__a {
+  --backcolor: #ffe600;
+  --forecolor: #000;
+  --accentcolor: #ff6400;
+  --otheraccentcolor: #fff;
+}
+.theme__vibrant.colorvar__b,
+.theme__vibrant .colorvar__b {
+  --backcolor: #000;
+  --forecolor: rgb(255, 230, 0);
+  --accentcolor: #fff;
+  --otheraccentcolor: rgb(255, 100, 0);
+}
+.theme__vibrant.colorvar__c,
+.theme__vibrant .colorvar__c {
+  --backcolor: rgb(255, 100, 0);
+  --forecolor: #fff;
+  --accentcolor: rgb(255, 230, 0);
+  --otheraccentcolor: #000;
+}

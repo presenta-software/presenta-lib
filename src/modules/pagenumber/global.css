@@ -1,0 +1,14 @@
+.presenta{
+    --pagenumber__padding:.5rem; 
+    --pagenumber__textalign:right; 
+}
+
+.pagenumberContent{
+    color:var(--forecolor);
+    font-family: var(--fontText);
+}
+
+.pagenumber__style__inverted .pagenumberContent{
+    background-color: var(--forecolor);
+    color:var(--backcolor);
+}

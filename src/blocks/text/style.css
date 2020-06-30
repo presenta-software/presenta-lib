@@ -124,6 +124,11 @@
 }
 
 
+.itext pre, .itext code{
+  text-align: left;
+}
+
+
 .itext h1,
 .itext h2,
 .itext h3,

@@ -46,7 +46,7 @@
   var css_248z$3 = ":root {\n  --textsize:1.5rem;\n  --textpadding: 1rem;\n  --textalign: center; }\n\n.p-scene-enter-transition .textContent > * {\n  transition: opacity .5s ease-in-out;\n  transition-delay: .25s; }\n\n.p-scene-enter-start .textContent > * {\n  opacity: 0; }\n\n.p-scene-enter-end .textContent > * {\n  opacity: 1; }\n\n.p-scene-leave-transition .textContent > * {\n  transition: opacity .25s; }\n\n.p-scene-leave-start .textContent > * {\n  opacity: 1; }\n\n.p-scene-leave-end .textContent > * {\n  opacity: 0; }\n\n.p.textposition__topleft .pretext,\n.p.textposition__tl .pretext {\n  align-items: flex-start;\n  justify-content: flex-start; }\n\n.p.textposition__topcenter .pretext,\n.p.textposition__tc .pretext {\n  align-items: flex-start;\n  justify-content: center; }\n\n.p.textposition__topright .pretext,\n.p.textposition__tr .pretext {\n  align-items: flex-start;\n  justify-content: flex-end; }\n\n.p.textposition__centerleft .pretext,\n.p.textposition__cl .pretext {\n  align-items: center;\n  justify-content: flex-start; }\n\n.p.textposition__center .pretext,\n.p.textposition__cc .pretext {\n  align-items: center;\n  justify-content: center; }\n\n.p.textposition__centerright .pretext,\n.p.textposition__cr .pretext {\n  align-items: center;\n  justify-content: flex-end; }\n\n.p.textposition__bottomleft .pretext,\n.p.textposition__bl .pretext {\n  align-items: flex-end;\n  justify-content: flex-start; }\n\n.p.textposition__bottomcenter .pretext,\n.p.textposition__bc .pretext {\n  align-items: flex-end;\n  justify-content: center; }\n\n.p.textposition__bottomright .pretext,\n.p.textposition__br .pretext {\n  align-items: flex-end;\n  justify-content: flex-end; }\n\n.s.textposition__topleft .pretext,\n.s.textposition__tl .pretext {\n  align-items: flex-start;\n  justify-content: flex-start; }\n\n.s.textposition__topcenter .pretext,\n.s.textposition__tc .pretext {\n  align-items: flex-start;\n  justify-content: center; }\n\n.s.textposition__topright .pretext,\n.s.textposition__tr .pretext {\n  align-items: flex-start;\n  justify-content: flex-end; }\n\n.s.textposition__centerleft .pretext,\n.s.textposition__cl .pretext {\n  align-items: center;\n  justify-content: flex-start; }\n\n.s.textposition__center .pretext,\n.s.textposition__cc .pretext {\n  align-items: center;\n  justify-content: center; }\n\n.s.textposition__centerright .pretext,\n.s.textposition__cr .pretext {\n  align-items: center;\n  justify-content: flex-end; }\n\n.s.textposition__bottomleft .pretext,\n.s.textposition__bl .pretext {\n  align-items: flex-end;\n  justify-content: flex-start; }\n\n.s.textposition__bottomcenter .pretext,\n.s.textposition__bc .pretext {\n  align-items: flex-end;\n  justify-content: center; }\n\n.s.textposition__bottomright .pretext,\n.s.textposition__br .pretext {\n  align-items: flex-end;\n  justify-content: flex-end; }\n\n.b.textposition__topleft .pretext,\n.b.textposition__tl .pretext {\n  align-items: flex-start;\n  justify-content: flex-start; }\n\n.b.textposition__topcenter .pretext,\n.b.textposition__tc .pretext {\n  align-items: flex-start;\n  justify-content: center; }\n\n.b.textposition__topright .pretext,\n.b.textposition__tr .pretext {\n  align-items: flex-start;\n  justify-content: flex-end; }\n\n.b.textposition__centerleft .pretext,\n.b.textposition__cl .pretext {\n  align-items: center;\n  justify-content: flex-start; }\n\n.b.textposition__center .pretext,\n.b.textposition__cc .pretext {\n  align-items: center;\n  justify-content: center; }\n\n.b.textposition__centerright .pretext,\n.b.textposition__cr .pretext {\n  align-items: center;\n  justify-content: flex-end; }\n\n.b.textposition__bottomleft .pretext,\n.b.textposition__bl .pretext {\n  align-items: flex-end;\n  justify-content: flex-start; }\n\n.b.textposition__bottomcenter .pretext,\n.b.textposition__bc .pretext {\n  align-items: flex-end;\n  justify-content: center; }\n\n.b.textposition__bottomright .pretext,\n.b.textposition__br .pretext {\n  align-items: flex-end;\n  justify-content: flex-end; }\n\n.g.textposition__topleft .pretext,\n.g.textposition__tl .pretext {\n  align-items: flex-start;\n  justify-content: flex-start; }\n\n.g.textposition__topcenter .pretext,\n.g.textposition__tc .pretext {\n  align-items: flex-start;\n  justify-content: center; }\n\n.g.textposition__topright .pretext,\n.g.textposition__tr .pretext {\n  align-items: flex-start;\n  justify-content: flex-end; }\n\n.g.textposition__centerleft .pretext,\n.g.textposition__cl .pretext {\n  align-items: center;\n  justify-content: flex-start; }\n\n.g.textposition__center .pretext,\n.g.textposition__cc .pretext {\n  align-items: center;\n  justify-content: center; }\n\n.g.textposition__centerright .pretext,\n.g.textposition__cr .pretext {\n  align-items: center;\n  justify-content: flex-end; }\n\n.g.textposition__bottomleft .pretext,\n.g.textposition__bl .pretext {\n  align-items: flex-end;\n  justify-content: flex-start; }\n\n.g.textposition__bottomcenter .pretext,\n.g.textposition__bc .pretext {\n  align-items: flex-end;\n  justify-content: center; }\n\n.g.textposition__bottomright .pretext,\n.g.textposition__br .pretext {\n  align-items: flex-end;\n  justify-content: flex-end; }\n";
   styleInject(css_248z$3);
 
-  var css_248z$4 = ".style_text__3T1cl{\n    width: 100%;\n    height: 100%;\n    background-position: center;\n    background-size: cover;\n    background-color: var(--backcolor);\n    position: relative;\n    \n}\n\n.style_inner__11UJC{\n    position: relative;\n    width: 100%;\n    height: 100%;\n}\n\n.style_pretext__cLjqD{\n    display: flex;\n    width: 100%;\n    height: 100%;\n    align-items: center;\n    justify-content: center;\n}\n\n.style_textbox__1Vb-V{\n    padding: var(--textboxpadding);\n    text-align: var(--textalign);\n    /*overflow: hidden; */ /* removed for shadow, maybe neccessary */\n    font-size: var(--textsize);\n    color: var(--forecolor);\n    --backmark: var(--accentcolor);\n    --foremark: var(--backcolor);\n    --textaccentcolor: var(--accentcolor);\n    font-family: var(--fontHeading);\n}\n\n.style_itext__jz90o{\n    border: var(--textborder) solid var(--forecolor);\n    padding: var(--textpadding);\n    border-radius: var(--textboxradius);\n    box-shadow: var(--textboxshadow);\n    background-color: var(--textboxbackcolor);\n}\n\n.style_itext__jz90o img{\n    object-fit: contain;\n    height: 4em;\n    vertical-align: middle;\n}\n\n\n.style_itext__jz90o mark {\n  background-color: var(--backmark);\n  color: var(--foremark);\n  padding: 0 0.5rem;\n}\n.style_itext__jz90o high {\n  color: var(--textaccentcolor);\n}\n.style_itext__jz90o bord {\n  border: 8px solid var(--backmark);\n  padding: 0 0.5rem;\n}\n.style_itext__jz90o a {\n  color: var(--textaccentcolor);\n}\n\n.style_itext__jz90o blockquote {\n  font-size: 2em;\n  font-weight: 400;\n  font-style: italic;\n}\n\n.style_itext__jz90o h1,\n.style_itext__jz90o h2,\n.style_itext__jz90o h3,\n.style_itext__jz90o h4,\n.style_itext__jz90o h5,\n.style_itext__jz90o h6,\n.style_itext__jz90o p,\n.style_itext__jz90o ul,\n.style_itext__jz90o blockquote {\n  margin: 0;\n}\n\n.style_itext__jz90o ul,\n.style_itext__jz90o ol {\n  font-size: 1.5em;\n  line-height: 1.1em;\n  text-align: left;\n  margin: 0;\n  padding: 0;\n  list-style-type: none;\n  counter-reset: li;\n  padding: 0.5rem 0;\n}\n\n.style_itext__jz90o li{\n  padding: 0.25rem 0;\n  list-style-position:inside;\n  margin-bottom: 2px;\n  padding: .25em;\n  padding-left: 0.8em;\n}\n.style_itext__jz90o ul li::before {\n  content: \"\\2013\"; \n  display: inline-block; \n  width: 0.8em;\n  margin-left: -0.8em;\n}\n.style_itext__jz90o ol li::before {\n  counter-increment: li;  \n  content:  \".\" counter(li); \n  display: inline-block; \n  width: 1.1em; \n  margin-left: -1.3em;\n  margin-right: 0.2em; \n  text-align: right; \n  direction: rtl;\n}\n\n.style_itext__jz90o li p{\n  display: inline;\n}\n\n\n.style_itext__jz90o h1,\n.style_itext__jz90o h2,\n.style_itext__jz90o h3,\n.style_itext__jz90o h4,\n.style_itext__jz90o h5,\n.style_itext__jz90o h6 {\n  font-family: var(--fontText);\n  padding: .5rem 0;\n}\n\n.style_itext__jz90o h1{\n  font-size: 2em;\n}\n.style_itext__jz90o h2{\n  font-size: 1.5em;\n}\n.style_itext__jz90o h3{\n  font-size: 1.17em;\n}\n.style_itext__jz90o h4{\n  font-size: 1em;\n}\n.style_itext__jz90o h5{\n  font-size: 0.83em;\n}\n.style_itext__jz90o h6{\n  font-size: 0.67em;\n}\n\n.style_itext__jz90o p{\n  padding: .5rem 0;\n}\n\n.style_itext__jz90o hr{\n  border: 1px solid var(--foremark);\n  margin: .5rem 0;\n}\n\n.style_itext__jz90o h1:first-child,\n.style_itext__jz90o h2:first-child,\n.style_itext__jz90o h3:first-child,\n.style_itext__jz90o h1:last-child,\n.style_itext__jz90o h2:last-child,\n.style_itext__jz90o h3:last-child{\n    padding: 0;\n}\n\n.style_itext__jz90o table{\n    width: 100%;\n}\n.style_itext__jz90o tr{\n    padding: 0;\n}\n\n.style_itext__jz90o td, .style_itext__jz90o th{\n    padding:.5rem;\n    border-bottom:1px solid var(--forecolor);\n}\n\n";
+  var css_248z$4 = ".style_text__3T1cl{\n    width: 100%;\n    height: 100%;\n    background-position: center;\n    background-size: cover;\n    background-color: var(--backcolor);\n    position: relative;\n    \n}\n\n.style_inner__11UJC{\n    position: relative;\n    width: 100%;\n    height: 100%;\n}\n\n.style_pretext__cLjqD{\n    display: flex;\n    width: 100%;\n    height: 100%;\n    align-items: center;\n    justify-content: center;\n}\n\n.style_textbox__1Vb-V{\n    padding: var(--textboxpadding);\n    text-align: var(--textalign);\n    /*overflow: hidden; */ /* removed for shadow, maybe neccessary */\n    font-size: var(--textsize);\n    color: var(--forecolor);\n    --backmark: var(--accentcolor);\n    --foremark: var(--backcolor);\n    --textaccentcolor: var(--accentcolor);\n    font-family: var(--fontHeading);\n}\n\n.style_itext__jz90o{\n    border: var(--textborder) solid var(--forecolor);\n    padding: var(--textpadding);\n    border-radius: var(--textboxradius);\n    box-shadow: var(--textboxshadow);\n    background-color: var(--textboxbackcolor);\n}\n\n.style_itext__jz90o img{\n    object-fit: contain;\n    height: 4em;\n    vertical-align: middle;\n}\n\n\n.style_itext__jz90o mark {\n  background-color: var(--backmark);\n  color: var(--foremark);\n  padding: 0 0.5rem;\n}\n.style_itext__jz90o high {\n  color: var(--textaccentcolor);\n}\n.style_itext__jz90o bord {\n  border: 8px solid var(--backmark);\n  padding: 0 0.5rem;\n}\n.style_itext__jz90o a {\n  color: var(--textaccentcolor);\n}\n\n.style_itext__jz90o blockquote {\n  font-size: 2em;\n  font-weight: 400;\n  font-style: italic;\n}\n\n.style_itext__jz90o h1,\n.style_itext__jz90o h2,\n.style_itext__jz90o h3,\n.style_itext__jz90o h4,\n.style_itext__jz90o h5,\n.style_itext__jz90o h6,\n.style_itext__jz90o p,\n.style_itext__jz90o ul,\n.style_itext__jz90o blockquote {\n  margin: 0;\n}\n\n.style_itext__jz90o ul,\n.style_itext__jz90o ol {\n  font-size: 1.5em;\n  line-height: 1.1em;\n  text-align: left;\n  margin: 0;\n  padding: 0;\n  list-style-type: none;\n  counter-reset: li;\n  padding: 0.5rem 0;\n}\n\n.style_itext__jz90o li{\n  padding: 0.25rem 0;\n  list-style-position:inside;\n  margin-bottom: 2px;\n  padding: .25em;\n  padding-left: 0.8em;\n}\n.style_itext__jz90o ul li::before {\n  content: \"\\2013\"; \n  display: inline-block; \n  width: 0.8em;\n  margin-left: -0.8em;\n}\n.style_itext__jz90o ol li::before {\n  counter-increment: li;  \n  content:  \".\" counter(li); \n  display: inline-block; \n  width: 1.1em; \n  margin-left: -1.3em;\n  margin-right: 0.2em; \n  text-align: right; \n  direction: rtl;\n}\n\n.style_itext__jz90o li p{\n  display: inline;\n}\n\n\n.style_itext__jz90o pre, .style_itext__jz90o code{\n  text-align: left;\n}\n\n\n.style_itext__jz90o h1,\n.style_itext__jz90o h2,\n.style_itext__jz90o h3,\n.style_itext__jz90o h4,\n.style_itext__jz90o h5,\n.style_itext__jz90o h6 {\n  font-family: var(--fontText);\n  padding: .5rem 0;\n}\n\n.style_itext__jz90o h1{\n  font-size: 2em;\n}\n.style_itext__jz90o h2{\n  font-size: 1.5em;\n}\n.style_itext__jz90o h3{\n  font-size: 1.17em;\n}\n.style_itext__jz90o h4{\n  font-size: 1em;\n}\n.style_itext__jz90o h5{\n  font-size: 0.83em;\n}\n.style_itext__jz90o h6{\n  font-size: 0.67em;\n}\n\n.style_itext__jz90o p{\n  padding: .5rem 0;\n}\n\n.style_itext__jz90o hr{\n  border: 1px solid var(--foremark);\n  margin: .5rem 0;\n}\n\n.style_itext__jz90o h1:first-child,\n.style_itext__jz90o h2:first-child,\n.style_itext__jz90o h3:first-child,\n.style_itext__jz90o h1:last-child,\n.style_itext__jz90o h2:last-child,\n.style_itext__jz90o h3:last-child{\n    padding: 0;\n}\n\n.style_itext__jz90o table{\n    width: 100%;\n}\n.style_itext__jz90o tr{\n    padding: 0;\n}\n\n.style_itext__jz90o td, .style_itext__jz90o th{\n    padding:.5rem;\n    border-bottom:1px solid var(--forecolor);\n}\n\n";
   var css = {"text":"style_text__3T1cl","inner":"style_inner__11UJC","pretext":"style_pretext__cLjqD","textbox":"style_textbox__1Vb-V","itext":"style_itext__jz90o"};
   styleInject(css_248z$4);
 
@@ -137,7 +137,7 @@
   const text = function (_el, _config) {
     const el = u.select(_el);
     const html = _config.text || '';
-    let fsize = _config.scale || 2;
+    let fsize = _config.scale || 1;
     const child = u.div(`<div class="c ${css.text}">
     <div class="${css.inner}">
       <div class="pretext ${css.pretext}">
@@ -361,6 +361,7 @@
   styleInject(css_248z$c);
 
   const pagenumber = function (sceneElement, modConfig, sceneConfig, projectConfig) {
+    const front = sceneElement.querySelector('.frontContainer');
     const cPage = sceneConfig.index + 1;
     const tPage = projectConfig.scenes.length;
     let str = `${cPage} / ${tPage}`;
@@ -373,20 +374,21 @@
     const child = u.div(`<div class="${css$6.pagenumber}">
     <div class="pagenumberContent">${str}</div> 
   </div>`);
-    sceneElement.appendChild(child);
-  }; // pagenumber.BACK = true
-
-  const modules = {
-    pagenumber
+    front.appendChild(child);
   };
+
+  const modules = {};
 
   const add$1 = (type, module) => {
     if (modules[type]) {
       return console.warn(`module type ${type} already defined`);
     }
 
+    if (module.init) module.init();
     modules[type] = module;
   };
+
+  add$1('pagenumber', pagenumber);
 
   var css_248z$d = ".horizontalSlide .p-scene-enter-transition {\n  transition: transform 1s cubic-bezier(0.2, 0.8, 0.05, 0.95); }\n\n.horizontalSlide .to-right.p-scene-enter-start {\n  transform: translateX(100%); }\n\n.horizontalSlide .to-right.p-scene-enter-end {\n  transform: translateX(0); }\n\n.horizontalSlide .to-left.p-scene-enter-start {\n  transform: translateX(-100%); }\n\n.horizontalSlide .to-left.p-scene-enter-end {\n  transform: translateX(0); }\n\n.horizontalSlide .p-scene-leave-transition {\n  transition: transform 1s cubic-bezier(0.2, 0.8, 0.05, 0.95); }\n\n.horizontalSlide .to-right.p-scene-leave-start {\n  transform: translateX(0); }\n\n.horizontalSlide .to-right.p-scene-leave-end {\n  transform: translateX(-100%); }\n\n.horizontalSlide .to-left.p-scene-leave-start {\n  transform: translateX(0); }\n\n.horizontalSlide .to-left.p-scene-leave-end {\n  transform: translateX(100%); }\n";
   styleInject(css_248z$d);
@@ -495,14 +497,15 @@
     */
 
     if (sceneConfig.modules) {
-      const back = child.querySelector('.backContainer');
-      const front = child.querySelector('.frontContainer');
-
       for (const k in sceneConfig.modules) {
         const modConfig = sceneConfig.modules[k];
         const Mod = modules[k];
-        const cont = Mod.BACK ? back : front;
-        const mod = new Mod(cont, modConfig, sceneConfig, projectConfig);
+
+        if (Mod) {
+          const mod = new Mod(child.querySelector(`.${css$5.content}`), modConfig, sceneConfig, projectConfig);
+        } else {
+          console.log(`Module "${k}" not found. Maybe you forgot to include it.`);
+        }
       }
     }
     /*
@@ -1010,6 +1013,10 @@
   Presenta.addBlock = add;
   Presenta.addRouterController = add$2;
   Presenta.addModule = add$1;
+
+  Presenta.use = plugin => {
+    plugin.install(Presenta);
+  };
 
   return Presenta;
 

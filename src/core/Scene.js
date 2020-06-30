@@ -70,13 +70,14 @@ const Scene = function (containerElement, sceneConfig, projectConfig) {
     Init modules if any
   */
   if (sceneConfig.modules) {
-    const back = child.querySelector('.backContainer')
-    const front = child.querySelector('.frontContainer')
     for (const k in sceneConfig.modules) {
       const modConfig = sceneConfig.modules[k]
       const Mod = modules[k]
-      const cont = Mod.BACK ? back : front
-      const mod = new Mod(cont, modConfig, sceneConfig, projectConfig)
+      if (Mod) {
+        const mod = new Mod(child.querySelector(`.${css.content}`), modConfig, sceneConfig, projectConfig)
+      } else {
+        console.log(`Module "${k}" not found. Maybe you forgot to include it.`)
+      }
     }
   }
 

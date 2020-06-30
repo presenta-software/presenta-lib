@@ -3,6 +3,7 @@ import css from './style.css'
 import u from '../../utils.js'
 
 const pagenumber = function (sceneElement, modConfig, sceneConfig, projectConfig) {
+  const front = sceneElement.querySelector('.frontContainer')
   const cPage = sceneConfig.index + 1
   const tPage = projectConfig.scenes.length
 
@@ -16,9 +17,7 @@ const pagenumber = function (sceneElement, modConfig, sceneConfig, projectConfig
     <div class="pagenumberContent">${str}</div> 
   </div>`)
 
-  sceneElement.appendChild(child)
+  front.appendChild(child)
 }
-
-// pagenumber.BACK = true
 
 export { pagenumber }

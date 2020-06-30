@@ -48,4 +48,8 @@ Presenta.addBlock = addBlock
 Presenta.addRouterController = addRouterController
 Presenta.addModule = addModule
 
+Presenta.use = plugin => {
+  plugin.install(Presenta)
+}
+
 export default Presenta

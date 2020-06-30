@@ -6,7 +6,7 @@ const text = function (_el, _config) {
   const el = u.select(_el)
 
   const html = _config.text || ''
-  let fsize = _config.scale || 2
+  let fsize = _config.scale || 1
 
   const child = u.div(`<div class="c ${css.text}">
     <div class="${css.inner}">

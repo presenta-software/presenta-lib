@@ -1,7 +1,7 @@
 
 .horizontalSlide{
   .p-scene-enter-transition {
-    transition: transform 1s cubic-bezier(0.2, 0.8, 0.05, 0.95);
+    transition: transform 1s/* cubic-bezier(0.2, 0.8, 0.05, 0.95)*/;
   }
   .to-right.p-scene-enter-start {
     transform: translateX(100%);
@@ -17,7 +17,7 @@
   }
 
   .p-scene-leave-transition {
-    transition: transform 1s cubic-bezier(0.2, 0.8, 0.05, 0.95);
+    transition: transform 1s/* cubic-bezier(0.2, 0.8, 0.05, 0.95)*/;
   }
   .to-right.p-scene-leave-start {
     transform: translateX(0);

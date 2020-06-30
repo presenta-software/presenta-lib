@@ -1,5 +1,6 @@
 import './transitions/horizontal-slide/global.scss'
 import './transitions/vertical-in/global.scss'
+import './transitions/outIn/global.scss'
 
 const transition = wrapper => {
   const functor = function (wrapper) {
@@ -18,6 +19,11 @@ const transition = wrapper => {
         wrapper.classList.add('p-scene-enter-end')
         wrapper.classList.remove('p-scene-enter-start')
       })
+      return this
+    }
+
+    this.swap = () => {
+      wrapper.classList.add('p-scene-enter-ended')
       return this
     }
 

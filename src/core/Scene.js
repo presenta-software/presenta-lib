@@ -110,8 +110,14 @@ const Scene = function (containerElement, sceneConfig, projectConfig) {
   */
   if (hasTransition) {
     const wrap = this.el.querySelector('.sceneObject')
+    const dir = sceneConfig._presentatransdir === 'backward' ? 'to-left' : 'to-right'
     transition(wrap)
-      .start('to-right')
+      .start(dir)
+
+    setTimeout(() => {
+      transition(wrap)
+        .swap()
+    }, projectConfig._transitionDestroyDelay)
   }
 
   /*
@@ -123,9 +129,11 @@ const Scene = function (containerElement, sceneConfig, projectConfig) {
     */
     if (hasTransition) {
       const wrap = this.el.querySelector('.sceneObject')
+      const odir = sceneConfig._presentatransdir === 'backward' ? 'to-right' : 'to-left'
+      const ndir = sceneConfig._presentatransdir === 'backward' ? 'to-left' : 'to-right'
       transition(wrap)
-        .clear('to-left')
-        .end('to-right')
+        .clear(odir)
+        .end(ndir)
     }
 
     const t = _t || 0
@@ -148,6 +156,7 @@ const Scene = function (containerElement, sceneConfig, projectConfig) {
   }
 
   this.uid = u.uid(sceneConfig)
+  this.sceneConfig = sceneConfig
 }
 
 export { Scene }

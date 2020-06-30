@@ -4,13 +4,15 @@ export default config => {
     router: {
       keyboard: true,
       arrows: true,
-      black: true
+      black: true,
+      focus: true
     },
     modules: {
       pagenumber: true
     },
     theme: 'original',
-    transition: 'horizontalSlide'
+    transition: 'horizontalSlide',
+    _transitionDestroyDelay: 1000
   }
 
   for (const k in defaultConfig) {

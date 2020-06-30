@@ -4,26 +4,6 @@
     --textalign: center;
 }
 
-.p-scene-enter-transition .textContent > * {
-    transition: opacity .5s ease-in-out;
-    transition-delay: .25s;
-}
-.p-scene-enter-start .textContent > * {
-    opacity: 0;
-}
-.p-scene-enter-end .textContent > * {
-    opacity: 1;
-}
-
-.p-scene-leave-transition .textContent > * {
-    transition: opacity .25s;
-}
-.p-scene-leave-start .textContent > * {
-    opacity: 1;
-}
-.p-scene-leave-end .textContent > * {
-    opacity: 0;
-}
 
 $pvar: p, s, b, g;
 @each $p in $pvar {

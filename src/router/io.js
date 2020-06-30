@@ -2,12 +2,14 @@ import { autoplay } from './io/autoplay/index.js'
 import { keyboard } from './io/keyboard/index.js'
 import { arrows } from './io/arrows/index.js'
 import { black } from './io/black/index.js'
+import { focus } from './io/focus/index.js'
 
 const io = {
   autoplay,
   keyboard,
   arrows,
-  black
+  black,
+  focus
 }
 
 const add = (type, module) => {

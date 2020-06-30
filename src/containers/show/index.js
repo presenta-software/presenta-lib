@@ -11,21 +11,24 @@ const show = function (rootElement, projectConfig) {
 
   rootElement.appendChild(child)
 
+  const swapScene = (index, dir) => {
+    if (currentScene) {
+      currentScene.sceneConfig._presentatransdir = dir
+      currentScene.destroyAfter(projectConfig._transitionDestroyDelay)
+    }
+    const sceneConfig = scenes[index]
+    sceneConfig._presentatransdir = dir
+    currentScene = new Scene(child, sceneConfig, projectConfig)
+  }
+
   this.router = new Router(rootElement, projectConfig)
 
   this.router.on('nextIndex', evt => {
-    if (currentScene) {
-      currentScene.destroyAfter(1000)
-    }
-
-    currentScene = new Scene(child, scenes[evt.currentIndex], projectConfig)
+    swapScene(evt.currentIndex, 'foreward')
   })
 
   this.router.on('prevIndex', evt => {
-    if (currentScene) {
-      currentScene.destroyAfter(1000)
-    }
-    currentScene = new Scene(child, scenes[evt.currentIndex], projectConfig)
+    swapScene(evt.currentIndex, 'backward')
   })
 
   this.router.on('stepChanged', evt => {

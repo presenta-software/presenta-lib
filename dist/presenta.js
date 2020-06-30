@@ -1,11 +1,11 @@
-// https://lib.presenta.cc v0.0.1 Copyright 2020 Fabio Franchino
+// https://lib.presenta.cc v0.0.2 Copyright 2020 Fabio Franchino
 (function (global, factory) {
   typeof exports === 'object' && typeof module !== 'undefined' ? module.exports = factory() :
   typeof define === 'function' && define.amd ? define(factory) :
   (global = global || self, global.Presenta = factory());
 }(this, (function () { 'use strict';
 
-  var version = "0.0.1";
+  var version = "0.0.2";
 
   function styleInject(css, ref) {
     if ( ref === void 0 ) ref = {};
@@ -43,7 +43,7 @@
   var css_248z$2 = "@import url('https://fonts.googleapis.com/css2?family=Playfair+Display:wght@600&family=Work+Sans&display=swap');\n.theme__vibrant{\n  --fontHeading: 'Work Sans', sans-serif;\n  --fontText: 'Playfair Display', serif;\n}\n\n\n.theme__vibrant,\n.theme__vibrant.colorvar__a,\n.theme__vibrant .colorvar__a {\n  --backcolor: #ffe600;\n  --forecolor: #000;\n  --accentcolor: #ff6400;\n  --otheraccentcolor: #fff;\n}\n.theme__vibrant.colorvar__b,\n.theme__vibrant .colorvar__b {\n  --backcolor: #000;\n  --forecolor: rgb(255, 230, 0);\n  --accentcolor: #fff;\n  --otheraccentcolor: rgb(255, 100, 0);\n}\n.theme__vibrant.colorvar__c,\n.theme__vibrant .colorvar__c {\n  --backcolor: rgb(255, 100, 0);\n  --forecolor: #fff;\n  --accentcolor: rgb(255, 230, 0);\n  --otheraccentcolor: #000;\n}\n";
   styleInject(css_248z$2);
 
-  var css_248z$3 = ":root {\n  --textsize:1.5rem;\n  --textpadding: 1rem;\n  --textalign: center; }\n\n.p-scene-enter-transition .textContent > * {\n  transition: opacity .5s ease-in-out;\n  transition-delay: .25s; }\n\n.p-scene-enter-start .textContent > * {\n  opacity: 0; }\n\n.p-scene-enter-end .textContent > * {\n  opacity: 1; }\n\n.p-scene-leave-transition .textContent > * {\n  transition: opacity .25s; }\n\n.p-scene-leave-start .textContent > * {\n  opacity: 1; }\n\n.p-scene-leave-end .textContent > * {\n  opacity: 0; }\n\n.p.textposition__topleft .pretext,\n.p.textposition__tl .pretext {\n  align-items: flex-start;\n  justify-content: flex-start; }\n\n.p.textposition__topcenter .pretext,\n.p.textposition__tc .pretext {\n  align-items: flex-start;\n  justify-content: center; }\n\n.p.textposition__topright .pretext,\n.p.textposition__tr .pretext {\n  align-items: flex-start;\n  justify-content: flex-end; }\n\n.p.textposition__centerleft .pretext,\n.p.textposition__cl .pretext {\n  align-items: center;\n  justify-content: flex-start; }\n\n.p.textposition__center .pretext,\n.p.textposition__cc .pretext {\n  align-items: center;\n  justify-content: center; }\n\n.p.textposition__centerright .pretext,\n.p.textposition__cr .pretext {\n  align-items: center;\n  justify-content: flex-end; }\n\n.p.textposition__bottomleft .pretext,\n.p.textposition__bl .pretext {\n  align-items: flex-end;\n  justify-content: flex-start; }\n\n.p.textposition__bottomcenter .pretext,\n.p.textposition__bc .pretext {\n  align-items: flex-end;\n  justify-content: center; }\n\n.p.textposition__bottomright .pretext,\n.p.textposition__br .pretext {\n  align-items: flex-end;\n  justify-content: flex-end; }\n\n.s.textposition__topleft .pretext,\n.s.textposition__tl .pretext {\n  align-items: flex-start;\n  justify-content: flex-start; }\n\n.s.textposition__topcenter .pretext,\n.s.textposition__tc .pretext {\n  align-items: flex-start;\n  justify-content: center; }\n\n.s.textposition__topright .pretext,\n.s.textposition__tr .pretext {\n  align-items: flex-start;\n  justify-content: flex-end; }\n\n.s.textposition__centerleft .pretext,\n.s.textposition__cl .pretext {\n  align-items: center;\n  justify-content: flex-start; }\n\n.s.textposition__center .pretext,\n.s.textposition__cc .pretext {\n  align-items: center;\n  justify-content: center; }\n\n.s.textposition__centerright .pretext,\n.s.textposition__cr .pretext {\n  align-items: center;\n  justify-content: flex-end; }\n\n.s.textposition__bottomleft .pretext,\n.s.textposition__bl .pretext {\n  align-items: flex-end;\n  justify-content: flex-start; }\n\n.s.textposition__bottomcenter .pretext,\n.s.textposition__bc .pretext {\n  align-items: flex-end;\n  justify-content: center; }\n\n.s.textposition__bottomright .pretext,\n.s.textposition__br .pretext {\n  align-items: flex-end;\n  justify-content: flex-end; }\n\n.b.textposition__topleft .pretext,\n.b.textposition__tl .pretext {\n  align-items: flex-start;\n  justify-content: flex-start; }\n\n.b.textposition__topcenter .pretext,\n.b.textposition__tc .pretext {\n  align-items: flex-start;\n  justify-content: center; }\n\n.b.textposition__topright .pretext,\n.b.textposition__tr .pretext {\n  align-items: flex-start;\n  justify-content: flex-end; }\n\n.b.textposition__centerleft .pretext,\n.b.textposition__cl .pretext {\n  align-items: center;\n  justify-content: flex-start; }\n\n.b.textposition__center .pretext,\n.b.textposition__cc .pretext {\n  align-items: center;\n  justify-content: center; }\n\n.b.textposition__centerright .pretext,\n.b.textposition__cr .pretext {\n  align-items: center;\n  justify-content: flex-end; }\n\n.b.textposition__bottomleft .pretext,\n.b.textposition__bl .pretext {\n  align-items: flex-end;\n  justify-content: flex-start; }\n\n.b.textposition__bottomcenter .pretext,\n.b.textposition__bc .pretext {\n  align-items: flex-end;\n  justify-content: center; }\n\n.b.textposition__bottomright .pretext,\n.b.textposition__br .pretext {\n  align-items: flex-end;\n  justify-content: flex-end; }\n\n.g.textposition__topleft .pretext,\n.g.textposition__tl .pretext {\n  align-items: flex-start;\n  justify-content: flex-start; }\n\n.g.textposition__topcenter .pretext,\n.g.textposition__tc .pretext {\n  align-items: flex-start;\n  justify-content: center; }\n\n.g.textposition__topright .pretext,\n.g.textposition__tr .pretext {\n  align-items: flex-start;\n  justify-content: flex-end; }\n\n.g.textposition__centerleft .pretext,\n.g.textposition__cl .pretext {\n  align-items: center;\n  justify-content: flex-start; }\n\n.g.textposition__center .pretext,\n.g.textposition__cc .pretext {\n  align-items: center;\n  justify-content: center; }\n\n.g.textposition__centerright .pretext,\n.g.textposition__cr .pretext {\n  align-items: center;\n  justify-content: flex-end; }\n\n.g.textposition__bottomleft .pretext,\n.g.textposition__bl .pretext {\n  align-items: flex-end;\n  justify-content: flex-start; }\n\n.g.textposition__bottomcenter .pretext,\n.g.textposition__bc .pretext {\n  align-items: flex-end;\n  justify-content: center; }\n\n.g.textposition__bottomright .pretext,\n.g.textposition__br .pretext {\n  align-items: flex-end;\n  justify-content: flex-end; }\n";
+  var css_248z$3 = ":root {\n  --textsize:1.5rem;\n  --textpadding: 1rem;\n  --textalign: center; }\n\n.p.textposition__topleft .pretext,\n.p.textposition__tl .pretext {\n  align-items: flex-start;\n  justify-content: flex-start; }\n\n.p.textposition__topcenter .pretext,\n.p.textposition__tc .pretext {\n  align-items: flex-start;\n  justify-content: center; }\n\n.p.textposition__topright .pretext,\n.p.textposition__tr .pretext {\n  align-items: flex-start;\n  justify-content: flex-end; }\n\n.p.textposition__centerleft .pretext,\n.p.textposition__cl .pretext {\n  align-items: center;\n  justify-content: flex-start; }\n\n.p.textposition__center .pretext,\n.p.textposition__cc .pretext {\n  align-items: center;\n  justify-content: center; }\n\n.p.textposition__centerright .pretext,\n.p.textposition__cr .pretext {\n  align-items: center;\n  justify-content: flex-end; }\n\n.p.textposition__bottomleft .pretext,\n.p.textposition__bl .pretext {\n  align-items: flex-end;\n  justify-content: flex-start; }\n\n.p.textposition__bottomcenter .pretext,\n.p.textposition__bc .pretext {\n  align-items: flex-end;\n  justify-content: center; }\n\n.p.textposition__bottomright .pretext,\n.p.textposition__br .pretext {\n  align-items: flex-end;\n  justify-content: flex-end; }\n\n.s.textposition__topleft .pretext,\n.s.textposition__tl .pretext {\n  align-items: flex-start;\n  justify-content: flex-start; }\n\n.s.textposition__topcenter .pretext,\n.s.textposition__tc .pretext {\n  align-items: flex-start;\n  justify-content: center; }\n\n.s.textposition__topright .pretext,\n.s.textposition__tr .pretext {\n  align-items: flex-start;\n  justify-content: flex-end; }\n\n.s.textposition__centerleft .pretext,\n.s.textposition__cl .pretext {\n  align-items: center;\n  justify-content: flex-start; }\n\n.s.textposition__center .pretext,\n.s.textposition__cc .pretext {\n  align-items: center;\n  justify-content: center; }\n\n.s.textposition__centerright .pretext,\n.s.textposition__cr .pretext {\n  align-items: center;\n  justify-content: flex-end; }\n\n.s.textposition__bottomleft .pretext,\n.s.textposition__bl .pretext {\n  align-items: flex-end;\n  justify-content: flex-start; }\n\n.s.textposition__bottomcenter .pretext,\n.s.textposition__bc .pretext {\n  align-items: flex-end;\n  justify-content: center; }\n\n.s.textposition__bottomright .pretext,\n.s.textposition__br .pretext {\n  align-items: flex-end;\n  justify-content: flex-end; }\n\n.b.textposition__topleft .pretext,\n.b.textposition__tl .pretext {\n  align-items: flex-start;\n  justify-content: flex-start; }\n\n.b.textposition__topcenter .pretext,\n.b.textposition__tc .pretext {\n  align-items: flex-start;\n  justify-content: center; }\n\n.b.textposition__topright .pretext,\n.b.textposition__tr .pretext {\n  align-items: flex-start;\n  justify-content: flex-end; }\n\n.b.textposition__centerleft .pretext,\n.b.textposition__cl .pretext {\n  align-items: center;\n  justify-content: flex-start; }\n\n.b.textposition__center .pretext,\n.b.textposition__cc .pretext {\n  align-items: center;\n  justify-content: center; }\n\n.b.textposition__centerright .pretext,\n.b.textposition__cr .pretext {\n  align-items: center;\n  justify-content: flex-end; }\n\n.b.textposition__bottomleft .pretext,\n.b.textposition__bl .pretext {\n  align-items: flex-end;\n  justify-content: flex-start; }\n\n.b.textposition__bottomcenter .pretext,\n.b.textposition__bc .pretext {\n  align-items: flex-end;\n  justify-content: center; }\n\n.b.textposition__bottomright .pretext,\n.b.textposition__br .pretext {\n  align-items: flex-end;\n  justify-content: flex-end; }\n\n.g.textposition__topleft .pretext,\n.g.textposition__tl .pretext {\n  align-items: flex-start;\n  justify-content: flex-start; }\n\n.g.textposition__topcenter .pretext,\n.g.textposition__tc .pretext {\n  align-items: flex-start;\n  justify-content: center; }\n\n.g.textposition__topright .pretext,\n.g.textposition__tr .pretext {\n  align-items: flex-start;\n  justify-content: flex-end; }\n\n.g.textposition__centerleft .pretext,\n.g.textposition__cl .pretext {\n  align-items: center;\n  justify-content: flex-start; }\n\n.g.textposition__center .pretext,\n.g.textposition__cc .pretext {\n  align-items: center;\n  justify-content: center; }\n\n.g.textposition__centerright .pretext,\n.g.textposition__cr .pretext {\n  align-items: center;\n  justify-content: flex-end; }\n\n.g.textposition__bottomleft .pretext,\n.g.textposition__bl .pretext {\n  align-items: flex-end;\n  justify-content: flex-start; }\n\n.g.textposition__bottomcenter .pretext,\n.g.textposition__bc .pretext {\n  align-items: flex-end;\n  justify-content: center; }\n\n.g.textposition__bottomright .pretext,\n.g.textposition__br .pretext {\n  align-items: flex-end;\n  justify-content: flex-end; }\n";
   styleInject(css_248z$3);
 
   var css_248z$4 = ".style_text__3T1cl{\n    width: 100%;\n    height: 100%;\n    background-position: center;\n    background-size: cover;\n    background-color: var(--backcolor);\n    position: relative;\n    \n}\n\n.style_inner__11UJC{\n    position: relative;\n    width: 100%;\n    height: 100%;\n}\n\n.style_pretext__cLjqD{\n    display: flex;\n    width: 100%;\n    height: 100%;\n    align-items: center;\n    justify-content: center;\n}\n\n.style_textbox__1Vb-V{\n    padding: var(--textboxpadding);\n    text-align: var(--textalign);\n    /*overflow: hidden; */ /* removed for shadow, maybe neccessary */\n    font-size: var(--textsize);\n    color: var(--forecolor);\n    --backmark: var(--accentcolor);\n    --foremark: var(--backcolor);\n    --textaccentcolor: var(--accentcolor);\n    font-family: var(--fontHeading);\n}\n\n.style_itext__jz90o{\n    border: var(--textborder) solid var(--forecolor);\n    padding: var(--textpadding);\n    border-radius: var(--textboxradius);\n    box-shadow: var(--textboxshadow);\n    background-color: var(--textboxbackcolor);\n}\n\n.style_itext__jz90o img{\n    object-fit: contain;\n    height: 4em;\n    vertical-align: middle;\n}\n\n\n.style_itext__jz90o mark {\n  background-color: var(--backmark);\n  color: var(--foremark);\n  padding: 0 0.5rem;\n}\n.style_itext__jz90o high {\n  color: var(--textaccentcolor);\n}\n.style_itext__jz90o bord {\n  border: 8px solid var(--backmark);\n  padding: 0 0.5rem;\n}\n.style_itext__jz90o a {\n  color: var(--textaccentcolor);\n}\n\n.style_itext__jz90o blockquote {\n  font-size: 2em;\n  font-weight: 400;\n  font-style: italic;\n}\n\n.style_itext__jz90o h1,\n.style_itext__jz90o h2,\n.style_itext__jz90o h3,\n.style_itext__jz90o h4,\n.style_itext__jz90o h5,\n.style_itext__jz90o h6,\n.style_itext__jz90o p,\n.style_itext__jz90o ul,\n.style_itext__jz90o blockquote {\n  margin: 0;\n}\n\n.style_itext__jz90o ul,\n.style_itext__jz90o ol {\n  font-size: 1.5em;\n  line-height: 1.1em;\n  text-align: left;\n  margin: 0;\n  padding: 0;\n  list-style-type: none;\n  counter-reset: li;\n  padding: 0.5rem 0;\n}\n\n.style_itext__jz90o li{\n  padding: 0.25rem 0;\n  list-style-position:inside;\n  margin-bottom: 2px;\n  padding: .25em;\n  padding-left: 0.8em;\n}\n.style_itext__jz90o ul li::before {\n  content: \"\\2013\"; \n  display: inline-block; \n  width: 0.8em;\n  margin-left: -0.8em;\n}\n.style_itext__jz90o ol li::before {\n  counter-increment: li;  \n  content:  \".\" counter(li); \n  display: inline-block; \n  width: 1.1em; \n  margin-left: -1.3em;\n  margin-right: 0.2em; \n  text-align: right; \n  direction: rtl;\n}\n\n.style_itext__jz90o li p{\n  display: inline;\n}\n\n\n.style_itext__jz90o pre, .style_itext__jz90o code{\n  text-align: left;\n}\n\n\n.style_itext__jz90o h1,\n.style_itext__jz90o h2,\n.style_itext__jz90o h3,\n.style_itext__jz90o h4,\n.style_itext__jz90o h5,\n.style_itext__jz90o h6 {\n  font-family: var(--fontText);\n  padding: .5rem 0;\n}\n\n.style_itext__jz90o h1{\n  font-size: 2em;\n}\n.style_itext__jz90o h2{\n  font-size: 1.5em;\n}\n.style_itext__jz90o h3{\n  font-size: 1.17em;\n}\n.style_itext__jz90o h4{\n  font-size: 1em;\n}\n.style_itext__jz90o h5{\n  font-size: 0.83em;\n}\n.style_itext__jz90o h6{\n  font-size: 0.67em;\n}\n\n.style_itext__jz90o p{\n  padding: .5rem 0;\n}\n\n.style_itext__jz90o hr{\n  border: 1px solid var(--foremark);\n  margin: .5rem 0;\n}\n\n.style_itext__jz90o h1:first-child,\n.style_itext__jz90o h2:first-child,\n.style_itext__jz90o h3:first-child,\n.style_itext__jz90o h1:last-child,\n.style_itext__jz90o h2:last-child,\n.style_itext__jz90o h3:last-child{\n    padding: 0;\n}\n\n.style_itext__jz90o table{\n    width: 100%;\n}\n.style_itext__jz90o tr{\n    padding: 0;\n}\n\n.style_itext__jz90o td, .style_itext__jz90o th{\n    padding:.5rem;\n    border-bottom:1px solid var(--forecolor);\n}\n\n";
@@ -390,11 +390,14 @@
 
   add$1('pagenumber', pagenumber);
 
-  var css_248z$d = ".horizontalSlide .p-scene-enter-transition {\n  transition: transform 1s cubic-bezier(0.2, 0.8, 0.05, 0.95); }\n\n.horizontalSlide .to-right.p-scene-enter-start {\n  transform: translateX(100%); }\n\n.horizontalSlide .to-right.p-scene-enter-end {\n  transform: translateX(0); }\n\n.horizontalSlide .to-left.p-scene-enter-start {\n  transform: translateX(-100%); }\n\n.horizontalSlide .to-left.p-scene-enter-end {\n  transform: translateX(0); }\n\n.horizontalSlide .p-scene-leave-transition {\n  transition: transform 1s cubic-bezier(0.2, 0.8, 0.05, 0.95); }\n\n.horizontalSlide .to-right.p-scene-leave-start {\n  transform: translateX(0); }\n\n.horizontalSlide .to-right.p-scene-leave-end {\n  transform: translateX(-100%); }\n\n.horizontalSlide .to-left.p-scene-leave-start {\n  transform: translateX(0); }\n\n.horizontalSlide .to-left.p-scene-leave-end {\n  transform: translateX(100%); }\n";
+  var css_248z$d = ".horizontalSlide .p-scene-enter-transition {\n  transition: transform 1s; }\n\n.horizontalSlide .to-right.p-scene-enter-start {\n  transform: translateX(100%); }\n\n.horizontalSlide .to-right.p-scene-enter-end {\n  transform: translateX(0); }\n\n.horizontalSlide .to-left.p-scene-enter-start {\n  transform: translateX(-100%); }\n\n.horizontalSlide .to-left.p-scene-enter-end {\n  transform: translateX(0); }\n\n.horizontalSlide .p-scene-leave-transition {\n  transition: transform 1s; }\n\n.horizontalSlide .to-right.p-scene-leave-start {\n  transform: translateX(0); }\n\n.horizontalSlide .to-right.p-scene-leave-end {\n  transform: translateX(-100%); }\n\n.horizontalSlide .to-left.p-scene-leave-start {\n  transform: translateX(0); }\n\n.horizontalSlide .to-left.p-scene-leave-end {\n  transform: translateX(100%); }\n";
   styleInject(css_248z$d);
 
   var css_248z$e = ".verticalIn .p-scene-enter-transition {\n  transition: all 1s cubic-bezier(0.95, 0.05, 0.05, 0.95); }\n\n.verticalIn .p-scene-enter-start {\n  transform: translateY(150%); }\n\n.verticalIn .p-scene-enter-end {\n  transform: translateY(0); }\n\n.verticalIn .p-scene-leave-transition {\n  transition: all 1s cubic-bezier(0.95, 0.05, 0.05, 0.95); }\n\n.verticalIn .p-scene-leave-start {\n  transform: scale(1); }\n\n.verticalIn .p-scene-leave-end {\n  transform: scale(0.5); }\n";
   styleInject(css_248z$e);
+
+  var css_248z$f = ".outIn .p-scene-enter-transition {\n  opacity: 0; }\n\n.outIn .p-scene-enter-ended {\n  opacity: 1; }\n\n.outIn .p-scene-enter-transition .textContent > * {\n  transition: opacity 1s ease-out, transform 1.5s cubic-bezier(0.2, 0.8, 0.05, 0.95); }\n\n.outIn .p-scene-enter-transition .textContent > *:nth-child(1) {\n  transition-delay: 1.15s; }\n\n.outIn .p-scene-enter-transition .textContent > *:nth-child(2) {\n  transition-delay: 1.3s; }\n\n.outIn .p-scene-enter-transition .textContent > *:nth-child(3) {\n  transition-delay: 1.45s; }\n\n.outIn .p-scene-enter-transition .textContent > *:nth-child(4) {\n  transition-delay: 1.6s; }\n\n.outIn .p-scene-enter-transition .textContent > *:nth-child(5) {\n  transition-delay: 1.75s; }\n\n.outIn .p-scene-enter-transition .textContent > *:nth-child(6) {\n  transition-delay: 1.9s; }\n\n.outIn .p-scene-enter-transition .textContent > *:nth-child(7) {\n  transition-delay: 2.05s; }\n\n.outIn .p-scene-enter-transition .textContent > *:nth-child(8) {\n  transition-delay: 2.2s; }\n\n.outIn .p-scene-enter-transition .textContent > *:nth-child(9) {\n  transition-delay: 2.35s; }\n\n.outIn .p-scene-enter-transition .textContent > *:nth-child(10) {\n  transition-delay: 2.5s; }\n\n.outIn .p-scene-enter-transition .textContent > *:nth-child(11) {\n  transition-delay: 2.65s; }\n\n.outIn .p-scene-enter-transition .textContent > *:nth-child(12) {\n  transition-delay: 2.8s; }\n\n.outIn .p-scene-enter-transition .textContent > *:nth-child(13) {\n  transition-delay: 2.95s; }\n\n.outIn .p-scene-enter-transition .textContent > *:nth-child(14) {\n  transition-delay: 3.1s; }\n\n.outIn .p-scene-enter-transition .textContent > *:nth-child(15) {\n  transition-delay: 3.25s; }\n\n.outIn .p-scene-enter-transition .textContent > *:nth-child(16) {\n  transition-delay: 3.4s; }\n\n.outIn .p-scene-enter-transition .textContent > *:nth-child(17) {\n  transition-delay: 3.55s; }\n\n.outIn .p-scene-enter-transition .textContent > *:nth-child(18) {\n  transition-delay: 3.7s; }\n\n.outIn .p-scene-enter-transition .textContent > *:nth-child(19) {\n  transition-delay: 3.85s; }\n\n.outIn .p-scene-enter-transition .textContent > *:nth-child(20) {\n  transition-delay: 4s; }\n\n.outIn .p-scene-enter-transition .blockContainer > div {\n  transition: background-color 1s ease-out;\n  transition-delay: 1s; }\n\n.outIn .p-scene-enter-start .blockContainer > div {\n  background-color: rgba(0, 0, 0, 0); }\n\n.outIn .p-scene-enter-start .textContent > * {\n  opacity: 0;\n  transform: translateY(50px); }\n\n.outIn .p-scene-enter-end .textContent > * {\n  opacity: 1;\n  transform: translateY(0px); }\n\n.outIn .p-scene-leave-transition .textContent > * {\n  transition: opacity .5s ease-in-out, transform 1s ease-in-out; }\n\n.outIn .p-scene-leave-transition .textContent > *:nth-child(0) {\n  transition-delay: 0s; }\n\n.outIn .p-scene-leave-transition .textContent > *:nth-child(1) {\n  transition-delay: 0.1s; }\n\n.outIn .p-scene-leave-transition .textContent > *:nth-child(2) {\n  transition-delay: 0.2s; }\n\n.outIn .p-scene-leave-transition .textContent > *:nth-child(3) {\n  transition-delay: 0.3s; }\n\n.outIn .p-scene-leave-transition .textContent > *:nth-child(4) {\n  transition-delay: 0.4s; }\n\n.outIn .p-scene-leave-transition .textContent > *:nth-child(5) {\n  transition-delay: 0.5s; }\n\n.outIn .p-scene-leave-transition .textContent > *:nth-child(6) {\n  transition-delay: 0.6s; }\n\n.outIn .p-scene-leave-transition .textContent > *:nth-child(7) {\n  transition-delay: 0.7s; }\n\n.outIn .p-scene-leave-transition .textContent > *:nth-child(8) {\n  transition-delay: 0.8s; }\n\n.outIn .p-scene-leave-transition .textContent > *:nth-child(9) {\n  transition-delay: 0.9s; }\n\n.outIn .p-scene-leave-transition .textContent > *:nth-child(10) {\n  transition-delay: 1s; }\n\n.outIn .p-scene-leave-transition .textContent > *:nth-child(11) {\n  transition-delay: 1.1s; }\n\n.outIn .p-scene-leave-transition .textContent > *:nth-child(12) {\n  transition-delay: 1.2s; }\n\n.outIn .p-scene-leave-transition .textContent > *:nth-child(13) {\n  transition-delay: 1.3s; }\n\n.outIn .p-scene-leave-transition .textContent > *:nth-child(14) {\n  transition-delay: 1.4s; }\n\n.outIn .p-scene-leave-transition .textContent > *:nth-child(15) {\n  transition-delay: 1.5s; }\n\n.outIn .p-scene-leave-transition .textContent > *:nth-child(16) {\n  transition-delay: 1.6s; }\n\n.outIn .p-scene-leave-transition .textContent > *:nth-child(17) {\n  transition-delay: 1.7s; }\n\n.outIn .p-scene-leave-transition .textContent > *:nth-child(18) {\n  transition-delay: 1.8s; }\n\n.outIn .p-scene-leave-transition .textContent > *:nth-child(19) {\n  transition-delay: 1.9s; }\n\n.outIn .p-scene-leave-transition .textContent > *:nth-child(20) {\n  transition-delay: 2s; }\n\n.outIn .p-scene-leave-start .textContent > * {\n  opacity: 1;\n  transform: scale(1); }\n\n.outIn .p-scene-leave-end .textContent > * {\n  opacity: 0;\n  transform: scale(0.75); }\n";
+  styleInject(css_248z$f);
 
   const transition = wrapper => {
     const functor = function (wrapper) {
@@ -409,6 +412,11 @@
           wrapper.classList.add('p-scene-enter-end');
           wrapper.classList.remove('p-scene-enter-start');
         });
+        return this;
+      };
+
+      this.swap = () => {
+        wrapper.classList.add('p-scene-enter-ended');
         return this;
       };
 
@@ -541,7 +549,11 @@
 
     if (hasTransition) {
       const wrap = this.el.querySelector('.sceneObject');
-      transition(wrap).start('to-right');
+      const dir = sceneConfig._presentatransdir === 'backward' ? 'to-left' : 'to-right';
+      transition(wrap).start(dir);
+      setTimeout(() => {
+        transition(wrap).swap();
+      }, projectConfig._transitionDestroyDelay);
     }
     /*
       Public method called by the container to init the destroy phase
@@ -554,7 +566,9 @@
       */
       if (hasTransition) {
         const wrap = this.el.querySelector('.sceneObject');
-        transition(wrap).clear('to-left').end('to-right');
+        const odir = sceneConfig._presentatransdir === 'backward' ? 'to-right' : 'to-left';
+        const ndir = sceneConfig._presentatransdir === 'backward' ? 'to-left' : 'to-right';
+        transition(wrap).clear(odir).end(ndir);
       }
 
       const t = _t || 0;
@@ -577,11 +591,12 @@
     };
 
     this.uid = u.uid(sceneConfig);
+    this.sceneConfig = sceneConfig;
   };
 
-  var css_248z$f = ".style_grid__1AGYU {\n  display: flex;\n  flex-wrap: wrap;\n  overflow-y: auto;\n  height: 100%;\n}\n.style_grid__1AGYU > div {\n  height: initial;\n  margin-bottom: 0.5rem;\n}\n.style_col1__2sfnY > div {\n  width: 100%;\n}\n.style_col2__3yP-h > div {\n  width: 50%;\n}\n.style_col3__32U3b > div {\n  width: 33.3333333333%;\n}\n.style_col4__1vNJ5 > div {\n  width: 25%;\n}\n";
+  var css_248z$g = ".style_grid__1AGYU {\n  display: flex;\n  flex-wrap: wrap;\n  overflow-y: auto;\n  height: 100%;\n}\n.style_grid__1AGYU > div {\n  height: initial;\n  margin-bottom: 0.5rem;\n}\n.style_col1__2sfnY > div {\n  width: 100%;\n}\n.style_col2__3yP-h > div {\n  width: 50%;\n}\n.style_col3__32U3b > div {\n  width: 33.3333333333%;\n}\n.style_col4__1vNJ5 > div {\n  width: 25%;\n}\n";
   var css$7 = {"grid":"style_grid__1AGYU","col1":"style_col1__2sfnY","col2":"style_col2__3yP-h","col3":"style_col3__32U3b","col4":"style_col4__1vNJ5"};
-  styleInject(css_248z$f);
+  styleInject(css_248z$g);
 
   const grid = function (rootElement, projectConfig) {
     const columns = projectConfig.columns || 1;
@@ -594,14 +609,14 @@
     u.fit(child, projectConfig, rootElement);
   };
 
-  var css_248z$g = ".style_show__keV71 {\n  width: 100%;\n  height: 100%;\n  position: relative;\n  overflow: hidden;\n}\n\n.style_show__keV71 > div{\n  position: absolute;\n  top:0;\n  left:0;\n  width: 100%;\n}\n\n.style_focused__lSH54{\n  outline: 3px solid green;\n}";
+  var css_248z$h = ".style_show__keV71 {\n  width: 100%;\n  height: 100%;\n  position: relative;\n  overflow: hidden;\n}\n\n.style_show__keV71 > div{\n  position: absolute;\n  top:0;\n  left:0;\n  width: 100%;\n}\n\n.style_focused__lSH54{\n  outline: 3px solid green;\n}";
   var css$8 = {"show":"style_show__keV71","focused":"style_focused__lSH54"};
-  styleInject(css_248z$g);
+  styleInject(css_248z$h);
 
   const autoplay = function (rootElement, router, config) {
     let timer = null;
     const loop = !config.noloop;
-    const defdelay = config.delay || 2000;
+    const defdelay = config.delay || 4000;
     let lastdelay = 0;
 
     const runTime = delay => {
@@ -634,6 +649,19 @@
     };
   };
 
+  const setViewportObserver = child => {
+    const clb = (entries, observer) => {
+      entries.forEach(entry => {
+        if (entry.isIntersecting) child.focus({
+          preventScroll: true
+        });
+      });
+    };
+
+    const observer = new IntersectionObserver(clb);
+    observer.observe(child);
+  };
+
   const keyboard = function (rootElement, router, config) {
     const setKeyListener = e => {
       if (e.key === 'ArrowRight' || e.key === 'ArrowDown') {
@@ -646,11 +674,12 @@
     };
 
     rootElement.addEventListener('keyup', setKeyListener);
+    setViewportObserver(rootElement);
   };
 
-  var css_248z$h = ".style_arrows__2HgOY{\n    position: absolute;\n    top:0;\n    left:0;\n    width: 100%;\n    height: 100%;\n    display: flex;\n    align-items: center;\n    justify-content: space-between;\n    transition: opacity .35s;\n}\n\n.style_left__3_kwS, .style_right__RERAa{\n    width: 50px;\n    height: 50px;\n    background-color: var(--forecolor);\n    transition: background-color .3s;\n    cursor: pointer;\n}\n\n\n.style_arrows__2HgOY.style_hide__3B8Al{\n    opacity: 0;\n}";
+  var css_248z$i = ".style_arrows__2HgOY{\n    position: absolute;\n    top:0;\n    left:0;\n    width: 100%;\n    height: 100%;\n    display: flex;\n    align-items: center;\n    justify-content: space-between;\n    transition: opacity .35s;\n}\n\n.style_left__3_kwS, .style_right__RERAa{\n    width: 50px;\n    height: 50px;\n    background-color: var(--forecolor);\n    transition: background-color .3s;\n    cursor: pointer;\n}\n\n\n.style_arrows__2HgOY.style_hide__3B8Al{\n    opacity: 0;\n}";
   var css$9 = {"arrows":"style_arrows__2HgOY","left":"style_left__3_kwS","right":"style_right__RERAa","hide":"style_hide__3B8Al"};
-  styleInject(css_248z$h);
+  styleInject(css_248z$i);
 
   const arrows = function (rootElement, router, config) {
     let timer = null;
@@ -682,9 +711,9 @@
     scheduleForHide();
   };
 
-  var css_248z$i = ".style_black__27h0m{\n    width: 100%;\n    height: 100%;\n    position: absolute;\n    top:0;\n    left:0;\n\n    background-color: black;\n    opacity: 0;\n    pointer-events: none;\n    transition: opacity .5s cubic-bezier(0.8, 0.2, 0.2, 0.8);\n}";
+  var css_248z$j = ".style_black__27h0m{\n    width: 100%;\n    height: 100%;\n    position: absolute;\n    top:0;\n    left:0;\n\n    background-color: black;\n    opacity: 0;\n    pointer-events: none;\n    transition: opacity .5s cubic-bezier(0.8, 0.2, 0.2, 0.8);\n}";
   var css$a = {"black":"style_black__27h0m"};
-  styleInject(css_248z$i);
+  styleInject(css_248z$j);
 
   const black = function (rootElement, router, config) {
     let visible = false;
@@ -701,11 +730,25 @@
     rootElement.addEventListener('keyup', setKeyListener);
   };
 
+  const focus = function (rootElement, router, config) {
+    const clb = (entries, observer) => {
+      entries.forEach(entry => {
+        if (entry.isIntersecting) rootElement.focus({
+          preventScroll: true
+        });
+      });
+    };
+
+    const observer = new IntersectionObserver(clb);
+    observer.observe(rootElement);
+  };
+
   const io = {
     autoplay,
     keyboard,
     arrows,
-    black
+    black,
+    focus
   };
 
   const add$2 = (type, module) => {
@@ -716,9 +759,9 @@
     io[type] = module;
   };
 
-  var css_248z$j = ".router_router__2R2qw{\n    width: 100%;\n    height: 100%;\n    position: absolute;\n    top:0;\n    left:0;\n}";
+  var css_248z$k = ".router_router__2R2qw{\n    width: 100%;\n    height: 100%;\n    position: absolute;\n    top:0;\n    left:0;\n}";
   var css$b = {"router":"router_router__2R2qw"};
-  styleInject(css_248z$j);
+  styleInject(css_248z$k);
 
   const Router = function (rootElement, projectConfig) {
     const child = u.div(`<div class="${css$b.router}"></div>`);
@@ -844,20 +887,24 @@
     const scenes = projectConfig.scenes;
     var currentScene = new Scene(child, scenes[0], projectConfig);
     rootElement.appendChild(child);
+
+    const swapScene = (index, dir) => {
+      if (currentScene) {
+        currentScene.sceneConfig._presentatransdir = dir;
+        currentScene.destroyAfter(projectConfig._transitionDestroyDelay);
+      }
+
+      const sceneConfig = scenes[index];
+      sceneConfig._presentatransdir = dir;
+      currentScene = new Scene(child, sceneConfig, projectConfig);
+    };
+
     this.router = new Router(rootElement, projectConfig);
     this.router.on('nextIndex', evt => {
-      if (currentScene) {
-        currentScene.destroyAfter(1000);
-      }
-
-      currentScene = new Scene(child, scenes[evt.currentIndex], projectConfig);
+      swapScene(evt.currentIndex, 'foreward');
     });
     this.router.on('prevIndex', evt => {
-      if (currentScene) {
-        currentScene.destroyAfter(1000);
-      }
-
-      currentScene = new Scene(child, scenes[evt.currentIndex], projectConfig);
+      swapScene(evt.currentIndex, 'backward');
     });
     this.router.on('stepChanged', evt => {
       currentScene.stepForward();
@@ -965,13 +1012,15 @@
       router: {
         keyboard: true,
         arrows: true,
-        black: true
+        black: true,
+        focus: true
       },
       modules: {
         pagenumber: true
       },
       theme: 'original',
-      transition: 'horizontalSlide'
+      transition: 'horizontalSlide',
+      _transitionDestroyDelay: 1000
     };
 
     for (const k in defaultConfig) {

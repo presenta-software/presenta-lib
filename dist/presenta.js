@@ -1,4 +1,4 @@
-// https://www.presenta.cc v0.0.0 Copyright 2020 Fabio Franchino
+// https://lib.presenta.cc v0.0.0 Copyright 2020 Fabio Franchino
 (function (global, factory) {
   typeof exports === 'object' && typeof module !== 'undefined' ? module.exports = factory() :
   typeof define === 'function' && define.amd ? define(factory) :

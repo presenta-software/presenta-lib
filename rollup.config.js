@@ -42,35 +42,35 @@ export default [{
       ]
     })
   ]
+},
+{
+  input: 'src/index.js',
+  output: {
+    extend: true,
+    file: 'dist/presenta.min.js',
+    format: 'umd',
+    indent: false,
+    name: 'Presenta'
+  },
+  plugins: [
+    resolve(),
+    json(),
+    babel({
+      exclude: 'node_modules/**'
+    }),
+    commonjs(),
+    terser(),
+    postcss({
+      modules: {
+        globalModulePaths: [
+          /global/, /themes/
+        ]
+      },
+      plugins: [
+        autoprefixer({ grid: true }),
+        cssnano({ preset: 'default' })
+      ]
+    })
+  ]
 }
-// , {
-//   input: 'src/index.js',
-//   output: {
-//     extend: true,
-//     file: 'dist/presenta.min.js',
-//     format: 'umd',
-//     indent: false,
-//     name: 'Presenta'
-//   },
-//   plugins: [
-//     resolve(),
-//     babel({
-//       exclude: 'node_modules/**'
-//     }),
-//     commonjs(),
-//     terser(),
-//     postcss({
-//       modules: {
-//         globalModulePaths: [
-//           'src/css/global.css',
-//           'src/blocks/text/global.css'
-//         ]
-//       },
-//       plugins: [
-//         autoprefixer({ grid: true }),
-//         cssnano({ preset: 'default' })
-//       ]
-//     })
-//   ]
-// }
 ]

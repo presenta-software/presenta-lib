@@ -1,6 +1,6 @@
 {
   "name": "@presenta/lib",
-  "homepage": "https://www.presenta.cc",
+  "homepage": "https://lib.presenta.cc",
   "version": "0.0.0",
   "description": "A modern presentation library",
   "main": "dist/presenta.js",
@@ -9,6 +9,7 @@
   "scripts": {
     "start": "rollup -c --watch",
     "build": "rollup -c",
+    "bump": "npm run build && git add -u && git commit -m \"bump release\" && npm version patch && git push && npm publish",
     "preview": "browser-sync start --server --files=\"dist/*, test/*, examples/*\""
   },
   "keywords": [

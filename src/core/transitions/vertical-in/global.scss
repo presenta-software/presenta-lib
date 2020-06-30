@@ -1,7 +1,7 @@
 
 .verticalIn{
   .p-scene-enter-transition {
-    transition: all 1s cubic-bezier(0.95, 0.05, 0.05, 0.95);
+    transition: all .75s cubic-bezier(0.2, 0.8, 0.05, 0.95);
   }
   .p-scene-enter-start {
     transform: translateY(150%);
@@ -11,7 +11,7 @@
   }
 
   .p-scene-leave-transition {
-    transition: all 1s cubic-bezier(0.95, 0.05, 0.05, 0.95);
+    transition: all .75s cubic-bezier(0.2, 0.8, 0.05, 0.95);
   }
   .p-scene-leave-start {
     transform: scale(1);

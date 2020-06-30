@@ -18,7 +18,7 @@
 
   .p-scene-enter-transition .textContent > * {
     transition: opacity 1s ease-out,
-    transform 1.5s cubic-bezier(0.2, 0.8, 0.05, 0.95);
+    transform 1s cubic-bezier(0.2, 0.8, 0.05, 0.95);
   }
   $items: 20;
   @for $i from 1 through $items {
@@ -28,7 +28,7 @@
   }
 
   .p-scene-enter-transition .blockContainer > div{
-    transition: background-color 1s ease-out;
+    transition: background-color 1s easeInOutExpo;
     transition-delay: 1s;
   }
 
@@ -38,7 +38,7 @@
 
   .p-scene-enter-start .textContent > * {
     opacity: 0;
-    transform: translateY(50px);
+    transform: translateY(30px);
   }
   .p-scene-enter-end .textContent > * {
     opacity: 1;
@@ -46,7 +46,7 @@
   }
 
   .p-scene-leave-transition .textContent > * {
-    transition: opacity .5s ease-in-out, transform 1s ease-in-out;
+    transition: opacity .75s easeOutQuart, transform .75s easeOutQuart;
   }
   $items: 20;
   @for $i from 0 through $items {
@@ -60,6 +60,6 @@
   }
   .p-scene-leave-end .textContent > * {
     opacity: 0;
-    transform: scale(0.75);
+    transform: scale(.85);
   }
 }

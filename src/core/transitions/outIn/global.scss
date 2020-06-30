@@ -1,0 +1,65 @@
+.outIn {
+  .p-scene-enter-transition {
+    opacity: 0;
+  }
+  .p-scene-enter-start {
+  }
+  .p-scene-enter-end {
+  }
+  .p-scene-enter-ended {
+    opacity: 1;
+  }
+  .p-scene-leave-transition {
+  }
+  .p-scene-leave-start {
+  }
+  .p-scene-leave-end {
+  }
+
+  .p-scene-enter-transition .textContent > * {
+    transition: opacity 1s ease-out,
+    transform 1.5s cubic-bezier(0.2, 0.8, 0.05, 0.95);
+  }
+  $items: 20;
+  @for $i from 1 through $items {
+    .p-scene-enter-transition .textContent > *:nth-child(#{$i}) {
+      transition-delay: 1s + (0.15s * $i);
+    }
+  }
+
+  .p-scene-enter-transition .blockContainer > div{
+    transition: background-color 1s ease-out;
+    transition-delay: 1s;
+  }
+
+  .p-scene-enter-start .blockContainer > div{
+    background-color: rgba(0,0,0,0);
+  }
+
+  .p-scene-enter-start .textContent > * {
+    opacity: 0;
+    transform: translateY(50px);
+  }
+  .p-scene-enter-end .textContent > * {
+    opacity: 1;
+    transform: translateY(0px);
+  }
+
+  .p-scene-leave-transition .textContent > * {
+    transition: opacity .5s ease-in-out, transform 1s ease-in-out;
+  }
+  $items: 20;
+  @for $i from 0 through $items {
+    .p-scene-leave-transition .textContent > *:nth-child(#{$i}) {
+      transition-delay: (0.1s * $i);
+    }
+  }
+  .p-scene-leave-start .textContent > * {
+    opacity: 1;
+    transform: scale(1);
+  }
+  .p-scene-leave-end .textContent > * {
+    opacity: 0;
+    transform: scale(0.75);
+  }
+}

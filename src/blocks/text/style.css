@@ -31,7 +31,7 @@
     --backmark: var(--accentcolor);
     --foremark: var(--backcolor);
     --textaccentcolor: var(--accentcolor);
-    font-family: var(--fontHeading);
+    font-family: var(--fontText);
 }
 
 .itext{
@@ -135,7 +135,7 @@
 .itext h4,
 .itext h5,
 .itext h6 {
-  font-family: var(--fontText);
+  font-family: var(--fontHeading);
   padding: .5rem 0;
 }
 
@@ -163,7 +163,7 @@
 }
 
 .itext hr{
-  border: 1px solid var(--foremark);
+  border: 1px solid var(--forecolor);
   margin: .5rem 0;
 }
 

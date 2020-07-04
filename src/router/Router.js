@@ -113,7 +113,9 @@ const Router = function (rootElement, projectConfig) {
   if (projectConfig.router) {
     for (const k in projectConfig.router) {
       const modConfig = projectConfig.router[k]
-      if (modConfig) registeredIO[k] = new io[k](child, this, modConfig)
+      const Mod = io[k]
+      if (!Mod) console.log(`Router module "${k}" not found. Maybe you forgot to include it.`)
+      if (modConfig && Mod) registeredIO[k] = new Mod(child, this, modConfig)
     }
   }
 }

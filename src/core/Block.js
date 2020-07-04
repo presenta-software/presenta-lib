@@ -19,6 +19,7 @@ const Block = function (sceneElement, blockConfig) {
   const child = u.div(`<div class="${css.block} b b${this.index} ${props.classes}" style="${props.styles}">
     <div class="blockContainer ${css.inner}"></div>
   </div>`)
+  this.el = child
 
   const blockContainer = child.querySelector('.blockContainer')
 
@@ -26,6 +27,13 @@ const Block = function (sceneElement, blockConfig) {
     console.log(`block "${this.type}" not found`)
   } else {
     this.block = new blocks[this.type](blockContainer, blockConfig)
+  }
+
+  /*
+    Define the default scene color class
+  */
+  if (blockConfig.variant) {
+    this.el.classList.add('colorvar__' + blockConfig.variant)
   }
 
   this.beforeDestroy = () => {

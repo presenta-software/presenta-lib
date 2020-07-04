@@ -73,10 +73,9 @@ const Scene = function (containerElement, sceneConfig, projectConfig) {
     for (const k in sceneConfig.modules) {
       const modConfig = sceneConfig.modules[k]
       const Mod = modules[k]
-      if (Mod) {
+      if (!Mod) console.log(`Module "${k}" not found. Maybe you forgot to include it.`)
+      if (modConfig && Mod) {
         const mod = new Mod(child.querySelector(`.${css.content}`), modConfig, sceneConfig, projectConfig)
-      } else {
-        console.log(`Module "${k}" not found. Maybe you forgot to include it.`)
       }
     }
   }
@@ -85,8 +84,7 @@ const Scene = function (containerElement, sceneConfig, projectConfig) {
     Init blocks if any
   */
   const blocks = sceneConfig.blocks
-  blocks.forEach((blockConfig, i) => {
-    blockConfig.index = i
+  blocks.forEach(blockConfig => {
     const block = new Block(child.querySelector('.blocksContainer'), blockConfig)
     this.blocks.push(block)
   })
@@ -96,6 +94,13 @@ const Scene = function (containerElement, sceneConfig, projectConfig) {
   */
   if (sceneConfig.transition) {
     this.el.classList.add(sceneConfig.transition)
+  }
+
+  /*
+    Define the default scene color class
+  */
+  if (sceneConfig.variant) {
+    this.el.classList.add('colorvar__' + sceneConfig.variant)
   }
 
   /*

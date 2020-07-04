@@ -4,8 +4,7 @@ export default config => {
     router: {
       keyboard: true,
       arrows: true,
-      black: true,
-      focus: true
+      black: true
     },
     modules: {
       pagenumber: true

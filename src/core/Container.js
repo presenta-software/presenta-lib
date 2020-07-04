@@ -45,6 +45,13 @@ const Container = function (rootElement, projectConfig) {
   }
 
   /*
+    Define the default scene color class
+  */
+  if (projectConfig.variant) {
+    this.el.classList.add('colorvar__' + projectConfig.variant)
+  }
+
+  /*
     Activate the theme if requested
   */
   if (projectConfig.theme) {

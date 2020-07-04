@@ -1,3 +1,9 @@
+:root{
+  --fontHeading: Georgia, "Times New Roman", Times, serif;
+  --fontText: "Trebuchet MS", "Lucida Sans Unicode", "Lucida Grande",
+    "Lucida Sans", Arial, sans-serif;
+}
+
 .presenta * {
   box-sizing: border-box;
 }
@@ -7,9 +13,7 @@
   position: relative;
   /* width: 100%;
     height: 100%; */
-  --fontHeading: Georgia, "Times New Roman", Times, serif;
-  --fontText: "Trebuchet MS", "Lucida Sans Unicode", "Lucida Grande",
-    "Lucida Sans", Arial, sans-serif;
+  
 
   --pw: 960;
   --w: 960px;
@@ -27,22 +31,22 @@
   --blockpadding: 0;
 }
 
-.presenta,
-.presenta .colorvar__a {
+:root,
+.colorvar__a {
   --backcolor: #fff;
   --forecolor: #000;
   --accentcolor: #444;
   --otheraccentcolor: #ddd;
   --overlaycolor: var(--backcolor);
 }
-.presenta .colorvar__b {
+.colorvar__b {
   --backcolor: #000;
   --forecolor: #fff;
   --accentcolor: #999;
   --otheraccentcolor: #ccc;
   --overlaycolor: var(--backcolor);
 }
-.presenta .colorvar__c {
+.colorvar__c {
   --backcolor: #444;
   --forecolor: #ffffff;
   --accentcolor: #fff;

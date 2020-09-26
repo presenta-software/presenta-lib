@@ -4,7 +4,7 @@ import { Block } from './Block.js'
 import { modules } from '../modules/types.js'
 import { transition } from './transition.js'
 
-const Scene = function (containerElement, sceneConfig, projectConfig) {
+const Scene = function (sceneConfig, projectConfig) {
   this.blocks = []
 
   /*
@@ -63,7 +63,6 @@ const Scene = function (containerElement, sceneConfig, projectConfig) {
         </div>
       </div>
   </div>`)
-  containerElement.appendChild(child)
   this.el = child
 
   /*
@@ -145,7 +144,7 @@ const Scene = function (containerElement, sceneConfig, projectConfig) {
     this.blocks.forEach(block => block.beforeDestroy())
 
     setTimeout(() => {
-      containerElement.removeChild(child)
+      child.parentNode.removeChild(child)
     }, t)
   }
 

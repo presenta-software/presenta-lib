@@ -7,7 +7,8 @@ const show = function (rootElement, projectConfig) {
   const child = u.div(`<div class="a ${css.show}"></div>`)
 
   const scenes = projectConfig.scenes
-  var currentScene = new Scene(child, scenes[0], projectConfig)
+  var currentScene = new Scene(scenes[0], projectConfig)
+  child.appendChild(currentScene.el)
 
   rootElement.appendChild(child)
 
@@ -18,7 +19,8 @@ const show = function (rootElement, projectConfig) {
     }
     const sceneConfig = scenes[index]
     sceneConfig._presentatransdir = dir
-    currentScene = new Scene(child, sceneConfig, projectConfig)
+    currentScene = new Scene(sceneConfig, projectConfig)
+    child.appendChild(currentScene.el)
   }
 
   this.router = new Router(rootElement, projectConfig)

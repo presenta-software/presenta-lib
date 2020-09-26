@@ -9,8 +9,9 @@ export default config => {
     modules: {
       pagenumber: true
     },
-    theme: 'original',
+    theme: '',
     transition: 'horizontalSlide',
+    container: 'show',
     _transitionDestroyDelay: 1000
   }
 
@@ -20,7 +21,7 @@ export default config => {
     } else {
       if (typeof defaultConfig[k] === 'object') {
         for (const h in defaultConfig[k]) {
-          if (!config[k].hasOwnProperty(h)) {
+          if (config[k] && !config[k].hasOwnProperty(h)) {
             config[k][h] = defaultConfig[k][h]
           }
         }

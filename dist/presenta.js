@@ -1,11 +1,11 @@
-// https://lib.presenta.cc v0.0.4 Copyright 2020 Fabio Franchino
+// https://lib.presenta.cc v0.0.5 Copyright 2020 Fabio Franchino
 (function (global, factory) {
   typeof exports === 'object' && typeof module !== 'undefined' ? module.exports = factory() :
   typeof define === 'function' && define.amd ? define(factory) :
   (global = global || self, global.Presenta = factory());
 }(this, (function () { 'use strict';
 
-  var version = "0.0.4";
+  var version = "0.0.5";
 
   function styleInject(css, ref) {
     if ( ref === void 0 ) ref = {};
@@ -252,9 +252,11 @@
     const el = u.select(_el);
     let imageschunk = '';
 
-    _config.images.forEach(img => {
-      imageschunk += `<div class="${css$2.preimg}"><img src="${img.url}" /></div>`;
-    });
+    if (_config.images) {
+      _config.images.forEach(img => {
+        imageschunk += `<div class="${css$2.preimg}"><img src="${img.url}" /></div>`;
+      });
+    }
 
     const child = u.div(`<div class="${css$2.images}">
     <div class="imagesContainer ${css$2.inner}">
@@ -443,7 +445,7 @@
     return new functor(wrapper);
   };
 
-  const Scene = function (containerElement, sceneConfig, projectConfig) {
+  const Scene = function (sceneConfig, projectConfig) {
     this.blocks = [];
     /*
       Let's notify the user about missing fields
@@ -507,7 +509,6 @@
         </div>
       </div>
   </div>`);
-    containerElement.appendChild(child);
     this.el = child;
     /*
       Init modules if any
@@ -589,7 +590,7 @@
       const t = _t || 0;
       this.blocks.forEach(block => block.beforeDestroy());
       setTimeout(() => {
-        containerElement.removeChild(child);
+        child.parentNode.removeChild(child);
       }, t);
     };
     /*
@@ -616,12 +617,29 @@
   const grid = function (rootElement, projectConfig) {
     const columns = projectConfig.columns || 1;
     const child = u.div(`<div class="a ${css$7.grid} ${css$7['col' + columns]}"></div>`);
-    const scenes = projectConfig.scenes;
-    scenes.forEach((b, i) => {
-      const scene = new Scene(child, b, projectConfig);
+    const cscenes = projectConfig.scenes;
+    cscenes.forEach((b, i) => {
+      const scene = new Scene(b, projectConfig);
+      child.appendChild(scene.el);
     });
     rootElement.appendChild(child);
     u.fit(child, projectConfig, rootElement);
+
+    this.updateAt = (index, confscene) => {
+      const newscene = new Scene(confscene, projectConfig);
+      const oldEl = child.children[index];
+      child.replaceChild(newscene.el, oldEl);
+    };
+
+    this.addAt = (index, confscene) => {
+      const scene = new Scene(confscene, projectConfig);
+      child.insertBefore(scene.el, child.children[index]);
+    };
+
+    this.removeAt = index => {
+      const remEl = child.children[index];
+      child.removeChild(remEl);
+    };
   };
 
   var css_248z$h = ".style_show__keV71 {\n  width: 100%;\n  height: 100%;\n  position: relative;\n  overflow: hidden;\n}\n\n.style_show__keV71 > div{\n  position: absolute;\n  top:0;\n  left:0;\n  width: 100%;\n}\n\n.style_focused__lSH54{\n  outline: 3px solid green;\n}";
@@ -888,7 +906,8 @@
   const show = function (rootElement, projectConfig) {
     const child = u.div(`<div class="a ${css$8.show}"></div>`);
     const scenes = projectConfig.scenes;
-    var currentScene = new Scene(child, scenes[0], projectConfig);
+    var currentScene = new Scene(scenes[0], projectConfig);
+    child.appendChild(currentScene.el);
     rootElement.appendChild(child);
 
     const swapScene = (index, dir) => {
@@ -899,7 +918,8 @@
 
       const sceneConfig = scenes[index];
       sceneConfig._presentatransdir = dir;
-      currentScene = new Scene(child, sceneConfig, projectConfig);
+      currentScene = new Scene(sceneConfig, projectConfig);
+      child.appendChild(currentScene.el);
     };
 
     this.router = new Router(rootElement, projectConfig);
@@ -1028,8 +1048,9 @@
       modules: {
         pagenumber: true
       },
-      theme: 'original',
+      theme: '',
       transition: 'horizontalSlide',
+      container: 'show',
       _transitionDestroyDelay: 1000
     };
 
@@ -1039,7 +1060,7 @@
       } else {
         if (typeof defaultConfig[k] === 'object') {
           for (const h in defaultConfig[k]) {
-            if (!config[k].hasOwnProperty(h)) {
+            if (config[k] && !config[k].hasOwnProperty(h)) {
               config[k][h] = defaultConfig[k][h];
             }
           }

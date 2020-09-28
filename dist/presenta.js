@@ -301,7 +301,7 @@
   var css$4 = {"block":"block_block__BWbaZ","inner":"block_inner__3LS6s"};
   styleInject(css_248z$9);
 
-  var css_248z$a = ".style_video__1qbdJ{\n    width: 100%;\n    height: 100%;\n    display: flex;\n    align-items: center;\n    justify-content: center;\n}\n\n.style_video__1qbdJ video{\n    width: 100%;\n    height: 100%;\n}";
+  var css_248z$a = ".style_video__1qbdJ{\n    width: 100%;\n    height: 100%;\n    \n    display: flex;\n    align-items: center;\n    justify-content: center;\n}\n\n.style_video__1qbdJ video{\n    width: 100%;\n    height: 100%;\n}";
   var css$5 = {"video":"style_video__1qbdJ"};
   styleInject(css_248z$a);
 

@@ -4,10 +4,16 @@ import u from '../../utils.js'
 const images = function (_el, _config) {
   const el = u.select(_el)
 
+  const defsize = _config.size || 'cover'
+
   let imageschunk = ''
   if (_config.images) {
     _config.images.forEach(img => {
-      imageschunk += `<div class="${css.preimg}"><img src="${img.url}" /></div>`
+      const size = img.size || defsize
+      const sizecmd = 'object-fit:' + size + ';'
+      imageschunk += `<div class="${css.preimg}">
+        <img style="${sizecmd}" src="${img.url}" />
+      </div>`
     })
   }
 

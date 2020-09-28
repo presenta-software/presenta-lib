@@ -5,7 +5,7 @@ const fit = (el, config, par) => {
   const cw = +bbox.width.split('px')[0]
   const ch = +bbox.height.split('px')[0]
 
-  let aspect = config.aspect || 1.6
+  let aspect = config.aspect
 
   if (config.adapt) {
     const currAspect = cw / ch

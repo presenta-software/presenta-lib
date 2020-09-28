@@ -26,18 +26,6 @@ const Container = function (rootElement, projectConfig) {
   }
 
   /*
-    Distribuite the module config across scenes
-  */
-  if (projectConfig.modules) {
-    for (const k in projectConfig.modules) {
-      projectConfig.scenes.forEach(scene => {
-        if (!scene.hasOwnProperty('modules')) scene.modules = {}
-        if (!scene.modules.hasOwnProperty(k)) scene.modules[k] = projectConfig.modules[k]
-      })
-    }
-  }
-
-  /*
     Activate the transition system if requested
   */
   if (projectConfig.transition) {

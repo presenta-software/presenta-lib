@@ -18,6 +18,16 @@ const Scene = function (sceneConfig, projectConfig) {
   }
 
   /*
+    Set the module config from project settings
+  */
+  if (projectConfig.modules) {
+    for (const k in projectConfig.modules) {
+      if (!sceneConfig.hasOwnProperty('modules')) sceneConfig.modules = {}
+      if (!sceneConfig.modules.hasOwnProperty(k)) sceneConfig.modules[k] = projectConfig.modules[k]
+    }
+  }
+
+  /*
     Check if transition has been defined at project level or scene level
   */
   const hasTransition = projectConfig

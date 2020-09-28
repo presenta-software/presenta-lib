@@ -1,11 +1,11 @@
-// https://lib.presenta.cc v0.0.5 Copyright 2020 Fabio Franchino
+// https://lib.presenta.cc v0.0.6 Copyright 2020 Fabio Franchino
 (function (global, factory) {
   typeof exports === 'object' && typeof module !== 'undefined' ? module.exports = factory() :
   typeof define === 'function' && define.amd ? define(factory) :
   (global = global || self, global.Presenta = factory());
 }(this, (function () { 'use strict';
 
-  var version = "0.0.5";
+  var version = "0.0.6";
 
   function styleInject(css, ref) {
     if ( ref === void 0 ) ref = {};
@@ -99,7 +99,7 @@
     const bbox = getComputedStyle(el);
     const cw = +bbox.width.split('px')[0];
     const ch = +bbox.height.split('px')[0];
-    let aspect = config.aspect || 1.6;
+    let aspect = config.aspect;
 
     if (config.adapt) {
       const currAspect = cw / ch;
@@ -244,17 +244,22 @@
     }
   };
 
-  var css_248z$7 = ".style_images__26AtP{\n    width: 100%;\n    height: 100%;\n}\n\n.style_inner__181qE{\n    display: flex;\n    width: 100%;\n    height: 100%;\n}\n\n.style_preimg__2_wv2{\n    overflow: hidden;\n    flex:1;\n}\n.style_preimg__2_wv2 img{\n    width: 100%;\n    height:100%;\n    object-fit: cover;\n}";
+  var css_248z$7 = ".style_images__26AtP{\n    width: 100%;\n    height: 100%;\n}\n\n.style_inner__181qE{\n    display: flex;\n    width: 100%;\n    height: 100%;\n}\n\n.style_preimg__2_wv2{\n    overflow: hidden;\n    flex:1;\n}\n.style_preimg__2_wv2 img{\n    width: 100%;\n    height:100%;\n}";
   var css$2 = {"images":"style_images__26AtP","inner":"style_inner__181qE","preimg":"style_preimg__2_wv2"};
   styleInject(css_248z$7);
 
   const images = function (_el, _config) {
     const el = u.select(_el);
+    const defsize = _config.size || 'cover';
     let imageschunk = '';
 
     if (_config.images) {
       _config.images.forEach(img => {
-        imageschunk += `<div class="${css$2.preimg}"><img src="${img.url}" /></div>`;
+        const size = img.size || defsize;
+        const sizecmd = 'object-fit:' + size + ';';
+        imageschunk += `<div class="${css$2.preimg}">
+        <img style="${sizecmd}" src="${img.url}" />
+      </div>`;
       });
     }
 
@@ -296,12 +301,36 @@
   var css$4 = {"block":"block_block__BWbaZ","inner":"block_inner__3LS6s"};
   styleInject(css_248z$9);
 
+  var css_248z$a = ".style_video__1qbdJ{\n    width: 100%;\n    height: 100%;\n    display: flex;\n    align-items: center;\n    justify-content: center;\n}\n\n.style_video__1qbdJ video{\n    width: 100%;\n    height: 100%;\n}";
+  var css$5 = {"video":"style_video__1qbdJ"};
+  styleInject(css_248z$a);
+
+  const video = function (_el, _config) {
+    const el = u.select(_el);
+    const defsize = _config.size || 'cover';
+    const sizecmd = 'object-fit:' + defsize + ';';
+    const poster = _config.poster ? `poster=${_config.poster}` : '';
+    const loop = _config.loop ? 'loop' : '';
+    const autoplay = _config.autoplay ? 'autoplay' : '';
+    const src = _config.src ? `src=${_config.src}` : '';
+    const child = u.div(`<div class="${css$5.video}">
+    <video style="${sizecmd}" ${poster} ${src} ${loop} ${autoplay}></video>
+  </div>`);
+
+    this.beforeDestroy = () => {};
+
+    this.stepForward = step => {};
+
+    el.appendChild(child);
+  };
+
   const blocks = {
     debug,
     text,
     embed,
-    images
-  }; // {type: 'other', module: other}
+    images,
+    video
+  };
 
   const add = (type, module) => {
     if (blocks[type]) {
@@ -360,16 +389,16 @@
     sceneElement.appendChild(child);
   };
 
-  var css_248z$a = ".scene_sceneContainer__IgSpB, .scene_test__3LYpD{\n    width: 100%;\n    height: 100%;\n    display: flex;\n    align-items: center;\n    justify-content: center;\n    position: relative;\n}\n.scene_scene__3uvTl{\n    --sw: calc(var(--w) / var(--p) / var(--fz));\n    --sh: calc(var(--h) / var(--p) / var(--fz));\n    --scal: calc(var(--pw) / var(--p) / var(--pw) / var(--fz));\n    \n    width: var(--sw);\n    height: var(--sh);\n    font-family: serif;\n    user-select: none;\n}\n\n.scene_wrapper__3yr1k{\n    width: var(--w);\n    height: var(--h);\n    transform: scale(1);\n    transform: scale(var(--scal));\n    transform-origin: top left;\n    overflow: hidden;\n\n    padding: var(--slidepadding);\n    /* background-color: var(--backcolor); */\n}\n.scene_content__1rJf0{\n    width: 100%;\n    height: 100%;\n    display: flex;\n    flex-direction: column;\n    overflow: hidden;\n}\n\n.scene_bcontainer__3MFBK,\n.scene_fcontainer__1E_0g{\n    top:0;\n    left:0;\n    width: 100%;\n    height: 100%;\n    position: absolute;\n}\n\n\n.scene_viewport__3uNLS{\n    width: 100%;\n    height: 100%;\n    position: relative;\n    flex:1;\n    overflow: hidden;\n    \n    display: flex;\n    flex-direction: row;\n}\n.scene_viewport__3uNLS > div{\n    height: 100%;\n}\n\n\n";
-  var css$5 = {"sceneContainer":"scene_sceneContainer__IgSpB","test":"scene_test__3LYpD","scene":"scene_scene__3uvTl","wrapper":"scene_wrapper__3yr1k","content":"scene_content__1rJf0","bcontainer":"scene_bcontainer__3MFBK","fcontainer":"scene_fcontainer__1E_0g","viewport":"scene_viewport__3uNLS"};
-  styleInject(css_248z$a);
-
-  var css_248z$b = ".presenta{\n    --pagenumber__padding:.5rem; \n    --pagenumber__textalign:right; \n}\n\n.pagenumberContent{\n    color:var(--forecolor);\n    font-family: var(--fontText);\n}\n\n.pagenumber__style__inverted .pagenumberContent{\n    background-color: var(--forecolor);\n    color:var(--backcolor);\n}";
+  var css_248z$b = ".scene_sceneContainer__IgSpB, .scene_test__3LYpD{\n    width: 100%;\n    height: 100%;\n    display: flex;\n    align-items: center;\n    justify-content: center;\n    position: relative;\n}\n.scene_scene__3uvTl{\n    --sw: calc(var(--w) / var(--p) / var(--fz));\n    --sh: calc(var(--h) / var(--p) / var(--fz));\n    --scal: calc(var(--pw) / var(--p) / var(--pw) / var(--fz));\n    \n    width: var(--sw);\n    height: var(--sh);\n    font-family: serif;\n    user-select: none;\n}\n\n.scene_wrapper__3yr1k{\n    width: var(--w);\n    height: var(--h);\n    transform: scale(1);\n    transform: scale(var(--scal));\n    transform-origin: top left;\n    overflow: hidden;\n\n    padding: var(--slidepadding);\n    /* background-color: var(--backcolor); */\n}\n.scene_content__1rJf0{\n    width: 100%;\n    height: 100%;\n    display: flex;\n    flex-direction: column;\n    overflow: hidden;\n}\n\n.scene_bcontainer__3MFBK,\n.scene_fcontainer__1E_0g{\n    top:0;\n    left:0;\n    width: 100%;\n    height: 100%;\n    position: absolute;\n}\n\n\n.scene_viewport__3uNLS{\n    width: 100%;\n    height: 100%;\n    position: relative;\n    flex:1;\n    overflow: hidden;\n    \n    display: flex;\n    flex-direction: row;\n}\n.scene_viewport__3uNLS > div{\n    height: 100%;\n}\n\n\n";
+  var css$6 = {"sceneContainer":"scene_sceneContainer__IgSpB","test":"scene_test__3LYpD","scene":"scene_scene__3uvTl","wrapper":"scene_wrapper__3yr1k","content":"scene_content__1rJf0","bcontainer":"scene_bcontainer__3MFBK","fcontainer":"scene_fcontainer__1E_0g","viewport":"scene_viewport__3uNLS"};
   styleInject(css_248z$b);
 
-  var css_248z$c = ".style_pagenumber__2BX53{\n    width: 100%;\n    height: 100%;\n    display: flex;\n    align-items: flex-end;   \n}\n\n.style_pagenumber__2BX53 > div{\n    width: 100%;\n    text-align: var(--pagenumber__textalign);\n    padding: var(--pagenumber__padding);\n}\n";
-  var css$6 = {"pagenumber":"style_pagenumber__2BX53"};
+  var css_248z$c = ".presenta{\n    --pagenumber__padding:.5rem; \n    --pagenumber__textalign:right; \n}\n\n.pagenumberContent{\n    color:var(--forecolor);\n    font-family: var(--fontText);\n}\n\n.pagenumber__style__inverted .pagenumberContent{\n    background-color: var(--forecolor);\n    color:var(--backcolor);\n}";
   styleInject(css_248z$c);
+
+  var css_248z$d = ".style_pagenumber__2BX53{\n    width: 100%;\n    height: 100%;\n    display: flex;\n    align-items: flex-end;   \n}\n\n.style_pagenumber__2BX53 > div{\n    width: 100%;\n    text-align: var(--pagenumber__textalign);\n    padding: var(--pagenumber__padding);\n}\n";
+  var css$7 = {"pagenumber":"style_pagenumber__2BX53"};
+  styleInject(css_248z$d);
 
   const pagenumber = function (sceneElement, modConfig, sceneConfig, projectConfig) {
     const front = sceneElement.querySelector('.frontContainer');
@@ -382,7 +411,7 @@
       str = template.replace(/%s/mg, cPage).replace(/%S/mg, tPage);
     }
 
-    const child = u.div(`<div class="${css$6.pagenumber}">
+    const child = u.div(`<div class="${css$7.pagenumber}">
     <div class="pagenumberContent">${str}</div> 
   </div>`);
     front.appendChild(child);
@@ -401,14 +430,14 @@
 
   add$1('pagenumber', pagenumber);
 
-  var css_248z$d = ".horizontalSlide .p-scene-enter-transition {\n  transition: transform 1s cubic-bezier(1, 0, 0, 1); }\n\n.horizontalSlide .to-right.p-scene-enter-start {\n  transform: translateX(100%); }\n\n.horizontalSlide .to-right.p-scene-enter-end {\n  transform: translateX(0); }\n\n.horizontalSlide .to-left.p-scene-enter-start {\n  transform: translateX(-100%); }\n\n.horizontalSlide .to-left.p-scene-enter-end {\n  transform: translateX(0); }\n\n.horizontalSlide .p-scene-leave-transition {\n  transition: transform 1s cubic-bezier(1, 0, 0, 1); }\n\n.horizontalSlide .to-right.p-scene-leave-start {\n  transform: translateX(0); }\n\n.horizontalSlide .to-right.p-scene-leave-end {\n  transform: translateX(-100%); }\n\n.horizontalSlide .to-left.p-scene-leave-start {\n  transform: translateX(0); }\n\n.horizontalSlide .to-left.p-scene-leave-end {\n  transform: translateX(100%); }\n";
-  styleInject(css_248z$d);
-
-  var css_248z$e = ".verticalIn .p-scene-enter-transition {\n  transition: all 0.75s cubic-bezier(0.2, 0.8, 0.05, 0.95); }\n\n.verticalIn .p-scene-enter-start {\n  transform: translateY(150%); }\n\n.verticalIn .p-scene-enter-end {\n  transform: translateY(0); }\n\n.verticalIn .p-scene-leave-transition {\n  transition: all 0.75s cubic-bezier(0.2, 0.8, 0.05, 0.95); }\n\n.verticalIn .p-scene-leave-start {\n  transform: scale(1); }\n\n.verticalIn .p-scene-leave-end {\n  transform: scale(0.5); }\n";
+  var css_248z$e = ".horizontalSlide .p-scene-enter-transition {\n  transition: transform 1s cubic-bezier(1, 0, 0, 1); }\n\n.horizontalSlide .to-right.p-scene-enter-start {\n  transform: translateX(100%); }\n\n.horizontalSlide .to-right.p-scene-enter-end {\n  transform: translateX(0); }\n\n.horizontalSlide .to-left.p-scene-enter-start {\n  transform: translateX(-100%); }\n\n.horizontalSlide .to-left.p-scene-enter-end {\n  transform: translateX(0); }\n\n.horizontalSlide .p-scene-leave-transition {\n  transition: transform 1s cubic-bezier(1, 0, 0, 1); }\n\n.horizontalSlide .to-right.p-scene-leave-start {\n  transform: translateX(0); }\n\n.horizontalSlide .to-right.p-scene-leave-end {\n  transform: translateX(-100%); }\n\n.horizontalSlide .to-left.p-scene-leave-start {\n  transform: translateX(0); }\n\n.horizontalSlide .to-left.p-scene-leave-end {\n  transform: translateX(100%); }\n";
   styleInject(css_248z$e);
 
-  var css_248z$f = ".outIn .p-scene-enter-transition {\n  opacity: 0; }\n\n.outIn .p-scene-enter-ended {\n  opacity: 1; }\n\n.outIn .p-scene-enter-transition .textContent > * {\n  transition: opacity 1s ease-out, transform 1s cubic-bezier(0.2, 0.8, 0.05, 0.95); }\n\n.outIn .p-scene-enter-transition .textContent > *:nth-child(1) {\n  transition-delay: 1.15s; }\n\n.outIn .p-scene-enter-transition .textContent > *:nth-child(2) {\n  transition-delay: 1.3s; }\n\n.outIn .p-scene-enter-transition .textContent > *:nth-child(3) {\n  transition-delay: 1.45s; }\n\n.outIn .p-scene-enter-transition .textContent > *:nth-child(4) {\n  transition-delay: 1.6s; }\n\n.outIn .p-scene-enter-transition .textContent > *:nth-child(5) {\n  transition-delay: 1.75s; }\n\n.outIn .p-scene-enter-transition .textContent > *:nth-child(6) {\n  transition-delay: 1.9s; }\n\n.outIn .p-scene-enter-transition .textContent > *:nth-child(7) {\n  transition-delay: 2.05s; }\n\n.outIn .p-scene-enter-transition .textContent > *:nth-child(8) {\n  transition-delay: 2.2s; }\n\n.outIn .p-scene-enter-transition .textContent > *:nth-child(9) {\n  transition-delay: 2.35s; }\n\n.outIn .p-scene-enter-transition .textContent > *:nth-child(10) {\n  transition-delay: 2.5s; }\n\n.outIn .p-scene-enter-transition .textContent > *:nth-child(11) {\n  transition-delay: 2.65s; }\n\n.outIn .p-scene-enter-transition .textContent > *:nth-child(12) {\n  transition-delay: 2.8s; }\n\n.outIn .p-scene-enter-transition .textContent > *:nth-child(13) {\n  transition-delay: 2.95s; }\n\n.outIn .p-scene-enter-transition .textContent > *:nth-child(14) {\n  transition-delay: 3.1s; }\n\n.outIn .p-scene-enter-transition .textContent > *:nth-child(15) {\n  transition-delay: 3.25s; }\n\n.outIn .p-scene-enter-transition .textContent > *:nth-child(16) {\n  transition-delay: 3.4s; }\n\n.outIn .p-scene-enter-transition .textContent > *:nth-child(17) {\n  transition-delay: 3.55s; }\n\n.outIn .p-scene-enter-transition .textContent > *:nth-child(18) {\n  transition-delay: 3.7s; }\n\n.outIn .p-scene-enter-transition .textContent > *:nth-child(19) {\n  transition-delay: 3.85s; }\n\n.outIn .p-scene-enter-transition .textContent > *:nth-child(20) {\n  transition-delay: 4s; }\n\n.outIn .p-scene-enter-transition .blockContainer > div {\n  transition: background-color 1s cubic-bezier(1, 0, 0, 1);\n  transition-delay: 1s; }\n\n.outIn .p-scene-enter-start .blockContainer > div {\n  background-color: rgba(0, 0, 0, 0); }\n\n.outIn .p-scene-enter-start .textContent > * {\n  opacity: 0;\n  transform: translateY(30px); }\n\n.outIn .p-scene-enter-end .textContent > * {\n  opacity: 1;\n  transform: translateY(0px); }\n\n.outIn .p-scene-leave-transition .textContent > * {\n  transition: opacity .75s cubic-bezier(0.165, 0.84, 0.44, 1), transform .75s cubic-bezier(0.165, 0.84, 0.44, 1); }\n\n.outIn .p-scene-leave-transition .textContent > *:nth-child(0) {\n  transition-delay: 0s; }\n\n.outIn .p-scene-leave-transition .textContent > *:nth-child(1) {\n  transition-delay: 0.1s; }\n\n.outIn .p-scene-leave-transition .textContent > *:nth-child(2) {\n  transition-delay: 0.2s; }\n\n.outIn .p-scene-leave-transition .textContent > *:nth-child(3) {\n  transition-delay: 0.3s; }\n\n.outIn .p-scene-leave-transition .textContent > *:nth-child(4) {\n  transition-delay: 0.4s; }\n\n.outIn .p-scene-leave-transition .textContent > *:nth-child(5) {\n  transition-delay: 0.5s; }\n\n.outIn .p-scene-leave-transition .textContent > *:nth-child(6) {\n  transition-delay: 0.6s; }\n\n.outIn .p-scene-leave-transition .textContent > *:nth-child(7) {\n  transition-delay: 0.7s; }\n\n.outIn .p-scene-leave-transition .textContent > *:nth-child(8) {\n  transition-delay: 0.8s; }\n\n.outIn .p-scene-leave-transition .textContent > *:nth-child(9) {\n  transition-delay: 0.9s; }\n\n.outIn .p-scene-leave-transition .textContent > *:nth-child(10) {\n  transition-delay: 1s; }\n\n.outIn .p-scene-leave-transition .textContent > *:nth-child(11) {\n  transition-delay: 1.1s; }\n\n.outIn .p-scene-leave-transition .textContent > *:nth-child(12) {\n  transition-delay: 1.2s; }\n\n.outIn .p-scene-leave-transition .textContent > *:nth-child(13) {\n  transition-delay: 1.3s; }\n\n.outIn .p-scene-leave-transition .textContent > *:nth-child(14) {\n  transition-delay: 1.4s; }\n\n.outIn .p-scene-leave-transition .textContent > *:nth-child(15) {\n  transition-delay: 1.5s; }\n\n.outIn .p-scene-leave-transition .textContent > *:nth-child(16) {\n  transition-delay: 1.6s; }\n\n.outIn .p-scene-leave-transition .textContent > *:nth-child(17) {\n  transition-delay: 1.7s; }\n\n.outIn .p-scene-leave-transition .textContent > *:nth-child(18) {\n  transition-delay: 1.8s; }\n\n.outIn .p-scene-leave-transition .textContent > *:nth-child(19) {\n  transition-delay: 1.9s; }\n\n.outIn .p-scene-leave-transition .textContent > *:nth-child(20) {\n  transition-delay: 2s; }\n\n.outIn .p-scene-leave-start .textContent > * {\n  opacity: 1;\n  transform: scale(1); }\n\n.outIn .p-scene-leave-end .textContent > * {\n  opacity: 0;\n  transform: scale(0.85); }\n";
+  var css_248z$f = ".verticalIn .p-scene-enter-transition {\n  transition: all 0.75s cubic-bezier(0.2, 0.8, 0.05, 0.95); }\n\n.verticalIn .p-scene-enter-start {\n  transform: translateY(150%); }\n\n.verticalIn .p-scene-enter-end {\n  transform: translateY(0); }\n\n.verticalIn .p-scene-leave-transition {\n  transition: all 0.75s cubic-bezier(0.2, 0.8, 0.05, 0.95); }\n\n.verticalIn .p-scene-leave-start {\n  transform: scale(1); }\n\n.verticalIn .p-scene-leave-end {\n  transform: scale(0.5); }\n";
   styleInject(css_248z$f);
+
+  var css_248z$g = ".outIn .p-scene-enter-transition {\n  opacity: 0; }\n\n.outIn .p-scene-enter-ended {\n  opacity: 1; }\n\n.outIn .p-scene-enter-transition .textContent > * {\n  transition: opacity 1s ease-out, transform 1s cubic-bezier(0.2, 0.8, 0.05, 0.95); }\n\n.outIn .p-scene-enter-transition .textContent > *:nth-child(1) {\n  transition-delay: 1.15s; }\n\n.outIn .p-scene-enter-transition .textContent > *:nth-child(2) {\n  transition-delay: 1.3s; }\n\n.outIn .p-scene-enter-transition .textContent > *:nth-child(3) {\n  transition-delay: 1.45s; }\n\n.outIn .p-scene-enter-transition .textContent > *:nth-child(4) {\n  transition-delay: 1.6s; }\n\n.outIn .p-scene-enter-transition .textContent > *:nth-child(5) {\n  transition-delay: 1.75s; }\n\n.outIn .p-scene-enter-transition .textContent > *:nth-child(6) {\n  transition-delay: 1.9s; }\n\n.outIn .p-scene-enter-transition .textContent > *:nth-child(7) {\n  transition-delay: 2.05s; }\n\n.outIn .p-scene-enter-transition .textContent > *:nth-child(8) {\n  transition-delay: 2.2s; }\n\n.outIn .p-scene-enter-transition .textContent > *:nth-child(9) {\n  transition-delay: 2.35s; }\n\n.outIn .p-scene-enter-transition .textContent > *:nth-child(10) {\n  transition-delay: 2.5s; }\n\n.outIn .p-scene-enter-transition .textContent > *:nth-child(11) {\n  transition-delay: 2.65s; }\n\n.outIn .p-scene-enter-transition .textContent > *:nth-child(12) {\n  transition-delay: 2.8s; }\n\n.outIn .p-scene-enter-transition .textContent > *:nth-child(13) {\n  transition-delay: 2.95s; }\n\n.outIn .p-scene-enter-transition .textContent > *:nth-child(14) {\n  transition-delay: 3.1s; }\n\n.outIn .p-scene-enter-transition .textContent > *:nth-child(15) {\n  transition-delay: 3.25s; }\n\n.outIn .p-scene-enter-transition .textContent > *:nth-child(16) {\n  transition-delay: 3.4s; }\n\n.outIn .p-scene-enter-transition .textContent > *:nth-child(17) {\n  transition-delay: 3.55s; }\n\n.outIn .p-scene-enter-transition .textContent > *:nth-child(18) {\n  transition-delay: 3.7s; }\n\n.outIn .p-scene-enter-transition .textContent > *:nth-child(19) {\n  transition-delay: 3.85s; }\n\n.outIn .p-scene-enter-transition .textContent > *:nth-child(20) {\n  transition-delay: 4s; }\n\n.outIn .p-scene-enter-transition .blockContainer > div {\n  transition: background-color 1s cubic-bezier(1, 0, 0, 1);\n  transition-delay: 1s; }\n\n.outIn .p-scene-enter-start .blockContainer > div {\n  background-color: rgba(0, 0, 0, 0); }\n\n.outIn .p-scene-enter-start .textContent > * {\n  opacity: 0;\n  transform: translateY(30px); }\n\n.outIn .p-scene-enter-end .textContent > * {\n  opacity: 1;\n  transform: translateY(0px); }\n\n.outIn .p-scene-leave-transition .textContent > * {\n  transition: opacity .75s cubic-bezier(0.165, 0.84, 0.44, 1), transform .75s cubic-bezier(0.165, 0.84, 0.44, 1); }\n\n.outIn .p-scene-leave-transition .textContent > *:nth-child(0) {\n  transition-delay: 0s; }\n\n.outIn .p-scene-leave-transition .textContent > *:nth-child(1) {\n  transition-delay: 0.1s; }\n\n.outIn .p-scene-leave-transition .textContent > *:nth-child(2) {\n  transition-delay: 0.2s; }\n\n.outIn .p-scene-leave-transition .textContent > *:nth-child(3) {\n  transition-delay: 0.3s; }\n\n.outIn .p-scene-leave-transition .textContent > *:nth-child(4) {\n  transition-delay: 0.4s; }\n\n.outIn .p-scene-leave-transition .textContent > *:nth-child(5) {\n  transition-delay: 0.5s; }\n\n.outIn .p-scene-leave-transition .textContent > *:nth-child(6) {\n  transition-delay: 0.6s; }\n\n.outIn .p-scene-leave-transition .textContent > *:nth-child(7) {\n  transition-delay: 0.7s; }\n\n.outIn .p-scene-leave-transition .textContent > *:nth-child(8) {\n  transition-delay: 0.8s; }\n\n.outIn .p-scene-leave-transition .textContent > *:nth-child(9) {\n  transition-delay: 0.9s; }\n\n.outIn .p-scene-leave-transition .textContent > *:nth-child(10) {\n  transition-delay: 1s; }\n\n.outIn .p-scene-leave-transition .textContent > *:nth-child(11) {\n  transition-delay: 1.1s; }\n\n.outIn .p-scene-leave-transition .textContent > *:nth-child(12) {\n  transition-delay: 1.2s; }\n\n.outIn .p-scene-leave-transition .textContent > *:nth-child(13) {\n  transition-delay: 1.3s; }\n\n.outIn .p-scene-leave-transition .textContent > *:nth-child(14) {\n  transition-delay: 1.4s; }\n\n.outIn .p-scene-leave-transition .textContent > *:nth-child(15) {\n  transition-delay: 1.5s; }\n\n.outIn .p-scene-leave-transition .textContent > *:nth-child(16) {\n  transition-delay: 1.6s; }\n\n.outIn .p-scene-leave-transition .textContent > *:nth-child(17) {\n  transition-delay: 1.7s; }\n\n.outIn .p-scene-leave-transition .textContent > *:nth-child(18) {\n  transition-delay: 1.8s; }\n\n.outIn .p-scene-leave-transition .textContent > *:nth-child(19) {\n  transition-delay: 1.9s; }\n\n.outIn .p-scene-leave-transition .textContent > *:nth-child(20) {\n  transition-delay: 2s; }\n\n.outIn .p-scene-leave-start .textContent > * {\n  opacity: 1;\n  transform: scale(1); }\n\n.outIn .p-scene-leave-end .textContent > * {\n  opacity: 0;\n  transform: scale(0.85); }\n";
+  styleInject(css_248z$g);
 
   const transition = wrapper => {
     const functor = function (wrapper) {
@@ -459,6 +488,17 @@
       return console.warn('`blocks` is empty in scene ' + sceneConfig.index);
     }
     /*
+      Set the module config from project settings
+    */
+
+
+    if (projectConfig.modules) {
+      for (const k in projectConfig.modules) {
+        if (!sceneConfig.hasOwnProperty('modules')) sceneConfig.modules = {};
+        if (!sceneConfig.modules.hasOwnProperty(k)) sceneConfig.modules[k] = projectConfig.modules[k];
+      }
+    }
+    /*
       Check if transition has been defined at project level or scene level
     */
 
@@ -497,14 +537,14 @@
     let currentStep = 0;
     const steps = sceneConfig.steps || [];
     const child = u.div(`<div 
-      class="s ${css$5.sceneContainer} ${props.classes}"
+      class="s ${css$6.sceneContainer} ${props.classes}"
       style="${props.styles}">
-      <div class="sceneObject ${css$5.scene}">
-        <div class="${css$5.wrapper}">
-            <div class="${css$5.content} ${modprops.classes}" style="${modprops.styles}">
-                <div class="backContainer ${css$5.bcontainer}"></div>
-                <div class="blocksContainer ${css$5.viewport}"></div>
-                <div class="frontContainer ${css$5.fcontainer}"></div>
+      <div class="sceneObject ${css$6.scene}">
+        <div class="${css$6.wrapper}">
+            <div class="${css$6.content} ${modprops.classes}" style="${modprops.styles}">
+                <div class="backContainer ${css$6.bcontainer}"></div>
+                <div class="blocksContainer ${css$6.viewport}"></div>
+                <div class="frontContainer ${css$6.fcontainer}"></div>
             </div>
         </div>
       </div>
@@ -521,7 +561,7 @@
         if (!Mod) console.log(`Module "${k}" not found. Maybe you forgot to include it.`);
 
         if (modConfig && Mod) {
-          const mod = new Mod(child.querySelector(`.${css$5.content}`), modConfig, sceneConfig, projectConfig);
+          const mod = new Mod(child.querySelector(`.${css$6.content}`), modConfig, sceneConfig, projectConfig);
         }
       }
     }
@@ -610,13 +650,13 @@
     this.sceneConfig = sceneConfig;
   };
 
-  var css_248z$g = ".style_grid__1AGYU {\n  display: flex;\n  flex-wrap: wrap;\n  overflow-y: auto;\n  height: 100%;\n}\n.style_grid__1AGYU > div {\n  height: initial;\n  margin-bottom: 0.5rem;\n}\n.style_col1__2sfnY > div {\n  width: 100%;\n}\n.style_col2__3yP-h > div {\n  width: 50%;\n}\n.style_col3__32U3b > div {\n  width: 33.3333333333%;\n}\n.style_col4__1vNJ5 > div {\n  width: 25%;\n}\n";
-  var css$7 = {"grid":"style_grid__1AGYU","col1":"style_col1__2sfnY","col2":"style_col2__3yP-h","col3":"style_col3__32U3b","col4":"style_col4__1vNJ5"};
-  styleInject(css_248z$g);
+  var css_248z$h = ".style_grid__1AGYU {\n  display: flex;\n  flex-wrap: wrap;\n  overflow: hidden;\n  overflow-y: auto;\n  height: 100%;\n}\n.style_grid__1AGYU > div {\n  height: initial;\n  margin-bottom: 1rem;\n}\n.style_col1__2sfnY > div {\n  width: 100%;\n}\n.style_col2__3yP-h > div {\n  width: 50%;\n}\n.style_col3__32U3b > div {\n  width: 33.3333333333%;\n}\n.style_col4__1vNJ5 > div {\n  width: 25%;\n}\n";
+  var css$8 = {"grid":"style_grid__1AGYU","col1":"style_col1__2sfnY","col2":"style_col2__3yP-h","col3":"style_col3__32U3b","col4":"style_col4__1vNJ5"};
+  styleInject(css_248z$h);
 
   const grid = function (rootElement, projectConfig) {
     const columns = projectConfig.columns || 1;
-    const child = u.div(`<div class="a ${css$7.grid} ${css$7['col' + columns]}"></div>`);
+    const child = u.div(`<div class="a ${css$8.grid} ${css$8['col' + columns]}"></div>`);
     const cscenes = projectConfig.scenes;
     cscenes.forEach((b, i) => {
       const scene = new Scene(b, projectConfig);
@@ -642,9 +682,9 @@
     };
   };
 
-  var css_248z$h = ".style_show__keV71 {\n  width: 100%;\n  height: 100%;\n  position: relative;\n  overflow: hidden;\n}\n\n.style_show__keV71 > div{\n  position: absolute;\n  top:0;\n  left:0;\n  width: 100%;\n}\n\n.style_focused__lSH54{\n  outline: 3px solid green;\n}";
-  var css$8 = {"show":"style_show__keV71","focused":"style_focused__lSH54"};
-  styleInject(css_248z$h);
+  var css_248z$i = ".style_show__keV71 {\n  width: 100%;\n  height: 100%;\n  position: relative;\n  overflow: hidden;\n}\n\n.style_show__keV71 > div{\n  position: absolute;\n  top:0;\n  left:0;\n  width: 100%;\n}\n\n.style_focused__lSH54{\n  outline: 3px solid green;\n}";
+  var css$9 = {"show":"style_show__keV71","focused":"style_focused__lSH54"};
+  styleInject(css_248z$i);
 
   const autoplay = function (rootElement, router, config) {
     let timer = null;
@@ -696,15 +736,15 @@
     rootElement.addEventListener('keyup', setKeyListener);
   };
 
-  var css_248z$i = ".style_arrows__2HgOY{\n    position: absolute;\n    top:0;\n    left:0;\n    width: 100%;\n    height: 100%;\n    display: flex;\n    align-items: center;\n    justify-content: space-between;\n    transition: opacity .35s;\n}\n\n.style_left__3_kwS, .style_right__RERAa{\n    width: 50px;\n    height: 50px;\n    background-color: var(--forecolor);\n    transition: background-color .3s;\n    cursor: pointer;\n}\n\n\n.style_arrows__2HgOY.style_hide__3B8Al{\n    opacity: 0;\n}";
-  var css$9 = {"arrows":"style_arrows__2HgOY","left":"style_left__3_kwS","right":"style_right__RERAa","hide":"style_hide__3B8Al"};
-  styleInject(css_248z$i);
+  var css_248z$j = ".style_arrows__2HgOY{\n    position: absolute;\n    top:0;\n    left:0;\n    width: 100%;\n    height: 100%;\n    display: flex;\n    align-items: center;\n    justify-content: space-between;\n    transition: opacity .35s;\n}\n\n.style_left__3_kwS, .style_right__RERAa{\n    width: 50px;\n    height: 50px;\n    background-color: var(--forecolor);\n    transition: background-color .3s;\n    cursor: pointer;\n}\n\n\n.style_arrows__2HgOY.style_hide__3B8Al{\n    opacity: 0;\n}";
+  var css$a = {"arrows":"style_arrows__2HgOY","left":"style_left__3_kwS","right":"style_right__RERAa","hide":"style_hide__3B8Al"};
+  styleInject(css_248z$j);
 
   const arrows = function (rootElement, router, config) {
     let timer = null;
-    const child = u.div(`<div class="${css$9.arrows}">
-    <div class="handleL ${css$9.left}"></div>
-    <div class="handleR ${css$9.right}"></div>
+    const child = u.div(`<div class="${css$a.arrows}">
+    <div class="handleL ${css$a.left}"></div>
+    <div class="handleR ${css$a.right}"></div>
   </div>`);
     rootElement.appendChild(child);
     child.querySelector('.handleL').addEventListener('click', e => {
@@ -721,22 +761,22 @@
 
     const scheduleForHide = () => {
       clearTimeout(timer);
-      child.classList.remove(css$9.hide);
+      child.classList.remove(css$a.hide);
       timer = setTimeout(() => {
-        child.classList.add(css$9.hide);
+        child.classList.add(css$a.hide);
       }, 1500);
     };
 
     scheduleForHide();
   };
 
-  var css_248z$j = ".style_black__27h0m{\n    width: 100%;\n    height: 100%;\n    position: absolute;\n    top:0;\n    left:0;\n\n    background-color: black;\n    opacity: 0;\n    pointer-events: none;\n    transition: opacity .5s cubic-bezier(0.8, 0.2, 0.2, 0.8);\n}";
-  var css$a = {"black":"style_black__27h0m"};
-  styleInject(css_248z$j);
+  var css_248z$k = ".style_black__27h0m{\n    width: 100%;\n    height: 100%;\n    position: absolute;\n    top:0;\n    left:0;\n\n    background-color: black;\n    opacity: 0;\n    pointer-events: none;\n    transition: opacity .5s cubic-bezier(0.8, 0.2, 0.2, 0.8);\n}";
+  var css$b = {"black":"style_black__27h0m"};
+  styleInject(css_248z$k);
 
   const black = function (rootElement, router, config) {
     let visible = false;
-    const child = u.div(`<div class="${css$a.black}"></div>`);
+    const child = u.div(`<div class="${css$b.black}"></div>`);
     rootElement.appendChild(child);
 
     const setKeyListener = e => {
@@ -778,12 +818,12 @@
     io[type] = module;
   };
 
-  var css_248z$k = ".router_router__2R2qw{\n    width: 100%;\n    height: 100%;\n    position: absolute;\n    top:0;\n    left:0;\n}";
-  var css$b = {"router":"router_router__2R2qw"};
-  styleInject(css_248z$k);
+  var css_248z$l = ".router_router__2R2qw{\n    width: 100%;\n    height: 100%;\n    position: absolute;\n    top:0;\n    left:0;\n}";
+  var css$c = {"router":"router_router__2R2qw"};
+  styleInject(css_248z$l);
 
   const Router = function (rootElement, projectConfig) {
-    const child = u.div(`<div class="${css$b.router}"></div>`);
+    const child = u.div(`<div class="${css$c.router}"></div>`);
     rootElement.appendChild(child);
     child.setAttribute('tabindex', '0');
     this.projectConfig = projectConfig;
@@ -852,7 +892,7 @@
       const sceneConfig = scenes[currentIndex];
       const props = u.props(sceneConfig.props);
       child.classList.remove(...child.classList);
-      child.classList.add(css$b.router);
+      child.classList.add(css$c.router);
 
       if (props.classes) {
         const cls = props.classes.split(' ');
@@ -904,7 +944,7 @@
   };
 
   const show = function (rootElement, projectConfig) {
-    const child = u.div(`<div class="a ${css$8.show}"></div>`);
+    const child = u.div(`<div class="a ${css$9.show}"></div>`);
     const scenes = projectConfig.scenes;
     var currentScene = new Scene(scenes[0], projectConfig);
     child.appendChild(currentScene.el);
@@ -975,19 +1015,6 @@
       return console.warn('`scenes` is empty');
     }
     /*
-      Distribuite the module config across scenes
-    */
-
-
-    if (projectConfig.modules) {
-      for (const k in projectConfig.modules) {
-        projectConfig.scenes.forEach(scene => {
-          if (!scene.hasOwnProperty('modules')) scene.modules = {};
-          if (!scene.modules.hasOwnProperty(k)) scene.modules[k] = projectConfig.modules[k];
-        });
-      }
-    }
-    /*
       Activate the transition system if requested
     */
 
@@ -1039,6 +1066,7 @@
 
   var mergeDefaults = (config => {
     const defaultConfig = {
+      aspect: 1.6,
       adapt: true,
       router: {
         keyboard: true,

@@ -2,15 +2,16 @@ import { debug } from './debug/index.js'
 import { text } from './text/index.js'
 import { embed } from './embed/index.js'
 import { images } from './images/index.js'
+import { video } from './video/index.js'
 
 const blocks = {
   debug,
   text,
   embed,
-  images
+  images,
+  video
 }
 
-// {type: 'other', module: other}
 const add = (type, module) => {
   if (blocks[type]) {
     return console.warn(`module type ${type} already defined`)

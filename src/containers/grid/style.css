@@ -1,12 +1,13 @@
 .grid {
   display: flex;
   flex-wrap: wrap;
+  overflow: hidden;
   overflow-y: auto;
   height: 100%;
 }
 .grid > div {
   height: initial;
-  margin-bottom: 0.5rem;
+  margin-bottom: 1rem;
 }
 .col1 > div {
   width: 100%;

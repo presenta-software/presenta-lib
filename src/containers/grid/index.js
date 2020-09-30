@@ -9,7 +9,7 @@ const grid = function (rootElement, projectConfig) {
 
   const cscenes = projectConfig.scenes
   cscenes.forEach((b, i) => {
-    const scene = new Scene(b, projectConfig)
+    const scene = new Scene(b, projectConfig, rootElement)
     child.appendChild(scene.el)
   })
 
@@ -18,13 +18,13 @@ const grid = function (rootElement, projectConfig) {
   u.fit(child, projectConfig, rootElement)
 
   this.updateAt = (index, confscene) => {
-    const newscene = new Scene(confscene, projectConfig)
+    const newscene = new Scene(confscene, projectConfig, rootElement)
     const oldEl = child.children[index]
     child.replaceChild(newscene.el, oldEl)
   }
 
   this.addAt = (index, confscene) => {
-    const scene = new Scene(confscene, projectConfig)
+    const scene = new Scene(confscene, projectConfig, rootElement)
     child.insertBefore(scene.el, child.children[index])
   }
 

@@ -11,6 +11,9 @@ const black = function (rootElement, router, config) {
     if (e.key === 'b') {
       visible = !visible
       child.style.opacity = visible ? 1 : 0
+
+      e.stopPropagation()
+      e.preventDefault()
     }
   }
 

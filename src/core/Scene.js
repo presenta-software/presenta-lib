@@ -4,7 +4,7 @@ import { Block } from './Block.js'
 import { modules } from '../modules/types.js'
 import { transition } from './transition.js'
 
-const Scene = function (sceneConfig, projectConfig) {
+const Scene = function (sceneConfig, projectConfig, rootElement) {
   this.blocks = []
 
   /*
@@ -94,7 +94,7 @@ const Scene = function (sceneConfig, projectConfig) {
   */
   const blocks = sceneConfig.blocks
   blocks.forEach(blockConfig => {
-    const block = new Block(child.querySelector('.blocksContainer'), blockConfig)
+    const block = new Block(child.querySelector('.blocksContainer'), blockConfig, rootElement)
     this.blocks.push(block)
   })
 

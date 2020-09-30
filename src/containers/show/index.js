@@ -7,7 +7,7 @@ const show = function (rootElement, projectConfig) {
   const child = u.div(`<div class="a ${css.show}"></div>`)
 
   const scenes = projectConfig.scenes
-  var currentScene = new Scene(scenes[0], projectConfig)
+  var currentScene = new Scene(scenes[0], projectConfig, rootElement)
   child.appendChild(currentScene.el)
 
   rootElement.appendChild(child)
@@ -19,7 +19,7 @@ const show = function (rootElement, projectConfig) {
     }
     const sceneConfig = scenes[index]
     sceneConfig._presentatransdir = dir
-    currentScene = new Scene(sceneConfig, projectConfig)
+    currentScene = new Scene(sceneConfig, projectConfig, rootElement)
     child.appendChild(currentScene.el)
   }
 

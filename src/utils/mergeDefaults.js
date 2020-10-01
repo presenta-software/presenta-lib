@@ -2,6 +2,7 @@ export default config => {
   const defaultConfig = {
     aspect: 1.6,
     adapt: true,
+    mode: 'present',
     router: {
       keyboard: true,
       arrows: true,

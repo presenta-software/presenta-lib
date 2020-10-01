@@ -9,7 +9,7 @@ import './themes/vibrant/index.css'
 // import { debug } from './blocks/debug/index.js'
 // core
 // import { Block } from './core/Block.js'
-// import { Scene } from './core/Scene.js'
+import { Scene } from './core/Scene.js'
 
 // containers
 // import { show } from './containers/show/index.js'
@@ -40,7 +40,7 @@ Presenta.version = version
 
 // core/internals
 // Presenta.Block = Block
-// Presenta.Scene = Scene
+Presenta.Scene = Scene
 // Presenta.Container = Container
 
 // public integration access

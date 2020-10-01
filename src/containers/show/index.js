@@ -41,7 +41,6 @@ const show = function (rootElement, projectConfig) {
     return currentScene
   }
 
-  projectConfig.columns = 1 // override in case it's set
   u.fit(child, projectConfig, rootElement)
 
   const resizeObserver = new ResizeObserver(entries => {

@@ -3,13 +3,16 @@ import u from '../../utils.js'
 
 //
 
-const video = function (el, _config, rootElement) {
+const video = function (el, _config, rootElement, projectConfig) {
+  const previewMode = projectConfig.mode === 'preview'
+  const presentMode = projectConfig.mode === 'present'
+
   const defsize = _config.size || 'cover'
   const sizecmd = 'object-fit:' + defsize + ';'
 
   const poster = _config.poster ? `poster=${_config.poster}` : ''
   const loop = _config.loop ? 'loop' : ''
-  const autoplay = _config.autoplay ? 'autoplay' : ''
+  const autoplay = _config.autoplay && presentMode ? 'autoplay' : ''
   const src = _config.url ? `src=${_config.url}` : ''
 
   const child = u.div(`<div class="${css.video}">
@@ -44,7 +47,8 @@ const video = function (el, _config, rootElement) {
       e.preventDefault()
     }
   }
-  rootElement.addEventListener('keyup', setKeyListener)
+
+  if (presentMode) rootElement.addEventListener('keyup', setKeyListener)
 }
 
 /*

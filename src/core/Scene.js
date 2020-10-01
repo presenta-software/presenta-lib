@@ -94,7 +94,8 @@ const Scene = function (sceneConfig, projectConfig, rootElement) {
   */
   const blocks = sceneConfig.blocks
   blocks.forEach(blockConfig => {
-    const block = new Block(child.querySelector('.blocksContainer'), blockConfig, rootElement)
+    const blocksContainer = child.querySelector('.blocksContainer')
+    const block = new Block(blocksContainer, blockConfig, rootElement, projectConfig)
     this.blocks.push(block)
   })
 

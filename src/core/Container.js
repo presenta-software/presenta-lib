@@ -22,7 +22,7 @@ const Container = function (rootElement, projectConfig) {
     return console.warn('No `scenes` array found')
   }
   if (projectConfig.scenes.length === 0) {
-    return console.warn('`scenes` is empty')
+    console.warn('`scenes` is empty')
   }
 
   /*
@@ -45,16 +45,6 @@ const Container = function (rootElement, projectConfig) {
   if (projectConfig.theme) {
     this.el.classList.add('theme__' + projectConfig.theme)
   }
-
-  /*
-    Decorate the incoming data structure
-  */
-  projectConfig.scenes.forEach((sceneConfig, i) => {
-    sceneConfig.index = i
-    sceneConfig.blocks.forEach((blockConfig, j) => {
-      blockConfig.index = j
-    })
-  })
 
   /*
     Time to init the container

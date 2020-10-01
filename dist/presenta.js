@@ -1,11 +1,11 @@
-// https://lib.presenta.cc v0.0.7 Copyright 2020 Fabio Franchino
+// https://lib.presenta.cc v0.0.8 Copyright 2020 Fabio Franchino
 (function (global, factory) {
   typeof exports === 'object' && typeof module !== 'undefined' ? module.exports = factory() :
   typeof define === 'function' && define.amd ? define(factory) :
   (global = global || self, global.Presenta = factory());
 }(this, (function () { 'use strict';
 
-  var version = "0.0.7";
+  var version = "0.0.8";
 
   function styleInject(css, ref) {
     if ( ref === void 0 ) ref = {};
@@ -43,8 +43,8 @@
   var css_248z$2 = "@import url('https://fonts.googleapis.com/css2?family=Playfair+Display:wght@600&family=Work+Sans&display=swap');\n.theme__vibrant{\n  --fontHeading: 'Work Sans', sans-serif;\n  --fontText: 'Playfair Display', serif;\n}\n\n\n.theme__vibrant,\n.theme__vibrant.colorvar__a,\n.theme__vibrant .colorvar__a {\n  --backcolor: #ffe600;\n  --forecolor: #000;\n  --accentcolor: #ff6400;\n  --otheraccentcolor: #fff;\n}\n.theme__vibrant.colorvar__b,\n.theme__vibrant .colorvar__b {\n  --backcolor: #000;\n  --forecolor: rgb(255, 230, 0);\n  --accentcolor: #fff;\n  --otheraccentcolor: rgb(255, 100, 0);\n}\n.theme__vibrant.colorvar__c,\n.theme__vibrant .colorvar__c {\n  --backcolor: rgb(255, 100, 0);\n  --forecolor: #fff;\n  --accentcolor: rgb(255, 230, 0);\n  --otheraccentcolor: #000;\n}\n";
   styleInject(css_248z$2);
 
-  var css_248z$3 = ".style_debug__1-XHT{\n    width: 100%;\n    height: 100%;\n    display: flex;\n    align-items: center;\n    justify-content: center;\n}";
-  var css = {"debug":"style_debug__1-XHT"};
+  var css_248z$3 = ".scene_sceneContainer__IgSpB, .scene_test__3LYpD{\n    width: 100%;\n    height: 100%;\n    display: flex;\n    align-items: center;\n    justify-content: center;\n    position: relative;\n}\n.scene_scene__3uvTl{\n    --sw: calc(var(--w) / var(--p) / var(--fz));\n    --sh: calc(var(--h) / var(--p) / var(--fz));\n    --scal: calc(var(--pw) / var(--p) / var(--pw) / var(--fz));\n    \n    width: var(--sw);\n    height: var(--sh);\n    font-family: serif;\n    user-select: none;\n}\n\n.scene_wrapper__3yr1k{\n    width: var(--w);\n    height: var(--h);\n    transform: scale(1);\n    transform: scale(var(--scal));\n    transform-origin: top left;\n    overflow: hidden;\n\n    padding: var(--slidepadding);\n    /* background-color: var(--backcolor); */\n}\n.scene_content__1rJf0{\n    width: 100%;\n    height: 100%;\n    display: flex;\n    flex-direction: column;\n    overflow: hidden;\n}\n\n.scene_bcontainer__3MFBK,\n.scene_fcontainer__1E_0g{\n    top:0;\n    left:0;\n    width: 100%;\n    height: 100%;\n    position: absolute;\n}\n\n\n.scene_viewport__3uNLS{\n    width: 100%;\n    height: 100%;\n    position: relative;\n    flex:1;\n    overflow: hidden;\n    \n    display: flex;\n    flex-direction: row;\n}\n.scene_viewport__3uNLS > div{\n    height: 100%;\n}\n\n\n";
+  var css = {"sceneContainer":"scene_sceneContainer__IgSpB","test":"scene_test__3LYpD","scene":"scene_scene__3uvTl","wrapper":"scene_wrapper__3yr1k","content":"scene_content__1rJf0","bcontainer":"scene_bcontainer__3MFBK","fcontainer":"scene_fcontainer__1E_0g","viewport":"scene_viewport__3uNLS"};
   styleInject(css_248z$3);
 
   // import md5 from 'md5'
@@ -91,8 +91,6 @@
   const div = str => new DOMParser().parseFromString(str, 'text/html').body.childNodes[0];
 
   const fit = (el, config, par) => {
-    const columns = config.columns || 1;
-    const padding = config.padding || 0;
     const bbox = getComputedStyle(el);
     const cw = +bbox.width.split('px')[0];
     const ch = +bbox.height.split('px')[0];
@@ -104,14 +102,12 @@
     }
 
     par.style.setProperty('--h', parseInt(960 / aspect) + 'px');
-    const pad = padding * columns;
     const w = 960;
     const h = 960 / aspect;
-    const scaleW = (w + pad) * 100 / cw;
-    const scaleH = (h + pad) * 100 / ch;
-    let scale = Math.max(scaleW, scaleH);
-    if (columns > 1) scale = (w + pad) * 100 / cw;
-    par.style.setProperty('--fz', 1 / (100 / scale) * columns);
+    const scaleW = w * 100 / cw;
+    const scaleH = h * 100 / ch;
+    const scale = Math.max(scaleW, scaleH);
+    par.style.setProperty('--fz', 1 / (100 / scale));
   };
 
   const event = (name, detail) => {
@@ -131,9 +127,17 @@
     event
   };
 
+  var css_248z$4 = "\n.block_block__BWbaZ {\n  width: 100%;\n  height: 100%;\n  flex: 1;\n  flex: var(--blockweight);\n  overflow: hidden;\n}\n\n.block_inner__3LS6s {\n  width: 100%;\n  height: 100%;\n  padding: var(--blockpadding);\n}\n";
+  var css$1 = {"block":"block_block__BWbaZ","inner":"block_inner__3LS6s"};
+  styleInject(css_248z$4);
+
+  var css_248z$5 = ".style_debug__1-XHT{\n    width: 100%;\n    height: 100%;\n    display: flex;\n    align-items: center;\n    justify-content: center;\n}";
+  var css$2 = {"debug":"style_debug__1-XHT"};
+  styleInject(css_248z$5);
+
   const debug = function (_el, _config) {
     const el = u.select(_el);
-    const child = u.div(`<div class="${css.debug}">
+    const child = u.div(`<div class="${css$2.debug}">
     <h1>DEBUG <div class="step">0</div></h1> 
   </div>`);
 
@@ -148,22 +152,22 @@
     // }, 1000)
   };
 
-  var css_248z$4 = ":root {\n  --textsize:1.5rem;\n  --textpadding: 1rem;\n  --textalign: center; }\n\n.p.textposition__topleft .pretext,\n.p.textposition__tl .pretext {\n  align-items: flex-start;\n  justify-content: flex-start; }\n\n.p.textposition__topcenter .pretext,\n.p.textposition__tc .pretext {\n  align-items: flex-start;\n  justify-content: center; }\n\n.p.textposition__topright .pretext,\n.p.textposition__tr .pretext {\n  align-items: flex-start;\n  justify-content: flex-end; }\n\n.p.textposition__centerleft .pretext,\n.p.textposition__cl .pretext {\n  align-items: center;\n  justify-content: flex-start; }\n\n.p.textposition__center .pretext,\n.p.textposition__cc .pretext {\n  align-items: center;\n  justify-content: center; }\n\n.p.textposition__centerright .pretext,\n.p.textposition__cr .pretext {\n  align-items: center;\n  justify-content: flex-end; }\n\n.p.textposition__bottomleft .pretext,\n.p.textposition__bl .pretext {\n  align-items: flex-end;\n  justify-content: flex-start; }\n\n.p.textposition__bottomcenter .pretext,\n.p.textposition__bc .pretext {\n  align-items: flex-end;\n  justify-content: center; }\n\n.p.textposition__bottomright .pretext,\n.p.textposition__br .pretext {\n  align-items: flex-end;\n  justify-content: flex-end; }\n\n.s.textposition__topleft .pretext,\n.s.textposition__tl .pretext {\n  align-items: flex-start;\n  justify-content: flex-start; }\n\n.s.textposition__topcenter .pretext,\n.s.textposition__tc .pretext {\n  align-items: flex-start;\n  justify-content: center; }\n\n.s.textposition__topright .pretext,\n.s.textposition__tr .pretext {\n  align-items: flex-start;\n  justify-content: flex-end; }\n\n.s.textposition__centerleft .pretext,\n.s.textposition__cl .pretext {\n  align-items: center;\n  justify-content: flex-start; }\n\n.s.textposition__center .pretext,\n.s.textposition__cc .pretext {\n  align-items: center;\n  justify-content: center; }\n\n.s.textposition__centerright .pretext,\n.s.textposition__cr .pretext {\n  align-items: center;\n  justify-content: flex-end; }\n\n.s.textposition__bottomleft .pretext,\n.s.textposition__bl .pretext {\n  align-items: flex-end;\n  justify-content: flex-start; }\n\n.s.textposition__bottomcenter .pretext,\n.s.textposition__bc .pretext {\n  align-items: flex-end;\n  justify-content: center; }\n\n.s.textposition__bottomright .pretext,\n.s.textposition__br .pretext {\n  align-items: flex-end;\n  justify-content: flex-end; }\n\n.b.textposition__topleft .pretext,\n.b.textposition__tl .pretext {\n  align-items: flex-start;\n  justify-content: flex-start; }\n\n.b.textposition__topcenter .pretext,\n.b.textposition__tc .pretext {\n  align-items: flex-start;\n  justify-content: center; }\n\n.b.textposition__topright .pretext,\n.b.textposition__tr .pretext {\n  align-items: flex-start;\n  justify-content: flex-end; }\n\n.b.textposition__centerleft .pretext,\n.b.textposition__cl .pretext {\n  align-items: center;\n  justify-content: flex-start; }\n\n.b.textposition__center .pretext,\n.b.textposition__cc .pretext {\n  align-items: center;\n  justify-content: center; }\n\n.b.textposition__centerright .pretext,\n.b.textposition__cr .pretext {\n  align-items: center;\n  justify-content: flex-end; }\n\n.b.textposition__bottomleft .pretext,\n.b.textposition__bl .pretext {\n  align-items: flex-end;\n  justify-content: flex-start; }\n\n.b.textposition__bottomcenter .pretext,\n.b.textposition__bc .pretext {\n  align-items: flex-end;\n  justify-content: center; }\n\n.b.textposition__bottomright .pretext,\n.b.textposition__br .pretext {\n  align-items: flex-end;\n  justify-content: flex-end; }\n\n.g.textposition__topleft .pretext,\n.g.textposition__tl .pretext {\n  align-items: flex-start;\n  justify-content: flex-start; }\n\n.g.textposition__topcenter .pretext,\n.g.textposition__tc .pretext {\n  align-items: flex-start;\n  justify-content: center; }\n\n.g.textposition__topright .pretext,\n.g.textposition__tr .pretext {\n  align-items: flex-start;\n  justify-content: flex-end; }\n\n.g.textposition__centerleft .pretext,\n.g.textposition__cl .pretext {\n  align-items: center;\n  justify-content: flex-start; }\n\n.g.textposition__center .pretext,\n.g.textposition__cc .pretext {\n  align-items: center;\n  justify-content: center; }\n\n.g.textposition__centerright .pretext,\n.g.textposition__cr .pretext {\n  align-items: center;\n  justify-content: flex-end; }\n\n.g.textposition__bottomleft .pretext,\n.g.textposition__bl .pretext {\n  align-items: flex-end;\n  justify-content: flex-start; }\n\n.g.textposition__bottomcenter .pretext,\n.g.textposition__bc .pretext {\n  align-items: flex-end;\n  justify-content: center; }\n\n.g.textposition__bottomright .pretext,\n.g.textposition__br .pretext {\n  align-items: flex-end;\n  justify-content: flex-end; }\n";
-  styleInject(css_248z$4);
+  var css_248z$6 = ":root {\n  --textsize:1.5rem;\n  --textpadding: 1rem;\n  --textalign: center; }\n\n.p.textposition__topleft .pretext,\n.p.textposition__tl .pretext {\n  align-items: flex-start;\n  justify-content: flex-start; }\n\n.p.textposition__topcenter .pretext,\n.p.textposition__tc .pretext {\n  align-items: flex-start;\n  justify-content: center; }\n\n.p.textposition__topright .pretext,\n.p.textposition__tr .pretext {\n  align-items: flex-start;\n  justify-content: flex-end; }\n\n.p.textposition__centerleft .pretext,\n.p.textposition__cl .pretext {\n  align-items: center;\n  justify-content: flex-start; }\n\n.p.textposition__center .pretext,\n.p.textposition__cc .pretext {\n  align-items: center;\n  justify-content: center; }\n\n.p.textposition__centerright .pretext,\n.p.textposition__cr .pretext {\n  align-items: center;\n  justify-content: flex-end; }\n\n.p.textposition__bottomleft .pretext,\n.p.textposition__bl .pretext {\n  align-items: flex-end;\n  justify-content: flex-start; }\n\n.p.textposition__bottomcenter .pretext,\n.p.textposition__bc .pretext {\n  align-items: flex-end;\n  justify-content: center; }\n\n.p.textposition__bottomright .pretext,\n.p.textposition__br .pretext {\n  align-items: flex-end;\n  justify-content: flex-end; }\n\n.s.textposition__topleft .pretext,\n.s.textposition__tl .pretext {\n  align-items: flex-start;\n  justify-content: flex-start; }\n\n.s.textposition__topcenter .pretext,\n.s.textposition__tc .pretext {\n  align-items: flex-start;\n  justify-content: center; }\n\n.s.textposition__topright .pretext,\n.s.textposition__tr .pretext {\n  align-items: flex-start;\n  justify-content: flex-end; }\n\n.s.textposition__centerleft .pretext,\n.s.textposition__cl .pretext {\n  align-items: center;\n  justify-content: flex-start; }\n\n.s.textposition__center .pretext,\n.s.textposition__cc .pretext {\n  align-items: center;\n  justify-content: center; }\n\n.s.textposition__centerright .pretext,\n.s.textposition__cr .pretext {\n  align-items: center;\n  justify-content: flex-end; }\n\n.s.textposition__bottomleft .pretext,\n.s.textposition__bl .pretext {\n  align-items: flex-end;\n  justify-content: flex-start; }\n\n.s.textposition__bottomcenter .pretext,\n.s.textposition__bc .pretext {\n  align-items: flex-end;\n  justify-content: center; }\n\n.s.textposition__bottomright .pretext,\n.s.textposition__br .pretext {\n  align-items: flex-end;\n  justify-content: flex-end; }\n\n.b.textposition__topleft .pretext,\n.b.textposition__tl .pretext {\n  align-items: flex-start;\n  justify-content: flex-start; }\n\n.b.textposition__topcenter .pretext,\n.b.textposition__tc .pretext {\n  align-items: flex-start;\n  justify-content: center; }\n\n.b.textposition__topright .pretext,\n.b.textposition__tr .pretext {\n  align-items: flex-start;\n  justify-content: flex-end; }\n\n.b.textposition__centerleft .pretext,\n.b.textposition__cl .pretext {\n  align-items: center;\n  justify-content: flex-start; }\n\n.b.textposition__center .pretext,\n.b.textposition__cc .pretext {\n  align-items: center;\n  justify-content: center; }\n\n.b.textposition__centerright .pretext,\n.b.textposition__cr .pretext {\n  align-items: center;\n  justify-content: flex-end; }\n\n.b.textposition__bottomleft .pretext,\n.b.textposition__bl .pretext {\n  align-items: flex-end;\n  justify-content: flex-start; }\n\n.b.textposition__bottomcenter .pretext,\n.b.textposition__bc .pretext {\n  align-items: flex-end;\n  justify-content: center; }\n\n.b.textposition__bottomright .pretext,\n.b.textposition__br .pretext {\n  align-items: flex-end;\n  justify-content: flex-end; }\n\n.g.textposition__topleft .pretext,\n.g.textposition__tl .pretext {\n  align-items: flex-start;\n  justify-content: flex-start; }\n\n.g.textposition__topcenter .pretext,\n.g.textposition__tc .pretext {\n  align-items: flex-start;\n  justify-content: center; }\n\n.g.textposition__topright .pretext,\n.g.textposition__tr .pretext {\n  align-items: flex-start;\n  justify-content: flex-end; }\n\n.g.textposition__centerleft .pretext,\n.g.textposition__cl .pretext {\n  align-items: center;\n  justify-content: flex-start; }\n\n.g.textposition__center .pretext,\n.g.textposition__cc .pretext {\n  align-items: center;\n  justify-content: center; }\n\n.g.textposition__centerright .pretext,\n.g.textposition__cr .pretext {\n  align-items: center;\n  justify-content: flex-end; }\n\n.g.textposition__bottomleft .pretext,\n.g.textposition__bl .pretext {\n  align-items: flex-end;\n  justify-content: flex-start; }\n\n.g.textposition__bottomcenter .pretext,\n.g.textposition__bc .pretext {\n  align-items: flex-end;\n  justify-content: center; }\n\n.g.textposition__bottomright .pretext,\n.g.textposition__br .pretext {\n  align-items: flex-end;\n  justify-content: flex-end; }\n";
+  styleInject(css_248z$6);
 
-  var css_248z$5 = ".style_text__3T1cl{\n    width: 100%;\n    height: 100%;\n    background-position: center;\n    background-size: cover;\n    background-color: var(--backcolor);\n    position: relative;\n    \n}\n\n.style_inner__11UJC{\n    position: relative;\n    width: 100%;\n    height: 100%;\n}\n\n.style_pretext__cLjqD{\n    display: flex;\n    width: 100%;\n    height: 100%;\n    align-items: center;\n    justify-content: center;\n}\n\n.style_textbox__1Vb-V{\n    padding: var(--textboxpadding);\n    text-align: var(--textalign);\n    /*overflow: hidden; */ /* removed for shadow, maybe neccessary */\n    font-size: var(--textsize);\n    color: var(--forecolor);\n    --backmark: var(--accentcolor);\n    --foremark: var(--backcolor);\n    --textaccentcolor: var(--accentcolor);\n    font-family: var(--fontText);\n}\n\n.style_itext__jz90o{\n    border: var(--textborder) solid var(--forecolor);\n    padding: var(--textpadding);\n    border-radius: var(--textboxradius);\n    box-shadow: var(--textboxshadow);\n    background-color: var(--textboxbackcolor);\n}\n\n.style_itext__jz90o img{\n    object-fit: contain;\n    height: 4em;\n    vertical-align: middle;\n}\n\n\n.style_itext__jz90o mark {\n  background-color: var(--backmark);\n  color: var(--foremark);\n  padding: 0 0.5rem;\n}\n.style_itext__jz90o high {\n  color: var(--textaccentcolor);\n}\n.style_itext__jz90o bord {\n  border: 8px solid var(--backmark);\n  padding: 0 0.5rem;\n}\n.style_itext__jz90o a {\n  color: var(--textaccentcolor);\n}\n\n.style_itext__jz90o blockquote {\n  font-size: 2em;\n  font-weight: 400;\n  font-style: italic;\n}\n\n.style_itext__jz90o h1,\n.style_itext__jz90o h2,\n.style_itext__jz90o h3,\n.style_itext__jz90o h4,\n.style_itext__jz90o h5,\n.style_itext__jz90o h6,\n.style_itext__jz90o p,\n.style_itext__jz90o ul,\n.style_itext__jz90o blockquote {\n  margin: 0;\n}\n\n.style_itext__jz90o ul,\n.style_itext__jz90o ol {\n  font-size: 1.5em;\n  line-height: 1.1em;\n  text-align: left;\n  margin: 0;\n  padding: 0;\n  list-style-type: none;\n  counter-reset: li;\n  padding: 0.5rem 0;\n}\n\n.style_itext__jz90o li{\n  padding: 0.25rem 0;\n  list-style-position:inside;\n  margin-bottom: 2px;\n  padding: .25em;\n  padding-left: 0.8em;\n}\n.style_itext__jz90o ul li::before {\n  content: \"\\2013\"; \n  display: inline-block; \n  width: 0.8em;\n  margin-left: -0.8em;\n}\n.style_itext__jz90o ol li::before {\n  counter-increment: li;  \n  content:  \".\" counter(li); \n  display: inline-block; \n  width: 1.1em; \n  margin-left: -1.3em;\n  margin-right: 0.2em; \n  text-align: right; \n  direction: rtl;\n}\n\n.style_itext__jz90o li p{\n  display: inline;\n}\n\n\n.style_itext__jz90o pre, .style_itext__jz90o code{\n  text-align: left;\n}\n\n\n.style_itext__jz90o h1,\n.style_itext__jz90o h2,\n.style_itext__jz90o h3,\n.style_itext__jz90o h4,\n.style_itext__jz90o h5,\n.style_itext__jz90o h6 {\n  font-family: var(--fontHeading);\n  padding: .5rem 0;\n}\n\n.style_itext__jz90o h1{\n  font-size: 2em;\n}\n.style_itext__jz90o h2{\n  font-size: 1.5em;\n}\n.style_itext__jz90o h3{\n  font-size: 1.17em;\n}\n.style_itext__jz90o h4{\n  font-size: 1em;\n}\n.style_itext__jz90o h5{\n  font-size: 0.83em;\n}\n.style_itext__jz90o h6{\n  font-size: 0.67em;\n}\n\n.style_itext__jz90o p{\n  padding: .5rem 0;\n}\n\n.style_itext__jz90o hr{\n  border: 1px solid var(--forecolor);\n  margin: .5rem 0;\n}\n\n.style_itext__jz90o h1:first-child,\n.style_itext__jz90o h2:first-child,\n.style_itext__jz90o h3:first-child,\n.style_itext__jz90o h1:last-child,\n.style_itext__jz90o h2:last-child,\n.style_itext__jz90o h3:last-child{\n    padding: 0;\n}\n\n.style_itext__jz90o table{\n    width: 100%;\n}\n.style_itext__jz90o tr{\n    padding: 0;\n}\n\n.style_itext__jz90o td, .style_itext__jz90o th{\n    padding:.5rem;\n    border-bottom:1px solid var(--forecolor);\n}\n\n";
-  var css$1 = {"text":"style_text__3T1cl","inner":"style_inner__11UJC","pretext":"style_pretext__cLjqD","textbox":"style_textbox__1Vb-V","itext":"style_itext__jz90o"};
-  styleInject(css_248z$5);
+  var css_248z$7 = ".style_text__3T1cl{\n    width: 100%;\n    height: 100%;\n    background-position: center;\n    background-size: cover;\n    background-color: var(--backcolor);\n    position: relative;\n    \n}\n\n.style_inner__11UJC{\n    position: relative;\n    width: 100%;\n    height: 100%;\n}\n\n.style_pretext__cLjqD{\n    display: flex;\n    width: 100%;\n    height: 100%;\n    align-items: center;\n    justify-content: center;\n}\n\n.style_textbox__1Vb-V{\n    padding: var(--textboxpadding);\n    text-align: var(--textalign);\n    /*overflow: hidden; */ /* removed for shadow, maybe neccessary */\n    font-size: var(--textsize);\n    color: var(--forecolor);\n    --backmark: var(--accentcolor);\n    --foremark: var(--backcolor);\n    --textaccentcolor: var(--accentcolor);\n    font-family: var(--fontText);\n}\n\n.style_itext__jz90o{\n    border: var(--textborder) solid var(--forecolor);\n    padding: var(--textpadding);\n    border-radius: var(--textboxradius);\n    box-shadow: var(--textboxshadow);\n    background-color: var(--textboxbackcolor);\n}\n\n.style_itext__jz90o img{\n    object-fit: contain;\n    height: 4em;\n    vertical-align: middle;\n}\n\n\n.style_itext__jz90o mark {\n  background-color: var(--backmark);\n  color: var(--foremark);\n  padding: 0 0.5rem;\n}\n.style_itext__jz90o high {\n  color: var(--textaccentcolor);\n}\n.style_itext__jz90o bord {\n  border: 8px solid var(--backmark);\n  padding: 0 0.5rem;\n}\n.style_itext__jz90o a {\n  color: var(--textaccentcolor);\n}\n\n.style_itext__jz90o blockquote {\n  font-size: 2em;\n  font-weight: 400;\n  font-style: italic;\n}\n\n.style_itext__jz90o h1,\n.style_itext__jz90o h2,\n.style_itext__jz90o h3,\n.style_itext__jz90o h4,\n.style_itext__jz90o h5,\n.style_itext__jz90o h6,\n.style_itext__jz90o p,\n.style_itext__jz90o ul,\n.style_itext__jz90o blockquote {\n  margin: 0;\n}\n\n.style_itext__jz90o ul,\n.style_itext__jz90o ol {\n  font-size: 1.5em;\n  line-height: 1.1em;\n  text-align: left;\n  margin: 0;\n  padding: 0;\n  list-style-type: none;\n  counter-reset: li;\n  padding: 0.5rem 0;\n}\n\n.style_itext__jz90o li{\n  padding: 0.25rem 0;\n  list-style-position:inside;\n  margin-bottom: 2px;\n  padding: .25em;\n  padding-left: 0.8em;\n}\n.style_itext__jz90o ul li::before {\n  content: \"\\2013\"; \n  display: inline-block; \n  width: 0.8em;\n  margin-left: -0.8em;\n}\n.style_itext__jz90o ol li::before {\n  counter-increment: li;  \n  content:  \".\" counter(li); \n  display: inline-block; \n  width: 1.1em; \n  margin-left: -1.3em;\n  margin-right: 0.2em; \n  text-align: right; \n  direction: rtl;\n}\n\n.style_itext__jz90o li p{\n  display: inline;\n}\n\n\n.style_itext__jz90o pre, .style_itext__jz90o code{\n  text-align: left;\n}\n\n\n.style_itext__jz90o h1,\n.style_itext__jz90o h2,\n.style_itext__jz90o h3,\n.style_itext__jz90o h4,\n.style_itext__jz90o h5,\n.style_itext__jz90o h6 {\n  font-family: var(--fontHeading);\n  padding: .5rem 0;\n}\n\n.style_itext__jz90o h1{\n  font-size: 2em;\n}\n.style_itext__jz90o h2{\n  font-size: 1.5em;\n}\n.style_itext__jz90o h3{\n  font-size: 1.17em;\n}\n.style_itext__jz90o h4{\n  font-size: 1em;\n}\n.style_itext__jz90o h5{\n  font-size: 0.83em;\n}\n.style_itext__jz90o h6{\n  font-size: 0.67em;\n}\n\n.style_itext__jz90o p{\n  padding: .5rem 0;\n}\n\n.style_itext__jz90o hr{\n  border: 1px solid var(--forecolor);\n  margin: .5rem 0;\n}\n\n.style_itext__jz90o h1:first-child,\n.style_itext__jz90o h2:first-child,\n.style_itext__jz90o h3:first-child,\n.style_itext__jz90o h1:last-child,\n.style_itext__jz90o h2:last-child,\n.style_itext__jz90o h3:last-child{\n    padding: 0;\n}\n\n.style_itext__jz90o table{\n    width: 100%;\n}\n.style_itext__jz90o tr{\n    padding: 0;\n}\n\n.style_itext__jz90o td, .style_itext__jz90o th{\n    padding:.5rem;\n    border-bottom:1px solid var(--forecolor);\n}\n\n";
+  var css$3 = {"text":"style_text__3T1cl","inner":"style_inner__11UJC","pretext":"style_pretext__cLjqD","textbox":"style_textbox__1Vb-V","itext":"style_itext__jz90o"};
+  styleInject(css_248z$7);
 
   const text = function (_el, _config) {
     const el = u.select(_el);
     const html = _config.text || '';
     let fsize = _config.scale || 1;
-    const child = u.div(`<div class="c ${css$1.text}">
-    <div class="${css$1.inner}">
-      <div class="pretext ${css$1.pretext}">
-        <div class="${css$1.textbox}">
-          <div class="textContent ${css$1.itext} ${css$1.fadein}">
+    const child = u.div(`<div class="c ${css$3.text}">
+    <div class="${css$3.inner}">
+      <div class="pretext ${css$3.pretext}">
+        <div class="${css$3.textbox}">
+          <div class="textContent ${css$3.itext} ${css$3.fadein}">
             ${html}
           </div>
         </div>
@@ -196,9 +200,9 @@
 
     const compute = () => {
       child.style.setProperty('--textsize', `${fsize}rem`);
-      const mel = child.querySelector('.' + css$1.inner);
+      const mel = child.querySelector('.' + css$3.inner);
       const mbox = mel.getBoundingClientRect();
-      const el = child.querySelector('.' + css$1.textbox);
+      const el = child.querySelector('.' + css$3.textbox);
       const bbox = el.getBoundingClientRect();
 
       if (parseInt(mbox.width) < parseInt(bbox.width) || parseInt(mbox.height) < parseInt(bbox.height)) {
@@ -206,21 +210,21 @@
         return compute();
       } else {
         setTimeout(() => {
-          child.querySelector('.' + css$1.inner).style.visibility = 'visible';
+          child.querySelector('.' + css$3.inner).style.visibility = 'visible';
         });
       }
     };
 
-    child.querySelector('.' + css$1.inner).style.visibility = 'hidden';
+    child.querySelector('.' + css$3.inner).style.visibility = 'hidden';
     setTimeout(compute);
   };
 
-  var css_248z$6 = ".presenta{\n    --embedpadding: 0;\n    --embedbackcolor: none;\n}";
-  styleInject(css_248z$6);
+  var css_248z$8 = ".presenta{\n    --embedpadding: 0;\n    --embedbackcolor: none;\n}";
+  styleInject(css_248z$8);
 
-  var css_248z$7 = ".style_embed__2Pre2{\n    background-color: var(--backcolor);\n}\n\n.style_inner__3WOWs{\n    padding: var(--embedpadding);\n    position: relative;\n}\n\n.style_frame__28PUh{\n    background-color: var(--embedbackcolor);\n    position: relative;\n}\n\n.style_embed__2Pre2, .style_inner__3WOWs, .style_frame__28PUh{\n    width: 100%;\n    height: 100%;\n}\n\niframe{\n    width: 100%;\n    height: 100%;\n    border: none;\n}\n\n.style_loading__1w7wc{\n    position: absolute;\n    top:0;\n    left:0;\n    width: 100%;\n    height: 100%;\n    display: flex;\n    align-items: center;\n    justify-content: center;\n    color:var(--forecolor);\n    font-family: var(--fontText);\n    background-color: var(--backcolor);\n}\n\n.style_blockmouse__3bXSl{\n    position: absolute;\n    top:0;\n    left:0;\n    width: 100%;\n    height: 100%;\n}";
-  var css$2 = {"embed":"style_embed__2Pre2","inner":"style_inner__3WOWs","frame":"style_frame__28PUh","loading":"style_loading__1w7wc","blockmouse":"style_blockmouse__3bXSl"};
-  styleInject(css_248z$7);
+  var css_248z$9 = ".style_embed__2Pre2{\n    background-color: var(--backcolor);\n}\n\n.style_inner__3WOWs{\n    padding: var(--embedpadding);\n    position: relative;\n}\n\n.style_frame__28PUh{\n    background-color: var(--embedbackcolor);\n    position: relative;\n}\n\n.style_embed__2Pre2, .style_inner__3WOWs, .style_frame__28PUh{\n    width: 100%;\n    height: 100%;\n}\n\niframe{\n    width: 100%;\n    height: 100%;\n    border: none;\n}\n\n.style_loading__1w7wc{\n    position: absolute;\n    top:0;\n    left:0;\n    width: 100%;\n    height: 100%;\n    display: flex;\n    align-items: center;\n    justify-content: center;\n    color:var(--forecolor);\n    font-family: var(--fontText);\n    background-color: var(--backcolor);\n}\n\n.style_blockmouse__3bXSl{\n    position: absolute;\n    top:0;\n    left:0;\n    width: 100%;\n    height: 100%;\n}";
+  var css$4 = {"embed":"style_embed__2Pre2","inner":"style_inner__3WOWs","frame":"style_frame__28PUh","loading":"style_loading__1w7wc","blockmouse":"style_blockmouse__3bXSl"};
+  styleInject(css_248z$9);
 
   const iframePrimaryDomain = str => {
     if (!str) return '';
@@ -243,13 +247,13 @@
     }
 
     const name = iframePrimaryDomain(iframe);
-    const child = u.div(`<div class="c ${css$2.embed}">
-    <div class="${css$2.inner}">
-        <div class="${css$2.frame}">${iframe}</div>
-        <div class="cover ${css$2.loading}">
+    const child = u.div(`<div class="c ${css$4.embed}">
+    <div class="${css$4.inner}">
+        <div class="${css$4.frame}">${iframe}</div>
+        <div class="cover ${css$4.loading}">
             <h1>Loading from <mark>${name}</mark></h1>
         </div>
-        <div class="${css$2.blockmouse}"></div>
+        <div class="${css$4.blockmouse}"></div>
     </div>
   </div>`);
 
@@ -265,9 +269,9 @@
     }
   };
 
-  var css_248z$8 = ".style_images__26AtP{\n    width: 100%;\n    height: 100%;\n}\n\n.style_inner__181qE{\n    display: flex;\n    width: 100%;\n    height: 100%;\n}\n\n.style_preimg__2_wv2{\n    overflow: hidden;\n    flex:1;\n}\n.style_preimg__2_wv2 img{\n    width: 100%;\n    height:100%;\n}";
-  var css$3 = {"images":"style_images__26AtP","inner":"style_inner__181qE","preimg":"style_preimg__2_wv2"};
-  styleInject(css_248z$8);
+  var css_248z$a = ".style_images__26AtP{\n    width: 100%;\n    height: 100%;\n}\n\n.style_inner__181qE{\n    display: flex;\n    width: 100%;\n    height: 100%;\n}\n\n.style_preimg__2_wv2{\n    overflow: hidden;\n    flex:1;\n}\n.style_preimg__2_wv2 img{\n    width: 100%;\n    height:100%;\n}";
+  var css$5 = {"images":"style_images__26AtP","inner":"style_inner__181qE","preimg":"style_preimg__2_wv2"};
+  styleInject(css_248z$a);
 
   const images = function (_el, _config) {
     const el = u.select(_el);
@@ -278,14 +282,14 @@
       _config.images.forEach(img => {
         const size = img.size || defsize;
         const sizecmd = 'object-fit:' + size + ';';
-        imageschunk += `<div class="${css$3.preimg}">
+        imageschunk += `<div class="${css$5.preimg}">
         <img style="${sizecmd}" src="${img.url}" />
       </div>`;
       });
     }
 
-    const child = u.div(`<div class="${css$3.images}">
-    <div class="imagesContainer ${css$3.inner}">
+    const child = u.div(`<div class="${css$5.images}">
+    <div class="imagesContainer ${css$5.inner}">
         ${imageschunk}
     </div>
   </div>`);
@@ -297,18 +301,20 @@
     el.appendChild(child);
   };
 
-  var css_248z$9 = ".style_video__1qbdJ{\n    width: 100%;\n    height: 100%;\n    \n    display: flex;\n    align-items: center;\n    justify-content: center;\n}\n\n.style_video__1qbdJ video{\n    width: 100%;\n    height: 100%;\n}";
-  var css$4 = {"video":"style_video__1qbdJ"};
-  styleInject(css_248z$9);
+  var css_248z$b = ".style_video__1qbdJ{\n    width: 100%;\n    height: 100%;\n    \n    display: flex;\n    align-items: center;\n    justify-content: center;\n}\n\n.style_video__1qbdJ video{\n    width: 100%;\n    height: 100%;\n}";
+  var css$6 = {"video":"style_video__1qbdJ"};
+  styleInject(css_248z$b);
 
-  const video = function (el, _config, rootElement) {
+  const video = function (el, _config, rootElement, projectConfig) {
+    const previewMode = projectConfig.mode === 'preview';
+    const presentMode = projectConfig.mode === 'present';
     const defsize = _config.size || 'cover';
     const sizecmd = 'object-fit:' + defsize + ';';
     const poster = _config.poster ? `poster=${_config.poster}` : '';
     const loop = _config.loop ? 'loop' : '';
-    const autoplay = _config.autoplay ? 'autoplay' : '';
+    const autoplay = _config.autoplay && presentMode ? 'autoplay' : '';
     const src = _config.url ? `src=${_config.url}` : '';
-    const child = u.div(`<div class="${css$4.video}">
+    const child = u.div(`<div class="${css$6.video}">
     <video style="${sizecmd}" ${poster} ${src} ${loop} ${autoplay}></video>
   </div>`);
 
@@ -342,7 +348,7 @@
       }
     };
 
-    rootElement.addEventListener('keyup', setKeyListener);
+    if (presentMode) rootElement.addEventListener('keyup', setKeyListener);
   };
 
   const blocks = {
@@ -361,194 +367,7 @@
     blocks[type] = module;
   };
 
-  const autoplay = function (rootElement, router, config) {
-    let timer = null;
-    const loop = !config.noloop;
-    const defdelay = config.delay || 4000;
-    let lastdelay = 0;
-
-    const runTime = delay => {
-      lastdelay = delay;
-      clearTimeout(timer);
-      timer = setTimeout(() => {
-        router.next();
-      }, delay);
-    };
-
-    runTime(defdelay);
-    router.on('end', evt => {
-      if (loop) {
-        router.goto(0);
-        router.notify('nextIndex');
-      }
-    });
-    router.on('indexChanged', evt => {
-      const cScene = router.projectConfig.scenes[evt.currentIndex];
-      const delay = cScene.duration || defdelay;
-      runTime(delay);
-    });
-
-    this.pause = () => {
-      clearTimeout(timer);
-    };
-
-    this.resume = () => {
-      runTime(lastdelay);
-    };
-  };
-
-  const keyboard = function (rootElement, router, config) {
-    const setKeyListener = e => {
-      if (e.key === 'ArrowRight' || e.key === 'ArrowDown') {
-        router.next();
-        e.stopPropagation();
-        e.preventDefault();
-      }
-
-      if (e.key === 'ArrowLeft' || e.key === 'ArrowUp') {
-        router.prev();
-        e.stopPropagation();
-        e.preventDefault();
-      }
-    };
-
-    rootElement.addEventListener('keyup', setKeyListener);
-  };
-
-  var css_248z$a = ".style_arrows__2HgOY{\n    position: absolute;\n    top:0;\n    left:0;\n    width: 100%;\n    height: 100%;\n    display: flex;\n    align-items: center;\n    justify-content: space-between;\n    transition: opacity .35s;\n}\n\n.style_left__3_kwS, .style_right__RERAa{\n    width: 50px;\n    height: 50px;\n    background-color: var(--forecolor);\n    transition: background-color .3s;\n    cursor: pointer;\n}\n\n\n.style_arrows__2HgOY.style_hide__3B8Al{\n    opacity: 0;\n}";
-  var css$5 = {"arrows":"style_arrows__2HgOY","left":"style_left__3_kwS","right":"style_right__RERAa","hide":"style_hide__3B8Al"};
-  styleInject(css_248z$a);
-
-  const arrows = function (rootElement, router, config) {
-    let timer = null;
-    const child = u.div(`<div class="${css$5.arrows}">
-    <div class="handleL ${css$5.left}"></div>
-    <div class="handleR ${css$5.right}"></div>
-  </div>`);
-    rootElement.appendChild(child);
-    child.querySelector('.handleL').addEventListener('click', e => {
-      router.prev();
-      scheduleForHide();
-    });
-    child.querySelector('.handleR').addEventListener('click', e => {
-      router.next();
-      scheduleForHide();
-    });
-    child.addEventListener('mousemove', e => {
-      scheduleForHide();
-    });
-
-    const scheduleForHide = () => {
-      clearTimeout(timer);
-      child.classList.remove(css$5.hide);
-      timer = setTimeout(() => {
-        child.classList.add(css$5.hide);
-      }, 1500);
-    };
-
-    scheduleForHide();
-  };
-
-  var css_248z$b = ".style_black__27h0m{\n    width: 100%;\n    height: 100%;\n    position: absolute;\n    top:0;\n    left:0;\n\n    background-color: black;\n    opacity: 0;\n    pointer-events: none;\n    transition: opacity .5s cubic-bezier(0.8, 0.2, 0.2, 0.8);\n}";
-  var css$6 = {"black":"style_black__27h0m"};
-  styleInject(css_248z$b);
-
-  const black = function (rootElement, router, config) {
-    let visible = false;
-    const child = u.div(`<div class="${css$6.black}"></div>`);
-    rootElement.appendChild(child);
-
-    const setKeyListener = e => {
-      if (e.key === 'b') {
-        visible = !visible;
-        child.style.opacity = visible ? 1 : 0;
-        e.stopPropagation();
-        e.preventDefault();
-      }
-    };
-
-    rootElement.addEventListener('keyup', setKeyListener);
-  };
-
-  const focus = function (rootElement, router, config) {
-    const clb = (entries, observer) => {
-      entries.forEach(entry => {
-        if (entry.isIntersecting) rootElement.focus({
-          preventScroll: true
-        });
-      });
-    };
-
-    const observer = new IntersectionObserver(clb);
-    observer.observe(rootElement);
-  };
-
-  const io = {
-    autoplay,
-    keyboard,
-    arrows,
-    black,
-    focus
-  };
-
-  const add$1 = (type, module) => {
-    if (io[type]) {
-      return console.warn(`router io ${type} already defined`);
-    }
-
-    io[type] = module;
-  };
-
-  var css_248z$c = ".presenta{\n    --pagenumber__padding:.5rem; \n    --pagenumber__textalign:right; \n}\n\n.pagenumberContent{\n    color:var(--forecolor);\n    font-family: var(--fontText);\n}\n\n.pagenumber__style__inverted .pagenumberContent{\n    background-color: var(--forecolor);\n    color:var(--backcolor);\n}";
-  styleInject(css_248z$c);
-
-  var css_248z$d = ".style_pagenumber__2BX53{\n    width: 100%;\n    height: 100%;\n    display: flex;\n    align-items: flex-end;   \n}\n\n.style_pagenumber__2BX53 > div{\n    width: 100%;\n    text-align: var(--pagenumber__textalign);\n    padding: var(--pagenumber__padding);\n}\n";
-  var css$7 = {"pagenumber":"style_pagenumber__2BX53"};
-  styleInject(css_248z$d);
-
-  const pagenumber = function (sceneElement, modConfig, sceneConfig, projectConfig) {
-    const front = sceneElement.querySelector('.frontContainer');
-    const cPage = sceneConfig.index + 1;
-    const tPage = projectConfig.scenes.length;
-    let str = `${cPage} / ${tPage}`;
-
-    if (modConfig.template) {
-      const template = modConfig.template;
-      str = template.replace(/%s/mg, cPage).replace(/%S/mg, tPage);
-    }
-
-    const child = u.div(`<div class="${css$7.pagenumber}">
-    <div class="pagenumberContent">${str}</div> 
-  </div>`);
-    front.appendChild(child);
-  };
-
-  const modules = {};
-
-  const add$2 = (type, module) => {
-    if (modules[type]) {
-      return console.warn(`module type ${type} already defined`);
-    }
-
-    if (module.init) module.init();
-    modules[type] = module;
-  };
-
-  add$2('pagenumber', pagenumber);
-
-  var css_248z$e = ".style_grid__1AGYU {\n  display: flex;\n  flex-wrap: wrap;\n  overflow: hidden;\n  overflow-y: auto;\n  height: 100%;\n}\n.style_grid__1AGYU > div {\n  height: initial;\n  margin-bottom: 1rem;\n}\n.style_col1__2sfnY > div {\n  width: 100%;\n}\n.style_col2__3yP-h > div {\n  width: 50%;\n}\n.style_col3__32U3b > div {\n  width: 33.3333333333%;\n}\n.style_col4__1vNJ5 > div {\n  width: 25%;\n}\n";
-  var css$8 = {"grid":"style_grid__1AGYU","col1":"style_col1__2sfnY","col2":"style_col2__3yP-h","col3":"style_col3__32U3b","col4":"style_col4__1vNJ5"};
-  styleInject(css_248z$e);
-
-  var css_248z$f = ".scene_sceneContainer__IgSpB, .scene_test__3LYpD{\n    width: 100%;\n    height: 100%;\n    display: flex;\n    align-items: center;\n    justify-content: center;\n    position: relative;\n}\n.scene_scene__3uvTl{\n    --sw: calc(var(--w) / var(--p) / var(--fz));\n    --sh: calc(var(--h) / var(--p) / var(--fz));\n    --scal: calc(var(--pw) / var(--p) / var(--pw) / var(--fz));\n    \n    width: var(--sw);\n    height: var(--sh);\n    font-family: serif;\n    user-select: none;\n}\n\n.scene_wrapper__3yr1k{\n    width: var(--w);\n    height: var(--h);\n    transform: scale(1);\n    transform: scale(var(--scal));\n    transform-origin: top left;\n    overflow: hidden;\n\n    padding: var(--slidepadding);\n    /* background-color: var(--backcolor); */\n}\n.scene_content__1rJf0{\n    width: 100%;\n    height: 100%;\n    display: flex;\n    flex-direction: column;\n    overflow: hidden;\n}\n\n.scene_bcontainer__3MFBK,\n.scene_fcontainer__1E_0g{\n    top:0;\n    left:0;\n    width: 100%;\n    height: 100%;\n    position: absolute;\n}\n\n\n.scene_viewport__3uNLS{\n    width: 100%;\n    height: 100%;\n    position: relative;\n    flex:1;\n    overflow: hidden;\n    \n    display: flex;\n    flex-direction: row;\n}\n.scene_viewport__3uNLS > div{\n    height: 100%;\n}\n\n\n";
-  var css$9 = {"sceneContainer":"scene_sceneContainer__IgSpB","test":"scene_test__3LYpD","scene":"scene_scene__3uvTl","wrapper":"scene_wrapper__3yr1k","content":"scene_content__1rJf0","bcontainer":"scene_bcontainer__3MFBK","fcontainer":"scene_fcontainer__1E_0g","viewport":"scene_viewport__3uNLS"};
-  styleInject(css_248z$f);
-
-  var css_248z$g = "\n.block_block__BWbaZ {\n  width: 100%;\n  height: 100%;\n  flex: 1;\n  flex: var(--blockweight);\n  overflow: hidden;\n}\n\n.block_inner__3LS6s {\n  width: 100%;\n  height: 100%;\n  padding: var(--blockpadding);\n}\n";
-  var css$a = {"block":"block_block__BWbaZ","inner":"block_inner__3LS6s"};
-  styleInject(css_248z$g);
-
-  const Block = function (blocksElement, blockConfig, rootElement) {
+  const Block = function (blocksElement, blockConfig, rootElement, projectConfig) {
     this.uid = u.uid(blockConfig);
     this.type = blockConfig.type;
     this.index = blockConfig.index;
@@ -560,8 +379,8 @@
 
     let step = 0;
     const props = u.props(blockConfig.props);
-    const child = u.div(`<div class="${css$a.block} b b${this.index} ${props.classes}" style="${props.styles}">
-    <div class="blockContainer ${css$a.inner}"></div>
+    const child = u.div(`<div class="${css$1.block} b b${this.index} ${props.classes}" style="${props.styles}">
+    <div class="blockContainer ${css$1.inner}"></div>
   </div>`);
     this.el = child;
     const blockContainer = child.querySelector('.blockContainer');
@@ -569,7 +388,7 @@
     if (!blocks[this.type]) {
       console.log(`block "${this.type}" not found`);
     } else {
-      this.block = new blocks[this.type](blockContainer, blockConfig, rootElement);
+      this.block = new blocks[this.type](blockContainer, blockConfig, rootElement, projectConfig);
     }
     /*
       Define the default scene color class
@@ -597,14 +416,51 @@
     blocksElement.appendChild(child);
   };
 
-  var css_248z$h = ".horizontalSlide .p-scene-enter-transition {\n  transition: transform 1s cubic-bezier(1, 0, 0, 1); }\n\n.horizontalSlide .to-right.p-scene-enter-start {\n  transform: translateX(100%); }\n\n.horizontalSlide .to-right.p-scene-enter-end {\n  transform: translateX(0); }\n\n.horizontalSlide .to-left.p-scene-enter-start {\n  transform: translateX(-100%); }\n\n.horizontalSlide .to-left.p-scene-enter-end {\n  transform: translateX(0); }\n\n.horizontalSlide .p-scene-leave-transition {\n  transition: transform 1s cubic-bezier(1, 0, 0, 1); }\n\n.horizontalSlide .to-right.p-scene-leave-start {\n  transform: translateX(0); }\n\n.horizontalSlide .to-right.p-scene-leave-end {\n  transform: translateX(-100%); }\n\n.horizontalSlide .to-left.p-scene-leave-start {\n  transform: translateX(0); }\n\n.horizontalSlide .to-left.p-scene-leave-end {\n  transform: translateX(100%); }\n";
-  styleInject(css_248z$h);
+  var css_248z$c = ".presenta{\n    --pagenumber__padding:.5rem; \n    --pagenumber__textalign:right; \n}\n\n.pagenumberContent{\n    color:var(--forecolor);\n    font-family: var(--fontText);\n}\n\n.pagenumber__style__inverted .pagenumberContent{\n    background-color: var(--forecolor);\n    color:var(--backcolor);\n}";
+  styleInject(css_248z$c);
 
-  var css_248z$i = ".verticalIn .p-scene-enter-transition {\n  transition: all 0.75s cubic-bezier(0.2, 0.8, 0.05, 0.95); }\n\n.verticalIn .p-scene-enter-start {\n  transform: translateY(150%); }\n\n.verticalIn .p-scene-enter-end {\n  transform: translateY(0); }\n\n.verticalIn .p-scene-leave-transition {\n  transition: all 0.75s cubic-bezier(0.2, 0.8, 0.05, 0.95); }\n\n.verticalIn .p-scene-leave-start {\n  transform: scale(1); }\n\n.verticalIn .p-scene-leave-end {\n  transform: scale(0.5); }\n";
-  styleInject(css_248z$i);
+  var css_248z$d = ".style_pagenumber__2BX53{\n    width: 100%;\n    height: 100%;\n    display: flex;\n    align-items: flex-end;   \n}\n\n.style_pagenumber__2BX53 > div{\n    width: 100%;\n    text-align: var(--pagenumber__textalign);\n    padding: var(--pagenumber__padding);\n}\n";
+  var css$7 = {"pagenumber":"style_pagenumber__2BX53"};
+  styleInject(css_248z$d);
 
-  var css_248z$j = ".outIn .p-scene-enter-transition {\n  opacity: 0; }\n\n.outIn .p-scene-enter-ended {\n  opacity: 1; }\n\n.outIn .p-scene-enter-transition .textContent > * {\n  transition: opacity 1s ease-out, transform 1s cubic-bezier(0.2, 0.8, 0.05, 0.95); }\n\n.outIn .p-scene-enter-transition .textContent > *:nth-child(1) {\n  transition-delay: 1.15s; }\n\n.outIn .p-scene-enter-transition .textContent > *:nth-child(2) {\n  transition-delay: 1.3s; }\n\n.outIn .p-scene-enter-transition .textContent > *:nth-child(3) {\n  transition-delay: 1.45s; }\n\n.outIn .p-scene-enter-transition .textContent > *:nth-child(4) {\n  transition-delay: 1.6s; }\n\n.outIn .p-scene-enter-transition .textContent > *:nth-child(5) {\n  transition-delay: 1.75s; }\n\n.outIn .p-scene-enter-transition .textContent > *:nth-child(6) {\n  transition-delay: 1.9s; }\n\n.outIn .p-scene-enter-transition .textContent > *:nth-child(7) {\n  transition-delay: 2.05s; }\n\n.outIn .p-scene-enter-transition .textContent > *:nth-child(8) {\n  transition-delay: 2.2s; }\n\n.outIn .p-scene-enter-transition .textContent > *:nth-child(9) {\n  transition-delay: 2.35s; }\n\n.outIn .p-scene-enter-transition .textContent > *:nth-child(10) {\n  transition-delay: 2.5s; }\n\n.outIn .p-scene-enter-transition .textContent > *:nth-child(11) {\n  transition-delay: 2.65s; }\n\n.outIn .p-scene-enter-transition .textContent > *:nth-child(12) {\n  transition-delay: 2.8s; }\n\n.outIn .p-scene-enter-transition .textContent > *:nth-child(13) {\n  transition-delay: 2.95s; }\n\n.outIn .p-scene-enter-transition .textContent > *:nth-child(14) {\n  transition-delay: 3.1s; }\n\n.outIn .p-scene-enter-transition .textContent > *:nth-child(15) {\n  transition-delay: 3.25s; }\n\n.outIn .p-scene-enter-transition .textContent > *:nth-child(16) {\n  transition-delay: 3.4s; }\n\n.outIn .p-scene-enter-transition .textContent > *:nth-child(17) {\n  transition-delay: 3.55s; }\n\n.outIn .p-scene-enter-transition .textContent > *:nth-child(18) {\n  transition-delay: 3.7s; }\n\n.outIn .p-scene-enter-transition .textContent > *:nth-child(19) {\n  transition-delay: 3.85s; }\n\n.outIn .p-scene-enter-transition .textContent > *:nth-child(20) {\n  transition-delay: 4s; }\n\n.outIn .p-scene-enter-transition .blockContainer > div {\n  transition: background-color 1s cubic-bezier(1, 0, 0, 1);\n  transition-delay: 1s; }\n\n.outIn .p-scene-enter-start .blockContainer > div {\n  background-color: rgba(0, 0, 0, 0); }\n\n.outIn .p-scene-enter-start .textContent > * {\n  opacity: 0;\n  transform: translateY(30px); }\n\n.outIn .p-scene-enter-end .textContent > * {\n  opacity: 1;\n  transform: translateY(0px); }\n\n.outIn .p-scene-leave-transition .textContent > * {\n  transition: opacity .75s cubic-bezier(0.165, 0.84, 0.44, 1), transform .75s cubic-bezier(0.165, 0.84, 0.44, 1); }\n\n.outIn .p-scene-leave-transition .textContent > *:nth-child(0) {\n  transition-delay: 0s; }\n\n.outIn .p-scene-leave-transition .textContent > *:nth-child(1) {\n  transition-delay: 0.1s; }\n\n.outIn .p-scene-leave-transition .textContent > *:nth-child(2) {\n  transition-delay: 0.2s; }\n\n.outIn .p-scene-leave-transition .textContent > *:nth-child(3) {\n  transition-delay: 0.3s; }\n\n.outIn .p-scene-leave-transition .textContent > *:nth-child(4) {\n  transition-delay: 0.4s; }\n\n.outIn .p-scene-leave-transition .textContent > *:nth-child(5) {\n  transition-delay: 0.5s; }\n\n.outIn .p-scene-leave-transition .textContent > *:nth-child(6) {\n  transition-delay: 0.6s; }\n\n.outIn .p-scene-leave-transition .textContent > *:nth-child(7) {\n  transition-delay: 0.7s; }\n\n.outIn .p-scene-leave-transition .textContent > *:nth-child(8) {\n  transition-delay: 0.8s; }\n\n.outIn .p-scene-leave-transition .textContent > *:nth-child(9) {\n  transition-delay: 0.9s; }\n\n.outIn .p-scene-leave-transition .textContent > *:nth-child(10) {\n  transition-delay: 1s; }\n\n.outIn .p-scene-leave-transition .textContent > *:nth-child(11) {\n  transition-delay: 1.1s; }\n\n.outIn .p-scene-leave-transition .textContent > *:nth-child(12) {\n  transition-delay: 1.2s; }\n\n.outIn .p-scene-leave-transition .textContent > *:nth-child(13) {\n  transition-delay: 1.3s; }\n\n.outIn .p-scene-leave-transition .textContent > *:nth-child(14) {\n  transition-delay: 1.4s; }\n\n.outIn .p-scene-leave-transition .textContent > *:nth-child(15) {\n  transition-delay: 1.5s; }\n\n.outIn .p-scene-leave-transition .textContent > *:nth-child(16) {\n  transition-delay: 1.6s; }\n\n.outIn .p-scene-leave-transition .textContent > *:nth-child(17) {\n  transition-delay: 1.7s; }\n\n.outIn .p-scene-leave-transition .textContent > *:nth-child(18) {\n  transition-delay: 1.8s; }\n\n.outIn .p-scene-leave-transition .textContent > *:nth-child(19) {\n  transition-delay: 1.9s; }\n\n.outIn .p-scene-leave-transition .textContent > *:nth-child(20) {\n  transition-delay: 2s; }\n\n.outIn .p-scene-leave-start .textContent > * {\n  opacity: 1;\n  transform: scale(1); }\n\n.outIn .p-scene-leave-end .textContent > * {\n  opacity: 0;\n  transform: scale(0.85); }\n";
-  styleInject(css_248z$j);
+  const pagenumber = function (sceneElement, modConfig, sceneConfig, projectConfig) {
+    const front = sceneElement.querySelector('.frontContainer');
+    const cPage = projectConfig.scenes.indexOf(sceneConfig) + 1;
+    const tPage = projectConfig.scenes.length;
+    let str = `${cPage} / ${tPage}`;
+
+    if (modConfig.template) {
+      const template = modConfig.template;
+      str = template.replace(/%s/mg, cPage).replace(/%S/mg, tPage);
+    }
+
+    const child = u.div(`<div class="${css$7.pagenumber}">
+    <div class="pagenumberContent">${str}</div> 
+  </div>`);
+    front.appendChild(child);
+  };
+
+  const modules = {};
+
+  const add$1 = (type, module) => {
+    if (modules[type]) {
+      return console.warn(`module type ${type} already defined`);
+    }
+
+    if (module.init) module.init();
+    modules[type] = module;
+  };
+
+  add$1('pagenumber', pagenumber);
+
+  var css_248z$e = ".horizontalSlide .p-scene-enter-transition {\n  transition: transform 1s cubic-bezier(1, 0, 0, 1); }\n\n.horizontalSlide .to-right.p-scene-enter-start {\n  transform: translateX(100%); }\n\n.horizontalSlide .to-right.p-scene-enter-end {\n  transform: translateX(0); }\n\n.horizontalSlide .to-left.p-scene-enter-start {\n  transform: translateX(-100%); }\n\n.horizontalSlide .to-left.p-scene-enter-end {\n  transform: translateX(0); }\n\n.horizontalSlide .p-scene-leave-transition {\n  transition: transform 1s cubic-bezier(1, 0, 0, 1); }\n\n.horizontalSlide .to-right.p-scene-leave-start {\n  transform: translateX(0); }\n\n.horizontalSlide .to-right.p-scene-leave-end {\n  transform: translateX(-100%); }\n\n.horizontalSlide .to-left.p-scene-leave-start {\n  transform: translateX(0); }\n\n.horizontalSlide .to-left.p-scene-leave-end {\n  transform: translateX(100%); }\n";
+  styleInject(css_248z$e);
+
+  var css_248z$f = ".verticalIn .p-scene-enter-transition {\n  transition: all 0.75s cubic-bezier(0.2, 0.8, 0.05, 0.95); }\n\n.verticalIn .p-scene-enter-start {\n  transform: translateY(150%); }\n\n.verticalIn .p-scene-enter-end {\n  transform: translateY(0); }\n\n.verticalIn .p-scene-leave-transition {\n  transition: all 0.75s cubic-bezier(0.2, 0.8, 0.05, 0.95); }\n\n.verticalIn .p-scene-leave-start {\n  transform: scale(1); }\n\n.verticalIn .p-scene-leave-end {\n  transform: scale(0.5); }\n";
+  styleInject(css_248z$f);
+
+  var css_248z$g = ".outIn .p-scene-enter-transition {\n  opacity: 0; }\n\n.outIn .p-scene-enter-ended {\n  opacity: 1; }\n\n.outIn .p-scene-enter-transition .textContent > * {\n  transition: opacity 1s ease-out, transform 1s cubic-bezier(0.2, 0.8, 0.05, 0.95); }\n\n.outIn .p-scene-enter-transition .textContent > *:nth-child(1) {\n  transition-delay: 1.15s; }\n\n.outIn .p-scene-enter-transition .textContent > *:nth-child(2) {\n  transition-delay: 1.3s; }\n\n.outIn .p-scene-enter-transition .textContent > *:nth-child(3) {\n  transition-delay: 1.45s; }\n\n.outIn .p-scene-enter-transition .textContent > *:nth-child(4) {\n  transition-delay: 1.6s; }\n\n.outIn .p-scene-enter-transition .textContent > *:nth-child(5) {\n  transition-delay: 1.75s; }\n\n.outIn .p-scene-enter-transition .textContent > *:nth-child(6) {\n  transition-delay: 1.9s; }\n\n.outIn .p-scene-enter-transition .textContent > *:nth-child(7) {\n  transition-delay: 2.05s; }\n\n.outIn .p-scene-enter-transition .textContent > *:nth-child(8) {\n  transition-delay: 2.2s; }\n\n.outIn .p-scene-enter-transition .textContent > *:nth-child(9) {\n  transition-delay: 2.35s; }\n\n.outIn .p-scene-enter-transition .textContent > *:nth-child(10) {\n  transition-delay: 2.5s; }\n\n.outIn .p-scene-enter-transition .textContent > *:nth-child(11) {\n  transition-delay: 2.65s; }\n\n.outIn .p-scene-enter-transition .textContent > *:nth-child(12) {\n  transition-delay: 2.8s; }\n\n.outIn .p-scene-enter-transition .textContent > *:nth-child(13) {\n  transition-delay: 2.95s; }\n\n.outIn .p-scene-enter-transition .textContent > *:nth-child(14) {\n  transition-delay: 3.1s; }\n\n.outIn .p-scene-enter-transition .textContent > *:nth-child(15) {\n  transition-delay: 3.25s; }\n\n.outIn .p-scene-enter-transition .textContent > *:nth-child(16) {\n  transition-delay: 3.4s; }\n\n.outIn .p-scene-enter-transition .textContent > *:nth-child(17) {\n  transition-delay: 3.55s; }\n\n.outIn .p-scene-enter-transition .textContent > *:nth-child(18) {\n  transition-delay: 3.7s; }\n\n.outIn .p-scene-enter-transition .textContent > *:nth-child(19) {\n  transition-delay: 3.85s; }\n\n.outIn .p-scene-enter-transition .textContent > *:nth-child(20) {\n  transition-delay: 4s; }\n\n.outIn .p-scene-enter-transition .blockContainer > div {\n  transition: background-color 1s cubic-bezier(1, 0, 0, 1);\n  transition-delay: 1s; }\n\n.outIn .p-scene-enter-start .blockContainer > div {\n  background-color: rgba(0, 0, 0, 0); }\n\n.outIn .p-scene-enter-start .textContent > * {\n  opacity: 0;\n  transform: translateY(30px); }\n\n.outIn .p-scene-enter-end .textContent > * {\n  opacity: 1;\n  transform: translateY(0px); }\n\n.outIn .p-scene-leave-transition .textContent > * {\n  transition: opacity .75s cubic-bezier(0.165, 0.84, 0.44, 1), transform .75s cubic-bezier(0.165, 0.84, 0.44, 1); }\n\n.outIn .p-scene-leave-transition .textContent > *:nth-child(0) {\n  transition-delay: 0s; }\n\n.outIn .p-scene-leave-transition .textContent > *:nth-child(1) {\n  transition-delay: 0.1s; }\n\n.outIn .p-scene-leave-transition .textContent > *:nth-child(2) {\n  transition-delay: 0.2s; }\n\n.outIn .p-scene-leave-transition .textContent > *:nth-child(3) {\n  transition-delay: 0.3s; }\n\n.outIn .p-scene-leave-transition .textContent > *:nth-child(4) {\n  transition-delay: 0.4s; }\n\n.outIn .p-scene-leave-transition .textContent > *:nth-child(5) {\n  transition-delay: 0.5s; }\n\n.outIn .p-scene-leave-transition .textContent > *:nth-child(6) {\n  transition-delay: 0.6s; }\n\n.outIn .p-scene-leave-transition .textContent > *:nth-child(7) {\n  transition-delay: 0.7s; }\n\n.outIn .p-scene-leave-transition .textContent > *:nth-child(8) {\n  transition-delay: 0.8s; }\n\n.outIn .p-scene-leave-transition .textContent > *:nth-child(9) {\n  transition-delay: 0.9s; }\n\n.outIn .p-scene-leave-transition .textContent > *:nth-child(10) {\n  transition-delay: 1s; }\n\n.outIn .p-scene-leave-transition .textContent > *:nth-child(11) {\n  transition-delay: 1.1s; }\n\n.outIn .p-scene-leave-transition .textContent > *:nth-child(12) {\n  transition-delay: 1.2s; }\n\n.outIn .p-scene-leave-transition .textContent > *:nth-child(13) {\n  transition-delay: 1.3s; }\n\n.outIn .p-scene-leave-transition .textContent > *:nth-child(14) {\n  transition-delay: 1.4s; }\n\n.outIn .p-scene-leave-transition .textContent > *:nth-child(15) {\n  transition-delay: 1.5s; }\n\n.outIn .p-scene-leave-transition .textContent > *:nth-child(16) {\n  transition-delay: 1.6s; }\n\n.outIn .p-scene-leave-transition .textContent > *:nth-child(17) {\n  transition-delay: 1.7s; }\n\n.outIn .p-scene-leave-transition .textContent > *:nth-child(18) {\n  transition-delay: 1.8s; }\n\n.outIn .p-scene-leave-transition .textContent > *:nth-child(19) {\n  transition-delay: 1.9s; }\n\n.outIn .p-scene-leave-transition .textContent > *:nth-child(20) {\n  transition-delay: 2s; }\n\n.outIn .p-scene-leave-start .textContent > * {\n  opacity: 1;\n  transform: scale(1); }\n\n.outIn .p-scene-leave-end .textContent > * {\n  opacity: 0;\n  transform: scale(0.85); }\n";
+  styleInject(css_248z$g);
 
   const transition = wrapper => {
     const functor = function (wrapper) {
@@ -704,14 +560,14 @@
     let currentStep = 0;
     const steps = sceneConfig.steps || [];
     const child = u.div(`<div 
-      class="s ${css$9.sceneContainer} ${props.classes}"
+      class="s ${css.sceneContainer} ${props.classes}"
       style="${props.styles}">
-      <div class="sceneObject ${css$9.scene}">
-        <div class="${css$9.wrapper}">
-            <div class="${css$9.content} ${modprops.classes}" style="${modprops.styles}">
-                <div class="backContainer ${css$9.bcontainer}"></div>
-                <div class="blocksContainer ${css$9.viewport}"></div>
-                <div class="frontContainer ${css$9.fcontainer}"></div>
+      <div class="sceneObject ${css.scene}">
+        <div class="${css.wrapper}">
+            <div class="${css.content} ${modprops.classes}" style="${modprops.styles}">
+                <div class="backContainer ${css.bcontainer}"></div>
+                <div class="blocksContainer ${css.viewport}"></div>
+                <div class="frontContainer ${css.fcontainer}"></div>
             </div>
         </div>
       </div>
@@ -728,7 +584,7 @@
         if (!Mod) console.log(`Module "${k}" not found. Maybe you forgot to include it.`);
 
         if (modConfig && Mod) {
-          const mod = new Mod(child.querySelector(`.${css$9.content}`), modConfig, sceneConfig, projectConfig);
+          const mod = new Mod(child.querySelector(`.${css.content}`), modConfig, sceneConfig, projectConfig);
         }
       }
     }
@@ -739,7 +595,8 @@
 
     const blocks = sceneConfig.blocks;
     blocks.forEach(blockConfig => {
-      const block = new Block(child.querySelector('.blocksContainer'), blockConfig, rootElement);
+      const blocksContainer = child.querySelector('.blocksContainer');
+      const block = new Block(blocksContainer, blockConfig, rootElement, projectConfig);
       this.blocks.push(block);
     });
     /*
@@ -817,9 +674,151 @@
     this.sceneConfig = sceneConfig;
   };
 
+  const autoplay = function (rootElement, router, config) {
+    let timer = null;
+    const loop = !config.noloop;
+    const defdelay = config.delay || 4000;
+    let lastdelay = 0;
+
+    const runTime = delay => {
+      lastdelay = delay;
+      clearTimeout(timer);
+      timer = setTimeout(() => {
+        router.next();
+      }, delay);
+    };
+
+    runTime(defdelay);
+    router.on('end', evt => {
+      if (loop) {
+        router.goto(0);
+        router.notify('nextIndex');
+      }
+    });
+    router.on('indexChanged', evt => {
+      const cScene = router.projectConfig.scenes[evt.currentIndex];
+      const delay = cScene.duration || defdelay;
+      runTime(delay);
+    });
+
+    this.pause = () => {
+      clearTimeout(timer);
+    };
+
+    this.resume = () => {
+      runTime(lastdelay);
+    };
+  };
+
+  const keyboard = function (rootElement, router, config) {
+    const setKeyListener = e => {
+      if (e.key === 'ArrowRight' || e.key === 'ArrowDown') {
+        router.next();
+        e.stopPropagation();
+        e.preventDefault();
+      }
+
+      if (e.key === 'ArrowLeft' || e.key === 'ArrowUp') {
+        router.prev();
+        e.stopPropagation();
+        e.preventDefault();
+      }
+    };
+
+    rootElement.addEventListener('keyup', setKeyListener);
+  };
+
+  var css_248z$h = ".style_arrows__2HgOY{\n    position: absolute;\n    top:0;\n    left:0;\n    width: 100%;\n    height: 100%;\n    display: flex;\n    align-items: center;\n    justify-content: space-between;\n    transition: opacity .35s;\n}\n\n.style_left__3_kwS, .style_right__RERAa{\n    width: 50px;\n    height: 50px;\n    background-color: var(--forecolor);\n    transition: background-color .3s;\n    cursor: pointer;\n}\n\n\n.style_arrows__2HgOY.style_hide__3B8Al{\n    opacity: 0;\n}";
+  var css$8 = {"arrows":"style_arrows__2HgOY","left":"style_left__3_kwS","right":"style_right__RERAa","hide":"style_hide__3B8Al"};
+  styleInject(css_248z$h);
+
+  const arrows = function (rootElement, router, config) {
+    let timer = null;
+    const child = u.div(`<div class="${css$8.arrows}">
+    <div class="handleL ${css$8.left}"></div>
+    <div class="handleR ${css$8.right}"></div>
+  </div>`);
+    rootElement.appendChild(child);
+    child.querySelector('.handleL').addEventListener('click', e => {
+      router.prev();
+      scheduleForHide();
+    });
+    child.querySelector('.handleR').addEventListener('click', e => {
+      router.next();
+      scheduleForHide();
+    });
+    child.addEventListener('mousemove', e => {
+      scheduleForHide();
+    });
+
+    const scheduleForHide = () => {
+      clearTimeout(timer);
+      child.classList.remove(css$8.hide);
+      timer = setTimeout(() => {
+        child.classList.add(css$8.hide);
+      }, 1500);
+    };
+
+    scheduleForHide();
+  };
+
+  var css_248z$i = ".style_black__27h0m{\n    width: 100%;\n    height: 100%;\n    position: absolute;\n    top:0;\n    left:0;\n\n    background-color: black;\n    opacity: 0;\n    pointer-events: none;\n    transition: opacity .5s cubic-bezier(0.8, 0.2, 0.2, 0.8);\n}";
+  var css$9 = {"black":"style_black__27h0m"};
+  styleInject(css_248z$i);
+
+  const black = function (rootElement, router, config) {
+    let visible = false;
+    const child = u.div(`<div class="${css$9.black}"></div>`);
+    rootElement.appendChild(child);
+
+    const setKeyListener = e => {
+      if (e.key === 'b') {
+        visible = !visible;
+        child.style.opacity = visible ? 1 : 0;
+        e.stopPropagation();
+        e.preventDefault();
+      }
+    };
+
+    rootElement.addEventListener('keyup', setKeyListener);
+  };
+
+  const focus = function (rootElement, router, config) {
+    const clb = (entries, observer) => {
+      entries.forEach(entry => {
+        if (entry.isIntersecting) rootElement.focus({
+          preventScroll: true
+        });
+      });
+    };
+
+    const observer = new IntersectionObserver(clb);
+    observer.observe(rootElement);
+  };
+
+  const io = {
+    autoplay,
+    keyboard,
+    arrows,
+    black,
+    focus
+  };
+
+  const add$2 = (type, module) => {
+    if (io[type]) {
+      return console.warn(`router io ${type} already defined`);
+    }
+
+    io[type] = module;
+  };
+
+  var css_248z$j = ".style_grid__1AGYU {\n  display: flex;\n  flex-wrap: wrap;\n  overflow: hidden;\n  overflow-y: auto;\n  height: 100%;\n}\n.style_grid__1AGYU > div {\n  height: initial;\n  margin-bottom: 1rem;\n}\n.style_col1__2sfnY > div {\n  width: 100%;\n}\n.style_col2__3yP-h > div {\n  width: 50%;\n}\n.style_col3__32U3b > div {\n  width: 33.3333333333%;\n}\n.style_col4__1vNJ5 > div {\n  width: 25%;\n}\n";
+  var css$a = {"grid":"style_grid__1AGYU","col1":"style_col1__2sfnY","col2":"style_col2__3yP-h","col3":"style_col3__32U3b","col4":"style_col4__1vNJ5"};
+  styleInject(css_248z$j);
+
   const grid = function (rootElement, projectConfig) {
     const columns = projectConfig.columns || 1;
-    const child = u.div(`<div class="a ${css$8.grid} ${css$8['col' + columns]}"></div>`);
+    const child = u.div(`<div class="a ${css$a.grid} ${css$a['col' + columns]}"></div>`);
     const cscenes = projectConfig.scenes;
     cscenes.forEach((b, i) => {
       const scene = new Scene(b, projectConfig, rootElement);
@@ -1008,8 +1007,6 @@
       return currentScene;
     };
 
-    projectConfig.columns = 1; // override in case it's set
-
     u.fit(child, projectConfig, rootElement);
     const resizeObserver = new ResizeObserver(entries => {
       u.fit(child, projectConfig, rootElement);
@@ -1043,7 +1040,7 @@
     }
 
     if (projectConfig.scenes.length === 0) {
-      return console.warn('`scenes` is empty');
+      console.warn('`scenes` is empty');
     }
     /*
       Activate the transition system if requested
@@ -1070,19 +1067,9 @@
       this.el.classList.add('theme__' + projectConfig.theme);
     }
     /*
-      Decorate the incoming data structure
-    */
-
-
-    projectConfig.scenes.forEach((sceneConfig, i) => {
-      sceneConfig.index = i;
-      sceneConfig.blocks.forEach((blockConfig, j) => {
-        blockConfig.index = j;
-      });
-    });
-    /*
       Time to init the container
     */
+
 
     const contType = projectConfig.container || 'show';
 
@@ -1099,6 +1086,7 @@
     const defaultConfig = {
       aspect: 1.6,
       adapt: true,
+      mode: 'present',
       router: {
         keyboard: true,
         arrows: true,
@@ -1145,13 +1133,13 @@
   // Presenta.Grid = grid
   // core/internals
   // Presenta.Block = Block
-  // Presenta.Scene = Scene
-  // Presenta.Container = Container
+
+  Presenta.Scene = Scene; // Presenta.Container = Container
   // public integration access
 
   Presenta.addBlock = add;
-  Presenta.addController = add$1;
-  Presenta.addModule = add$2;
+  Presenta.addController = add$2;
+  Presenta.addModule = add$1;
 
   Presenta.use = plugin => {
     plugin.install(Presenta);

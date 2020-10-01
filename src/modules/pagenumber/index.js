@@ -4,7 +4,7 @@ import u from '../../utils.js'
 
 const pagenumber = function (sceneElement, modConfig, sceneConfig, projectConfig) {
   const front = sceneElement.querySelector('.frontContainer')
-  const cPage = sceneConfig.index + 1
+  const cPage = projectConfig.scenes.indexOf(sceneConfig) + 1
   const tPage = projectConfig.scenes.length
 
   let str = `${cPage} / ${tPage}`

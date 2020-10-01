@@ -30,6 +30,7 @@ export default [{
     resolve(),
     json(),
     babel({
+      babelHelpers: 'bundled',
       exclude: 'node_modules/**'
     }),
     commonjs(),
@@ -58,6 +59,7 @@ export default [{
     resolve(),
     json(),
     babel({
+      babelHelpers: 'bundled',
       exclude: 'node_modules/**'
     }),
     commonjs(),

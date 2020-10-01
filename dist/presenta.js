@@ -118,7 +118,7 @@
     return new CustomEvent(name, prop);
   };
 
-  var u = {
+  var utils = {
     uid,
     select,
     props,
@@ -136,8 +136,8 @@
   styleInject(css_248z$5);
 
   const debug = function (_el, _config) {
-    const el = u.select(_el);
-    const child = u.div(`<div class="${css$2.debug}">
+    const el = utils.select(_el);
+    const child = utils.div(`<div class="${css$2.debug}">
     <h1>DEBUG <div class="step">0</div></h1> 
   </div>`);
 
@@ -160,10 +160,10 @@
   styleInject(css_248z$7);
 
   const text = function (_el, _config) {
-    const el = u.select(_el);
+    const el = utils.select(_el);
     const html = _config.text || '';
     let fsize = _config.scale || 1;
-    const child = u.div(`<div class="c ${css$3.text}">
+    const child = utils.div(`<div class="c ${css$3.text}">
     <div class="${css$3.inner}">
       <div class="pretext ${css$3.pretext}">
         <div class="${css$3.textbox}">
@@ -235,7 +235,7 @@
   };
 
   const embed = function (_el, _config) {
-    const el = u.select(_el);
+    const el = utils.select(_el);
     let iframe = null;
 
     if (_config.url) {
@@ -247,7 +247,7 @@
     }
 
     const name = iframePrimaryDomain(iframe);
-    const child = u.div(`<div class="c ${css$4.embed}">
+    const child = utils.div(`<div class="c ${css$4.embed}">
     <div class="${css$4.inner}">
         <div class="${css$4.frame}">${iframe}</div>
         <div class="cover ${css$4.loading}">
@@ -274,7 +274,7 @@
   styleInject(css_248z$a);
 
   const images = function (_el, _config) {
-    const el = u.select(_el);
+    const el = utils.select(_el);
     const defsize = _config.size || 'cover';
     let imageschunk = '';
 
@@ -288,7 +288,7 @@
       });
     }
 
-    const child = u.div(`<div class="${css$5.images}">
+    const child = utils.div(`<div class="${css$5.images}">
     <div class="imagesContainer ${css$5.inner}">
         ${imageschunk}
     </div>
@@ -314,7 +314,7 @@
     const loop = _config.loop ? 'loop' : '';
     const autoplay = _config.autoplay && presentMode ? 'autoplay' : '';
     const src = _config.url ? `src=${_config.url}` : '';
-    const child = u.div(`<div class="${css$6.video}">
+    const child = utils.div(`<div class="${css$6.video}">
     <video style="${sizecmd}" ${poster} ${src} ${loop} ${autoplay}></video>
   </div>`);
 
@@ -368,7 +368,7 @@
   };
 
   const Block = function (blocksElement, blockConfig, rootElement, projectConfig) {
-    this.uid = u.uid(blockConfig);
+    this.uid = utils.uid(blockConfig);
     this.type = blockConfig.type;
     this.index = blockConfig.index;
     this.block = null;
@@ -378,8 +378,8 @@
     }
 
     let step = 0;
-    const props = u.props(blockConfig.props);
-    const child = u.div(`<div class="${css$1.block} b b${this.index} ${props.classes}" style="${props.styles}">
+    const props = utils.props(blockConfig.props);
+    const child = utils.div(`<div class="${css$1.block} b b${this.index} ${props.classes}" style="${props.styles}">
     <div class="blockContainer ${css$1.inner}"></div>
   </div>`);
     this.el = child;
@@ -434,7 +434,7 @@
       str = template.replace(/%s/mg, cPage).replace(/%S/mg, tPage);
     }
 
-    const child = u.div(`<div class="${css$7.pagenumber}">
+    const child = utils.div(`<div class="${css$7.pagenumber}">
     <div class="pagenumberContent">${str}</div> 
   </div>`);
     front.appendChild(child);
@@ -531,7 +531,7 @@
       Prepare scene props if defined
     */
 
-    const props = u.props(sceneConfig.props);
+    const props = utils.props(sceneConfig.props);
     /*
       Prepare modules props if defined
     */
@@ -546,7 +546,7 @@
         const cmod = sceneConfig.modules[k];
 
         if (cmod.props) {
-          const mp = u.props(cmod.props, k);
+          const mp = utils.props(cmod.props, k);
           modprops.classes += mp.classes;
           modprops.styles += mp.styles;
         }
@@ -559,7 +559,7 @@
 
     let currentStep = 0;
     const steps = sceneConfig.steps || [];
-    const child = u.div(`<div 
+    const child = utils.div(`<div 
       class="s ${css.sceneContainer} ${props.classes}"
       style="${props.styles}">
       <div class="sceneObject ${css.scene}">
@@ -670,9 +670,13 @@
       }
     };
 
-    this.uid = u.uid(sceneConfig);
+    this.uid = utils.uid(sceneConfig);
     this.sceneConfig = sceneConfig;
   };
+
+  var css_248z$h = ".container_container__3kBNh {\n    width: 100%;\n    height: 100%;\n    position: relative;\n    overflow: hidden;\n}\n\n.container_container__3kBNh > div{\n    position: absolute;\n    top:0;\n    left:0;\n    width: 100%;\n}";
+  var css$8 = {"container":"container_container__3kBNh"};
+  styleInject(css_248z$h);
 
   const autoplay = function (rootElement, router, config) {
     let timer = null;
@@ -728,15 +732,15 @@
     rootElement.addEventListener('keyup', setKeyListener);
   };
 
-  var css_248z$h = ".style_arrows__2HgOY{\n    position: absolute;\n    top:0;\n    left:0;\n    width: 100%;\n    height: 100%;\n    display: flex;\n    align-items: center;\n    justify-content: space-between;\n    transition: opacity .35s;\n}\n\n.style_left__3_kwS, .style_right__RERAa{\n    width: 50px;\n    height: 50px;\n    background-color: var(--forecolor);\n    transition: background-color .3s;\n    cursor: pointer;\n}\n\n\n.style_arrows__2HgOY.style_hide__3B8Al{\n    opacity: 0;\n}";
-  var css$8 = {"arrows":"style_arrows__2HgOY","left":"style_left__3_kwS","right":"style_right__RERAa","hide":"style_hide__3B8Al"};
-  styleInject(css_248z$h);
+  var css_248z$i = ".style_arrows__2HgOY{\n    position: absolute;\n    top:0;\n    left:0;\n    width: 100%;\n    height: 100%;\n    display: flex;\n    align-items: center;\n    justify-content: space-between;\n    transition: opacity .35s;\n}\n\n.style_left__3_kwS, .style_right__RERAa{\n    width: 50px;\n    height: 50px;\n    background-color: var(--forecolor);\n    transition: background-color .3s;\n    cursor: pointer;\n}\n\n\n.style_arrows__2HgOY.style_hide__3B8Al{\n    opacity: 0;\n}";
+  var css$9 = {"arrows":"style_arrows__2HgOY","left":"style_left__3_kwS","right":"style_right__RERAa","hide":"style_hide__3B8Al"};
+  styleInject(css_248z$i);
 
   const arrows = function (rootElement, router, config) {
     let timer = null;
-    const child = u.div(`<div class="${css$8.arrows}">
-    <div class="handleL ${css$8.left}"></div>
-    <div class="handleR ${css$8.right}"></div>
+    const child = utils.div(`<div class="${css$9.arrows}">
+    <div class="handleL ${css$9.left}"></div>
+    <div class="handleR ${css$9.right}"></div>
   </div>`);
     rootElement.appendChild(child);
     child.querySelector('.handleL').addEventListener('click', e => {
@@ -753,22 +757,22 @@
 
     const scheduleForHide = () => {
       clearTimeout(timer);
-      child.classList.remove(css$8.hide);
+      child.classList.remove(css$9.hide);
       timer = setTimeout(() => {
-        child.classList.add(css$8.hide);
+        child.classList.add(css$9.hide);
       }, 1500);
     };
 
     scheduleForHide();
   };
 
-  var css_248z$i = ".style_black__27h0m{\n    width: 100%;\n    height: 100%;\n    position: absolute;\n    top:0;\n    left:0;\n\n    background-color: black;\n    opacity: 0;\n    pointer-events: none;\n    transition: opacity .5s cubic-bezier(0.8, 0.2, 0.2, 0.8);\n}";
-  var css$9 = {"black":"style_black__27h0m"};
-  styleInject(css_248z$i);
+  var css_248z$j = ".style_black__27h0m{\n    width: 100%;\n    height: 100%;\n    position: absolute;\n    top:0;\n    left:0;\n\n    background-color: black;\n    opacity: 0;\n    pointer-events: none;\n    transition: opacity .5s cubic-bezier(0.8, 0.2, 0.2, 0.8);\n}";
+  var css$a = {"black":"style_black__27h0m"};
+  styleInject(css_248z$j);
 
   const black = function (rootElement, router, config) {
     let visible = false;
-    const child = u.div(`<div class="${css$9.black}"></div>`);
+    const child = utils.div(`<div class="${css$a.black}"></div>`);
     rootElement.appendChild(child);
 
     const setKeyListener = e => {
@@ -812,48 +816,12 @@
     io[type] = module;
   };
 
-  var css_248z$j = ".style_grid__1AGYU {\n  display: flex;\n  flex-wrap: wrap;\n  overflow: hidden;\n  overflow-y: auto;\n  height: 100%;\n}\n.style_grid__1AGYU > div {\n  height: initial;\n  margin-bottom: 1rem;\n}\n.style_col1__2sfnY > div {\n  width: 100%;\n}\n.style_col2__3yP-h > div {\n  width: 50%;\n}\n.style_col3__32U3b > div {\n  width: 33.3333333333%;\n}\n.style_col4__1vNJ5 > div {\n  width: 25%;\n}\n";
-  var css$a = {"grid":"style_grid__1AGYU","col1":"style_col1__2sfnY","col2":"style_col2__3yP-h","col3":"style_col3__32U3b","col4":"style_col4__1vNJ5"};
-  styleInject(css_248z$j);
-
-  const grid = function (rootElement, projectConfig) {
-    const columns = projectConfig.columns || 1;
-    const child = u.div(`<div class="a ${css$a.grid} ${css$a['col' + columns]}"></div>`);
-    const cscenes = projectConfig.scenes;
-    cscenes.forEach((b, i) => {
-      const scene = new Scene(b, projectConfig, rootElement);
-      child.appendChild(scene.el);
-    });
-    rootElement.appendChild(child);
-    u.fit(child, projectConfig, rootElement);
-
-    this.updateAt = (index, confscene) => {
-      const newscene = new Scene(confscene, projectConfig, rootElement);
-      const oldEl = child.children[index];
-      child.replaceChild(newscene.el, oldEl);
-    };
-
-    this.addAt = (index, confscene) => {
-      const scene = new Scene(confscene, projectConfig, rootElement);
-      child.insertBefore(scene.el, child.children[index]);
-    };
-
-    this.removeAt = index => {
-      const remEl = child.children[index];
-      child.removeChild(remEl);
-    };
-  };
-
-  var css_248z$k = ".style_show__keV71 {\n  width: 100%;\n  height: 100%;\n  position: relative;\n  overflow: hidden;\n}\n\n.style_show__keV71 > div{\n  position: absolute;\n  top:0;\n  left:0;\n  width: 100%;\n}\n\n.style_focused__lSH54{\n  outline: 10px solid green;\n}";
-  var css$b = {"show":"style_show__keV71","focused":"style_focused__lSH54"};
+  var css_248z$k = ".router_router__2R2qw{\n    width: 100%;\n    height: 100%;\n    position: absolute;\n    top:0;\n    left:0;\n}";
+  var css$b = {"router":"router_router__2R2qw"};
   styleInject(css_248z$k);
 
-  var css_248z$l = ".router_router__2R2qw{\n    width: 100%;\n    height: 100%;\n    position: absolute;\n    top:0;\n    left:0;\n}";
-  var css$c = {"router":"router_router__2R2qw"};
-  styleInject(css_248z$l);
-
   const Router = function (rootElement, projectConfig) {
-    const child = u.div(`<div class="${css$c.router}"></div>`);
+    const child = utils.div(`<div class="${css$b.router}"></div>`);
     rootElement.appendChild(child);
     child.setAttribute('tabindex', '0');
     this.projectConfig = projectConfig;
@@ -920,9 +888,9 @@
 
     this.notify = evt => {
       const sceneConfig = scenes[currentIndex];
-      const props = u.props(sceneConfig.props);
+      const props = utils.props(sceneConfig.props);
       child.classList.remove(...child.classList);
-      child.classList.add(css$c.router);
+      child.classList.add(css$b.router);
 
       if (props.classes) {
         const cls = props.classes.split(' ');
@@ -973,8 +941,59 @@
     }
   };
 
-  const show = function (rootElement, projectConfig) {
-    const child = u.div(`<div class="a ${css$b.show}"></div>`);
+  const Container = function (rootElement, projectConfig) {
+    this.config = projectConfig;
+    /*
+        Let's check and fix the wrapper size
+    */
+
+    const size = getComputedStyle(rootElement);
+    const w = +size.width.split('px')[0];
+    const h = +size.height.split('px')[0];
+    if (w <= 0) rootElement.style.width = '360px';
+    if (h <= 0) rootElement.style.height = '200px';
+    /*
+      Let's notify the user about mandatory fields
+    */
+
+    if (!projectConfig.scenes) {
+      return console.warn('No `scenes` array found');
+    }
+
+    if (projectConfig.scenes.length === 0) {
+      console.warn('`scenes` is empty');
+    }
+    /*
+      Activate the transition system if requested
+    */
+
+
+    if (projectConfig.transition) {
+      rootElement.classList.add(projectConfig.transition);
+    }
+    /*
+      Define the default scene color class
+    */
+
+
+    if (projectConfig.variant) {
+      rootElement.classList.add('colorvar__' + projectConfig.variant);
+    }
+    /*
+      Activate the theme if requested
+    */
+
+
+    if (projectConfig.theme) {
+      rootElement.classList.add('theme__' + projectConfig.theme);
+    }
+    /*
+      Time to init the container
+    */
+
+
+    rootElement.classList.add('presenta');
+    const child = utils.div(`<div class="a ${css$8.container}"></div>`);
     const scenes = projectConfig.scenes;
     var currentScene = new Scene(scenes[0], projectConfig, rootElement);
     child.appendChild(currentScene.el);
@@ -1007,79 +1026,11 @@
       return currentScene;
     };
 
-    u.fit(child, projectConfig, rootElement);
+    utils.fit(child, projectConfig, rootElement);
     const resizeObserver = new ResizeObserver(entries => {
-      u.fit(child, projectConfig, rootElement);
+      utils.fit(child, projectConfig, rootElement);
     });
     resizeObserver.observe(child);
-  };
-
-  const containers = {
-    grid,
-    show
-  };
-
-  const Container = function (rootElement, projectConfig) {
-    this.el = u.select(rootElement);
-    this.config = projectConfig;
-    /*
-        Let's check and fix the wrapper size
-    */
-
-    const size = getComputedStyle(this.el);
-    const w = +size.width.split('px')[0];
-    const h = +size.height.split('px')[0];
-    if (w <= 0) this.el.style.width = '360px';
-    if (h <= 0) this.el.style.height = '200px';
-    /*
-      Let's notify the user about mandatory fields
-    */
-
-    if (!projectConfig.scenes) {
-      return console.warn('No `scenes` array found');
-    }
-
-    if (projectConfig.scenes.length === 0) {
-      console.warn('`scenes` is empty');
-    }
-    /*
-      Activate the transition system if requested
-    */
-
-
-    if (projectConfig.transition) {
-      this.el.classList.add(projectConfig.transition);
-    }
-    /*
-      Define the default scene color class
-    */
-
-
-    if (projectConfig.variant) {
-      this.el.classList.add('colorvar__' + projectConfig.variant);
-    }
-    /*
-      Activate the theme if requested
-    */
-
-
-    if (projectConfig.theme) {
-      this.el.classList.add('theme__' + projectConfig.theme);
-    }
-    /*
-      Time to init the container
-    */
-
-
-    const contType = projectConfig.container || 'show';
-
-    if (!containers[contType]) {
-      console.warn(`container "${contType}" not found`);
-    } else {
-      this.el.classList.add('presenta');
-      this.container = new containers[contType](this.el, projectConfig);
-      this.uid = u.uid(projectConfig);
-    }
   };
 
   var mergeDefaults = (config => {
@@ -1120,23 +1071,12 @@
 
   const Presenta = function (el, config) {
     mergeDefaults(config);
-    return new Container(el, config);
+    return new Container(utils.select(el), config);
   };
 
-  Presenta.version = version; // final blocks
-  // Presenta.Text = text
-  // Presenta.Embed = embed
-  // Presenta.Images = images
-  // Presenta.Debug = debug
-  // containers
-  // Presenta.Show = show
-  // Presenta.Grid = grid
-  // core/internals
-  // Presenta.Block = Block
-
-  Presenta.Scene = Scene; // Presenta.Container = Container
-  // public integration access
-
+  Presenta.version = version;
+  Presenta.utils = utils;
+  Presenta.Scene = Scene;
   Presenta.addBlock = add;
   Presenta.addController = add$2;
   Presenta.addModule = add$1;

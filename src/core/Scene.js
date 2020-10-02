@@ -170,7 +170,7 @@ const Scene = function (sceneConfig, projectConfig, rootElement) {
     }
   }
 
-  this.uid = u.uid(sceneConfig)
+  // this.uid = u.uid(sceneConfig)
   this.sceneConfig = sceneConfig
 }
 

@@ -1,5 +1,4 @@
 .embed{
-    background-color: var(--backcolor);
 }
 
 .inner{
@@ -41,6 +40,19 @@ iframe{
     position: absolute;
     top:0;
     left:0;
+    width: 100%;
+    height: 100%;
+}
+
+.poster{
+    position: absolute;
+    top:0;
+    left:0;
+    width: 100%;
+    height: 100%;
+    background-color: var(--backcolor);
+}
+.poster img{
     width: 100%;
     height: 100%;
 }

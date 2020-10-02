@@ -10,39 +10,44 @@ const iframePrimaryDomain = str => {
   return dom.length > 0 ? dom[0] : null
 }
 
-const embed = function (_el, _config) {
-  const el = u.select(_el)
+const embed = function (el, config, rootElement, projectConfig) {
+  const previewMode = projectConfig.mode === 'preview'
+  const presentMode = projectConfig.mode === 'present'
 
   let iframe = null
-  if (_config.url) {
-    iframe = `<iframe src="${_config.url}"></iframe>`
+  if (config.url) {
+    iframe = `<iframe src="${config.url}"></iframe>`
   }
-  if (_config.code) {
-    iframe = _config.code
+  if (config.code) {
+    iframe = config.code
   }
 
   const name = iframePrimaryDomain(iframe)
 
+  const coverFrame = `<div class="cover ${css.loading}"><h1>Embed from <mark>${name}</mark></h1></div>`
+
+  const postersize = config.postersize || 'cover'
+  const sizecmd = 'object-fit:' + postersize + ';'
+  const posterFrame = config.poster ? `<div class="${css.poster}"><img style="${sizecmd}" src="${config.poster}" /></div>` : ''
+
   const child = u.div(`<div class="c ${css.embed}">
     <div class="${css.inner}">
         <div class="${css.frame}">${iframe}</div>
-        <div class="cover ${css.loading}">
-            <h1>Loading from <mark>${name}</mark></h1>
-        </div>
+        ${coverFrame}
+        ${posterFrame}
         <div class="${css.blockmouse}"></div>
     </div>
   </div>`)
-
-  this.beforeDestroy = () => {
-
-  }
-
   el.appendChild(child)
 
-  if (iframe) {
+  this.beforeDestroy = () => {
+  }
+
+  if (iframe && presentMode) {
     const frame = child.querySelector('iframe')
     frame.addEventListener('load', () => {
-      child.querySelector('.cover').style.display = 'none'
+      child.querySelector('.' + css.loading).style.display = 'none'
+      if (posterFrame) child.querySelector('.' + css.poster).style.display = 'none'
     })
   }
 }

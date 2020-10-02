@@ -3,7 +3,7 @@ import u from '../utils.js'
 import { blocks } from '../blocks/types'
 
 const Block = function (blocksElement, blockConfig, rootElement, projectConfig) {
-  this.uid = u.uid(blockConfig)
+  // this.uid = u.uid(blockConfig)
   this.type = blockConfig.type
   this.index = blockConfig.index
   this.block = null

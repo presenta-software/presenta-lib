@@ -26,7 +26,7 @@
   --scal: calc(var(--pw) / var(--p) / var(--pw) / var(--fz)); */
 
   /* PUBLIC VARS */
-  --slidepadding: 0;
+  --scenepadding: 0;
   --blockweight: 1;
   --blockpadding: 0;
 }
@@ -73,10 +73,10 @@
   width: 100%;
 }
 
-.layout__stacked .blocksContainer {
+.layout__stack .blocksContainer {
   position: relative;
 }
-.layout__stacked .blocksContainer > div {
+.layout__stack .blocksContainer > div {
   position: absolute;
   top: 0;
   left: 0;

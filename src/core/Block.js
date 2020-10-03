@@ -49,6 +49,10 @@ const Block = function (blocksElement, blockConfig, rootElement, projectConfig) 
     }
   }
 
+  this.destroy = () => {
+    if (this.block.destroy) this.block.destroy()
+  }
+
   blocksElement.appendChild(child)
 }
 

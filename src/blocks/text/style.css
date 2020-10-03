@@ -2,7 +2,7 @@
     width: 100%;
     height: 100%;
     position: relative;
-    
+    color: var(--forecolor)
 }
 
 .inner{
@@ -24,7 +24,7 @@
     text-align: var(--textalign);
     /*overflow: hidden; */ /* removed for shadow, maybe neccessary */
     font-size: var(--textsize);
-    color: var(--forecolor);
+    color: var(--textboxcolor);
     --backmark: var(--accentcolor);
     --foremark: var(--backcolor);
     --textaccentcolor: var(--accentcolor);
@@ -32,7 +32,7 @@
 }
 
 .itext{
-    border: var(--textborder) solid var(--forecolor);
+    border: var(--textboxborder) solid var(--accentcolor);
     padding: var(--textpadding);
     border-radius: var(--textboxradius);
     box-shadow: var(--textboxshadow);

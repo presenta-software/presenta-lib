@@ -170,6 +170,13 @@ const Scene = function (sceneConfig, projectConfig, rootElement) {
     }
   }
 
+  /*
+    Immediate destroy for garbage collection
+  */
+  this.destroy = () => {
+    this.blocks.forEach(block => block.destroy())
+  }
+
   // this.uid = u.uid(sceneConfig)
   this.sceneConfig = sceneConfig
 }

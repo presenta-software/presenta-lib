@@ -5,6 +5,16 @@
 }
 
 
+.textbox__inverted{
+    --textboxpadding: 1rem;
+    --textboxbackcolor: var(--forecolor);
+    --textboxradius: 0;
+    --textboxborder: 0;
+    --textboxshadow: 0 0 0 var(--accentcolor);
+    --textboxcolor: var(--backcolor);
+}
+
+
 $pvar: p, s, b, g;
 @each $p in $pvar {
     .#{$p}.textposition__topleft .pretext,

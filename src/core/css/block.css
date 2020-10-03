@@ -12,4 +12,6 @@
   height: 100%;
   background-color: var(--backcolor);
   padding: var(--blockpadding);
+  opacity: var(--blockopacity);
+  mix-blend-mode: var(--blockblend);
 }

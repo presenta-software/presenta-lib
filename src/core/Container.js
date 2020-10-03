@@ -10,10 +10,18 @@ const Container = function (rootElement, projectConfig) {
       Let's check and fix the wrapper size
   */
   const size = getComputedStyle(rootElement)
-  const w = +size.width.split('px')[0]
-  const h = +size.height.split('px')[0]
-  if (w <= 0) rootElement.style.width = '360px'
-  if (h <= 0) rootElement.style.height = '200px'
+  let w = +size.width.split('px')[0]
+  let h = +size.height.split('px')[0]
+
+  if (w <= 0) {
+    w = 360
+    rootElement.style.width = `${w}px`
+  }
+  if (h <= 0) {
+    h = 200
+    if (projectConfig.aspect) h = w / projectConfig.aspect
+    rootElement.style.height = `${h}px`
+  }
 
   /*
     Let's notify the user about mandatory fields
@@ -84,16 +92,20 @@ const Container = function (rootElement, projectConfig) {
     currentScene.stepForward()
   })
 
-  this.currentScene = () => {
-    return currentScene
-  }
-
   u.fit(child, projectConfig, rootElement)
 
   const resizeObserver = new ResizeObserver(entries => {
     u.fit(child, projectConfig, rootElement)
   })
   resizeObserver.observe(child)
+
+  this.currentScene = () => {
+    return currentScene
+  }
+
+  this.destroy = () => {
+    currentScene.destroy()
+  }
 }
 
 export { Container }

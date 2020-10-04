@@ -157,7 +157,6 @@ const Scene = function (sceneConfig, projectConfig, rootElement) {
     this.blocks.forEach(block => block.destroy())
   }
 
-  // this.uid = u.uid(sceneConfig)
   this.sceneConfig = sceneConfig
 }
 

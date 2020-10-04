@@ -1,11 +1,11 @@
-// https://lib.presenta.cc v0.0.12 Copyright 2020 Fabio Franchino
+// https://lib.presenta.cc v0.0.13 Copyright 2020 Fabio Franchino
 (function (global, factory) {
   typeof exports === 'object' && typeof module !== 'undefined' ? module.exports = factory() :
   typeof define === 'function' && define.amd ? define(factory) :
   (global = global || self, global.Presenta = factory());
 }(this, (function () { 'use strict';
 
-  var version = "0.0.12";
+  var version = "0.0.13";
 
   function styleInject(css, ref) {
     if ( ref === void 0 ) ref = {};
@@ -52,16 +52,6 @@
   var css_248z$5 = ".scene_sceneContainer__IgSpB{\n    width: 100%;\n    height: 100%;\n    display: flex;\n    align-items: center;\n    justify-content: center;\n    position: relative;\n}\n.scene_scene__3uvTl{\n    --sw: calc(var(--w) / var(--p) / var(--fz));\n    --sh: calc(var(--h) / var(--p) / var(--fz));\n    --scal: calc(var(--pw) / var(--p) / var(--pw) / var(--fz));\n    \n    width: var(--sw);\n    height: var(--sh);\n    font-family: serif;\n    user-select: none;\n}\n\n.scene_wrapper__3yr1k{\n    width: var(--w);\n    height: var(--h);\n    transform: scale(1);\n    transform: scale(var(--scal));\n    transform-origin: top left;\n    overflow: hidden;\n\n    padding: var(--scenepadding);\n    /* background-color: var(--backcolor); */\n}\n.scene_content__1rJf0{\n    width: 100%;\n    height: 100%;\n    display: flex;\n    flex-direction: column;\n    overflow: hidden;\n}\n\n.scene_bcontainer__3MFBK,\n.scene_fcontainer__1E_0g{\n    top:0;\n    left:0;\n    width: 100%;\n    height: 100%;\n    position: absolute;\n}\n\n\n.scene_viewport__3uNLS{\n    width: 100%;\n    height: 100%;\n    position: relative;\n    flex:1;\n    overflow: hidden;\n    \n    display: flex;\n    flex-direction: row;\n}\n.scene_viewport__3uNLS > div{\n    height: 100%;\n}\n\n\n";
   var css = {"sceneContainer":"scene_sceneContainer__IgSpB","scene":"scene_scene__3uvTl","wrapper":"scene_wrapper__3yr1k","content":"scene_content__1rJf0","bcontainer":"scene_bcontainer__3MFBK","fcontainer":"scene_fcontainer__1E_0g","viewport":"scene_viewport__3uNLS"};
   styleInject(css_248z$5);
-
-  // import md5 from 'md5'
-  const md5 = s => s.split('').reduce((a, b) => {
-    a = (a << 5) - a + b.charCodeAt(0);
-    return a & a;
-  }, 0);
-
-  const uid = chunk => {
-    return 'uid' + md5(JSON.stringify(chunk));
-  };
 
   const select = selector => {
     return typeof selector === 'string' ? document.querySelector(selector) : selector;
@@ -125,7 +115,6 @@
   };
 
   var utils = {
-    uid,
     select,
     props,
     div,
@@ -385,7 +374,6 @@
   };
 
   const Block = function (blocksElement, blockConfig, rootElement, projectConfig) {
-    // this.uid = u.uid(blockConfig)
     this.type = blockConfig.type;
     this.index = blockConfig.index;
     this.block = null;
@@ -666,8 +654,7 @@
 
     this.destroy = () => {
       this.blocks.forEach(block => block.destroy());
-    }; // this.uid = u.uid(sceneConfig)
-
+    };
 
     this.sceneConfig = sceneConfig;
   };

@@ -37,7 +37,7 @@ export default [{
     postcss({
       modules: {
         globalModulePaths: [
-          /global/, /themes/
+          /global/, /schemes/, /fontkits/
         ]
       },
       plugins: [
@@ -67,7 +67,7 @@ export default [{
     postcss({
       modules: {
         globalModulePaths: [
-          /global/, /themes/
+          /global/, /schemes/, /fontkits/
         ]
       },
       plugins: [
@@ -77,5 +77,4 @@ export default [{
       ]
     })
   ]
-}
-]
+}]

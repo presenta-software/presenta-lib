@@ -10,7 +10,7 @@
 .inner {
   width: 100%;
   height: 100%;
-  background-color: var(--backcolor);
+  background: var(--backcolor);
   padding: var(--blockpadding);
   opacity: var(--blockopacity);
   mix-blend-mode: var(--blockblend);

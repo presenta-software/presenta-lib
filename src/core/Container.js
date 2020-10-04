@@ -34,28 +34,18 @@ const Container = function (rootElement, projectConfig) {
   }
 
   /*
-    Activate the transition system if requested
+    Global defaults
   */
-  if (projectConfig.transition) {
-    rootElement.classList.add(projectConfig.transition)
-  }
+  const globprop = ['transition', 'colorvar', 'scheme', 'fontkit']
+  globprop.forEach(p => {
+    if (projectConfig[p]) {
+      const prp = projectConfig[p].substr(1)
+      rootElement.classList.add(`${p}__${prp}`)
+    }
+  })
 
   /*
-    Define the default scene color class
-  */
-  if (projectConfig.variant) {
-    rootElement.classList.add('colorvar__' + projectConfig.variant)
-  }
-
-  /*
-    Activate the theme if requested
-  */
-  if (projectConfig.theme) {
-    rootElement.classList.add('theme__' + projectConfig.theme)
-  }
-
-  /*
-    Time to init the container
+    Init the container
   */
   rootElement.classList.add('presenta')
 

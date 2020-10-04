@@ -14,7 +14,7 @@ const Scene = function (sceneConfig, projectConfig, rootElement) {
     return console.warn('No `blocks` array found in scene ' + sceneConfig.index)
   }
   if (sceneConfig.blocks.length === 0) {
-    return console.warn('`blocks` is empty in scene ' + sceneConfig.index)
+    console.warn('`blocks` is empty in scene ' + sceneConfig.index)
   }
 
   /*
@@ -100,27 +100,6 @@ const Scene = function (sceneConfig, projectConfig, rootElement) {
   })
 
   /*
-    Activate the transition system at scene level if requested
-  */
-  if (sceneConfig.transition) {
-    this.el.classList.add(sceneConfig.transition)
-  }
-
-  /*
-    Define the default scene color class
-  */
-  if (sceneConfig.variant) {
-    this.el.classList.add('colorvar__' + sceneConfig.variant)
-  }
-
-  /*
-    Activate the theme at scene level if requested
-  */
-  if (sceneConfig.theme) {
-    this.el.classList.add('theme__' + sceneConfig.theme)
-  }
-
-  /*
     Run the entering transition
   */
   if (hasTransition) {
@@ -155,6 +134,7 @@ const Scene = function (sceneConfig, projectConfig, rootElement) {
     this.blocks.forEach(block => block.beforeDestroy())
 
     setTimeout(() => {
+      this.destroy()
       child.parentNode.removeChild(child)
     }, t)
   }

@@ -1,8 +1,5 @@
-:root{
-  --fontHeading: Georgia, "Times New Roman", Times, serif;
-  --fontText: "Trebuchet MS", "Lucida Sans Unicode", "Lucida Grande",
-    "Lucida Sans", Arial, sans-serif;
-}
+
+
 
 .presenta * {
   box-sizing: border-box;
@@ -30,6 +27,14 @@
   --blockweight: 1;
   --blockpadding: 0;
 }
+
+
+:root{
+  --fontHeading: Georgia, "Times New Roman", Times, serif;
+  --fontText: "Trebuchet MS", "Lucida Sans Unicode", "Lucida Grande",
+    "Lucida Sans", Arial, sans-serif;
+}
+
 
 :root,
 .colorvar__a {

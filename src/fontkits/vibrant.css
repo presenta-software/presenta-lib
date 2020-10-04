@@ -1,0 +1,5 @@
+@import url('https://fonts.googleapis.com/css2?family=Playfair+Display:wght@600&family=Work+Sans&display=swap');
+.fontkit__vibrant{
+  --fontHeading: 'Work Sans', sans-serif;
+  --fontText: 'Playfair Display', serif;
+}

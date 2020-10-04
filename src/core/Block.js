@@ -29,13 +29,6 @@ const Block = function (blocksElement, blockConfig, rootElement, projectConfig) 
     this.block = new blocks[this.type](blockContainer, blockConfig, rootElement, projectConfig)
   }
 
-  /*
-    Define the default scene color class
-  */
-  if (blockConfig.variant) {
-    this.el.classList.add('colorvar__' + blockConfig.variant)
-  }
-
   this.beforeDestroy = () => {
     if (this.block.beforeDestroy) this.block.beforeDestroy()
   }

@@ -1,11 +1,11 @@
-// https://lib.presenta.cc v0.0.11 Copyright 2020 Fabio Franchino
+// https://lib.presenta.cc v0.0.12 Copyright 2020 Fabio Franchino
 (function (global, factory) {
   typeof exports === 'object' && typeof module !== 'undefined' ? module.exports = factory() :
   typeof define === 'function' && define.amd ? define(factory) :
   (global = global || self, global.Presenta = factory());
 }(this, (function () { 'use strict';
 
-  var version = "0.0.11";
+  var version = "0.0.12";
 
   function styleInject(css, ref) {
     if ( ref === void 0 ) ref = {};
@@ -34,18 +34,24 @@
     }
   }
 
-  var css_248z = ":root{\n  --fontHeading: Georgia, \"Times New Roman\", Times, serif;\n  --fontText: \"Trebuchet MS\", \"Lucida Sans Unicode\", \"Lucida Grande\",\n    \"Lucida Sans\", Arial, sans-serif;\n}\n\n.presenta * {\n  box-sizing: border-box;\n}\n\n\n.presenta {\n  position: relative;\n  /* width: 100%;\n    height: 100%; */\n  \n\n  --pw: 960;\n  --w: 960px;\n  --h: 540px;\n  --vp: 960;\n  --fz: 1;\n  --p: calc(var(--pw) / var(--vp));\n  /* --sw: calc(var(--w) / var(--p) / var(--fz));\n  --sh: calc(var(--h) / var(--p) / var(--fz));\n  --scal: calc(var(--pw) / var(--p) / var(--pw) / var(--fz)); */\n\n  /* PUBLIC VARS */\n  --scenepadding: 0;\n  --blockweight: 1;\n  --blockpadding: 0;\n}\n\n:root,\n.colorvar__a {\n  --backcolor: #fff;\n  --forecolor: #000;\n  --accentcolor: #444;\n  --otheraccentcolor: #ddd;\n  --overlaycolor: var(--backcolor);\n}\n.colorvar__b {\n  --backcolor: #000;\n  --forecolor: #fff;\n  --accentcolor: #999;\n  --otheraccentcolor: #ccc;\n  --overlaycolor: var(--backcolor);\n}\n.colorvar__c {\n  --backcolor: #444;\n  --forecolor: #ffffff;\n  --accentcolor: #fff;\n  --otheraccentcolor: #ccc;\n  --overlaycolor: var(--backcolor);\n}\n\n\n\n\n\n.layout__block .blocksContainer {\n  display: block;\n}\n.layout__block .blocksContainer > div {\n  height: initial;\n}\n\n.layout__rows .blocksContainer {\n  display: flex;\n  flex-direction: column;\n}\n.layout__rows .blocksContainer > div {\n  width: 100%;\n}\n\n.layout__stack .blocksContainer {\n  position: relative;\n}\n.layout__stack .blocksContainer > div {\n  position: absolute;\n  top: 0;\n  left: 0;\n  width: 100%;\n  height: 100%;\n}\n\n\n\n";
+  var css_248z = "\n\n\n.presenta * {\n  box-sizing: border-box;\n}\n\n\n.presenta {\n  position: relative;\n  /* width: 100%;\n    height: 100%; */\n  \n\n  --pw: 960;\n  --w: 960px;\n  --h: 540px;\n  --vp: 960;\n  --fz: 1;\n  --p: calc(var(--pw) / var(--vp));\n  /* --sw: calc(var(--w) / var(--p) / var(--fz));\n  --sh: calc(var(--h) / var(--p) / var(--fz));\n  --scal: calc(var(--pw) / var(--p) / var(--pw) / var(--fz)); */\n\n  /* PUBLIC VARS */\n  --scenepadding: 0;\n  --blockweight: 1;\n  --blockpadding: 0;\n}\n\n\n:root{\n  --fontHeading: Georgia, \"Times New Roman\", Times, serif;\n  --fontText: \"Trebuchet MS\", \"Lucida Sans Unicode\", \"Lucida Grande\",\n    \"Lucida Sans\", Arial, sans-serif;\n}\n\n\n:root,\n.colorvar__a {\n  --backcolor: #fff;\n  --forecolor: #000;\n  --accentcolor: #444;\n  --otheraccentcolor: #ddd;\n  --overlaycolor: var(--backcolor);\n}\n.colorvar__b {\n  --backcolor: #000;\n  --forecolor: #fff;\n  --accentcolor: #999;\n  --otheraccentcolor: #ccc;\n  --overlaycolor: var(--backcolor);\n}\n.colorvar__c {\n  --backcolor: #444;\n  --forecolor: #ffffff;\n  --accentcolor: #fff;\n  --otheraccentcolor: #ccc;\n  --overlaycolor: var(--backcolor);\n}\n\n\n\n\n\n.layout__block .blocksContainer {\n  display: block;\n}\n.layout__block .blocksContainer > div {\n  height: initial;\n}\n\n.layout__rows .blocksContainer {\n  display: flex;\n  flex-direction: column;\n}\n.layout__rows .blocksContainer > div {\n  width: 100%;\n}\n\n.layout__stack .blocksContainer {\n  position: relative;\n}\n.layout__stack .blocksContainer > div {\n  position: absolute;\n  top: 0;\n  left: 0;\n  width: 100%;\n  height: 100%;\n}\n\n\n\n";
   styleInject(css_248z);
 
-  var css_248z$1 = "@import url('https://fonts.googleapis.com/css2?family=Montserrat:wght@600&family=Roboto+Mono:ital,wght@0,400;0,700;1,400&display=swap');\n.theme__original{\n  --fontHeading: 'Roboto Mono', monospace;\n  --fontText: 'Montserrat', sans-serif;\n}\n\n.theme__original,\n.theme__original.colorvar__a,\n.theme__original .colorvar__a {\n  --backcolor: #ebded1;\n  --forecolor: #0a47d1;\n  --accentcolor: #fb4138;\n  --otheraccentcolor: #ffffff;\n}\n.theme__original.colorvar__b,\n.theme__original .colorvar__b {\n  --backcolor: #0a47d1;\n  --forecolor: #ebded1;\n  --accentcolor: #ffffff;\n  --otheraccentcolor: #fb4138;\n}\n.theme__original.colorvar__c,\n.theme__original .colorvar__c {\n  --backcolor: #fb4138;\n  --forecolor: #ffffff;\n  --accentcolor: #ebded1;\n  --otheraccentcolor: #0a47d1;\n}\n  ";
+  var css_248z$1 = "@import url('https://fonts.googleapis.com/css2?family=Montserrat:wght@600&family=Roboto+Mono:ital,wght@0,400;0,700;1,400&display=swap');\n.fontkit__original{\n  --fontHeading: 'Roboto Mono', monospace;\n  --fontText: 'Montserrat', sans-serif;\n}";
   styleInject(css_248z$1);
 
-  var css_248z$2 = "@import url('https://fonts.googleapis.com/css2?family=Playfair+Display:wght@600&family=Work+Sans&display=swap');\n.theme__vibrant{\n  --fontHeading: 'Work Sans', sans-serif;\n  --fontText: 'Playfair Display', serif;\n}\n\n\n.theme__vibrant,\n.theme__vibrant.colorvar__a,\n.theme__vibrant .colorvar__a {\n  --backcolor: #ffe600;\n  --forecolor: #000;\n  --accentcolor: #ff6400;\n  --otheraccentcolor: #fff;\n}\n.theme__vibrant.colorvar__b,\n.theme__vibrant .colorvar__b {\n  --backcolor: #000;\n  --forecolor: rgb(255, 230, 0);\n  --accentcolor: #fff;\n  --otheraccentcolor: rgb(255, 100, 0);\n}\n.theme__vibrant.colorvar__c,\n.theme__vibrant .colorvar__c {\n  --backcolor: rgb(255, 100, 0);\n  --forecolor: #fff;\n  --accentcolor: rgb(255, 230, 0);\n  --otheraccentcolor: #000;\n}\n";
+  var css_248z$2 = "@import url('https://fonts.googleapis.com/css2?family=Playfair+Display:wght@600&family=Work+Sans&display=swap');\n.fontkit__vibrant{\n  --fontHeading: 'Work Sans', sans-serif;\n  --fontText: 'Playfair Display', serif;\n}";
   styleInject(css_248z$2);
 
-  var css_248z$3 = ".scene_sceneContainer__IgSpB{\n    width: 100%;\n    height: 100%;\n    display: flex;\n    align-items: center;\n    justify-content: center;\n    position: relative;\n}\n.scene_scene__3uvTl{\n    --sw: calc(var(--w) / var(--p) / var(--fz));\n    --sh: calc(var(--h) / var(--p) / var(--fz));\n    --scal: calc(var(--pw) / var(--p) / var(--pw) / var(--fz));\n    \n    width: var(--sw);\n    height: var(--sh);\n    font-family: serif;\n    user-select: none;\n}\n\n.scene_wrapper__3yr1k{\n    width: var(--w);\n    height: var(--h);\n    transform: scale(1);\n    transform: scale(var(--scal));\n    transform-origin: top left;\n    overflow: hidden;\n\n    padding: var(--scenepadding);\n    /* background-color: var(--backcolor); */\n}\n.scene_content__1rJf0{\n    width: 100%;\n    height: 100%;\n    display: flex;\n    flex-direction: column;\n    overflow: hidden;\n}\n\n.scene_bcontainer__3MFBK,\n.scene_fcontainer__1E_0g{\n    top:0;\n    left:0;\n    width: 100%;\n    height: 100%;\n    position: absolute;\n}\n\n\n.scene_viewport__3uNLS{\n    width: 100%;\n    height: 100%;\n    position: relative;\n    flex:1;\n    overflow: hidden;\n    \n    display: flex;\n    flex-direction: row;\n}\n.scene_viewport__3uNLS > div{\n    height: 100%;\n}\n\n\n";
-  var css = {"sceneContainer":"scene_sceneContainer__IgSpB","scene":"scene_scene__3uvTl","wrapper":"scene_wrapper__3yr1k","content":"scene_content__1rJf0","bcontainer":"scene_bcontainer__3MFBK","fcontainer":"scene_fcontainer__1E_0g","viewport":"scene_viewport__3uNLS"};
+  var css_248z$3 = ".scheme__original,\n.scheme__original .colorvar__a,\n.scheme__original.colorvar__a {\n  --backcolor: #ebded1;\n  --forecolor: #0a47d1;\n  --accentcolor: #fb4138;\n  --otheraccentcolor: #ffffff;\n}\n.scheme__original .colorvar__b,\n.scheme__original.colorvar__b {\n  --backcolor: #0a47d1;\n  --forecolor: #ebded1;\n  --accentcolor: #ffffff;\n  --otheraccentcolor: #fb4138;\n}\n.scheme__original .colorvar__c,\n.scheme__original.colorvar__c {\n  --backcolor: #fb4138;\n  --forecolor: #ffffff;\n  --accentcolor: #ebded1;\n  --otheraccentcolor: #0a47d1;\n}";
   styleInject(css_248z$3);
+
+  var css_248z$4 = ".scheme__vibrant,\n.scheme__vibrant .colorvar__a,\n.scheme__vibrant.colorvar__a {\n  --backcolor: #ffe600;\n  --forecolor: #000;\n  --accentcolor: #ff6400;\n  --otheraccentcolor: #fff;\n}\n.scheme__vibrant .colorvar__b,\n.scheme__vibrant.colorvar__b {\n  --backcolor: #000;\n  --forecolor: rgb(255, 230, 0);\n  --accentcolor: #fff;\n  --otheraccentcolor: rgb(255, 100, 0);\n}\n.scheme__vibrant .colorvar__c,\n.scheme__vibrant.colorvar__c {\n  --backcolor: rgb(255, 100, 0);\n  --forecolor: #fff;\n  --accentcolor: rgb(255, 230, 0);\n  --otheraccentcolor: #000;\n}";
+  styleInject(css_248z$4);
+
+  var css_248z$5 = ".scene_sceneContainer__IgSpB{\n    width: 100%;\n    height: 100%;\n    display: flex;\n    align-items: center;\n    justify-content: center;\n    position: relative;\n}\n.scene_scene__3uvTl{\n    --sw: calc(var(--w) / var(--p) / var(--fz));\n    --sh: calc(var(--h) / var(--p) / var(--fz));\n    --scal: calc(var(--pw) / var(--p) / var(--pw) / var(--fz));\n    \n    width: var(--sw);\n    height: var(--sh);\n    font-family: serif;\n    user-select: none;\n}\n\n.scene_wrapper__3yr1k{\n    width: var(--w);\n    height: var(--h);\n    transform: scale(1);\n    transform: scale(var(--scal));\n    transform-origin: top left;\n    overflow: hidden;\n\n    padding: var(--scenepadding);\n    /* background-color: var(--backcolor); */\n}\n.scene_content__1rJf0{\n    width: 100%;\n    height: 100%;\n    display: flex;\n    flex-direction: column;\n    overflow: hidden;\n}\n\n.scene_bcontainer__3MFBK,\n.scene_fcontainer__1E_0g{\n    top:0;\n    left:0;\n    width: 100%;\n    height: 100%;\n    position: absolute;\n}\n\n\n.scene_viewport__3uNLS{\n    width: 100%;\n    height: 100%;\n    position: relative;\n    flex:1;\n    overflow: hidden;\n    \n    display: flex;\n    flex-direction: row;\n}\n.scene_viewport__3uNLS > div{\n    height: 100%;\n}\n\n\n";
+  var css = {"sceneContainer":"scene_sceneContainer__IgSpB","scene":"scene_scene__3uvTl","wrapper":"scene_wrapper__3yr1k","content":"scene_content__1rJf0","bcontainer":"scene_bcontainer__3MFBK","fcontainer":"scene_fcontainer__1E_0g","viewport":"scene_viewport__3uNLS"};
+  styleInject(css_248z$5);
 
   // import md5 from 'md5'
   const md5 = s => s.split('').reduce((a, b) => {
@@ -127,13 +133,13 @@
     event
   };
 
-  var css_248z$4 = "\n.block_block__BWbaZ {\n  width: 100%;\n  height: 100%;\n  flex: 1;\n  flex: var(--blockweight);\n  overflow: hidden;\n}\n\n.block_inner__3LS6s {\n  width: 100%;\n  height: 100%;\n  background-color: var(--backcolor);\n  padding: var(--blockpadding);\n  opacity: var(--blockopacity);\n  mix-blend-mode: var(--blockblend);\n}\n";
+  var css_248z$6 = "\n.block_block__BWbaZ {\n  width: 100%;\n  height: 100%;\n  flex: 1;\n  flex: var(--blockweight);\n  overflow: hidden;\n}\n\n.block_inner__3LS6s {\n  width: 100%;\n  height: 100%;\n  background: var(--backcolor);\n  padding: var(--blockpadding);\n  opacity: var(--blockopacity);\n  mix-blend-mode: var(--blockblend);\n}\n";
   var css$1 = {"block":"block_block__BWbaZ","inner":"block_inner__3LS6s"};
-  styleInject(css_248z$4);
+  styleInject(css_248z$6);
 
-  var css_248z$5 = ".style_debug__1-XHT{\n    width: 100%;\n    height: 100%;\n    display: flex;\n    align-items: center;\n    justify-content: center;\n}";
+  var css_248z$7 = ".style_debug__1-XHT{\n    width: 100%;\n    height: 100%;\n    display: flex;\n    align-items: center;\n    justify-content: center;\n}";
   var css$2 = {"debug":"style_debug__1-XHT"};
-  styleInject(css_248z$5);
+  styleInject(css_248z$7);
 
   const debug = function (_el, _config) {
     const el = utils.select(_el);
@@ -152,12 +158,12 @@
     // }, 1000)
   };
 
-  var css_248z$6 = ":root {\n  --textsize:1.5rem;\n  --textpadding: 1rem;\n  --textalign: center; }\n\n.textbox__inverted {\n  --textboxpadding: 1rem;\n  --textboxbackcolor: var(--forecolor);\n  --textboxradius: 0;\n  --textboxborder: 0;\n  --textboxshadow: 0 0 0 var(--accentcolor);\n  --textboxcolor: var(--backcolor); }\n\n.p.textposition__topleft .pretext,\n.p.textposition__tl .pretext {\n  align-items: flex-start;\n  justify-content: flex-start; }\n\n.p.textposition__topcenter .pretext,\n.p.textposition__tc .pretext {\n  align-items: flex-start;\n  justify-content: center; }\n\n.p.textposition__topright .pretext,\n.p.textposition__tr .pretext {\n  align-items: flex-start;\n  justify-content: flex-end; }\n\n.p.textposition__centerleft .pretext,\n.p.textposition__cl .pretext {\n  align-items: center;\n  justify-content: flex-start; }\n\n.p.textposition__center .pretext,\n.p.textposition__cc .pretext {\n  align-items: center;\n  justify-content: center; }\n\n.p.textposition__centerright .pretext,\n.p.textposition__cr .pretext {\n  align-items: center;\n  justify-content: flex-end; }\n\n.p.textposition__bottomleft .pretext,\n.p.textposition__bl .pretext {\n  align-items: flex-end;\n  justify-content: flex-start; }\n\n.p.textposition__bottomcenter .pretext,\n.p.textposition__bc .pretext {\n  align-items: flex-end;\n  justify-content: center; }\n\n.p.textposition__bottomright .pretext,\n.p.textposition__br .pretext {\n  align-items: flex-end;\n  justify-content: flex-end; }\n\n.s.textposition__topleft .pretext,\n.s.textposition__tl .pretext {\n  align-items: flex-start;\n  justify-content: flex-start; }\n\n.s.textposition__topcenter .pretext,\n.s.textposition__tc .pretext {\n  align-items: flex-start;\n  justify-content: center; }\n\n.s.textposition__topright .pretext,\n.s.textposition__tr .pretext {\n  align-items: flex-start;\n  justify-content: flex-end; }\n\n.s.textposition__centerleft .pretext,\n.s.textposition__cl .pretext {\n  align-items: center;\n  justify-content: flex-start; }\n\n.s.textposition__center .pretext,\n.s.textposition__cc .pretext {\n  align-items: center;\n  justify-content: center; }\n\n.s.textposition__centerright .pretext,\n.s.textposition__cr .pretext {\n  align-items: center;\n  justify-content: flex-end; }\n\n.s.textposition__bottomleft .pretext,\n.s.textposition__bl .pretext {\n  align-items: flex-end;\n  justify-content: flex-start; }\n\n.s.textposition__bottomcenter .pretext,\n.s.textposition__bc .pretext {\n  align-items: flex-end;\n  justify-content: center; }\n\n.s.textposition__bottomright .pretext,\n.s.textposition__br .pretext {\n  align-items: flex-end;\n  justify-content: flex-end; }\n\n.b.textposition__topleft .pretext,\n.b.textposition__tl .pretext {\n  align-items: flex-start;\n  justify-content: flex-start; }\n\n.b.textposition__topcenter .pretext,\n.b.textposition__tc .pretext {\n  align-items: flex-start;\n  justify-content: center; }\n\n.b.textposition__topright .pretext,\n.b.textposition__tr .pretext {\n  align-items: flex-start;\n  justify-content: flex-end; }\n\n.b.textposition__centerleft .pretext,\n.b.textposition__cl .pretext {\n  align-items: center;\n  justify-content: flex-start; }\n\n.b.textposition__center .pretext,\n.b.textposition__cc .pretext {\n  align-items: center;\n  justify-content: center; }\n\n.b.textposition__centerright .pretext,\n.b.textposition__cr .pretext {\n  align-items: center;\n  justify-content: flex-end; }\n\n.b.textposition__bottomleft .pretext,\n.b.textposition__bl .pretext {\n  align-items: flex-end;\n  justify-content: flex-start; }\n\n.b.textposition__bottomcenter .pretext,\n.b.textposition__bc .pretext {\n  align-items: flex-end;\n  justify-content: center; }\n\n.b.textposition__bottomright .pretext,\n.b.textposition__br .pretext {\n  align-items: flex-end;\n  justify-content: flex-end; }\n\n.g.textposition__topleft .pretext,\n.g.textposition__tl .pretext {\n  align-items: flex-start;\n  justify-content: flex-start; }\n\n.g.textposition__topcenter .pretext,\n.g.textposition__tc .pretext {\n  align-items: flex-start;\n  justify-content: center; }\n\n.g.textposition__topright .pretext,\n.g.textposition__tr .pretext {\n  align-items: flex-start;\n  justify-content: flex-end; }\n\n.g.textposition__centerleft .pretext,\n.g.textposition__cl .pretext {\n  align-items: center;\n  justify-content: flex-start; }\n\n.g.textposition__center .pretext,\n.g.textposition__cc .pretext {\n  align-items: center;\n  justify-content: center; }\n\n.g.textposition__centerright .pretext,\n.g.textposition__cr .pretext {\n  align-items: center;\n  justify-content: flex-end; }\n\n.g.textposition__bottomleft .pretext,\n.g.textposition__bl .pretext {\n  align-items: flex-end;\n  justify-content: flex-start; }\n\n.g.textposition__bottomcenter .pretext,\n.g.textposition__bc .pretext {\n  align-items: flex-end;\n  justify-content: center; }\n\n.g.textposition__bottomright .pretext,\n.g.textposition__br .pretext {\n  align-items: flex-end;\n  justify-content: flex-end; }\n";
-  styleInject(css_248z$6);
+  var css_248z$8 = ":root {\n  --textsize:1.5rem;\n  --textpadding: 1rem;\n  --textalign: center; }\n\n.textbox__inverted {\n  --textboxpadding: 1rem;\n  --textboxbackcolor: var(--forecolor);\n  --textboxradius: 0;\n  --textboxborder: 0;\n  --textboxshadow: 0 0 0 var(--accentcolor);\n  --textboxcolor: var(--backcolor); }\n\n.p.textposition__topleft .pretext,\n.p.textposition__tl .pretext {\n  align-items: flex-start;\n  justify-content: flex-start; }\n\n.p.textposition__topcenter .pretext,\n.p.textposition__tc .pretext {\n  align-items: flex-start;\n  justify-content: center; }\n\n.p.textposition__topright .pretext,\n.p.textposition__tr .pretext {\n  align-items: flex-start;\n  justify-content: flex-end; }\n\n.p.textposition__centerleft .pretext,\n.p.textposition__cl .pretext {\n  align-items: center;\n  justify-content: flex-start; }\n\n.p.textposition__center .pretext,\n.p.textposition__cc .pretext {\n  align-items: center;\n  justify-content: center; }\n\n.p.textposition__centerright .pretext,\n.p.textposition__cr .pretext {\n  align-items: center;\n  justify-content: flex-end; }\n\n.p.textposition__bottomleft .pretext,\n.p.textposition__bl .pretext {\n  align-items: flex-end;\n  justify-content: flex-start; }\n\n.p.textposition__bottomcenter .pretext,\n.p.textposition__bc .pretext {\n  align-items: flex-end;\n  justify-content: center; }\n\n.p.textposition__bottomright .pretext,\n.p.textposition__br .pretext {\n  align-items: flex-end;\n  justify-content: flex-end; }\n\n.s.textposition__topleft .pretext,\n.s.textposition__tl .pretext {\n  align-items: flex-start;\n  justify-content: flex-start; }\n\n.s.textposition__topcenter .pretext,\n.s.textposition__tc .pretext {\n  align-items: flex-start;\n  justify-content: center; }\n\n.s.textposition__topright .pretext,\n.s.textposition__tr .pretext {\n  align-items: flex-start;\n  justify-content: flex-end; }\n\n.s.textposition__centerleft .pretext,\n.s.textposition__cl .pretext {\n  align-items: center;\n  justify-content: flex-start; }\n\n.s.textposition__center .pretext,\n.s.textposition__cc .pretext {\n  align-items: center;\n  justify-content: center; }\n\n.s.textposition__centerright .pretext,\n.s.textposition__cr .pretext {\n  align-items: center;\n  justify-content: flex-end; }\n\n.s.textposition__bottomleft .pretext,\n.s.textposition__bl .pretext {\n  align-items: flex-end;\n  justify-content: flex-start; }\n\n.s.textposition__bottomcenter .pretext,\n.s.textposition__bc .pretext {\n  align-items: flex-end;\n  justify-content: center; }\n\n.s.textposition__bottomright .pretext,\n.s.textposition__br .pretext {\n  align-items: flex-end;\n  justify-content: flex-end; }\n\n.b.textposition__topleft .pretext,\n.b.textposition__tl .pretext {\n  align-items: flex-start;\n  justify-content: flex-start; }\n\n.b.textposition__topcenter .pretext,\n.b.textposition__tc .pretext {\n  align-items: flex-start;\n  justify-content: center; }\n\n.b.textposition__topright .pretext,\n.b.textposition__tr .pretext {\n  align-items: flex-start;\n  justify-content: flex-end; }\n\n.b.textposition__centerleft .pretext,\n.b.textposition__cl .pretext {\n  align-items: center;\n  justify-content: flex-start; }\n\n.b.textposition__center .pretext,\n.b.textposition__cc .pretext {\n  align-items: center;\n  justify-content: center; }\n\n.b.textposition__centerright .pretext,\n.b.textposition__cr .pretext {\n  align-items: center;\n  justify-content: flex-end; }\n\n.b.textposition__bottomleft .pretext,\n.b.textposition__bl .pretext {\n  align-items: flex-end;\n  justify-content: flex-start; }\n\n.b.textposition__bottomcenter .pretext,\n.b.textposition__bc .pretext {\n  align-items: flex-end;\n  justify-content: center; }\n\n.b.textposition__bottomright .pretext,\n.b.textposition__br .pretext {\n  align-items: flex-end;\n  justify-content: flex-end; }\n";
+  styleInject(css_248z$8);
 
-  var css_248z$7 = ".style_text__3T1cl{\n    width: 100%;\n    height: 100%;\n    position: relative;\n    color: var(--forecolor)\n}\n\n.style_inner__11UJC{\n    position: relative;\n    width: 100%;\n    height: 100%;\n}\n\n.style_pretext__cLjqD{\n    display: flex;\n    width: 100%;\n    height: 100%;\n    align-items: center;\n    justify-content: center;\n}\n\n.style_textbox__1Vb-V{\n    padding: var(--textboxpadding);\n    text-align: var(--textalign);\n    /*overflow: hidden; */ /* removed for shadow, maybe neccessary */\n    font-size: var(--textsize);\n    color: var(--textboxcolor);\n    --backmark: var(--accentcolor);\n    --foremark: var(--backcolor);\n    --textaccentcolor: var(--accentcolor);\n    font-family: var(--fontText);\n}\n\n.style_itext__jz90o{\n    border: var(--textboxborder) solid var(--accentcolor);\n    padding: var(--textpadding);\n    border-radius: var(--textboxradius);\n    box-shadow: var(--textboxshadow);\n    background-color: var(--textboxbackcolor);\n}\n\n.style_itext__jz90o img{\n    object-fit: contain;\n    height: 4em;\n    vertical-align: middle;\n}\n\n\n.style_itext__jz90o mark {\n  background-color: var(--backmark);\n  color: var(--foremark);\n  padding: 0 0.5rem;\n}\n.style_itext__jz90o high {\n  color: var(--textaccentcolor);\n}\n.style_itext__jz90o bord {\n  border: 8px solid var(--backmark);\n  padding: 0 0.5rem;\n}\n.style_itext__jz90o a {\n  color: var(--textaccentcolor);\n}\n\n.style_itext__jz90o blockquote {\n  font-size: 2em;\n  font-weight: 400;\n  font-style: italic;\n}\n\n.style_itext__jz90o h1,\n.style_itext__jz90o h2,\n.style_itext__jz90o h3,\n.style_itext__jz90o h4,\n.style_itext__jz90o h5,\n.style_itext__jz90o h6,\n.style_itext__jz90o p,\n.style_itext__jz90o ul,\n.style_itext__jz90o blockquote {\n  margin: 0;\n}\n\n.style_itext__jz90o ul,\n.style_itext__jz90o ol {\n  font-size: 1.5em;\n  line-height: 1.1em;\n  text-align: left;\n  margin: 0;\n  padding: 0;\n  list-style-type: none;\n  counter-reset: li;\n  padding: 0.5rem 0;\n}\n\n.style_itext__jz90o li{\n  padding: 0.25rem 0;\n  list-style-position:inside;\n  margin-bottom: 2px;\n  padding: .25em;\n  padding-left: 0.8em;\n}\n.style_itext__jz90o ul li::before {\n  content: \"\\2013\"; \n  display: inline-block; \n  width: 0.8em;\n  margin-left: -0.8em;\n}\n.style_itext__jz90o ol li::before {\n  counter-increment: li;  \n  content:  \".\" counter(li); \n  display: inline-block; \n  width: 1.1em; \n  margin-left: -1.3em;\n  margin-right: 0.2em; \n  text-align: right; \n  direction: rtl;\n}\n\n.style_itext__jz90o li p{\n  display: inline;\n}\n\n\n.style_itext__jz90o pre, .style_itext__jz90o code{\n  text-align: left;\n}\n\n\n.style_itext__jz90o h1,\n.style_itext__jz90o h2,\n.style_itext__jz90o h3,\n.style_itext__jz90o h4,\n.style_itext__jz90o h5,\n.style_itext__jz90o h6 {\n  font-family: var(--fontHeading);\n  padding: .5rem 0;\n}\n\n.style_itext__jz90o h1{\n  font-size: 2em;\n}\n.style_itext__jz90o h2{\n  font-size: 1.5em;\n}\n.style_itext__jz90o h3{\n  font-size: 1.17em;\n}\n.style_itext__jz90o h4{\n  font-size: 1em;\n}\n.style_itext__jz90o h5{\n  font-size: 0.83em;\n}\n.style_itext__jz90o h6{\n  font-size: 0.67em;\n}\n\n.style_itext__jz90o p{\n  padding: .5rem 0;\n}\n\n.style_itext__jz90o hr{\n  border: 1px solid var(--forecolor);\n  margin: .5rem 0;\n}\n\n.style_itext__jz90o h1:first-child,\n.style_itext__jz90o h2:first-child,\n.style_itext__jz90o h3:first-child,\n.style_itext__jz90o h1:last-child,\n.style_itext__jz90o h2:last-child,\n.style_itext__jz90o h3:last-child{\n    padding: 0;\n}\n\n.style_itext__jz90o table{\n    width: 100%;\n}\n.style_itext__jz90o tr{\n    padding: 0;\n}\n\n.style_itext__jz90o td, .style_itext__jz90o th{\n    padding:.5rem;\n    border-bottom:1px solid var(--forecolor);\n}\n\n";
+  var css_248z$9 = ".style_text__3T1cl{\n    width: 100%;\n    height: 100%;\n    position: relative;\n    color: var(--forecolor)\n}\n\n.style_inner__11UJC{\n    position: relative;\n    width: 100%;\n    height: 100%;\n}\n\n.style_pretext__cLjqD{\n    display: flex;\n    width: 100%;\n    height: 100%;\n    align-items: center;\n    justify-content: center;\n}\n\n.style_textbox__1Vb-V{\n    padding: var(--textboxpadding);\n    text-align: var(--textalign);\n    /*overflow: hidden; */ /* removed for shadow, maybe neccessary */\n    font-size: var(--textsize);\n    color: var(--textboxcolor);\n    --backmark: var(--accentcolor);\n    --foremark: var(--backcolor);\n    --textaccentcolor: var(--accentcolor);\n    font-family: var(--fontText);\n}\n\n.style_itext__jz90o{\n    border: var(--textboxborder) solid var(--accentcolor);\n    padding: var(--textpadding);\n    border-radius: var(--textboxradius);\n    box-shadow: var(--textboxshadow);\n    background-color: var(--textboxbackcolor);\n}\n\n.style_itext__jz90o img{\n    object-fit: contain;\n    height: 4em;\n    vertical-align: middle;\n}\n\n\n.style_itext__jz90o mark {\n  background-color: var(--backmark);\n  color: var(--foremark);\n  padding: 0 0.5rem;\n}\n.style_itext__jz90o high {\n  color: var(--textaccentcolor);\n}\n.style_itext__jz90o bord {\n  border: 8px solid var(--backmark);\n  padding: 0 0.5rem;\n}\n.style_itext__jz90o a {\n  color: var(--textaccentcolor);\n}\n\n.style_itext__jz90o blockquote {\n  font-size: 2em;\n  font-weight: 400;\n  font-style: italic;\n}\n\n.style_itext__jz90o h1,\n.style_itext__jz90o h2,\n.style_itext__jz90o h3,\n.style_itext__jz90o h4,\n.style_itext__jz90o h5,\n.style_itext__jz90o h6,\n.style_itext__jz90o p,\n.style_itext__jz90o ul,\n.style_itext__jz90o blockquote {\n  margin: 0;\n}\n\n.style_itext__jz90o ul,\n.style_itext__jz90o ol {\n  font-size: 1.5em;\n  line-height: 1.1em;\n  text-align: left;\n  margin: 0;\n  padding: 0;\n  list-style-type: none;\n  counter-reset: li;\n  padding: 0.5rem 0;\n}\n\n.style_itext__jz90o li{\n  padding: 0.25rem 0;\n  list-style-position:inside;\n  margin-bottom: 2px;\n  padding: .25em;\n  padding-left: 0.8em;\n}\n.style_itext__jz90o ul li::before {\n  content: \"\\2013\"; \n  display: inline-block; \n  width: 0.8em;\n  margin-left: -0.8em;\n}\n.style_itext__jz90o ol li::before {\n  counter-increment: li;  \n  content:  \".\" counter(li); \n  display: inline-block; \n  width: 1.1em; \n  margin-left: -1.3em;\n  margin-right: 0.2em; \n  text-align: right; \n  direction: rtl;\n}\n\n.style_itext__jz90o li p{\n  display: inline;\n}\n\n\n.style_itext__jz90o pre, .style_itext__jz90o code{\n  text-align: left;\n}\n\n\n.style_itext__jz90o h1,\n.style_itext__jz90o h2,\n.style_itext__jz90o h3,\n.style_itext__jz90o h4,\n.style_itext__jz90o h5,\n.style_itext__jz90o h6 {\n  font-family: var(--fontHeading);\n  padding: .5rem 0;\n}\n\n.style_itext__jz90o h1{\n  font-size: 2em;\n}\n.style_itext__jz90o h2{\n  font-size: 1.5em;\n}\n.style_itext__jz90o h3{\n  font-size: 1.17em;\n}\n.style_itext__jz90o h4{\n  font-size: 1em;\n}\n.style_itext__jz90o h5{\n  font-size: 0.83em;\n}\n.style_itext__jz90o h6{\n  font-size: 0.67em;\n}\n\n.style_itext__jz90o p{\n  padding: .5rem 0;\n}\n\n.style_itext__jz90o hr{\n  border: 1px solid var(--forecolor);\n  margin: .5rem 0;\n}\n\n.style_itext__jz90o h1:first-child,\n.style_itext__jz90o h2:first-child,\n.style_itext__jz90o h3:first-child,\n.style_itext__jz90o h1:last-child,\n.style_itext__jz90o h2:last-child,\n.style_itext__jz90o h3:last-child{\n    padding: 0;\n}\n\n.style_itext__jz90o table{\n    width: 100%;\n}\n.style_itext__jz90o tr{\n    padding: 0;\n}\n\n.style_itext__jz90o td, .style_itext__jz90o th{\n    padding:.5rem;\n    border-bottom:1px solid var(--forecolor);\n}\n\n";
   var css$3 = {"text":"style_text__3T1cl","inner":"style_inner__11UJC","pretext":"style_pretext__cLjqD","textbox":"style_textbox__1Vb-V","itext":"style_itext__jz90o"};
-  styleInject(css_248z$7);
+  styleInject(css_248z$9);
 
   const text = function (el, config) {
     const html = config.text || '';
@@ -218,12 +224,12 @@
     setTimeout(compute);
   };
 
-  var css_248z$8 = ".presenta{\n    --embedpadding: 0;\n    --embedbackcolor: none;\n}";
-  styleInject(css_248z$8);
+  var css_248z$a = ".presenta{\n    --embedpadding: 0;\n    --embedbackcolor: none;\n}";
+  styleInject(css_248z$a);
 
-  var css_248z$9 = ".style_embed__2Pre2{\n}\n\n.style_inner__3WOWs{\n    padding: var(--embedpadding);\n    position: relative;\n}\n\n.style_frame__28PUh{\n    background-color: var(--embedbackcolor);\n    position: relative;\n}\n\n.style_embed__2Pre2, .style_inner__3WOWs, .style_frame__28PUh{\n    width: 100%;\n    height: 100%;\n}\n\niframe{\n    width: 100%;\n    height: 100%;\n    border: none;\n}\n\n.style_loading__1w7wc{\n    position: absolute;\n    top:0;\n    left:0;\n    width: 100%;\n    height: 100%;\n    display: flex;\n    align-items: center;\n    justify-content: center;\n    color:var(--forecolor);\n    font-family: var(--fontText);\n    background-color: var(--backcolor);\n}\n\n.style_blockmouse__3bXSl{\n    position: absolute;\n    top:0;\n    left:0;\n    width: 100%;\n    height: 100%;\n}\n\n.style_poster__1TOx3{\n    position: absolute;\n    top:0;\n    left:0;\n    width: 100%;\n    height: 100%;\n    background-color: var(--backcolor);\n}\n.style_poster__1TOx3 img{\n    width: 100%;\n    height: 100%;\n}\n";
+  var css_248z$b = ".style_embed__2Pre2{\n}\n\n.style_inner__3WOWs{\n    padding: var(--embedpadding);\n    position: relative;\n}\n\n.style_frame__28PUh{\n    background-color: var(--embedbackcolor);\n    position: relative;\n}\n\n.style_embed__2Pre2, .style_inner__3WOWs, .style_frame__28PUh{\n    width: 100%;\n    height: 100%;\n}\n\niframe{\n    width: 100%;\n    height: 100%;\n    border: none;\n}\n\n.style_loading__1w7wc{\n    position: absolute;\n    top:0;\n    left:0;\n    width: 100%;\n    height: 100%;\n    display: flex;\n    align-items: center;\n    justify-content: center;\n    color:var(--forecolor);\n    font-family: var(--fontText);\n    background-color: var(--backcolor);\n}\n\n.style_blockmouse__3bXSl{\n    position: absolute;\n    top:0;\n    left:0;\n    width: 100%;\n    height: 100%;\n}\n\n.style_poster__1TOx3{\n    position: absolute;\n    top:0;\n    left:0;\n    width: 100%;\n    height: 100%;\n    background-color: var(--backcolor);\n}\n.style_poster__1TOx3 img{\n    width: 100%;\n    height: 100%;\n}\n";
   var css$4 = {"embed":"style_embed__2Pre2","inner":"style_inner__3WOWs","frame":"style_frame__28PUh","loading":"style_loading__1w7wc","blockmouse":"style_blockmouse__3bXSl","poster":"style_poster__1TOx3"};
-  styleInject(css_248z$9);
+  styleInject(css_248z$b);
 
   const iframePrimaryDomain = str => {
     if (!str) return '';
@@ -272,9 +278,9 @@
     }
   };
 
-  var css_248z$a = ".style_image__1fZIQ{\n    width: 100%;\n    height: 100%;\n}\n\n.style_inner__3tyMU{\n    display: flex;\n    width: 100%;\n    height: 100%;\n}\n\n.style_preimg__2ypvx{\n    overflow: hidden;\n    flex:1;\n}\n.style_preimg__2ypvx img{\n    width: 100%;\n    height:100%;\n}";
+  var css_248z$c = ".style_image__1fZIQ{\n    width: 100%;\n    height: 100%;\n}\n\n.style_inner__3tyMU{\n    display: flex;\n    width: 100%;\n    height: 100%;\n}\n\n.style_preimg__2ypvx{\n    overflow: hidden;\n    flex:1;\n}\n.style_preimg__2ypvx img{\n    width: 100%;\n    height:100%;\n}";
   var css$5 = {"image":"style_image__1fZIQ","inner":"style_inner__3tyMU","preimg":"style_preimg__2ypvx"};
-  styleInject(css_248z$a);
+  styleInject(css_248z$c);
 
   const image = function (el, config) {
     const size = config.size || 'cover';
@@ -296,9 +302,9 @@
     el.appendChild(child);
   };
 
-  var css_248z$b = ".style_video__1qbdJ{\n    width: 100%;\n    height: 100%;\n    \n    display: flex;\n    align-items: center;\n    justify-content: center;\n}\n\n.style_video__1qbdJ video{\n    width: 100%;\n    height: 100%;\n}";
+  var css_248z$d = ".style_video__1qbdJ{\n    width: 100%;\n    height: 100%;\n    \n    display: flex;\n    align-items: center;\n    justify-content: center;\n}\n\n.style_video__1qbdJ video{\n    width: 100%;\n    height: 100%;\n}";
   var css$6 = {"video":"style_video__1qbdJ"};
-  styleInject(css_248z$b);
+  styleInject(css_248z$d);
 
   const video = function (el, config, rootElement, projectConfig) {
     const previewMode = projectConfig.mode === 'preview';
@@ -346,12 +352,12 @@
     if (presentMode) rootElement.addEventListener('keyup', setKeyListener);
   };
 
-  var css_248z$c = ".style_solid__wiwvr{\n    width: 100%;\n    height: 100%;\n    display: flex;\n    align-items: center;\n    justify-content: center;\n}";
+  var css_248z$e = ".style_solid__wiwvr{\n    width: 100%;\n    height: 100%;\n    display: flex;\n    align-items: center;\n    justify-content: center;\n}";
   var css$7 = {"solid":"style_solid__wiwvr"};
-  styleInject(css_248z$c);
+  styleInject(css_248z$e);
 
   const solid = function (el, config) {
-    const style = `style="background-color:${config.color};"`;
+    const style = `style="background:${config.color};"`;
     const child = utils.div(`<div ${style} class="${css$7.solid}"></div>`);
 
     this.beforeDestroy = () => {};
@@ -401,14 +407,6 @@
     } else {
       this.block = new blocks[this.type](blockContainer, blockConfig, rootElement, projectConfig);
     }
-    /*
-      Define the default scene color class
-    */
-
-
-    if (blockConfig.variant) {
-      this.el.classList.add('colorvar__' + blockConfig.variant);
-    }
 
     this.beforeDestroy = () => {
       if (this.block.beforeDestroy) this.block.beforeDestroy();
@@ -431,12 +429,12 @@
     blocksElement.appendChild(child);
   };
 
-  var css_248z$d = ".presenta{\n    --pagenumber__padding:.5rem; \n    --pagenumber__textalign:right; \n}\n\n.pagenumberContent{\n    color:var(--forecolor);\n    font-family: var(--fontText);\n}\n\n.pagenumber__style__inverted .pagenumberContent{\n    background-color: var(--forecolor);\n    color:var(--backcolor);\n}";
-  styleInject(css_248z$d);
+  var css_248z$f = ".presenta{\n    --pagenumber__padding:.5rem; \n    --pagenumber__textalign:right; \n}\n\n.pagenumberContent{\n    color:var(--forecolor);\n    font-family: var(--fontText);\n}\n\n.pagenumber__style__inverted .pagenumberContent{\n    background-color: var(--forecolor);\n    color:var(--backcolor);\n}";
+  styleInject(css_248z$f);
 
-  var css_248z$e = ".style_pagenumber__2BX53{\n    width: 100%;\n    height: 100%;\n    display: flex;\n    align-items: flex-end;   \n}\n\n.style_pagenumber__2BX53 > div{\n    width: 100%;\n    text-align: var(--pagenumber__textalign);\n    padding: var(--pagenumber__padding);\n}\n";
+  var css_248z$g = ".style_pagenumber__2BX53{\n    width: 100%;\n    height: 100%;\n    display: flex;\n    align-items: flex-end;   \n}\n\n.style_pagenumber__2BX53 > div{\n    width: 100%;\n    text-align: var(--pagenumber__textalign);\n    padding: var(--pagenumber__padding);\n}\n";
   var css$8 = {"pagenumber":"style_pagenumber__2BX53"};
-  styleInject(css_248z$e);
+  styleInject(css_248z$g);
 
   const pagenumber = function (sceneElement, modConfig, sceneConfig, projectConfig) {
     const front = sceneElement.querySelector('.frontContainer');
@@ -468,14 +466,14 @@
 
   add$1('pagenumber', pagenumber);
 
-  var css_248z$f = ".horizontalSlide .p-scene-enter-transition {\n  transition: transform 1s cubic-bezier(1, 0, 0, 1); }\n\n.horizontalSlide .to-right.p-scene-enter-start {\n  transform: translateX(100%); }\n\n.horizontalSlide .to-right.p-scene-enter-end {\n  transform: translateX(0); }\n\n.horizontalSlide .to-left.p-scene-enter-start {\n  transform: translateX(-100%); }\n\n.horizontalSlide .to-left.p-scene-enter-end {\n  transform: translateX(0); }\n\n.horizontalSlide .p-scene-leave-transition {\n  transition: transform 1s cubic-bezier(1, 0, 0, 1); }\n\n.horizontalSlide .to-right.p-scene-leave-start {\n  transform: translateX(0); }\n\n.horizontalSlide .to-right.p-scene-leave-end {\n  transform: translateX(-100%); }\n\n.horizontalSlide .to-left.p-scene-leave-start {\n  transform: translateX(0); }\n\n.horizontalSlide .to-left.p-scene-leave-end {\n  transform: translateX(100%); }\n";
-  styleInject(css_248z$f);
-
-  var css_248z$g = ".verticalIn .p-scene-enter-transition {\n  transition: all 0.75s cubic-bezier(0.2, 0.8, 0.05, 0.95); }\n\n.verticalIn .p-scene-enter-start {\n  transform: translateY(150%); }\n\n.verticalIn .p-scene-enter-end {\n  transform: translateY(0); }\n\n.verticalIn .p-scene-leave-transition {\n  transition: all 0.75s cubic-bezier(0.2, 0.8, 0.05, 0.95); }\n\n.verticalIn .p-scene-leave-start {\n  transform: scale(1); }\n\n.verticalIn .p-scene-leave-end {\n  transform: scale(0.5); }\n";
-  styleInject(css_248z$g);
-
-  var css_248z$h = ".outIn .p-scene-enter-transition {\n  opacity: 0; }\n\n.outIn .p-scene-enter-ended {\n  opacity: 1; }\n\n.outIn .p-scene-enter-transition .textContent > * {\n  transition: opacity 1s ease-out, transform 1s cubic-bezier(0.2, 0.8, 0.05, 0.95); }\n\n.outIn .p-scene-enter-transition .textContent > *:nth-child(1) {\n  transition-delay: 1.15s; }\n\n.outIn .p-scene-enter-transition .textContent > *:nth-child(2) {\n  transition-delay: 1.3s; }\n\n.outIn .p-scene-enter-transition .textContent > *:nth-child(3) {\n  transition-delay: 1.45s; }\n\n.outIn .p-scene-enter-transition .textContent > *:nth-child(4) {\n  transition-delay: 1.6s; }\n\n.outIn .p-scene-enter-transition .textContent > *:nth-child(5) {\n  transition-delay: 1.75s; }\n\n.outIn .p-scene-enter-transition .textContent > *:nth-child(6) {\n  transition-delay: 1.9s; }\n\n.outIn .p-scene-enter-transition .textContent > *:nth-child(7) {\n  transition-delay: 2.05s; }\n\n.outIn .p-scene-enter-transition .textContent > *:nth-child(8) {\n  transition-delay: 2.2s; }\n\n.outIn .p-scene-enter-transition .textContent > *:nth-child(9) {\n  transition-delay: 2.35s; }\n\n.outIn .p-scene-enter-transition .textContent > *:nth-child(10) {\n  transition-delay: 2.5s; }\n\n.outIn .p-scene-enter-transition .textContent > *:nth-child(11) {\n  transition-delay: 2.65s; }\n\n.outIn .p-scene-enter-transition .textContent > *:nth-child(12) {\n  transition-delay: 2.8s; }\n\n.outIn .p-scene-enter-transition .textContent > *:nth-child(13) {\n  transition-delay: 2.95s; }\n\n.outIn .p-scene-enter-transition .textContent > *:nth-child(14) {\n  transition-delay: 3.1s; }\n\n.outIn .p-scene-enter-transition .textContent > *:nth-child(15) {\n  transition-delay: 3.25s; }\n\n.outIn .p-scene-enter-transition .textContent > *:nth-child(16) {\n  transition-delay: 3.4s; }\n\n.outIn .p-scene-enter-transition .textContent > *:nth-child(17) {\n  transition-delay: 3.55s; }\n\n.outIn .p-scene-enter-transition .textContent > *:nth-child(18) {\n  transition-delay: 3.7s; }\n\n.outIn .p-scene-enter-transition .textContent > *:nth-child(19) {\n  transition-delay: 3.85s; }\n\n.outIn .p-scene-enter-transition .textContent > *:nth-child(20) {\n  transition-delay: 4s; }\n\n.outIn .p-scene-enter-transition .blockContainer > div {\n  transition: background-color 1s cubic-bezier(1, 0, 0, 1);\n  transition-delay: 1s; }\n\n.outIn .p-scene-enter-start .blockContainer > div {\n  background-color: rgba(0, 0, 0, 0); }\n\n.outIn .p-scene-enter-start .textContent > * {\n  opacity: 0;\n  transform: translateY(30px); }\n\n.outIn .p-scene-enter-end .textContent > * {\n  opacity: 1;\n  transform: translateY(0px); }\n\n.outIn .p-scene-leave-transition .textContent > * {\n  transition: opacity .75s cubic-bezier(0.165, 0.84, 0.44, 1), transform .75s cubic-bezier(0.165, 0.84, 0.44, 1); }\n\n.outIn .p-scene-leave-transition .textContent > *:nth-child(0) {\n  transition-delay: 0s; }\n\n.outIn .p-scene-leave-transition .textContent > *:nth-child(1) {\n  transition-delay: 0.1s; }\n\n.outIn .p-scene-leave-transition .textContent > *:nth-child(2) {\n  transition-delay: 0.2s; }\n\n.outIn .p-scene-leave-transition .textContent > *:nth-child(3) {\n  transition-delay: 0.3s; }\n\n.outIn .p-scene-leave-transition .textContent > *:nth-child(4) {\n  transition-delay: 0.4s; }\n\n.outIn .p-scene-leave-transition .textContent > *:nth-child(5) {\n  transition-delay: 0.5s; }\n\n.outIn .p-scene-leave-transition .textContent > *:nth-child(6) {\n  transition-delay: 0.6s; }\n\n.outIn .p-scene-leave-transition .textContent > *:nth-child(7) {\n  transition-delay: 0.7s; }\n\n.outIn .p-scene-leave-transition .textContent > *:nth-child(8) {\n  transition-delay: 0.8s; }\n\n.outIn .p-scene-leave-transition .textContent > *:nth-child(9) {\n  transition-delay: 0.9s; }\n\n.outIn .p-scene-leave-transition .textContent > *:nth-child(10) {\n  transition-delay: 1s; }\n\n.outIn .p-scene-leave-transition .textContent > *:nth-child(11) {\n  transition-delay: 1.1s; }\n\n.outIn .p-scene-leave-transition .textContent > *:nth-child(12) {\n  transition-delay: 1.2s; }\n\n.outIn .p-scene-leave-transition .textContent > *:nth-child(13) {\n  transition-delay: 1.3s; }\n\n.outIn .p-scene-leave-transition .textContent > *:nth-child(14) {\n  transition-delay: 1.4s; }\n\n.outIn .p-scene-leave-transition .textContent > *:nth-child(15) {\n  transition-delay: 1.5s; }\n\n.outIn .p-scene-leave-transition .textContent > *:nth-child(16) {\n  transition-delay: 1.6s; }\n\n.outIn .p-scene-leave-transition .textContent > *:nth-child(17) {\n  transition-delay: 1.7s; }\n\n.outIn .p-scene-leave-transition .textContent > *:nth-child(18) {\n  transition-delay: 1.8s; }\n\n.outIn .p-scene-leave-transition .textContent > *:nth-child(19) {\n  transition-delay: 1.9s; }\n\n.outIn .p-scene-leave-transition .textContent > *:nth-child(20) {\n  transition-delay: 2s; }\n\n.outIn .p-scene-leave-start .textContent > * {\n  opacity: 1;\n  transform: scale(1); }\n\n.outIn .p-scene-leave-end .textContent > * {\n  opacity: 0;\n  transform: scale(0.85); }\n";
+  var css_248z$h = ".transition__horizontalSlide .p-scene-enter-transition {\n  transition: transform 1s cubic-bezier(1, 0, 0, 1); }\n\n.transition__horizontalSlide .to-right.p-scene-enter-start {\n  transform: translateX(100%); }\n\n.transition__horizontalSlide .to-right.p-scene-enter-end {\n  transform: translateX(0); }\n\n.transition__horizontalSlide .to-left.p-scene-enter-start {\n  transform: translateX(-100%); }\n\n.transition__horizontalSlide .to-left.p-scene-enter-end {\n  transform: translateX(0); }\n\n.transition__horizontalSlide .p-scene-leave-transition {\n  transition: transform 1s cubic-bezier(1, 0, 0, 1); }\n\n.transition__horizontalSlide .to-right.p-scene-leave-start {\n  transform: translateX(0); }\n\n.transition__horizontalSlide .to-right.p-scene-leave-end {\n  transform: translateX(-100%); }\n\n.transition__horizontalSlide .to-left.p-scene-leave-start {\n  transform: translateX(0); }\n\n.transition__horizontalSlide .to-left.p-scene-leave-end {\n  transform: translateX(100%); }\n";
   styleInject(css_248z$h);
+
+  var css_248z$i = ".transition__verticalIn .p-scene-enter-transition {\n  transition: all 0.75s cubic-bezier(0.2, 0.8, 0.05, 0.95); }\n\n.transition__verticalIn .p-scene-enter-start {\n  transform: translateY(150%); }\n\n.transition__verticalIn .p-scene-enter-end {\n  transform: translateY(0); }\n\n.transition__verticalIn .p-scene-leave-transition {\n  transition: all 0.75s cubic-bezier(0.2, 0.8, 0.05, 0.95); }\n\n.transition__verticalIn .p-scene-leave-start {\n  transform: scale(1); }\n\n.transition__verticalIn .p-scene-leave-end {\n  transform: scale(0.5); }\n";
+  styleInject(css_248z$i);
+
+  var css_248z$j = ".transition__outIn .p-scene-enter-transition {\n  opacity: 0; }\n\n.transition__outIn .p-scene-enter-ended {\n  opacity: 1; }\n\n.transition__outIn .p-scene-enter-transition .textContent > * {\n  transition: opacity 1s ease-out, transform 1s cubic-bezier(0.2, 0.8, 0.05, 0.95); }\n\n.transition__outIn .p-scene-enter-transition .textContent > *:nth-child(1) {\n  transition-delay: 1.15s; }\n\n.transition__outIn .p-scene-enter-transition .textContent > *:nth-child(2) {\n  transition-delay: 1.3s; }\n\n.transition__outIn .p-scene-enter-transition .textContent > *:nth-child(3) {\n  transition-delay: 1.45s; }\n\n.transition__outIn .p-scene-enter-transition .textContent > *:nth-child(4) {\n  transition-delay: 1.6s; }\n\n.transition__outIn .p-scene-enter-transition .textContent > *:nth-child(5) {\n  transition-delay: 1.75s; }\n\n.transition__outIn .p-scene-enter-transition .textContent > *:nth-child(6) {\n  transition-delay: 1.9s; }\n\n.transition__outIn .p-scene-enter-transition .textContent > *:nth-child(7) {\n  transition-delay: 2.05s; }\n\n.transition__outIn .p-scene-enter-transition .textContent > *:nth-child(8) {\n  transition-delay: 2.2s; }\n\n.transition__outIn .p-scene-enter-transition .textContent > *:nth-child(9) {\n  transition-delay: 2.35s; }\n\n.transition__outIn .p-scene-enter-transition .textContent > *:nth-child(10) {\n  transition-delay: 2.5s; }\n\n.transition__outIn .p-scene-enter-transition .textContent > *:nth-child(11) {\n  transition-delay: 2.65s; }\n\n.transition__outIn .p-scene-enter-transition .textContent > *:nth-child(12) {\n  transition-delay: 2.8s; }\n\n.transition__outIn .p-scene-enter-transition .textContent > *:nth-child(13) {\n  transition-delay: 2.95s; }\n\n.transition__outIn .p-scene-enter-transition .textContent > *:nth-child(14) {\n  transition-delay: 3.1s; }\n\n.transition__outIn .p-scene-enter-transition .textContent > *:nth-child(15) {\n  transition-delay: 3.25s; }\n\n.transition__outIn .p-scene-enter-transition .textContent > *:nth-child(16) {\n  transition-delay: 3.4s; }\n\n.transition__outIn .p-scene-enter-transition .textContent > *:nth-child(17) {\n  transition-delay: 3.55s; }\n\n.transition__outIn .p-scene-enter-transition .textContent > *:nth-child(18) {\n  transition-delay: 3.7s; }\n\n.transition__outIn .p-scene-enter-transition .textContent > *:nth-child(19) {\n  transition-delay: 3.85s; }\n\n.transition__outIn .p-scene-enter-transition .textContent > *:nth-child(20) {\n  transition-delay: 4s; }\n\n.transition__outIn .p-scene-enter-transition .blockContainer > div {\n  transition: background-color 1s cubic-bezier(1, 0, 0, 1);\n  transition-delay: 1s; }\n\n.transition__outIn .p-scene-enter-start .blockContainer > div {\n  background-color: rgba(0, 0, 0, 0); }\n\n.transition__outIn .p-scene-enter-start .textContent > * {\n  opacity: 0;\n  transform: translateY(30px); }\n\n.transition__outIn .p-scene-enter-end .textContent > * {\n  opacity: 1;\n  transform: translateY(0px); }\n\n.transition__outIn .p-scene-leave-transition .textContent > * {\n  transition: opacity .75s cubic-bezier(0.165, 0.84, 0.44, 1), transform .75s cubic-bezier(0.165, 0.84, 0.44, 1); }\n\n.transition__outIn .p-scene-leave-transition .textContent > *:nth-child(0) {\n  transition-delay: 0s; }\n\n.transition__outIn .p-scene-leave-transition .textContent > *:nth-child(1) {\n  transition-delay: 0.1s; }\n\n.transition__outIn .p-scene-leave-transition .textContent > *:nth-child(2) {\n  transition-delay: 0.2s; }\n\n.transition__outIn .p-scene-leave-transition .textContent > *:nth-child(3) {\n  transition-delay: 0.3s; }\n\n.transition__outIn .p-scene-leave-transition .textContent > *:nth-child(4) {\n  transition-delay: 0.4s; }\n\n.transition__outIn .p-scene-leave-transition .textContent > *:nth-child(5) {\n  transition-delay: 0.5s; }\n\n.transition__outIn .p-scene-leave-transition .textContent > *:nth-child(6) {\n  transition-delay: 0.6s; }\n\n.transition__outIn .p-scene-leave-transition .textContent > *:nth-child(7) {\n  transition-delay: 0.7s; }\n\n.transition__outIn .p-scene-leave-transition .textContent > *:nth-child(8) {\n  transition-delay: 0.8s; }\n\n.transition__outIn .p-scene-leave-transition .textContent > *:nth-child(9) {\n  transition-delay: 0.9s; }\n\n.transition__outIn .p-scene-leave-transition .textContent > *:nth-child(10) {\n  transition-delay: 1s; }\n\n.transition__outIn .p-scene-leave-transition .textContent > *:nth-child(11) {\n  transition-delay: 1.1s; }\n\n.transition__outIn .p-scene-leave-transition .textContent > *:nth-child(12) {\n  transition-delay: 1.2s; }\n\n.transition__outIn .p-scene-leave-transition .textContent > *:nth-child(13) {\n  transition-delay: 1.3s; }\n\n.transition__outIn .p-scene-leave-transition .textContent > *:nth-child(14) {\n  transition-delay: 1.4s; }\n\n.transition__outIn .p-scene-leave-transition .textContent > *:nth-child(15) {\n  transition-delay: 1.5s; }\n\n.transition__outIn .p-scene-leave-transition .textContent > *:nth-child(16) {\n  transition-delay: 1.6s; }\n\n.transition__outIn .p-scene-leave-transition .textContent > *:nth-child(17) {\n  transition-delay: 1.7s; }\n\n.transition__outIn .p-scene-leave-transition .textContent > *:nth-child(18) {\n  transition-delay: 1.8s; }\n\n.transition__outIn .p-scene-leave-transition .textContent > *:nth-child(19) {\n  transition-delay: 1.9s; }\n\n.transition__outIn .p-scene-leave-transition .textContent > *:nth-child(20) {\n  transition-delay: 2s; }\n\n.transition__outIn .p-scene-leave-start .textContent > * {\n  opacity: 1;\n  transform: scale(1); }\n\n.transition__outIn .p-scene-leave-end .textContent > * {\n  opacity: 0;\n  transform: scale(0.85); }\n";
+  styleInject(css_248z$j);
 
   const transition = wrapper => {
     const functor = function (wrapper) {
@@ -523,7 +521,7 @@
     }
 
     if (sceneConfig.blocks.length === 0) {
-      return console.warn('`blocks` is empty in scene ' + sceneConfig.index);
+      console.warn('`blocks` is empty in scene ' + sceneConfig.index);
     }
     /*
       Set the module config from project settings
@@ -615,32 +613,8 @@
       this.blocks.push(block);
     });
     /*
-      Activate the transition system at scene level if requested
-    */
-
-    if (sceneConfig.transition) {
-      this.el.classList.add(sceneConfig.transition);
-    }
-    /*
-      Define the default scene color class
-    */
-
-
-    if (sceneConfig.variant) {
-      this.el.classList.add('colorvar__' + sceneConfig.variant);
-    }
-    /*
-      Activate the theme at scene level if requested
-    */
-
-
-    if (sceneConfig.theme) {
-      this.el.classList.add('theme__' + sceneConfig.theme);
-    }
-    /*
       Run the entering transition
     */
-
 
     if (hasTransition) {
       const wrap = this.el.querySelector('.sceneObject');
@@ -669,6 +643,7 @@
       const t = _t || 0;
       this.blocks.forEach(block => block.beforeDestroy());
       setTimeout(() => {
+        this.destroy();
         child.parentNode.removeChild(child);
       }, t);
     };
@@ -697,9 +672,9 @@
     this.sceneConfig = sceneConfig;
   };
 
-  var css_248z$i = ".container_container__3kBNh {\n    width: 100%;\n    height: 100%;\n    position: relative;\n    overflow: hidden;\n}\n\n.container_container__3kBNh > div{\n    position: absolute;\n    top:0;\n    left:0;\n    width: 100%;\n}";
+  var css_248z$k = ".container_container__3kBNh {\n    width: 100%;\n    height: 100%;\n    position: relative;\n    overflow: hidden;\n}\n\n.container_container__3kBNh > div{\n    position: absolute;\n    top:0;\n    left:0;\n    width: 100%;\n}";
   var css$9 = {"container":"container_container__3kBNh"};
-  styleInject(css_248z$i);
+  styleInject(css_248z$k);
 
   const autoplay = function (rootElement, router, config) {
     let timer = null;
@@ -755,9 +730,9 @@
     rootElement.addEventListener('keyup', setKeyListener);
   };
 
-  var css_248z$j = ".style_arrows__2HgOY{\n    position: absolute;\n    top:0;\n    left:0;\n    width: 100%;\n    height: 100%;\n    display: flex;\n    align-items: center;\n    justify-content: space-between;\n    transition: opacity .35s;\n}\n\n.style_left__3_kwS, .style_right__RERAa{\n    width: 50px;\n    height: 50px;\n    background-color: var(--forecolor);\n    transition: background-color .3s;\n    cursor: pointer;\n}\n\n\n.style_arrows__2HgOY.style_hide__3B8Al{\n    opacity: 0;\n}";
+  var css_248z$l = ".style_arrows__2HgOY{\n    position: absolute;\n    top:0;\n    left:0;\n    width: 100%;\n    height: 100%;\n    display: flex;\n    align-items: center;\n    justify-content: space-between;\n    transition: opacity .35s;\n}\n\n.style_left__3_kwS, .style_right__RERAa{\n    width: 50px;\n    height: 50px;\n    background-color: var(--forecolor);\n    transition: background-color .3s;\n    cursor: pointer;\n}\n\n\n.style_arrows__2HgOY.style_hide__3B8Al{\n    opacity: 0;\n}";
   var css$a = {"arrows":"style_arrows__2HgOY","left":"style_left__3_kwS","right":"style_right__RERAa","hide":"style_hide__3B8Al"};
-  styleInject(css_248z$j);
+  styleInject(css_248z$l);
 
   const arrows = function (rootElement, router, config) {
     let timer = null;
@@ -789,9 +764,9 @@
     scheduleForHide();
   };
 
-  var css_248z$k = ".style_black__27h0m{\n    width: 100%;\n    height: 100%;\n    position: absolute;\n    top:0;\n    left:0;\n\n    background-color: black;\n    opacity: 0;\n    pointer-events: none;\n    transition: opacity .5s cubic-bezier(0.8, 0.2, 0.2, 0.8);\n}";
+  var css_248z$m = ".style_black__27h0m{\n    width: 100%;\n    height: 100%;\n    position: absolute;\n    top:0;\n    left:0;\n\n    background-color: black;\n    opacity: 0;\n    pointer-events: none;\n    transition: opacity .5s cubic-bezier(0.8, 0.2, 0.2, 0.8);\n}";
   var css$b = {"black":"style_black__27h0m"};
-  styleInject(css_248z$k);
+  styleInject(css_248z$m);
 
   const black = function (rootElement, router, config) {
     let visible = false;
@@ -839,9 +814,9 @@
     io[type] = module;
   };
 
-  var css_248z$l = ".router_router__2R2qw{\n    width: 100%;\n    height: 100%;\n    position: absolute;\n    top:0;\n    left:0;\n}";
+  var css_248z$n = ".router_router__2R2qw{\n    width: 100%;\n    height: 100%;\n    position: absolute;\n    top:0;\n    left:0;\n}";
   var css$c = {"router":"router_router__2R2qw"};
-  styleInject(css_248z$l);
+  styleInject(css_248z$n);
 
   const Router = function (rootElement, projectConfig) {
     const child = utils.div(`<div class="${css$c.router}"></div>`);
@@ -997,33 +972,20 @@
       console.warn('`scenes` is empty');
     }
     /*
-      Activate the transition system if requested
+      Global defaults
     */
 
 
-    if (projectConfig.transition) {
-      rootElement.classList.add(projectConfig.transition);
-    }
+    const globprop = ['transition', 'colorvar', 'scheme', 'fontkit'];
+    globprop.forEach(p => {
+      if (projectConfig[p]) {
+        const prp = projectConfig[p].substr(1);
+        rootElement.classList.add(`${p}__${prp}`);
+      }
+    });
     /*
-      Define the default scene color class
+      Init the container
     */
-
-
-    if (projectConfig.variant) {
-      rootElement.classList.add('colorvar__' + projectConfig.variant);
-    }
-    /*
-      Activate the theme if requested
-    */
-
-
-    if (projectConfig.theme) {
-      rootElement.classList.add('theme__' + projectConfig.theme);
-    }
-    /*
-      Time to init the container
-    */
-
 
     rootElement.classList.add('presenta');
     const child = utils.div(`<div class="a ${css$9.container}"></div>`);
@@ -1082,9 +1044,10 @@
       modules: {
         pagenumber: true
       },
-      theme: '',
-      transition: 'horizontalSlide',
-      container: 'show',
+      scheme: null,
+      fontkit: null,
+      transition: null,
+      colorvar: null,
       _transitionDestroyDelay: 1000
     };
 

@@ -11,9 +11,10 @@ export default config => {
     modules: {
       pagenumber: true
     },
-    theme: '',
-    transition: 'horizontalSlide',
-    container: 'show',
+    scheme: null,
+    fontkit: null,
+    transition: null,
+    colorvar: null,
     _transitionDestroyDelay: 1000
   }
 

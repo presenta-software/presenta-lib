@@ -2,7 +2,7 @@ import css from './style.css'
 import u from '../../utils.js'
 
 const solid = function (el, config) {
-  const style = `style="background-color:${config.color};"`
+  const style = `style="background:${config.color};"`
 
   const child = u.div(`<div ${style} class="${css.solid}"></div>`)
 

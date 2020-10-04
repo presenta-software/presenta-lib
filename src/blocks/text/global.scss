@@ -15,7 +15,7 @@
 }
 
 
-$pvar: p, s, b, g;
+$pvar: p, s, b;
 @each $p in $pvar {
     .#{$p}.textposition__topleft .pretext,
     .#{$p}.textposition__tl .pretext{

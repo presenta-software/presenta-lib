@@ -35,6 +35,7 @@ export default [{
     }),
     commonjs(),
     postcss({
+      minimize: true,
       modules: {
         globalModulePaths: [
           /global/, /schemes/, /fontkits/
@@ -65,6 +66,7 @@ export default [{
     commonjs(),
     terser(),
     postcss({
+      minimize: true,
       modules: {
         globalModulePaths: [
           /global/, /schemes/, /fontkits/

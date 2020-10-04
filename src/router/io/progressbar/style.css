@@ -1,0 +1,11 @@
+.progressbar{
+    width: 0;
+    height: var(--progressbarHeight);
+    position: absolute;
+    bottom: var(--progressbarBottom);
+    left:0;
+
+    background-color: var(--progressbarColor);
+    pointer-events: none;
+    transition: width .5s cubic-bezier(0.8, 0.2, 0.2, 0.8);
+}

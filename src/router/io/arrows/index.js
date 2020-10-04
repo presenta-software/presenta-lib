@@ -1,3 +1,4 @@
+import './global.css'
 import css from './style.css'
 import u from '../../../utils.js'
 

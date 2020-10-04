@@ -1,0 +1,22 @@
+.scheme__breeze,
+.scheme__breeze .colorvar__a,
+.scheme__breeze.colorvar__a {
+  --backcolor: #a9dbd5;
+  --forecolor: #000;
+  --accentcolor: #fff;
+  --otheraccentcolor: #38999d;
+}
+.scheme__breeze .colorvar__b,
+.scheme__breeze.colorvar__b {
+  --backcolor: #000;
+  --forecolor: #a9dbd5;
+  --accentcolor: #fff;
+  --otheraccentcolor: #38999d;
+}
+.scheme__breeze .colorvar__c,
+.scheme__breeze.colorvar__c {
+  --backcolor: #fff;
+  --forecolor: #38999d;
+  --accentcolor: #a9dbd5;
+  --otheraccentcolor: #000;
+}

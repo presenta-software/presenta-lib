@@ -1,0 +1,22 @@
+.scheme__polite,
+.scheme__polite .colorvar__a,
+.scheme__polite.colorvar__a {
+  --backcolor: #322067;
+  --forecolor: #feb8ba;
+  --accentcolor: #449eaf;
+  --otheraccentcolor: #fff;
+}
+.scheme__polite .colorvar__b,
+.scheme__polite.colorvar__b {
+  --backcolor: #feb8ba;
+  --forecolor: #322067;
+  --accentcolor: #fff;
+  --otheraccentcolor: #449eaf;
+}
+.scheme__polite .colorvar__c,
+.scheme__polite.colorvar__c {
+  --backcolor: #fff;
+  --forecolor: #322067;
+  --accentcolor: #449eaf;
+  --otheraccentcolor: #feb8ba;
+}

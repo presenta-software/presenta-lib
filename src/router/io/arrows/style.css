@@ -13,8 +13,8 @@
 .left, .right{
     width: 50px;
     height: 50px;
-    background-color: var(--forecolor);
-    transition: background-color .3s;
+    background-color: var(--arrowsColor);
+    transition: background-color .3s ease-in-out;
     cursor: pointer;
 }
 

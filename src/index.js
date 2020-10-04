@@ -6,6 +6,13 @@ import './fontkits/vibrant.css'
 
 import './schemes/original.css'
 import './schemes/vibrant.css'
+import './schemes/polite.css'
+import './schemes/breeze.css'
+import './schemes/sunny.css'
+import './schemes/acid.css'
+import './schemes/novel.css'
+import './schemes/doub.css'
+import './schemes/mayb.css'
 
 import { Scene } from './core/Scene.js'
 import { Container } from './core/Container.js'

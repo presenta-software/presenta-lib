@@ -1,11 +1,11 @@
-// https://lib.presenta.cc v0.0.13 Copyright 2020 Fabio Franchino
+// https://lib.presenta.cc v0.0.14 Copyright 2020 Fabio Franchino
 (function (global, factory) {
   typeof exports === 'object' && typeof module !== 'undefined' ? module.exports = factory() :
   typeof define === 'function' && define.amd ? define(factory) :
   (global = global || self, global.Presenta = factory());
 }(this, (function () { 'use strict';
 
-  var version = "0.0.13";
+  var version = "0.0.14";
 
   function styleInject(css, ref) {
     if ( ref === void 0 ) ref = {};
@@ -34,24 +34,45 @@
     }
   }
 
-  var css_248z = "\n\n\n.presenta * {\n  box-sizing: border-box;\n}\n\n\n.presenta {\n  position: relative;\n  /* width: 100%;\n    height: 100%; */\n  \n\n  --pw: 960;\n  --w: 960px;\n  --h: 540px;\n  --vp: 960;\n  --fz: 1;\n  --p: calc(var(--pw) / var(--vp));\n  /* --sw: calc(var(--w) / var(--p) / var(--fz));\n  --sh: calc(var(--h) / var(--p) / var(--fz));\n  --scal: calc(var(--pw) / var(--p) / var(--pw) / var(--fz)); */\n\n  /* PUBLIC VARS */\n  --scenepadding: 0;\n  --blockweight: 1;\n  --blockpadding: 0;\n}\n\n\n:root{\n  --fontHeading: Georgia, \"Times New Roman\", Times, serif;\n  --fontText: \"Trebuchet MS\", \"Lucida Sans Unicode\", \"Lucida Grande\",\n    \"Lucida Sans\", Arial, sans-serif;\n}\n\n\n:root,\n.colorvar__a {\n  --backcolor: #fff;\n  --forecolor: #000;\n  --accentcolor: #444;\n  --otheraccentcolor: #ddd;\n  --overlaycolor: var(--backcolor);\n}\n.colorvar__b {\n  --backcolor: #000;\n  --forecolor: #fff;\n  --accentcolor: #999;\n  --otheraccentcolor: #ccc;\n  --overlaycolor: var(--backcolor);\n}\n.colorvar__c {\n  --backcolor: #444;\n  --forecolor: #ffffff;\n  --accentcolor: #fff;\n  --otheraccentcolor: #ccc;\n  --overlaycolor: var(--backcolor);\n}\n\n\n\n\n\n.layout__block .blocksContainer {\n  display: block;\n}\n.layout__block .blocksContainer > div {\n  height: initial;\n}\n\n.layout__rows .blocksContainer {\n  display: flex;\n  flex-direction: column;\n}\n.layout__rows .blocksContainer > div {\n  width: 100%;\n}\n\n.layout__stack .blocksContainer {\n  position: relative;\n}\n.layout__stack .blocksContainer > div {\n  position: absolute;\n  top: 0;\n  left: 0;\n  width: 100%;\n  height: 100%;\n}\n\n\n\n";
+  var css_248z = ".presenta *{box-sizing:border-box}.presenta{position:relative;--pw:960;--w:960px;--h:540px;--vp:960;--fz:1;--p:calc(var(--pw)/var(--vp));--scenepadding:0;--blockweight:1;--blockpadding:0}:root{--fontHeading:Georgia,\"Times New Roman\",Times,serif;--fontText:\"Trebuchet MS\",\"Lucida Sans Unicode\",\"Lucida Grande\",\"Lucida Sans\",Arial,sans-serif}.colorvar__a,:root{--backcolor:#fff;--forecolor:#000;--accentcolor:#444;--otheraccentcolor:#ddd;--overlaycolor:var(--backcolor)}.colorvar__b{--backcolor:#000;--accentcolor:#999}.colorvar__b,.colorvar__c{--forecolor:#fff;--otheraccentcolor:#ccc;--overlaycolor:var(--backcolor)}.colorvar__c{--backcolor:#444;--accentcolor:#fff}.layout__block .blocksContainer{display:block}.layout__block .blocksContainer>div{height:auto}.layout__rows .blocksContainer{display:flex;flex-direction:column}.layout__rows .blocksContainer>div{width:100%}.layout__stack .blocksContainer{position:relative}.layout__stack .blocksContainer>div{position:absolute;top:0;left:0;width:100%;height:100%}";
   styleInject(css_248z);
 
-  var css_248z$1 = "@import url('https://fonts.googleapis.com/css2?family=Montserrat:wght@600&family=Roboto+Mono:ital,wght@0,400;0,700;1,400&display=swap');\n.fontkit__original{\n  --fontHeading: 'Roboto Mono', monospace;\n  --fontText: 'Montserrat', sans-serif;\n}";
+  var css_248z$1 = "@import url(\"https://fonts.googleapis.com/css2?family=Montserrat:wght@600&family=Roboto+Mono:ital,wght@0,400;0,700;1,400&display=swap\");.fontkit__original{--fontHeading:\"Roboto Mono\",monospace;--fontText:\"Montserrat\",sans-serif}";
   styleInject(css_248z$1);
 
-  var css_248z$2 = "@import url('https://fonts.googleapis.com/css2?family=Playfair+Display:wght@600&family=Work+Sans&display=swap');\n.fontkit__vibrant{\n  --fontHeading: 'Work Sans', sans-serif;\n  --fontText: 'Playfair Display', serif;\n}";
+  var css_248z$2 = "@import url(\"https://fonts.googleapis.com/css2?family=Playfair+Display:wght@600&family=Work+Sans&display=swap\");.fontkit__vibrant{--fontHeading:\"Work Sans\",sans-serif;--fontText:\"Playfair Display\",serif}";
   styleInject(css_248z$2);
 
-  var css_248z$3 = ".scheme__original,\n.scheme__original .colorvar__a,\n.scheme__original.colorvar__a {\n  --backcolor: #ebded1;\n  --forecolor: #0a47d1;\n  --accentcolor: #fb4138;\n  --otheraccentcolor: #ffffff;\n}\n.scheme__original .colorvar__b,\n.scheme__original.colorvar__b {\n  --backcolor: #0a47d1;\n  --forecolor: #ebded1;\n  --accentcolor: #ffffff;\n  --otheraccentcolor: #fb4138;\n}\n.scheme__original .colorvar__c,\n.scheme__original.colorvar__c {\n  --backcolor: #fb4138;\n  --forecolor: #ffffff;\n  --accentcolor: #ebded1;\n  --otheraccentcolor: #0a47d1;\n}";
+  var css_248z$3 = ".scheme__original,.scheme__original.colorvar__a,.scheme__original .colorvar__a{--backcolor:#ebded1;--forecolor:#0a47d1;--accentcolor:#fb4138;--otheraccentcolor:#fff}.scheme__original.colorvar__b,.scheme__original .colorvar__b{--backcolor:#0a47d1;--forecolor:#ebded1;--accentcolor:#fff;--otheraccentcolor:#fb4138}.scheme__original.colorvar__c,.scheme__original .colorvar__c{--backcolor:#fb4138;--forecolor:#fff;--accentcolor:#ebded1;--otheraccentcolor:#0a47d1}";
   styleInject(css_248z$3);
 
-  var css_248z$4 = ".scheme__vibrant,\n.scheme__vibrant .colorvar__a,\n.scheme__vibrant.colorvar__a {\n  --backcolor: #ffe600;\n  --forecolor: #000;\n  --accentcolor: #ff6400;\n  --otheraccentcolor: #fff;\n}\n.scheme__vibrant .colorvar__b,\n.scheme__vibrant.colorvar__b {\n  --backcolor: #000;\n  --forecolor: rgb(255, 230, 0);\n  --accentcolor: #fff;\n  --otheraccentcolor: rgb(255, 100, 0);\n}\n.scheme__vibrant .colorvar__c,\n.scheme__vibrant.colorvar__c {\n  --backcolor: rgb(255, 100, 0);\n  --forecolor: #fff;\n  --accentcolor: rgb(255, 230, 0);\n  --otheraccentcolor: #000;\n}";
+  var css_248z$4 = ".scheme__vibrant,.scheme__vibrant.colorvar__a,.scheme__vibrant .colorvar__a{--backcolor:#ffe600;--forecolor:#000;--accentcolor:#ff6400;--otheraccentcolor:#fff}.scheme__vibrant.colorvar__b,.scheme__vibrant .colorvar__b{--backcolor:#000;--forecolor:#ffe600;--accentcolor:#fff;--otheraccentcolor:#ff6400}.scheme__vibrant.colorvar__c,.scheme__vibrant .colorvar__c{--backcolor:#ff6400;--forecolor:#fff;--accentcolor:#ffe600;--otheraccentcolor:#000}";
   styleInject(css_248z$4);
 
-  var css_248z$5 = ".scene_sceneContainer__IgSpB{\n    width: 100%;\n    height: 100%;\n    display: flex;\n    align-items: center;\n    justify-content: center;\n    position: relative;\n}\n.scene_scene__3uvTl{\n    --sw: calc(var(--w) / var(--p) / var(--fz));\n    --sh: calc(var(--h) / var(--p) / var(--fz));\n    --scal: calc(var(--pw) / var(--p) / var(--pw) / var(--fz));\n    \n    width: var(--sw);\n    height: var(--sh);\n    font-family: serif;\n    user-select: none;\n}\n\n.scene_wrapper__3yr1k{\n    width: var(--w);\n    height: var(--h);\n    transform: scale(1);\n    transform: scale(var(--scal));\n    transform-origin: top left;\n    overflow: hidden;\n\n    padding: var(--scenepadding);\n    /* background-color: var(--backcolor); */\n}\n.scene_content__1rJf0{\n    width: 100%;\n    height: 100%;\n    display: flex;\n    flex-direction: column;\n    overflow: hidden;\n}\n\n.scene_bcontainer__3MFBK,\n.scene_fcontainer__1E_0g{\n    top:0;\n    left:0;\n    width: 100%;\n    height: 100%;\n    position: absolute;\n}\n\n\n.scene_viewport__3uNLS{\n    width: 100%;\n    height: 100%;\n    position: relative;\n    flex:1;\n    overflow: hidden;\n    \n    display: flex;\n    flex-direction: row;\n}\n.scene_viewport__3uNLS > div{\n    height: 100%;\n}\n\n\n";
-  var css = {"sceneContainer":"scene_sceneContainer__IgSpB","scene":"scene_scene__3uvTl","wrapper":"scene_wrapper__3yr1k","content":"scene_content__1rJf0","bcontainer":"scene_bcontainer__3MFBK","fcontainer":"scene_fcontainer__1E_0g","viewport":"scene_viewport__3uNLS"};
+  var css_248z$5 = ".scheme__polite,.scheme__polite.colorvar__a,.scheme__polite .colorvar__a{--backcolor:#322067;--forecolor:#feb8ba;--accentcolor:#449eaf;--otheraccentcolor:#fff}.scheme__polite.colorvar__b,.scheme__polite .colorvar__b{--backcolor:#feb8ba;--forecolor:#322067;--accentcolor:#fff;--otheraccentcolor:#449eaf}.scheme__polite.colorvar__c,.scheme__polite .colorvar__c{--backcolor:#fff;--forecolor:#322067;--accentcolor:#449eaf;--otheraccentcolor:#feb8ba}";
   styleInject(css_248z$5);
+
+  var css_248z$6 = ".scheme__breeze,.scheme__breeze.colorvar__a,.scheme__breeze .colorvar__a{--backcolor:#a9dbd5;--forecolor:#000;--accentcolor:#fff;--otheraccentcolor:#38999d}.scheme__breeze.colorvar__b,.scheme__breeze .colorvar__b{--backcolor:#000;--forecolor:#a9dbd5;--accentcolor:#fff;--otheraccentcolor:#38999d}.scheme__breeze.colorvar__c,.scheme__breeze .colorvar__c{--backcolor:#fff;--forecolor:#38999d;--accentcolor:#a9dbd5;--otheraccentcolor:#000}";
+  styleInject(css_248z$6);
+
+  var css_248z$7 = ".scheme__sunny,.scheme__sunny.colorvar__a,.scheme__sunny .colorvar__a{--backcolor:#f9ffb1;--forecolor:#072020;--accentcolor:#ec4225;--otheraccentcolor:#9eb0bb}.scheme__sunny.colorvar__b,.scheme__sunny .colorvar__b{--backcolor:#072020;--forecolor:#f9ffb1;--accentcolor:#ec4225;--otheraccentcolor:#9eb0bb}.scheme__sunny.colorvar__c,.scheme__sunny .colorvar__c{--backcolor:#ec4225;--forecolor:#f9ffb1;--accentcolor:#9eb0bb;--otheraccentcolor:#072020}";
+  styleInject(css_248z$7);
+
+  var css_248z$8 = ".scheme__acid,.scheme__acid.colorvar__a,.scheme__acid .colorvar__a{--backcolor:#000;--forecolor:#fff;--accentcolor:#eeff2e;--otheraccentcolor:#de1318}.scheme__acid.colorvar__b,.scheme__acid .colorvar__b{--backcolor:#eeff2e;--forecolor:#000;--accentcolor:#de1318;--otheraccentcolor:#fff}.scheme__acid.colorvar__c,.scheme__acid .colorvar__c{--backcolor:#de1318;--forecolor:#eeff2e;--accentcolor:#fff;--otheraccentcolor:#000}";
+  styleInject(css_248z$8);
+
+  var css_248z$9 = ".scheme__novel,.scheme__novel.colorvar__a,.scheme__novel .colorvar__a{--backcolor:#3b7bc3;--forecolor:#f9fb45;--accentcolor:#fff;--otheraccentcolor:#000}.scheme__novel.colorvar__b,.scheme__novel .colorvar__b{--backcolor:#000;--forecolor:#f9fb45;--accentcolor:#fff;--otheraccentcolor:#3b7bc3}.scheme__novel.colorvar__c,.scheme__novel .colorvar__c{--backcolor:#f9fb45;--forecolor:#000;--accentcolor:#3b7bc3;--otheraccentcolor:#fff}";
+  styleInject(css_248z$9);
+
+  var css_248z$a = ".scheme__doub,.scheme__doub.colorvar__a,.scheme__doub .colorvar__a{--backcolor:#e5ff9d;--forecolor:#1c003f;--accentcolor:#69567c;--otheraccentcolor:#fff}.scheme__doub.colorvar__b,.scheme__doub .colorvar__b{--backcolor:#1c003f;--forecolor:#fff;--accentcolor:#e5ff9d;--otheraccentcolor:#69567c}.scheme__doub.colorvar__c,.scheme__doub .colorvar__c{--backcolor:#69567c;--forecolor:#e5ff9d;--accentcolor:#fff;--otheraccentcolor:#1c003f}";
+  styleInject(css_248z$a);
+
+  var css_248z$b = ".scheme__mayb,.scheme__mayb.colorvar__a,.scheme__mayb .colorvar__a{--backcolor:#d0caa9;--forecolor:#30302f;--accentcolor:#ec4a25;--otheraccentcolor:#fff}.scheme__mayb.colorvar__b,.scheme__mayb .colorvar__b{--backcolor:#30302f;--forecolor:#d0caa9;--accentcolor:#ec4a25;--otheraccentcolor:#fff}.scheme__mayb.colorvar__c,.scheme__mayb .colorvar__c{--backcolor:#ec4a25;--forecolor:#fff;--accentcolor:#d0caa9;--otheraccentcolor:#30302f}";
+  styleInject(css_248z$b);
+
+  var css_248z$c = ".scene_sceneContainer__IgSpB{width:100%;height:100%;display:flex;align-items:center;justify-content:center;position:relative}.scene_scene__3uvTl{--sw:calc(var(--w)/var(--p)/var(--fz));--sh:calc(var(--h)/var(--p)/var(--fz));--scal:calc(var(--pw)/var(--p)/var(--pw)/var(--fz));width:var(--sw);height:var(--sh);font-family:serif;user-select:none}.scene_wrapper__3yr1k{width:var(--w);height:var(--h);transform:scale(1);transform:scale(var(--scal));transform-origin:top left;overflow:hidden;padding:var(--scenepadding)}.scene_content__1rJf0{width:100%;height:100%;display:flex;flex-direction:column;overflow:hidden}.scene_bcontainer__3MFBK,.scene_fcontainer__1E_0g{top:0;left:0;width:100%;height:100%;position:absolute}.scene_viewport__3uNLS{width:100%;height:100%;position:relative;flex:1;overflow:hidden;display:flex;flex-direction:row}.scene_viewport__3uNLS>div{height:100%}";
+  var css = {"sceneContainer":"scene_sceneContainer__IgSpB","scene":"scene_scene__3uvTl","wrapper":"scene_wrapper__3yr1k","content":"scene_content__1rJf0","bcontainer":"scene_bcontainer__3MFBK","fcontainer":"scene_fcontainer__1E_0g","viewport":"scene_viewport__3uNLS"};
+  styleInject(css_248z$c);
 
   const select = selector => {
     return typeof selector === 'string' ? document.querySelector(selector) : selector;
@@ -122,13 +143,13 @@
     event
   };
 
-  var css_248z$6 = "\n.block_block__BWbaZ {\n  width: 100%;\n  height: 100%;\n  flex: 1;\n  flex: var(--blockweight);\n  overflow: hidden;\n}\n\n.block_inner__3LS6s {\n  width: 100%;\n  height: 100%;\n  background: var(--backcolor);\n  padding: var(--blockpadding);\n  opacity: var(--blockopacity);\n  mix-blend-mode: var(--blockblend);\n}\n";
+  var css_248z$d = ".block_block__BWbaZ{width:100%;height:100%;flex:1;flex:var(--blockweight);overflow:hidden}.block_inner__3LS6s{width:100%;height:100%;background:var(--backcolor);padding:var(--blockpadding);opacity:var(--blockopacity);mix-blend-mode:var(--blockblend)}";
   var css$1 = {"block":"block_block__BWbaZ","inner":"block_inner__3LS6s"};
-  styleInject(css_248z$6);
+  styleInject(css_248z$d);
 
-  var css_248z$7 = ".style_debug__1-XHT{\n    width: 100%;\n    height: 100%;\n    display: flex;\n    align-items: center;\n    justify-content: center;\n}";
+  var css_248z$e = ".style_debug__1-XHT{width:100%;height:100%;display:flex;align-items:center;justify-content:center}";
   var css$2 = {"debug":"style_debug__1-XHT"};
-  styleInject(css_248z$7);
+  styleInject(css_248z$e);
 
   const debug = function (_el, _config) {
     const el = utils.select(_el);
@@ -147,12 +168,12 @@
     // }, 1000)
   };
 
-  var css_248z$8 = ":root {\n  --textsize:1.5rem;\n  --textpadding: 1rem;\n  --textalign: center; }\n\n.textbox__inverted {\n  --textboxpadding: 1rem;\n  --textboxbackcolor: var(--forecolor);\n  --textboxradius: 0;\n  --textboxborder: 0;\n  --textboxshadow: 0 0 0 var(--accentcolor);\n  --textboxcolor: var(--backcolor); }\n\n.p.textposition__topleft .pretext,\n.p.textposition__tl .pretext {\n  align-items: flex-start;\n  justify-content: flex-start; }\n\n.p.textposition__topcenter .pretext,\n.p.textposition__tc .pretext {\n  align-items: flex-start;\n  justify-content: center; }\n\n.p.textposition__topright .pretext,\n.p.textposition__tr .pretext {\n  align-items: flex-start;\n  justify-content: flex-end; }\n\n.p.textposition__centerleft .pretext,\n.p.textposition__cl .pretext {\n  align-items: center;\n  justify-content: flex-start; }\n\n.p.textposition__center .pretext,\n.p.textposition__cc .pretext {\n  align-items: center;\n  justify-content: center; }\n\n.p.textposition__centerright .pretext,\n.p.textposition__cr .pretext {\n  align-items: center;\n  justify-content: flex-end; }\n\n.p.textposition__bottomleft .pretext,\n.p.textposition__bl .pretext {\n  align-items: flex-end;\n  justify-content: flex-start; }\n\n.p.textposition__bottomcenter .pretext,\n.p.textposition__bc .pretext {\n  align-items: flex-end;\n  justify-content: center; }\n\n.p.textposition__bottomright .pretext,\n.p.textposition__br .pretext {\n  align-items: flex-end;\n  justify-content: flex-end; }\n\n.s.textposition__topleft .pretext,\n.s.textposition__tl .pretext {\n  align-items: flex-start;\n  justify-content: flex-start; }\n\n.s.textposition__topcenter .pretext,\n.s.textposition__tc .pretext {\n  align-items: flex-start;\n  justify-content: center; }\n\n.s.textposition__topright .pretext,\n.s.textposition__tr .pretext {\n  align-items: flex-start;\n  justify-content: flex-end; }\n\n.s.textposition__centerleft .pretext,\n.s.textposition__cl .pretext {\n  align-items: center;\n  justify-content: flex-start; }\n\n.s.textposition__center .pretext,\n.s.textposition__cc .pretext {\n  align-items: center;\n  justify-content: center; }\n\n.s.textposition__centerright .pretext,\n.s.textposition__cr .pretext {\n  align-items: center;\n  justify-content: flex-end; }\n\n.s.textposition__bottomleft .pretext,\n.s.textposition__bl .pretext {\n  align-items: flex-end;\n  justify-content: flex-start; }\n\n.s.textposition__bottomcenter .pretext,\n.s.textposition__bc .pretext {\n  align-items: flex-end;\n  justify-content: center; }\n\n.s.textposition__bottomright .pretext,\n.s.textposition__br .pretext {\n  align-items: flex-end;\n  justify-content: flex-end; }\n\n.b.textposition__topleft .pretext,\n.b.textposition__tl .pretext {\n  align-items: flex-start;\n  justify-content: flex-start; }\n\n.b.textposition__topcenter .pretext,\n.b.textposition__tc .pretext {\n  align-items: flex-start;\n  justify-content: center; }\n\n.b.textposition__topright .pretext,\n.b.textposition__tr .pretext {\n  align-items: flex-start;\n  justify-content: flex-end; }\n\n.b.textposition__centerleft .pretext,\n.b.textposition__cl .pretext {\n  align-items: center;\n  justify-content: flex-start; }\n\n.b.textposition__center .pretext,\n.b.textposition__cc .pretext {\n  align-items: center;\n  justify-content: center; }\n\n.b.textposition__centerright .pretext,\n.b.textposition__cr .pretext {\n  align-items: center;\n  justify-content: flex-end; }\n\n.b.textposition__bottomleft .pretext,\n.b.textposition__bl .pretext {\n  align-items: flex-end;\n  justify-content: flex-start; }\n\n.b.textposition__bottomcenter .pretext,\n.b.textposition__bc .pretext {\n  align-items: flex-end;\n  justify-content: center; }\n\n.b.textposition__bottomright .pretext,\n.b.textposition__br .pretext {\n  align-items: flex-end;\n  justify-content: flex-end; }\n";
-  styleInject(css_248z$8);
+  var css_248z$f = ":root{--textsize:1.5rem;--textpadding:1rem;--textalign:center}.textbox__inverted{--textboxpadding:1rem;--textboxbackcolor:var(--forecolor);--textboxradius:0;--textboxborder:0;--textboxshadow:0 0 0 var(--accentcolor);--textboxcolor:var(--backcolor)}.p.textposition__tl .pretext,.p.textposition__topleft .pretext{align-items:flex-start;justify-content:flex-start}.p.textposition__tc .pretext,.p.textposition__topcenter .pretext{align-items:flex-start;justify-content:center}.p.textposition__topright .pretext,.p.textposition__tr .pretext{align-items:flex-start;justify-content:flex-end}.p.textposition__centerleft .pretext,.p.textposition__cl .pretext{align-items:center;justify-content:flex-start}.p.textposition__cc .pretext,.p.textposition__center .pretext{align-items:center;justify-content:center}.p.textposition__centerright .pretext,.p.textposition__cr .pretext{align-items:center;justify-content:flex-end}.p.textposition__bl .pretext,.p.textposition__bottomleft .pretext{align-items:flex-end;justify-content:flex-start}.p.textposition__bc .pretext,.p.textposition__bottomcenter .pretext{align-items:flex-end;justify-content:center}.p.textposition__bottomright .pretext,.p.textposition__br .pretext{align-items:flex-end;justify-content:flex-end}.s.textposition__tl .pretext,.s.textposition__topleft .pretext{align-items:flex-start;justify-content:flex-start}.s.textposition__tc .pretext,.s.textposition__topcenter .pretext{align-items:flex-start;justify-content:center}.s.textposition__topright .pretext,.s.textposition__tr .pretext{align-items:flex-start;justify-content:flex-end}.s.textposition__centerleft .pretext,.s.textposition__cl .pretext{align-items:center;justify-content:flex-start}.s.textposition__cc .pretext,.s.textposition__center .pretext{align-items:center;justify-content:center}.s.textposition__centerright .pretext,.s.textposition__cr .pretext{align-items:center;justify-content:flex-end}.s.textposition__bl .pretext,.s.textposition__bottomleft .pretext{align-items:flex-end;justify-content:flex-start}.s.textposition__bc .pretext,.s.textposition__bottomcenter .pretext{align-items:flex-end;justify-content:center}.s.textposition__bottomright .pretext,.s.textposition__br .pretext{align-items:flex-end;justify-content:flex-end}.b.textposition__tl .pretext,.b.textposition__topleft .pretext{align-items:flex-start;justify-content:flex-start}.b.textposition__tc .pretext,.b.textposition__topcenter .pretext{align-items:flex-start;justify-content:center}.b.textposition__topright .pretext,.b.textposition__tr .pretext{align-items:flex-start;justify-content:flex-end}.b.textposition__centerleft .pretext,.b.textposition__cl .pretext{align-items:center;justify-content:flex-start}.b.textposition__cc .pretext,.b.textposition__center .pretext{align-items:center;justify-content:center}.b.textposition__centerright .pretext,.b.textposition__cr .pretext{align-items:center;justify-content:flex-end}.b.textposition__bl .pretext,.b.textposition__bottomleft .pretext{align-items:flex-end;justify-content:flex-start}.b.textposition__bc .pretext,.b.textposition__bottomcenter .pretext{align-items:flex-end;justify-content:center}.b.textposition__bottomright .pretext,.b.textposition__br .pretext{align-items:flex-end;justify-content:flex-end}";
+  styleInject(css_248z$f);
 
-  var css_248z$9 = ".style_text__3T1cl{\n    width: 100%;\n    height: 100%;\n    position: relative;\n    color: var(--forecolor)\n}\n\n.style_inner__11UJC{\n    position: relative;\n    width: 100%;\n    height: 100%;\n}\n\n.style_pretext__cLjqD{\n    display: flex;\n    width: 100%;\n    height: 100%;\n    align-items: center;\n    justify-content: center;\n}\n\n.style_textbox__1Vb-V{\n    padding: var(--textboxpadding);\n    text-align: var(--textalign);\n    /*overflow: hidden; */ /* removed for shadow, maybe neccessary */\n    font-size: var(--textsize);\n    color: var(--textboxcolor);\n    --backmark: var(--accentcolor);\n    --foremark: var(--backcolor);\n    --textaccentcolor: var(--accentcolor);\n    font-family: var(--fontText);\n}\n\n.style_itext__jz90o{\n    border: var(--textboxborder) solid var(--accentcolor);\n    padding: var(--textpadding);\n    border-radius: var(--textboxradius);\n    box-shadow: var(--textboxshadow);\n    background-color: var(--textboxbackcolor);\n}\n\n.style_itext__jz90o img{\n    object-fit: contain;\n    height: 4em;\n    vertical-align: middle;\n}\n\n\n.style_itext__jz90o mark {\n  background-color: var(--backmark);\n  color: var(--foremark);\n  padding: 0 0.5rem;\n}\n.style_itext__jz90o high {\n  color: var(--textaccentcolor);\n}\n.style_itext__jz90o bord {\n  border: 8px solid var(--backmark);\n  padding: 0 0.5rem;\n}\n.style_itext__jz90o a {\n  color: var(--textaccentcolor);\n}\n\n.style_itext__jz90o blockquote {\n  font-size: 2em;\n  font-weight: 400;\n  font-style: italic;\n}\n\n.style_itext__jz90o h1,\n.style_itext__jz90o h2,\n.style_itext__jz90o h3,\n.style_itext__jz90o h4,\n.style_itext__jz90o h5,\n.style_itext__jz90o h6,\n.style_itext__jz90o p,\n.style_itext__jz90o ul,\n.style_itext__jz90o blockquote {\n  margin: 0;\n}\n\n.style_itext__jz90o ul,\n.style_itext__jz90o ol {\n  font-size: 1.5em;\n  line-height: 1.1em;\n  text-align: left;\n  margin: 0;\n  padding: 0;\n  list-style-type: none;\n  counter-reset: li;\n  padding: 0.5rem 0;\n}\n\n.style_itext__jz90o li{\n  padding: 0.25rem 0;\n  list-style-position:inside;\n  margin-bottom: 2px;\n  padding: .25em;\n  padding-left: 0.8em;\n}\n.style_itext__jz90o ul li::before {\n  content: \"\\2013\"; \n  display: inline-block; \n  width: 0.8em;\n  margin-left: -0.8em;\n}\n.style_itext__jz90o ol li::before {\n  counter-increment: li;  \n  content:  \".\" counter(li); \n  display: inline-block; \n  width: 1.1em; \n  margin-left: -1.3em;\n  margin-right: 0.2em; \n  text-align: right; \n  direction: rtl;\n}\n\n.style_itext__jz90o li p{\n  display: inline;\n}\n\n\n.style_itext__jz90o pre, .style_itext__jz90o code{\n  text-align: left;\n}\n\n\n.style_itext__jz90o h1,\n.style_itext__jz90o h2,\n.style_itext__jz90o h3,\n.style_itext__jz90o h4,\n.style_itext__jz90o h5,\n.style_itext__jz90o h6 {\n  font-family: var(--fontHeading);\n  padding: .5rem 0;\n}\n\n.style_itext__jz90o h1{\n  font-size: 2em;\n}\n.style_itext__jz90o h2{\n  font-size: 1.5em;\n}\n.style_itext__jz90o h3{\n  font-size: 1.17em;\n}\n.style_itext__jz90o h4{\n  font-size: 1em;\n}\n.style_itext__jz90o h5{\n  font-size: 0.83em;\n}\n.style_itext__jz90o h6{\n  font-size: 0.67em;\n}\n\n.style_itext__jz90o p{\n  padding: .5rem 0;\n}\n\n.style_itext__jz90o hr{\n  border: 1px solid var(--forecolor);\n  margin: .5rem 0;\n}\n\n.style_itext__jz90o h1:first-child,\n.style_itext__jz90o h2:first-child,\n.style_itext__jz90o h3:first-child,\n.style_itext__jz90o h1:last-child,\n.style_itext__jz90o h2:last-child,\n.style_itext__jz90o h3:last-child{\n    padding: 0;\n}\n\n.style_itext__jz90o table{\n    width: 100%;\n}\n.style_itext__jz90o tr{\n    padding: 0;\n}\n\n.style_itext__jz90o td, .style_itext__jz90o th{\n    padding:.5rem;\n    border-bottom:1px solid var(--forecolor);\n}\n\n";
+  var css_248z$g = ".style_text__3T1cl{color:var(--forecolor)}.style_inner__11UJC,.style_text__3T1cl{width:100%;height:100%;position:relative}.style_pretext__cLjqD{display:flex;width:100%;height:100%;align-items:center;justify-content:center}.style_textbox__1Vb-V{padding:var(--textboxpadding);text-align:var(--textalign);font-size:var(--textsize);color:var(--textboxcolor);--backmark:var(--accentcolor);--foremark:var(--backcolor);--textaccentcolor:var(--accentcolor);font-family:var(--fontText)}.style_itext__jz90o{border:var(--textboxborder) solid var(--accentcolor);padding:var(--textpadding);border-radius:var(--textboxradius);box-shadow:var(--textboxshadow);background-color:var(--textboxbackcolor)}.style_itext__jz90o img{object-fit:contain;height:4em;vertical-align:middle}.style_itext__jz90o mark{background-color:var(--backmark);color:var(--foremark);padding:0 .5rem}.style_itext__jz90o high{color:var(--textaccentcolor)}.style_itext__jz90o bord{border:8px solid var(--backmark);padding:0 .5rem}.style_itext__jz90o a{color:var(--textaccentcolor)}.style_itext__jz90o blockquote{font-size:2em;font-weight:400;font-style:italic}.style_itext__jz90o blockquote,.style_itext__jz90o h1,.style_itext__jz90o h2,.style_itext__jz90o h3,.style_itext__jz90o h4,.style_itext__jz90o h5,.style_itext__jz90o h6,.style_itext__jz90o p,.style_itext__jz90o ul{margin:0}.style_itext__jz90o ol,.style_itext__jz90o ul{font-size:1.5em;line-height:1.1em;text-align:left;margin:0;list-style-type:none;counter-reset:li;padding:.5rem 0}.style_itext__jz90o li{list-style-position:inside;margin-bottom:2px;padding:.25em .25em .25em .8em}.style_itext__jz90o ul li:before{content:\"\\2013\";display:inline-block;width:.8em;margin-left:-.8em}.style_itext__jz90o ol li:before{counter-increment:li;content:\".\" counter(li);display:inline-block;width:1.1em;margin-left:-1.3em;margin-right:.2em;text-align:right;direction:rtl}.style_itext__jz90o li p{display:inline}.style_itext__jz90o code,.style_itext__jz90o pre{text-align:left}.style_itext__jz90o h1,.style_itext__jz90o h2,.style_itext__jz90o h3,.style_itext__jz90o h4,.style_itext__jz90o h5,.style_itext__jz90o h6{font-family:var(--fontHeading);padding:.5rem 0}.style_itext__jz90o h1{font-size:2em}.style_itext__jz90o h2{font-size:1.5em}.style_itext__jz90o h3{font-size:1.17em}.style_itext__jz90o h4{font-size:1em}.style_itext__jz90o h5{font-size:.83em}.style_itext__jz90o h6{font-size:.67em}.style_itext__jz90o p{padding:.5rem 0}.style_itext__jz90o hr{border:1px solid var(--forecolor);margin:.5rem 0}.style_itext__jz90o h1:first-child,.style_itext__jz90o h1:last-child,.style_itext__jz90o h2:first-child,.style_itext__jz90o h2:last-child,.style_itext__jz90o h3:first-child,.style_itext__jz90o h3:last-child{padding:0}.style_itext__jz90o table{width:100%}.style_itext__jz90o tr{padding:0}.style_itext__jz90o td,.style_itext__jz90o th{padding:.5rem;border-bottom:1px solid var(--forecolor)}";
   var css$3 = {"text":"style_text__3T1cl","inner":"style_inner__11UJC","pretext":"style_pretext__cLjqD","textbox":"style_textbox__1Vb-V","itext":"style_itext__jz90o"};
-  styleInject(css_248z$9);
+  styleInject(css_248z$g);
 
   const text = function (el, config) {
     const html = config.text || '';
@@ -213,12 +234,12 @@
     setTimeout(compute);
   };
 
-  var css_248z$a = ".presenta{\n    --embedpadding: 0;\n    --embedbackcolor: none;\n}";
-  styleInject(css_248z$a);
+  var css_248z$h = ".presenta{--embedpadding:0;--embedbackcolor:none}";
+  styleInject(css_248z$h);
 
-  var css_248z$b = ".style_embed__2Pre2{\n}\n\n.style_inner__3WOWs{\n    padding: var(--embedpadding);\n    position: relative;\n}\n\n.style_frame__28PUh{\n    background-color: var(--embedbackcolor);\n    position: relative;\n}\n\n.style_embed__2Pre2, .style_inner__3WOWs, .style_frame__28PUh{\n    width: 100%;\n    height: 100%;\n}\n\niframe{\n    width: 100%;\n    height: 100%;\n    border: none;\n}\n\n.style_loading__1w7wc{\n    position: absolute;\n    top:0;\n    left:0;\n    width: 100%;\n    height: 100%;\n    display: flex;\n    align-items: center;\n    justify-content: center;\n    color:var(--forecolor);\n    font-family: var(--fontText);\n    background-color: var(--backcolor);\n}\n\n.style_blockmouse__3bXSl{\n    position: absolute;\n    top:0;\n    left:0;\n    width: 100%;\n    height: 100%;\n}\n\n.style_poster__1TOx3{\n    position: absolute;\n    top:0;\n    left:0;\n    width: 100%;\n    height: 100%;\n    background-color: var(--backcolor);\n}\n.style_poster__1TOx3 img{\n    width: 100%;\n    height: 100%;\n}\n";
+  var css_248z$i = ".style_inner__3WOWs{padding:var(--embedpadding);position:relative}.style_frame__28PUh{background-color:var(--embedbackcolor);position:relative}.style_embed__2Pre2,.style_frame__28PUh,.style_inner__3WOWs,iframe{width:100%;height:100%}iframe{border:none}.style_loading__1w7wc{display:flex;align-items:center;justify-content:center;color:var(--forecolor);font-family:var(--fontText);background-color:var(--backcolor)}.style_blockmouse__3bXSl,.style_loading__1w7wc,.style_poster__1TOx3{position:absolute;top:0;left:0;width:100%;height:100%}.style_poster__1TOx3{background-color:var(--backcolor)}.style_poster__1TOx3 img{width:100%;height:100%}";
   var css$4 = {"embed":"style_embed__2Pre2","inner":"style_inner__3WOWs","frame":"style_frame__28PUh","loading":"style_loading__1w7wc","blockmouse":"style_blockmouse__3bXSl","poster":"style_poster__1TOx3"};
-  styleInject(css_248z$b);
+  styleInject(css_248z$i);
 
   const iframePrimaryDomain = str => {
     if (!str) return '';
@@ -267,9 +288,9 @@
     }
   };
 
-  var css_248z$c = ".style_image__1fZIQ{\n    width: 100%;\n    height: 100%;\n}\n\n.style_inner__3tyMU{\n    display: flex;\n    width: 100%;\n    height: 100%;\n}\n\n.style_preimg__2ypvx{\n    overflow: hidden;\n    flex:1;\n}\n.style_preimg__2ypvx img{\n    width: 100%;\n    height:100%;\n}";
+  var css_248z$j = ".style_image__1fZIQ,.style_inner__3tyMU{width:100%;height:100%}.style_inner__3tyMU{display:flex}.style_preimg__2ypvx{overflow:hidden;flex:1}.style_preimg__2ypvx img{width:100%;height:100%}";
   var css$5 = {"image":"style_image__1fZIQ","inner":"style_inner__3tyMU","preimg":"style_preimg__2ypvx"};
-  styleInject(css_248z$c);
+  styleInject(css_248z$j);
 
   const image = function (el, config) {
     const size = config.size || 'cover';
@@ -291,9 +312,9 @@
     el.appendChild(child);
   };
 
-  var css_248z$d = ".style_video__1qbdJ{\n    width: 100%;\n    height: 100%;\n    \n    display: flex;\n    align-items: center;\n    justify-content: center;\n}\n\n.style_video__1qbdJ video{\n    width: 100%;\n    height: 100%;\n}";
+  var css_248z$k = ".style_video__1qbdJ{display:flex;align-items:center;justify-content:center}.style_video__1qbdJ,.style_video__1qbdJ video{width:100%;height:100%}";
   var css$6 = {"video":"style_video__1qbdJ"};
-  styleInject(css_248z$d);
+  styleInject(css_248z$k);
 
   const video = function (el, config, rootElement, projectConfig) {
     const previewMode = projectConfig.mode === 'preview';
@@ -341,9 +362,9 @@
     if (presentMode) rootElement.addEventListener('keyup', setKeyListener);
   };
 
-  var css_248z$e = ".style_solid__wiwvr{\n    width: 100%;\n    height: 100%;\n    display: flex;\n    align-items: center;\n    justify-content: center;\n}";
+  var css_248z$l = ".style_solid__wiwvr{width:100%;height:100%;display:flex;align-items:center;justify-content:center}";
   var css$7 = {"solid":"style_solid__wiwvr"};
-  styleInject(css_248z$e);
+  styleInject(css_248z$l);
 
   const solid = function (el, config) {
     const style = `style="background:${config.color};"`;
@@ -417,12 +438,12 @@
     blocksElement.appendChild(child);
   };
 
-  var css_248z$f = ".presenta{\n    --pagenumber__padding:.5rem; \n    --pagenumber__textalign:right; \n}\n\n.pagenumberContent{\n    color:var(--forecolor);\n    font-family: var(--fontText);\n}\n\n.pagenumber__style__inverted .pagenumberContent{\n    background-color: var(--forecolor);\n    color:var(--backcolor);\n}";
-  styleInject(css_248z$f);
+  var css_248z$m = ".presenta{--pagenumber__padding:.5rem;--pagenumber__textalign:right}.pagenumberContent{color:var(--forecolor);font-family:var(--fontText)}.pagenumber__style__inverted .pagenumberContent{background-color:var(--forecolor);color:var(--backcolor)}";
+  styleInject(css_248z$m);
 
-  var css_248z$g = ".style_pagenumber__2BX53{\n    width: 100%;\n    height: 100%;\n    display: flex;\n    align-items: flex-end;   \n}\n\n.style_pagenumber__2BX53 > div{\n    width: 100%;\n    text-align: var(--pagenumber__textalign);\n    padding: var(--pagenumber__padding);\n}\n";
+  var css_248z$n = ".style_pagenumber__2BX53{width:100%;height:100%;display:flex;align-items:flex-end}.style_pagenumber__2BX53>div{width:100%;text-align:var(--pagenumber__textalign);padding:var(--pagenumber__padding)}";
   var css$8 = {"pagenumber":"style_pagenumber__2BX53"};
-  styleInject(css_248z$g);
+  styleInject(css_248z$n);
 
   const pagenumber = function (sceneElement, modConfig, sceneConfig, projectConfig) {
     const front = sceneElement.querySelector('.frontContainer');
@@ -454,14 +475,14 @@
 
   add$1('pagenumber', pagenumber);
 
-  var css_248z$h = ".transition__horizontalSlide .p-scene-enter-transition {\n  transition: transform 1s cubic-bezier(1, 0, 0, 1); }\n\n.transition__horizontalSlide .to-right.p-scene-enter-start {\n  transform: translateX(100%); }\n\n.transition__horizontalSlide .to-right.p-scene-enter-end {\n  transform: translateX(0); }\n\n.transition__horizontalSlide .to-left.p-scene-enter-start {\n  transform: translateX(-100%); }\n\n.transition__horizontalSlide .to-left.p-scene-enter-end {\n  transform: translateX(0); }\n\n.transition__horizontalSlide .p-scene-leave-transition {\n  transition: transform 1s cubic-bezier(1, 0, 0, 1); }\n\n.transition__horizontalSlide .to-right.p-scene-leave-start {\n  transform: translateX(0); }\n\n.transition__horizontalSlide .to-right.p-scene-leave-end {\n  transform: translateX(-100%); }\n\n.transition__horizontalSlide .to-left.p-scene-leave-start {\n  transform: translateX(0); }\n\n.transition__horizontalSlide .to-left.p-scene-leave-end {\n  transform: translateX(100%); }\n";
-  styleInject(css_248z$h);
+  var css_248z$o = ".transition__horizontalSlide .p-scene-enter-transition{transition:transform 1s cubic-bezier(1,0,0,1)}.transition__horizontalSlide .to-right.p-scene-enter-start{transform:translateX(100%)}.transition__horizontalSlide .to-right.p-scene-enter-end{transform:translateX(0)}.transition__horizontalSlide .to-left.p-scene-enter-start{transform:translateX(-100%)}.transition__horizontalSlide .to-left.p-scene-enter-end{transform:translateX(0)}.transition__horizontalSlide .p-scene-leave-transition{transition:transform 1s cubic-bezier(1,0,0,1)}.transition__horizontalSlide .to-right.p-scene-leave-start{transform:translateX(0)}.transition__horizontalSlide .to-right.p-scene-leave-end{transform:translateX(-100%)}.transition__horizontalSlide .to-left.p-scene-leave-start{transform:translateX(0)}.transition__horizontalSlide .to-left.p-scene-leave-end{transform:translateX(100%)}";
+  styleInject(css_248z$o);
 
-  var css_248z$i = ".transition__verticalIn .p-scene-enter-transition {\n  transition: all 0.75s cubic-bezier(0.2, 0.8, 0.05, 0.95); }\n\n.transition__verticalIn .p-scene-enter-start {\n  transform: translateY(150%); }\n\n.transition__verticalIn .p-scene-enter-end {\n  transform: translateY(0); }\n\n.transition__verticalIn .p-scene-leave-transition {\n  transition: all 0.75s cubic-bezier(0.2, 0.8, 0.05, 0.95); }\n\n.transition__verticalIn .p-scene-leave-start {\n  transform: scale(1); }\n\n.transition__verticalIn .p-scene-leave-end {\n  transform: scale(0.5); }\n";
-  styleInject(css_248z$i);
+  var css_248z$p = ".transition__verticalIn .p-scene-enter-transition{transition:all .75s cubic-bezier(.2,.8,.05,.95)}.transition__verticalIn .p-scene-enter-start{transform:translateY(150%)}.transition__verticalIn .p-scene-enter-end{transform:translateY(0)}.transition__verticalIn .p-scene-leave-transition{transition:all .75s cubic-bezier(.2,.8,.05,.95)}.transition__verticalIn .p-scene-leave-start{transform:scale(1)}.transition__verticalIn .p-scene-leave-end{transform:scale(.5)}";
+  styleInject(css_248z$p);
 
-  var css_248z$j = ".transition__outIn .p-scene-enter-transition {\n  opacity: 0; }\n\n.transition__outIn .p-scene-enter-ended {\n  opacity: 1; }\n\n.transition__outIn .p-scene-enter-transition .textContent > * {\n  transition: opacity 1s ease-out, transform 1s cubic-bezier(0.2, 0.8, 0.05, 0.95); }\n\n.transition__outIn .p-scene-enter-transition .textContent > *:nth-child(1) {\n  transition-delay: 1.15s; }\n\n.transition__outIn .p-scene-enter-transition .textContent > *:nth-child(2) {\n  transition-delay: 1.3s; }\n\n.transition__outIn .p-scene-enter-transition .textContent > *:nth-child(3) {\n  transition-delay: 1.45s; }\n\n.transition__outIn .p-scene-enter-transition .textContent > *:nth-child(4) {\n  transition-delay: 1.6s; }\n\n.transition__outIn .p-scene-enter-transition .textContent > *:nth-child(5) {\n  transition-delay: 1.75s; }\n\n.transition__outIn .p-scene-enter-transition .textContent > *:nth-child(6) {\n  transition-delay: 1.9s; }\n\n.transition__outIn .p-scene-enter-transition .textContent > *:nth-child(7) {\n  transition-delay: 2.05s; }\n\n.transition__outIn .p-scene-enter-transition .textContent > *:nth-child(8) {\n  transition-delay: 2.2s; }\n\n.transition__outIn .p-scene-enter-transition .textContent > *:nth-child(9) {\n  transition-delay: 2.35s; }\n\n.transition__outIn .p-scene-enter-transition .textContent > *:nth-child(10) {\n  transition-delay: 2.5s; }\n\n.transition__outIn .p-scene-enter-transition .textContent > *:nth-child(11) {\n  transition-delay: 2.65s; }\n\n.transition__outIn .p-scene-enter-transition .textContent > *:nth-child(12) {\n  transition-delay: 2.8s; }\n\n.transition__outIn .p-scene-enter-transition .textContent > *:nth-child(13) {\n  transition-delay: 2.95s; }\n\n.transition__outIn .p-scene-enter-transition .textContent > *:nth-child(14) {\n  transition-delay: 3.1s; }\n\n.transition__outIn .p-scene-enter-transition .textContent > *:nth-child(15) {\n  transition-delay: 3.25s; }\n\n.transition__outIn .p-scene-enter-transition .textContent > *:nth-child(16) {\n  transition-delay: 3.4s; }\n\n.transition__outIn .p-scene-enter-transition .textContent > *:nth-child(17) {\n  transition-delay: 3.55s; }\n\n.transition__outIn .p-scene-enter-transition .textContent > *:nth-child(18) {\n  transition-delay: 3.7s; }\n\n.transition__outIn .p-scene-enter-transition .textContent > *:nth-child(19) {\n  transition-delay: 3.85s; }\n\n.transition__outIn .p-scene-enter-transition .textContent > *:nth-child(20) {\n  transition-delay: 4s; }\n\n.transition__outIn .p-scene-enter-transition .blockContainer > div {\n  transition: background-color 1s cubic-bezier(1, 0, 0, 1);\n  transition-delay: 1s; }\n\n.transition__outIn .p-scene-enter-start .blockContainer > div {\n  background-color: rgba(0, 0, 0, 0); }\n\n.transition__outIn .p-scene-enter-start .textContent > * {\n  opacity: 0;\n  transform: translateY(30px); }\n\n.transition__outIn .p-scene-enter-end .textContent > * {\n  opacity: 1;\n  transform: translateY(0px); }\n\n.transition__outIn .p-scene-leave-transition .textContent > * {\n  transition: opacity .75s cubic-bezier(0.165, 0.84, 0.44, 1), transform .75s cubic-bezier(0.165, 0.84, 0.44, 1); }\n\n.transition__outIn .p-scene-leave-transition .textContent > *:nth-child(0) {\n  transition-delay: 0s; }\n\n.transition__outIn .p-scene-leave-transition .textContent > *:nth-child(1) {\n  transition-delay: 0.1s; }\n\n.transition__outIn .p-scene-leave-transition .textContent > *:nth-child(2) {\n  transition-delay: 0.2s; }\n\n.transition__outIn .p-scene-leave-transition .textContent > *:nth-child(3) {\n  transition-delay: 0.3s; }\n\n.transition__outIn .p-scene-leave-transition .textContent > *:nth-child(4) {\n  transition-delay: 0.4s; }\n\n.transition__outIn .p-scene-leave-transition .textContent > *:nth-child(5) {\n  transition-delay: 0.5s; }\n\n.transition__outIn .p-scene-leave-transition .textContent > *:nth-child(6) {\n  transition-delay: 0.6s; }\n\n.transition__outIn .p-scene-leave-transition .textContent > *:nth-child(7) {\n  transition-delay: 0.7s; }\n\n.transition__outIn .p-scene-leave-transition .textContent > *:nth-child(8) {\n  transition-delay: 0.8s; }\n\n.transition__outIn .p-scene-leave-transition .textContent > *:nth-child(9) {\n  transition-delay: 0.9s; }\n\n.transition__outIn .p-scene-leave-transition .textContent > *:nth-child(10) {\n  transition-delay: 1s; }\n\n.transition__outIn .p-scene-leave-transition .textContent > *:nth-child(11) {\n  transition-delay: 1.1s; }\n\n.transition__outIn .p-scene-leave-transition .textContent > *:nth-child(12) {\n  transition-delay: 1.2s; }\n\n.transition__outIn .p-scene-leave-transition .textContent > *:nth-child(13) {\n  transition-delay: 1.3s; }\n\n.transition__outIn .p-scene-leave-transition .textContent > *:nth-child(14) {\n  transition-delay: 1.4s; }\n\n.transition__outIn .p-scene-leave-transition .textContent > *:nth-child(15) {\n  transition-delay: 1.5s; }\n\n.transition__outIn .p-scene-leave-transition .textContent > *:nth-child(16) {\n  transition-delay: 1.6s; }\n\n.transition__outIn .p-scene-leave-transition .textContent > *:nth-child(17) {\n  transition-delay: 1.7s; }\n\n.transition__outIn .p-scene-leave-transition .textContent > *:nth-child(18) {\n  transition-delay: 1.8s; }\n\n.transition__outIn .p-scene-leave-transition .textContent > *:nth-child(19) {\n  transition-delay: 1.9s; }\n\n.transition__outIn .p-scene-leave-transition .textContent > *:nth-child(20) {\n  transition-delay: 2s; }\n\n.transition__outIn .p-scene-leave-start .textContent > * {\n  opacity: 1;\n  transform: scale(1); }\n\n.transition__outIn .p-scene-leave-end .textContent > * {\n  opacity: 0;\n  transform: scale(0.85); }\n";
-  styleInject(css_248z$j);
+  var css_248z$q = ".transition__outIn .p-scene-enter-transition{opacity:0}.transition__outIn .p-scene-enter-ended{opacity:1}.transition__outIn .p-scene-enter-transition .textContent>*{transition:opacity 1s ease-out,transform 1s cubic-bezier(.2,.8,.05,.95)}.transition__outIn .p-scene-enter-transition .textContent>:first-child{transition-delay:1.15s}.transition__outIn .p-scene-enter-transition .textContent>:nth-child(2){transition-delay:1.3s}.transition__outIn .p-scene-enter-transition .textContent>:nth-child(3){transition-delay:1.45s}.transition__outIn .p-scene-enter-transition .textContent>:nth-child(4){transition-delay:1.6s}.transition__outIn .p-scene-enter-transition .textContent>:nth-child(5){transition-delay:1.75s}.transition__outIn .p-scene-enter-transition .textContent>:nth-child(6){transition-delay:1.9s}.transition__outIn .p-scene-enter-transition .textContent>:nth-child(7){transition-delay:2.05s}.transition__outIn .p-scene-enter-transition .textContent>:nth-child(8){transition-delay:2.2s}.transition__outIn .p-scene-enter-transition .textContent>:nth-child(9){transition-delay:2.35s}.transition__outIn .p-scene-enter-transition .textContent>:nth-child(10){transition-delay:2.5s}.transition__outIn .p-scene-enter-transition .textContent>:nth-child(11){transition-delay:2.65s}.transition__outIn .p-scene-enter-transition .textContent>:nth-child(12){transition-delay:2.8s}.transition__outIn .p-scene-enter-transition .textContent>:nth-child(13){transition-delay:2.95s}.transition__outIn .p-scene-enter-transition .textContent>:nth-child(14){transition-delay:3.1s}.transition__outIn .p-scene-enter-transition .textContent>:nth-child(15){transition-delay:3.25s}.transition__outIn .p-scene-enter-transition .textContent>:nth-child(16){transition-delay:3.4s}.transition__outIn .p-scene-enter-transition .textContent>:nth-child(17){transition-delay:3.55s}.transition__outIn .p-scene-enter-transition .textContent>:nth-child(18){transition-delay:3.7s}.transition__outIn .p-scene-enter-transition .textContent>:nth-child(19){transition-delay:3.85s}.transition__outIn .p-scene-enter-transition .textContent>:nth-child(20){transition-delay:4s}.transition__outIn .p-scene-enter-transition .blockContainer>div{transition:background-color 1s cubic-bezier(1,0,0,1);transition-delay:1s}.transition__outIn .p-scene-enter-start .blockContainer>div{background-color:transparent}.transition__outIn .p-scene-enter-start .textContent>*{opacity:0;transform:translateY(30px)}.transition__outIn .p-scene-enter-end .textContent>*{opacity:1;transform:translateY(0)}.transition__outIn .p-scene-leave-transition .textContent>*{transition:opacity .75s cubic-bezier(.165,.84,.44,1),transform .75s cubic-bezier(.165,.84,.44,1)}.transition__outIn .p-scene-leave-transition .textContent>:nth-child(0){transition-delay:0s}.transition__outIn .p-scene-leave-transition .textContent>:first-child{transition-delay:.1s}.transition__outIn .p-scene-leave-transition .textContent>:nth-child(2){transition-delay:.2s}.transition__outIn .p-scene-leave-transition .textContent>:nth-child(3){transition-delay:.3s}.transition__outIn .p-scene-leave-transition .textContent>:nth-child(4){transition-delay:.4s}.transition__outIn .p-scene-leave-transition .textContent>:nth-child(5){transition-delay:.5s}.transition__outIn .p-scene-leave-transition .textContent>:nth-child(6){transition-delay:.6s}.transition__outIn .p-scene-leave-transition .textContent>:nth-child(7){transition-delay:.7s}.transition__outIn .p-scene-leave-transition .textContent>:nth-child(8){transition-delay:.8s}.transition__outIn .p-scene-leave-transition .textContent>:nth-child(9){transition-delay:.9s}.transition__outIn .p-scene-leave-transition .textContent>:nth-child(10){transition-delay:1s}.transition__outIn .p-scene-leave-transition .textContent>:nth-child(11){transition-delay:1.1s}.transition__outIn .p-scene-leave-transition .textContent>:nth-child(12){transition-delay:1.2s}.transition__outIn .p-scene-leave-transition .textContent>:nth-child(13){transition-delay:1.3s}.transition__outIn .p-scene-leave-transition .textContent>:nth-child(14){transition-delay:1.4s}.transition__outIn .p-scene-leave-transition .textContent>:nth-child(15){transition-delay:1.5s}.transition__outIn .p-scene-leave-transition .textContent>:nth-child(16){transition-delay:1.6s}.transition__outIn .p-scene-leave-transition .textContent>:nth-child(17){transition-delay:1.7s}.transition__outIn .p-scene-leave-transition .textContent>:nth-child(18){transition-delay:1.8s}.transition__outIn .p-scene-leave-transition .textContent>:nth-child(19){transition-delay:1.9s}.transition__outIn .p-scene-leave-transition .textContent>:nth-child(20){transition-delay:2s}.transition__outIn .p-scene-leave-start .textContent>*{opacity:1;transform:scale(1)}.transition__outIn .p-scene-leave-end .textContent>*{opacity:0;transform:scale(.85)}";
+  styleInject(css_248z$q);
 
   const transition = wrapper => {
     const functor = function (wrapper) {
@@ -659,9 +680,9 @@
     this.sceneConfig = sceneConfig;
   };
 
-  var css_248z$k = ".container_container__3kBNh {\n    width: 100%;\n    height: 100%;\n    position: relative;\n    overflow: hidden;\n}\n\n.container_container__3kBNh > div{\n    position: absolute;\n    top:0;\n    left:0;\n    width: 100%;\n}";
+  var css_248z$r = ".container_container__3kBNh{width:100%;height:100%;position:relative;overflow:hidden}.container_container__3kBNh>div{position:absolute;top:0;left:0;width:100%}";
   var css$9 = {"container":"container_container__3kBNh"};
-  styleInject(css_248z$k);
+  styleInject(css_248z$r);
 
   const autoplay = function (rootElement, router, config) {
     let timer = null;
@@ -677,7 +698,6 @@
       }, delay);
     };
 
-    runTime(defdelay);
     router.on('end', evt => {
       if (loop) {
         router.goto(0);
@@ -717,9 +737,12 @@
     rootElement.addEventListener('keyup', setKeyListener);
   };
 
-  var css_248z$l = ".style_arrows__2HgOY{\n    position: absolute;\n    top:0;\n    left:0;\n    width: 100%;\n    height: 100%;\n    display: flex;\n    align-items: center;\n    justify-content: space-between;\n    transition: opacity .35s;\n}\n\n.style_left__3_kwS, .style_right__RERAa{\n    width: 50px;\n    height: 50px;\n    background-color: var(--forecolor);\n    transition: background-color .3s;\n    cursor: pointer;\n}\n\n\n.style_arrows__2HgOY.style_hide__3B8Al{\n    opacity: 0;\n}";
+  var css_248z$s = ":root{--arrowsColor:var(--forecolor)}";
+  styleInject(css_248z$s);
+
+  var css_248z$t = ".style_arrows__2HgOY{position:absolute;top:0;left:0;width:100%;height:100%;display:flex;align-items:center;justify-content:space-between;transition:opacity .35s}.style_left__3_kwS,.style_right__RERAa{width:50px;height:50px;background-color:var(--arrowsColor);transition:background-color .3s ease-in-out;cursor:pointer}.style_arrows__2HgOY.style_hide__3B8Al{opacity:0}";
   var css$a = {"arrows":"style_arrows__2HgOY","left":"style_left__3_kwS","right":"style_right__RERAa","hide":"style_hide__3B8Al"};
-  styleInject(css_248z$l);
+  styleInject(css_248z$t);
 
   const arrows = function (rootElement, router, config) {
     let timer = null;
@@ -751,9 +774,9 @@
     scheduleForHide();
   };
 
-  var css_248z$m = ".style_black__27h0m{\n    width: 100%;\n    height: 100%;\n    position: absolute;\n    top:0;\n    left:0;\n\n    background-color: black;\n    opacity: 0;\n    pointer-events: none;\n    transition: opacity .5s cubic-bezier(0.8, 0.2, 0.2, 0.8);\n}";
+  var css_248z$u = ".style_black__27h0m{width:100%;height:100%;position:absolute;top:0;left:0;background-color:#000;opacity:0;pointer-events:none;transition:opacity .5s cubic-bezier(.8,.2,.2,.8)}";
   var css$b = {"black":"style_black__27h0m"};
-  styleInject(css_248z$m);
+  styleInject(css_248z$u);
 
   const black = function (rootElement, router, config) {
     let visible = false;
@@ -785,12 +808,64 @@
     observer.observe(rootElement);
   };
 
+  var css_248z$v = ":root{--progressbarHeight:5px;--progressbarColor:var(--forecolor);--progressbarBottom:initial}";
+  styleInject(css_248z$v);
+
+  var css_248z$w = ".style_progressbar__2zEjZ{width:0;height:var(--progressbarHeight);position:absolute;bottom:var(--progressbarBottom);left:0;background-color:var(--progressbarColor);pointer-events:none;transition:width .5s cubic-bezier(.8,.2,.2,.8)}";
+  var css$c = {"progressbar":"style_progressbar__2zEjZ"};
+  styleInject(css_248z$w);
+
+  const progressbar = function (rootElement, router, ctrlConfig, projectConfig) {
+    const child = utils.div(`<div class="${css$c.progressbar}"></div>`);
+    rootElement.appendChild(child);
+    const totalScenes = projectConfig.scenes.length;
+
+    const change = e => {
+      const index = e.currentIndex + 1;
+      const perc = index / totalScenes * 100;
+      child.style.width = perc + '%';
+    };
+
+    router.on('indexChanged', e => {
+      change(e);
+    });
+  };
+
+  var css_248z$x = ".style_pagenum__2YaWi{width:100%;height:100%;position:absolute;top:0;left:0;display:flex;align-items:flex-end;pointer-events:none}.style_pagenum__2YaWi .style_content__171wW{width:100%;text-align:var(--pagenumTextAlign);padding:var(--pagenumPadding);font-size:var(--pagenumFontSize);color:var(--pagenumColor);font-family:var(--pagenumFont);background-color:var(--pagenumBackColor)}";
+  var css$d = {"pagenum":"style_pagenum__2YaWi","content":"style_content__171wW"};
+  styleInject(css_248z$x);
+
+  var css_248z$y = ":root{--pagenumTextAlign:right;--pagenumPadding:10px;--pagenumFontSize:10px;--pagenumColor:var(--forecolor);--pagenumFont:var(--fontText);--pagenumBackColor:none}";
+  styleInject(css_248z$y);
+
+  const pagenum = function (rootElement, router, ctrlConfig, projectConfig) {
+    const child = utils.div(`<div class="${css$d.pagenum}">
+    <div class="${css$d.content}"></div>
+  </div>`);
+    rootElement.appendChild(child);
+    const template = ctrlConfig.template || '%s / %S';
+    const totalScenes = projectConfig.scenes.length;
+    const wrapper = child.querySelector('.' + css$d.content);
+
+    const change = e => {
+      const index = e.currentIndex + 1;
+      const str = template.replace(/%s/mg, index).replace(/%S/mg, totalScenes);
+      wrapper.innerHTML = str;
+    };
+
+    router.on('indexChanged', e => {
+      change(e);
+    });
+  };
+
   const io = {
     autoplay,
     keyboard,
     arrows,
     black,
-    focus
+    focus,
+    progressbar,
+    pagenum
   };
 
   const add$2 = (type, module) => {
@@ -801,15 +876,14 @@
     io[type] = module;
   };
 
-  var css_248z$n = ".router_router__2R2qw{\n    width: 100%;\n    height: 100%;\n    position: absolute;\n    top:0;\n    left:0;\n}";
-  var css$c = {"router":"router_router__2R2qw"};
-  styleInject(css_248z$n);
+  var css_248z$z = ".router_router__2R2qw{width:100%;height:100%;position:absolute;top:0;left:0}";
+  var css$e = {"router":"router_router__2R2qw"};
+  styleInject(css_248z$z);
 
   const Router = function (rootElement, projectConfig) {
-    const child = utils.div(`<div class="${css$c.router}"></div>`);
+    const child = utils.div(`<div class="${css$e.router}"></div>`);
     rootElement.appendChild(child);
     child.setAttribute('tabindex', '0');
-    this.projectConfig = projectConfig;
     const scenes = projectConfig.scenes;
     const numScenes = scenes.length - 1;
     const listeners = {};
@@ -868,6 +942,7 @@
     this.goto = v => {
       currentIndex = v < numScenes ? v : numScenes;
       currentStep = 0;
+      this.notify('nextIndex');
       this.notify('indexChanged');
     };
 
@@ -875,7 +950,7 @@
       const sceneConfig = scenes[currentIndex];
       const props = utils.props(sceneConfig.props);
       child.classList.remove(...child.classList);
-      child.classList.add(css$c.router);
+      child.classList.add(css$e.router);
 
       if (props.classes) {
         const cls = props.classes.split(' ');
@@ -921,9 +996,11 @@
         const modConfig = projectConfig.router[k];
         const Mod = io[k];
         if (!Mod) console.log(`Router module "${k}" not found. Maybe you forgot to include it.`);
-        if (modConfig && Mod) registeredIO[k] = new Mod(child, this, modConfig);
+        if (modConfig && Mod) registeredIO[k] = new Mod(child, this, modConfig, projectConfig);
       }
     }
+
+    this.notify('indexChanged');
   };
 
   const Container = function (rootElement, projectConfig) {

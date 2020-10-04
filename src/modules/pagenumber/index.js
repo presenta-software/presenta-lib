@@ -12,7 +12,6 @@ const pagenumber = function (sceneElement, modConfig, sceneConfig, projectConfig
     const template = modConfig.template
     str = template.replace(/%s/mg, cPage).replace(/%S/mg, tPage)
   }
-
   const child = u.div(`<div class="${css.pagenumber}">
     <div class="pagenumberContent">${str}</div> 
   </div>`)

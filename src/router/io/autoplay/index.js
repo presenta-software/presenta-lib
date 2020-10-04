@@ -12,8 +12,6 @@ const autoplay = function (rootElement, router, config) {
     }, delay)
   }
 
-  runTime(defdelay)
-
   router.on('end', evt => {
     if (loop) {
       router.goto(0)

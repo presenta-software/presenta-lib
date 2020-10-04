@@ -1,0 +1,22 @@
+.scheme__sunny,
+.scheme__sunny .colorvar__a,
+.scheme__sunny.colorvar__a {
+  --backcolor: #f9ffb1;
+  --forecolor: #072020;
+  --accentcolor: #ec4225;
+  --otheraccentcolor: #9eb0bb;
+}
+.scheme__sunny .colorvar__b,
+.scheme__sunny.colorvar__b {
+  --backcolor: #072020;
+  --forecolor: #f9ffb1;
+  --accentcolor: #ec4225;
+  --otheraccentcolor: #9eb0bb;
+}
+.scheme__sunny .colorvar__c,
+.scheme__sunny.colorvar__c {
+  --backcolor: #ec4225;
+  --forecolor: #f9ffb1;
+  --accentcolor: #9eb0bb;
+  --otheraccentcolor: #072020;
+}

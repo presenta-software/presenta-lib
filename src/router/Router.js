@@ -8,8 +8,6 @@ const Router = function (rootElement, projectConfig) {
   rootElement.appendChild(child)
   child.setAttribute('tabindex', '0')
 
-  this.projectConfig = projectConfig
-
   const scenes = projectConfig.scenes
   const numScenes = scenes.length - 1
   const listeners = {}
@@ -70,6 +68,7 @@ const Router = function (rootElement, projectConfig) {
   this.goto = v => {
     currentIndex = v < numScenes ? v : numScenes
     currentStep = 0
+    this.notify('nextIndex')
     this.notify('indexChanged')
   }
 
@@ -115,9 +114,11 @@ const Router = function (rootElement, projectConfig) {
       const modConfig = projectConfig.router[k]
       const Mod = io[k]
       if (!Mod) console.log(`Router module "${k}" not found. Maybe you forgot to include it.`)
-      if (modConfig && Mod) registeredIO[k] = new Mod(child, this, modConfig)
+      if (modConfig && Mod) registeredIO[k] = new Mod(child, this, modConfig, projectConfig)
     }
   }
+
+  this.notify('indexChanged')
 }
 
 export { Router }

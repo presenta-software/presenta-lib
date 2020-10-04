@@ -1,0 +1,8 @@
+:root{
+    --pagenumTextAlign: right;
+    --pagenumPadding: 10px;
+    --pagenumFontSize: 10px;
+    --pagenumColor: var(--forecolor);
+    --pagenumFont: var(--fontText);
+    --pagenumBackColor: none;
+}

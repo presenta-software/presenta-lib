@@ -1,3 +1,10 @@
+:root{
+    --imagePadding: 0;
+    --imageBorder: none;
+    --imageShadow: none;
+}
+
+
 .image{
     width: 100%;
     height: 100%;
@@ -12,8 +19,11 @@
 .preimg{
     overflow: hidden;
     flex:1;
+    padding: var(--imagePadding);
 }
 .preimg img{
     width: 100%;
     height:100%;
+    border: var(--imageBorder);
+    box-shadow: var(--imageShadow);
 }

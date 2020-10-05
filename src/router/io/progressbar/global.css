@@ -1,5 +1,0 @@
-:root{
-    --progressbarHeight: 5px;
-    --progressbarColor: var(--forecolor);
-    --progressbarBottom: initial; /* set to 0 to bottom */
-}

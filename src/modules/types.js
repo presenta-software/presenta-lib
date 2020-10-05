@@ -1,15 +1,15 @@
-import { pagenumber } from './pagenumber/index.js'
 
-const modules = {}
+const modules = {
+}
 
 const add = (type, module) => {
   if (modules[type]) {
     return console.warn(`module type ${type} already defined`)
   }
-  if (module.init) module.init()
+  // if (module.init) module.init() // what's that???
   modules[type] = module
 }
 
-add('pagenumber', pagenumber)
+// add('pagenumber', pagenumber)
 
 export { modules, add }

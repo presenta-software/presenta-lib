@@ -87,7 +87,13 @@ const Router = function (rootElement, projectConfig) {
 
     if (listeners[evt]) {
       listeners[evt].forEach(clb => {
-        clb({ currentIndex, currentStep })
+        clb({
+          currentIndex,
+          currentStep,
+          totalScenes: this.totalScenes(),
+          isFirst: currentIndex === 0,
+          isLast: currentIndex === numScenes
+        })
       })
     }
   }
@@ -104,7 +110,7 @@ const Router = function (rootElement, projectConfig) {
     if (index >= 0) listeners[evt].splice(index, 1)
   }
 
-  this.totalScenes = () => numScenes
+  this.totalScenes = () => numScenes + 1
   this.totalSteps = () => numSteps
   this.currentIndex = () => currentIndex
   this.currentStep = () => currentStep
@@ -114,7 +120,9 @@ const Router = function (rootElement, projectConfig) {
       const modConfig = projectConfig.router[k]
       const Mod = io[k]
       if (!Mod) console.log(`Router module "${k}" not found. Maybe you forgot to include it.`)
-      if (modConfig && Mod) registeredIO[k] = new Mod(child, this, modConfig, projectConfig)
+      if (modConfig && Mod) {
+        registeredIO[k] = new Mod(child, this, modConfig, projectConfig)
+      }
     }
   }
 

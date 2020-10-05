@@ -1,11 +1,11 @@
-// https://lib.presenta.cc v0.0.14 Copyright 2020 Fabio Franchino
+// https://lib.presenta.cc v0.0.15 Copyright 2020 Fabio Franchino
 (function (global, factory) {
   typeof exports === 'object' && typeof module !== 'undefined' ? module.exports = factory() :
   typeof define === 'function' && define.amd ? define(factory) :
   (global = global || self, global.Presenta = factory());
 }(this, (function () { 'use strict';
 
-  var version = "0.0.14";
+  var version = "0.0.15";
 
   function styleInject(css, ref) {
     if ( ref === void 0 ) ref = {};
@@ -234,12 +234,9 @@
     setTimeout(compute);
   };
 
-  var css_248z$h = ".presenta{--embedpadding:0;--embedbackcolor:none}";
+  var css_248z$h = ":root{--embedPadding:0;--embedBackcolor:none}.style_inner__3WOWs{padding:var(--embedPadding);position:relative}.style_frame__28PUh{background-color:var(--embedBackcolor);position:relative}.style_embed__2Pre2,.style_frame__28PUh,.style_inner__3WOWs,iframe{width:100%;height:100%}iframe{border:none}.style_loading__1w7wc{display:flex;align-items:center;justify-content:center;color:var(--forecolor);font-family:var(--fontText);background-color:var(--backcolor)}.style_blockmouse__3bXSl,.style_loading__1w7wc,.style_poster__1TOx3{position:absolute;top:0;left:0;width:100%;height:100%}.style_poster__1TOx3{background-color:var(--backcolor)}.style_poster__1TOx3 img{width:100%;height:100%}";
+  var css$4 = {"inner":"style_inner__3WOWs","frame":"style_frame__28PUh","embed":"style_embed__2Pre2","loading":"style_loading__1w7wc","blockmouse":"style_blockmouse__3bXSl","poster":"style_poster__1TOx3"};
   styleInject(css_248z$h);
-
-  var css_248z$i = ".style_inner__3WOWs{padding:var(--embedpadding);position:relative}.style_frame__28PUh{background-color:var(--embedbackcolor);position:relative}.style_embed__2Pre2,.style_frame__28PUh,.style_inner__3WOWs,iframe{width:100%;height:100%}iframe{border:none}.style_loading__1w7wc{display:flex;align-items:center;justify-content:center;color:var(--forecolor);font-family:var(--fontText);background-color:var(--backcolor)}.style_blockmouse__3bXSl,.style_loading__1w7wc,.style_poster__1TOx3{position:absolute;top:0;left:0;width:100%;height:100%}.style_poster__1TOx3{background-color:var(--backcolor)}.style_poster__1TOx3 img{width:100%;height:100%}";
-  var css$4 = {"embed":"style_embed__2Pre2","inner":"style_inner__3WOWs","frame":"style_frame__28PUh","loading":"style_loading__1w7wc","blockmouse":"style_blockmouse__3bXSl","poster":"style_poster__1TOx3"};
-  styleInject(css_248z$i);
 
   const iframePrimaryDomain = str => {
     if (!str) return '';
@@ -288,15 +285,15 @@
     }
   };
 
-  var css_248z$j = ".style_image__1fZIQ,.style_inner__3tyMU{width:100%;height:100%}.style_inner__3tyMU{display:flex}.style_preimg__2ypvx{overflow:hidden;flex:1}.style_preimg__2ypvx img{width:100%;height:100%}";
+  var css_248z$i = ":root{--imagePadding:0;--imageBorder:none;--imageShadow:none}.style_image__1fZIQ,.style_inner__3tyMU{width:100%;height:100%}.style_inner__3tyMU{display:flex}.style_preimg__2ypvx{overflow:hidden;flex:1;padding:var(--imagePadding)}.style_preimg__2ypvx img{width:100%;height:100%;border:var(--imageBorder);box-shadow:var(--imageShadow)}";
   var css$5 = {"image":"style_image__1fZIQ","inner":"style_inner__3tyMU","preimg":"style_preimg__2ypvx"};
-  styleInject(css_248z$j);
+  styleInject(css_248z$i);
 
   const image = function (el, config) {
     const size = config.size || 'cover';
     const url = config.url;
     const sizecmd = 'object-fit:' + size + ';';
-    const imageschunk = `<div class="${css$5.preimg}">
+    const imageschunk = `<div class="presentablock__image ${css$5.preimg}">
         <img style="${sizecmd}" src="${url}" />
       </div>`;
     const child = utils.div(`<div class="${css$5.image}">
@@ -312,9 +309,9 @@
     el.appendChild(child);
   };
 
-  var css_248z$k = ".style_video__1qbdJ{display:flex;align-items:center;justify-content:center}.style_video__1qbdJ,.style_video__1qbdJ video{width:100%;height:100%}";
+  var css_248z$j = ".style_video__1qbdJ{display:flex;align-items:center;justify-content:center}.style_video__1qbdJ,.style_video__1qbdJ video{width:100%;height:100%}";
   var css$6 = {"video":"style_video__1qbdJ"};
-  styleInject(css_248z$k);
+  styleInject(css_248z$j);
 
   const video = function (el, config, rootElement, projectConfig) {
     const previewMode = projectConfig.mode === 'preview';
@@ -362,12 +359,12 @@
     if (presentMode) rootElement.addEventListener('keyup', setKeyListener);
   };
 
-  var css_248z$l = ".style_solid__wiwvr{width:100%;height:100%;display:flex;align-items:center;justify-content:center}";
+  var css_248z$k = ".style_solid__wiwvr{--solidColor:var(--backcolor);width:100%;height:100%;display:flex;align-items:center;justify-content:center;background-color:var(--solidColor)}";
   var css$7 = {"solid":"style_solid__wiwvr"};
-  styleInject(css_248z$l);
+  styleInject(css_248z$k);
 
   const solid = function (el, config) {
-    const style = `style="background:${config.color};"`;
+    const style = config.color ? `style="background:${config.color};"` : '';
     const child = utils.div(`<div ${style} class="${css$7.solid}"></div>`);
 
     this.beforeDestroy = () => {};
@@ -405,7 +402,7 @@
 
     let step = 0;
     const props = utils.props(blockConfig.props);
-    const child = utils.div(`<div class="${css$1.block} b b${this.index} ${props.classes}" style="${props.styles}">
+    const child = utils.div(`<div class="block ${css$1.block} b b${this.index} ${props.classes}" style="${props.styles}">
     <div class="blockContainer ${css$1.inner}"></div>
   </div>`);
     this.el = child;
@@ -438,51 +435,25 @@
     blocksElement.appendChild(child);
   };
 
-  var css_248z$m = ".presenta{--pagenumber__padding:.5rem;--pagenumber__textalign:right}.pagenumberContent{color:var(--forecolor);font-family:var(--fontText)}.pagenumber__style__inverted .pagenumberContent{background-color:var(--forecolor);color:var(--backcolor)}";
-  styleInject(css_248z$m);
-
-  var css_248z$n = ".style_pagenumber__2BX53{width:100%;height:100%;display:flex;align-items:flex-end}.style_pagenumber__2BX53>div{width:100%;text-align:var(--pagenumber__textalign);padding:var(--pagenumber__padding)}";
-  var css$8 = {"pagenumber":"style_pagenumber__2BX53"};
-  styleInject(css_248z$n);
-
-  const pagenumber = function (sceneElement, modConfig, sceneConfig, projectConfig) {
-    const front = sceneElement.querySelector('.frontContainer');
-    const cPage = projectConfig.scenes.indexOf(sceneConfig) + 1;
-    const tPage = projectConfig.scenes.length;
-    let str = `${cPage} / ${tPage}`;
-
-    if (modConfig.template) {
-      const template = modConfig.template;
-      str = template.replace(/%s/mg, cPage).replace(/%S/mg, tPage);
-    }
-
-    const child = utils.div(`<div class="${css$8.pagenumber}">
-    <div class="pagenumberContent">${str}</div> 
-  </div>`);
-    front.appendChild(child);
-  };
-
   const modules = {};
 
   const add$1 = (type, module) => {
     if (modules[type]) {
       return console.warn(`module type ${type} already defined`);
-    }
+    } // if (module.init) module.init() // what's that???
 
-    if (module.init) module.init();
+
     modules[type] = module;
-  };
+  }; // add('pagenumber', pagenumber)
 
-  add$1('pagenumber', pagenumber);
+  var css_248z$l = ".transition__horizontalSlide .p-scene-enter-transition{transition:transform 1s cubic-bezier(1,0,0,1)}.transition__horizontalSlide .to-right.p-scene-enter-start{transform:translateX(100%)}.transition__horizontalSlide .to-right.p-scene-enter-end{transform:translateX(0)}.transition__horizontalSlide .to-left.p-scene-enter-start{transform:translateX(-100%)}.transition__horizontalSlide .to-left.p-scene-enter-end{transform:translateX(0)}.transition__horizontalSlide .p-scene-leave-transition{transition:transform 1s cubic-bezier(1,0,0,1)}.transition__horizontalSlide .to-right.p-scene-leave-start{transform:translateX(0)}.transition__horizontalSlide .to-right.p-scene-leave-end{transform:translateX(-100%)}.transition__horizontalSlide .to-left.p-scene-leave-start{transform:translateX(0)}.transition__horizontalSlide .to-left.p-scene-leave-end{transform:translateX(100%)}";
+  styleInject(css_248z$l);
 
-  var css_248z$o = ".transition__horizontalSlide .p-scene-enter-transition{transition:transform 1s cubic-bezier(1,0,0,1)}.transition__horizontalSlide .to-right.p-scene-enter-start{transform:translateX(100%)}.transition__horizontalSlide .to-right.p-scene-enter-end{transform:translateX(0)}.transition__horizontalSlide .to-left.p-scene-enter-start{transform:translateX(-100%)}.transition__horizontalSlide .to-left.p-scene-enter-end{transform:translateX(0)}.transition__horizontalSlide .p-scene-leave-transition{transition:transform 1s cubic-bezier(1,0,0,1)}.transition__horizontalSlide .to-right.p-scene-leave-start{transform:translateX(0)}.transition__horizontalSlide .to-right.p-scene-leave-end{transform:translateX(-100%)}.transition__horizontalSlide .to-left.p-scene-leave-start{transform:translateX(0)}.transition__horizontalSlide .to-left.p-scene-leave-end{transform:translateX(100%)}";
-  styleInject(css_248z$o);
+  var css_248z$m = ".transition__verticalIn .p-scene-enter-transition{transition:all .75s cubic-bezier(.2,.8,.05,.95)}.transition__verticalIn .p-scene-enter-start{transform:translateY(150%)}.transition__verticalIn .p-scene-enter-end{transform:translateY(0)}.transition__verticalIn .p-scene-leave-transition{transition:all .75s cubic-bezier(.2,.8,.05,.95)}.transition__verticalIn .p-scene-leave-start{transform:scale(1)}.transition__verticalIn .p-scene-leave-end{transform:scale(.5)}";
+  styleInject(css_248z$m);
 
-  var css_248z$p = ".transition__verticalIn .p-scene-enter-transition{transition:all .75s cubic-bezier(.2,.8,.05,.95)}.transition__verticalIn .p-scene-enter-start{transform:translateY(150%)}.transition__verticalIn .p-scene-enter-end{transform:translateY(0)}.transition__verticalIn .p-scene-leave-transition{transition:all .75s cubic-bezier(.2,.8,.05,.95)}.transition__verticalIn .p-scene-leave-start{transform:scale(1)}.transition__verticalIn .p-scene-leave-end{transform:scale(.5)}";
-  styleInject(css_248z$p);
-
-  var css_248z$q = ".transition__outIn .p-scene-enter-transition{opacity:0}.transition__outIn .p-scene-enter-ended{opacity:1}.transition__outIn .p-scene-enter-transition .textContent>*{transition:opacity 1s ease-out,transform 1s cubic-bezier(.2,.8,.05,.95)}.transition__outIn .p-scene-enter-transition .textContent>:first-child{transition-delay:1.15s}.transition__outIn .p-scene-enter-transition .textContent>:nth-child(2){transition-delay:1.3s}.transition__outIn .p-scene-enter-transition .textContent>:nth-child(3){transition-delay:1.45s}.transition__outIn .p-scene-enter-transition .textContent>:nth-child(4){transition-delay:1.6s}.transition__outIn .p-scene-enter-transition .textContent>:nth-child(5){transition-delay:1.75s}.transition__outIn .p-scene-enter-transition .textContent>:nth-child(6){transition-delay:1.9s}.transition__outIn .p-scene-enter-transition .textContent>:nth-child(7){transition-delay:2.05s}.transition__outIn .p-scene-enter-transition .textContent>:nth-child(8){transition-delay:2.2s}.transition__outIn .p-scene-enter-transition .textContent>:nth-child(9){transition-delay:2.35s}.transition__outIn .p-scene-enter-transition .textContent>:nth-child(10){transition-delay:2.5s}.transition__outIn .p-scene-enter-transition .textContent>:nth-child(11){transition-delay:2.65s}.transition__outIn .p-scene-enter-transition .textContent>:nth-child(12){transition-delay:2.8s}.transition__outIn .p-scene-enter-transition .textContent>:nth-child(13){transition-delay:2.95s}.transition__outIn .p-scene-enter-transition .textContent>:nth-child(14){transition-delay:3.1s}.transition__outIn .p-scene-enter-transition .textContent>:nth-child(15){transition-delay:3.25s}.transition__outIn .p-scene-enter-transition .textContent>:nth-child(16){transition-delay:3.4s}.transition__outIn .p-scene-enter-transition .textContent>:nth-child(17){transition-delay:3.55s}.transition__outIn .p-scene-enter-transition .textContent>:nth-child(18){transition-delay:3.7s}.transition__outIn .p-scene-enter-transition .textContent>:nth-child(19){transition-delay:3.85s}.transition__outIn .p-scene-enter-transition .textContent>:nth-child(20){transition-delay:4s}.transition__outIn .p-scene-enter-transition .blockContainer>div{transition:background-color 1s cubic-bezier(1,0,0,1);transition-delay:1s}.transition__outIn .p-scene-enter-start .blockContainer>div{background-color:transparent}.transition__outIn .p-scene-enter-start .textContent>*{opacity:0;transform:translateY(30px)}.transition__outIn .p-scene-enter-end .textContent>*{opacity:1;transform:translateY(0)}.transition__outIn .p-scene-leave-transition .textContent>*{transition:opacity .75s cubic-bezier(.165,.84,.44,1),transform .75s cubic-bezier(.165,.84,.44,1)}.transition__outIn .p-scene-leave-transition .textContent>:nth-child(0){transition-delay:0s}.transition__outIn .p-scene-leave-transition .textContent>:first-child{transition-delay:.1s}.transition__outIn .p-scene-leave-transition .textContent>:nth-child(2){transition-delay:.2s}.transition__outIn .p-scene-leave-transition .textContent>:nth-child(3){transition-delay:.3s}.transition__outIn .p-scene-leave-transition .textContent>:nth-child(4){transition-delay:.4s}.transition__outIn .p-scene-leave-transition .textContent>:nth-child(5){transition-delay:.5s}.transition__outIn .p-scene-leave-transition .textContent>:nth-child(6){transition-delay:.6s}.transition__outIn .p-scene-leave-transition .textContent>:nth-child(7){transition-delay:.7s}.transition__outIn .p-scene-leave-transition .textContent>:nth-child(8){transition-delay:.8s}.transition__outIn .p-scene-leave-transition .textContent>:nth-child(9){transition-delay:.9s}.transition__outIn .p-scene-leave-transition .textContent>:nth-child(10){transition-delay:1s}.transition__outIn .p-scene-leave-transition .textContent>:nth-child(11){transition-delay:1.1s}.transition__outIn .p-scene-leave-transition .textContent>:nth-child(12){transition-delay:1.2s}.transition__outIn .p-scene-leave-transition .textContent>:nth-child(13){transition-delay:1.3s}.transition__outIn .p-scene-leave-transition .textContent>:nth-child(14){transition-delay:1.4s}.transition__outIn .p-scene-leave-transition .textContent>:nth-child(15){transition-delay:1.5s}.transition__outIn .p-scene-leave-transition .textContent>:nth-child(16){transition-delay:1.6s}.transition__outIn .p-scene-leave-transition .textContent>:nth-child(17){transition-delay:1.7s}.transition__outIn .p-scene-leave-transition .textContent>:nth-child(18){transition-delay:1.8s}.transition__outIn .p-scene-leave-transition .textContent>:nth-child(19){transition-delay:1.9s}.transition__outIn .p-scene-leave-transition .textContent>:nth-child(20){transition-delay:2s}.transition__outIn .p-scene-leave-start .textContent>*{opacity:1;transform:scale(1)}.transition__outIn .p-scene-leave-end .textContent>*{opacity:0;transform:scale(.85)}";
-  styleInject(css_248z$q);
+  var css_248z$n = ".transition__outIn .p-scene-enter-transition{opacity:0}.transition__outIn .p-scene-enter-ended{opacity:1}.transition__outIn .p-scene-enter-transition .textContent>*{transition:opacity 1s ease-out,transform 1s cubic-bezier(.2,.8,.05,.95)}.transition__outIn .p-scene-enter-transition .textContent>:first-child{transition-delay:1.15s}.transition__outIn .p-scene-enter-transition .textContent>:nth-child(2){transition-delay:1.3s}.transition__outIn .p-scene-enter-transition .textContent>:nth-child(3){transition-delay:1.45s}.transition__outIn .p-scene-enter-transition .textContent>:nth-child(4){transition-delay:1.6s}.transition__outIn .p-scene-enter-transition .textContent>:nth-child(5){transition-delay:1.75s}.transition__outIn .p-scene-enter-transition .textContent>:nth-child(6){transition-delay:1.9s}.transition__outIn .p-scene-enter-transition .textContent>:nth-child(7){transition-delay:2.05s}.transition__outIn .p-scene-enter-transition .textContent>:nth-child(8){transition-delay:2.2s}.transition__outIn .p-scene-enter-transition .textContent>:nth-child(9){transition-delay:2.35s}.transition__outIn .p-scene-enter-transition .textContent>:nth-child(10){transition-delay:2.5s}.transition__outIn .p-scene-enter-transition .textContent>:nth-child(11){transition-delay:2.65s}.transition__outIn .p-scene-enter-transition .textContent>:nth-child(12){transition-delay:2.8s}.transition__outIn .p-scene-enter-transition .textContent>:nth-child(13){transition-delay:2.95s}.transition__outIn .p-scene-enter-transition .textContent>:nth-child(14){transition-delay:3.1s}.transition__outIn .p-scene-enter-transition .textContent>:nth-child(15){transition-delay:3.25s}.transition__outIn .p-scene-enter-transition .textContent>:nth-child(16){transition-delay:3.4s}.transition__outIn .p-scene-enter-transition .textContent>:nth-child(17){transition-delay:3.55s}.transition__outIn .p-scene-enter-transition .textContent>:nth-child(18){transition-delay:3.7s}.transition__outIn .p-scene-enter-transition .textContent>:nth-child(19){transition-delay:3.85s}.transition__outIn .p-scene-enter-transition .textContent>:nth-child(20){transition-delay:4s}.transition__outIn .p-scene-enter-transition .blockContainer>div{transition:background-color 1s cubic-bezier(1,0,0,1);transition-delay:1s}.transition__outIn .p-scene-enter-start .blockContainer>div{background-color:transparent}.transition__outIn .p-scene-enter-start .textContent>*{opacity:0;transform:translateY(30px)}.transition__outIn .p-scene-enter-end .textContent>*{opacity:1;transform:translateY(0)}.transition__outIn .p-scene-leave-transition .textContent>*{transition:opacity .75s cubic-bezier(.165,.84,.44,1),transform .75s cubic-bezier(.165,.84,.44,1)}.transition__outIn .p-scene-leave-transition .textContent>:nth-child(0){transition-delay:0s}.transition__outIn .p-scene-leave-transition .textContent>:first-child{transition-delay:.1s}.transition__outIn .p-scene-leave-transition .textContent>:nth-child(2){transition-delay:.2s}.transition__outIn .p-scene-leave-transition .textContent>:nth-child(3){transition-delay:.3s}.transition__outIn .p-scene-leave-transition .textContent>:nth-child(4){transition-delay:.4s}.transition__outIn .p-scene-leave-transition .textContent>:nth-child(5){transition-delay:.5s}.transition__outIn .p-scene-leave-transition .textContent>:nth-child(6){transition-delay:.6s}.transition__outIn .p-scene-leave-transition .textContent>:nth-child(7){transition-delay:.7s}.transition__outIn .p-scene-leave-transition .textContent>:nth-child(8){transition-delay:.8s}.transition__outIn .p-scene-leave-transition .textContent>:nth-child(9){transition-delay:.9s}.transition__outIn .p-scene-leave-transition .textContent>:nth-child(10){transition-delay:1s}.transition__outIn .p-scene-leave-transition .textContent>:nth-child(11){transition-delay:1.1s}.transition__outIn .p-scene-leave-transition .textContent>:nth-child(12){transition-delay:1.2s}.transition__outIn .p-scene-leave-transition .textContent>:nth-child(13){transition-delay:1.3s}.transition__outIn .p-scene-leave-transition .textContent>:nth-child(14){transition-delay:1.4s}.transition__outIn .p-scene-leave-transition .textContent>:nth-child(15){transition-delay:1.5s}.transition__outIn .p-scene-leave-transition .textContent>:nth-child(16){transition-delay:1.6s}.transition__outIn .p-scene-leave-transition .textContent>:nth-child(17){transition-delay:1.7s}.transition__outIn .p-scene-leave-transition .textContent>:nth-child(18){transition-delay:1.8s}.transition__outIn .p-scene-leave-transition .textContent>:nth-child(19){transition-delay:1.9s}.transition__outIn .p-scene-leave-transition .textContent>:nth-child(20){transition-delay:2s}.transition__outIn .p-scene-leave-start .textContent>*{opacity:1;transform:scale(1)}.transition__outIn .p-scene-leave-end .textContent>*{opacity:0;transform:scale(.85)}";
+  styleInject(css_248z$n);
 
   const transition = wrapper => {
     const functor = function (wrapper) {
@@ -680,9 +651,9 @@
     this.sceneConfig = sceneConfig;
   };
 
-  var css_248z$r = ".container_container__3kBNh{width:100%;height:100%;position:relative;overflow:hidden}.container_container__3kBNh>div{position:absolute;top:0;left:0;width:100%}";
-  var css$9 = {"container":"container_container__3kBNh"};
-  styleInject(css_248z$r);
+  var css_248z$o = ".container_container__3kBNh{width:100%;height:100%;position:relative;overflow:hidden}.container_container__3kBNh>div{position:absolute;top:0;left:0;width:100%}";
+  var css$8 = {"container":"container_container__3kBNh"};
+  styleInject(css_248z$o);
 
   const autoplay = function (rootElement, router, config) {
     let timer = null;
@@ -737,50 +708,54 @@
     rootElement.addEventListener('keyup', setKeyListener);
   };
 
-  var css_248z$s = ":root{--arrowsColor:var(--forecolor)}";
-  styleInject(css_248z$s);
-
-  var css_248z$t = ".style_arrows__2HgOY{position:absolute;top:0;left:0;width:100%;height:100%;display:flex;align-items:center;justify-content:space-between;transition:opacity .35s}.style_left__3_kwS,.style_right__RERAa{width:50px;height:50px;background-color:var(--arrowsColor);transition:background-color .3s ease-in-out;cursor:pointer}.style_arrows__2HgOY.style_hide__3B8Al{opacity:0}";
-  var css$a = {"arrows":"style_arrows__2HgOY","left":"style_left__3_kwS","right":"style_right__RERAa","hide":"style_hide__3B8Al"};
-  styleInject(css_248z$t);
+  var css_248z$p = ":root{--arrowsOpacity:1}.style_arrows__2HgOY{position:absolute;top:0;left:0;width:100%;height:100%;display:flex;align-items:center;justify-content:space-between;transition:opacity .35s;padding:10px;--arrowsColor:var(--forecolor)}.style_left__3_kwS,.style_right__RERAa{width:50px;height:50px;transition:background-color .3s ease-in-out;cursor:pointer;width:0;height:0;border-top:20px solid transparent;border-bottom:20px solid transparent;opacity:var(--arrowsOpacity)}.style_left__3_kwS{border-right:20px solid var(--arrowsColor)}.style_right__RERAa{border-left:20px solid var(--arrowsColor)}.style_arrows__2HgOY.style_hide__3B8Al{opacity:0}";
+  var css$9 = {"arrows":"style_arrows__2HgOY","left":"style_left__3_kwS","right":"style_right__RERAa","hide":"style_hide__3B8Al"};
+  styleInject(css_248z$p);
 
   const arrows = function (rootElement, router, config) {
     let timer = null;
-    const child = utils.div(`<div class="${css$a.arrows}">
-    <div class="handleL ${css$a.left}"></div>
-    <div class="handleR ${css$a.right}"></div>
-  </div>`);
+    const child = utils.div(`<div class="${css$9.arrows}"></div>`);
+    const left = utils.div(`<div class="${css$9.left}"></div>`);
+    const right = utils.div(`<div class="${css$9.right}"></div>`);
+    child.appendChild(left);
+    child.appendChild(right);
     rootElement.appendChild(child);
-    child.querySelector('.handleL').addEventListener('click', e => {
+    left.addEventListener('click', e => {
       router.prev();
       scheduleForHide();
     });
-    child.querySelector('.handleR').addEventListener('click', e => {
+    right.addEventListener('click', e => {
       router.next();
       scheduleForHide();
     });
     child.addEventListener('mousemove', e => {
       scheduleForHide();
     });
+    router.on('indexChanged', e => {
+      left.style.visibility = 'visible';
+      right.style.visibility = 'visible';
+      if (e.isFirst) left.style.visibility = 'hidden';
+      if (e.isLast) right.style.visibility = 'hidden';
+    });
 
     const scheduleForHide = () => {
       clearTimeout(timer);
-      child.classList.remove(css$a.hide);
+      child.classList.remove(css$9.hide);
       timer = setTimeout(() => {
-        child.classList.add(css$a.hide);
+        child.classList.add(css$9.hide);
       }, 1500);
     };
 
     scheduleForHide();
   };
 
-  var css_248z$u = ".style_black__27h0m{width:100%;height:100%;position:absolute;top:0;left:0;background-color:#000;opacity:0;pointer-events:none;transition:opacity .5s cubic-bezier(.8,.2,.2,.8)}";
-  var css$b = {"black":"style_black__27h0m"};
-  styleInject(css_248z$u);
+  var css_248z$q = ".style_black__27h0m{width:100%;height:100%;position:absolute;top:0;left:0;background-color:#000;opacity:0;pointer-events:none;transition:opacity .5s cubic-bezier(.8,.2,.2,.8);z-index:999999}";
+  var css$a = {"black":"style_black__27h0m"};
+  styleInject(css_248z$q);
 
   const black = function (rootElement, router, config) {
     let visible = false;
-    const child = utils.div(`<div class="${css$b.black}"></div>`);
+    const child = utils.div(`<div class="${css$a.black}"></div>`);
     rootElement.appendChild(child);
 
     const setKeyListener = e => {
@@ -808,22 +783,21 @@
     observer.observe(rootElement);
   };
 
-  var css_248z$v = ":root{--progressbarHeight:5px;--progressbarColor:var(--forecolor);--progressbarBottom:initial}";
-  styleInject(css_248z$v);
-
-  var css_248z$w = ".style_progressbar__2zEjZ{width:0;height:var(--progressbarHeight);position:absolute;bottom:var(--progressbarBottom);left:0;background-color:var(--progressbarColor);pointer-events:none;transition:width .5s cubic-bezier(.8,.2,.2,.8)}";
-  var css$c = {"progressbar":"style_progressbar__2zEjZ"};
-  styleInject(css_248z$w);
+  var css_248z$r = ":root{--progressbarHeight:5px;--progressbarBottom:initial}.style_progressbar__2zEjZ{--progressbarColor:var(--forecolor);width:100%;height:100%;pointer-events:none}.style_bar__Vua_1{width:0;height:var(--progressbarHeight);position:absolute;bottom:var(--progressbarBottom);left:0;background-color:var(--progressbarColor);transition:width .5s cubic-bezier(.8,.2,.2,.8)}";
+  var css$b = {"progressbar":"style_progressbar__2zEjZ","bar":"style_bar__Vua_1"};
+  styleInject(css_248z$r);
 
   const progressbar = function (rootElement, router, ctrlConfig, projectConfig) {
-    const child = utils.div(`<div class="${css$c.progressbar}"></div>`);
+    const child = utils.div(`<div class="${css$b.progressbar}"></div>`);
+    const bar = utils.div(`<div class="${css$b.bar}"></div>`);
+    child.appendChild(bar);
     rootElement.appendChild(child);
     const totalScenes = projectConfig.scenes.length;
 
     const change = e => {
       const index = e.currentIndex + 1;
       const perc = index / totalScenes * 100;
-      child.style.width = perc + '%';
+      bar.style.width = perc + '%';
     };
 
     router.on('indexChanged', e => {
@@ -831,26 +805,22 @@
     });
   };
 
-  var css_248z$x = ".style_pagenum__2YaWi{width:100%;height:100%;position:absolute;top:0;left:0;display:flex;align-items:flex-end;pointer-events:none}.style_pagenum__2YaWi .style_content__171wW{width:100%;text-align:var(--pagenumTextAlign);padding:var(--pagenumPadding);font-size:var(--pagenumFontSize);color:var(--pagenumColor);font-family:var(--pagenumFont);background-color:var(--pagenumBackColor)}";
-  var css$d = {"pagenum":"style_pagenum__2YaWi","content":"style_content__171wW"};
-  styleInject(css_248z$x);
-
-  var css_248z$y = ":root{--pagenumTextAlign:right;--pagenumPadding:10px;--pagenumFontSize:10px;--pagenumColor:var(--forecolor);--pagenumFont:var(--fontText);--pagenumBackColor:none}";
-  styleInject(css_248z$y);
+  var css_248z$s = ":root{--pagenumTextAlign:right;--pagenumPadding:5px;--pagenumFontSize:10px;--pagenumBackColor:none;--pagenumFont:var(--fontText)}.style_pagenum__2YaWi{--pagenumColor:var(--forecolor);width:100%;height:100%;position:absolute;top:0;left:0;display:flex;align-items:flex-end;pointer-events:none}.style_content__171wW{width:100%;text-align:var(--pagenumTextAlign);padding:var(--pagenumPadding);font-size:var(--pagenumFontSize);color:var(--pagenumColor);font-family:var(--pagenumFont);background-color:var(--pagenumBackColor);transition:all .3s ease-in-out}";
+  var css$c = {"pagenum":"style_pagenum__2YaWi","content":"style_content__171wW"};
+  styleInject(css_248z$s);
 
   const pagenum = function (rootElement, router, ctrlConfig, projectConfig) {
-    const child = utils.div(`<div class="${css$d.pagenum}">
-    <div class="${css$d.content}"></div>
-  </div>`);
+    const child = utils.div(`<div class="${css$c.pagenum}"></div>`);
+    const content = utils.div(`<div class="${css$c.content}"></div>`);
+    child.appendChild(content);
     rootElement.appendChild(child);
     const template = ctrlConfig.template || '%s / %S';
     const totalScenes = projectConfig.scenes.length;
-    const wrapper = child.querySelector('.' + css$d.content);
 
     const change = e => {
       const index = e.currentIndex + 1;
       const str = template.replace(/%s/mg, index).replace(/%S/mg, totalScenes);
-      wrapper.innerHTML = str;
+      content.innerHTML = str;
     };
 
     router.on('indexChanged', e => {
@@ -876,12 +846,12 @@
     io[type] = module;
   };
 
-  var css_248z$z = ".router_router__2R2qw{width:100%;height:100%;position:absolute;top:0;left:0}";
-  var css$e = {"router":"router_router__2R2qw"};
-  styleInject(css_248z$z);
+  var css_248z$t = ".router_router__2R2qw{width:100%;height:100%;position:absolute;top:0;left:0}";
+  var css$d = {"router":"router_router__2R2qw"};
+  styleInject(css_248z$t);
 
   const Router = function (rootElement, projectConfig) {
-    const child = utils.div(`<div class="${css$e.router}"></div>`);
+    const child = utils.div(`<div class="${css$d.router}"></div>`);
     rootElement.appendChild(child);
     child.setAttribute('tabindex', '0');
     const scenes = projectConfig.scenes;
@@ -950,7 +920,7 @@
       const sceneConfig = scenes[currentIndex];
       const props = utils.props(sceneConfig.props);
       child.classList.remove(...child.classList);
-      child.classList.add(css$e.router);
+      child.classList.add(css$d.router);
 
       if (props.classes) {
         const cls = props.classes.split(' ');
@@ -964,7 +934,10 @@
         listeners[evt].forEach(clb => {
           clb({
             currentIndex,
-            currentStep
+            currentStep,
+            totalScenes: this.totalScenes(),
+            isFirst: currentIndex === 0,
+            isLast: currentIndex === numScenes
           });
         });
       }
@@ -983,7 +956,7 @@
       if (index >= 0) listeners[evt].splice(index, 1);
     };
 
-    this.totalScenes = () => numScenes;
+    this.totalScenes = () => numScenes + 1;
 
     this.totalSteps = () => numSteps;
 
@@ -996,7 +969,10 @@
         const modConfig = projectConfig.router[k];
         const Mod = io[k];
         if (!Mod) console.log(`Router module "${k}" not found. Maybe you forgot to include it.`);
-        if (modConfig && Mod) registeredIO[k] = new Mod(child, this, modConfig, projectConfig);
+
+        if (modConfig && Mod) {
+          registeredIO[k] = new Mod(child, this, modConfig, projectConfig);
+        }
       }
     }
 
@@ -1052,7 +1028,7 @@
     */
 
     rootElement.classList.add('presenta');
-    const child = utils.div(`<div class="a ${css$9.container}"></div>`);
+    const child = utils.div(`<div class="a ${css$8.container}"></div>`);
     const scenes = projectConfig.scenes;
     var currentScene = new Scene(scenes[0], projectConfig, rootElement);
     child.appendChild(currentScene.el);
@@ -1105,9 +1081,7 @@
         arrows: true,
         black: true
       },
-      modules: {
-        pagenumber: true
-      },
+      modules: {},
       scheme: null,
       fontkit: null,
       transition: null,

@@ -6,7 +6,7 @@ const image = function (el, config) {
   const url = config.url
 
   const sizecmd = 'object-fit:' + size + ';'
-  const imageschunk = `<div class="${css.preimg}">
+  const imageschunk = `<div class="presentablock__image ${css.preimg}">
         <img style="${sizecmd}" src="${url}" />
       </div>`
 

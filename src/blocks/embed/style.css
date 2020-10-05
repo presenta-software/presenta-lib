@@ -1,13 +1,15 @@
-.embed{
+:root{
+    --embedPadding: 0;
+    --embedBackcolor: none;
 }
 
 .inner{
-    padding: var(--embedpadding);
+    padding: var(--embedPadding);
     position: relative;
 }
 
 .frame{
-    background-color: var(--embedbackcolor);
+    background-color: var(--embedBackcolor);
     position: relative;
 }
 

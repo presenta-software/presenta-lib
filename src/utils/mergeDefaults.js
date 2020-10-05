@@ -9,7 +9,6 @@ export default config => {
       black: true
     },
     modules: {
-      pagenumber: true
     },
     scheme: null,
     fontkit: null,

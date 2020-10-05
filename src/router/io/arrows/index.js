@@ -1,28 +1,35 @@
-import './global.css'
 import css from './style.css'
 import u from '../../../utils.js'
 
 const arrows = function (rootElement, router, config) {
   let timer = null
 
-  const child = u.div(`<div class="${css.arrows}">
-    <div class="handleL ${css.left}"></div>
-    <div class="handleR ${css.right}"></div>
-  </div>`)
+  const child = u.div(`<div class="${css.arrows}"></div>`)
+  const left = u.div(`<div class="${css.left}"></div>`)
+  const right = u.div(`<div class="${css.right}"></div>`)
+  child.appendChild(left)
+  child.appendChild(right)
   rootElement.appendChild(child)
 
-  child.querySelector('.handleL').addEventListener('click', e => {
+  left.addEventListener('click', e => {
     router.prev()
     scheduleForHide()
   })
 
-  child.querySelector('.handleR').addEventListener('click', e => {
+  right.addEventListener('click', e => {
     router.next()
     scheduleForHide()
   })
 
   child.addEventListener('mousemove', e => {
     scheduleForHide()
+  })
+
+  router.on('indexChanged', e => {
+    left.style.visibility = 'visible'
+    right.style.visibility = 'visible'
+    if (e.isFirst) left.style.visibility = 'hidden'
+    if (e.isLast) right.style.visibility = 'hidden'
   })
 
   const scheduleForHide = () => {

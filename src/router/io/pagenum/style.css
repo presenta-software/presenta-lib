@@ -1,4 +1,15 @@
+:root{
+    --pagenumTextAlign: right;
+    --pagenumPadding: 5px;
+    --pagenumFontSize: 10px;
+    
+    --pagenumBackColor: none;
+    --pagenumFont: var(--fontText);
+}
+
 .pagenum{
+    --pagenumColor: var(--forecolor);
+
     width: 100%;
     height: 100%;
     position: absolute;
@@ -9,13 +20,11 @@
     align-items: flex-end; 
 
     pointer-events: none;
-
-    
 }
 
 
 
-.pagenum .content{
+.content{
     width: 100%;
 
     text-align: var(--pagenumTextAlign);
@@ -26,4 +35,6 @@
     font-family: var(--pagenumFont);
 
     background-color: var(--pagenumBackColor);
+
+    transition: all .3s ease-in-out;
 }

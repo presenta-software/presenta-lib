@@ -1,11 +1,11 @@
-// https://lib.presenta.cc v0.0.16 Copyright 2020 Fabio Franchino
+// https://lib.presenta.cc v0.0.17 Copyright 2020 Fabio Franchino
 (function (global, factory) {
   typeof exports === 'object' && typeof module !== 'undefined' ? module.exports = factory() :
   typeof define === 'function' && define.amd ? define(factory) :
   (global = global || self, global.Presenta = factory());
 }(this, (function () { 'use strict';
 
-  var version = "0.0.16";
+  var version = "0.0.17";
 
   function styleInject(css, ref) {
     if ( ref === void 0 ) ref = {};
@@ -318,12 +318,14 @@
     const presentMode = projectConfig.mode === 'present';
     const defsize = config.size || 'cover';
     const sizecmd = 'object-fit:' + defsize + ';';
+    const defpos = config.position || 'center';
+    const poscmd = 'object-position:' + defpos + ';';
     const poster = config.poster ? `poster=${config.poster}` : '';
     const loop = config.loop ? 'loop' : '';
     const autoplay = config.autoplay && presentMode ? 'autoplay' : '';
     const src = config.url ? `src=${config.url}` : '';
     const child = utils.div(`<div class="${css$6.video}">
-    <video style="${sizecmd}" ${poster} ${src} ${loop} ${autoplay}></video>
+    <video style="${sizecmd} ${poscmd}" ${poster} ${src} ${loop} ${autoplay}></video>
   </div>`);
 
     this.beforeDestroy = () => {

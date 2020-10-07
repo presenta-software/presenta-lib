@@ -7,19 +7,13 @@ const video = function (el, config, rootElement, projectConfig) {
   const previewMode = projectConfig.mode === 'preview'
   const presentMode = projectConfig.mode === 'present'
 
-  const defsize = config.size || 'cover'
-  const sizecmd = 'object-fit:' + defsize + ';'
-
-  const defpos = config.position || 'center'
-  const poscmd = 'object-position:' + defpos + ';'
-
   const poster = config.poster ? `poster=${config.poster}` : ''
   const loop = config.loop ? 'loop' : ''
   const autoplay = config.autoplay && presentMode ? 'autoplay' : ''
   const src = config.url ? `src=${config.url}` : ''
 
   const child = u.div(`<div class="${css.video}">
-    <video style="${sizecmd} ${poscmd}" ${poster} ${src} ${loop} ${autoplay}></video>
+    <video ${poster} ${src} ${loop} ${autoplay}></video>
   </div>`)
 
   this.beforeDestroy = () => {

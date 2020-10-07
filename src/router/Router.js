@@ -4,7 +4,9 @@ import u from '../utils.js'
 import css from './router.css'
 
 const Router = function (rootElement, projectConfig) {
-  const child = u.div(`<div class="controller ${css.router}"></div>`)
+  const props = u.props(projectConfig.router.props)
+
+  const child = u.div(`<div style="${props.styles}" class="controller ${css.router}"></div>`)
   rootElement.appendChild(child)
   child.setAttribute('tabindex', '0')
 

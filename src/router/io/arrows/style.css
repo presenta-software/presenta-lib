@@ -1,5 +1,6 @@
 :root{
     --arrowsOpacity: 1;
+    --arrowsPosition: center;
 }
 
 .arrows{
@@ -9,7 +10,7 @@
     width: 100%;
     height: 100%;
     display: flex;
-    align-items: center;
+    align-items: var(--arrowsPosition);
     justify-content: space-between;
     transition: opacity .35s;
 

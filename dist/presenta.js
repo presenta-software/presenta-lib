@@ -1,11 +1,11 @@
-// https://lib.presenta.cc v0.0.17 Copyright 2020 Fabio Franchino
+// https://lib.presenta.cc v0.0.18 Copyright 2020 Fabio Franchino
 (function (global, factory) {
   typeof exports === 'object' && typeof module !== 'undefined' ? module.exports = factory() :
   typeof define === 'function' && define.amd ? define(factory) :
   (global = global || self, global.Presenta = factory());
 }(this, (function () { 'use strict';
 
-  var version = "0.0.17";
+  var version = "0.0.18";
 
   function styleInject(css, ref) {
     if ( ref === void 0 ) ref = {};
@@ -309,23 +309,19 @@
     el.appendChild(child);
   };
 
-  var css_248z$j = ".style_video__1qbdJ{display:flex;align-items:center;justify-content:center}.style_video__1qbdJ,.style_video__1qbdJ video{width:100%;height:100%}";
+  var css_248z$j = ":root{--videoSize:cover;--videoPosition:center}.style_video__1qbdJ{width:100%;height:100%;display:flex;align-items:center;justify-content:center}.style_video__1qbdJ video{width:100%;height:100%;object-fit:var(--videoSize);object-position:var(--videoPosition)}";
   var css$6 = {"video":"style_video__1qbdJ"};
   styleInject(css_248z$j);
 
   const video = function (el, config, rootElement, projectConfig) {
     const previewMode = projectConfig.mode === 'preview';
     const presentMode = projectConfig.mode === 'present';
-    const defsize = config.size || 'cover';
-    const sizecmd = 'object-fit:' + defsize + ';';
-    const defpos = config.position || 'center';
-    const poscmd = 'object-position:' + defpos + ';';
     const poster = config.poster ? `poster=${config.poster}` : '';
     const loop = config.loop ? 'loop' : '';
     const autoplay = config.autoplay && presentMode ? 'autoplay' : '';
     const src = config.url ? `src=${config.url}` : '';
     const child = utils.div(`<div class="${css$6.video}">
-    <video style="${sizecmd} ${poscmd}" ${poster} ${src} ${loop} ${autoplay}></video>
+    <video ${poster} ${src} ${loop} ${autoplay}></video>
   </div>`);
 
     this.beforeDestroy = () => {
@@ -710,7 +706,7 @@
     rootElement.addEventListener('keyup', setKeyListener);
   };
 
-  var css_248z$p = ":root{--arrowsOpacity:1}.style_arrows__2HgOY{position:absolute;top:0;left:0;width:100%;height:100%;display:flex;align-items:center;justify-content:space-between;transition:opacity .35s;padding:10px;--arrowsColor:var(--forecolor)}.style_left__3_kwS,.style_right__RERAa{width:50px;height:50px;transition:background-color .3s ease-in-out;cursor:pointer;width:0;height:0;border-top:20px solid transparent;border-bottom:20px solid transparent;opacity:var(--arrowsOpacity)}.style_left__3_kwS{border-right:20px solid var(--arrowsColor)}.style_right__RERAa{border-left:20px solid var(--arrowsColor)}.style_arrows__2HgOY.style_hide__3B8Al{opacity:0}";
+  var css_248z$p = ":root{--arrowsOpacity:1;--arrowsPosition:center}.style_arrows__2HgOY{position:absolute;top:0;left:0;width:100%;height:100%;display:flex;align-items:var(--arrowsPosition);justify-content:space-between;transition:opacity .35s;padding:10px;--arrowsColor:var(--forecolor)}.style_left__3_kwS,.style_right__RERAa{width:50px;height:50px;transition:background-color .3s ease-in-out;cursor:pointer;width:0;height:0;border-top:20px solid transparent;border-bottom:20px solid transparent;opacity:var(--arrowsOpacity)}.style_left__3_kwS{border-right:20px solid var(--arrowsColor)}.style_right__RERAa{border-left:20px solid var(--arrowsColor)}.style_arrows__2HgOY.style_hide__3B8Al{opacity:0}";
   var css$9 = {"arrows":"style_arrows__2HgOY","left":"style_left__3_kwS","right":"style_right__RERAa","hide":"style_hide__3B8Al"};
   styleInject(css_248z$p);
 

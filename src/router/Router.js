@@ -4,7 +4,7 @@ import u from '../utils.js'
 import css from './router.css'
 
 const Router = function (rootElement, projectConfig) {
-  const child = u.div(`<div class="${css.router}"></div>`)
+  const child = u.div(`<div class="controller ${css.router}"></div>`)
   rootElement.appendChild(child)
   child.setAttribute('tabindex', '0')
 
@@ -76,7 +76,7 @@ const Router = function (rootElement, projectConfig) {
     const sceneConfig = scenes[currentIndex]
     const props = u.props(sceneConfig.props)
     child.classList.remove(...child.classList)
-    child.classList.add(css.router)
+    child.classList.add('controller', css.router)
     if (props.classes) {
       const cls = props.classes.split(' ')
       cls.forEach(c => {

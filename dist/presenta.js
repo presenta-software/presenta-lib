@@ -1,11 +1,11 @@
-// https://lib.presenta.cc v0.0.15 Copyright 2020 Fabio Franchino
+// https://lib.presenta.cc v0.0.16 Copyright 2020 Fabio Franchino
 (function (global, factory) {
   typeof exports === 'object' && typeof module !== 'undefined' ? module.exports = factory() :
   typeof define === 'function' && define.amd ? define(factory) :
   (global = global || self, global.Presenta = factory());
 }(this, (function () { 'use strict';
 
-  var version = "0.0.15";
+  var version = "0.0.16";
 
   function styleInject(css, ref) {
     if ( ref === void 0 ) ref = {};
@@ -34,7 +34,7 @@
     }
   }
 
-  var css_248z = ".presenta *{box-sizing:border-box}.presenta{position:relative;--pw:960;--w:960px;--h:540px;--vp:960;--fz:1;--p:calc(var(--pw)/var(--vp));--scenepadding:0;--blockweight:1;--blockpadding:0}:root{--fontHeading:Georgia,\"Times New Roman\",Times,serif;--fontText:\"Trebuchet MS\",\"Lucida Sans Unicode\",\"Lucida Grande\",\"Lucida Sans\",Arial,sans-serif}.colorvar__a,:root{--backcolor:#fff;--forecolor:#000;--accentcolor:#444;--otheraccentcolor:#ddd;--overlaycolor:var(--backcolor)}.colorvar__b{--backcolor:#000;--accentcolor:#999}.colorvar__b,.colorvar__c{--forecolor:#fff;--otheraccentcolor:#ccc;--overlaycolor:var(--backcolor)}.colorvar__c{--backcolor:#444;--accentcolor:#fff}.layout__block .blocksContainer{display:block}.layout__block .blocksContainer>div{height:auto}.layout__rows .blocksContainer{display:flex;flex-direction:column}.layout__rows .blocksContainer>div{width:100%}.layout__stack .blocksContainer{position:relative}.layout__stack .blocksContainer>div{position:absolute;top:0;left:0;width:100%;height:100%}";
+  var css_248z = ".presenta *{box-sizing:border-box}.presenta{position:relative;--pw:960;--w:960px;--h:540px;--vp:960;--fz:1;--p:calc(var(--pw)/var(--vp))}:root{--fontHeading:Georgia,\"Times New Roman\",Times,serif;--fontText:\"Trebuchet MS\",\"Lucida Sans Unicode\",\"Lucida Grande\",\"Lucida Sans\",Arial,sans-serif}.colorvar__a,:root{--backcolor:#fff;--forecolor:#000;--accentcolor:#444;--otheraccentcolor:#ddd;--overlaycolor:var(--backcolor)}.colorvar__b{--backcolor:#000;--accentcolor:#999}.colorvar__b,.colorvar__c{--forecolor:#fff;--otheraccentcolor:#ccc;--overlaycolor:var(--backcolor)}.colorvar__c{--backcolor:#444;--accentcolor:#fff}.layout__block .blocksContainer{display:block}.layout__block .blocksContainer>div{height:auto}.layout__rows .blocksContainer{display:flex;flex-direction:column}.layout__rows .blocksContainer>div{width:100%}.layout__stack .blocksContainer{position:relative}.layout__stack .blocksContainer>div{position:absolute;top:0;left:0;width:100%;height:100%}";
   styleInject(css_248z);
 
   var css_248z$1 = "@import url(\"https://fonts.googleapis.com/css2?family=Montserrat:wght@600&family=Roboto+Mono:ital,wght@0,400;0,700;1,400&display=swap\");.fontkit__original{--fontHeading:\"Roboto Mono\",monospace;--fontText:\"Montserrat\",sans-serif}";
@@ -70,7 +70,7 @@
   var css_248z$b = ".scheme__mayb,.scheme__mayb.colorvar__a,.scheme__mayb .colorvar__a{--backcolor:#d0caa9;--forecolor:#30302f;--accentcolor:#ec4a25;--otheraccentcolor:#fff}.scheme__mayb.colorvar__b,.scheme__mayb .colorvar__b{--backcolor:#30302f;--forecolor:#d0caa9;--accentcolor:#ec4a25;--otheraccentcolor:#fff}.scheme__mayb.colorvar__c,.scheme__mayb .colorvar__c{--backcolor:#ec4a25;--forecolor:#fff;--accentcolor:#d0caa9;--otheraccentcolor:#30302f}";
   styleInject(css_248z$b);
 
-  var css_248z$c = ".scene_sceneContainer__IgSpB{width:100%;height:100%;display:flex;align-items:center;justify-content:center;position:relative}.scene_scene__3uvTl{--sw:calc(var(--w)/var(--p)/var(--fz));--sh:calc(var(--h)/var(--p)/var(--fz));--scal:calc(var(--pw)/var(--p)/var(--pw)/var(--fz));width:var(--sw);height:var(--sh);font-family:serif;user-select:none}.scene_wrapper__3yr1k{width:var(--w);height:var(--h);transform:scale(1);transform:scale(var(--scal));transform-origin:top left;overflow:hidden;padding:var(--scenepadding)}.scene_content__1rJf0{width:100%;height:100%;display:flex;flex-direction:column;overflow:hidden}.scene_bcontainer__3MFBK,.scene_fcontainer__1E_0g{top:0;left:0;width:100%;height:100%;position:absolute}.scene_viewport__3uNLS{width:100%;height:100%;position:relative;flex:1;overflow:hidden;display:flex;flex-direction:row}.scene_viewport__3uNLS>div{height:100%}";
+  var css_248z$c = ":root{--scenePadding:0}.scene_sceneContainer__IgSpB{width:100%;height:100%;display:flex;align-items:center;justify-content:center;position:relative}.scene_scene__3uvTl{--sw:calc(var(--w)/var(--p)/var(--fz));--sh:calc(var(--h)/var(--p)/var(--fz));--scal:calc(var(--pw)/var(--p)/var(--pw)/var(--fz));width:var(--sw);height:var(--sh);font-family:serif;user-select:none}.scene_wrapper__3yr1k{width:var(--w);height:var(--h);transform:scale(1);transform:scale(var(--scal));transform-origin:top left;overflow:hidden;padding:var(--scenePadding)}.scene_content__1rJf0{width:100%;height:100%;display:flex;flex-direction:column;overflow:hidden}.scene_bcontainer__3MFBK,.scene_fcontainer__1E_0g{top:0;left:0;width:100%;height:100%;position:absolute}.scene_viewport__3uNLS{width:100%;height:100%;position:relative;flex:1;overflow:hidden;display:flex;flex-direction:row}.scene_viewport__3uNLS>div{height:100%}";
   var css = {"sceneContainer":"scene_sceneContainer__IgSpB","scene":"scene_scene__3uvTl","wrapper":"scene_wrapper__3yr1k","content":"scene_content__1rJf0","bcontainer":"scene_bcontainer__3MFBK","fcontainer":"scene_fcontainer__1E_0g","viewport":"scene_viewport__3uNLS"};
   styleInject(css_248z$c);
 
@@ -143,7 +143,7 @@
     event
   };
 
-  var css_248z$d = ".block_block__BWbaZ{width:100%;height:100%;flex:1;flex:var(--blockweight);overflow:hidden}.block_inner__3LS6s{width:100%;height:100%;background:var(--backcolor);padding:var(--blockpadding);opacity:var(--blockopacity);mix-blend-mode:var(--blockblend)}";
+  var css_248z$d = ":root{--blockWeight:1;--blockPadding:0;--blockOpacity:1;--blockBlend:unset}.block_block__BWbaZ{--blockBackColor:var(--backcolor);width:100%;height:100%;flex:1;flex:var(--blockWeight);overflow:hidden}.block_inner__3LS6s{width:100%;height:100%;background:var(--blockBackColor);padding:var(--blockPadding);opacity:var(--blockOpacity);mix-blend-mode:var(--blockBlend)}";
   var css$1 = {"block":"block_block__BWbaZ","inner":"block_inner__3LS6s"};
   styleInject(css_248z$d);
 
@@ -851,7 +851,7 @@
   styleInject(css_248z$t);
 
   const Router = function (rootElement, projectConfig) {
-    const child = utils.div(`<div class="${css$d.router}"></div>`);
+    const child = utils.div(`<div class="controller ${css$d.router}"></div>`);
     rootElement.appendChild(child);
     child.setAttribute('tabindex', '0');
     const scenes = projectConfig.scenes;
@@ -920,7 +920,7 @@
       const sceneConfig = scenes[currentIndex];
       const props = utils.props(sceneConfig.props);
       child.classList.remove(...child.classList);
-      child.classList.add(css$d.router);
+      child.classList.add('controller', css$d.router);
 
       if (props.classes) {
         const cls = props.classes.split(' ');
@@ -1016,7 +1016,7 @@
     */
 
 
-    const globprop = ['transition', 'colorvar', 'scheme', 'fontkit'];
+    const globprop = ['transition', 'colorvar', 'scheme', 'fontkit', 'theme'];
     globprop.forEach(p => {
       if (projectConfig[p]) {
         const prp = projectConfig[p].substr(1);

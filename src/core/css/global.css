@@ -1,6 +1,3 @@
-
-
-
 .presenta * {
   box-sizing: border-box;
 }
@@ -11,7 +8,6 @@
   /* width: 100%;
     height: 100%; */
   
-
   --pw: 960;
   --w: 960px;
   --h: 540px;
@@ -21,11 +17,6 @@
   /* --sw: calc(var(--w) / var(--p) / var(--fz));
   --sh: calc(var(--h) / var(--p) / var(--fz));
   --scal: calc(var(--pw) / var(--p) / var(--pw) / var(--fz)); */
-
-  /* PUBLIC VARS */
-  --scenepadding: 0;
-  --blockweight: 1;
-  --blockpadding: 0;
 }
 
 

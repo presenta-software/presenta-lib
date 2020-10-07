@@ -36,7 +36,7 @@ const Container = function (rootElement, projectConfig) {
   /*
     Global defaults
   */
-  const globprop = ['transition', 'colorvar', 'scheme', 'fontkit']
+  const globprop = ['transition', 'colorvar', 'scheme', 'fontkit', 'theme']
   globprop.forEach(p => {
     if (projectConfig[p]) {
       const prp = projectConfig[p].substr(1)

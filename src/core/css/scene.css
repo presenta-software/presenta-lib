@@ -1,3 +1,7 @@
+:root{
+    --scenePadding: 0;
+}
+
 .sceneContainer{
     width: 100%;
     height: 100%;
@@ -25,7 +29,7 @@
     transform-origin: top left;
     overflow: hidden;
 
-    padding: var(--scenepadding);
+    padding: var(--scenePadding);
     /* background-color: var(--backcolor); */
 }
 .content{

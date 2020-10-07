@@ -1,11 +1,11 @@
-// https://lib.presenta.cc v0.0.18 Copyright 2020 Fabio Franchino
+// https://lib.presenta.cc v0.0.19 Copyright 2020 Fabio Franchino
 (function (global, factory) {
   typeof exports === 'object' && typeof module !== 'undefined' ? module.exports = factory() :
   typeof define === 'function' && define.amd ? define(factory) :
   (global = global || self, global.Presenta = factory());
 }(this, (function () { 'use strict';
 
-  var version = "0.0.18";
+  var version = "0.0.19";
 
   function styleInject(css, ref) {
     if ( ref === void 0 ) ref = {};
@@ -849,7 +849,8 @@
   styleInject(css_248z$t);
 
   const Router = function (rootElement, projectConfig) {
-    const child = utils.div(`<div class="controller ${css$d.router}"></div>`);
+    const props = utils.props(projectConfig.router.props);
+    const child = utils.div(`<div style="${props.styles}" class="controller ${css$d.router}"></div>`);
     rootElement.appendChild(child);
     child.setAttribute('tabindex', '0');
     const scenes = projectConfig.scenes;

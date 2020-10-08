@@ -1,6 +1,8 @@
 :root{
     --arrowsOpacity: 1;
-    --arrowsPosition: center;
+    --arrowsVerticalPosition: center;
+    --arrowsHorizontalPosition: space-between;
+    --arrowsPadding: 10px;
 }
 
 .arrows{
@@ -10,32 +12,38 @@
     width: 100%;
     height: 100%;
     display: flex;
-    align-items: var(--arrowsPosition);
-    justify-content: space-between;
     transition: opacity .35s;
 
-    padding: 10px;
-
+    justify-content: var(--arrowsHorizontalPosition);
     --arrowsColor: var(--forecolor);
 }
 
 .left, .right{
-    width: 50px;
-    height: 50px;
-    transition: background-color .3s ease-in-out;
+    height: 100%;
+    display: flex;
+    align-items: var(--arrowsVerticalPosition);
+    justify-content: center;
     cursor: pointer;
 
+    padding: var(--arrowsPadding);
+}
+
+.ui{
+    width: 20px;
+    height: 20px;
+    transition: background-color .3s ease-in-out;
+    
     width: 0;
 	height: 0;
-	border-top: 20px solid transparent;
-    border-bottom: 20px solid transparent;
+	border-top: 10px solid transparent;
+    border-bottom: 10px solid transparent;
     opacity: var(--arrowsOpacity);
 }
-.left{
-	border-right: 20px solid var(--arrowsColor);
+.left .ui{
+	border-right: 10px solid var(--arrowsColor);
 }
-.right{
-	border-left: 20px solid var(--arrowsColor);
+.right .ui{
+	border-left: 10px solid var(--arrowsColor);
 }
 
 .arrows.hide{

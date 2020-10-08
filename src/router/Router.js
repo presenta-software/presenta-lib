@@ -4,9 +4,9 @@ import u from '../utils.js'
 import css from './router.css'
 
 const Router = function (rootElement, projectConfig) {
-  const props = u.props(projectConfig.router.props)
+  const gprops = u.props(projectConfig.router.props)
 
-  const child = u.div(`<div style="${props.styles}" class="controller ${css.router}"></div>`)
+  const child = u.div(`<div style="${gprops.styles}" class="controller ${css.router} ${gprops.classes}"></div>`)
   rootElement.appendChild(child)
   child.setAttribute('tabindex', '0')
 
@@ -80,11 +80,22 @@ const Router = function (rootElement, projectConfig) {
     child.classList.remove(...child.classList)
     child.classList.add('controller', css.router)
     if (props.classes) {
-      const cls = props.classes.split(' ')
-      cls.forEach(c => {
-        const cc = c.trim()
-        if (cc) child.classList.add(cc)
-      })
+      let cls = props.classes.split(' ')
+      cls = cls.filter(d => d !== '')
+      child.classList.add(...cls)
+      // cls.forEach(c => {
+      //   const cc = c.trim()
+      //   if (cc) child.classList.add(cc)
+      // })
+    }
+    if (gprops.classes) {
+      let cls = gprops.classes.split(' ')
+      cls = cls.filter(d => d !== '')
+      child.classList.add(...cls)
+      // cls.forEach(c => {
+      //   const cc = c.trim()
+      //   if (cc) child.classList.add(cc)
+      // })
     }
 
     if (listeners[evt]) {
@@ -119,11 +130,13 @@ const Router = function (rootElement, projectConfig) {
 
   if (projectConfig.router) {
     for (const k in projectConfig.router) {
-      const modConfig = projectConfig.router[k]
-      const Mod = io[k]
-      if (!Mod) console.log(`Router module "${k}" not found. Maybe you forgot to include it.`)
-      if (modConfig && Mod) {
-        registeredIO[k] = new Mod(child, this, modConfig, projectConfig)
+      if (k !== 'props') {
+        const modConfig = projectConfig.router[k]
+        const Mod = io[k]
+        if (!Mod) console.log(`Router module "${k}" not found. Maybe you forgot to include it.`)
+        if (modConfig && Mod) {
+          registeredIO[k] = new Mod(child, this, modConfig, projectConfig)
+        }
       }
     }
   }

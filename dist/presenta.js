@@ -1,11 +1,11 @@
-// https://lib.presenta.cc v0.0.19 Copyright 2020 Fabio Franchino
+// https://lib.presenta.cc v0.0.20 Copyright 2020 Fabio Franchino
 (function (global, factory) {
   typeof exports === 'object' && typeof module !== 'undefined' ? module.exports = factory() :
   typeof define === 'function' && define.amd ? define(factory) :
   (global = global || self, global.Presenta = factory());
 }(this, (function () { 'use strict';
 
-  var version = "0.0.19";
+  var version = "0.0.20";
 
   function styleInject(css, ref) {
     if ( ref === void 0 ) ref = {};
@@ -706,16 +706,16 @@
     rootElement.addEventListener('keyup', setKeyListener);
   };
 
-  var css_248z$p = ":root{--arrowsOpacity:1;--arrowsPosition:center}.style_arrows__2HgOY{position:absolute;top:0;left:0;width:100%;height:100%;display:flex;align-items:var(--arrowsPosition);justify-content:space-between;transition:opacity .35s;padding:10px;--arrowsColor:var(--forecolor)}.style_left__3_kwS,.style_right__RERAa{width:50px;height:50px;transition:background-color .3s ease-in-out;cursor:pointer;width:0;height:0;border-top:20px solid transparent;border-bottom:20px solid transparent;opacity:var(--arrowsOpacity)}.style_left__3_kwS{border-right:20px solid var(--arrowsColor)}.style_right__RERAa{border-left:20px solid var(--arrowsColor)}.style_arrows__2HgOY.style_hide__3B8Al{opacity:0}";
-  var css$9 = {"arrows":"style_arrows__2HgOY","left":"style_left__3_kwS","right":"style_right__RERAa","hide":"style_hide__3B8Al"};
+  var css_248z$p = ":root{--arrowsOpacity:1;--arrowsVerticalPosition:center;--arrowsHorizontalPosition:space-between;--arrowsPadding:10px}.style_arrows__2HgOY{position:absolute;top:0;left:0;width:100%;height:100%;display:flex;transition:opacity .35s;justify-content:var(--arrowsHorizontalPosition);--arrowsColor:var(--forecolor)}.style_left__3_kwS,.style_right__RERAa{height:100%;display:flex;align-items:var(--arrowsVerticalPosition);justify-content:center;cursor:pointer;padding:var(--arrowsPadding)}.style_ui__1-Ik8{width:20px;height:20px;transition:background-color .3s ease-in-out;width:0;height:0;border-top:10px solid transparent;border-bottom:10px solid transparent;opacity:var(--arrowsOpacity)}.style_left__3_kwS .style_ui__1-Ik8{border-right:10px solid var(--arrowsColor)}.style_right__RERAa .style_ui__1-Ik8{border-left:10px solid var(--arrowsColor)}.style_arrows__2HgOY.style_hide__3B8Al{opacity:0}";
+  var css$9 = {"arrows":"style_arrows__2HgOY","left":"style_left__3_kwS","right":"style_right__RERAa","ui":"style_ui__1-Ik8","hide":"style_hide__3B8Al"};
   styleInject(css_248z$p);
 
   const arrows = function (rootElement, router, config) {
     let timer = null;
-    const child = utils.div(`<div class="${css$9.arrows}"></div>`);
-    const left = utils.div(`<div class="${css$9.left}"></div>`);
-    const right = utils.div(`<div class="${css$9.right}"></div>`);
+    const child = utils.div(`<div class="${css$9.arrows}"></div></div>`);
+    const left = utils.div(`<div class="${css$9.left}"><div class="${css$9.ui}"></div></div>`);
     child.appendChild(left);
+    const right = utils.div(`<div class="${css$9.right}"><div class="${css$9.ui}"></div>`);
     child.appendChild(right);
     rootElement.appendChild(child);
     left.addEventListener('click', e => {
@@ -739,8 +739,7 @@
     const scheduleForHide = () => {
       clearTimeout(timer);
       child.classList.remove(css$9.hide);
-      timer = setTimeout(() => {
-        child.classList.add(css$9.hide);
+      timer = setTimeout(() => {// child.classList.add(css.hide)
       }, 1500);
     };
 
@@ -849,8 +848,8 @@
   styleInject(css_248z$t);
 
   const Router = function (rootElement, projectConfig) {
-    const props = utils.props(projectConfig.router.props);
-    const child = utils.div(`<div style="${props.styles}" class="controller ${css$d.router}"></div>`);
+    const gprops = utils.props(projectConfig.router.props);
+    const child = utils.div(`<div style="${gprops.styles}" class="controller ${css$d.router} ${gprops.classes}"></div>`);
     rootElement.appendChild(child);
     child.setAttribute('tabindex', '0');
     const scenes = projectConfig.scenes;
@@ -922,11 +921,21 @@
       child.classList.add('controller', css$d.router);
 
       if (props.classes) {
-        const cls = props.classes.split(' ');
-        cls.forEach(c => {
-          const cc = c.trim();
-          if (cc) child.classList.add(cc);
-        });
+        let cls = props.classes.split(' ');
+        cls = cls.filter(d => d !== '');
+        child.classList.add(...cls); // cls.forEach(c => {
+        //   const cc = c.trim()
+        //   if (cc) child.classList.add(cc)
+        // })
+      }
+
+      if (gprops.classes) {
+        let cls = gprops.classes.split(' ');
+        cls = cls.filter(d => d !== '');
+        child.classList.add(...cls); // cls.forEach(c => {
+        //   const cc = c.trim()
+        //   if (cc) child.classList.add(cc)
+        // })
       }
 
       if (listeners[evt]) {
@@ -965,12 +974,14 @@
 
     if (projectConfig.router) {
       for (const k in projectConfig.router) {
-        const modConfig = projectConfig.router[k];
-        const Mod = io[k];
-        if (!Mod) console.log(`Router module "${k}" not found. Maybe you forgot to include it.`);
+        if (k !== 'props') {
+          const modConfig = projectConfig.router[k];
+          const Mod = io[k];
+          if (!Mod) console.log(`Router module "${k}" not found. Maybe you forgot to include it.`);
 
-        if (modConfig && Mod) {
-          registeredIO[k] = new Mod(child, this, modConfig, projectConfig);
+          if (modConfig && Mod) {
+            registeredIO[k] = new Mod(child, this, modConfig, projectConfig);
+          }
         }
       }
     }

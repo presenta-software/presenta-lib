@@ -1,4 +1,4 @@
-const focus = function (rootElement, router, config) {
+const focus = function (rootElement, router, ctrlConfig, projectConfig) {
   const clb = (entries, observer) => {
     entries.forEach(entry => {
       if (entry.isIntersecting) rootElement.focus({ preventScroll: true })

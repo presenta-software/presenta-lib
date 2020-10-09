@@ -1,8 +1,8 @@
-## Presenta-Lib
+## PRESENTA Lib
 
-> Build Presentatios the modern way
+> Build presentatios, the modern way.
 
-**Presenta-Lib** is a javascript library that helps creating presentational document by using a configuration object.
+**PRESENTA Lib** is a javascript library that helps creating presentational document by using a configuration object.
 
 ### Documentation
 
@@ -10,11 +10,11 @@ You can learn more and read the documentation starting from [here](https://lib.p
 
 ### Development
 
-To start a development session, run:
+To start a development session, run in two shells:
 
 - `npm start`
-- `npm run preview` 
+- `npm run test`
 
 ### Licence
 
-Presenta-Lib is available under the [3-Clause BSD license](LICENSE).
+PRESENTA Lib is released under the [3-Clause BSD license](LICENSE).

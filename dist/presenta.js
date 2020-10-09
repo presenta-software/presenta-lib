@@ -1,11 +1,11 @@
-// https://lib.presenta.cc v0.0.21 Copyright 2020 Fabio Franchino
+// https://lib.presenta.cc v0.0.22 Copyright 2020 Fabio Franchino
 (function (global, factory) {
   typeof exports === 'object' && typeof module !== 'undefined' ? module.exports = factory() :
   typeof define === 'function' && define.amd ? define(factory) :
   (global = global || self, global.Presenta = factory());
 }(this, (function () { 'use strict';
 
-  var version = "0.0.21";
+  var version = "0.0.22";
 
   function styleInject(css, ref) {
     if ( ref === void 0 ) ref = {};
@@ -653,10 +653,10 @@
   var css$8 = {"container":"container_container__3kBNh"};
   styleInject(css_248z$o);
 
-  const autoplay = function (rootElement, router, config) {
+  const autoplay = function (rootElement, router, ctrlConfig, projectConfig) {
     let timer = null;
-    const loop = !config.noloop;
-    const defdelay = config.delay || 4000;
+    const loop = !ctrlConfig.noloop;
+    const defdelay = ctrlConfig.delay || 4000;
     let lastdelay = 0;
 
     const runTime = delay => {
@@ -816,7 +816,7 @@
     rootElement.addEventListener('keyup', setKeyListener);
   };
 
-  const focus = function (rootElement, router, config) {
+  const focus = function (rootElement, router, ctrlConfig, projectConfig) {
     const clb = (entries, observer) => {
       entries.forEach(entry => {
         if (entry.isIntersecting) rootElement.focus({
@@ -827,6 +827,28 @@
 
     const observer = new IntersectionObserver(clb);
     observer.observe(rootElement);
+  };
+
+  const addLink = (url, type) => {
+    const preloadLink = document.createElement('link');
+    preloadLink.href = url;
+    preloadLink.rel = 'preload';
+    preloadLink.as = type;
+    document.head.appendChild(preloadLink);
+  };
+  /*
+  How to support images in text element?
+  */
+
+
+  const preload = function (rootElement, router, ctrlConfig, projectConfig) {
+    projectConfig.scenes.forEach(s => {
+      s.blocks.forEach(b => {
+        if (b.type === 'image' || b.type === 'video') {
+          addLink(b.url, b.type);
+        }
+      });
+    });
   };
 
   var css_248z$r = ":root{--progressbarHeight:5px;--progressbarBottom:initial}.style_progressbar__2zEjZ{--progressbarColor:var(--forecolor);width:100%;height:100%;pointer-events:none}.style_bar__Vua_1{width:0;height:var(--progressbarHeight);position:absolute;bottom:var(--progressbarBottom);left:0;background-color:var(--progressbarColor);transition:width .5s cubic-bezier(.8,.2,.2,.8)}";
@@ -881,6 +903,7 @@
     black,
     fullscreen,
     focus,
+    preload,
     progressbar,
     pagenum
   };

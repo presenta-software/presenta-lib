@@ -2,7 +2,7 @@
   "name": "@presenta/lib",
   "homepage": "https://lib.presenta.cc",
   "version": "0.0.22",
-  "description": "A modern presentation library",
+  "description": "Build presentations, the modern way.",
   "main": "src/index.js",
   "unpkg": "dist/presenta.min.js",
   "module": "dist/presenta.js",
@@ -10,7 +10,7 @@
     "start": "rollup -c --watch",
     "build": "rollup -c",
     "bump": "npm run build && git add -u && git commit -m \"bump release\" && npm version patch && git push && npm publish",
-    "preview": "browser-sync start --server --files=\"dist/*, test/*, examples/*\""
+    "test": "browser-sync start --server --files=\"dist/*, test/*, examples/*\""
   },
   "keywords": [
     "presentation",

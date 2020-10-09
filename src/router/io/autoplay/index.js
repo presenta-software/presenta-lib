@@ -1,7 +1,7 @@
-const autoplay = function (rootElement, router, config) {
+const autoplay = function (rootElement, router, ctrlConfig, projectConfig) {
   let timer = null
-  const loop = !config.noloop
-  const defdelay = config.delay || 4000
+  const loop = !ctrlConfig.noloop
+  const defdelay = ctrlConfig.delay || 4000
   let lastdelay = 0
 
   const runTime = (delay) => {

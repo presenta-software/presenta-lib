@@ -1,11 +1,11 @@
-// https://lib.presenta.cc v0.0.20 Copyright 2020 Fabio Franchino
+// https://lib.presenta.cc v0.0.21 Copyright 2020 Fabio Franchino
 (function (global, factory) {
   typeof exports === 'object' && typeof module !== 'undefined' ? module.exports = factory() :
   typeof define === 'function' && define.amd ? define(factory) :
   (global = global || self, global.Presenta = factory());
 }(this, (function () { 'use strict';
 
-  var version = "0.0.20";
+  var version = "0.0.21";
 
   function styleInject(css, ref) {
     if ( ref === void 0 ) ref = {};
@@ -750,15 +750,64 @@
   var css$a = {"black":"style_black__27h0m"};
   styleInject(css_248z$q);
 
-  const black = function (rootElement, router, config) {
+  const black = function (rootElement, router, ctrlConfig, projectConfig) {
     let visible = false;
     const child = utils.div(`<div class="${css$a.black}"></div>`);
     rootElement.appendChild(child);
+    const key = ctrlConfig.key || 'b';
 
     const setKeyListener = e => {
-      if (e.key === 'b') {
+      if (e.key === key) {
         visible = !visible;
         child.style.opacity = visible ? 1 : 0;
+        e.stopPropagation();
+        e.preventDefault();
+      }
+    };
+
+    rootElement.addEventListener('keyup', setKeyListener);
+  };
+
+  const isAlreadyFullscreen = () => {
+    return document.fullscreenElement || document.webkitFullscreenElement || document.mozFullScreenElement || document.msFullscreenElement;
+  };
+
+  const exitFullscreen = () => {
+    if (document.exitFullscreen) {
+      document.exitFullscreen();
+    } else if (document.mozCancelFullScreen) {
+      document.mozCancelFullScreen();
+    } else if (document.webkitExitFullscreen) {
+      document.webkitExitFullscreen();
+    } else if (document.msExitFullscreen) {
+      document.msExitFullscreen();
+    }
+  };
+
+  const makeFullscreen = el => {
+    if (el.requestFullscreen) {
+      el.requestFullscreen();
+    } else if (el.mozRequestFullScreen) {
+      el.mozRequestFullScreen();
+    } else if (el.webkitRequestFullscreen) {
+      el.webkitRequestFullscreen(Element.ALLOW_KEYBOARD_INPUT);
+    } else if (el.msRequestFullscreen) {
+      el.msRequestFullscreen();
+    }
+  };
+
+  const fullscreen = function (rootElement, router, ctrlConfig, projectConfig) {
+    const key = ctrlConfig.key || 'f';
+    const root = rootElement.parentNode;
+
+    const setKeyListener = e => {
+      if (e.key === key) {
+        if (isAlreadyFullscreen()) {
+          exitFullscreen();
+        } else {
+          makeFullscreen(root);
+        }
+
         e.stopPropagation();
         e.preventDefault();
       }
@@ -830,6 +879,7 @@
     keyboard,
     arrows,
     black,
+    fullscreen,
     focus,
     progressbar,
     pagenum
@@ -1089,7 +1139,8 @@
       router: {
         keyboard: true,
         arrows: true,
-        black: true
+        black: true,
+        fullscreen: true
       },
       modules: {},
       scheme: null,

@@ -6,7 +6,8 @@ export default config => {
     router: {
       keyboard: true,
       arrows: true,
-      black: true
+      black: true,
+      fullscreen: true
     },
     modules: {
     },

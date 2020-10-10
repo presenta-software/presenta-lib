@@ -24,13 +24,6 @@ const autoplay = function (rootElement, router, ctrlConfig, projectConfig) {
     const delay = cScene.duration || defdelay
     runTime(delay)
   })
-
-  this.pause = () => {
-    clearTimeout(timer)
-  }
-  this.resume = () => {
-    runTime(lastdelay)
-  }
 }
 
 export { autoplay }

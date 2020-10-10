@@ -1,5 +1,5 @@
 
-import { io } from './io.js'
+import { controllers } from './types.js'
 import u from '../utils.js'
 import css from './router.css'
 
@@ -132,8 +132,8 @@ const Router = function (rootElement, projectConfig) {
     for (const k in projectConfig.router) {
       if (k !== 'props') {
         const modConfig = projectConfig.router[k]
-        const Mod = io[k]
-        if (!Mod) console.log(`Router module "${k}" not found. Maybe you forgot to include it.`)
+        const Mod = controllers[k]
+        if (!Mod) console.log(`Controller "${k}" not found. Maybe you forgot to include it.`)
         if (modConfig && Mod) {
           registeredIO[k] = new Mod(child, this, modConfig, projectConfig)
         }

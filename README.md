@@ -1,4 +1,4 @@
-## PRESENTA Lib
+# PRESENTA Lib
 
 > Build presentations, the modern way.
 

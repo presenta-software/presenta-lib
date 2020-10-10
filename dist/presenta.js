@@ -1,11 +1,11 @@
-// https://lib.presenta.cc v0.0.23 Copyright 2020 Fabio Franchino
+// https://lib.presenta.cc v0.0.24 Copyright 2020 Fabio Franchino
 (function (global, factory) {
   typeof exports === 'object' && typeof module !== 'undefined' ? module.exports = factory() :
   typeof define === 'function' && define.amd ? define(factory) :
   (global = global || self, global.Presenta = factory());
 }(this, (function () { 'use strict';
 
-  var version = "0.0.23";
+  var version = "0.0.24";
 
   function styleInject(css, ref) {
     if ( ref === void 0 ) ref = {};
@@ -69,6 +69,8 @@
 
   var css_248z$b = ".scheme__mayb,.scheme__mayb.colorvar__a,.scheme__mayb .colorvar__a{--backcolor:#d0caa9;--forecolor:#30302f;--accentcolor:#ec4a25;--otheraccentcolor:#fff}.scheme__mayb.colorvar__b,.scheme__mayb .colorvar__b{--backcolor:#30302f;--forecolor:#d0caa9;--accentcolor:#ec4a25;--otheraccentcolor:#fff}.scheme__mayb.colorvar__c,.scheme__mayb .colorvar__c{--backcolor:#ec4a25;--forecolor:#fff;--accentcolor:#d0caa9;--otheraccentcolor:#30302f}";
   styleInject(css_248z$b);
+
+  const schemes = ['original', 'vibrant', 'polite', 'breeze', 'sunny', 'acid', 'novel', 'doub', 'mayb'];
 
   var css_248z$c = ":root{--scenePadding:0}.scene_sceneContainer__IgSpB{width:100%;height:100%;display:flex;align-items:center;justify-content:center;position:relative}.scene_scene__3uvTl{--sw:calc(var(--w)/var(--p)/var(--fz));--sh:calc(var(--h)/var(--p)/var(--fz));--scal:calc(var(--pw)/var(--p)/var(--pw)/var(--fz));width:var(--sw);height:var(--sh);font-family:serif;user-select:none}.scene_wrapper__3yr1k{width:var(--w);height:var(--h);transform:scale(1);transform:scale(var(--scal));transform-origin:top left;overflow:hidden;padding:var(--scenePadding)}.scene_content__1rJf0{width:100%;height:100%;display:flex;flex-direction:column;overflow:hidden}.scene_bcontainer__3MFBK,.scene_fcontainer__1E_0g{top:0;left:0;width:100%;height:100%;position:absolute}.scene_viewport__3uNLS{width:100%;height:100%;position:relative;flex:1;overflow:hidden;display:flex;flex-direction:row}.scene_viewport__3uNLS>div{height:100%}";
   var css = {"sceneContainer":"scene_sceneContainer__IgSpB","scene":"scene_scene__3uvTl","wrapper":"scene_wrapper__3yr1k","content":"scene_content__1rJf0","bcontainer":"scene_bcontainer__3MFBK","fcontainer":"scene_fcontainer__1E_0g","viewport":"scene_viewport__3uNLS"};
@@ -1160,7 +1162,7 @@
     };
   };
 
-  var mergeDefaults = (config => {
+  var defaults = (config => {
     const defaultConfig = {
       aspect: 1.6,
       adapt: true,
@@ -1197,12 +1199,13 @@
   });
 
   const Presenta = function (el, config) {
-    mergeDefaults(config);
+    defaults(config);
     return new Container(utils.select(el), config);
   };
 
   Presenta.version = version;
   Presenta.utils = utils;
+  Presenta.schemes = schemes;
   Presenta.Scene = Scene;
   Presenta.addBlock = add;
   Presenta.addController = add$2;

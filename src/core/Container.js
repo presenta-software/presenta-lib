@@ -82,12 +82,14 @@ const Container = function (rootElement, projectConfig) {
     currentScene.stepForward()
   })
 
-  u.fit(child, projectConfig, rootElement)
+  if (window.ResizeObserver) {
+    const resizeObserver = new ResizeObserver(entries => {
+      u.fit(child, projectConfig, rootElement)
+    })
+    resizeObserver.observe(child)
+  }
 
-  const resizeObserver = new ResizeObserver(entries => {
-    u.fit(child, projectConfig, rootElement)
-  })
-  resizeObserver.observe(child)
+  u.fit(child, projectConfig, rootElement)
 
   this.currentScene = () => {
     return currentScene

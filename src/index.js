@@ -21,7 +21,7 @@ import utils from './utils.js'
 import mergeDefaults from './utils/mergeDefaults.js'
 
 import { add as addBlock } from './blocks/types.js'
-import { add as addController } from './router/io.js'
+import { add as addController } from './router/types.js'
 import { add as addModule } from './modules/types.js'
 
 const Presenta = function (el, config) {

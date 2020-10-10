@@ -14,9 +14,12 @@ const blocks = {
   solid
 }
 
-const add = (type, module) => {
+const add = (type, module, override) => {
   if (blocks[type]) {
-    return console.warn(`module type ${type} already defined`)
+    return console.warn(`block type ${type} already defined`)
+  }
+  if (override && blocks[type]) {
+    console.warn(`block type ${type} was overriden`)
   }
   blocks[type] = module
 }

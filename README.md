@@ -1,6 +1,6 @@
 ## PRESENTA Lib
 
-> Build presentatios, the modern way.
+> Build presentations, the modern way.
 
 **PRESENTA Lib** is a javascript library that helps creating presentational document by using a configuration object.
 

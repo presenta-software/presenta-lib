@@ -1,11 +1,11 @@
-// https://lib.presenta.cc v0.0.22 Copyright 2020 Fabio Franchino
+// https://lib.presenta.cc v0.0.23 Copyright 2020 Fabio Franchino
 (function (global, factory) {
   typeof exports === 'object' && typeof module !== 'undefined' ? module.exports = factory() :
   typeof define === 'function' && define.amd ? define(factory) :
   (global = global || self, global.Presenta = factory());
 }(this, (function () { 'use strict';
 
-  var version = "0.0.22";
+  var version = "0.0.23";
 
   function styleInject(css, ref) {
     if ( ref === void 0 ) ref = {};
@@ -381,9 +381,13 @@
     solid
   };
 
-  const add = (type, module) => {
+  const add = (type, module, override) => {
     if (blocks[type]) {
-      return console.warn(`module type ${type} already defined`);
+      return console.warn(`block type ${type} already defined`);
+    }
+
+    if (override && blocks[type]) {
+      console.warn(`block type ${type} was overriden`);
     }
 
     blocks[type] = module;
@@ -435,9 +439,13 @@
 
   const modules = {};
 
-  const add$1 = (type, module) => {
-    if (modules[type]) {
+  const add$1 = (type, module, override) => {
+    if (!override && modules[type]) {
       return console.warn(`module type ${type} already defined`);
+    }
+
+    if (override && modules[type]) {
+      console.warn(`module type ${type} was overriden`);
     } // if (module.init) module.init() // what's that???
 
 
@@ -657,10 +665,8 @@
     let timer = null;
     const loop = !ctrlConfig.noloop;
     const defdelay = ctrlConfig.delay || 4000;
-    let lastdelay = 0;
 
     const runTime = delay => {
-      lastdelay = delay;
       clearTimeout(timer);
       timer = setTimeout(() => {
         router.next();
@@ -678,14 +684,6 @@
       const delay = cScene.duration || defdelay;
       runTime(delay);
     });
-
-    this.pause = () => {
-      clearTimeout(timer);
-    };
-
-    this.resume = () => {
-      runTime(lastdelay);
-    };
   };
 
   const keyboard = function (rootElement, router, config) {
@@ -706,8 +704,8 @@
     rootElement.addEventListener('keyup', setKeyListener);
   };
 
-  var css_248z$p = ":root{--arrowsOpacity:1;--arrowsVerticalPosition:center;--arrowsHorizontalPosition:space-between;--arrowsPadding:10px}.style_arrows__2HgOY{position:absolute;top:0;left:0;width:100%;height:100%;display:flex;transition:opacity .35s;justify-content:var(--arrowsHorizontalPosition);--arrowsColor:var(--forecolor)}.style_left__3_kwS,.style_right__RERAa{height:100%;display:flex;align-items:var(--arrowsVerticalPosition);justify-content:center;cursor:pointer;padding:var(--arrowsPadding)}.style_ui__1-Ik8{width:20px;height:20px;transition:background-color .3s ease-in-out;width:0;height:0;border-top:10px solid transparent;border-bottom:10px solid transparent;opacity:var(--arrowsOpacity)}.style_left__3_kwS .style_ui__1-Ik8{border-right:10px solid var(--arrowsColor)}.style_right__RERAa .style_ui__1-Ik8{border-left:10px solid var(--arrowsColor)}.style_arrows__2HgOY.style_hide__3B8Al{opacity:0}";
-  var css$9 = {"arrows":"style_arrows__2HgOY","left":"style_left__3_kwS","right":"style_right__RERAa","ui":"style_ui__1-Ik8","hide":"style_hide__3B8Al"};
+  var css_248z$p = ":root{--arrowsOpacity:1;--arrowsVerticalPosition:center;--arrowsHorizontalPosition:space-between;--arrowsPadding:10px}.style_arrows__1_bDs{position:absolute;top:0;left:0;width:100%;height:100%;display:flex;transition:opacity .35s;justify-content:var(--arrowsHorizontalPosition);--arrowsColor:var(--forecolor)}.style_left__1qQXr,.style_right__1k8ro{height:100%;display:flex;align-items:var(--arrowsVerticalPosition);justify-content:center;cursor:pointer;padding:var(--arrowsPadding)}.style_ui__2s5RB{width:20px;height:20px;transition:background-color .3s ease-in-out;width:0;height:0;border-top:10px solid transparent;border-bottom:10px solid transparent;opacity:var(--arrowsOpacity)}.style_left__1qQXr .style_ui__2s5RB{border-right:10px solid var(--arrowsColor)}.style_right__1k8ro .style_ui__2s5RB{border-left:10px solid var(--arrowsColor)}.style_arrows__1_bDs.style_hide__1NqsM{opacity:0}";
+  var css$9 = {"arrows":"style_arrows__1_bDs","left":"style_left__1qQXr","right":"style_right__1k8ro","ui":"style_ui__2s5RB","hide":"style_hide__1NqsM"};
   styleInject(css_248z$p);
 
   const arrows = function (rootElement, router, config) {
@@ -746,8 +744,8 @@
     scheduleForHide();
   };
 
-  var css_248z$q = ".style_black__27h0m{width:100%;height:100%;position:absolute;top:0;left:0;background-color:#000;opacity:0;pointer-events:none;transition:opacity .5s cubic-bezier(.8,.2,.2,.8);z-index:999999}";
-  var css$a = {"black":"style_black__27h0m"};
+  var css_248z$q = ".style_black__3yyT_{width:100%;height:100%;position:absolute;top:0;left:0;background-color:#000;opacity:0;pointer-events:none;transition:opacity .5s cubic-bezier(.8,.2,.2,.8);z-index:999999}";
+  var css$a = {"black":"style_black__3yyT_"};
   styleInject(css_248z$q);
 
   const black = function (rootElement, router, ctrlConfig, projectConfig) {
@@ -851,8 +849,8 @@
     });
   };
 
-  var css_248z$r = ":root{--progressbarHeight:5px;--progressbarBottom:initial}.style_progressbar__2zEjZ{--progressbarColor:var(--forecolor);width:100%;height:100%;pointer-events:none}.style_bar__Vua_1{width:0;height:var(--progressbarHeight);position:absolute;bottom:var(--progressbarBottom);left:0;background-color:var(--progressbarColor);transition:width .5s cubic-bezier(.8,.2,.2,.8)}";
-  var css$b = {"progressbar":"style_progressbar__2zEjZ","bar":"style_bar__Vua_1"};
+  var css_248z$r = ":root{--progressbarHeight:5px;--progressbarBottom:initial}.style_progressbar__1cJNG{--progressbarColor:var(--forecolor);width:100%;height:100%;pointer-events:none}.style_bar__3QMJs{width:0;height:var(--progressbarHeight);position:absolute;bottom:var(--progressbarBottom);left:0;background-color:var(--progressbarColor);transition:width .5s cubic-bezier(.8,.2,.2,.8)}";
+  var css$b = {"progressbar":"style_progressbar__1cJNG","bar":"style_bar__3QMJs"};
   styleInject(css_248z$r);
 
   const progressbar = function (rootElement, router, ctrlConfig, projectConfig) {
@@ -873,8 +871,8 @@
     });
   };
 
-  var css_248z$s = ":root{--pagenumTextAlign:right;--pagenumPadding:5px;--pagenumFontSize:10px;--pagenumBackColor:none;--pagenumFont:var(--fontText)}.style_pagenum__2YaWi{--pagenumColor:var(--forecolor);width:100%;height:100%;position:absolute;top:0;left:0;display:flex;align-items:flex-end;pointer-events:none}.style_content__171wW{width:100%;text-align:var(--pagenumTextAlign);padding:var(--pagenumPadding);font-size:var(--pagenumFontSize);color:var(--pagenumColor);font-family:var(--pagenumFont);background-color:var(--pagenumBackColor);transition:all .3s ease-in-out}";
-  var css$c = {"pagenum":"style_pagenum__2YaWi","content":"style_content__171wW"};
+  var css_248z$s = ":root{--pagenumTextAlign:right;--pagenumPadding:5px;--pagenumFontSize:10px;--pagenumBackColor:none;--pagenumFont:var(--fontText)}.style_pagenum__2FTZD{--pagenumColor:var(--forecolor);width:100%;height:100%;position:absolute;top:0;left:0;display:flex;align-items:flex-end;pointer-events:none}.style_content__2wNPr{width:100%;text-align:var(--pagenumTextAlign);padding:var(--pagenumPadding);font-size:var(--pagenumFontSize);color:var(--pagenumColor);font-family:var(--pagenumFont);background-color:var(--pagenumBackColor);transition:all .3s ease-in-out}";
+  var css$c = {"pagenum":"style_pagenum__2FTZD","content":"style_content__2wNPr"};
   styleInject(css_248z$s);
 
   const pagenum = function (rootElement, router, ctrlConfig, projectConfig) {
@@ -896,7 +894,7 @@
     });
   };
 
-  const io = {
+  const controllers = {
     autoplay,
     keyboard,
     arrows,
@@ -908,12 +906,16 @@
     pagenum
   };
 
-  const add$2 = (type, module) => {
-    if (io[type]) {
-      return console.warn(`router io ${type} already defined`);
+  const add$2 = (type, module, override) => {
+    if (controllers[type]) {
+      return console.warn(`controller io ${type} already defined`);
     }
 
-    io[type] = module;
+    if (override && controllers[type]) {
+      console.warn(`controller type ${type} was overriden`);
+    }
+
+    controllers[type] = module;
   };
 
   var css_248z$t = ".router_router__2R2qw{width:100%;height:100%;position:absolute;top:0;left:0}";
@@ -1049,8 +1051,8 @@
       for (const k in projectConfig.router) {
         if (k !== 'props') {
           const modConfig = projectConfig.router[k];
-          const Mod = io[k];
-          if (!Mod) console.log(`Router module "${k}" not found. Maybe you forgot to include it.`);
+          const Mod = controllers[k];
+          if (!Mod) console.log(`Controller "${k}" not found. Maybe you forgot to include it.`);
 
           if (modConfig && Mod) {
             registeredIO[k] = new Mod(child, this, modConfig, projectConfig);
@@ -1139,11 +1141,15 @@
     this.router.on('stepChanged', evt => {
       currentScene.stepForward();
     });
+
+    if (window.ResizeObserver) {
+      const resizeObserver = new ResizeObserver(entries => {
+        utils.fit(child, projectConfig, rootElement);
+      });
+      resizeObserver.observe(child);
+    }
+
     utils.fit(child, projectConfig, rootElement);
-    const resizeObserver = new ResizeObserver(entries => {
-      utils.fit(child, projectConfig, rootElement);
-    });
-    resizeObserver.observe(child);
 
     this.currentScene = () => {
       return currentScene;

@@ -16,7 +16,9 @@ const Block = function (blocksElement, blockConfig, rootElement, projectConfig) 
   const props = u.props(blockConfig.props)
 
   const child = u.div(`<div class="block ${css.block} b b${this.index} ${props.classes}" style="${props.styles}">
+    <div class="backDecoration ${css.bdecoration}"></div>
     <div class="blockContainer ${css.inner}"></div>
+    <div class="frontDecoration ${css.fdecoration}"></div>
   </div>`)
   this.el = child
 

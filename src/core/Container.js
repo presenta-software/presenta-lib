@@ -52,8 +52,7 @@ const Container = function (rootElement, projectConfig) {
   const child = u.div(`<div class="a ${css.container}"></div>`)
 
   const scenes = projectConfig.scenes
-  var currentScene = new Scene(scenes[0], projectConfig, rootElement)
-  child.appendChild(currentScene.el)
+  var currentScene = null
 
   rootElement.appendChild(child)
 
@@ -90,6 +89,8 @@ const Container = function (rootElement, projectConfig) {
   }
 
   u.fit(child, projectConfig, rootElement)
+
+  swapScene(0, 'foreward')
 
   this.currentScene = () => {
     return currentScene

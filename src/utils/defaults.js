@@ -3,7 +3,7 @@ export default config => {
     aspect: 1.6,
     adapt: true,
     mode: 'present',
-    router: {
+    controllers: {
       keyboard: true,
       arrows: true,
       black: true,

@@ -2,25 +2,37 @@
   --blockWeight: 1;
   --blockPadding: 0;
   --blockOpacity: 1;
-  --blockBlend: unset;
-  
+  --blockBlend: unset;  
 }
 
 .block {
-  --blockBackColor: var(--backcolor);
+  background: var(--backcolor);
   
   width: 100%;
   height: 100%;
   flex: 1;
   flex: var(--blockWeight);
   overflow: hidden;
+
+  position: relative;
 }
 
 .inner {
   width: 100%;
   height: 100%;
-  background: var(--blockBackColor);
   padding: var(--blockPadding);
   opacity: var(--blockOpacity);
   mix-blend-mode: var(--blockBlend);
+}
+
+
+.bdecoration,
+.fdecoration,
+.inner{
+    top:0;
+    left:0;
+    width: 100%;
+    height: 100%;
+    position: absolute;
+    pointer-events: none;
 }

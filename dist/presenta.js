@@ -1,11 +1,11 @@
-// https://lib.presenta.cc v0.0.25 Copyright 2020 Fabio Franchino
+// https://lib.presenta.cc v0.0.26 Copyright 2020 Fabio Franchino
 (function (global, factory) {
   typeof exports === 'object' && typeof module !== 'undefined' ? module.exports = factory() :
   typeof define === 'function' && define.amd ? define(factory) :
   (global = global || self, global.Presenta = factory());
 }(this, (function () { 'use strict';
 
-  var version = "0.0.25";
+  var version = "0.0.26";
 
   function styleInject(css, ref) {
     if ( ref === void 0 ) ref = {};
@@ -72,8 +72,8 @@
 
   const schemes = ['original', 'vibrant', 'polite', 'breeze', 'sunny', 'acid', 'novel', 'doub', 'mayb'];
 
-  var css_248z$c = ":root{--scenePadding:0}.scene_sceneContainer__IgSpB{width:100%;height:100%;display:flex;align-items:center;justify-content:center;position:relative}.scene_scene__3uvTl{--sw:calc(var(--w)/var(--p)/var(--fz));--sh:calc(var(--h)/var(--p)/var(--fz));--scal:calc(var(--pw)/var(--p)/var(--pw)/var(--fz));width:var(--sw);height:var(--sh);font-family:serif;user-select:none}.scene_wrapper__3yr1k{width:var(--w);height:var(--h);transform:scale(1);transform:scale(var(--scal));transform-origin:top left;overflow:hidden;padding:var(--scenePadding)}.scene_content__1rJf0{width:100%;height:100%;display:flex;flex-direction:column;overflow:hidden}.scene_bcontainer__3MFBK,.scene_fcontainer__1E_0g{top:0;left:0;width:100%;height:100%;position:absolute}.scene_viewport__3uNLS{width:100%;height:100%;position:relative;flex:1;overflow:hidden;display:flex;flex-direction:row}.scene_viewport__3uNLS>div{height:100%}";
-  var css = {"sceneContainer":"scene_sceneContainer__IgSpB","scene":"scene_scene__3uvTl","wrapper":"scene_wrapper__3yr1k","content":"scene_content__1rJf0","bcontainer":"scene_bcontainer__3MFBK","fcontainer":"scene_fcontainer__1E_0g","viewport":"scene_viewport__3uNLS"};
+  var css_248z$c = ":root{--scenePadding:0}.scene_sceneContainer__IgSpB{width:100%;height:100%;display:flex;align-items:center;justify-content:center;position:relative}.scene_scene__3uvTl{--sw:calc(var(--w)/var(--p)/var(--fz));--sh:calc(var(--h)/var(--p)/var(--fz));--scal:calc(var(--pw)/var(--p)/var(--pw)/var(--fz));width:var(--sw);height:var(--sh);font-family:serif;user-select:none}.scene_wrapper__3yr1k{width:var(--w);height:var(--h);transform:scale(1);transform:scale(var(--scal));transform-origin:top left;overflow:hidden;padding:var(--scenePadding)}.scene_content__1rJf0{width:100%;height:100%;display:flex;flex-direction:column;overflow:hidden}.scene_fcontainer__1E_0g{top:0;left:0;width:100%;height:100%;position:absolute}.scene_viewport__3uNLS{width:100%;height:100%;position:relative;flex:1;overflow:hidden;display:flex;flex-direction:row}.scene_viewport__3uNLS>div{height:100%}";
+  var css = {"sceneContainer":"scene_sceneContainer__IgSpB","scene":"scene_scene__3uvTl","wrapper":"scene_wrapper__3yr1k","content":"scene_content__1rJf0","fcontainer":"scene_fcontainer__1E_0g","viewport":"scene_viewport__3uNLS"};
   styleInject(css_248z$c);
 
   const select = selector => {
@@ -145,8 +145,8 @@
     event
   };
 
-  var css_248z$d = ":root{--blockWeight:1;--blockPadding:0;--blockOpacity:1;--blockBlend:unset}.block_block__BWbaZ{--blockBackColor:var(--backcolor);width:100%;height:100%;flex:1;flex:var(--blockWeight);overflow:hidden}.block_inner__3LS6s{width:100%;height:100%;background:var(--blockBackColor);padding:var(--blockPadding);opacity:var(--blockOpacity);mix-blend-mode:var(--blockBlend)}";
-  var css$1 = {"block":"block_block__BWbaZ","inner":"block_inner__3LS6s"};
+  var css_248z$d = ":root{--blockWeight:1;--blockPadding:0;--blockOpacity:1;--blockBlend:unset}.block_block__BWbaZ{background:var(--backcolor);width:100%;height:100%;flex:1;flex:var(--blockWeight);overflow:hidden;position:relative}.block_inner__3LS6s{width:100%;height:100%;padding:var(--blockPadding);opacity:var(--blockOpacity);mix-blend-mode:var(--blockBlend)}.block_bdecoration__3KJh-,.block_fdecoration__12tBw,.block_inner__3LS6s{top:0;left:0;width:100%;height:100%;position:absolute;pointer-events:none}";
+  var css$1 = {"block":"block_block__BWbaZ","inner":"block_inner__3LS6s","bdecoration":"block_bdecoration__3KJh-","fdecoration":"block_fdecoration__12tBw"};
   styleInject(css_248z$d);
 
   var css_248z$e = ".style_debug__1-XHT{width:100%;height:100%;display:flex;align-items:center;justify-content:center}";
@@ -407,7 +407,9 @@
     let step = 0;
     const props = utils.props(blockConfig.props);
     const child = utils.div(`<div class="block ${css$1.block} b b${this.index} ${props.classes}" style="${props.styles}">
+    <div class="backDecoration ${css$1.bdecoration}"></div>
     <div class="blockContainer ${css$1.inner}"></div>
+    <div class="frontDecoration ${css$1.fdecoration}"></div>
   </div>`);
     this.el = child;
     const blockContainer = child.querySelector('.blockContainer');
@@ -448,11 +450,10 @@
 
     if (override && modules[type]) {
       console.warn(`module type ${type} was overriden`);
-    } // if (module.init) module.init() // what's that???
-
+    }
 
     modules[type] = module;
-  }; // add('pagenumber', pagenumber)
+  };
 
   var css_248z$l = ".transition__horizontalSlide .p-scene-enter-transition{transition:transform 1s cubic-bezier(1,0,0,1)}.transition__horizontalSlide .to-right.p-scene-enter-start{transform:translateX(100%)}.transition__horizontalSlide .to-right.p-scene-enter-end{transform:translateX(0)}.transition__horizontalSlide .to-left.p-scene-enter-start{transform:translateX(-100%)}.transition__horizontalSlide .to-left.p-scene-enter-end{transform:translateX(0)}.transition__horizontalSlide .p-scene-leave-transition{transition:transform 1s cubic-bezier(1,0,0,1)}.transition__horizontalSlide .to-right.p-scene-leave-start{transform:translateX(0)}.transition__horizontalSlide .to-right.p-scene-leave-end{transform:translateX(-100%)}.transition__horizontalSlide .to-left.p-scene-leave-start{transform:translateX(0)}.transition__horizontalSlide .to-left.p-scene-leave-end{transform:translateX(100%)}";
   styleInject(css_248z$l);
@@ -566,7 +567,6 @@
       <div class="sceneObject ${css.scene}">
         <div class="${css.wrapper}">
             <div class="${css.content} ${modprops.classes}" style="${modprops.styles}">
-                <div class="backContainer ${css.bcontainer}"></div>
                 <div class="blocksContainer ${css.viewport}"></div>
                 <div class="frontContainer ${css.fcontainer}"></div>
             </div>
@@ -665,7 +665,6 @@
 
   const autoplay = function (rootElement, router, ctrlConfig, projectConfig) {
     let timer = null;
-    const loop = !ctrlConfig.noloop;
     const defdelay = ctrlConfig.delay || 4000;
 
     const runTime = delay => {
@@ -675,15 +674,9 @@
       }, delay);
     };
 
-    router.on('end', evt => {
-      if (loop) {
-        router.goto(0);
-        router.notify('nextIndex');
-      }
-    });
     router.on('indexChanged', evt => {
-      const cScene = router.projectConfig.scenes[evt.currentIndex];
-      const delay = cScene.duration || defdelay;
+      const cScene = projectConfig.scenes[evt.currentIndex];
+      const delay = cScene.autoplayDuration || defdelay;
       runTime(delay);
     });
   };
@@ -896,6 +889,24 @@
     });
   };
 
+  const shuffleArray = array => {
+    for (let i = array.length - 1; i > 0; i--) {
+      const j = Math.floor(Math.random() * (i + 1));
+      [array[i], array[j]] = [array[j], array[i]];
+    }
+  };
+
+  const shuffle = function (rootElement, router, ctrlConfig, projectConfig) {
+    shuffleArray(projectConfig.scenes);
+  };
+
+  const loop = function (rootElement, router, ctrlConfig, projectConfig) {
+    router.on('end', evt => {
+      router.goto(0);
+      router.notify('nextIndex');
+    });
+  };
+
   const controllers = {
     autoplay,
     keyboard,
@@ -905,7 +916,9 @@
     focus,
     preload,
     progressbar,
-    pagenum
+    pagenum,
+    shuffle,
+    loop
   };
 
   const add$2 = (type, module, override) => {
@@ -925,7 +938,7 @@
   styleInject(css_248z$t);
 
   const Router = function (rootElement, projectConfig) {
-    const gprops = utils.props(projectConfig.router.props);
+    const gprops = utils.props(projectConfig.controllers.props);
     const child = utils.div(`<div style="${gprops.styles}" class="controller ${css$d.router} ${gprops.classes}"></div>`);
     rootElement.appendChild(child);
     child.setAttribute('tabindex', '0');
@@ -1000,19 +1013,13 @@
       if (props.classes) {
         let cls = props.classes.split(' ');
         cls = cls.filter(d => d !== '');
-        child.classList.add(...cls); // cls.forEach(c => {
-        //   const cc = c.trim()
-        //   if (cc) child.classList.add(cc)
-        // })
+        child.classList.add(...cls);
       }
 
       if (gprops.classes) {
         let cls = gprops.classes.split(' ');
         cls = cls.filter(d => d !== '');
-        child.classList.add(...cls); // cls.forEach(c => {
-        //   const cc = c.trim()
-        //   if (cc) child.classList.add(cc)
-        // })
+        child.classList.add(...cls);
       }
 
       if (listeners[evt]) {
@@ -1049,10 +1056,10 @@
 
     this.currentStep = () => currentStep;
 
-    if (projectConfig.router) {
-      for (const k in projectConfig.router) {
+    if (projectConfig.controllers) {
+      for (const k in projectConfig.controllers) {
         if (k !== 'props') {
-          const modConfig = projectConfig.router[k];
+          const modConfig = projectConfig.controllers[k];
           const Mod = controllers[k];
           if (!Mod) console.log(`Controller "${k}" not found. Maybe you forgot to include it.`);
 
@@ -1117,8 +1124,7 @@
     rootElement.classList.add('presenta');
     const child = utils.div(`<div class="a ${css$8.container}"></div>`);
     const scenes = projectConfig.scenes;
-    var currentScene = new Scene(scenes[0], projectConfig, rootElement);
-    child.appendChild(currentScene.el);
+    var currentScene = null;
     rootElement.appendChild(child);
 
     const swapScene = (index, dir) => {
@@ -1152,6 +1158,7 @@
     }
 
     utils.fit(child, projectConfig, rootElement);
+    swapScene(0, 'foreward');
 
     this.currentScene = () => {
       return currentScene;
@@ -1167,7 +1174,7 @@
       aspect: 1.6,
       adapt: true,
       mode: 'present',
-      router: {
+      controllers: {
         keyboard: true,
         arrows: true,
         black: true,

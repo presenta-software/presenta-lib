@@ -1,9 +1,9 @@
-import { debug } from './debug/index.js'
-import { text } from './text/index.js'
-import { embed } from './embed/index.js'
-import { image } from './image/index.js'
-import { video } from './video/index.js'
-import { solid } from './solid/index.js'
+import { debug } from './debug'
+import { text } from './text'
+import { embed } from './embed'
+import { image } from './image'
+import { video } from './video'
+import { solid } from './solid'
 
 const blocks = {
   debug,

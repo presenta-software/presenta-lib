@@ -7,6 +7,8 @@ import { focus } from './controllers/focus/index.js'
 import { preload } from './controllers/preload/index.js'
 import { progressbar } from './controllers/progressbar/index.js'
 import { pagenum } from './controllers/pagenum/index.js'
+import { shuffle } from './controllers/shuffle/index.js'
+import { loop } from './controllers/loop/index.js'
 
 const controllers = {
   autoplay,
@@ -17,7 +19,9 @@ const controllers = {
   focus,
   preload,
   progressbar,
-  pagenum
+  pagenum,
+  shuffle,
+  loop
 }
 
 const add = (type, module, override) => {

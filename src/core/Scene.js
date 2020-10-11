@@ -66,7 +66,6 @@ const Scene = function (sceneConfig, projectConfig, rootElement) {
       <div class="sceneObject ${css.scene}">
         <div class="${css.wrapper}">
             <div class="${css.content} ${modprops.classes}" style="${modprops.styles}">
-                <div class="backContainer ${css.bcontainer}"></div>
                 <div class="blocksContainer ${css.viewport}"></div>
                 <div class="frontContainer ${css.fcontainer}"></div>
             </div>

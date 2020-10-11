@@ -4,7 +4,7 @@ import u from '../utils.js'
 import css from './router.css'
 
 const Router = function (rootElement, projectConfig) {
-  const gprops = u.props(projectConfig.router.props)
+  const gprops = u.props(projectConfig.controllers.props)
 
   const child = u.div(`<div style="${gprops.styles}" class="controller ${css.router} ${gprops.classes}"></div>`)
   rootElement.appendChild(child)
@@ -83,19 +83,11 @@ const Router = function (rootElement, projectConfig) {
       let cls = props.classes.split(' ')
       cls = cls.filter(d => d !== '')
       child.classList.add(...cls)
-      // cls.forEach(c => {
-      //   const cc = c.trim()
-      //   if (cc) child.classList.add(cc)
-      // })
     }
     if (gprops.classes) {
       let cls = gprops.classes.split(' ')
       cls = cls.filter(d => d !== '')
       child.classList.add(...cls)
-      // cls.forEach(c => {
-      //   const cc = c.trim()
-      //   if (cc) child.classList.add(cc)
-      // })
     }
 
     if (listeners[evt]) {
@@ -128,10 +120,10 @@ const Router = function (rootElement, projectConfig) {
   this.currentIndex = () => currentIndex
   this.currentStep = () => currentStep
 
-  if (projectConfig.router) {
-    for (const k in projectConfig.router) {
+  if (projectConfig.controllers) {
+    for (const k in projectConfig.controllers) {
       if (k !== 'props') {
-        const modConfig = projectConfig.router[k]
+        const modConfig = projectConfig.controllers[k]
         const Mod = controllers[k]
         if (!Mod) console.log(`Controller "${k}" not found. Maybe you forgot to include it.`)
         if (modConfig && Mod) {

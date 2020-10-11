@@ -72,6 +72,7 @@ export default [{
           /global/, /schemes/, /fontkits/
         ]
       },
+      autoModules: false,
       plugins: [
         autoprefixer({ grid: true }),
         cssnano({ preset: 'default' }),

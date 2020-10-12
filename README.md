@@ -1,15 +1,26 @@
-# PRESENTA Lib
+<p align="center">
+	<img src="logo.png"/>
+</p>
 
-> Build presentations, the modern way.
+<h1 align="center">
+	PRESENTA Lib
+</h1>
 
-**PRESENTA Lib** is a javascript library that builds presentational document from a configuration object.
+<p align="center">
+	A javascript library to build smart presentations using a config object
+</p>
 
-![travis](https://travis-ci.org/presenta-software/presenta-lib.svg?branch=master)
-![version](https://img.shields.io/npm/v/@presenta/lib)
+<p align="center">
+	<img src="https://travis-ci.org/presenta-software/presenta-lib.svg?branch=master"/>
+	<img src="https://img.shields.io/npm/v/@presenta/lib"/>
+</p>
+
+
 
 ### Documentation
 
-You can learn more and read the documentation starting from [here](https://lib.presenta.cc/)
+Full documentation can be found [here](https://lib.presenta.cc/).
+
 
 ### Development
 

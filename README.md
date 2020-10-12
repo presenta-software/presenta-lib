@@ -17,10 +17,11 @@
 
 
 
-### Documentation
+## Documentation
 
 Full documentation can be found [here](https://lib.presenta.cc/).
 
+## Contribute
 
 ### Development
 
@@ -32,6 +33,6 @@ To build a release:
 
 	npm run build
 
-### Licence
+## Licence
 
-PRESENTA Lib is released under the [3-Clause BSD license](LICENSE).
+**PRESENTA Lib** is released under the [3-Clause BSD license](LICENSE).

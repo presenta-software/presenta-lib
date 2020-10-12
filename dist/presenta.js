@@ -1,11 +1,11 @@
-// https://lib.presenta.cc v0.0.27 Copyright 2020 Fabio Franchino
+// https://lib.presenta.cc v0.0.28 Copyright 2020 Fabio Franchino
 (function (global, factory) {
   typeof exports === 'object' && typeof module !== 'undefined' ? module.exports = factory() :
   typeof define === 'function' && define.amd ? define(factory) :
-  (global = global || self, global.Presenta = factory());
+  (global = typeof globalThis !== 'undefined' ? globalThis : global || self, global.Presenta = factory());
 }(this, (function () { 'use strict';
 
-  var version = "0.0.27";
+  var version = "0.0.28";
 
   function styleInject(css, ref) {
     if ( ref === void 0 ) ref = {};
@@ -907,6 +907,11 @@
     });
   };
 
+  const current = function (rootElement, router, ctrlConfig, projectConfig) {
+    const idx = ctrlConfig && ctrlConfig > 0 && ctrlConfig < projectConfig.scenes.length ? ctrlConfig - 1 : 0;
+    router.setCurrentIndex(idx);
+  };
+
   const controllers = {
     autoplay,
     keyboard,
@@ -918,7 +923,8 @@
     progressbar,
     pagenum,
     shuffle,
-    loop
+    loop,
+    current
   };
 
   const add$2 = (type, module, override) => {
@@ -1056,6 +1062,10 @@
 
     this.currentStep = () => currentStep;
 
+    this.setCurrentIndex = idx => currentIndex = idx;
+
+    this.setCurrentStep = stp => currentStep = stp;
+
     if (projectConfig.controllers) {
       for (const k in projectConfig.controllers) {
         if (k !== 'props') {
@@ -1071,6 +1081,7 @@
     }
 
     this.notify('indexChanged');
+    setTimeout(() => this.notify('init'));
   };
 
   const Container = function (rootElement, projectConfig) {
@@ -1149,6 +1160,9 @@
     this.router.on('stepChanged', evt => {
       currentScene.stepForward();
     });
+    this.router.on('init', evt => {
+      swapScene(evt.currentIndex, 'foreward');
+    });
 
     if (window.ResizeObserver) {
       const resizeObserver = new ResizeObserver(entries => {
@@ -1158,7 +1172,6 @@
     }
 
     utils.fit(child, projectConfig, rootElement);
-    swapScene(0, 'foreward');
 
     this.currentScene = () => {
       return currentScene;

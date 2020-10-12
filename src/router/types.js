@@ -9,6 +9,7 @@ import { progressbar } from './controllers/progressbar/index.js'
 import { pagenum } from './controllers/pagenum/index.js'
 import { shuffle } from './controllers/shuffle/index.js'
 import { loop } from './controllers/loop/index.js'
+import { current } from './controllers/current/index.js'
 
 const controllers = {
   autoplay,
@@ -21,7 +22,8 @@ const controllers = {
   progressbar,
   pagenum,
   shuffle,
-  loop
+  loop,
+  current
 }
 
 const add = (type, module, override) => {

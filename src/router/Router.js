@@ -25,7 +25,6 @@ const Router = function (rootElement, projectConfig) {
       ? scenes[currentIndex].steps.length
       : 0
   }
-
   setNumSteps()
 
   this.next = () => {
@@ -119,6 +118,8 @@ const Router = function (rootElement, projectConfig) {
   this.totalSteps = () => numSteps
   this.currentIndex = () => currentIndex
   this.currentStep = () => currentStep
+  this.setCurrentIndex = idx => (currentIndex = idx)
+  this.setCurrentStep = stp => (currentStep = stp)
 
   if (projectConfig.controllers) {
     for (const k in projectConfig.controllers) {
@@ -134,6 +135,8 @@ const Router = function (rootElement, projectConfig) {
   }
 
   this.notify('indexChanged')
+
+  setTimeout(() => this.notify('init'))
 }
 
 export { Router }

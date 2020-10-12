@@ -81,6 +81,10 @@ const Container = function (rootElement, projectConfig) {
     currentScene.stepForward()
   })
 
+  this.router.on('init', evt => {
+    swapScene(evt.currentIndex, 'foreward')
+  })
+
   if (window.ResizeObserver) {
     const resizeObserver = new ResizeObserver(entries => {
       u.fit(child, projectConfig, rootElement)
@@ -89,8 +93,6 @@ const Container = function (rootElement, projectConfig) {
   }
 
   u.fit(child, projectConfig, rootElement)
-
-  swapScene(0, 'foreward')
 
   this.currentScene = () => {
     return currentScene

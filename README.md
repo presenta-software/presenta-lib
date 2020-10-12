@@ -5,6 +5,7 @@
 **PRESENTA Lib** is a javascript library that builds presentational document from a configuration object.
 
 ![travis](https://travis-ci.org/presenta-software/presenta-lib.svg?branch=master)
+![version](https://img.shields.io/npm/v/@presenta/lib)
 
 ### Documentation
 

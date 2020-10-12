@@ -9,8 +9,7 @@
   "scripts": {
     "start": "rollup -c --watch",
     "build": "rollup -c",
-    "bump": "npm run build && git add -u && git commit -m \"bump release\" && npm version patch && git push && npm publish && cd ../ && node starterkit.js",
-    "test": "rollup -c"
+    "bump": "npm run build && git add -u && git commit -m \"bump release\" && npm version patch && git push && npm publish && cd ../ && node starterkit.js"
   },
   "keywords": [
     "presentation",

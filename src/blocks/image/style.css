@@ -2,6 +2,8 @@
     --imagePadding: 0;
     --imageBorder: none;
     --imageShadow: none;
+    --imageSize: cover;
+    --imagePosition: center;
 }
 
 
@@ -26,4 +28,7 @@
     height:100%;
     border: var(--imageBorder);
     box-shadow: var(--imageShadow);
+
+    object-fit: var(--imageSize);
+    object-position: var(--imagePosition);
 }

@@ -1,11 +1,12 @@
 const focus = function (rootElement, router, ctrlConfig, projectConfig) {
+  const root = rootElement.parentNode
   const clb = (entries, observer) => {
     entries.forEach(entry => {
-      if (entry.isIntersecting) rootElement.focus({ preventScroll: true })
+      if (entry.isIntersecting) root.focus({ preventScroll: true })
     })
   }
   const observer = new IntersectionObserver(clb)
-  observer.observe(rootElement)
+  observer.observe(root)
 }
 
 export { focus }

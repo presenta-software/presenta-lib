@@ -1,10 +1,8 @@
 import { version } from '../package.json'
 import './core/css/global.css'
 
-import './fontkits/original.css'
-import './fontkits/vibrant.css'
-
 import schemes from './schemes/index'
+import fontkits from './fontkits/index'
 
 import { Scene } from './core/Scene.js'
 import { Container } from './core/Container.js'
@@ -24,6 +22,7 @@ const Presenta = function (el, config) {
 Presenta.version = version
 Presenta.utils = utils
 Presenta.schemes = schemes
+Presenta.fontkits = fontkits
 Presenta.Scene = Scene
 Presenta.addBlock = addBlock
 Presenta.addController = addController

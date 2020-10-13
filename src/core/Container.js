@@ -49,7 +49,11 @@ const Container = function (rootElement, projectConfig) {
   */
   rootElement.classList.add('presenta')
 
-  const child = u.div(`<div class="a ${css.container}"></div>`)
+  const child = u.div(`<div class="${css.mainwrapper}"></div>`)
+  child.setAttribute('tabindex', '0')
+
+  const cont = u.div(`<div class="a ${css.container}"></div>`)
+  child.appendChild(cont)
 
   const scenes = projectConfig.scenes
   var currentScene = null
@@ -64,24 +68,24 @@ const Container = function (rootElement, projectConfig) {
     const sceneConfig = scenes[index]
     sceneConfig._presentatransdir = dir
     currentScene = new Scene(sceneConfig, projectConfig, rootElement)
-    child.appendChild(currentScene.el)
+    cont.appendChild(currentScene.el)
   }
 
-  this.router = new Router(rootElement, projectConfig)
+  const router = new Router(child, projectConfig)
 
-  this.router.on('nextIndex', evt => {
+  router.on('nextIndex', evt => {
     swapScene(evt.currentIndex, 'foreward')
   })
 
-  this.router.on('prevIndex', evt => {
+  router.on('prevIndex', evt => {
     swapScene(evt.currentIndex, 'backward')
   })
 
-  this.router.on('stepChanged', evt => {
+  router.on('stepChanged', evt => {
     currentScene.stepForward()
   })
 
-  this.router.on('init', evt => {
+  router.on('init', evt => {
     swapScene(evt.currentIndex, 'foreward')
   })
 
@@ -94,13 +98,15 @@ const Container = function (rootElement, projectConfig) {
 
   u.fit(child, projectConfig, rootElement)
 
-  this.currentScene = () => {
-    return currentScene
-  }
+  // this.currentScene = () => {
+  //   return currentScene
+  // }
 
   this.destroy = () => {
     currentScene.destroy()
   }
+
+  this.router = router
 }
 
 export { Container }

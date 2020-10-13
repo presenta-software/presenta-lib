@@ -24,17 +24,15 @@ const embed = function (el, config, rootElement, projectConfig) {
   const name = iframePrimaryDomain(iframe)
 
   const coverFrame = `<div class="cover ${css.loading}"><h1>Embed from <mark>${name}</mark></h1></div>`
-
-  const postersize = config.postersize || 'cover'
-  const sizecmd = 'object-fit:' + postersize + ';'
-  const posterFrame = config.poster ? `<div class="${css.poster}"><img style="${sizecmd}" src="${config.poster}" /></div>` : ''
+  const blockPointer = config.blockPointer ? `<div class='${css.blockmouse}' />` : ''
+  const posterFrame = config.poster ? `<div class="${css.poster}"><img src="${config.poster}" /></div>` : ''
 
   const child = u.div(`<div class="c ${css.embed}">
     <div class="${css.inner}">
         <div class="${css.frame}">${iframe}</div>
         ${coverFrame}
         ${posterFrame}
-        <div class="${css.blockmouse}"></div>
+        ${blockPointer}
     </div>
   </div>`)
   el.appendChild(child)

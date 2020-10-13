@@ -26,6 +26,7 @@
     cursor: pointer;
 
     padding: var(--arrowsPadding);
+    pointer-events: all;
 }
 
 .ui{

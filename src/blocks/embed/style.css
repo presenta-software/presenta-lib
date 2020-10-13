@@ -1,6 +1,9 @@
 :root{
     --embedPadding: 0;
     --embedBackcolor: none;
+
+    --embedPosterSize:cover;
+    --embedPosterPosition:center;
 }
 
 .inner{
@@ -18,7 +21,7 @@
     height: 100%;
 }
 
-iframe{
+.frame > iframe{
     width: 100%;
     height: 100%;
     border: none;
@@ -38,6 +41,11 @@ iframe{
     background-color: var(--backcolor);
 }
 
+.loading mark{
+    background-color: var(--accentcolor);
+    color:var(--backcolor);
+}
+
 .blockmouse{
     position: absolute;
     top:0;
@@ -53,8 +61,13 @@ iframe{
     width: 100%;
     height: 100%;
     background-color: var(--backcolor);
+
+    
 }
 .poster img{
     width: 100%;
     height: 100%;
+
+    object-fit: var(--embedPosterSize);
+    object-position: var(--embedPosterPosition);
 }

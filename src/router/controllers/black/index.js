@@ -19,7 +19,7 @@ const black = function (rootElement, router, ctrlConfig, projectConfig) {
     }
   }
 
-  rootElement.addEventListener('keyup', setKeyListener)
+  rootElement.parentNode.addEventListener('keyup', setKeyListener)
 }
 
 export { black }

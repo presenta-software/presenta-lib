@@ -8,7 +8,6 @@ const Router = function (rootElement, projectConfig) {
 
   const child = u.div(`<div style="${gprops.styles}" class="controller ${css.router} ${gprops.classes}"></div>`)
   rootElement.appendChild(child)
-  child.setAttribute('tabindex', '0')
 
   const scenes = projectConfig.scenes
   const numScenes = scenes.length - 1

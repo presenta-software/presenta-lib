@@ -14,7 +14,7 @@ const keyboard = function (rootElement, router, config) {
     }
   }
 
-  rootElement.addEventListener('keyup', setKeyListener)
+  rootElement.parentNode.addEventListener('keyup', setKeyListener)
 }
 
 export { keyboard }

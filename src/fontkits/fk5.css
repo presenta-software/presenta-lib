@@ -1,0 +1,5 @@
+@import url('https://fonts.googleapis.com/css2?family=Bebas+Neue&family=Montserrat&display=swap');
+.fontkit__fk5{
+  --fontHeading: 'Bebas Neue', cursive;
+  --fontText: 'Montserrat', sans-serif;
+}

@@ -1,0 +1,5 @@
+@import url('https://fonts.googleapis.com/css2?family=Inter:wght@400;900&display=swap');
+.fontkit__fk7{
+  --fontHeading: 'Inter', cursive;
+  --fontText: 'Inter', sans-serif;
+}

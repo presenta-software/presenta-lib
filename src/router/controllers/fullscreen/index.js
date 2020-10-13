@@ -32,7 +32,8 @@ const makeFullscreen = el => {
 const fullscreen = function (rootElement, router, ctrlConfig, projectConfig) {
   const key = ctrlConfig.key || 'f'
 
-  const root = rootElement.parentNode
+  const rootEl = rootElement.parentNode
+  const root = rootEl.parentNode
 
   const setKeyListener = e => {
     if (e.key === key) {
@@ -46,7 +47,7 @@ const fullscreen = function (rootElement, router, ctrlConfig, projectConfig) {
     }
   }
 
-  rootElement.parentNode.addEventListener('keyup', setKeyListener)
+  rootEl.addEventListener('keyup', setKeyListener)
 }
 
 export { fullscreen }

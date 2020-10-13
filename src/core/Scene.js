@@ -5,7 +5,7 @@ import { modules } from '../modules/types.js'
 import { transition } from './transition.js'
 
 const Scene = function (sceneConfig, projectConfig, rootElement) {
-  this.blocks = []
+  const blocks = []
 
   /*
     Let's notify the user about missing fields
@@ -91,11 +91,11 @@ const Scene = function (sceneConfig, projectConfig, rootElement) {
   /*
     Init blocks if any
   */
-  const blocks = sceneConfig.blocks
-  blocks.forEach(blockConfig => {
+  const cblocks = sceneConfig.blocks
+  cblocks.forEach(blockConfig => {
     const blocksContainer = child.querySelector('.blocksContainer')
     const block = new Block(blocksContainer, blockConfig, rootElement, projectConfig)
-    this.blocks.push(block)
+    blocks.push(block)
   })
 
   /*
@@ -130,7 +130,7 @@ const Scene = function (sceneConfig, projectConfig, rootElement) {
     }
 
     const t = _t || 0
-    this.blocks.forEach(block => block.beforeDestroy())
+    blocks.forEach(block => block.beforeDestroy())
 
     setTimeout(() => {
       this.destroy()
@@ -144,7 +144,7 @@ const Scene = function (sceneConfig, projectConfig, rootElement) {
   this.stepForward = () => {
     if (currentStep < steps.length) {
       const idx = steps[currentStep]
-      this.blocks[idx].stepForward()
+      blocks[idx].stepForward()
       currentStep++
     }
   }
@@ -153,7 +153,7 @@ const Scene = function (sceneConfig, projectConfig, rootElement) {
     Immediate destroy for garbage collection
   */
   this.destroy = () => {
-    this.blocks.forEach(block => block.destroy())
+    blocks.forEach(block => block.destroy())
   }
 
   this.sceneConfig = sceneConfig

@@ -1,11 +1,11 @@
-// https://lib.presenta.cc v0.0.29 Copyright 2020 Fabio Franchino
+// https://lib.presenta.cc v0.0.30 Copyright 2020 Fabio Franchino
 (function (global, factory) {
   typeof exports === 'object' && typeof module !== 'undefined' ? module.exports = factory() :
   typeof define === 'function' && define.amd ? define(factory) :
   (global = typeof globalThis !== 'undefined' ? globalThis : global || self, global.Presenta = factory());
 }(this, (function () { 'use strict';
 
-  var version = "0.0.29";
+  var version = "0.0.30";
 
   function styleInject(css, ref) {
     if ( ref === void 0 ) ref = {};
@@ -412,7 +412,7 @@
   const Block = function (blocksElement, blockConfig, rootElement, projectConfig) {
     this.type = blockConfig.type;
     this.index = blockConfig.index;
-    this.block = null;
+    var blockInstance = null;
 
     if (!this.type) {
       return console.warn('No `type` field found in block ' + this.index);
@@ -431,25 +431,25 @@
     if (!blocks[this.type]) {
       console.log(`block "${this.type}" not found`);
     } else {
-      this.block = new blocks[this.type](blockContainer, blockConfig, rootElement, projectConfig);
+      blockInstance = new blocks[this.type](blockContainer, blockConfig, rootElement, projectConfig);
     }
 
     this.beforeDestroy = () => {
-      if (this.block.beforeDestroy) this.block.beforeDestroy();
+      if (blockInstance && blockInstance.beforeDestroy) blockInstance.beforeDestroy();
     };
 
     this.stepForward = () => {
       step++;
 
-      if (this.block.stepForward) {
-        this.block.stepForward(step);
+      if (blockInstance.stepForward) {
+        blockInstance.stepForward(step);
       } else {
         console.warn(`The block "${this.type}" doesn't implement the method "stepForward" but this scene tried to use it`);
       }
     };
 
     this.destroy = () => {
-      if (this.block.destroy) this.block.destroy();
+      if (blockInstance && blockInstance.destroy) blockInstance.destroy();
     };
 
     blocksElement.appendChild(child);
@@ -514,7 +514,7 @@
   };
 
   const Scene = function (sceneConfig, projectConfig, rootElement) {
-    this.blocks = [];
+    const blocks = [];
     /*
       Let's notify the user about missing fields
     */
@@ -608,11 +608,11 @@
     */
 
 
-    const blocks = sceneConfig.blocks;
-    blocks.forEach(blockConfig => {
+    const cblocks = sceneConfig.blocks;
+    cblocks.forEach(blockConfig => {
       const blocksContainer = child.querySelector('.blocksContainer');
       const block = new Block(blocksContainer, blockConfig, rootElement, projectConfig);
-      this.blocks.push(block);
+      blocks.push(block);
     });
     /*
       Run the entering transition
@@ -643,7 +643,7 @@
       }
 
       const t = _t || 0;
-      this.blocks.forEach(block => block.beforeDestroy());
+      blocks.forEach(block => block.beforeDestroy());
       setTimeout(() => {
         this.destroy();
         child.parentNode.removeChild(child);
@@ -657,7 +657,7 @@
     this.stepForward = () => {
       if (currentStep < steps.length) {
         const idx = steps[currentStep];
-        this.blocks[idx].stepForward();
+        blocks[idx].stepForward();
         currentStep++;
       }
     };
@@ -667,13 +667,13 @@
 
 
     this.destroy = () => {
-      this.blocks.forEach(block => block.destroy());
+      blocks.forEach(block => block.destroy());
     };
 
     this.sceneConfig = sceneConfig;
   };
 
-  var css_248z$t = ".container_container__3kBNh,.container_mainwrapper__zelcO{width:100%;height:100%;position:relative;overflow:hidden}.container_container__3kBNh>div{position:absolute;top:0;left:0;width:100%}";
+  var css_248z$t = ".container_mainwrapper__zelcO{outline:none}.container_container__3kBNh,.container_mainwrapper__zelcO{width:100%;height:100%;position:relative;overflow:hidden}.container_container__3kBNh>div{position:absolute;top:0;left:0;width:100%}";
   var css$8 = {"mainwrapper":"container_mainwrapper__zelcO","container":"container_container__3kBNh"};
   styleInject(css_248z$t);
 
@@ -805,7 +805,8 @@
 
   const fullscreen = function (rootElement, router, ctrlConfig, projectConfig) {
     const key = ctrlConfig.key || 'f';
-    const root = rootElement.parentNode;
+    const rootEl = rootElement.parentNode;
+    const root = rootEl.parentNode;
 
     const setKeyListener = e => {
       if (e.key === key) {
@@ -820,7 +821,7 @@
       }
     };
 
-    rootElement.parentNode.addEventListener('keyup', setKeyListener);
+    rootEl.addEventListener('keyup', setKeyListener);
   };
 
   const focus = function (rootElement, router, ctrlConfig, projectConfig) {
@@ -928,6 +929,11 @@
     router.setCurrentIndex(idx);
   };
 
+  const hidecursor = function (rootElement, router, ctrlConfig, projectConfig) {
+    const root = rootElement.parentNode;
+    root.style.cursor = 'none';
+  };
+
   const controllers = {
     autoplay,
     keyboard,
@@ -940,7 +946,8 @@
     pagenum,
     shuffle,
     loop,
-    current
+    current,
+    hidecursor
   };
 
   const add$2 = (type, module, override) => {

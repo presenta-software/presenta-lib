@@ -10,6 +10,7 @@ import { pagenum } from './controllers/pagenum/index.js'
 import { shuffle } from './controllers/shuffle/index.js'
 import { loop } from './controllers/loop/index.js'
 import { current } from './controllers/current/index.js'
+import { hidecursor } from './controllers/hidecursor/index.js'
 
 const controllers = {
   autoplay,
@@ -23,7 +24,8 @@ const controllers = {
   pagenum,
   shuffle,
   loop,
-  current
+  current,
+  hidecursor
 }
 
 const add = (type, module, override) => {

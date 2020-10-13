@@ -5,7 +5,7 @@ import { blocks } from '../blocks/types'
 const Block = function (blocksElement, blockConfig, rootElement, projectConfig) {
   this.type = blockConfig.type
   this.index = blockConfig.index
-  this.block = null
+  var blockInstance = null
 
   if (!this.type) {
     return console.warn('No `type` field found in block ' + this.index)
@@ -27,24 +27,24 @@ const Block = function (blocksElement, blockConfig, rootElement, projectConfig) 
   if (!blocks[this.type]) {
     console.log(`block "${this.type}" not found`)
   } else {
-    this.block = new blocks[this.type](blockContainer, blockConfig, rootElement, projectConfig)
+    blockInstance = new blocks[this.type](blockContainer, blockConfig, rootElement, projectConfig)
   }
 
   this.beforeDestroy = () => {
-    if (this.block.beforeDestroy) this.block.beforeDestroy()
+    if (blockInstance && blockInstance.beforeDestroy) blockInstance.beforeDestroy()
   }
 
   this.stepForward = () => {
     step++
-    if (this.block.stepForward) {
-      this.block.stepForward(step)
+    if (blockInstance.stepForward) {
+      blockInstance.stepForward(step)
     } else {
       console.warn(`The block "${this.type}" doesn't implement the method "stepForward" but this scene tried to use it`)
     }
   }
 
   this.destroy = () => {
-    if (this.block.destroy) this.block.destroy()
+    if (blockInstance && blockInstance.destroy) blockInstance.destroy()
   }
 
   blocksElement.appendChild(child)

@@ -1,11 +1,11 @@
-// https://lib.presenta.cc v0.0.31 Copyright 2020 Fabio Franchino
+// https://lib.presenta.cc v0.0.32 Copyright 2020 Fabio Franchino
 (function (global, factory) {
   typeof exports === 'object' && typeof module !== 'undefined' ? module.exports = factory() :
   typeof define === 'function' && define.amd ? define(factory) :
   (global = typeof globalThis !== 'undefined' ? globalThis : global || self, global.Presenta = factory());
 }(this, (function () { 'use strict';
 
-  var version = "0.0.31";
+  var version = "0.0.32";
 
   function styleInject(css, ref) {
     if ( ref === void 0 ) ref = {};

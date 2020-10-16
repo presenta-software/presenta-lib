@@ -35,17 +35,23 @@ const fullscreen = function (rootElement, router, ctrlConfig, projectConfig) {
   const rootEl = rootElement.parentNode
   const root = rootEl.parentNode
 
+  const toggle = () => {
+    if (isAlreadyFullscreen()) {
+      exitFullscreen()
+    } else {
+      makeFullscreen(root)
+    }
+  }
+
   const setKeyListener = e => {
     if (e.key === key) {
-      if (isAlreadyFullscreen()) {
-        exitFullscreen()
-      } else {
-        makeFullscreen(root)
-      }
+      toggle()
       e.stopPropagation()
       e.preventDefault()
     }
   }
+
+  this.toggle = toggle
 
   rootEl.addEventListener('keyup', setKeyListener)
 }

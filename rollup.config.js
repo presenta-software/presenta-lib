@@ -38,7 +38,7 @@ export default [{
       minimize: true,
       modules: {
         globalModulePaths: [
-          /global/, /schemes/, /fontkits/
+          /globals/
         ]
       },
       plugins: [
@@ -69,7 +69,7 @@ export default [{
       minimize: true,
       modules: {
         globalModulePaths: [
-          /global/, /schemes/, /fontkits/
+          /globals/
         ]
       },
       autoModules: false,

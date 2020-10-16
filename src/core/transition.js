@@ -1,8 +1,5 @@
-import './transitions/horizontal-slide/global.scss'
-import './transitions/vertical-in/global.scss'
-import './transitions/outIn/global.scss'
 
-const transition = wrapper => {
+const Transition = wrapper => {
   const functor = function (wrapper) {
     this.clear = prefix => {
       wrapper.classList.remove(prefix)
@@ -47,4 +44,4 @@ const transition = wrapper => {
   return new functor(wrapper)
 }
 
-export { transition }
+export { Transition }

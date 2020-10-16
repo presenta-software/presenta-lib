@@ -5,3 +5,7 @@
     align-items: center;
     justify-content: center;
 }
+.debug svg{
+    width: 100%;
+    height: 100%;
+}

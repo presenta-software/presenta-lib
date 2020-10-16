@@ -1,12 +1,30 @@
-import './global.scss'
 import css from './style.css'
 import u from '../../utils.js'
 
 const text = function (el, config) {
   const html = config.text || ''
-  let fsize = config.scale || 1
 
-  const child = u.div(`<div class="c ${css.text}">
+  let defsize = 1
+  const styleSize = {
+    a: 3,
+    b: 1,
+    c: 2,
+    d: 1.5
+  }
+  let style = ''
+  if (config.textStyle) {
+    style = css['textStyle__' + config.textStyle]
+    defsize = styleSize[config.textStyle]
+  }
+
+  let tvar = ''
+  if (config.textVar) {
+    tvar = css['textVar__' + config.textVar]
+  }
+
+  let fsize = config.scale || defsize
+
+  const child = u.div(`<div class="c ${css.text} ${style} ${tvar}">
     <div class="${css.inner}">
       <div class="pretext ${css.pretext}">
         <div class="${css.textbox}">

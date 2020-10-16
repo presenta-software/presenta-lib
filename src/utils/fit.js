@@ -10,7 +10,7 @@ const fit = (el, config, par) => {
     aspect = currAspect
   }
 
-  par.style.setProperty('--h', parseInt(960 / aspect) + 'px')
+  par.style.setProperty('--presenta-h', parseInt(960 / aspect) + 'px')
 
   const w = 960
   const h = 960 / aspect
@@ -18,7 +18,7 @@ const fit = (el, config, par) => {
   const scaleH = (h) * 100 / ch
   const scale = Math.max(scaleW, scaleH)
 
-  par.style.setProperty('--fz', (1 / (100 / scale)))
+  par.style.setProperty('--presenta-fz', (1 / (100 / scale)))
 }
 
 export { fit }

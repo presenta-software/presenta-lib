@@ -1,3 +1,10 @@
+:root{
+  --textsize:1.5rem;
+  --textpadding: 2rem;
+  --textalign: center;
+}
+
+
 .text{
     width: 100%;
     height: 100%;
@@ -78,6 +85,8 @@
 .itext ul,
 .itext blockquote {
   margin: 0;
+  line-height: inherit;
+  border: inherit;
 }
 
 .itext ul,
@@ -185,3 +194,66 @@
     border-bottom:1px solid var(--forecolor);
 }
 
+
+
+
+
+
+.textVar__a{
+  --textpadding: 2rem;
+  --textalign: center;
+}
+
+.textVar__a .itext ul,
+.textVar__a .itext ol{
+  text-align: center;
+}
+
+.textVar__a .pretext{
+  align-items: center;
+  justify-content: center;
+}
+
+.textVar__b{
+  --textalign: left;
+}
+
+.textVar__b .pretext{
+  align-items: flex-start;
+  justify-content: flex-start;
+}
+
+.textVar__c{
+  --textpadding: 2rem;
+  --textalign: right;
+}
+
+.textVar__c .itext ul,
+.textVar__c .itext ol{
+  text-align: right;
+}
+
+.textVar__c .pretext{
+  align-items: flex-start;
+  justify-content: flex-end;
+}
+
+.textVar__d{
+  --textpadding: 2rem;
+  --textalign: left;
+}
+
+.textVar__d .pretext{
+  align-items: flex-end;
+  justify-content: flex-start;
+}
+
+
+.textStyle__a{
+  --textboxpadding: 0;
+  --textboxbackcolor: var(--forecolor);
+  --textboxradius: 0;
+  --textboxborder: 0;
+  --textboxshadow: 0 0 0 var(--accentcolor);
+  --textboxcolor: var(--backcolor);
+}

@@ -4,9 +4,7 @@ import u from '../utils.js'
 import css from './router.css'
 
 const Router = function (rootElement, projectConfig) {
-  const gprops = u.props(projectConfig.controllers.props)
-
-  const child = u.div(`<div style="${gprops.styles}" class="controller ${css.router} ${gprops.classes}"></div>`)
+  const child = u.div(`<div class="controller ${css.router}"></div>`)
   rootElement.appendChild(child)
 
   const scenes = projectConfig.scenes
@@ -25,6 +23,16 @@ const Router = function (rootElement, projectConfig) {
       : 0
   }
   setNumSteps()
+
+  const updateRouterWrapper = () => {
+    const sceneConfig = scenes[currentIndex]
+
+    child.classList.remove(...child.classList)
+    child.classList.add('controller', css.router)
+    child.style = null
+    u.globs(child, sceneConfig)
+    u.props(child, sceneConfig.props)
+  }
 
   this.next = () => {
     if (currentStep === numSteps) {
@@ -73,20 +81,7 @@ const Router = function (rootElement, projectConfig) {
   }
 
   this.notify = evt => {
-    const sceneConfig = scenes[currentIndex]
-    const props = u.props(sceneConfig.props)
-    child.classList.remove(...child.classList)
-    child.classList.add('controller', css.router)
-    if (props.classes) {
-      let cls = props.classes.split(' ')
-      cls = cls.filter(d => d !== '')
-      child.classList.add(...cls)
-    }
-    if (gprops.classes) {
-      let cls = gprops.classes.split(' ')
-      cls = cls.filter(d => d !== '')
-      child.classList.add(...cls)
-    }
+    if (evt === 'indexChanged') updateRouterWrapper()
 
     if (listeners[evt]) {
       listeners[evt].forEach(clb => {
@@ -119,16 +114,15 @@ const Router = function (rootElement, projectConfig) {
   this.currentStep = () => currentStep
   this.setCurrentIndex = idx => (currentIndex = idx)
   this.setCurrentStep = stp => (currentStep = stp)
+  this.controllers = registeredIO
 
   if (projectConfig.controllers) {
     for (const k in projectConfig.controllers) {
-      if (k !== 'props') {
-        const modConfig = projectConfig.controllers[k]
-        const Mod = controllers[k]
-        if (!Mod) console.log(`Controller "${k}" not found. Maybe you forgot to include it.`)
-        if (modConfig && Mod) {
-          registeredIO[k] = new Mod(child, this, modConfig, projectConfig)
-        }
+      const modConfig = projectConfig.controllers[k]
+      const Mod = controllers[k]
+      if (!Mod) console.log(`Controller "${k}" not found. Maybe you forgot to include it.`)
+      if (modConfig && Mod) {
+        registeredIO[k] = new Mod(child, this, modConfig, projectConfig)
       }
     }
   }

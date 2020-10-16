@@ -1,11 +1,18 @@
-.solid{
-    --solidColor: var(--backcolor);
+:root{
+    
+    --solidOpacity: 1;
+    --solidBlend: none;
+}
 
+.solid{
+    --solidColor: var(--accentcolor);
     width: 100%;
     height: 100%;
     display: flex;
     align-items: center;
     justify-content: center;
 
-    background-color: var(--solidColor);
+    background: var(--solidColor);
+    opacity: var(--solidOpacity);
+    mix-blend-mode: var(--solidBlend);
 }

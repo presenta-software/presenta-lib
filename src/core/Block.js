@@ -13,13 +13,13 @@ const Block = function (blocksElement, blockConfig, rootElement, projectConfig) 
 
   let step = 0
 
-  const props = u.props(blockConfig.props)
-
-  const child = u.div(`<div class="block ${css.block} b b${this.index} ${props.classes}" style="${props.styles}">
+  const child = u.div(`<div class="block ${css.block} b b${this.index}">
     <div class="backDecoration ${css.bdecoration}"></div>
     <div class="blockContainer ${css.inner}"></div>
     <div class="frontDecoration ${css.fdecoration}"></div>
   </div>`)
+  u.globs(child, blockConfig)
+  u.props(child, blockConfig.props)
   this.el = child
 
   const blockContainer = child.querySelector('.blockContainer')

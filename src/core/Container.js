@@ -34,23 +34,15 @@ const Container = function (rootElement, projectConfig) {
   }
 
   /*
-    Global defaults
-  */
-  const globprop = ['transition', 'colorvar', 'scheme', 'fontkit', 'theme']
-  globprop.forEach(p => {
-    if (projectConfig[p]) {
-      const prp = projectConfig[p].substr(1)
-      rootElement.classList.add(`${p}__${prp}`)
-    }
-  })
-
-  /*
     Init the container
   */
   rootElement.classList.add('presenta')
 
   const child = u.div(`<div class="${css.mainwrapper}"></div>`)
   child.setAttribute('tabindex', '0')
+  u.globs(child, projectConfig)
+  u.props(child, projectConfig.props)
+  rootElement.appendChild(child)
 
   const cont = u.div(`<div class="a ${css.container}"></div>`)
   child.appendChild(cont)
@@ -58,17 +50,17 @@ const Container = function (rootElement, projectConfig) {
   const scenes = projectConfig.scenes
   var currentScene = null
 
-  rootElement.appendChild(child)
-
   const swapScene = (index, dir) => {
     if (currentScene) {
       currentScene.sceneConfig._presentatransdir = dir
       currentScene.destroyAfter(projectConfig._transitionDestroyDelay)
     }
-    const sceneConfig = scenes[index]
-    sceneConfig._presentatransdir = dir
-    currentScene = new Scene(sceneConfig, projectConfig, rootElement)
-    cont.appendChild(currentScene.el)
+    if (scenes.length > 0) {
+      const sceneConfig = scenes[index]
+      sceneConfig._presentatransdir = dir
+      currentScene = new Scene(sceneConfig, projectConfig, rootElement)
+      if (currentScene.el) cont.appendChild(currentScene.el)
+    }
   }
 
   const router = new Router(child, projectConfig)
@@ -97,10 +89,6 @@ const Container = function (rootElement, projectConfig) {
   }
 
   u.fit(child, projectConfig, rootElement)
-
-  // this.currentScene = () => {
-  //   return currentScene
-  // }
 
   this.destroy = () => {
     currentScene.destroy()

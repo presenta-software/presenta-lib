@@ -1,10 +1,18 @@
+import './globals.css'
 import css from './style.css'
 import u from '../../utils.js'
 
 const solid = function (el, config) {
-  const style = config.color ? `style="background:${config.color};"` : ''
+  if (config.color) el.style.setProperty('--solidColor', config.color)
+  if (config.opacity) el.style.setProperty('--solidOpacity', config.opacity)
+  if (config.blend) el.style.setProperty('--solidBlend', config.blend)
 
-  const child = u.div(`<div ${style} class="${css.solid}"></div>`)
+  var cClass = ''
+  if (config.solidvar) {
+    cClass = 'solidvar__' + config.solidvar
+  }
+
+  const child = u.div(`<div class="${css.solid} ${cClass}"></div>`)
 
   this.beforeDestroy = () => {
   }

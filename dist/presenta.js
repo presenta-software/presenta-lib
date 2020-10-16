@@ -1,11 +1,11 @@
-// https://lib.presenta.cc v0.0.30 Copyright 2020 Fabio Franchino
+// https://lib.presenta.cc v0.0.31 Copyright 2020 Fabio Franchino
 (function (global, factory) {
   typeof exports === 'object' && typeof module !== 'undefined' ? module.exports = factory() :
   typeof define === 'function' && define.amd ? define(factory) :
   (global = typeof globalThis !== 'undefined' ? globalThis : global || self, global.Presenta = factory());
 }(this, (function () { 'use strict';
 
-  var version = "0.0.30";
+  var version = "0.0.31";
 
   function styleInject(css, ref) {
     if ( ref === void 0 ) ref = {};
@@ -34,94 +34,134 @@
     }
   }
 
-  var css_248z = ".presenta *{box-sizing:border-box}.presenta{position:relative;--pw:960;--w:960px;--h:540px;--vp:960;--fz:1;--p:calc(var(--pw)/var(--vp))}:root{--fontHeading:Georgia,\"Times New Roman\",Times,serif;--fontText:\"Trebuchet MS\",\"Lucida Sans Unicode\",\"Lucida Grande\",\"Lucida Sans\",Arial,sans-serif}.colorvar__a,:root{--backcolor:#fff;--forecolor:#000;--accentcolor:#444;--otheraccentcolor:#ddd;--overlaycolor:var(--backcolor)}.colorvar__b{--backcolor:#000;--accentcolor:#999}.colorvar__b,.colorvar__c{--forecolor:#fff;--otheraccentcolor:#ccc;--overlaycolor:var(--backcolor)}.colorvar__c{--backcolor:#444;--accentcolor:#fff}.layout__block .blocksContainer{display:block}.layout__block .blocksContainer>div{height:auto}.layout__rows .blocksContainer{display:flex;flex-direction:column}.layout__rows .blocksContainer>div{width:100%}.layout__stack .blocksContainer{position:relative}.layout__stack .blocksContainer>div{position:absolute;top:0;left:0;width:100%;height:100%}";
+  var css_248z = ".presenta *{box-sizing:border-box}.presenta{position:relative;--presenta-pw:960;--presenta-w:960px;--presenta-h:540px;--presenta-vp:960;--presenta-fz:1;--presenta-p:calc(var(--presenta-pw)/var(--presenta-vp))}";
   styleInject(css_248z);
 
-  var css_248z$1 = ".scheme__original,.scheme__original.colorvar__a,.scheme__original .colorvar__a{--backcolor:#ebded1;--forecolor:#0a47d1;--accentcolor:#fb4138;--otheraccentcolor:#fff}.scheme__original.colorvar__b,.scheme__original .colorvar__b{--backcolor:#0a47d1;--forecolor:#ebded1;--accentcolor:#fff;--otheraccentcolor:#fb4138}.scheme__original.colorvar__c,.scheme__original .colorvar__c{--backcolor:#fb4138;--forecolor:#fff;--accentcolor:#ebded1;--otheraccentcolor:#0a47d1}";
+  var css_248z$1 = ".colorvar__a,:root{--backcolor:#fff;--forecolor:#000;--accentcolor:#444;--otheraccentcolor:#ddd;--overlaycolor:var(--backcolor)}.colorvar__b{--backcolor:#000;--accentcolor:#999}.colorvar__b,.colorvar__c{--forecolor:#fff;--otheraccentcolor:#ccc;--overlaycolor:var(--backcolor)}.colorvar__c{--backcolor:#444;--accentcolor:#fff}";
   styleInject(css_248z$1);
 
-  var css_248z$2 = ".scheme__vibrant,.scheme__vibrant.colorvar__a,.scheme__vibrant .colorvar__a{--backcolor:#ffe600;--forecolor:#000;--accentcolor:#ff6400;--otheraccentcolor:#fff}.scheme__vibrant.colorvar__b,.scheme__vibrant .colorvar__b{--backcolor:#000;--forecolor:#ffe600;--accentcolor:#fff;--otheraccentcolor:#ff6400}.scheme__vibrant.colorvar__c,.scheme__vibrant .colorvar__c{--backcolor:#ff6400;--forecolor:#fff;--accentcolor:#ffe600;--otheraccentcolor:#000}";
+  var css_248z$2 = ".colors__a,.colors__a.colorvar__a,.colors__a .colorvar__a{--backcolor:#000;--forecolor:#fff;--accentcolor:#eeff2e;--otheraccentcolor:#de1318}.colors__a.colorvar__b,.colors__a .colorvar__b{--backcolor:#eeff2e;--forecolor:#000;--accentcolor:#de1318;--otheraccentcolor:#fff}.colors__a.colorvar__c,.colors__a .colorvar__c{--backcolor:#de1318;--forecolor:#eeff2e;--accentcolor:#fff;--otheraccentcolor:#000}";
   styleInject(css_248z$2);
 
-  var css_248z$3 = ".scheme__polite,.scheme__polite.colorvar__a,.scheme__polite .colorvar__a{--backcolor:#322067;--forecolor:#feb8ba;--accentcolor:#449eaf;--otheraccentcolor:#fff}.scheme__polite.colorvar__b,.scheme__polite .colorvar__b{--backcolor:#feb8ba;--forecolor:#322067;--accentcolor:#fff;--otheraccentcolor:#449eaf}.scheme__polite.colorvar__c,.scheme__polite .colorvar__c{--backcolor:#fff;--forecolor:#322067;--accentcolor:#449eaf;--otheraccentcolor:#feb8ba}";
+  var css_248z$3 = ".colors__b,.colors__b.colorvar__a,.colors__b .colorvar__a{--backcolor:#a9dbd5;--forecolor:#000;--accentcolor:#fff;--otheraccentcolor:#38999d}.colors__b.colorvar__b,.colors__b .colorvar__b{--backcolor:#000;--forecolor:#a9dbd5;--accentcolor:#fff;--otheraccentcolor:#38999d}.colors__b.colorvar__c,.colors__b .colorvar__c{--backcolor:#fff;--forecolor:#38999d;--accentcolor:#a9dbd5;--otheraccentcolor:#000}";
   styleInject(css_248z$3);
 
-  var css_248z$4 = ".scheme__breeze,.scheme__breeze.colorvar__a,.scheme__breeze .colorvar__a{--backcolor:#a9dbd5;--forecolor:#000;--accentcolor:#fff;--otheraccentcolor:#38999d}.scheme__breeze.colorvar__b,.scheme__breeze .colorvar__b{--backcolor:#000;--forecolor:#a9dbd5;--accentcolor:#fff;--otheraccentcolor:#38999d}.scheme__breeze.colorvar__c,.scheme__breeze .colorvar__c{--backcolor:#fff;--forecolor:#38999d;--accentcolor:#a9dbd5;--otheraccentcolor:#000}";
+  var css_248z$4 = ".colors__c,.colors__c.colorvar__a,.colors__c .colorvar__a{--backcolor:#e5ff9d;--forecolor:#1c003f;--accentcolor:#69567c;--otheraccentcolor:#fff}.colors__c.colorvar__b,.colors__c .colorvar__b{--backcolor:#1c003f;--forecolor:#fff;--accentcolor:#e5ff9d;--otheraccentcolor:#69567c}.colors__c.colorvar__c,.colors__c .colorvar__c{--backcolor:#69567c;--forecolor:#e5ff9d;--accentcolor:#fff;--otheraccentcolor:#1c003f}";
   styleInject(css_248z$4);
 
-  var css_248z$5 = ".scheme__sunny,.scheme__sunny.colorvar__a,.scheme__sunny .colorvar__a{--backcolor:#f9ffb1;--forecolor:#072020;--accentcolor:#ec4225;--otheraccentcolor:#9eb0bb}.scheme__sunny.colorvar__b,.scheme__sunny .colorvar__b{--backcolor:#072020;--forecolor:#f9ffb1;--accentcolor:#ec4225;--otheraccentcolor:#9eb0bb}.scheme__sunny.colorvar__c,.scheme__sunny .colorvar__c{--backcolor:#ec4225;--forecolor:#f9ffb1;--accentcolor:#9eb0bb;--otheraccentcolor:#072020}";
+  var css_248z$5 = ".colors__d,.colors__d.colorvar__a,.colors__d .colorvar__a{--backcolor:#d0caa9;--forecolor:#30302f;--accentcolor:#ec4a25;--otheraccentcolor:#fff}.colors__d.colorvar__b,.colors__d .colorvar__b{--backcolor:#30302f;--forecolor:#d0caa9;--accentcolor:#ec4a25;--otheraccentcolor:#fff}.colors__d.colorvar__c,.colors__d .colorvar__c{--backcolor:#ec4a25;--forecolor:#fff;--accentcolor:#d0caa9;--otheraccentcolor:#30302f}";
   styleInject(css_248z$5);
 
-  var css_248z$6 = ".scheme__acid,.scheme__acid.colorvar__a,.scheme__acid .colorvar__a{--backcolor:#000;--forecolor:#fff;--accentcolor:#eeff2e;--otheraccentcolor:#de1318}.scheme__acid.colorvar__b,.scheme__acid .colorvar__b{--backcolor:#eeff2e;--forecolor:#000;--accentcolor:#de1318;--otheraccentcolor:#fff}.scheme__acid.colorvar__c,.scheme__acid .colorvar__c{--backcolor:#de1318;--forecolor:#eeff2e;--accentcolor:#fff;--otheraccentcolor:#000}";
+  var css_248z$6 = ".colors__e,.colors__e.colorvar__a,.colors__e .colorvar__a{--backcolor:#3b7bc3;--forecolor:#f9fb45;--accentcolor:#fff;--otheraccentcolor:#000}.colors__e.colorvar__b,.colors__e .colorvar__b{--backcolor:#000;--forecolor:#f9fb45;--accentcolor:#fff;--otheraccentcolor:#3b7bc3}.colors__e.colorvar__c,.colors__e .colorvar__c{--backcolor:#f9fb45;--forecolor:#000;--accentcolor:#3b7bc3;--otheraccentcolor:#fff}";
   styleInject(css_248z$6);
 
-  var css_248z$7 = ".scheme__novel,.scheme__novel.colorvar__a,.scheme__novel .colorvar__a{--backcolor:#3b7bc3;--forecolor:#f9fb45;--accentcolor:#fff;--otheraccentcolor:#000}.scheme__novel.colorvar__b,.scheme__novel .colorvar__b{--backcolor:#000;--forecolor:#f9fb45;--accentcolor:#fff;--otheraccentcolor:#3b7bc3}.scheme__novel.colorvar__c,.scheme__novel .colorvar__c{--backcolor:#f9fb45;--forecolor:#000;--accentcolor:#3b7bc3;--otheraccentcolor:#fff}";
+  var css_248z$7 = ".colors__f,.colors__f.colorvar__a,.colors__f .colorvar__a{--backcolor:#ebded1;--forecolor:#0a47d1;--accentcolor:#fb4138;--otheraccentcolor:#fff}.colors__f.colorvar__b,.colors__f .colorvar__b{--backcolor:#0a47d1;--forecolor:#ebded1;--accentcolor:#fff;--otheraccentcolor:#fb4138}.colors__f.colorvar__c,.colors__f .colorvar__c{--backcolor:#fb4138;--forecolor:#fff;--accentcolor:#ebded1;--otheraccentcolor:#0a47d1}";
   styleInject(css_248z$7);
 
-  var css_248z$8 = ".scheme__doub,.scheme__doub.colorvar__a,.scheme__doub .colorvar__a{--backcolor:#e5ff9d;--forecolor:#1c003f;--accentcolor:#69567c;--otheraccentcolor:#fff}.scheme__doub.colorvar__b,.scheme__doub .colorvar__b{--backcolor:#1c003f;--forecolor:#fff;--accentcolor:#e5ff9d;--otheraccentcolor:#69567c}.scheme__doub.colorvar__c,.scheme__doub .colorvar__c{--backcolor:#69567c;--forecolor:#e5ff9d;--accentcolor:#fff;--otheraccentcolor:#1c003f}";
+  var css_248z$8 = ".colors__g,.colors__g.colorvar__a,.colors__g .colorvar__a{--backcolor:#322067;--forecolor:#feb8ba;--accentcolor:#449eaf;--otheraccentcolor:#fff}.colors__g.colorvar__b,.colors__g .colorvar__b{--backcolor:#feb8ba;--forecolor:#322067;--accentcolor:#fff;--otheraccentcolor:#449eaf}.colors__g.colorvar__c,.colors__g .colorvar__c{--backcolor:#fff;--forecolor:#322067;--accentcolor:#449eaf;--otheraccentcolor:#feb8ba}";
   styleInject(css_248z$8);
 
-  var css_248z$9 = ".scheme__mayb,.scheme__mayb.colorvar__a,.scheme__mayb .colorvar__a{--backcolor:#d0caa9;--forecolor:#30302f;--accentcolor:#ec4a25;--otheraccentcolor:#fff}.scheme__mayb.colorvar__b,.scheme__mayb .colorvar__b{--backcolor:#30302f;--forecolor:#d0caa9;--accentcolor:#ec4a25;--otheraccentcolor:#fff}.scheme__mayb.colorvar__c,.scheme__mayb .colorvar__c{--backcolor:#ec4a25;--forecolor:#fff;--accentcolor:#d0caa9;--otheraccentcolor:#30302f}";
+  var css_248z$9 = ".colors__h,.colors__h.colorvar__a,.colors__h .colorvar__a{--backcolor:#f9ffb1;--forecolor:#072020;--accentcolor:#ec4225;--otheraccentcolor:#9eb0bb}.colors__h.colorvar__b,.colors__h .colorvar__b{--backcolor:#072020;--forecolor:#f9ffb1;--accentcolor:#ec4225;--otheraccentcolor:#9eb0bb}.colors__h.colorvar__c,.colors__h .colorvar__c{--backcolor:#ec4225;--forecolor:#f9ffb1;--accentcolor:#c5dbe9;--otheraccentcolor:#072020}";
   styleInject(css_248z$9);
 
-  const schemes = ['original', 'vibrant', 'polite', 'breeze', 'sunny', 'acid', 'novel', 'doub', 'mayb'];
-
-  var css_248z$a = "@import url(\"https://fonts.googleapis.com/css2?family=Montserrat:wght@600&family=Roboto+Mono:ital,wght@0,400;0,700;1,400&display=swap\");.fontkit__fk1{--fontHeading:\"Roboto Mono\",monospace;--fontText:\"Montserrat\",sans-serif}";
+  var css_248z$a = ".colors__i,.colors__i.colorvar__a,.colors__i .colorvar__a{--backcolor:#ffe600;--forecolor:#000;--accentcolor:#ff6400;--otheraccentcolor:#fff}.colors__i.colorvar__b,.colors__i .colorvar__b{--backcolor:#000;--forecolor:#ffe600;--accentcolor:#fff;--otheraccentcolor:#ff6400}.colors__i.colorvar__c,.colors__i .colorvar__c{--backcolor:#ff6400;--forecolor:#fff;--accentcolor:#ffe600;--otheraccentcolor:#000}";
   styleInject(css_248z$a);
 
-  var css_248z$b = "@import url(\"https://fonts.googleapis.com/css2?family=Playfair+Display:wght@600&family=Work+Sans&display=swap\");.fontkit__fk2{--fontHeading:\"Work Sans\",sans-serif;--fontText:\"Playfair Display\",serif}";
+  const colors = ['a', 'b', 'c', 'd', 'e', 'f', 'g', 'h', 'i'];
+  const colorvars = ['a', 'b', 'c'];
+
+  var css_248z$b = ":root{--fontHeading:Georgia,\"Times New Roman\",Times,serif;--fontText:\"Trebuchet MS\",\"Lucida Sans Unicode\",\"Lucida Grande\",\"Lucida Sans\",Arial,sans-serif}";
   styleInject(css_248z$b);
 
-  var css_248z$c = "@import url(\"https://fonts.googleapis.com/css2?family=Roboto+Slab&family=Carrois+Gothic+SC&display=swap\");.fontkit__fk3{--fontHeading:\"Roboto Slab\",serif;--fontText:\"Carrois Gothic SC\",sans-serif}";
+  var css_248z$c = "@import url(\"https://fonts.googleapis.com/css2?family=Montserrat:wght@600&family=Roboto+Mono:ital,wght@0,400;0,700;1,400&display=swap\");.fonts__a{--fontHeading:\"Roboto Mono\",monospace;--fontText:\"Montserrat\",sans-serif}";
   styleInject(css_248z$c);
 
-  var css_248z$d = "@import url(\"https://fonts.googleapis.com/css2?family=Amatic+SC:wght@700&family=Open+Sans&display=swap\");.fontkit__fk4{--fontHeading:\"Amatic SC\",cursive;--fontText:\"Open Sans\",sans-serif}.fontkit__fk4 h1,.fontkit__fk4 h2,.fontkit__fk4 h3{font-size:3rem}";
+  var css_248z$d = "@import url(\"https://fonts.googleapis.com/css2?family=Playfair+Display:wght@600&family=Work+Sans&display=swap\");.fonts__b{--fontHeading:\"Work Sans\",sans-serif;--fontText:\"Playfair Display\",serif}";
   styleInject(css_248z$d);
 
-  var css_248z$e = "@import url(\"https://fonts.googleapis.com/css2?family=Bebas+Neue&family=Montserrat&display=swap\");.fontkit__fk5{--fontHeading:\"Bebas Neue\",cursive;--fontText:\"Montserrat\",sans-serif}";
+  var css_248z$e = "@import url(\"https://fonts.googleapis.com/css2?family=Roboto+Slab&family=Carrois+Gothic+SC&display=swap\");.fonts__c{--fontHeading:\"Roboto Slab\",serif;--fontText:\"Carrois Gothic SC\",sans-serif}";
   styleInject(css_248z$e);
 
-  var css_248z$f = "@import url(\"https://fonts.googleapis.com/css2?family=Anton&family=Lato&display=swap\");.fontkit__fk6{--fontHeading:\"Anton\",cursive;--fontText:\"Lato\",sans-serif}";
+  var css_248z$f = "@import url(\"https://fonts.googleapis.com/css2?family=Amatic+SC:wght@700&family=Open+Sans&display=swap\");.fonts__d{--fontHeading:\"Amatic SC\",cursive;--fontText:\"Open Sans\",sans-serif}.fonts__d h1,.fonts__d h2,.fonts__d h3{font-size:3rem}";
   styleInject(css_248z$f);
 
-  var css_248z$g = "@import url(\"https://fonts.googleapis.com/css2?family=Inter:wght@400;900&display=swap\");.fontkit__fk7{--fontHeading:\"Inter\",cursive;--fontText:\"Inter\",sans-serif}";
+  var css_248z$g = "@import url(\"https://fonts.googleapis.com/css2?family=Bebas+Neue&family=Montserrat&display=swap\");.fonts__e{--fontHeading:\"Bebas Neue\",cursive;--fontText:\"Montserrat\",sans-serif}";
   styleInject(css_248z$g);
 
-  const fontkits = ['fk1', 'fk2', 'fk3', 'fk4', 'fk5', 'fk6', 'fk7'];
-
-  var css_248z$h = ":root{--scenePadding:0}.scene_sceneContainer__IgSpB{width:100%;height:100%;display:flex;align-items:center;justify-content:center;position:relative}.scene_scene__3uvTl{--sw:calc(var(--w)/var(--p)/var(--fz));--sh:calc(var(--h)/var(--p)/var(--fz));--scal:calc(var(--pw)/var(--p)/var(--pw)/var(--fz));width:var(--sw);height:var(--sh);font-family:serif;user-select:none}.scene_wrapper__3yr1k{width:var(--w);height:var(--h);transform:scale(1);transform:scale(var(--scal));transform-origin:top left;overflow:hidden;padding:var(--scenePadding)}.scene_content__1rJf0{width:100%;height:100%;display:flex;flex-direction:column;overflow:hidden}.scene_fcontainer__1E_0g{top:0;left:0;width:100%;height:100%;position:absolute;pointer-events:none}.scene_viewport__3uNLS{width:100%;height:100%;position:relative;flex:1;overflow:hidden;display:flex;flex-direction:row}.scene_viewport__3uNLS>div{height:100%}";
-  var css = {"sceneContainer":"scene_sceneContainer__IgSpB","scene":"scene_scene__3uvTl","wrapper":"scene_wrapper__3yr1k","content":"scene_content__1rJf0","fcontainer":"scene_fcontainer__1E_0g","viewport":"scene_viewport__3uNLS"};
+  var css_248z$h = "@import url(\"https://fonts.googleapis.com/css2?family=Anton&family=Lato&display=swap\");.fonts__f{--fontHeading:\"Anton\",cursive;--fontText:\"Lato\",sans-serif}";
   styleInject(css_248z$h);
+
+  var css_248z$i = "@import url(\"https://fonts.googleapis.com/css2?family=Inter:wght@400;900&display=swap\");.fonts__g{--fontHeading:\"Inter\",cursive;--fontText:\"Inter\",sans-serif}";
+  styleInject(css_248z$i);
+
+  const fonts = ['a', 'b', 'c', 'd', 'e', 'f', 'g'];
+
+  var css_248z$j = ".transition__a .p-scene-enter-transition{transition:transform 1s cubic-bezier(1,0,0,1)}.transition__a .to-right.p-scene-enter-start{transform:translateX(100%)}.transition__a .to-right.p-scene-enter-end{transform:translateX(0)}.transition__a .to-left.p-scene-enter-start{transform:translateX(-100%)}.transition__a .to-left.p-scene-enter-end{transform:translateX(0)}.transition__a .p-scene-leave-transition{transition:transform 1s cubic-bezier(1,0,0,1)}.transition__a .to-right.p-scene-leave-start{transform:translateX(0)}.transition__a .to-right.p-scene-leave-end{transform:translateX(-100%)}.transition__a .to-left.p-scene-leave-start{transform:translateX(0)}.transition__a .to-left.p-scene-leave-end{transform:translateX(100%)}";
+  styleInject(css_248z$j);
+
+  var css_248z$k = ".transition__b .p-scene-enter-transition{opacity:0}.transition__b .p-scene-enter-ended{opacity:1}.transition__b .p-scene-enter-transition .textContent>*{transition:opacity 1s ease-out,transform 1s cubic-bezier(.2,.8,.05,.95)}.transition__b .p-scene-enter-transition .textContent>:first-child{transition-delay:1.15s}.transition__b .p-scene-enter-transition .textContent>:nth-child(2){transition-delay:1.3s}.transition__b .p-scene-enter-transition .textContent>:nth-child(3){transition-delay:1.45s}.transition__b .p-scene-enter-transition .textContent>:nth-child(4){transition-delay:1.6s}.transition__b .p-scene-enter-transition .textContent>:nth-child(5){transition-delay:1.75s}.transition__b .p-scene-enter-transition .textContent>:nth-child(6){transition-delay:1.9s}.transition__b .p-scene-enter-transition .textContent>:nth-child(7){transition-delay:2.05s}.transition__b .p-scene-enter-transition .textContent>:nth-child(8){transition-delay:2.2s}.transition__b .p-scene-enter-transition .textContent>:nth-child(9){transition-delay:2.35s}.transition__b .p-scene-enter-transition .textContent>:nth-child(10){transition-delay:2.5s}.transition__b .p-scene-enter-transition .textContent>:nth-child(11){transition-delay:2.65s}.transition__b .p-scene-enter-transition .textContent>:nth-child(12){transition-delay:2.8s}.transition__b .p-scene-enter-transition .textContent>:nth-child(13){transition-delay:2.95s}.transition__b .p-scene-enter-transition .textContent>:nth-child(14){transition-delay:3.1s}.transition__b .p-scene-enter-transition .textContent>:nth-child(15){transition-delay:3.25s}.transition__b .p-scene-enter-transition .textContent>:nth-child(16){transition-delay:3.4s}.transition__b .p-scene-enter-transition .textContent>:nth-child(17){transition-delay:3.55s}.transition__b .p-scene-enter-transition .textContent>:nth-child(18){transition-delay:3.7s}.transition__b .p-scene-enter-transition .textContent>:nth-child(19){transition-delay:3.85s}.transition__b .p-scene-enter-transition .textContent>:nth-child(20){transition-delay:4s}.transition__b .p-scene-enter-transition .blockContainer>div{transition:background-color 1s cubic-bezier(1,0,0,1);transition-delay:1s}.transition__b .p-scene-enter-start .blockContainer>div{background-color:transparent}.transition__b .p-scene-enter-start .textContent>*{opacity:0;transform:translateY(30px)}.transition__b .p-scene-enter-end .textContent>*{opacity:1;transform:translateY(0)}.transition__b .p-scene-leave-transition .textContent>*{transition:opacity .75s cubic-bezier(.165,.84,.44,1),transform .75s cubic-bezier(.165,.84,.44,1)}.transition__b .p-scene-leave-transition .textContent>:nth-child(0){transition-delay:0s}.transition__b .p-scene-leave-transition .textContent>:first-child{transition-delay:.1s}.transition__b .p-scene-leave-transition .textContent>:nth-child(2){transition-delay:.2s}.transition__b .p-scene-leave-transition .textContent>:nth-child(3){transition-delay:.3s}.transition__b .p-scene-leave-transition .textContent>:nth-child(4){transition-delay:.4s}.transition__b .p-scene-leave-transition .textContent>:nth-child(5){transition-delay:.5s}.transition__b .p-scene-leave-transition .textContent>:nth-child(6){transition-delay:.6s}.transition__b .p-scene-leave-transition .textContent>:nth-child(7){transition-delay:.7s}.transition__b .p-scene-leave-transition .textContent>:nth-child(8){transition-delay:.8s}.transition__b .p-scene-leave-transition .textContent>:nth-child(9){transition-delay:.9s}.transition__b .p-scene-leave-transition .textContent>:nth-child(10){transition-delay:1s}.transition__b .p-scene-leave-transition .textContent>:nth-child(11){transition-delay:1.1s}.transition__b .p-scene-leave-transition .textContent>:nth-child(12){transition-delay:1.2s}.transition__b .p-scene-leave-transition .textContent>:nth-child(13){transition-delay:1.3s}.transition__b .p-scene-leave-transition .textContent>:nth-child(14){transition-delay:1.4s}.transition__b .p-scene-leave-transition .textContent>:nth-child(15){transition-delay:1.5s}.transition__b .p-scene-leave-transition .textContent>:nth-child(16){transition-delay:1.6s}.transition__b .p-scene-leave-transition .textContent>:nth-child(17){transition-delay:1.7s}.transition__b .p-scene-leave-transition .textContent>:nth-child(18){transition-delay:1.8s}.transition__b .p-scene-leave-transition .textContent>:nth-child(19){transition-delay:1.9s}.transition__b .p-scene-leave-transition .textContent>:nth-child(20){transition-delay:2s}.transition__b .p-scene-leave-start .textContent>*{opacity:1;transform:scale(1)}.transition__b .p-scene-leave-end .textContent>*{opacity:0;transform:scale(.85)}";
+  styleInject(css_248z$k);
+
+  var css_248z$l = ".transition__c .p-scene-enter-transition{transition:all .75s cubic-bezier(.2,.8,.05,.95)}.transition__c .p-scene-enter-start{transform:translateY(150%)}.transition__c .p-scene-enter-end{transform:translateY(0)}.transition__c .p-scene-leave-transition{transition:all .75s cubic-bezier(.2,.8,.05,.95)}.transition__c .p-scene-leave-start{transform:scale(1)}.transition__c .p-scene-leave-end{transform:scale(.5)}";
+  styleInject(css_248z$l);
+
+  const transitions = ['a', 'b', 'c'];
+
+  var css_248z$m = ":root{--scenePadding:0;--sceneBackColor:none}.scenevar__a{--scenePadding:0.5rem}.scenevar__a,.scenevar__b{--sceneBackColor:var(--forecolor)}.scenevar__b{--scenePadding:2rem}.scenevar__c{--scenePadding:3.5rem}.scenevar__c,.scenevar__d{--sceneBackColor:var(--forecolor)}.scenevar__d{--scenePadding:0 4rem 4rem 0}.scenevar__e{--scenePadding:4rem 0rem 4rem 0rem;--sceneBackColor:var(--forecolor)}";
+  styleInject(css_248z$m);
+
+  const scenevars = ['a', 'b', 'c', 'd', 'e'];
+
+  var css_248z$n = ".layout__a .blocksContainer{display:flex;flex-direction:row}.layout__a .blocksContainer>div{height:100%}.layout__b .blocksContainer{display:flex;flex-direction:column}.layout__b .blocksContainer>div{width:100%}.layout__c .blocksContainer{position:relative}.layout__c .blocksContainer>div{position:absolute;top:0;left:0;width:100%;height:100%}.layout__c .blocksContainer>div:not(:first-child){background:none}";
+  styleInject(css_248z$n);
+
+  const layouts = ['a', 'b', 'c', 'd'];
+
+  var globals = {
+    colors,
+    fonts,
+    transitions,
+    scenevars,
+    colorvars,
+    layouts
+  };
+
+  var css_248z$o = ".scene_sceneContainer__IgSpB{width:100%;height:100%;display:flex;align-items:center;justify-content:center;position:relative}.scene_scene__3uvTl{--presenta-sw:calc(var(--presenta-w)/var(--presenta-p)/var(--presenta-fz));--presenta-sh:calc(var(--presenta-h)/var(--presenta-p)/var(--presenta-fz));--presenta-scal:calc(var(--presenta-pw)/var(--presenta-p)/var(--presenta-pw)/var(--presenta-fz));width:var(--presenta-sw);height:var(--presenta-sh);font-family:serif;user-select:none}.scene_wrapper__3yr1k{width:var(--presenta-w);height:var(--presenta-h);transform:scale(1);transform:scale(var(--presenta-scal));transform-origin:top left;overflow:hidden;padding:var(--scenePadding);background-color:var(--sceneBackColor)}.scene_content__1rJf0{width:100%;height:100%;display:flex;flex-direction:column;overflow:hidden}.scene_fcontainer__1E_0g{top:0;left:0;width:100%;height:100%;position:absolute;pointer-events:none}.scene_viewport__3uNLS{width:100%;height:100%;position:relative;flex:1;overflow:hidden;display:flex;flex-direction:row}.scene_viewport__3uNLS>div{height:100%}";
+  var css = {"sceneContainer":"scene_sceneContainer__IgSpB","scene":"scene_scene__3uvTl","wrapper":"scene_wrapper__3yr1k","content":"scene_content__1rJf0","fcontainer":"scene_fcontainer__1E_0g","viewport":"scene_viewport__3uNLS"};
+  styleInject(css_248z$o);
 
   const select = selector => {
     return typeof selector === 'string' ? document.querySelector(selector) : selector;
   };
 
-  const props = (p, _namespace) => {
-    const namespace = _namespace ? _namespace + '__' : '';
-    const res = {
-      classes: '',
-      styles: ''
-    };
-    if (!p) return res;
-
+  const props = (wrapper, p) => {
     for (const k in p) {
       const v = p[k] + '';
       const isclass = v.substr(0, 1) === '.';
 
       if (isclass) {
         const classname = v.substr(1);
-        res.classes += namespace + k + '__' + classname + ' ';
+        const cls = k + '__' + classname;
+        wrapper.classList.add(cls);
+      } else {
+        wrapper.style.setProperty('--' + k, p[k]);
       }
     }
+  };
 
-    for (const k in p) {
-      const v = p[k] + '';
-      const isclass = v.substr(0, 1) === '.';
-      if (!isclass) res.styles += '--' + namespace + k + ':' + p[k] + ';';
-    }
+  const globprop = ['transition', 'colors', 'fonts', 'layout', 'colorvar', 'blockvar', 'scenevar'];
 
-    return res;
+  const globs = (wrapper, config) => {
+    globprop.forEach(p => {
+      if (config[p]) {
+        const prp = config[p];
+        wrapper.classList.add(`${p}__${prp}`);
+      }
+    });
+  };
+
+  const add = clsType => {
+    globprop.push(clsType);
   };
 
   const div = str => new DOMParser().parseFromString(str, 'text/html').body.childNodes[0];
@@ -137,13 +177,13 @@
       aspect = currAspect;
     }
 
-    par.style.setProperty('--h', parseInt(960 / aspect) + 'px');
+    par.style.setProperty('--presenta-h', parseInt(960 / aspect) + 'px');
     const w = 960;
     const h = 960 / aspect;
     const scaleW = w * 100 / cw;
     const scaleH = h * 100 / ch;
     const scale = Math.max(scaleW, scaleH);
-    par.style.setProperty('--fz', 1 / (100 / scale));
+    par.style.setProperty('--presenta-fz', 1 / (100 / scale));
   };
 
   const event = (name, detail) => {
@@ -157,47 +197,75 @@
   var utils = {
     select,
     props,
+    globs,
     div,
     fit,
     event
   };
 
-  var css_248z$i = ":root{--blockWeight:1;--blockPadding:0;--blockOpacity:1;--blockBlend:unset}.block_block__BWbaZ{background:var(--backcolor);width:100%;height:100%;flex:1;flex:var(--blockWeight);overflow:hidden;position:relative}.block_inner__3LS6s{width:100%;height:100%;padding:var(--blockPadding);opacity:var(--blockOpacity);mix-blend-mode:var(--blockBlend)}.block_bdecoration__3KJh-,.block_inner__3LS6s{top:0;left:0;width:100%;height:100%;position:absolute}.block_fdecoration__12tBw{pointer-events:none}";
+  var css_248z$p = ".block_block__BWbaZ{background:var(--backcolor);width:100%;height:100%;flex:1;flex:var(--blockWeight);overflow:hidden;position:relative}.block_inner__3LS6s{width:100%;height:100%;padding:var(--blockPadding);opacity:var(--blockOpacity);mix-blend-mode:var(--blockBlend)}.block_bdecoration__3KJh-,.block_inner__3LS6s{top:0;left:0;width:100%;height:100%;position:absolute}.block_fdecoration__12tBw{pointer-events:none}";
   var css$1 = {"block":"block_block__BWbaZ","inner":"block_inner__3LS6s","bdecoration":"block_bdecoration__3KJh-","fdecoration":"block_fdecoration__12tBw"};
-  styleInject(css_248z$i);
+  styleInject(css_248z$p);
 
-  var css_248z$j = ".style_debug__1-XHT{width:100%;height:100%;display:flex;align-items:center;justify-content:center}";
+  var css_248z$q = ".style_debug__1-XHT{display:flex;align-items:center;justify-content:center}.style_debug__1-XHT,.style_debug__1-XHT svg{width:100%;height:100%}";
   var css$2 = {"debug":"style_debug__1-XHT"};
-  styleInject(css_248z$j);
+  styleInject(css_248z$q);
 
   const debug = function (_el, _config) {
     const el = utils.select(_el);
     const child = utils.div(`<div class="${css$2.debug}">
-    <h1>DEBUG <div class="step">0</div></h1> 
+    <svg preserveAspectRatio="none" viewBox="0 0 200 200" fill="none" xmlns="http://www.w3.org/2000/svg">
+      <rect width="50" height="150" fill="var(--forecolor)"/>
+      <rect x="50" width="50" height="150" fill="var(--backcolor)"/>
+      <rect x="100" width="50" height="150" fill="var(--accentcolor)"/>
+      <rect x="150" width="50" height="150" fill="var(--otheraccentcolor)"/>
+
+      <rect y="182" width="50" height="18" fill="var(--otheraccentcolor)"/>
+      <rect x="50" y="182" width="50" height="18" fill="var(--accentcolor)"/>
+      <rect x="100" y="182" width="50" height="18" fill="var(--backcolor)"/>
+      <rect x="150" y="182" width="50" height="18" fill="var(--forecolor)"/>
+
+      <rect y="150" width="200" height="32" fill="var(--backcolor)"/>
+      <text fill="var(--forecolor)" xml:space="preserve" style="white-space: pre" font-family="var(--fontHeading)" font-size="12" letter-spacing="0em"><tspan x="3" y="170.102">fontHeading</tspan></text>
+      <text fill="var(--forecolor)" xml:space="preserve" style="white-space: pre" font-family="var(--fontText)" font-size="12" letter-spacing="0em"><tspan x="102" y="170.102">fontText</tspan></text>
+    </svg>
   </div>`);
 
     this.beforeDestroy = () => {};
 
-    this.stepForward = step => {
-      child.querySelector('.step').innerHTML = step;
-    };
+    this.stepForward = step => {};
 
-    el.appendChild(child); // setTimeout(() => {
-    //   el.dispatchEvent(new CustomEvent('testevent', { bubbles: true, detail: { some: 'data' } }))
-    // }, 1000)
+    el.appendChild(child);
   };
 
-  var css_248z$k = ":root{--textsize:1.5rem;--textpadding:1rem;--textalign:center}.textbox__inverted{--textboxpadding:1rem;--textboxbackcolor:var(--forecolor);--textboxradius:0;--textboxborder:0;--textboxshadow:0 0 0 var(--accentcolor);--textboxcolor:var(--backcolor)}.p.textposition__tl .pretext,.p.textposition__topleft .pretext{align-items:flex-start;justify-content:flex-start}.p.textposition__tc .pretext,.p.textposition__topcenter .pretext{align-items:flex-start;justify-content:center}.p.textposition__topright .pretext,.p.textposition__tr .pretext{align-items:flex-start;justify-content:flex-end}.p.textposition__centerleft .pretext,.p.textposition__cl .pretext{align-items:center;justify-content:flex-start}.p.textposition__cc .pretext,.p.textposition__center .pretext{align-items:center;justify-content:center}.p.textposition__centerright .pretext,.p.textposition__cr .pretext{align-items:center;justify-content:flex-end}.p.textposition__bl .pretext,.p.textposition__bottomleft .pretext{align-items:flex-end;justify-content:flex-start}.p.textposition__bc .pretext,.p.textposition__bottomcenter .pretext{align-items:flex-end;justify-content:center}.p.textposition__bottomright .pretext,.p.textposition__br .pretext{align-items:flex-end;justify-content:flex-end}.s.textposition__tl .pretext,.s.textposition__topleft .pretext{align-items:flex-start;justify-content:flex-start}.s.textposition__tc .pretext,.s.textposition__topcenter .pretext{align-items:flex-start;justify-content:center}.s.textposition__topright .pretext,.s.textposition__tr .pretext{align-items:flex-start;justify-content:flex-end}.s.textposition__centerleft .pretext,.s.textposition__cl .pretext{align-items:center;justify-content:flex-start}.s.textposition__cc .pretext,.s.textposition__center .pretext{align-items:center;justify-content:center}.s.textposition__centerright .pretext,.s.textposition__cr .pretext{align-items:center;justify-content:flex-end}.s.textposition__bl .pretext,.s.textposition__bottomleft .pretext{align-items:flex-end;justify-content:flex-start}.s.textposition__bc .pretext,.s.textposition__bottomcenter .pretext{align-items:flex-end;justify-content:center}.s.textposition__bottomright .pretext,.s.textposition__br .pretext{align-items:flex-end;justify-content:flex-end}.b.textposition__tl .pretext,.b.textposition__topleft .pretext{align-items:flex-start;justify-content:flex-start}.b.textposition__tc .pretext,.b.textposition__topcenter .pretext{align-items:flex-start;justify-content:center}.b.textposition__topright .pretext,.b.textposition__tr .pretext{align-items:flex-start;justify-content:flex-end}.b.textposition__centerleft .pretext,.b.textposition__cl .pretext{align-items:center;justify-content:flex-start}.b.textposition__cc .pretext,.b.textposition__center .pretext{align-items:center;justify-content:center}.b.textposition__centerright .pretext,.b.textposition__cr .pretext{align-items:center;justify-content:flex-end}.b.textposition__bl .pretext,.b.textposition__bottomleft .pretext{align-items:flex-end;justify-content:flex-start}.b.textposition__bc .pretext,.b.textposition__bottomcenter .pretext{align-items:flex-end;justify-content:center}.b.textposition__bottomright .pretext,.b.textposition__br .pretext{align-items:flex-end;justify-content:flex-end}";
-  styleInject(css_248z$k);
-
-  var css_248z$l = ".style_text__3T1cl{color:var(--forecolor)}.style_inner__11UJC,.style_text__3T1cl{width:100%;height:100%;position:relative}.style_pretext__cLjqD{display:flex;width:100%;height:100%;align-items:center;justify-content:center}.style_textbox__1Vb-V{padding:var(--textboxpadding);text-align:var(--textalign);font-size:var(--textsize);color:var(--textboxcolor);--backmark:var(--accentcolor);--foremark:var(--backcolor);--textaccentcolor:var(--accentcolor);font-family:var(--fontText)}.style_itext__jz90o{border:var(--textboxborder) solid var(--accentcolor);padding:var(--textpadding);border-radius:var(--textboxradius);box-shadow:var(--textboxshadow);background-color:var(--textboxbackcolor)}.style_itext__jz90o img{object-fit:contain;height:4em;vertical-align:middle}.style_itext__jz90o mark{background-color:var(--backmark);color:var(--foremark);padding:0 .5rem}.style_itext__jz90o high{color:var(--textaccentcolor)}.style_itext__jz90o bord{border:8px solid var(--backmark);padding:0 .5rem}.style_itext__jz90o a{color:var(--textaccentcolor)}.style_itext__jz90o blockquote{font-size:2em;font-weight:400;font-style:italic}.style_itext__jz90o blockquote,.style_itext__jz90o h1,.style_itext__jz90o h2,.style_itext__jz90o h3,.style_itext__jz90o h4,.style_itext__jz90o h5,.style_itext__jz90o h6,.style_itext__jz90o p,.style_itext__jz90o ul{margin:0}.style_itext__jz90o ol,.style_itext__jz90o ul{font-size:1.5em;line-height:1.1em;text-align:left;margin:0;list-style-type:none;counter-reset:li;padding:.5rem 0}.style_itext__jz90o li{list-style-position:inside;margin-bottom:2px;padding:.25em .25em .25em .8em}.style_itext__jz90o ul li:before{content:\"\\2013\";display:inline-block;width:.8em;margin-left:-.8em}.style_itext__jz90o ol li:before{counter-increment:li;content:\".\" counter(li);display:inline-block;width:1.1em;margin-left:-1.3em;margin-right:.2em;text-align:right;direction:rtl}.style_itext__jz90o li p{display:inline}.style_itext__jz90o code,.style_itext__jz90o pre{text-align:left}.style_itext__jz90o h1,.style_itext__jz90o h2,.style_itext__jz90o h3,.style_itext__jz90o h4,.style_itext__jz90o h5,.style_itext__jz90o h6{font-family:var(--fontHeading);padding:.5rem 0}.style_itext__jz90o h1{font-size:2em}.style_itext__jz90o h2{font-size:1.5em}.style_itext__jz90o h3{font-size:1.17em}.style_itext__jz90o h4{font-size:1em}.style_itext__jz90o h5{font-size:.83em}.style_itext__jz90o h6{font-size:.67em}.style_itext__jz90o p{padding:.5rem 0}.style_itext__jz90o hr{border:1px solid var(--forecolor);margin:.5rem 0}.style_itext__jz90o h1:first-child,.style_itext__jz90o h1:last-child,.style_itext__jz90o h2:first-child,.style_itext__jz90o h2:last-child,.style_itext__jz90o h3:first-child,.style_itext__jz90o h3:last-child{padding:0}.style_itext__jz90o table{width:100%}.style_itext__jz90o tr{padding:0}.style_itext__jz90o td,.style_itext__jz90o th{padding:.5rem;border-bottom:1px solid var(--forecolor)}";
-  var css$3 = {"text":"style_text__3T1cl","inner":"style_inner__11UJC","pretext":"style_pretext__cLjqD","textbox":"style_textbox__1Vb-V","itext":"style_itext__jz90o"};
-  styleInject(css_248z$l);
+  var css_248z$r = ":root{--textsize:1.5rem;--textpadding:2rem;--textalign:center}.style_text__3T1cl{color:var(--forecolor)}.style_inner__11UJC,.style_text__3T1cl{width:100%;height:100%;position:relative}.style_pretext__cLjqD{display:flex;width:100%;height:100%;align-items:center;justify-content:center}.style_textbox__1Vb-V{padding:var(--textboxpadding);text-align:var(--textalign);font-size:var(--textsize);color:var(--textboxcolor);--backmark:var(--accentcolor);--foremark:var(--backcolor);--textaccentcolor:var(--accentcolor);font-family:var(--fontText)}.style_itext__jz90o{border:var(--textboxborder) solid var(--accentcolor);padding:var(--textpadding);border-radius:var(--textboxradius);box-shadow:var(--textboxshadow);background-color:var(--textboxbackcolor)}.style_itext__jz90o img{object-fit:contain;height:4em;vertical-align:middle}.style_itext__jz90o mark{background-color:var(--backmark);color:var(--foremark);padding:0 .5rem}.style_itext__jz90o high{color:var(--textaccentcolor)}.style_itext__jz90o bord{border:8px solid var(--backmark);padding:0 .5rem}.style_itext__jz90o a{color:var(--textaccentcolor)}.style_itext__jz90o blockquote{font-size:2em;font-weight:400;font-style:italic}.style_itext__jz90o blockquote,.style_itext__jz90o h1,.style_itext__jz90o h2,.style_itext__jz90o h3,.style_itext__jz90o h4,.style_itext__jz90o h5,.style_itext__jz90o h6,.style_itext__jz90o p,.style_itext__jz90o ul{margin:0;line-height:inherit;border:inherit}.style_itext__jz90o ol,.style_itext__jz90o ul{font-size:1.5em;line-height:1.1em;text-align:left;margin:0;list-style-type:none;counter-reset:li;padding:.5rem 0}.style_itext__jz90o li{list-style-position:inside;margin-bottom:2px;padding:.25em .25em .25em .8em}.style_itext__jz90o ul li:before{content:\"\\2013\";display:inline-block;width:.8em;margin-left:-.8em}.style_itext__jz90o ol li:before{counter-increment:li;content:\".\" counter(li);display:inline-block;width:1.1em;margin-left:-1.3em;margin-right:.2em;text-align:right;direction:rtl}.style_itext__jz90o li p{display:inline}.style_itext__jz90o code,.style_itext__jz90o pre{text-align:left}.style_itext__jz90o h1,.style_itext__jz90o h2,.style_itext__jz90o h3,.style_itext__jz90o h4,.style_itext__jz90o h5,.style_itext__jz90o h6{font-family:var(--fontHeading);padding:.5rem 0}.style_itext__jz90o h1{font-size:2em}.style_itext__jz90o h2{font-size:1.5em}.style_itext__jz90o h3{font-size:1.17em}.style_itext__jz90o h4{font-size:1em}.style_itext__jz90o h5{font-size:.83em}.style_itext__jz90o h6{font-size:.67em}.style_itext__jz90o p{padding:.5rem 0}.style_itext__jz90o hr{border:1px solid var(--forecolor);margin:.5rem 0}.style_itext__jz90o h1:first-child,.style_itext__jz90o h1:last-child,.style_itext__jz90o h2:first-child,.style_itext__jz90o h2:last-child,.style_itext__jz90o h3:first-child,.style_itext__jz90o h3:last-child{padding:0}.style_itext__jz90o table{width:100%}.style_itext__jz90o tr{padding:0}.style_itext__jz90o td,.style_itext__jz90o th{padding:.5rem;border-bottom:1px solid var(--forecolor)}.style_textVar__a__3T9Hf{--textpadding:2rem;--textalign:center}.style_textVar__a__3T9Hf .style_itext__jz90o ol,.style_textVar__a__3T9Hf .style_itext__jz90o ul{text-align:center}.style_textVar__a__3T9Hf .style_pretext__cLjqD{align-items:center;justify-content:center}.style_textVar__b__196Vf{--textalign:left}.style_textVar__b__196Vf .style_pretext__cLjqD{align-items:flex-start;justify-content:flex-start}.style_textVar__c__2N7Ue{--textpadding:2rem;--textalign:right}.style_textVar__c__2N7Ue .style_itext__jz90o ol,.style_textVar__c__2N7Ue .style_itext__jz90o ul{text-align:right}.style_textVar__c__2N7Ue .style_pretext__cLjqD{align-items:flex-start;justify-content:flex-end}.style_textVar__d__31_6j{--textpadding:2rem;--textalign:left}.style_textVar__d__31_6j .style_pretext__cLjqD{align-items:flex-end;justify-content:flex-start}.style_textStyle__a__35AM6{--textboxpadding:0;--textboxbackcolor:var(--forecolor);--textboxradius:0;--textboxborder:0;--textboxshadow:0 0 0 var(--accentcolor);--textboxcolor:var(--backcolor)}";
+  var css$3 = {"text":"style_text__3T1cl","inner":"style_inner__11UJC","pretext":"style_pretext__cLjqD","textbox":"style_textbox__1Vb-V","itext":"style_itext__jz90o","textVar__a":"style_textVar__a__3T9Hf","textVar__b":"style_textVar__b__196Vf","textVar__c":"style_textVar__c__2N7Ue","textVar__d":"style_textVar__d__31_6j","textStyle__a":"style_textStyle__a__35AM6"};
+  styleInject(css_248z$r);
 
   const text = function (el, config) {
     const html = config.text || '';
-    let fsize = config.scale || 1;
-    const child = utils.div(`<div class="c ${css$3.text}">
+    let defsize = 1;
+    const styleSize = {
+      a: 3,
+      b: 1,
+      c: 2,
+      d: 1.5
+    };
+    let style = '';
+
+    if (config.textStyle) {
+      style = css$3['textStyle__' + config.textStyle];
+      defsize = styleSize[config.textStyle];
+    }
+
+    let tvar = '';
+
+    if (config.textVar) {
+      tvar = css$3['textVar__' + config.textVar];
+    }
+
+    let fsize = config.scale || defsize;
+    const child = utils.div(`<div class="c ${css$3.text} ${style} ${tvar}">
     <div class="${css$3.inner}">
       <div class="pretext ${css$3.pretext}">
         <div class="${css$3.textbox}">
@@ -253,9 +321,9 @@
     setTimeout(compute);
   };
 
-  var css_248z$m = ":root{--embedPadding:0;--embedBackcolor:none;--embedPosterSize:cover;--embedPosterPosition:center}.style_inner__3WOWs{padding:var(--embedPadding);position:relative}.style_frame__28PUh{background-color:var(--embedBackcolor);position:relative}.style_embed__2Pre2,.style_frame__28PUh,.style_inner__3WOWs{width:100%;height:100%}.style_frame__28PUh>iframe{width:100%;height:100%;border:none}.style_loading__1w7wc{position:absolute;top:0;left:0;width:100%;height:100%;display:flex;align-items:center;justify-content:center;color:var(--forecolor);font-family:var(--fontText);background-color:var(--backcolor)}.style_loading__1w7wc mark{background-color:var(--accentcolor);color:var(--backcolor)}.style_blockmouse__3bXSl,.style_poster__1TOx3{position:absolute;top:0;left:0;width:100%;height:100%}.style_poster__1TOx3{background-color:var(--backcolor)}.style_poster__1TOx3 img{width:100%;height:100%;object-fit:var(--embedPosterSize);object-position:var(--embedPosterPosition)}";
+  var css_248z$s = ":root{--embedPadding:0;--embedBackcolor:none;--embedPosterSize:cover;--embedPosterPosition:center}.style_inner__3WOWs{padding:var(--embedPadding);position:relative}.style_frame__28PUh{background-color:var(--embedBackcolor);position:relative}.style_embed__2Pre2,.style_frame__28PUh,.style_inner__3WOWs{width:100%;height:100%}.style_frame__28PUh>iframe{width:100%;height:100%;border:none}.style_loading__1w7wc{position:absolute;top:0;left:0;width:100%;height:100%;display:flex;align-items:center;justify-content:center;color:var(--forecolor);font-family:var(--fontText);background-color:var(--backcolor)}.style_loading__1w7wc mark{background-color:var(--accentcolor);color:var(--backcolor)}.style_blockmouse__3bXSl,.style_poster__1TOx3{position:absolute;top:0;left:0;width:100%;height:100%}.style_poster__1TOx3{background-color:var(--backcolor)}.style_poster__1TOx3 img{width:100%;height:100%;object-fit:var(--embedPosterSize);object-position:var(--embedPosterPosition)}";
   var css$4 = {"inner":"style_inner__3WOWs","frame":"style_frame__28PUh","embed":"style_embed__2Pre2","loading":"style_loading__1w7wc","blockmouse":"style_blockmouse__3bXSl","poster":"style_poster__1TOx3"};
-  styleInject(css_248z$m);
+  styleInject(css_248z$s);
 
   const iframePrimaryDomain = str => {
     if (!str) return '';
@@ -303,9 +371,9 @@
     }
   };
 
-  var css_248z$n = ":root{--imagePadding:0;--imageBorder:none;--imageShadow:none;--imageSize:cover;--imagePosition:center}.style_image__1fZIQ,.style_inner__3tyMU{width:100%;height:100%}.style_inner__3tyMU{display:flex}.style_preimg__2ypvx{overflow:hidden;flex:1;padding:var(--imagePadding)}.style_preimg__2ypvx img{width:100%;height:100%;border:var(--imageBorder);box-shadow:var(--imageShadow);object-fit:var(--imageSize);object-position:var(--imagePosition)}";
+  var css_248z$t = ":root{--imagePadding:0;--imageBorder:none;--imageShadow:none;--imageSize:cover;--imagePosition:center}.style_image__1fZIQ,.style_inner__3tyMU{width:100%;height:100%}.style_inner__3tyMU{display:flex}.style_preimg__2ypvx{overflow:hidden;flex:1;padding:var(--imagePadding)}.style_preimg__2ypvx img{width:100%;height:100%;border:var(--imageBorder);box-shadow:var(--imageShadow);object-fit:var(--imageSize);object-position:var(--imagePosition)}";
   var css$5 = {"image":"style_image__1fZIQ","inner":"style_inner__3tyMU","preimg":"style_preimg__2ypvx"};
-  styleInject(css_248z$n);
+  styleInject(css_248z$t);
 
   const image = function (el, config) {
     const url = config.url;
@@ -325,9 +393,9 @@
     el.appendChild(child);
   };
 
-  var css_248z$o = ":root{--videoSize:cover;--videoPosition:center}.style_video__1qbdJ{width:100%;height:100%;display:flex;align-items:center;justify-content:center}.style_video__1qbdJ video{width:100%;height:100%;object-fit:var(--videoSize);object-position:var(--videoPosition)}";
+  var css_248z$u = ":root{--videoSize:cover;--videoPosition:center}.style_video__1qbdJ{width:100%;height:100%;display:flex;align-items:center;justify-content:center}.style_video__1qbdJ video{width:100%;height:100%;object-fit:var(--videoSize);object-position:var(--videoPosition)}";
   var css$6 = {"video":"style_video__1qbdJ"};
-  styleInject(css_248z$o);
+  styleInject(css_248z$u);
 
   const video = function (el, config, rootElement, projectConfig) {
     const previewMode = projectConfig.mode === 'preview';
@@ -373,13 +441,24 @@
     if (presentMode) rootElement.addEventListener('keyup', setKeyListener);
   };
 
-  var css_248z$p = ".style_solid__wiwvr{--solidColor:var(--backcolor);width:100%;height:100%;display:flex;align-items:center;justify-content:center;background-color:var(--solidColor)}";
+  var css_248z$v = ".solidvar__a{--solidColor:#000}.solidvar__a,.solidvar__b{--solidOpacity:.7;--solidBlend:none}.solidvar__b{--solidColor:#fff}.solidvar__c{--solidColor:var(--backcolor);--solidOpacity:1;--solidBlend:multiply}";
+  styleInject(css_248z$v);
+
+  var css_248z$w = ":root{--solidOpacity:1;--solidBlend:none}.style_solid__wiwvr{--solidColor:var(--accentcolor);width:100%;height:100%;display:flex;align-items:center;justify-content:center;background:var(--solidColor);opacity:var(--solidOpacity);mix-blend-mode:var(--solidBlend)}";
   var css$7 = {"solid":"style_solid__wiwvr"};
-  styleInject(css_248z$p);
+  styleInject(css_248z$w);
 
   const solid = function (el, config) {
-    const style = config.color ? `style="background:${config.color};"` : '';
-    const child = utils.div(`<div ${style} class="${css$7.solid}"></div>`);
+    if (config.color) el.style.setProperty('--solidColor', config.color);
+    if (config.opacity) el.style.setProperty('--solidOpacity', config.opacity);
+    if (config.blend) el.style.setProperty('--solidBlend', config.blend);
+    var cClass = '';
+
+    if (config.solidvar) {
+      cClass = 'solidvar__' + config.solidvar;
+    }
+
+    const child = utils.div(`<div class="${css$7.solid} ${cClass}"></div>`);
 
     this.beforeDestroy = () => {};
 
@@ -397,7 +476,7 @@
     solid
   };
 
-  const add = (type, module, override) => {
+  const add$1 = (type, module, override) => {
     if (blocks[type]) {
       return console.warn(`block type ${type} already defined`);
     }
@@ -419,12 +498,13 @@
     }
 
     let step = 0;
-    const props = utils.props(blockConfig.props);
-    const child = utils.div(`<div class="block ${css$1.block} b b${this.index} ${props.classes}" style="${props.styles}">
+    const child = utils.div(`<div class="block ${css$1.block} b b${this.index}">
     <div class="backDecoration ${css$1.bdecoration}"></div>
     <div class="blockContainer ${css$1.inner}"></div>
     <div class="frontDecoration ${css$1.fdecoration}"></div>
   </div>`);
+    utils.globs(child, blockConfig);
+    utils.props(child, blockConfig.props);
     this.el = child;
     const blockContainer = child.querySelector('.blockContainer');
 
@@ -457,7 +537,7 @@
 
   const modules = {};
 
-  const add$1 = (type, module, override) => {
+  const add$2 = (type, module, override) => {
     if (!override && modules[type]) {
       return console.warn(`module type ${type} already defined`);
     }
@@ -469,16 +549,7 @@
     modules[type] = module;
   };
 
-  var css_248z$q = ".transition__horizontalSlide .p-scene-enter-transition{transition:transform 1s cubic-bezier(1,0,0,1)}.transition__horizontalSlide .to-right.p-scene-enter-start{transform:translateX(100%)}.transition__horizontalSlide .to-right.p-scene-enter-end{transform:translateX(0)}.transition__horizontalSlide .to-left.p-scene-enter-start{transform:translateX(-100%)}.transition__horizontalSlide .to-left.p-scene-enter-end{transform:translateX(0)}.transition__horizontalSlide .p-scene-leave-transition{transition:transform 1s cubic-bezier(1,0,0,1)}.transition__horizontalSlide .to-right.p-scene-leave-start{transform:translateX(0)}.transition__horizontalSlide .to-right.p-scene-leave-end{transform:translateX(-100%)}.transition__horizontalSlide .to-left.p-scene-leave-start{transform:translateX(0)}.transition__horizontalSlide .to-left.p-scene-leave-end{transform:translateX(100%)}";
-  styleInject(css_248z$q);
-
-  var css_248z$r = ".transition__verticalIn .p-scene-enter-transition{transition:all .75s cubic-bezier(.2,.8,.05,.95)}.transition__verticalIn .p-scene-enter-start{transform:translateY(150%)}.transition__verticalIn .p-scene-enter-end{transform:translateY(0)}.transition__verticalIn .p-scene-leave-transition{transition:all .75s cubic-bezier(.2,.8,.05,.95)}.transition__verticalIn .p-scene-leave-start{transform:scale(1)}.transition__verticalIn .p-scene-leave-end{transform:scale(.5)}";
-  styleInject(css_248z$r);
-
-  var css_248z$s = ".transition__outIn .p-scene-enter-transition{opacity:0}.transition__outIn .p-scene-enter-ended{opacity:1}.transition__outIn .p-scene-enter-transition .textContent>*{transition:opacity 1s ease-out,transform 1s cubic-bezier(.2,.8,.05,.95)}.transition__outIn .p-scene-enter-transition .textContent>:first-child{transition-delay:1.15s}.transition__outIn .p-scene-enter-transition .textContent>:nth-child(2){transition-delay:1.3s}.transition__outIn .p-scene-enter-transition .textContent>:nth-child(3){transition-delay:1.45s}.transition__outIn .p-scene-enter-transition .textContent>:nth-child(4){transition-delay:1.6s}.transition__outIn .p-scene-enter-transition .textContent>:nth-child(5){transition-delay:1.75s}.transition__outIn .p-scene-enter-transition .textContent>:nth-child(6){transition-delay:1.9s}.transition__outIn .p-scene-enter-transition .textContent>:nth-child(7){transition-delay:2.05s}.transition__outIn .p-scene-enter-transition .textContent>:nth-child(8){transition-delay:2.2s}.transition__outIn .p-scene-enter-transition .textContent>:nth-child(9){transition-delay:2.35s}.transition__outIn .p-scene-enter-transition .textContent>:nth-child(10){transition-delay:2.5s}.transition__outIn .p-scene-enter-transition .textContent>:nth-child(11){transition-delay:2.65s}.transition__outIn .p-scene-enter-transition .textContent>:nth-child(12){transition-delay:2.8s}.transition__outIn .p-scene-enter-transition .textContent>:nth-child(13){transition-delay:2.95s}.transition__outIn .p-scene-enter-transition .textContent>:nth-child(14){transition-delay:3.1s}.transition__outIn .p-scene-enter-transition .textContent>:nth-child(15){transition-delay:3.25s}.transition__outIn .p-scene-enter-transition .textContent>:nth-child(16){transition-delay:3.4s}.transition__outIn .p-scene-enter-transition .textContent>:nth-child(17){transition-delay:3.55s}.transition__outIn .p-scene-enter-transition .textContent>:nth-child(18){transition-delay:3.7s}.transition__outIn .p-scene-enter-transition .textContent>:nth-child(19){transition-delay:3.85s}.transition__outIn .p-scene-enter-transition .textContent>:nth-child(20){transition-delay:4s}.transition__outIn .p-scene-enter-transition .blockContainer>div{transition:background-color 1s cubic-bezier(1,0,0,1);transition-delay:1s}.transition__outIn .p-scene-enter-start .blockContainer>div{background-color:transparent}.transition__outIn .p-scene-enter-start .textContent>*{opacity:0;transform:translateY(30px)}.transition__outIn .p-scene-enter-end .textContent>*{opacity:1;transform:translateY(0)}.transition__outIn .p-scene-leave-transition .textContent>*{transition:opacity .75s cubic-bezier(.165,.84,.44,1),transform .75s cubic-bezier(.165,.84,.44,1)}.transition__outIn .p-scene-leave-transition .textContent>:nth-child(0){transition-delay:0s}.transition__outIn .p-scene-leave-transition .textContent>:first-child{transition-delay:.1s}.transition__outIn .p-scene-leave-transition .textContent>:nth-child(2){transition-delay:.2s}.transition__outIn .p-scene-leave-transition .textContent>:nth-child(3){transition-delay:.3s}.transition__outIn .p-scene-leave-transition .textContent>:nth-child(4){transition-delay:.4s}.transition__outIn .p-scene-leave-transition .textContent>:nth-child(5){transition-delay:.5s}.transition__outIn .p-scene-leave-transition .textContent>:nth-child(6){transition-delay:.6s}.transition__outIn .p-scene-leave-transition .textContent>:nth-child(7){transition-delay:.7s}.transition__outIn .p-scene-leave-transition .textContent>:nth-child(8){transition-delay:.8s}.transition__outIn .p-scene-leave-transition .textContent>:nth-child(9){transition-delay:.9s}.transition__outIn .p-scene-leave-transition .textContent>:nth-child(10){transition-delay:1s}.transition__outIn .p-scene-leave-transition .textContent>:nth-child(11){transition-delay:1.1s}.transition__outIn .p-scene-leave-transition .textContent>:nth-child(12){transition-delay:1.2s}.transition__outIn .p-scene-leave-transition .textContent>:nth-child(13){transition-delay:1.3s}.transition__outIn .p-scene-leave-transition .textContent>:nth-child(14){transition-delay:1.4s}.transition__outIn .p-scene-leave-transition .textContent>:nth-child(15){transition-delay:1.5s}.transition__outIn .p-scene-leave-transition .textContent>:nth-child(16){transition-delay:1.6s}.transition__outIn .p-scene-leave-transition .textContent>:nth-child(17){transition-delay:1.7s}.transition__outIn .p-scene-leave-transition .textContent>:nth-child(18){transition-delay:1.8s}.transition__outIn .p-scene-leave-transition .textContent>:nth-child(19){transition-delay:1.9s}.transition__outIn .p-scene-leave-transition .textContent>:nth-child(20){transition-delay:2s}.transition__outIn .p-scene-leave-start .textContent>*{opacity:1;transform:scale(1)}.transition__outIn .p-scene-leave-end .textContent>*{opacity:0;transform:scale(.85)}";
-  styleInject(css_248z$s);
-
-  const transition = wrapper => {
+  const Transition = wrapper => {
     const functor = function (wrapper) {
       this.clear = prefix => {
         wrapper.classList.remove(prefix);
@@ -544,49 +615,24 @@
 
     const hasTransition = projectConfig ? projectConfig.transition || sceneConfig.transition : sceneConfig.transition;
     /*
-      Prepare scene props if defined
-    */
-
-    const props = utils.props(sceneConfig.props);
-    /*
-      Prepare modules props if defined
-    */
-
-    const modprops = {
-      classes: '',
-      styles: ''
-    };
-
-    if (sceneConfig.modules) {
-      for (const k in sceneConfig.modules) {
-        const cmod = sceneConfig.modules[k];
-
-        if (cmod.props) {
-          const mp = utils.props(cmod.props, k);
-          modprops.classes += mp.classes;
-          modprops.styles += mp.styles;
-        }
-      }
-    }
-    /*
       Create the wrapper template
     */
-
 
     let currentStep = 0;
     const steps = sceneConfig.steps || [];
     const child = utils.div(`<div 
-      class="s ${css.sceneContainer} ${props.classes}"
-      style="${props.styles}">
+      class="s ${css.sceneContainer}">
       <div class="sceneObject ${css.scene}">
         <div class="${css.wrapper}">
-            <div class="${css.content} ${modprops.classes}" style="${modprops.styles}">
+            <div class="${css.content}">
                 <div class="blocksContainer ${css.viewport}"></div>
                 <div class="frontContainer ${css.fcontainer}"></div>
             </div>
         </div>
       </div>
   </div>`);
+    utils.globs(child, sceneConfig);
+    utils.props(child, sceneConfig.props);
     this.el = child;
     /*
       Init modules if any
@@ -609,7 +655,8 @@
 
 
     const cblocks = sceneConfig.blocks;
-    cblocks.forEach(blockConfig => {
+    cblocks.forEach((blockConfig, i) => {
+      blockConfig.index = i;
       const blocksContainer = child.querySelector('.blocksContainer');
       const block = new Block(blocksContainer, blockConfig, rootElement, projectConfig);
       blocks.push(block);
@@ -621,9 +668,9 @@
     if (hasTransition) {
       const wrap = this.el.querySelector('.sceneObject');
       const dir = sceneConfig._presentatransdir === 'backward' ? 'to-left' : 'to-right';
-      transition(wrap).start(dir);
+      Transition(wrap).start(dir);
       setTimeout(() => {
-        transition(wrap).swap();
+        Transition(wrap).swap();
       }, projectConfig._transitionDestroyDelay);
     }
     /*
@@ -639,7 +686,7 @@
         const wrap = this.el.querySelector('.sceneObject');
         const odir = sceneConfig._presentatransdir === 'backward' ? 'to-right' : 'to-left';
         const ndir = sceneConfig._presentatransdir === 'backward' ? 'to-left' : 'to-right';
-        transition(wrap).clear(odir).end(ndir);
+        Transition(wrap).clear(odir).end(ndir);
       }
 
       const t = _t || 0;
@@ -673,9 +720,9 @@
     this.sceneConfig = sceneConfig;
   };
 
-  var css_248z$t = ".container_mainwrapper__zelcO{outline:none}.container_container__3kBNh,.container_mainwrapper__zelcO{width:100%;height:100%;position:relative;overflow:hidden}.container_container__3kBNh>div{position:absolute;top:0;left:0;width:100%}";
+  var css_248z$x = ".container_mainwrapper__zelcO{outline:none}.container_container__3kBNh,.container_mainwrapper__zelcO{width:100%;height:100%;position:relative;overflow:hidden}.container_container__3kBNh>div{position:absolute;top:0;left:0;width:100%}";
   var css$8 = {"mainwrapper":"container_mainwrapper__zelcO","container":"container_container__3kBNh"};
-  styleInject(css_248z$t);
+  styleInject(css_248z$x);
 
   const autoplay = function (rootElement, router, ctrlConfig, projectConfig) {
     let timer = null;
@@ -713,16 +760,16 @@
     rootElement.parentNode.addEventListener('keyup', setKeyListener);
   };
 
-  var css_248z$u = ":root{--arrowsOpacity:1;--arrowsVerticalPosition:center;--arrowsHorizontalPosition:space-between;--arrowsPadding:10px}.style_arrows__1_bDs{position:absolute;top:0;left:0;width:100%;height:100%;display:flex;transition:opacity .35s;justify-content:var(--arrowsHorizontalPosition);--arrowsColor:var(--forecolor)}.style_left__1qQXr,.style_right__1k8ro{height:100%;display:flex;align-items:var(--arrowsVerticalPosition);justify-content:center;cursor:pointer;padding:var(--arrowsPadding);pointer-events:all}.style_ui__2s5RB{width:20px;height:20px;transition:background-color .3s ease-in-out;width:0;height:0;border-top:10px solid transparent;border-bottom:10px solid transparent;opacity:var(--arrowsOpacity)}.style_left__1qQXr .style_ui__2s5RB{border-right:10px solid var(--arrowsColor)}.style_right__1k8ro .style_ui__2s5RB{border-left:10px solid var(--arrowsColor)}.style_arrows__1_bDs.style_hide__1NqsM{opacity:0}";
+  var css_248z$y = ":root{--arrowsOpacity:1;--arrowsVerticalPosition:center;--arrowsHorizontalPosition:space-between;--arrowsPadding:10px}.style_arrows__1_bDs{position:absolute;top:0;left:0;width:100%;height:100%;display:flex;transition:opacity .35s;justify-content:var(--arrowsHorizontalPosition);--arrowsColor:var(--forecolor)}.style_left__1qQXr,.style_right__1k8ro{height:100%;display:flex;align-items:var(--arrowsVerticalPosition);justify-content:center;cursor:pointer;padding:var(--arrowsPadding);pointer-events:all}.style_ui__2s5RB{width:20px;height:20px;transition:background-color .3s ease-in-out;width:0;height:0;border-top:10px solid transparent;border-bottom:10px solid transparent;opacity:var(--arrowsOpacity)}.style_left__1qQXr .style_ui__2s5RB{border-right:10px solid var(--arrowsColor)}.style_right__1k8ro .style_ui__2s5RB{border-left:10px solid var(--arrowsColor)}.style_arrows__1_bDs.style_hide__1NqsM{opacity:0}";
   var css$9 = {"arrows":"style_arrows__1_bDs","left":"style_left__1qQXr","right":"style_right__1k8ro","ui":"style_ui__2s5RB","hide":"style_hide__1NqsM"};
-  styleInject(css_248z$u);
+  styleInject(css_248z$y);
 
   const arrows = function (rootElement, router, config) {
     let timer = null;
-    const child = utils.div(`<div class="${css$9.arrows}"></div></div>`);
+    const child = utils.div(`<div class="${css$9.arrows}"></div>`);
     const left = utils.div(`<div class="${css$9.left}"><div class="${css$9.ui}"></div></div>`);
     child.appendChild(left);
-    const right = utils.div(`<div class="${css$9.right}"><div class="${css$9.ui}"></div>`);
+    const right = utils.div(`<div class="${css$9.right}"><div class="${css$9.ui}"></div></div>`);
     child.appendChild(right);
     rootElement.appendChild(child);
     left.addEventListener('click', e => {
@@ -746,16 +793,17 @@
     const scheduleForHide = () => {
       clearTimeout(timer);
       child.classList.remove(css$9.hide);
-      timer = setTimeout(() => {// child.classList.add(css.hide)
+      timer = setTimeout(() => {
+        child.classList.add(css$9.hide);
       }, 1500);
     };
 
     scheduleForHide();
   };
 
-  var css_248z$v = ".style_black__3yyT_{width:100%;height:100%;position:absolute;top:0;left:0;background-color:#000;opacity:0;pointer-events:none;transition:opacity .5s cubic-bezier(.8,.2,.2,.8);z-index:999999}";
+  var css_248z$z = ".style_black__3yyT_{width:100%;height:100%;position:absolute;top:0;left:0;background-color:#000;opacity:0;pointer-events:none;transition:opacity .5s cubic-bezier(.8,.2,.2,.8);z-index:999999}";
   var css$a = {"black":"style_black__3yyT_"};
-  styleInject(css_248z$v);
+  styleInject(css_248z$z);
 
   const black = function (rootElement, router, ctrlConfig, projectConfig) {
     let visible = false;
@@ -808,19 +856,23 @@
     const rootEl = rootElement.parentNode;
     const root = rootEl.parentNode;
 
+    const toggle = () => {
+      if (isAlreadyFullscreen()) {
+        exitFullscreen();
+      } else {
+        makeFullscreen(root);
+      }
+    };
+
     const setKeyListener = e => {
       if (e.key === key) {
-        if (isAlreadyFullscreen()) {
-          exitFullscreen();
-        } else {
-          makeFullscreen(root);
-        }
-
+        toggle();
         e.stopPropagation();
         e.preventDefault();
       }
     };
 
+    this.toggle = toggle;
     rootEl.addEventListener('keyup', setKeyListener);
   };
 
@@ -861,9 +913,9 @@
     });
   };
 
-  var css_248z$w = ":root{--progressbarHeight:5px;--progressbarBottom:initial}.style_progressbar__1cJNG{--progressbarColor:var(--forecolor);width:100%;height:100%;pointer-events:none}.style_bar__3QMJs{width:0;height:var(--progressbarHeight);position:absolute;bottom:var(--progressbarBottom);left:0;background-color:var(--progressbarColor);transition:width .5s cubic-bezier(.8,.2,.2,.8)}";
+  var css_248z$A = ":root{--progressbarHeight:5px;--progressbarBottom:initial}.style_progressbar__1cJNG{--progressbarColor:var(--forecolor);width:100%;height:100%;pointer-events:none}.style_bar__3QMJs{width:0;height:var(--progressbarHeight);position:absolute;bottom:var(--progressbarBottom);left:0;background-color:var(--progressbarColor);transition:width .5s cubic-bezier(.8,.2,.2,.8)}";
   var css$b = {"progressbar":"style_progressbar__1cJNG","bar":"style_bar__3QMJs"};
-  styleInject(css_248z$w);
+  styleInject(css_248z$A);
 
   const progressbar = function (rootElement, router, ctrlConfig, projectConfig) {
     const child = utils.div(`<div class="${css$b.progressbar}"></div>`);
@@ -883,9 +935,9 @@
     });
   };
 
-  var css_248z$x = ":root{--pagenumTextAlign:right;--pagenumPadding:5px;--pagenumFontSize:10px;--pagenumBackColor:none;--pagenumFont:var(--fontText)}.style_pagenum__2FTZD{--pagenumColor:var(--forecolor);width:100%;height:100%;position:absolute;top:0;left:0;display:flex;align-items:flex-end;pointer-events:none}.style_content__2wNPr{width:100%;text-align:var(--pagenumTextAlign);padding:var(--pagenumPadding);font-size:var(--pagenumFontSize);color:var(--pagenumColor);font-family:var(--pagenumFont);background-color:var(--pagenumBackColor);transition:all .3s ease-in-out}";
+  var css_248z$B = ":root{--pagenumTextAlign:right;--pagenumPadding:5px;--pagenumFontSize:10px;--pagenumBackColor:none;--pagenumFont:var(--fontText)}.style_pagenum__2FTZD{--pagenumColor:var(--forecolor);width:100%;height:100%;position:absolute;top:0;left:0;display:flex;align-items:flex-end;pointer-events:none}.style_content__2wNPr{width:100%;text-align:var(--pagenumTextAlign);padding:var(--pagenumPadding);font-size:var(--pagenumFontSize);color:var(--pagenumColor);font-family:var(--pagenumFont);background-color:var(--pagenumBackColor);transition:all .3s ease-in-out}";
   var css$c = {"pagenum":"style_pagenum__2FTZD","content":"style_content__2wNPr"};
-  styleInject(css_248z$x);
+  styleInject(css_248z$B);
 
   const pagenum = function (rootElement, router, ctrlConfig, projectConfig) {
     const child = utils.div(`<div class="${css$c.pagenum}"></div>`);
@@ -950,7 +1002,7 @@
     hidecursor
   };
 
-  const add$2 = (type, module, override) => {
+  const add$3 = (type, module, override) => {
     if (controllers[type]) {
       return console.warn(`controller io ${type} already defined`);
     }
@@ -962,13 +1014,12 @@
     controllers[type] = module;
   };
 
-  var css_248z$y = ".router_router__2R2qw{width:100%;height:100%;position:absolute;top:0;left:0;pointer-events:none}";
+  var css_248z$C = ".router_router__2R2qw{width:100%;height:100%;position:absolute;top:0;left:0;pointer-events:none}";
   var css$d = {"router":"router_router__2R2qw"};
-  styleInject(css_248z$y);
+  styleInject(css_248z$C);
 
   const Router = function (rootElement, projectConfig) {
-    const gprops = utils.props(projectConfig.controllers.props);
-    const child = utils.div(`<div style="${gprops.styles}" class="controller ${css$d.router} ${gprops.classes}"></div>`);
+    const child = utils.div(`<div class="controller ${css$d.router}"></div>`);
     rootElement.appendChild(child);
     const scenes = projectConfig.scenes;
     const numScenes = scenes.length - 1;
@@ -983,6 +1034,15 @@
     };
 
     setNumSteps();
+
+    const updateRouterWrapper = () => {
+      const sceneConfig = scenes[currentIndex];
+      child.classList.remove(...child.classList);
+      child.classList.add('controller', css$d.router);
+      child.style = null;
+      utils.globs(child, sceneConfig);
+      utils.props(child, sceneConfig.props);
+    };
 
     this.next = () => {
       if (currentStep === numSteps) {
@@ -1033,22 +1093,7 @@
     };
 
     this.notify = evt => {
-      const sceneConfig = scenes[currentIndex];
-      const props = utils.props(sceneConfig.props);
-      child.classList.remove(...child.classList);
-      child.classList.add('controller', css$d.router);
-
-      if (props.classes) {
-        let cls = props.classes.split(' ');
-        cls = cls.filter(d => d !== '');
-        child.classList.add(...cls);
-      }
-
-      if (gprops.classes) {
-        let cls = gprops.classes.split(' ');
-        cls = cls.filter(d => d !== '');
-        child.classList.add(...cls);
-      }
+      if (evt === 'indexChanged') updateRouterWrapper();
 
       if (listeners[evt]) {
         listeners[evt].forEach(clb => {
@@ -1088,16 +1133,16 @@
 
     this.setCurrentStep = stp => currentStep = stp;
 
+    this.controllers = registeredIO;
+
     if (projectConfig.controllers) {
       for (const k in projectConfig.controllers) {
-        if (k !== 'props') {
-          const modConfig = projectConfig.controllers[k];
-          const Mod = controllers[k];
-          if (!Mod) console.log(`Controller "${k}" not found. Maybe you forgot to include it.`);
+        const modConfig = projectConfig.controllers[k];
+        const Mod = controllers[k];
+        if (!Mod) console.log(`Controller "${k}" not found. Maybe you forgot to include it.`);
 
-          if (modConfig && Mod) {
-            registeredIO[k] = new Mod(child, this, modConfig, projectConfig);
-          }
+        if (modConfig && Mod) {
+          registeredIO[k] = new Mod(child, this, modConfig, projectConfig);
         }
       }
     }
@@ -1139,29 +1184,20 @@
       console.warn('`scenes` is empty');
     }
     /*
-      Global defaults
-    */
-
-
-    const globprop = ['transition', 'colorvar', 'scheme', 'fontkit', 'theme'];
-    globprop.forEach(p => {
-      if (projectConfig[p]) {
-        const prp = projectConfig[p].substr(1);
-        rootElement.classList.add(`${p}__${prp}`);
-      }
-    });
-    /*
       Init the container
     */
+
 
     rootElement.classList.add('presenta');
     const child = utils.div(`<div class="${css$8.mainwrapper}"></div>`);
     child.setAttribute('tabindex', '0');
+    utils.globs(child, projectConfig);
+    utils.props(child, projectConfig.props);
+    rootElement.appendChild(child);
     const cont = utils.div(`<div class="a ${css$8.container}"></div>`);
     child.appendChild(cont);
     const scenes = projectConfig.scenes;
     var currentScene = null;
-    rootElement.appendChild(child);
 
     const swapScene = (index, dir) => {
       if (currentScene) {
@@ -1169,10 +1205,12 @@
         currentScene.destroyAfter(projectConfig._transitionDestroyDelay);
       }
 
-      const sceneConfig = scenes[index];
-      sceneConfig._presentatransdir = dir;
-      currentScene = new Scene(sceneConfig, projectConfig, rootElement);
-      cont.appendChild(currentScene.el);
+      if (scenes.length > 0) {
+        const sceneConfig = scenes[index];
+        sceneConfig._presentatransdir = dir;
+        currentScene = new Scene(sceneConfig, projectConfig, rootElement);
+        if (currentScene.el) cont.appendChild(currentScene.el);
+      }
     };
 
     const router = new Router(child, projectConfig);
@@ -1196,9 +1234,7 @@
       resizeObserver.observe(child);
     }
 
-    utils.fit(child, projectConfig, rootElement); // this.currentScene = () => {
-    //   return currentScene
-    // }
+    utils.fit(child, projectConfig, rootElement);
 
     this.destroy = () => {
       currentScene.destroy();
@@ -1250,12 +1286,17 @@
 
   Presenta.version = version;
   Presenta.utils = utils;
-  Presenta.schemes = schemes;
-  Presenta.fontkits = fontkits;
+  Presenta.colors = globals.colors;
+  Presenta.fonts = globals.fonts;
+  Presenta.transitions = globals.transitions;
+  Presenta.layouts = globals.layouts;
+  Presenta.colorvars = globals.colorvars;
+  Presenta.scenevars = globals.scenevars;
   Presenta.Scene = Scene;
-  Presenta.addBlock = add;
-  Presenta.addController = add$2;
-  Presenta.addModule = add$1;
+  Presenta.addBlock = add$1;
+  Presenta.addController = add$3;
+  Presenta.addModule = add$2;
+  Presenta.addClassType = add;
 
   Presenta.use = plugin => {
     plugin.install(Presenta);

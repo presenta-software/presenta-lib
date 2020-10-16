@@ -1,6 +1,4 @@
-:root{
-    --scenePadding: 0;
-}
+
 
 .sceneContainer{
     width: 100%;
@@ -11,26 +9,26 @@
     position: relative;
 }
 .scene{
-    --sw: calc(var(--w) / var(--p) / var(--fz));
-    --sh: calc(var(--h) / var(--p) / var(--fz));
-    --scal: calc(var(--pw) / var(--p) / var(--pw) / var(--fz));
+    --presenta-sw: calc(var(--presenta-w) / var(--presenta-p) / var(--presenta-fz));
+    --presenta-sh: calc(var(--presenta-h) / var(--presenta-p) / var(--presenta-fz));
+    --presenta-scal: calc(var(--presenta-pw) / var(--presenta-p) / var(--presenta-pw) / var(--presenta-fz));
     
-    width: var(--sw);
-    height: var(--sh);
+    width: var(--presenta-sw);
+    height: var(--presenta-sh);
     font-family: serif;
     user-select: none;
 }
 
 .wrapper{
-    width: var(--w);
-    height: var(--h);
+    width: var(--presenta-w);
+    height: var(--presenta-h);
     transform: scale(1);
-    transform: scale(var(--scal));
+    transform: scale(var(--presenta-scal));
     transform-origin: top left;
     overflow: hidden;
 
     padding: var(--scenePadding);
-    /* background-color: var(--backcolor); */
+    background-color: var(--sceneBackColor);
 }
 .content{
     width: 100%;
@@ -63,5 +61,7 @@
 .viewport > div{
     height: 100%;
 }
+
+
 
 

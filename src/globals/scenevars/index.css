@@ -1,0 +1,25 @@
+:root {
+  --scenePadding: 0;
+  --sceneBackColor: none;
+}
+
+.scenevar__a {
+  --scenePadding: 0.5rem;
+  --sceneBackColor: var(--forecolor);
+}
+.scenevar__b {
+  --scenePadding: 2rem;
+  --sceneBackColor: var(--forecolor);
+}
+.scenevar__c {
+  --scenePadding: 3.5rem;
+  --sceneBackColor: var(--forecolor);
+}
+.scenevar__d {
+  --scenePadding: 0 4rem 4rem 0;
+  --sceneBackColor: var(--forecolor);
+}
+.scenevar__e {
+  --scenePadding: 4rem 0rem 4rem 0rem;
+  --sceneBackColor: var(--forecolor);
+}

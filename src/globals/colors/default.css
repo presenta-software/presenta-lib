@@ -1,0 +1,22 @@
+:root,
+.colorvar__a {
+  --backcolor: #fff;
+  --forecolor: #000;
+  --accentcolor: #444;
+  --otheraccentcolor: #ddd;
+  --overlaycolor: var(--backcolor);
+}
+.colorvar__b {
+  --backcolor: #000;
+  --forecolor: #fff;
+  --accentcolor: #999;
+  --otheraccentcolor: #ccc;
+  --overlaycolor: var(--backcolor);
+}
+.colorvar__c {
+  --backcolor: #444;
+  --forecolor: #ffffff;
+  --accentcolor: #fff;
+  --otheraccentcolor: #ccc;
+  --overlaycolor: var(--backcolor);
+}

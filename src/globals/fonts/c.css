@@ -1,0 +1,5 @@
+@import url('https://fonts.googleapis.com/css2?family=Roboto+Slab&family=Carrois+Gothic+SC&display=swap');
+.fonts__c{
+  --fontHeading: 'Roboto Slab', serif;
+  --fontText: 'Carrois Gothic SC', sans-serif;
+}

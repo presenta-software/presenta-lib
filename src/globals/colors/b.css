@@ -1,0 +1,22 @@
+.colors__b,
+.colors__b .colorvar__a,
+.colors__b.colorvar__a {
+  --backcolor: #a9dbd5;
+  --forecolor: #000;
+  --accentcolor: #fff;
+  --otheraccentcolor: #38999d;
+}
+.colors__b .colorvar__b,
+.colors__b.colorvar__b {
+  --backcolor: #000;
+  --forecolor: #a9dbd5;
+  --accentcolor: #fff;
+  --otheraccentcolor: #38999d;
+}
+.colors__b .colorvar__c,
+.colors__b.colorvar__c {
+  --backcolor: #fff;
+  --forecolor: #38999d;
+  --accentcolor: #a9dbd5;
+  --otheraccentcolor: #000;
+}

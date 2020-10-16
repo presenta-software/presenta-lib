@@ -1,0 +1,46 @@
+/* Simple Block, doesn't work */
+/* .layout__a .blocksContainer {
+  display: block;
+}
+.layout__a .blocksContainer > div {
+  height: initial;
+} */
+
+
+
+/* Blocks as Columns, Default */
+.layout__a .blocksContainer {
+  display: flex;
+  flex-direction: row;
+}
+.layout__a .blocksContainer > div {
+  height: 100%;
+}
+
+
+
+/* Blocks as Rows */
+.layout__b .blocksContainer {
+  display: flex;
+  flex-direction: column;
+}
+.layout__b .blocksContainer > div {
+  width: 100%;
+}
+
+
+
+/* Blocks Stacked */
+.layout__c .blocksContainer {
+  position: relative;
+}
+.layout__c .blocksContainer > div {
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+}
+.layout__c .blocksContainer > div:not(:first-child) {
+  background: none;
+}

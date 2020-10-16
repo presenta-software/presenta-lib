@@ -1,0 +1,17 @@
+.solidvar__a{
+    --solidColor: black;
+    --solidOpacity: .7;
+    --solidBlend: none;
+}
+
+.solidvar__b{
+    --solidColor: white;
+    --solidOpacity: .7;
+    --solidBlend: none;
+}
+
+.solidvar__c{
+    --solidColor: var(--backcolor);
+    --solidOpacity: 1;
+    --solidBlend: multiply;
+}

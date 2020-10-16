@@ -1,0 +1,22 @@
+.colors__h,
+.colors__h .colorvar__a,
+.colors__h.colorvar__a {
+  --backcolor: #f9ffb1;
+  --forecolor: #072020;
+  --accentcolor: #ec4225;
+  --otheraccentcolor: #9eb0bb;
+}
+.colors__h .colorvar__b,
+.colors__h.colorvar__b {
+  --backcolor: #072020;
+  --forecolor: #f9ffb1;
+  --accentcolor: #ec4225;
+  --otheraccentcolor: #9eb0bb;
+}
+.colors__h .colorvar__c,
+.colors__h.colorvar__c {
+  --backcolor: #ec4225;
+  --forecolor: #f9ffb1;
+  --accentcolor: #c5dbe9;
+  --otheraccentcolor: #072020;
+}

@@ -1,0 +1,10 @@
+@import url('https://fonts.googleapis.com/css2?family=Amatic+SC:wght@700&family=Open+Sans&display=swap');
+.fonts__d{
+  --fontHeading: 'Amatic SC', cursive;
+  --fontText: 'Open Sans', sans-serif;
+}
+.fonts__d h1,
+.fonts__d h2,
+.fonts__d h3 {
+  font-size:3rem;
+}

@@ -44,3 +44,24 @@
 .layout__c .blocksContainer > div:not(:first-child) {
   background: none;
 }
+
+
+
+/*
+2 blocks
+- header
+- content
+*/
+
+.layout__d .blocksContainer {
+  display: flex;
+  flex-direction: column;
+}
+.layout__d .blocksContainer > div {
+  width: 100%;
+}
+.layout__d .blocksContainer > div:first-child {
+}
+.layout__d .blocksContainer > div:last-child {
+  flex:5;
+}

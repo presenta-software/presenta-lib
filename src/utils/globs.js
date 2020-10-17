@@ -1,4 +1,4 @@
-const globprop = [
+var globprop = [
   'transition',
   'colors',
   'fonts',
@@ -18,7 +18,11 @@ const globs = (wrapper, config) => {
 }
 
 const addGlob = clsType => {
-  globprop.push(clsType)
+  if (Array.isArray(clsType)) {
+    globprop = globprop.concat(clsType)
+  } else {
+    globprop.push(clsType)
+  }
 }
 
 export { globs, addGlob }

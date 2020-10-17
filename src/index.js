@@ -1,7 +1,7 @@
 import { version } from '../package.json'
 
 import globals from './globals/index'
-import { Scene } from './core/Scene.js'
+// import { Scene } from './core/Scene.js'
 import { Container } from './core/Container.js'
 
 import utils from './utils.js'
@@ -17,7 +17,7 @@ const Presenta = function (el, config) {
 }
 
 Presenta.version = version
-Presenta.utils = utils
+// Presenta.utils = utils
 Presenta.colors = globals.colors
 Presenta.fonts = globals.fonts
 Presenta.transitions = globals.transitions
@@ -25,7 +25,7 @@ Presenta.layouts = globals.layouts
 Presenta.colorvars = globals.colorvars
 Presenta.scenevars = globals.scenevars
 
-Presenta.Scene = Scene
+// Presenta.Scene = Scene // ??
 Presenta.addBlock = addBlock
 Presenta.addController = addController
 Presenta.addModule = addModule

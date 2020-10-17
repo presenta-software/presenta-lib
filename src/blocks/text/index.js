@@ -1,28 +1,26 @@
+import './globals.css'
 import css from './style.css'
 import u from '../../utils.js'
 
-u.addGlob('textvar')
+u.addGlob(['textVar', 'textStyle'])
+u.addProp(['textPadding', 'textAlign'])
 
 const text = function (el, config) {
   const html = config.text || ''
 
   let defsize = 1
-  const styleSize = {
+  const varSize = {
     a: 3,
     b: 1,
     c: 2,
     d: 1.5,
     e: 0.8
   }
-  let style = ''
-  if (config.textStyle) {
-    style = css['textStyle__' + config.textStyle]
-    defsize = styleSize[config.textStyle]
-  }
+  if (config.textVar) defsize = varSize[config.textVar]
 
   let fsize = config.scale || defsize
 
-  const child = u.div(`<div class="c ${css.text} ${style}">
+  const child = u.div(`<div class="c ${css.text}">
     <div class="${css.inner}">
       <div class="pretext ${css.pretext}">
         <div class="${css.textbox}">

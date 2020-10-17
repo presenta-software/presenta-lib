@@ -1,11 +1,11 @@
-// https://lib.presenta.cc v0.0.34 Copyright 2020 Fabio Franchino
+// https://lib.presenta.cc v0.0.35 Copyright 2020 Fabio Franchino
 (function (global, factory) {
   typeof exports === 'object' && typeof module !== 'undefined' ? module.exports = factory() :
   typeof define === 'function' && define.amd ? define(factory) :
   (global = typeof globalThis !== 'undefined' ? globalThis : global || self, global.Presenta = factory());
 }(this, (function () { 'use strict';
 
-  var version = "0.0.34";
+  var version = "0.0.35";
 
   function styleInject(css, ref) {
     if ( ref === void 0 ) ref = {};
@@ -117,7 +117,7 @@
 
   const blockvars = ['a', 'b', 'c'];
 
-  var css_248z$o = ".layout__a .blocksContainer{display:flex;flex-direction:row}.layout__a .blocksContainer>div{height:100%}.layout__b .blocksContainer{display:flex;flex-direction:column}.layout__b .blocksContainer>div{width:100%}.layout__c .blocksContainer{position:relative}.layout__c .blocksContainer>div{position:absolute;top:0;left:0;width:100%;height:100%}.layout__c .blocksContainer>div:not(:first-child){background:none}";
+  var css_248z$o = ".layout__a .blocksContainer{display:flex;flex-direction:row}.layout__a .blocksContainer>div{height:100%}.layout__b .blocksContainer{display:flex;flex-direction:column}.layout__b .blocksContainer>div{width:100%}.layout__c .blocksContainer{position:relative}.layout__c .blocksContainer>div{position:absolute;top:0;left:0;width:100%;height:100%}.layout__c .blocksContainer>div:not(:first-child){background:none}.layout__d .blocksContainer{display:flex;flex-direction:column}.layout__d .blocksContainer>div{width:100%}.layout__d .blocksContainer>div:last-child{flex:5}";
   styleInject(css_248z$o);
 
   const layouts = ['a', 'b', 'c', 'd'];
@@ -132,15 +132,11 @@
     layouts
   };
 
-  var css_248z$p = ".scene_sceneContainer__IgSpB{width:100%;height:100%;display:flex;align-items:center;justify-content:center;position:relative}.scene_scene__3uvTl{--presenta-sw:calc(var(--presenta-w)/var(--presenta-p)/var(--presenta-fz));--presenta-sh:calc(var(--presenta-h)/var(--presenta-p)/var(--presenta-fz));--presenta-scal:calc(var(--presenta-pw)/var(--presenta-p)/var(--presenta-pw)/var(--presenta-fz));width:var(--presenta-sw);height:var(--presenta-sh);font-family:serif;user-select:none}.scene_wrapper__3yr1k{width:var(--presenta-w);height:var(--presenta-h);transform:scale(1);transform:scale(var(--presenta-scal));transform-origin:top left;overflow:hidden;padding:var(--scenePadding);background-color:var(--sceneBackColor)}.scene_content__1rJf0{width:100%;height:100%;display:flex;flex-direction:column;overflow:hidden}.scene_fcontainer__1E_0g{top:0;left:0;width:100%;height:100%;position:absolute;pointer-events:none}.scene_viewport__3uNLS{width:100%;height:100%;position:relative;flex:1;overflow:hidden;display:flex;flex-direction:row}.scene_viewport__3uNLS>div{height:100%}";
-  var css = {"sceneContainer":"scene_sceneContainer__IgSpB","scene":"scene_scene__3uvTl","wrapper":"scene_wrapper__3yr1k","content":"scene_content__1rJf0","fcontainer":"scene_fcontainer__1E_0g","viewport":"scene_viewport__3uNLS"};
-  styleInject(css_248z$p);
-
   const select = selector => {
     return typeof selector === 'string' ? document.querySelector(selector) : selector;
   };
 
-  var prps = [];
+  var prps = ['scenePadding', 'sceneBackColor', 'blockPadding', 'blockWeight', 'blockOpacity', 'blockBlend'];
 
   const props = (wrapper, config) => {
     prps.forEach(p => {
@@ -159,7 +155,7 @@
     }
   };
 
-  const globprop = ['transition', 'colors', 'fonts', 'layout', 'colorVar', 'blockVar', 'sceneVar'];
+  var globprop = ['transition', 'colors', 'fonts', 'layout', 'colorVar', 'blockVar', 'sceneVar'];
 
   const globs = (wrapper, config) => {
     globprop.forEach(p => {
@@ -171,7 +167,11 @@
   };
 
   const addGlob = clsType => {
-    globprop.push(clsType);
+    if (Array.isArray(clsType)) {
+      globprop = globprop.concat(clsType);
+    } else {
+      globprop.push(clsType);
+    }
   };
 
   const div = str => new DOMParser().parseFromString(str, 'text/html').body.childNodes[0];
@@ -215,17 +215,25 @@
     event
   };
 
-  var css_248z$q = ".block_block__BWbaZ{background:var(--backcolor);width:100%;height:100%;flex:1;flex:var(--blockWeight);overflow:hidden;position:relative}.block_inner__3LS6s{width:100%;height:100%;padding:var(--blockPadding);opacity:var(--blockOpacity);mix-blend-mode:var(--blockBlend)}.block_bdecoration__3KJh-,.block_inner__3LS6s{top:0;left:0;width:100%;height:100%;position:absolute}.block_fdecoration__12tBw{pointer-events:none}";
-  var css$1 = {"block":"block_block__BWbaZ","inner":"block_inner__3LS6s","bdecoration":"block_bdecoration__3KJh-","fdecoration":"block_fdecoration__12tBw"};
+  var css_248z$p = ".container_mainwrapper__zelcO{outline:none}.container_container__3kBNh,.container_mainwrapper__zelcO{width:100%;height:100%;position:relative;overflow:hidden}.container_container__3kBNh>div{position:absolute;top:0;left:0;width:100%}";
+  var css = {"mainwrapper":"container_mainwrapper__zelcO","container":"container_container__3kBNh"};
+  styleInject(css_248z$p);
+
+  var css_248z$q = ".scene_sceneContainer__IgSpB{width:100%;height:100%;display:flex;align-items:center;justify-content:center;position:relative}.scene_scene__3uvTl{--presenta-sw:calc(var(--presenta-w)/var(--presenta-p)/var(--presenta-fz));--presenta-sh:calc(var(--presenta-h)/var(--presenta-p)/var(--presenta-fz));--presenta-scal:calc(var(--presenta-pw)/var(--presenta-p)/var(--presenta-pw)/var(--presenta-fz));width:var(--presenta-sw);height:var(--presenta-sh);font-family:serif;user-select:none}.scene_wrapper__3yr1k{width:var(--presenta-w);height:var(--presenta-h);transform:scale(1);transform:scale(var(--presenta-scal));transform-origin:top left;overflow:hidden;padding:var(--scenePadding);background-color:var(--sceneBackColor)}.scene_content__1rJf0{width:100%;height:100%;display:flex;flex-direction:column;overflow:hidden}.scene_fcontainer__1E_0g{top:0;left:0;width:100%;height:100%;position:absolute;pointer-events:none}.scene_viewport__3uNLS{width:100%;height:100%;position:relative;flex:1;overflow:hidden;display:flex;flex-direction:row}.scene_viewport__3uNLS>div{height:100%}";
+  var css$1 = {"sceneContainer":"scene_sceneContainer__IgSpB","scene":"scene_scene__3uvTl","wrapper":"scene_wrapper__3yr1k","content":"scene_content__1rJf0","fcontainer":"scene_fcontainer__1E_0g","viewport":"scene_viewport__3uNLS"};
   styleInject(css_248z$q);
 
-  var css_248z$r = ".style_debug__1-XHT{display:flex;align-items:center;justify-content:center}.style_debug__1-XHT,.style_debug__1-XHT svg{width:100%;height:100%}";
-  var css$2 = {"debug":"style_debug__1-XHT"};
+  var css_248z$r = ".block_block__BWbaZ{background:var(--backcolor);width:100%;height:100%;flex:1;flex:var(--blockWeight);overflow:hidden;position:relative}.block_inner__3LS6s{width:100%;height:100%;padding:var(--blockPadding);opacity:var(--blockOpacity);mix-blend-mode:var(--blockBlend)}.block_bdecoration__3KJh-,.block_inner__3LS6s{top:0;left:0;width:100%;height:100%;position:absolute}.block_fdecoration__12tBw{pointer-events:none}";
+  var css$2 = {"block":"block_block__BWbaZ","inner":"block_inner__3LS6s","bdecoration":"block_bdecoration__3KJh-","fdecoration":"block_fdecoration__12tBw"};
   styleInject(css_248z$r);
+
+  var css_248z$s = ".style_debug__1-XHT{display:flex;align-items:center;justify-content:center}.style_debug__1-XHT,.style_debug__1-XHT svg{width:100%;height:100%}";
+  var css$3 = {"debug":"style_debug__1-XHT"};
+  styleInject(css_248z$s);
 
   const debug = function (_el, _config) {
     const el = utils.select(_el);
-    const child = utils.div(`<div class="${css$2.debug}">
+    const child = utils.div(`<div class="${css$3.debug}">
     <svg preserveAspectRatio="none" viewBox="0 0 200 200" fill="none" xmlns="http://www.w3.org/2000/svg">
       <rect width="50" height="150" fill="var(--forecolor)"/>
       <rect x="50" width="50" height="150" fill="var(--backcolor)"/>
@@ -250,35 +258,33 @@
     el.appendChild(child);
   };
 
-  var css_248z$s = ":root{--textPadding:2rem;--textAlign:center}.style_text__3T1cl{--textsize:1rem;color:var(--forecolor)}.style_inner__11UJC,.style_text__3T1cl{width:100%;height:100%;position:relative}.style_pretext__cLjqD{display:flex;width:100%;height:100%;align-items:center;justify-content:center}.style_textbox__1Vb-V{padding:var(--textboxpadding);text-align:var(--textAlign);font-size:var(--textsize);color:var(--textboxcolor);--backmark:var(--accentcolor);--foremark:var(--backcolor);--textaccentcolor:var(--accentcolor);font-family:var(--fontText)}.style_itext__jz90o{border:var(--textboxborder) solid var(--accentcolor);padding:var(--textPadding);border-radius:var(--textboxradius);box-shadow:var(--textboxshadow);background-color:var(--textboxbackcolor)}.style_itext__jz90o img{object-fit:contain;height:4em;vertical-align:middle}.style_itext__jz90o mark{background-color:var(--backmark);color:var(--foremark);padding:0 .5rem}.style_itext__jz90o high{color:var(--textaccentcolor)}.style_itext__jz90o bord{border:8px solid var(--backmark);padding:0 .5rem}.style_itext__jz90o a{color:var(--textaccentcolor)}.style_itext__jz90o blockquote{font-size:2em;font-weight:400;font-style:italic}.style_itext__jz90o blockquote,.style_itext__jz90o h1,.style_itext__jz90o h2,.style_itext__jz90o h3,.style_itext__jz90o h4,.style_itext__jz90o h5,.style_itext__jz90o h6,.style_itext__jz90o p,.style_itext__jz90o ul{margin:0;line-height:inherit;border:inherit}.style_itext__jz90o h1 b,.style_itext__jz90o h1 strong,.style_itext__jz90o h2 b,.style_itext__jz90o h2 strong,.style_itext__jz90o h3 b,.style_itext__jz90o h3 strong,.style_itext__jz90o h4 b,.style_itext__jz90o h4 strong,.style_itext__jz90o h5 b,.style_itext__jz90o h5 strong,.style_itext__jz90o h6 b,.style_itext__jz90o h6 strong{color:var(--textaccentcolor)}.style_itext__jz90o ol,.style_itext__jz90o ul{font-size:1.5em;line-height:1.1em;text-align:left;margin:0;list-style-type:none;counter-reset:li;padding:.5rem 0}.style_itext__jz90o li{list-style-position:inside;margin-bottom:2px;padding:.25em .25em .25em .8em}.style_itext__jz90o ul li:before{content:\"\\2013\";display:inline-block;width:.8em;margin-left:-.8em}.style_itext__jz90o ol li:before{counter-increment:li;content:\".\" counter(li);display:inline-block;width:1.1em;margin-left:-1.3em;margin-right:.2em;text-align:right;direction:rtl}.style_itext__jz90o li p{display:inline}.style_itext__jz90o code,.style_itext__jz90o pre{text-align:left}.style_itext__jz90o h1,.style_itext__jz90o h2,.style_itext__jz90o h3,.style_itext__jz90o h4,.style_itext__jz90o h5,.style_itext__jz90o h6{font-family:var(--fontHeading);padding:.5rem 0}.style_itext__jz90o h1{font-size:2em}.style_itext__jz90o h2{font-size:1.5em}.style_itext__jz90o h3{font-size:1.17em}.style_itext__jz90o h4{font-size:1em}.style_itext__jz90o h5{font-size:.83em}.style_itext__jz90o h6{font-size:.67em}.style_itext__jz90o p{padding:.5rem 0}.style_itext__jz90o hr{border:1px solid var(--forecolor);margin:.5rem 0}.style_itext__jz90o h1:first-child,.style_itext__jz90o h1:last-child,.style_itext__jz90o h2:first-child,.style_itext__jz90o h2:last-child,.style_itext__jz90o h3:first-child,.style_itext__jz90o h3:last-child{padding:0}.style_itext__jz90o table{width:100%}.style_itext__jz90o tr{padding:0}.style_itext__jz90o td,.style_itext__jz90o th{padding:.5rem;border-bottom:1px solid var(--forecolor)}.style_textVar__a__3T9Hf{--textPadding:2rem;--textAlign:center}.style_textVar__a__3T9Hf .style_itext__jz90o ol,.style_textVar__a__3T9Hf .style_itext__jz90o ul{text-align:center}.style_textVar__a__3T9Hf .style_pretext__cLjqD{align-items:center;justify-content:center}.style_textVar__b__196Vf{--textAlign:left}.style_textVar__b__196Vf .style_pretext__cLjqD{align-items:flex-start;justify-content:flex-start}.style_textVar__c__2N7Ue{--textPadding:2rem;--textAlign:right}.style_textVar__c__2N7Ue .style_itext__jz90o ol,.style_textVar__c__2N7Ue .style_itext__jz90o ul{text-align:right}.style_textVar__c__2N7Ue .style_pretext__cLjqD{align-items:flex-start;justify-content:flex-end}.style_textVar__d__31_6j{--textPadding:2rem;--textAlign:left}.style_textVar__d__31_6j .style_pretext__cLjqD{align-items:flex-end;justify-content:flex-start}.style_textVar__e__2WJkW{--textPadding:2rem;--textAlign:center}.style_textVar__e__2WJkW .style_pretext__cLjqD{align-items:flex-end;justify-content:center}.style_textStyle__a__35AM6{--textboxpadding:0;--textboxbackcolor:var(--forecolor);--textboxradius:0;--textboxborder:0;--textboxshadow:0 0 0 var(--accentcolor);--textboxcolor:var(--backcolor)}";
-  var css$3 = {"text":"style_text__3T1cl","inner":"style_inner__11UJC","pretext":"style_pretext__cLjqD","textbox":"style_textbox__1Vb-V","itext":"style_itext__jz90o","textVar__a":"style_textVar__a__3T9Hf","textVar__b":"style_textVar__b__196Vf","textVar__c":"style_textVar__c__2N7Ue","textVar__d":"style_textVar__d__31_6j","textVar__e":"style_textVar__e__2WJkW","textStyle__a":"style_textStyle__a__35AM6"};
-  styleInject(css_248z$s);
+  var css_248z$t = ".textVar__a{--textPadding:0rem;--textAlign:center;--textListAlign:center;--textFlexAlign:center;--textFlexJustify:center}.textVar__b{--textPadding:3rem;--textAlign:left;--textListAlign:left;--textFlexJustify:flex-start}.textVar__b,.textVar__c{--textFlexAlign:flex-start}.textVar__c{--textPadding:2rem;--textAlign:right;--textListAlign:right;--textFlexJustify:flex-end}.textVar__d{--textAlign:left;--textFlexJustify:flex-start}.textVar__d,.textVar__e{--textPadding:2rem;--textListAlign:left;--textFlexAlign:flex-end}.textVar__e{--textAlign:center;--textFlexJustify:center}.textStyle__a{--textboxpadding:0;--textboxbackcolor:var(--forecolor);--textboxradius:0;--textboxborder:0;--textboxshadow:0 0 0 var(--accentcolor);--textboxcolor:var(--backcolor)}";
+  styleInject(css_248z$t);
 
-  utils.addGlob('textvar');
+  var css_248z$u = ":root{--textPadding:0;--textAlign:center;--textListAlign:left;--textFlexAlign:center;--textFlexJustify:center}.style_text__3T1cl{--textsize:1rem;color:var(--forecolor)}.style_inner__11UJC,.style_text__3T1cl{width:100%;height:100%;position:relative}.style_pretext__cLjqD{display:flex;width:100%;height:100%;align-items:var(--textFlexAlign);justify-content:var(--textFlexJustify)}.style_textbox__1Vb-V{padding:var(--textboxpadding);text-align:var(--textAlign);font-size:var(--textsize);color:var(--textboxcolor);--backmark:var(--accentcolor);--foremark:var(--backcolor);--textaccentcolor:var(--accentcolor);font-family:var(--fontText)}.style_itext__jz90o{border:var(--textboxborder) solid var(--accentcolor);padding:var(--textPadding);border-radius:var(--textboxradius);box-shadow:var(--textboxshadow);background-color:var(--textboxbackcolor)}.style_itext__jz90o img{object-fit:contain;height:4em;vertical-align:middle}.style_itext__jz90o mark{background-color:var(--backmark);color:var(--foremark);padding:0 .5rem}.style_itext__jz90o high{color:var(--textaccentcolor)}.style_itext__jz90o bord{border:8px solid var(--backmark);padding:0 .5rem}.style_itext__jz90o a{color:var(--textaccentcolor)}.style_itext__jz90o blockquote{font-size:2em;font-weight:400;font-style:italic}.style_itext__jz90o blockquote,.style_itext__jz90o h1,.style_itext__jz90o h2,.style_itext__jz90o h3,.style_itext__jz90o h4,.style_itext__jz90o h5,.style_itext__jz90o h6,.style_itext__jz90o p,.style_itext__jz90o ul{margin:0;line-height:inherit;border:inherit}.style_itext__jz90o h1 b,.style_itext__jz90o h1 strong,.style_itext__jz90o h2 b,.style_itext__jz90o h2 strong,.style_itext__jz90o h3 b,.style_itext__jz90o h3 strong,.style_itext__jz90o h4 b,.style_itext__jz90o h4 strong,.style_itext__jz90o h5 b,.style_itext__jz90o h5 strong,.style_itext__jz90o h6 b,.style_itext__jz90o h6 strong{color:var(--textaccentcolor)}.style_itext__jz90o ol,.style_itext__jz90o ul{font-size:1.5em;line-height:1.1em;text-align:var(--textListAlign);margin:0;list-style-type:none;counter-reset:li;padding:.5rem 0}.style_itext__jz90o li{list-style-position:inside;margin-bottom:2px;padding:.25em .25em .25em .8em}.style_itext__jz90o ul li:before{content:\"\\2013\";display:inline-block;width:.8em;margin-left:-.8em}.style_itext__jz90o ol li:before{counter-increment:li;content:\".\" counter(li);display:inline-block;width:1.1em;margin-left:-1.3em;margin-right:.2em;text-align:right;direction:rtl}.style_itext__jz90o li p{display:inline}.style_itext__jz90o code,.style_itext__jz90o pre{text-align:left}.style_itext__jz90o h1,.style_itext__jz90o h2,.style_itext__jz90o h3,.style_itext__jz90o h4,.style_itext__jz90o h5,.style_itext__jz90o h6{font-family:var(--fontHeading);padding:.5rem 0}.style_itext__jz90o h1{font-size:2em}.style_itext__jz90o h2{font-size:1.5em}.style_itext__jz90o h3{font-size:1.17em}.style_itext__jz90o h4{font-size:1em}.style_itext__jz90o h5{font-size:.83em}.style_itext__jz90o h6{font-size:.67em}.style_itext__jz90o p{padding:.5rem 0}.style_itext__jz90o hr{border:1px solid var(--forecolor);margin:.5rem 0}.style_itext__jz90o h1:first-child,.style_itext__jz90o h1:last-child,.style_itext__jz90o h2:first-child,.style_itext__jz90o h2:last-child,.style_itext__jz90o h3:first-child,.style_itext__jz90o h3:last-child{padding:0}.style_itext__jz90o table{width:100%}.style_itext__jz90o tr{padding:0}.style_itext__jz90o td,.style_itext__jz90o th{padding:.5rem;border-bottom:1px solid var(--forecolor)}";
+  var css$4 = {"text":"style_text__3T1cl","inner":"style_inner__11UJC","pretext":"style_pretext__cLjqD","textbox":"style_textbox__1Vb-V","itext":"style_itext__jz90o"};
+  styleInject(css_248z$u);
+
+  utils.addGlob(['textVar', 'textStyle']);
+  utils.addProp(['textPadding', 'textAlign']);
 
   const text = function (el, config) {
     const html = config.text || '';
     let defsize = 1;
-    const styleSize = {
+    const varSize = {
       a: 3,
       b: 1,
       c: 2,
       d: 1.5,
       e: 0.8
     };
-    let style = '';
-
-    if (config.textStyle) {
-      style = css$3['textStyle__' + config.textStyle];
-      defsize = styleSize[config.textStyle];
-    }
-
+    if (config.textVar) defsize = varSize[config.textVar];
     let fsize = config.scale || defsize;
-    const child = utils.div(`<div class="c ${css$3.text} ${style}">
-    <div class="${css$3.inner}">
-      <div class="pretext ${css$3.pretext}">
-        <div class="${css$3.textbox}">
-          <div class="textContent ${css$3.itext} ${css$3.fadein}">
+    const child = utils.div(`<div class="c ${css$4.text}">
+    <div class="${css$4.inner}">
+      <div class="pretext ${css$4.pretext}">
+        <div class="${css$4.textbox}">
+          <div class="textContent ${css$4.itext} ${css$4.fadein}">
             ${html}
           </div>
         </div>
@@ -311,9 +317,9 @@
 
     const compute = () => {
       child.style.setProperty('--textsize', `${fsize}rem`);
-      const mel = child.querySelector('.' + css$3.inner);
+      const mel = child.querySelector('.' + css$4.inner);
       const mbox = mel.getBoundingClientRect();
-      const el = child.querySelector('.' + css$3.textbox);
+      const el = child.querySelector('.' + css$4.textbox);
       const bbox = el.getBoundingClientRect();
 
       if (parseInt(mbox.width) < parseInt(bbox.width) || parseInt(mbox.height) < parseInt(bbox.height)) {
@@ -321,18 +327,18 @@
         return compute();
       } else {
         setTimeout(() => {
-          child.querySelector('.' + css$3.inner).style.visibility = 'visible';
+          child.querySelector('.' + css$4.inner).style.visibility = 'visible';
         });
       }
     };
 
-    child.querySelector('.' + css$3.inner).style.visibility = 'hidden';
+    child.querySelector('.' + css$4.inner).style.visibility = 'hidden';
     setTimeout(compute);
   };
 
-  var css_248z$t = ":root{--embedPadding:0;--embedBackcolor:none;--embedPosterSize:cover;--embedPosterPosition:center}.style_inner__3WOWs{padding:var(--embedPadding);position:relative}.style_frame__28PUh{background-color:var(--embedBackcolor);position:relative}.style_embed__2Pre2,.style_frame__28PUh,.style_inner__3WOWs{width:100%;height:100%}.style_frame__28PUh>iframe{width:100%;height:100%;border:none}.style_loading__1w7wc{position:absolute;top:0;left:0;width:100%;height:100%;display:flex;align-items:center;justify-content:center;color:var(--forecolor);font-family:var(--fontText);background-color:var(--backcolor)}.style_loading__1w7wc mark{background-color:var(--accentcolor);color:var(--backcolor)}.style_blockmouse__3bXSl,.style_poster__1TOx3{position:absolute;top:0;left:0;width:100%;height:100%}.style_poster__1TOx3{background-color:var(--backcolor)}.style_poster__1TOx3 img{width:100%;height:100%;object-fit:var(--embedPosterSize);object-position:var(--embedPosterPosition)}";
-  var css$4 = {"inner":"style_inner__3WOWs","frame":"style_frame__28PUh","embed":"style_embed__2Pre2","loading":"style_loading__1w7wc","blockmouse":"style_blockmouse__3bXSl","poster":"style_poster__1TOx3"};
-  styleInject(css_248z$t);
+  var css_248z$v = ":root{--embedPadding:0;--embedBackcolor:none;--embedPosterSize:cover;--embedPosterPosition:center}.style_inner__3WOWs{padding:var(--embedPadding);position:relative}.style_frame__28PUh{background-color:var(--embedBackcolor);position:relative}.style_embed__2Pre2,.style_frame__28PUh,.style_inner__3WOWs{width:100%;height:100%}.style_frame__28PUh>iframe{width:100%;height:100%;border:none}.style_loading__1w7wc{position:absolute;top:0;left:0;width:100%;height:100%;display:flex;align-items:center;justify-content:center;color:var(--forecolor);font-family:var(--fontText);background-color:var(--backcolor)}.style_loading__1w7wc mark{background-color:var(--accentcolor);color:var(--backcolor)}.style_blockmouse__3bXSl,.style_poster__1TOx3{position:absolute;top:0;left:0;width:100%;height:100%}.style_poster__1TOx3{background-color:var(--backcolor)}.style_poster__1TOx3 img{width:100%;height:100%;object-fit:var(--embedPosterSize);object-position:var(--embedPosterPosition)}";
+  var css$5 = {"inner":"style_inner__3WOWs","frame":"style_frame__28PUh","embed":"style_embed__2Pre2","loading":"style_loading__1w7wc","blockmouse":"style_blockmouse__3bXSl","poster":"style_poster__1TOx3"};
+  styleInject(css_248z$v);
 
   utils.addProp(['embedPadding', 'embedBackcolor', 'embedPosterSize', 'embedPosterPosition']);
 
@@ -358,12 +364,12 @@
     }
 
     const name = iframePrimaryDomain(iframe);
-    const coverFrame = `<div class="cover ${css$4.loading}"><h1>Embed from <mark>${name}</mark></h1></div>`;
-    const blockPointer = config.blockPointer ? `<div class='${css$4.blockmouse}' />` : '';
-    const posterFrame = config.poster ? `<div class="${css$4.poster}"><img src="${config.poster}" /></div>` : '';
-    const child = utils.div(`<div class="c ${css$4.embed}">
-    <div class="${css$4.inner}">
-        <div class="${css$4.frame}">${iframe}</div>
+    const coverFrame = `<div class="cover ${css$5.loading}"><h1>Embed from <mark>${name}</mark></h1></div>`;
+    const blockPointer = config.blockPointer ? `<div class='${css$5.blockmouse}' />` : '';
+    const posterFrame = config.poster ? `<div class="${css$5.poster}"><img src="${config.poster}" /></div>` : '';
+    const child = utils.div(`<div class="c ${css$5.embed}">
+    <div class="${css$5.inner}">
+        <div class="${css$5.frame}">${iframe}</div>
         ${coverFrame}
         ${posterFrame}
         ${blockPointer}
@@ -376,25 +382,25 @@
     if (iframe && presentMode) {
       const frame = child.querySelector('iframe');
       frame.addEventListener('load', () => {
-        child.querySelector('.' + css$4.loading).style.display = 'none';
-        if (posterFrame) child.querySelector('.' + css$4.poster).style.display = 'none';
+        child.querySelector('.' + css$5.loading).style.display = 'none';
+        if (posterFrame) child.querySelector('.' + css$5.poster).style.display = 'none';
       });
     }
   };
 
-  var css_248z$u = ":root{--imagePadding:0;--imageBorder:none;--imageShadow:none;--imageSize:cover;--imagePosition:center}.style_image__1fZIQ,.style_inner__3tyMU{width:100%;height:100%}.style_inner__3tyMU{display:flex}.style_preimg__2ypvx{overflow:hidden;flex:1;padding:var(--imagePadding)}.style_preimg__2ypvx img{width:100%;height:100%;border:var(--imageBorder);box-shadow:var(--imageShadow);object-fit:var(--imageSize);object-position:var(--imagePosition)}";
-  var css$5 = {"image":"style_image__1fZIQ","inner":"style_inner__3tyMU","preimg":"style_preimg__2ypvx"};
-  styleInject(css_248z$u);
+  var css_248z$w = ":root{--imagePadding:0;--imageBorder:none;--imageShadow:none;--imageSize:cover;--imagePosition:center}.style_image__1fZIQ,.style_inner__3tyMU{width:100%;height:100%}.style_inner__3tyMU{display:flex}.style_preimg__2ypvx{overflow:hidden;flex:1;padding:var(--imagePadding)}.style_preimg__2ypvx img{width:100%;height:100%;border:var(--imageBorder);box-shadow:var(--imageShadow);object-fit:var(--imageSize);object-position:var(--imagePosition)}";
+  var css$6 = {"image":"style_image__1fZIQ","inner":"style_inner__3tyMU","preimg":"style_preimg__2ypvx"};
+  styleInject(css_248z$w);
 
   utils.addProp(['imagePadding', 'imageBorder', 'imageShadow', 'imageSize', 'imagePosition']);
 
   const image = function (el, config) {
     const url = config.url;
-    const imageschunk = `<div class="presentablock__image ${css$5.preimg}">
+    const imageschunk = `<div class="presentablock__image ${css$6.preimg}">
         <img src="${url}" />
       </div>`;
-    const child = utils.div(`<div class="${css$5.image}">
-    <div class="imagesContainer ${css$5.inner}">
+    const child = utils.div(`<div class="${css$6.image}">
+    <div class="imagesContainer ${css$6.inner}">
         ${imageschunk}
     </div>
   </div>`);
@@ -406,9 +412,9 @@
     el.appendChild(child);
   };
 
-  var css_248z$v = ":root{--videoSize:cover;--videoPosition:center}.style_video__1qbdJ{width:100%;height:100%;display:flex;align-items:center;justify-content:center}.style_video__1qbdJ video{width:100%;height:100%;object-fit:var(--videoSize);object-position:var(--videoPosition)}";
-  var css$6 = {"video":"style_video__1qbdJ"};
-  styleInject(css_248z$v);
+  var css_248z$x = ":root{--videoSize:cover;--videoPosition:center}.style_video__1qbdJ{width:100%;height:100%;display:flex;align-items:center;justify-content:center}.style_video__1qbdJ video{width:100%;height:100%;object-fit:var(--videoSize);object-position:var(--videoPosition)}";
+  var css$7 = {"video":"style_video__1qbdJ"};
+  styleInject(css_248z$x);
 
   utils.addProp(['videoSize', 'videoPosition']);
 
@@ -419,7 +425,7 @@
     const loop = config.loop ? 'loop' : '';
     const autoplay = config.autoplay && presentMode ? 'autoplay' : '';
     const src = config.url ? `src=${config.url}` : '';
-    const child = utils.div(`<div class="${css$6.video}">
+    const child = utils.div(`<div class="${css$7.video}">
     <video ${poster} ${src} ${loop} ${autoplay}></video>
   </div>`);
 
@@ -456,12 +462,12 @@
     if (presentMode) rootElement.addEventListener('keyup', setKeyListener);
   };
 
-  var css_248z$w = ".solidVar__a{--solidColor:#000}.solidVar__a,.solidVar__b{--solidOpacity:.7;--solidBlend:none}.solidVar__b{--solidColor:#fff}.solidVar__c{--solidColor:var(--backcolor);--solidOpacity:1;--solidBlend:multiply}";
-  styleInject(css_248z$w);
+  var css_248z$y = ".solidVar__a{--solidColor:#000}.solidVar__a,.solidVar__b{--solidOpacity:.7;--solidBlend:none}.solidVar__b{--solidColor:#fff}.solidVar__c{--solidColor:var(--backcolor);--solidOpacity:1;--solidBlend:multiply}";
+  styleInject(css_248z$y);
 
-  var css_248z$x = ":root{--solidOpacity:1;--solidBlend:none;--solidColor:var(--accentcolor)}.style_solid__wiwvr{width:100%;height:100%;display:flex;align-items:center;justify-content:center;background:var(--solidColor);opacity:var(--solidOpacity);mix-blend-mode:var(--solidBlend)}";
-  var css$7 = {"solid":"style_solid__wiwvr"};
-  styleInject(css_248z$x);
+  var css_248z$z = ":root{--solidOpacity:1;--solidBlend:none;--solidColor:var(--accentcolor)}.style_solid__wiwvr{width:100%;height:100%;display:flex;align-items:center;justify-content:center;background:var(--solidColor);opacity:var(--solidOpacity);mix-blend-mode:var(--solidBlend)}";
+  var css$8 = {"solid":"style_solid__wiwvr"};
+  styleInject(css_248z$z);
 
   /*
   {
@@ -477,7 +483,7 @@
   utils.addProp(['solidColor', 'solidOpacity', 'solidColor']);
 
   const solid = function (el, config) {
-    const child = utils.div(`<div class="${css$7.solid}"></div>`);
+    const child = utils.div(`<div class="${css$8.solid}"></div>`);
 
     this.beforeDestroy = () => {};
 
@@ -517,10 +523,10 @@
     }
 
     let step = 0;
-    const child = utils.div(`<div class="block ${css$1.block} b b${this.index}">
-    <div class="backDecoration ${css$1.bdecoration}"></div>
-    <div class="blockContainer ${css$1.inner}"></div>
-    <div class="frontDecoration ${css$1.fdecoration}"></div>
+    const child = utils.div(`<div class="block ${css$2.block} b b${this.index}">
+    <div class="backDecoration ${css$2.bdecoration}"></div>
+    <div class="blockContainer ${css$2.inner}"></div>
+    <div class="frontDecoration ${css$2.fdecoration}"></div>
   </div>`);
     utils.globs(child, blockConfig);
     utils.props(child, blockConfig);
@@ -640,12 +646,12 @@
     let currentStep = 0;
     const steps = sceneConfig.steps || [];
     const child = utils.div(`<div 
-      class="s ${css.sceneContainer}">
-      <div class="sceneObject ${css.scene}">
-        <div class="${css.wrapper}">
-            <div class="${css.content}">
-                <div class="blocksContainer ${css.viewport}"></div>
-                <div class="frontContainer ${css.fcontainer}"></div>
+      class="s ${css$1.sceneContainer}">
+      <div class="sceneObject ${css$1.scene}">
+        <div class="${css$1.wrapper}">
+            <div class="${css$1.content}">
+                <div class="blocksContainer ${css$1.viewport}"></div>
+                <div class="frontContainer ${css$1.fcontainer}"></div>
             </div>
         </div>
       </div>
@@ -664,7 +670,7 @@
         if (!Mod) console.log(`Module "${k}" not found. Maybe you forgot to include it.`);
 
         if (modConfig && Mod) {
-          const mod = new Mod(child.querySelector(`.${css.content}`), modConfig, sceneConfig, projectConfig);
+          const mod = new Mod(child.querySelector(`.${css$1.content}`), modConfig, sceneConfig, projectConfig);
         }
       }
     }
@@ -739,10 +745,6 @@
     this.sceneConfig = sceneConfig;
   };
 
-  var css_248z$y = ".container_mainwrapper__zelcO{outline:none}.container_container__3kBNh,.container_mainwrapper__zelcO{width:100%;height:100%;position:relative;overflow:hidden}.container_container__3kBNh>div{position:absolute;top:0;left:0;width:100%}";
-  var css$8 = {"mainwrapper":"container_mainwrapper__zelcO","container":"container_container__3kBNh"};
-  styleInject(css_248z$y);
-
   const autoplay = function (rootElement, router, ctrlConfig, projectConfig) {
     let timer = null;
     const defdelay = ctrlConfig.delay || 4000;
@@ -779,9 +781,9 @@
     rootElement.parentNode.addEventListener('keyup', setKeyListener);
   };
 
-  var css_248z$z = ":root{--arrowsOpacity:1;--arrowsVerticalPosition:center;--arrowsHorizontalPosition:space-between;--arrowsPadding:10px}.style_arrows__2J_-T{position:absolute;top:0;left:0;width:100%;height:100%;display:flex;transition:opacity .35s;justify-content:var(--arrowsHorizontalPosition);--arrowsColor:var(--forecolor)}.style_left__199CL,.style_right__2Bn_p{height:100%;display:flex;align-items:var(--arrowsVerticalPosition);justify-content:center;cursor:pointer;padding:var(--arrowsPadding);pointer-events:all}.style_ui__1jWCU{width:20px;height:20px;transition:background-color .3s ease-in-out;width:0;height:0;border-top:10px solid transparent;border-bottom:10px solid transparent;opacity:var(--arrowsOpacity)}.style_left__199CL .style_ui__1jWCU{border-right:10px solid var(--arrowsColor)}.style_right__2Bn_p .style_ui__1jWCU{border-left:10px solid var(--arrowsColor)}.style_arrows__2J_-T.style_hide__4RZI1{opacity:0}";
+  var css_248z$A = ":root{--arrowsOpacity:1;--arrowsVerticalPosition:center;--arrowsHorizontalPosition:space-between;--arrowsPadding:10px}.style_arrows__2J_-T{position:absolute;top:0;left:0;width:100%;height:100%;display:flex;transition:opacity .35s;justify-content:var(--arrowsHorizontalPosition);--arrowsColor:var(--forecolor)}.style_left__199CL,.style_right__2Bn_p{height:100%;display:flex;align-items:var(--arrowsVerticalPosition);justify-content:center;cursor:pointer;padding:var(--arrowsPadding);pointer-events:all}.style_ui__1jWCU{width:20px;height:20px;transition:background-color .3s ease-in-out;width:0;height:0;border-top:10px solid transparent;border-bottom:10px solid transparent;opacity:var(--arrowsOpacity)}.style_left__199CL .style_ui__1jWCU{border-right:10px solid var(--arrowsColor)}.style_right__2Bn_p .style_ui__1jWCU{border-left:10px solid var(--arrowsColor)}.style_arrows__2J_-T.style_hide__4RZI1{opacity:0}";
   var css$9 = {"arrows":"style_arrows__2J_-T","left":"style_left__199CL","right":"style_right__2Bn_p","ui":"style_ui__1jWCU","hide":"style_hide__4RZI1"};
-  styleInject(css_248z$z);
+  styleInject(css_248z$A);
 
   const arrows = function (rootElement, router, config) {
     let timer = null;
@@ -820,9 +822,9 @@
     scheduleForHide();
   };
 
-  var css_248z$A = ".style_black__3Nszx{width:100%;height:100%;position:absolute;top:0;left:0;background-color:#000;opacity:0;pointer-events:none;transition:opacity .5s cubic-bezier(.8,.2,.2,.8);z-index:999999}";
+  var css_248z$B = ".style_black__3Nszx{width:100%;height:100%;position:absolute;top:0;left:0;background-color:#000;opacity:0;pointer-events:none;transition:opacity .5s cubic-bezier(.8,.2,.2,.8);z-index:999999}";
   var css$a = {"black":"style_black__3Nszx"};
-  styleInject(css_248z$A);
+  styleInject(css_248z$B);
 
   const black = function (rootElement, router, ctrlConfig, projectConfig) {
     let visible = false;
@@ -932,9 +934,11 @@
     });
   };
 
-  var css_248z$B = ":root{--progressbarHeight:5px;--progressbarBottom:initial}.style_progressbar__37EFM{--progressbarColor:var(--forecolor);width:100%;height:100%;pointer-events:none}.style_bar__3nLkk{width:0;height:var(--progressbarHeight);position:absolute;bottom:var(--progressbarBottom);left:0;background-color:var(--progressbarColor);transition:width .5s cubic-bezier(.8,.2,.2,.8)}";
+  var css_248z$C = ":root{--progressbarHeight:5px;--progressbarBottom:initial}.style_progressbar__37EFM{--progressbarColor:var(--forecolor);width:100%;height:100%;pointer-events:none}.style_bar__3nLkk{width:0;height:var(--progressbarHeight);position:absolute;bottom:var(--progressbarBottom);left:0;background-color:var(--progressbarColor);transition:width .5s cubic-bezier(.8,.2,.2,.8)}";
   var css$b = {"progressbar":"style_progressbar__37EFM","bar":"style_bar__3nLkk"};
-  styleInject(css_248z$B);
+  styleInject(css_248z$C);
+
+  utils.addProp(['progressbarHeight', 'progressbarBottom']);
 
   const progressbar = function (rootElement, router, ctrlConfig, projectConfig) {
     const child = utils.div(`<div class="${css$b.progressbar}"></div>`);
@@ -954,9 +958,9 @@
     });
   };
 
-  var css_248z$C = ":root{--pagenumTextAlign:right;--pagenumPadding:5px;--pagenumFontSize:10px;--pagenumBackColor:none;--pagenumFont:var(--fontText)}.style_pagenum__1OmQh{--pagenumColor:var(--forecolor);width:100%;height:100%;position:absolute;top:0;left:0;display:flex;align-items:flex-end;pointer-events:none}.style_content__3u2tr{width:100%;text-align:var(--pagenumTextAlign);padding:var(--pagenumPadding);font-size:var(--pagenumFontSize);color:var(--pagenumColor);font-family:var(--pagenumFont);background-color:var(--pagenumBackColor);transition:all .3s ease-in-out}";
+  var css_248z$D = ":root{--pagenumTextAlign:right;--pagenumPadding:5px;--pagenumFontSize:10px;--pagenumBackColor:none;--pagenumFont:var(--fontText)}.style_pagenum__1OmQh{--pagenumColor:var(--forecolor);width:100%;height:100%;position:absolute;top:0;left:0;display:flex;align-items:flex-end;pointer-events:none}.style_content__3u2tr{width:100%;text-align:var(--pagenumTextAlign);padding:var(--pagenumPadding);font-size:var(--pagenumFontSize);color:var(--pagenumColor);font-family:var(--pagenumFont);background-color:var(--pagenumBackColor);transition:all .3s ease-in-out}";
   var css$c = {"pagenum":"style_pagenum__1OmQh","content":"style_content__3u2tr"};
-  styleInject(css_248z$C);
+  styleInject(css_248z$D);
 
   const pagenum = function (rootElement, router, ctrlConfig, projectConfig) {
     const child = utils.div(`<div class="${css$c.pagenum}"></div>`);
@@ -1033,9 +1037,9 @@
     controllers[type] = module;
   };
 
-  var css_248z$D = ".router_router__2r4NQ{width:100%;height:100%;position:absolute;top:0;left:0;pointer-events:none}";
+  var css_248z$E = ".router_router__2r4NQ{width:100%;height:100%;position:absolute;top:0;left:0;pointer-events:none}";
   var css$d = {"router":"router_router__2r4NQ"};
-  styleInject(css_248z$D);
+  styleInject(css_248z$E);
 
   const Router = function (rootElement, projectConfig) {
     const child = utils.div(`<div class="controller ${css$d.router}"></div>`);
@@ -1208,12 +1212,12 @@
 
 
     rootElement.classList.add('presenta');
-    const child = utils.div(`<div class="${css$8.mainwrapper}"></div>`);
+    const child = utils.div(`<div class="${css.mainwrapper}"></div>`);
     child.setAttribute('tabindex', '0');
     utils.globs(child, projectConfig);
     utils.props(child, projectConfig);
     rootElement.appendChild(child);
-    const cont = utils.div(`<div class="a ${css$8.container}"></div>`);
+    const cont = utils.div(`<div class="a ${css.container}"></div>`);
     child.appendChild(cont);
     const scenes = projectConfig.scenes;
     var currentScene = null;
@@ -1303,15 +1307,15 @@
     return new Container(utils.select(el), config);
   };
 
-  Presenta.version = version;
-  Presenta.utils = utils;
+  Presenta.version = version; // Presenta.utils = utils
+
   Presenta.colors = globals.colors;
   Presenta.fonts = globals.fonts;
   Presenta.transitions = globals.transitions;
   Presenta.layouts = globals.layouts;
   Presenta.colorvars = globals.colorvars;
-  Presenta.scenevars = globals.scenevars;
-  Presenta.Scene = Scene;
+  Presenta.scenevars = globals.scenevars; // Presenta.Scene = Scene // ??
+
   Presenta.addBlock = add;
   Presenta.addController = add$2;
   Presenta.addModule = add$1;

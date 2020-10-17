@@ -1,5 +1,12 @@
 
-var prps = []
+var prps = [
+  'scenePadding',
+  'sceneBackColor',
+  'blockPadding',
+  'blockWeight',
+  'blockOpacity',
+  'blockBlend'
+]
 
 const props = (wrapper, config) => {
   prps.forEach(p => {

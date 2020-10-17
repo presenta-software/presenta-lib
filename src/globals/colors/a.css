@@ -1,20 +1,20 @@
 .colors__a,
-.colors__a .colorvar__a,
-.colors__a.colorvar__a {
+.colors__a .colorVar__a,
+.colors__a.colorVar__a {
   --backcolor: #000;
   --forecolor: #fff;
   --accentcolor: #EEFF2E;
   --otheraccentcolor: #DE1318;
 }
-.colors__a .colorvar__b,
-.colors__a.colorvar__b {
+.colors__a .colorVar__b,
+.colors__a.colorVar__b {
   --backcolor: #EEFF2E;
   --forecolor: #000;
   --accentcolor: #DE1318;
   --otheraccentcolor: #fff;
 }
-.colors__a .colorvar__c,
-.colors__a.colorvar__c {
+.colors__a .colorVar__c,
+.colors__a.colorVar__c {
   --backcolor: #DE1318;
   --forecolor: #EEFF2E;
   --accentcolor: #fff;

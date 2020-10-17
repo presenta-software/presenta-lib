@@ -1,20 +1,20 @@
 .colors__i,
-.colors__i .colorvar__a,
-.colors__i.colorvar__a {
+.colors__i .colorVar__a,
+.colors__i.colorVar__a {
   --backcolor: #ffe600;
   --forecolor: #000;
   --accentcolor: #ff6400;
   --otheraccentcolor: #fff;
 }
-.colors__i .colorvar__b,
-.colors__i.colorvar__b {
+.colors__i .colorVar__b,
+.colors__i.colorVar__b {
   --backcolor: #000;
   --forecolor: rgb(255, 230, 0);
   --accentcolor: #fff;
   --otheraccentcolor: rgb(255, 100, 0);
 }
-.colors__i .colorvar__c,
-.colors__i.colorvar__c {
+.colors__i .colorVar__c,
+.colors__i.colorVar__c {
   --backcolor: rgb(255, 100, 0);
   --forecolor: #fff;
   --accentcolor: rgb(255, 230, 0);

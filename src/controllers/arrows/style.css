@@ -15,7 +15,7 @@
     transition: opacity .35s;
 
     justify-content: var(--arrowsHorizontalPosition);
-    --arrowsColor: var(--forecolor);
+    --arrowsColor: var(--colorFore);
 }
 
 .left, .right{

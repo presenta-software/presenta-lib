@@ -1,22 +1,22 @@
 .colors__c,
 .colors__c .colorVar__a,
 .colors__c.colorVar__a {
-  --backcolor: #E5FF9D;
-  --forecolor: #1C003F;
-  --accentcolor: #69567C;
-  --otheraccentcolor: #fff;
+  --colorBack: #E5FF9D;
+  --colorFore: #1C003F;
+  --colorAccent: #69567C;
+  --colorAlt: #fff;
 }
 .colors__c .colorVar__b,
 .colors__c.colorVar__b {
-  --backcolor: #1C003F;
-  --forecolor: #fff;
-  --accentcolor: #E5FF9D;
-  --otheraccentcolor: #69567C;
+  --colorBack: #1C003F;
+  --colorFore: #fff;
+  --colorAccent: #E5FF9D;
+  --colorAlt: #69567C;
 }
 .colors__c .colorVar__c,
 .colors__c.colorVar__c {
-  --backcolor: #69567C;
-  --forecolor: #E5FF9D;
-  --accentcolor: #fff;
-  --otheraccentcolor: #1C003F;
+  --colorBack: #69567C;
+  --colorFore: #E5FF9D;
+  --colorAccent: #fff;
+  --colorAlt: #1C003F;
 }

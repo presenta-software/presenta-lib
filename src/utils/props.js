@@ -1,7 +1,13 @@
 
 var prps = [
+  'colorBack',
+  'colorFore',
+  'colorAccent',
+  'colorAlt',
+
   'scenePadding',
   'sceneBackColor',
+
   'blockPadding',
   'blockWeight',
   'blockOpacity',

@@ -8,7 +8,7 @@
 }
 
 .pagenum{
-    --pagenumColor: var(--forecolor);
+    --pagenumColor: var(--colorFore);
 
     width: 100%;
     height: 100%;

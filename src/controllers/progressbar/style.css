@@ -4,7 +4,7 @@
 }
 
 .progressbar{
-    --progressbarColor: var(--forecolor);    
+    --progressbarColor: var(--colorFore);    
 
     width: 100%;
     height: 100%;

@@ -1,22 +1,19 @@
 :root,
 .colorVar__a {
-  --backcolor: #fff;
-  --forecolor: #000;
-  --accentcolor: #444;
-  --otheraccentcolor: #ddd;
-  --overlaycolor: var(--backcolor);
+  --colorBack: #fff;
+  --colorFore: #000;
+  --colorAccent: #444;
+  --colorAlt: #ddd;
 }
 .colorVar__b {
-  --backcolor: #000;
-  --forecolor: #fff;
-  --accentcolor: #999;
-  --otheraccentcolor: #ccc;
-  --overlaycolor: var(--backcolor);
+  --colorBack: #000;
+  --colorFore: #fff;
+  --colorAccent: #999;
+  --colorAlt: #ccc;
 }
 .colorVar__c {
-  --backcolor: #444;
-  --forecolor: #ffffff;
-  --accentcolor: #fff;
-  --otheraccentcolor: #ccc;
-  --overlaycolor: var(--backcolor);
+  --colorBack: #444;
+  --colorFore: #ffffff;
+  --colorAccent: #fff;
+  --colorAlt: #ccc;
 }

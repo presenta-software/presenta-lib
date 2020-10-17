@@ -1,7 +1,7 @@
 :root{    
     --solidOpacity: 1;
     --solidBlend: none;
-    --solidColor: var(--accentcolor);
+    --solidColor: var(--colorAccent);
 }
 
 .solid{

@@ -1,22 +1,22 @@
 .colors__i,
 .colors__i .colorVar__a,
 .colors__i.colorVar__a {
-  --backcolor: #ffe600;
-  --forecolor: #000;
-  --accentcolor: #ff6400;
-  --otheraccentcolor: #fff;
+  --colorBack: #ffe600;
+  --colorFore: #000;
+  --colorAccent: #ff6400;
+  --colorAlt: #fff;
 }
 .colors__i .colorVar__b,
 .colors__i.colorVar__b {
-  --backcolor: #000;
-  --forecolor: rgb(255, 230, 0);
-  --accentcolor: #fff;
-  --otheraccentcolor: rgb(255, 100, 0);
+  --colorBack: #000;
+  --colorFore: rgb(255, 230, 0);
+  --colorAccent: #fff;
+  --colorAlt: rgb(255, 100, 0);
 }
 .colors__i .colorVar__c,
 .colors__i.colorVar__c {
-  --backcolor: rgb(255, 100, 0);
-  --forecolor: #fff;
-  --accentcolor: rgb(255, 230, 0);
-  --otheraccentcolor: #000;
+  --colorBack: rgb(255, 100, 0);
+  --colorFore: #fff;
+  --colorAccent: rgb(255, 230, 0);
+  --colorAlt: #000;
 }

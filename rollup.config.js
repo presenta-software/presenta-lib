@@ -54,6 +54,7 @@ export default [{
     file: 'dist/presenta.min.js',
     format: 'umd',
     indent: false,
+    banner: copyright,
     name: 'Presenta'
   },
   plugins: [

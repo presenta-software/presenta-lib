@@ -35,14 +35,14 @@
     display: flex;
     align-items: center;
     justify-content: center;
-    color:var(--forecolor);
+    color:var(--colorFore);
     font-family: var(--fontText);
-    background-color: var(--backcolor);
+    background-color: var(--colorBack);
 }
 
 .loading mark{
-    background-color: var(--accentcolor);
-    color:var(--backcolor);
+    background-color: var(--colorAccent);
+    color:var(--colorBack);
 }
 
 .blockmouse{
@@ -59,7 +59,7 @@
     left:0;
     width: 100%;
     height: 100%;
-    background-color: var(--backcolor);
+    background-color: var(--colorBack);
 
     
 }

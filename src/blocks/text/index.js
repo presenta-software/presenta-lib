@@ -10,14 +10,13 @@ const text = function (el, config) {
 
   let defsize = 1
   const varSize = {
-    a: 3,
+    a: 2.5,
     b: 1,
     c: 2,
     d: 1.5,
     e: 0.8
   }
   if (config.textVar) defsize = varSize[config.textVar]
-
   let fsize = config.scale || defsize
 
   const child = u.div(`<div class="c ${css.text}">
@@ -31,16 +30,13 @@ const text = function (el, config) {
       </div>
     </div>
   </div>`)
+  el.appendChild(child)
 
   this.beforeDestroy = () => {
-
   }
 
   this.stepForward = () => {
-    console.log('stepForward')
   }
-
-  el.appendChild(child)
 
   // if there are images, let's exploit the alt attribute if contains a number
   // as a scale multiplier
@@ -57,7 +53,7 @@ const text = function (el, config) {
 
   // this is the iterative scale routine
   const compute = () => {
-    child.style.setProperty('--textsize', `${fsize}rem`)
+    child.style.setProperty('--textSize', `${fsize}rem`)
     const mel = child.querySelector('.' + css.inner)
     const mbox = mel.getBoundingClientRect()
     const el = child.querySelector('.' + css.textbox)

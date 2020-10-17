@@ -11,7 +11,7 @@
 }
 
 .solidVar__c{
-    --solidColor: var(--backcolor);
+    --solidColor: var(--colorBack);
     --solidOpacity: 1;
     --solidBlend: multiply;
 }

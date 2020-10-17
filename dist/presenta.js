@@ -1,11 +1,11 @@
-// https://lib.presenta.cc v0.0.36 Copyright 2020 Fabio Franchino
+// https://lib.presenta.cc v0.0.37 Copyright 2020 Fabio Franchino
 (function (global, factory) {
   typeof exports === 'object' && typeof module !== 'undefined' ? module.exports = factory() :
   typeof define === 'function' && define.amd ? define(factory) :
   (global = typeof globalThis !== 'undefined' ? globalThis : global || self, global.Presenta = factory());
 }(this, (function () { 'use strict';
 
-  var version = "0.0.36";
+  var version = "0.0.37";
 
   function styleInject(css, ref) {
     if ( ref === void 0 ) ref = {};
@@ -204,6 +204,12 @@
     return new CustomEvent(name, prop);
   };
 
+  const preloads = [];
+
+  const addPreload = ob => {
+    preloads.push(ob);
+  };
+
   var utils = {
     select,
     props,
@@ -212,7 +218,9 @@
     addGlob,
     div,
     fit,
-    event
+    event,
+    preloads,
+    addPreload
   };
 
   var css_248z$p = ".container_mainwrapper__zelcO{outline:none}.container_container__3kBNh,.container_mainwrapper__zelcO{width:100%;height:100%;position:relative;overflow:hidden}.container_container__3kBNh>div{position:absolute;top:0;left:0;width:100%}";
@@ -391,6 +399,11 @@
   styleInject(css_248z$w);
 
   utils.addProp(['imagePadding', 'imageBorder', 'imageShadow', 'imageSize', 'imagePosition']);
+  utils.addPreload({
+    type: 'image',
+    field: 'url',
+    as: 'image'
+  });
 
   const image = function (el, config) {
     const url = config.url;
@@ -415,6 +428,11 @@
   styleInject(css_248z$x);
 
   utils.addProp(['videoSize', 'videoPosition']);
+  utils.addPreload({
+    type: 'video',
+    field: 'url',
+    as: 'video'
+  });
 
   const video = function (el, config, rootElement, projectConfig) {
     const previewMode = projectConfig.mode === 'preview';
@@ -917,16 +935,14 @@
     preloadLink.as = type;
     document.head.appendChild(preloadLink);
   };
-  /*
-  How to support images in text element?
-  */
-
 
   const preload = function (rootElement, router, ctrlConfig, projectConfig) {
     projectConfig.scenes.forEach(s => {
       s.blocks.forEach(b => {
-        if (b.type === 'image' || b.type === 'video') {
-          addLink(b.url, b.type);
+        const blk = utils.preloads.find(d => d.type === b.type);
+
+        if (blk) {
+          addLink(b[blk.field], blk.as);
         }
       });
     });
@@ -1233,6 +1249,10 @@
         if (currentScene.el) cont.appendChild(currentScene.el);
       }
     };
+    /*
+      Init the router
+    */
+
 
     const router = new Router(child, projectConfig);
     router.on('nextIndex', evt => {
@@ -1302,23 +1322,30 @@
 
   const Presenta = function (el, config) {
     defaults(config);
+    const plugins = { ...controllers,
+      ...modules,
+      ...blocks
+    };
+
+    for (const k in plugins) if (plugins[k].init) plugins[k].init(config);
+
     return new Container(utils.select(el), config);
   };
 
-  Presenta.version = version; // Presenta.utils = utils
-
+  Presenta.version = version;
   Presenta.colors = globals.colors;
   Presenta.fonts = globals.fonts;
   Presenta.transitions = globals.transitions;
   Presenta.layouts = globals.layouts;
   Presenta.colorvars = globals.colorvars;
-  Presenta.scenevars = globals.scenevars; // Presenta.Scene = Scene // ??
-
+  Presenta.scenevars = globals.scenevars;
   Presenta.addBlock = add;
   Presenta.addController = add$2;
   Presenta.addModule = add$1;
   Presenta.addGlob = utils.addGlob;
   Presenta.addProp = utils.addProp;
+  Presenta.preloads = utils.preloads;
+  Presenta.addPreload = utils.addPreload;
 
   Presenta.use = plugin => {
     plugin.install(Presenta);

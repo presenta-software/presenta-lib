@@ -63,6 +63,9 @@ const Container = function (rootElement, projectConfig) {
     }
   }
 
+  /*
+    Init the router
+  */
   const router = new Router(child, projectConfig)
 
   router.on('nextIndex', evt => {

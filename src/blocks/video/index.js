@@ -2,6 +2,7 @@ import css from './style.css'
 import u from '../../utils.js'
 
 u.addProp(['videoSize', 'videoPosition'])
+u.addPreload({ type: 'video', field: 'url', as: 'video' })
 
 const video = function (el, config, rootElement, projectConfig) {
   const previewMode = projectConfig.mode === 'preview'

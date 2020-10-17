@@ -2,6 +2,7 @@ import css from './style.css'
 import u from '../../utils.js'
 
 u.addProp(['imagePadding', 'imageBorder', 'imageShadow', 'imageSize', 'imagePosition'])
+u.addPreload({ type: 'image', field: 'url', as: 'image' })
 
 const image = function (el, config) {
   const url = config.url

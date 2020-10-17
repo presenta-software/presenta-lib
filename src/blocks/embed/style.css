@@ -1,7 +1,6 @@
 :root{
     --embedPadding: 0;
     --embedBackcolor: none;
-
     --embedPosterSize:cover;
     --embedPosterPosition:center;
 }

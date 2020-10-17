@@ -8,9 +8,8 @@ import utils from './utils.js'
 import defaults from './utils/defaults.js'
 
 import { add as addBlock } from './blocks/types.js'
-import { add as addController } from './router/types.js'
+import { add as addController } from './controllers/types.js'
 import { add as addModule } from './modules/types.js'
-import { add as addClassType } from './utils/globs.js'
 
 const Presenta = function (el, config) {
   defaults(config)
@@ -30,7 +29,8 @@ Presenta.Scene = Scene
 Presenta.addBlock = addBlock
 Presenta.addController = addController
 Presenta.addModule = addModule
-Presenta.addClassType = addClassType
+Presenta.addGlob = utils.addGlob
+Presenta.addProp = utils.addProp
 
 Presenta.use = plugin => {
   plugin.install(Presenta)

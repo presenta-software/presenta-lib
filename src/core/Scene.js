@@ -53,7 +53,7 @@ const Scene = function (sceneConfig, projectConfig, rootElement) {
   </div>`)
 
   u.globs(child, sceneConfig)
-  u.props(child, sceneConfig.props)
+  u.props(child, sceneConfig)
   this.el = child
 
   /*

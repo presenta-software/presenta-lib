@@ -3,23 +3,23 @@
   --sceneBackColor: none;
 }
 
-.scenevar__a {
+.sceneVar__a {
   --scenePadding: 0.5rem;
   --sceneBackColor: var(--forecolor);
 }
-.scenevar__b {
+.sceneVar__b {
   --scenePadding: 2rem;
   --sceneBackColor: var(--forecolor);
 }
-.scenevar__c {
+.sceneVar__c {
   --scenePadding: 3.5rem;
   --sceneBackColor: var(--forecolor);
 }
-.scenevar__d {
+.sceneVar__d {
   --scenePadding: 0 4rem 4rem 0;
   --sceneBackColor: var(--forecolor);
 }
-.scenevar__e {
+.sceneVar__e {
   --scenePadding: 4rem 0rem 4rem 0rem;
   --sceneBackColor: var(--forecolor);
 }

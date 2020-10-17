@@ -1,11 +1,10 @@
-:root{
-    
+:root{    
     --solidOpacity: 1;
     --solidBlend: none;
+    --solidColor: var(--accentcolor);
 }
 
 .solid{
-    --solidColor: var(--accentcolor);
     width: 100%;
     height: 100%;
     display: flex;

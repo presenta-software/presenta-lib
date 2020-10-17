@@ -1,6 +1,8 @@
 import css from './style.css'
 import u from '../../utils.js'
 
+u.addProp(['imagePadding', 'imageBorder', 'imageShadow', 'imageSize', 'imagePosition'])
+
 const image = function (el, config) {
   const url = config.url
 

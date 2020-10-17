@@ -19,7 +19,7 @@ const Block = function (blocksElement, blockConfig, rootElement, projectConfig) 
     <div class="frontDecoration ${css.fdecoration}"></div>
   </div>`)
   u.globs(child, blockConfig)
-  u.props(child, blockConfig.props)
+  u.props(child, blockConfig)
   this.el = child
 
   const blockContainer = child.querySelector('.blockContainer')

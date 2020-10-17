@@ -1,11 +1,11 @@
 :root{
-  --textsize:1.5rem;
-  --textpadding: 2rem;
-  --textalign: center;
+  --textPadding: 2rem;
+  --textAlign: center;
 }
 
 
 .text{
+    --textsize:1rem;
     width: 100%;
     height: 100%;
     position: relative;
@@ -28,7 +28,7 @@
 
 .textbox{
     padding: var(--textboxpadding);
-    text-align: var(--textalign);
+    text-align: var(--textAlign);
     /*overflow: hidden; */ /* removed for shadow, maybe neccessary */
     font-size: var(--textsize);
     color: var(--textboxcolor);
@@ -40,7 +40,7 @@
 
 .itext{
     border: var(--textboxborder) solid var(--accentcolor);
-    padding: var(--textpadding);
+    padding: var(--textPadding);
     border-radius: var(--textboxradius);
     box-shadow: var(--textboxshadow);
     background-color: var(--textboxbackcolor);
@@ -87,6 +87,21 @@
   margin: 0;
   line-height: inherit;
   border: inherit;
+}
+
+.itext h1 strong,
+.itext h2 strong,
+.itext h3 strong,
+.itext h4 strong,
+.itext h5 strong,
+.itext h6 strong,
+.itext h1 b,
+.itext h2 b,
+.itext h3 b,
+.itext h4 b,
+.itext h5 b,
+.itext h6 b {
+  color: var(--textaccentcolor);
 }
 
 .itext ul,
@@ -200,8 +215,8 @@
 
 
 .textVar__a{
-  --textpadding: 2rem;
-  --textalign: center;
+  --textPadding: 2rem;
+  --textAlign: center;
 }
 
 .textVar__a .itext ul,
@@ -215,7 +230,7 @@
 }
 
 .textVar__b{
-  --textalign: left;
+  --textAlign: left;
 }
 
 .textVar__b .pretext{
@@ -224,8 +239,8 @@
 }
 
 .textVar__c{
-  --textpadding: 2rem;
-  --textalign: right;
+  --textPadding: 2rem;
+  --textAlign: right;
 }
 
 .textVar__c .itext ul,
@@ -239,13 +254,24 @@
 }
 
 .textVar__d{
-  --textpadding: 2rem;
-  --textalign: left;
+  --textPadding: 2rem;
+  --textAlign: left;
 }
 
 .textVar__d .pretext{
   align-items: flex-end;
   justify-content: flex-start;
+}
+
+
+.textVar__e{
+  --textPadding: 2rem;
+  --textAlign: center;
+}
+
+.textVar__e .pretext{
+  align-items: flex-end;
+  justify-content: center;
 }
 
 

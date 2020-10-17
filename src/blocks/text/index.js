@@ -1,6 +1,8 @@
 import css from './style.css'
 import u from '../../utils.js'
 
+u.addGlob('textvar')
+
 const text = function (el, config) {
   const html = config.text || ''
 
@@ -9,7 +11,8 @@ const text = function (el, config) {
     a: 3,
     b: 1,
     c: 2,
-    d: 1.5
+    d: 1.5,
+    e: 0.8
   }
   let style = ''
   if (config.textStyle) {
@@ -17,14 +20,9 @@ const text = function (el, config) {
     defsize = styleSize[config.textStyle]
   }
 
-  let tvar = ''
-  if (config.textVar) {
-    tvar = css['textVar__' + config.textVar]
-  }
-
   let fsize = config.scale || defsize
 
-  const child = u.div(`<div class="c ${css.text} ${style} ${tvar}">
+  const child = u.div(`<div class="c ${css.text} ${style}">
     <div class="${css.inner}">
       <div class="pretext ${css.pretext}">
         <div class="${css.textbox}">

@@ -2,17 +2,21 @@ import './globals.css'
 import css from './style.css'
 import u from '../../utils.js'
 
+/*
+{
+  type: 'solid',
+  solidVar: 'a',
+  solidColor:'red',
+  solidOpacity: 1,
+  solidBlend: 'multiply'
+}
+*/
+
+u.addGlob('solidVar')
+u.addProp(['solidColor', 'solidOpacity', 'solidColor'])
+
 const solid = function (el, config) {
-  if (config.color) el.style.setProperty('--solidColor', config.color)
-  if (config.opacity) el.style.setProperty('--solidOpacity', config.opacity)
-  if (config.blend) el.style.setProperty('--solidBlend', config.blend)
-
-  var cClass = ''
-  if (config.solidvar) {
-    cClass = 'solidvar__' + config.solidvar
-  }
-
-  const child = u.div(`<div class="${css.solid} ${cClass}"></div>`)
+  const child = u.div(`<div class="${css.solid}"></div>`)
 
   this.beforeDestroy = () => {
   }

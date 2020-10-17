@@ -1,4 +1,12 @@
-const globprop = ['transition', 'colors', 'fonts', 'layout', 'colorvar', 'blockvar', 'scenevar']
+const globprop = [
+  'transition',
+  'colors',
+  'fonts',
+  'layout',
+  'colorVar',
+  'blockVar',
+  'sceneVar'
+]
 
 const globs = (wrapper, config) => {
   globprop.forEach(p => {
@@ -9,8 +17,8 @@ const globs = (wrapper, config) => {
   })
 }
 
-const add = clsType => {
+const addGlob = clsType => {
   globprop.push(clsType)
 }
 
-export { globs, add }
+export { globs, addGlob }

@@ -1,7 +1,7 @@
 import u from '../utils.js'
 import css from './css/container.css'
 import { Scene } from './Scene.js'
-import { Router } from '../router/Router.js'
+import { Router } from './Router.js'
 
 const Container = function (rootElement, projectConfig) {
   this.config = projectConfig
@@ -41,7 +41,7 @@ const Container = function (rootElement, projectConfig) {
   const child = u.div(`<div class="${css.mainwrapper}"></div>`)
   child.setAttribute('tabindex', '0')
   u.globs(child, projectConfig)
-  u.props(child, projectConfig.props)
+  u.props(child, projectConfig)
   rootElement.appendChild(child)
 
   const cont = u.div(`<div class="a ${css.container}"></div>`)

@@ -1,6 +1,8 @@
 import css from './style.css'
 import u from '../../utils.js'
 
+u.addProp(['embedPadding', 'embedBackcolor', 'embedPosterSize', 'embedPosterPosition'])
+
 const iframePrimaryDomain = str => {
   if (!str) return ''
   const reg = new RegExp('src="(.*)', 'gim')

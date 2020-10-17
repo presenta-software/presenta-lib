@@ -1,0 +1,55 @@
+.textVar__a {
+  --textPadding: 0rem;
+  --textAlign: center;
+  --textListAlign: center;
+  --textFlexAlign: center;
+  --textFlexJustify: center;
+}
+
+
+.textVar__b {
+  --textPadding: 3rem;
+  --textAlign: left;
+  --textListAlign: left;
+  --textFlexAlign: flex-start;
+  --textFlexJustify: flex-start;
+}
+
+
+.textVar__c {
+  --textPadding: 2rem;
+  --textAlign: right;
+  --textListAlign: right;
+  --textFlexAlign: flex-start;
+  --textFlexJustify: flex-end;
+}
+
+
+.textVar__d {
+  --textPadding: 2rem;
+  --textAlign: left;
+  --textListAlign: left;
+  --textFlexAlign: flex-end;
+  --textFlexJustify: flex-start;
+}
+
+
+.textVar__e {
+  --textPadding: 2rem;
+  --textAlign: center;
+  --textListAlign: left;
+  --textFlexAlign: flex-end;
+  --textFlexJustify: center;
+}
+
+
+
+
+.textStyle__a {
+  --textboxpadding: 0;
+  --textboxbackcolor: var(--forecolor);
+  --textboxradius: 0;
+  --textboxborder: 0;
+  --textboxshadow: 0 0 0 var(--accentcolor);
+  --textboxcolor: var(--backcolor);
+}

@@ -59,13 +59,18 @@ const Scene = function (sceneConfig, projectConfig, rootElement) {
   /*
     Init modules if any
   */
+  const afterModules = []
   if (sceneConfig.modules) {
     for (const k in sceneConfig.modules) {
       const modConfig = sceneConfig.modules[k]
       const Mod = modules[k]
       if (!Mod) console.log(`Module "${k}" not found. Maybe you forgot to include it.`)
-      if (modConfig && Mod) {
-        const mod = new Mod(child.querySelector(`.${css.content}`), modConfig, sceneConfig, projectConfig)
+      if (Mod) {
+        if (modConfig && Mod.initBefore) {
+          new Mod(child.querySelector(`.${css.content}`), modConfig, sceneConfig, projectConfig)
+        } else {
+          afterModules.push([Mod, child.querySelector(`.${css.content}`), modConfig])
+        }
       }
     }
   }
@@ -79,6 +84,13 @@ const Scene = function (sceneConfig, projectConfig, rootElement) {
     const blocksContainer = child.querySelector('.blocksContainer')
     const block = new Block(blocksContainer, blockConfig, rootElement, projectConfig)
     blocks.push(block)
+  })
+
+  /*
+    Init after modules
+  */
+  afterModules.forEach(mod => {
+    new mod[0](mod[1], mod[2], sceneConfig, projectConfig)
   })
 
   /*

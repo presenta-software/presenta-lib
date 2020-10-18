@@ -1,11 +1,11 @@
-// https://lib.presenta.cc v0.0.37 Copyright 2020 Fabio Franchino
+// https://lib.presenta.cc v0.0.38 Copyright 2020 Fabio Franchino
 (function (global, factory) {
   typeof exports === 'object' && typeof module !== 'undefined' ? module.exports = factory() :
   typeof define === 'function' && define.amd ? define(factory) :
   (global = typeof globalThis !== 'undefined' ? globalThis : global || self, global.Presenta = factory());
 }(this, (function () { 'use strict';
 
-  var version = "0.0.37";
+  var version = "0.0.38";
 
   function styleInject(css, ref) {
     if ( ref === void 0 ) ref = {};
@@ -266,7 +266,7 @@
     el.appendChild(child);
   };
 
-  var css_248z$t = ".textVar__a{--textPadding:0rem;--textAlign:center;--textListAlign:center;--textFlexAlign:center;--textFlexJustify:center;--textSize:2.5rem}.textVar__b{--textAlign:left;--textListAlign:left;--textFlexJustify:flex-start;--textSize:1rem}.textVar__b,.textVar__c{--textPadding:2rem;--textFlexAlign:flex-start}.textVar__c{--textAlign:right;--textListAlign:right;--textFlexJustify:flex-end;--textSize:2rem}.textVar__d{--textAlign:left;--textListAlign:left;--textFlexJustify:flex-start;--textSize:1.5rem}.textVar__d,.textVar__e{--textPadding:2rem;--textFlexAlign:flex-end}.textVar__e{--textAlign:center;--textListAlign:center;--textFlexJustify:center;--textSize:0.8rem}.textStyle__a{--textboxpadding:0;--textboxbackcolor:var(--colorFore);--textboxradius:0;--textboxborder:0;--textboxshadow:0 0 0 var(--colorAccent);--textboxcolor:var(--colorBack)}";
+  var css_248z$t = ".textVar__title{--textPadding:0rem;--textAlign:center;--textListAlign:center;--textFlexAlign:center;--textFlexJustify:center;--textSize:2.5rem}.textVar__text{--textAlign:left;--textListAlign:left;--textFlexJustify:flex-start;--textSize:1rem}.textVar__section,.textVar__text{--textPadding:2rem;--textFlexAlign:flex-start}.textVar__section{--textAlign:right;--textListAlign:right;--textFlexJustify:flex-end;--textSize:2rem}.textVar__mention{--textAlign:left;--textListAlign:left;--textFlexJustify:flex-start;--textSize:1.5rem}.textVar__mention,.textVar__suggest{--textPadding:2rem;--textFlexAlign:flex-end}.textVar__suggest{--textAlign:center;--textListAlign:center;--textFlexJustify:center;--textSize:0.8rem}.textStyle__a{--textboxpadding:0;--textboxbackcolor:var(--colorFore);--textboxradius:0;--textboxborder:0;--textboxshadow:0 0 0 var(--colorAccent);--textboxcolor:var(--colorBack)}";
   styleInject(css_248z$t);
 
   var css_248z$u = ":root{--textPadding:0;--textAlign:center;--textListAlign:left;--textFlexAlign:center;--textFlexJustify:center;--textSize:1rem}.style_text__3T1cl{color:var(--colorFore)}.style_inner__11UJC,.style_text__3T1cl{width:100%;height:100%;position:relative}.style_pretext__cLjqD{display:flex;width:100%;height:100%;align-items:var(--textFlexAlign);justify-content:var(--textFlexJustify)}.style_textbox__1Vb-V{padding:var(--textboxpadding);text-align:var(--textAlign);font-size:var(--textSize);color:var(--textboxcolor);--backmark:var(--colorAccent);--foremark:var(--colorBack);--textaccentcolor:var(--colorAccent);font-family:var(--fontText)}.style_itext__jz90o{border:var(--textboxborder) solid var(--colorAccent);padding:var(--textPadding);border-radius:var(--textboxradius);box-shadow:var(--textboxshadow);background-color:var(--textboxbackcolor)}.style_itext__jz90o img{object-fit:contain;height:4em;vertical-align:middle}.style_itext__jz90o mark{background-color:var(--backmark);color:var(--foremark);padding:0 .5rem}.style_itext__jz90o high{color:var(--textaccentcolor)}.style_itext__jz90o bord{border:8px solid var(--backmark);padding:0 .5rem}.style_itext__jz90o a{color:var(--textaccentcolor)}.style_itext__jz90o blockquote{font-size:2em;font-weight:400;font-style:italic}.style_itext__jz90o blockquote,.style_itext__jz90o h1,.style_itext__jz90o h2,.style_itext__jz90o h3,.style_itext__jz90o h4,.style_itext__jz90o h5,.style_itext__jz90o h6,.style_itext__jz90o p,.style_itext__jz90o ul{margin:0;line-height:inherit;border:inherit}.style_itext__jz90o h1 b,.style_itext__jz90o h1 strong,.style_itext__jz90o h2 b,.style_itext__jz90o h2 strong,.style_itext__jz90o h3 b,.style_itext__jz90o h3 strong,.style_itext__jz90o h4 b,.style_itext__jz90o h4 strong,.style_itext__jz90o h5 b,.style_itext__jz90o h5 strong,.style_itext__jz90o h6 b,.style_itext__jz90o h6 strong{color:var(--textaccentcolor)}.style_itext__jz90o ol,.style_itext__jz90o ul{font-size:1.5em;line-height:1.1em;text-align:var(--textListAlign);margin:0;list-style-type:none;counter-reset:li;padding:.5rem 0}.style_itext__jz90o li{list-style-position:inside;margin-bottom:2px;padding:.25em .25em .25em .8em}.style_itext__jz90o ul li:before{content:\"\\2013\";display:inline-block;width:.8em;margin-left:-.8em}.style_itext__jz90o ol li:before{counter-increment:li;content:\".\" counter(li);display:inline-block;width:1.1em;margin-left:-1.3em;margin-right:.2em;text-align:right;direction:rtl}.style_itext__jz90o li p{display:inline}.style_itext__jz90o code,.style_itext__jz90o pre{text-align:left}.style_itext__jz90o h1,.style_itext__jz90o h2,.style_itext__jz90o h3,.style_itext__jz90o h4,.style_itext__jz90o h5,.style_itext__jz90o h6{font-family:var(--fontHeading);padding:.5rem 0}.style_itext__jz90o h1{font-size:2em}.style_itext__jz90o h2{font-size:1.5em}.style_itext__jz90o h3{font-size:1.17em}.style_itext__jz90o h4{font-size:1em}.style_itext__jz90o h5{font-size:.83em}.style_itext__jz90o h6{font-size:.67em}.style_itext__jz90o p{padding:.5rem 0}.style_itext__jz90o hr{border:1px solid var(--colorFore);margin:.5rem 0}.style_itext__jz90o h1:first-child,.style_itext__jz90o h1:last-child,.style_itext__jz90o h2:first-child,.style_itext__jz90o h2:last-child,.style_itext__jz90o h3:first-child,.style_itext__jz90o h3:last-child{padding:0}.style_itext__jz90o table{width:100%}.style_itext__jz90o tr{padding:0}.style_itext__jz90o td,.style_itext__jz90o th{padding:.5rem;border-bottom:1px solid var(--colorFore)}";
@@ -274,17 +274,17 @@
   styleInject(css_248z$u);
 
   utils.addGlob(['textVar', 'textStyle']);
-  utils.addProp(['textPadding', 'textAlign']);
+  utils.addProp(['textPadding', 'textAlign']); // ['title', 'text', 'section', 'mention', 'suggest']
 
   const text = function (el, config) {
     const html = config.text || '';
     let defsize = 1;
     const varSize = {
-      a: 2.5,
-      b: 1,
-      c: 2,
-      d: 1.5,
-      e: 0.8
+      title: 2.5,
+      text: 1,
+      section: 2,
+      mention: 1.5,
+      suggest: 0.8
     };
     if (config.textVar) defsize = varSize[config.textVar];
     let fsize = config.scale || defsize;
@@ -679,14 +679,20 @@
       Init modules if any
     */
 
+    const afterModules = [];
+
     if (sceneConfig.modules) {
       for (const k in sceneConfig.modules) {
         const modConfig = sceneConfig.modules[k];
         const Mod = modules[k];
         if (!Mod) console.log(`Module "${k}" not found. Maybe you forgot to include it.`);
 
-        if (modConfig && Mod) {
-          const mod = new Mod(child.querySelector(`.${css$1.content}`), modConfig, sceneConfig, projectConfig);
+        if (Mod) {
+          if (modConfig && Mod.initBefore) {
+            new Mod(child.querySelector(`.${css$1.content}`), modConfig, sceneConfig, projectConfig);
+          } else {
+            afterModules.push([Mod, child.querySelector(`.${css$1.content}`), modConfig]);
+          }
         }
       }
     }
@@ -701,6 +707,13 @@
       const blocksContainer = child.querySelector('.blocksContainer');
       const block = new Block(blocksContainer, blockConfig, rootElement, projectConfig);
       blocks.push(block);
+    });
+    /*
+      Init after modules
+    */
+
+    afterModules.forEach(mod => {
+      new mod[0](mod[1], mod[2], sceneConfig, projectConfig);
     });
     /*
       Run the entering transition

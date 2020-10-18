@@ -1,4 +1,4 @@
-.textVar__a {
+.textVar__title {
   --textPadding: 0rem;
   --textAlign: center;
   --textListAlign: center;
@@ -9,7 +9,7 @@
 
 
 
-.textVar__b {
+.textVar__text {
   --textPadding: 2rem;
   --textAlign: left;
   --textListAlign: left;
@@ -19,7 +19,7 @@
 }
 
 
-.textVar__c {
+.textVar__section {
   --textPadding: 2rem;
   --textAlign: right;
   --textListAlign: right;
@@ -29,7 +29,7 @@
 }
 
 
-.textVar__d {
+.textVar__mention {
   --textPadding: 2rem;
   --textAlign: left;
   --textListAlign: left;
@@ -39,7 +39,7 @@
 }
 
 
-.textVar__e {
+.textVar__suggest {
   --textPadding: 2rem;
   --textAlign: center;
   --textListAlign: center;

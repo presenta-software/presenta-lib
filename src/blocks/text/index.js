@@ -5,16 +5,18 @@ import u from '../../utils.js'
 u.addGlob(['textVar', 'textStyle'])
 u.addProp(['textPadding', 'textAlign'])
 
+// ['title', 'text', 'section', 'mention', 'suggest']
+
 const text = function (el, config) {
   const html = config.text || ''
 
   let defsize = 1
   const varSize = {
-    a: 2.5,
-    b: 1,
-    c: 2,
-    d: 1.5,
-    e: 0.8
+    title: 2.5,
+    text: 1,
+    section: 2,
+    mention: 1.5,
+    suggest: 0.8
   }
   if (config.textVar) defsize = varSize[config.textVar]
   let fsize = config.scale || defsize

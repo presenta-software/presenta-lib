@@ -1,15 +1,15 @@
 import './default.css'
-import './a.css'
-import './b.css'
-import './c.css'
-import './d.css'
-import './e.css'
-import './f.css'
-import './g.css'
-import './h.css'
-import './i.css'
+import './adele.css'
+import './belle.css'
+import './cati.css'
+import './dania.css'
+import './elane.css'
+import './flo.css'
+import './gina.css'
+import './hedy.css'
+import './irma.css'
 
-const colors = ['a', 'b', 'c', 'd', 'e', 'f', 'g', 'h', 'i']
+const colors = ['adele', 'belle', 'cati', 'dania', 'elane', 'flo', 'gina', 'hedy', 'irma']
 const colorvars = ['a', 'b', 'c']
 
 export { colors, colorvars }

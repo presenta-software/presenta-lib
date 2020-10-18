@@ -1,20 +1,20 @@
-.colors__d,
-.colors__d .colorVar__a,
-.colors__d.colorVar__a {
+.colors__dania,
+.colors__dania .colorVar__a,
+.colors__dania.colorVar__a {
   --colorBack: #D0CAA9;
   --colorFore: #30302F;
   --colorAccent: #EC4A25;
   --colorAlt: #fff;
 }
-.colors__d .colorVar__b,
-.colors__d.colorVar__b {
+.colors__dania .colorVar__b,
+.colors__dania.colorVar__b {
   --colorBack: #30302F;
   --colorFore: #D0CAA9;
   --colorAccent: #EC4A25;
   --colorAlt: #fff;
 }
-.colors__d .colorVar__c,
-.colors__d.colorVar__c {
+.colors__dania .colorVar__c,
+.colors__dania.colorVar__c {
   --colorBack: #EC4A25;
   --colorFore: #fff;
   --colorAccent: #D0CAA9;

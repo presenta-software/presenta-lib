@@ -1,0 +1,12 @@
+
+.transition__fadeIn{
+  .p-scene-enter-transition {
+    transition: opacity .75s cubic-bezier(0.2, 0.8, 0.05, 0.95);
+  }
+  .p-scene-enter-start {
+    opacity: 0;
+  }
+  .p-scene-enter-end {
+    opacity: 1;
+  }
+}

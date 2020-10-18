@@ -1,20 +1,20 @@
-.colors__e,
-.colors__e .colorVar__a,
-.colors__e.colorVar__a {
+.colors__elane,
+.colors__elane .colorVar__a,
+.colors__elane.colorVar__a {
   --colorBack: #3B7BC3;
   --colorFore: #F9FB45;
   --colorAccent: #fff;
   --colorAlt: #000;
 }
-.colors__e .colorVar__b,
-.colors__e.colorVar__b {
+.colors__elane .colorVar__b,
+.colors__elane.colorVar__b {
   --colorBack: #000;
   --colorFore: #F9FB45;
   --colorAccent: #fff;
   --colorAlt: #3B7BC3;
 }
-.colors__e .colorVar__c,
-.colors__e.colorVar__c {
+.colors__elane .colorVar__c,
+.colors__elane.colorVar__c {
   --colorBack: #F9FB45;
   --colorFore: #000;
   --colorAccent: #3B7BC3;

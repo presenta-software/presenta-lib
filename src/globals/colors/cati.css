@@ -1,20 +1,20 @@
-.colors__c,
-.colors__c .colorVar__a,
-.colors__c.colorVar__a {
+.colors__cati,
+.colors__cati .colorVar__a,
+.colors__cati.colorVar__a {
   --colorBack: #E5FF9D;
   --colorFore: #1C003F;
   --colorAccent: #69567C;
   --colorAlt: #fff;
 }
-.colors__c .colorVar__b,
-.colors__c.colorVar__b {
+.colors__cati .colorVar__b,
+.colors__cati.colorVar__b {
   --colorBack: #1C003F;
   --colorFore: #fff;
   --colorAccent: #E5FF9D;
   --colorAlt: #69567C;
 }
-.colors__c .colorVar__c,
-.colors__c.colorVar__c {
+.colors__cati .colorVar__c,
+.colors__cati.colorVar__c {
   --colorBack: #69567C;
   --colorFore: #E5FF9D;
   --colorAccent: #fff;

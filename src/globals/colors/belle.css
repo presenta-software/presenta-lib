@@ -1,20 +1,20 @@
-.colors__b,
-.colors__b .colorVar__a,
-.colors__b.colorVar__a {
+.colors__belle,
+.colors__belle .colorVar__a,
+.colors__belle.colorVar__a {
   --colorBack: #a9dbd5;
   --colorFore: #000;
   --colorAccent: #fff;
   --colorAlt: #38999d;
 }
-.colors__b .colorVar__b,
-.colors__b.colorVar__b {
+.colors__belle .colorVar__b,
+.colors__belle.colorVar__b {
   --colorBack: #000;
   --colorFore: #a9dbd5;
   --colorAccent: #fff;
   --colorAlt: #38999d;
 }
-.colors__b .colorVar__c,
-.colors__b.colorVar__c {
+.colors__belle .colorVar__c,
+.colors__belle.colorVar__c {
   --colorBack: #fff;
   --colorFore: #38999d;
   --colorAccent: #a9dbd5;

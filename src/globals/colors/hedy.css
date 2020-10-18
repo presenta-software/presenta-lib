@@ -1,20 +1,20 @@
-.colors__h,
-.colors__h .colorVar__a,
-.colors__h.colorVar__a {
+.colors__hedy,
+.colors__hedy .colorVar__a,
+.colors__hedy.colorVar__a {
   --colorBack: #f9ffb1;
   --colorFore: #072020;
   --colorAccent: #ec4225;
   --colorAlt: #9eb0bb;
 }
-.colors__h .colorVar__b,
-.colors__h.colorVar__b {
+.colors__hedy .colorVar__b,
+.colors__hedy.colorVar__b {
   --colorBack: #072020;
   --colorFore: #f9ffb1;
   --colorAccent: #ec4225;
   --colorAlt: #9eb0bb;
 }
-.colors__h .colorVar__c,
-.colors__h.colorVar__c {
+.colors__hedy .colorVar__c,
+.colors__hedy.colorVar__c {
   --colorBack: #ec4225;
   --colorFore: #f9ffb1;
   --colorAccent: #c5dbe9;

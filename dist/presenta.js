@@ -1,11 +1,11 @@
-// https://lib.presenta.cc v0.0.38 Copyright 2020 Fabio Franchino
+// https://lib.presenta.cc v0.0.39 Copyright 2020 Fabio Franchino
 (function (global, factory) {
   typeof exports === 'object' && typeof module !== 'undefined' ? module.exports = factory() :
   typeof define === 'function' && define.amd ? define(factory) :
   (global = typeof globalThis !== 'undefined' ? globalThis : global || self, global.Presenta = factory());
 }(this, (function () { 'use strict';
 
-  var version = "0.0.38";
+  var version = "0.0.39";
 
   function styleInject(css, ref) {
     if ( ref === void 0 ) ref = {};
@@ -40,34 +40,34 @@
   var css_248z$1 = ".colorVar__a,:root{--colorBack:#fff;--colorFore:#000;--colorAccent:#444;--colorAlt:#ddd}.colorVar__b{--colorBack:#000;--colorAccent:#999}.colorVar__b,.colorVar__c{--colorFore:#fff;--colorAlt:#ccc}.colorVar__c{--colorBack:#444;--colorAccent:#fff}";
   styleInject(css_248z$1);
 
-  var css_248z$2 = ".colors__a,.colors__a.colorVar__a,.colors__a .colorVar__a{--colorBack:#000;--colorFore:#fff;--colorAccent:#eeff2e;--colorAlt:#de1318}.colors__a.colorVar__b,.colors__a .colorVar__b{--colorBack:#eeff2e;--colorFore:#000;--colorAccent:#de1318;--colorAlt:#fff}.colors__a.colorVar__c,.colors__a .colorVar__c{--colorBack:#de1318;--colorFore:#eeff2e;--colorAccent:#fff;--colorAlt:#000}";
+  var css_248z$2 = ".colors__adele,.colors__adele.colorVar__a,.colors__adele .colorVar__a{--colorBack:#000;--colorFore:#fff;--colorAccent:#eeff2e;--colorAlt:#de1318}.colors__adele.colorVar__b,.colors__adele .colorVar__b{--colorBack:#eeff2e;--colorFore:#000;--colorAccent:#de1318;--colorAlt:#fff}.colors__adele.colorVar__c,.colors__adele .colorVar__c{--colorBack:#de1318;--colorFore:#eeff2e;--colorAccent:#fff;--colorAlt:#000}";
   styleInject(css_248z$2);
 
-  var css_248z$3 = ".colors__b,.colors__b.colorVar__a,.colors__b .colorVar__a{--colorBack:#a9dbd5;--colorFore:#000;--colorAccent:#fff;--colorAlt:#38999d}.colors__b.colorVar__b,.colors__b .colorVar__b{--colorBack:#000;--colorFore:#a9dbd5;--colorAccent:#fff;--colorAlt:#38999d}.colors__b.colorVar__c,.colors__b .colorVar__c{--colorBack:#fff;--colorFore:#38999d;--colorAccent:#a9dbd5;--colorAlt:#000}";
+  var css_248z$3 = ".colors__belle,.colors__belle.colorVar__a,.colors__belle .colorVar__a{--colorBack:#a9dbd5;--colorFore:#000;--colorAccent:#fff;--colorAlt:#38999d}.colors__belle.colorVar__b,.colors__belle .colorVar__b{--colorBack:#000;--colorFore:#a9dbd5;--colorAccent:#fff;--colorAlt:#38999d}.colors__belle.colorVar__c,.colors__belle .colorVar__c{--colorBack:#fff;--colorFore:#38999d;--colorAccent:#a9dbd5;--colorAlt:#000}";
   styleInject(css_248z$3);
 
-  var css_248z$4 = ".colors__c,.colors__c.colorVar__a,.colors__c .colorVar__a{--colorBack:#e5ff9d;--colorFore:#1c003f;--colorAccent:#69567c;--colorAlt:#fff}.colors__c.colorVar__b,.colors__c .colorVar__b{--colorBack:#1c003f;--colorFore:#fff;--colorAccent:#e5ff9d;--colorAlt:#69567c}.colors__c.colorVar__c,.colors__c .colorVar__c{--colorBack:#69567c;--colorFore:#e5ff9d;--colorAccent:#fff;--colorAlt:#1c003f}";
+  var css_248z$4 = ".colors__cati,.colors__cati.colorVar__a,.colors__cati .colorVar__a{--colorBack:#e5ff9d;--colorFore:#1c003f;--colorAccent:#69567c;--colorAlt:#fff}.colors__cati.colorVar__b,.colors__cati .colorVar__b{--colorBack:#1c003f;--colorFore:#fff;--colorAccent:#e5ff9d;--colorAlt:#69567c}.colors__cati.colorVar__c,.colors__cati .colorVar__c{--colorBack:#69567c;--colorFore:#e5ff9d;--colorAccent:#fff;--colorAlt:#1c003f}";
   styleInject(css_248z$4);
 
-  var css_248z$5 = ".colors__d,.colors__d.colorVar__a,.colors__d .colorVar__a{--colorBack:#d0caa9;--colorFore:#30302f;--colorAccent:#ec4a25;--colorAlt:#fff}.colors__d.colorVar__b,.colors__d .colorVar__b{--colorBack:#30302f;--colorFore:#d0caa9;--colorAccent:#ec4a25;--colorAlt:#fff}.colors__d.colorVar__c,.colors__d .colorVar__c{--colorBack:#ec4a25;--colorFore:#fff;--colorAccent:#d0caa9;--colorAlt:#30302f}";
+  var css_248z$5 = ".colors__dania,.colors__dania.colorVar__a,.colors__dania .colorVar__a{--colorBack:#d0caa9;--colorFore:#30302f;--colorAccent:#ec4a25;--colorAlt:#fff}.colors__dania.colorVar__b,.colors__dania .colorVar__b{--colorBack:#30302f;--colorFore:#d0caa9;--colorAccent:#ec4a25;--colorAlt:#fff}.colors__dania.colorVar__c,.colors__dania .colorVar__c{--colorBack:#ec4a25;--colorFore:#fff;--colorAccent:#d0caa9;--colorAlt:#30302f}";
   styleInject(css_248z$5);
 
-  var css_248z$6 = ".colors__e,.colors__e.colorVar__a,.colors__e .colorVar__a{--colorBack:#3b7bc3;--colorFore:#f9fb45;--colorAccent:#fff;--colorAlt:#000}.colors__e.colorVar__b,.colors__e .colorVar__b{--colorBack:#000;--colorFore:#f9fb45;--colorAccent:#fff;--colorAlt:#3b7bc3}.colors__e.colorVar__c,.colors__e .colorVar__c{--colorBack:#f9fb45;--colorFore:#000;--colorAccent:#3b7bc3;--colorAlt:#fff}";
+  var css_248z$6 = ".colors__elane,.colors__elane.colorVar__a,.colors__elane .colorVar__a{--colorBack:#3b7bc3;--colorFore:#f9fb45;--colorAccent:#fff;--colorAlt:#000}.colors__elane.colorVar__b,.colors__elane .colorVar__b{--colorBack:#000;--colorFore:#f9fb45;--colorAccent:#fff;--colorAlt:#3b7bc3}.colors__elane.colorVar__c,.colors__elane .colorVar__c{--colorBack:#f9fb45;--colorFore:#000;--colorAccent:#3b7bc3;--colorAlt:#fff}";
   styleInject(css_248z$6);
 
-  var css_248z$7 = ".colors__f,.colors__f.colorVar__a,.colors__f .colorVar__a{--colorBack:#ebded1;--colorFore:#0a47d1;--colorAccent:#fb4138;--colorAlt:#fff}.colors__f.colorVar__b,.colors__f .colorVar__b{--colorBack:#0a47d1;--colorFore:#ebded1;--colorAccent:#fff;--colorAlt:#fb4138}.colors__f.colorVar__c,.colors__f .colorVar__c{--colorBack:#fb4138;--colorFore:#fff;--colorAccent:#ebded1;--colorAlt:#0a47d1}";
+  var css_248z$7 = ".colors__flo,.colors__flo.colorVar__a,.colors__flo .colorVar__a{--colorBack:#ebded1;--colorFore:#0a47d1;--colorAccent:#fb4138;--colorAlt:#fff}.colors__flo.colorVar__b,.colors__flo .colorVar__b{--colorBack:#0a47d1;--colorFore:#ebded1;--colorAccent:#fff;--colorAlt:#fb4138}.colors__flo.colorVar__c,.colors__flo .colorVar__c{--colorBack:#fb4138;--colorFore:#fff;--colorAccent:#ebded1;--colorAlt:#0a47d1}";
   styleInject(css_248z$7);
 
-  var css_248z$8 = ".colors__g,.colors__g.colorVar__a,.colors__g .colorVar__a{--colorBack:#322067;--colorFore:#feb8ba;--colorAccent:#449eaf;--colorAlt:#fff}.colors__g.colorVar__b,.colors__g .colorVar__b{--colorBack:#feb8ba;--colorFore:#322067;--colorAccent:#fff;--colorAlt:#449eaf}.colors__g.colorVar__c,.colors__g .colorVar__c{--colorBack:#fff;--colorFore:#322067;--colorAccent:#449eaf;--colorAlt:#feb8ba}";
+  var css_248z$8 = ".colors__gina,.colors__gina.colorVar__a,.colors__gina .colorVar__a{--colorBack:#322067;--colorFore:#feb8ba;--colorAccent:#449eaf;--colorAlt:#fff}.colors__gina.colorVar__b,.colors__gina .colorVar__b{--colorBack:#feb8ba;--colorFore:#322067;--colorAccent:#fff;--colorAlt:#449eaf}.colors__gina.colorVar__c,.colors__gina .colorVar__c{--colorBack:#fff;--colorFore:#322067;--colorAccent:#449eaf;--colorAlt:#feb8ba}";
   styleInject(css_248z$8);
 
-  var css_248z$9 = ".colors__h,.colors__h.colorVar__a,.colors__h .colorVar__a{--colorBack:#f9ffb1;--colorFore:#072020;--colorAccent:#ec4225;--colorAlt:#9eb0bb}.colors__h.colorVar__b,.colors__h .colorVar__b{--colorBack:#072020;--colorFore:#f9ffb1;--colorAccent:#ec4225;--colorAlt:#9eb0bb}.colors__h.colorVar__c,.colors__h .colorVar__c{--colorBack:#ec4225;--colorFore:#f9ffb1;--colorAccent:#c5dbe9;--colorAlt:#072020}";
+  var css_248z$9 = ".colors__hedy,.colors__hedy.colorVar__a,.colors__hedy .colorVar__a{--colorBack:#f9ffb1;--colorFore:#072020;--colorAccent:#ec4225;--colorAlt:#9eb0bb}.colors__hedy.colorVar__b,.colors__hedy .colorVar__b{--colorBack:#072020;--colorFore:#f9ffb1;--colorAccent:#ec4225;--colorAlt:#9eb0bb}.colors__hedy.colorVar__c,.colors__hedy .colorVar__c{--colorBack:#ec4225;--colorFore:#f9ffb1;--colorAccent:#c5dbe9;--colorAlt:#072020}";
   styleInject(css_248z$9);
 
-  var css_248z$a = ".colors__i,.colors__i.colorVar__a,.colors__i .colorVar__a{--colorBack:#ffe600;--colorFore:#000;--colorAccent:#ff6400;--colorAlt:#fff}.colors__i.colorVar__b,.colors__i .colorVar__b{--colorBack:#000;--colorFore:#ffe600;--colorAccent:#fff;--colorAlt:#ff6400}.colors__i.colorVar__c,.colors__i .colorVar__c{--colorBack:#ff6400;--colorFore:#fff;--colorAccent:#ffe600;--colorAlt:#000}";
+  var css_248z$a = ".colors__irma,.colors__irma.colorVar__a,.colors__irma .colorVar__a{--colorBack:#ffe600;--colorFore:#000;--colorAccent:#ff6400;--colorAlt:#fff}.colors__irma.colorVar__b,.colors__irma .colorVar__b{--colorBack:#000;--colorFore:#ffe600;--colorAccent:#fff;--colorAlt:#ff6400}.colors__irma.colorVar__c,.colors__irma .colorVar__c{--colorBack:#ff6400;--colorFore:#fff;--colorAccent:#ffe600;--colorAlt:#000}";
   styleInject(css_248z$a);
 
-  const colors = ['a', 'b', 'c', 'd', 'e', 'f', 'g', 'h', 'i'];
+  const colors = ['adele', 'belle', 'cati', 'dania', 'elane', 'flo', 'gina', 'hedy', 'irma'];
   const colorvars = ['a', 'b', 'c'];
 
   var css_248z$b = ":root{--fontHeading:Georgia,\"Times New Roman\",Times,serif;--fontText:\"Trebuchet MS\",\"Lucida Sans Unicode\",\"Lucida Grande\",\"Lucida Sans\",Arial,sans-serif}";
@@ -96,16 +96,16 @@
 
   const fonts = ['a', 'b', 'c', 'd', 'e', 'f', 'g'];
 
-  var css_248z$j = ".transition__a .p-scene-enter-transition{transition:transform 1s cubic-bezier(1,0,0,1)}.transition__a .to-right.p-scene-enter-start{transform:translateX(100%)}.transition__a .to-right.p-scene-enter-end{transform:translateX(0)}.transition__a .to-left.p-scene-enter-start{transform:translateX(-100%)}.transition__a .to-left.p-scene-enter-end{transform:translateX(0)}.transition__a .p-scene-leave-transition{transition:transform 1s cubic-bezier(1,0,0,1)}.transition__a .to-right.p-scene-leave-start{transform:translateX(0)}.transition__a .to-right.p-scene-leave-end{transform:translateX(-100%)}.transition__a .to-left.p-scene-leave-start{transform:translateX(0)}.transition__a .to-left.p-scene-leave-end{transform:translateX(100%)}";
+  var css_248z$j = ".transition__fadeIn .p-scene-enter-transition{transition:opacity .75s cubic-bezier(.2,.8,.05,.95)}.transition__fadeIn .p-scene-enter-start{opacity:0}.transition__fadeIn .p-scene-enter-end{opacity:1}";
   styleInject(css_248z$j);
 
-  var css_248z$k = ".transition__b .p-scene-enter-transition{opacity:0}.transition__b .p-scene-enter-ended{opacity:1}.transition__b .p-scene-enter-transition .textContent>*{transition:opacity 1s ease-out,transform 1s cubic-bezier(.2,.8,.05,.95)}.transition__b .p-scene-enter-transition .textContent>:first-child{transition-delay:1.15s}.transition__b .p-scene-enter-transition .textContent>:nth-child(2){transition-delay:1.3s}.transition__b .p-scene-enter-transition .textContent>:nth-child(3){transition-delay:1.45s}.transition__b .p-scene-enter-transition .textContent>:nth-child(4){transition-delay:1.6s}.transition__b .p-scene-enter-transition .textContent>:nth-child(5){transition-delay:1.75s}.transition__b .p-scene-enter-transition .textContent>:nth-child(6){transition-delay:1.9s}.transition__b .p-scene-enter-transition .textContent>:nth-child(7){transition-delay:2.05s}.transition__b .p-scene-enter-transition .textContent>:nth-child(8){transition-delay:2.2s}.transition__b .p-scene-enter-transition .textContent>:nth-child(9){transition-delay:2.35s}.transition__b .p-scene-enter-transition .textContent>:nth-child(10){transition-delay:2.5s}.transition__b .p-scene-enter-transition .textContent>:nth-child(11){transition-delay:2.65s}.transition__b .p-scene-enter-transition .textContent>:nth-child(12){transition-delay:2.8s}.transition__b .p-scene-enter-transition .textContent>:nth-child(13){transition-delay:2.95s}.transition__b .p-scene-enter-transition .textContent>:nth-child(14){transition-delay:3.1s}.transition__b .p-scene-enter-transition .textContent>:nth-child(15){transition-delay:3.25s}.transition__b .p-scene-enter-transition .textContent>:nth-child(16){transition-delay:3.4s}.transition__b .p-scene-enter-transition .textContent>:nth-child(17){transition-delay:3.55s}.transition__b .p-scene-enter-transition .textContent>:nth-child(18){transition-delay:3.7s}.transition__b .p-scene-enter-transition .textContent>:nth-child(19){transition-delay:3.85s}.transition__b .p-scene-enter-transition .textContent>:nth-child(20){transition-delay:4s}.transition__b .p-scene-enter-transition .blockContainer>div{transition:background-color 1s cubic-bezier(1,0,0,1);transition-delay:1s}.transition__b .p-scene-enter-start .blockContainer>div{background-color:transparent}.transition__b .p-scene-enter-start .textContent>*{opacity:0;transform:translateY(30px)}.transition__b .p-scene-enter-end .textContent>*{opacity:1;transform:translateY(0)}.transition__b .p-scene-leave-transition .textContent>*{transition:opacity .75s cubic-bezier(.165,.84,.44,1),transform .75s cubic-bezier(.165,.84,.44,1)}.transition__b .p-scene-leave-transition .textContent>:nth-child(0){transition-delay:0s}.transition__b .p-scene-leave-transition .textContent>:first-child{transition-delay:.1s}.transition__b .p-scene-leave-transition .textContent>:nth-child(2){transition-delay:.2s}.transition__b .p-scene-leave-transition .textContent>:nth-child(3){transition-delay:.3s}.transition__b .p-scene-leave-transition .textContent>:nth-child(4){transition-delay:.4s}.transition__b .p-scene-leave-transition .textContent>:nth-child(5){transition-delay:.5s}.transition__b .p-scene-leave-transition .textContent>:nth-child(6){transition-delay:.6s}.transition__b .p-scene-leave-transition .textContent>:nth-child(7){transition-delay:.7s}.transition__b .p-scene-leave-transition .textContent>:nth-child(8){transition-delay:.8s}.transition__b .p-scene-leave-transition .textContent>:nth-child(9){transition-delay:.9s}.transition__b .p-scene-leave-transition .textContent>:nth-child(10){transition-delay:1s}.transition__b .p-scene-leave-transition .textContent>:nth-child(11){transition-delay:1.1s}.transition__b .p-scene-leave-transition .textContent>:nth-child(12){transition-delay:1.2s}.transition__b .p-scene-leave-transition .textContent>:nth-child(13){transition-delay:1.3s}.transition__b .p-scene-leave-transition .textContent>:nth-child(14){transition-delay:1.4s}.transition__b .p-scene-leave-transition .textContent>:nth-child(15){transition-delay:1.5s}.transition__b .p-scene-leave-transition .textContent>:nth-child(16){transition-delay:1.6s}.transition__b .p-scene-leave-transition .textContent>:nth-child(17){transition-delay:1.7s}.transition__b .p-scene-leave-transition .textContent>:nth-child(18){transition-delay:1.8s}.transition__b .p-scene-leave-transition .textContent>:nth-child(19){transition-delay:1.9s}.transition__b .p-scene-leave-transition .textContent>:nth-child(20){transition-delay:2s}.transition__b .p-scene-leave-start .textContent>*{opacity:1;transform:scale(1)}.transition__b .p-scene-leave-end .textContent>*{opacity:0;transform:scale(.85)}";
+  var css_248z$k = ".transition__horizontalSlide .p-scene-enter-transition{transition:transform 1s cubic-bezier(1,0,0,1)}.transition__horizontalSlide .to-right.p-scene-enter-start{transform:translateX(100%)}.transition__horizontalSlide .to-right.p-scene-enter-end{transform:translateX(0)}.transition__horizontalSlide .to-left.p-scene-enter-start{transform:translateX(-100%)}.transition__horizontalSlide .to-left.p-scene-enter-end{transform:translateX(0)}.transition__horizontalSlide .p-scene-leave-transition{transition:transform 1s cubic-bezier(1,0,0,1)}.transition__horizontalSlide .to-right.p-scene-leave-start{transform:translateX(0)}.transition__horizontalSlide .to-right.p-scene-leave-end{transform:translateX(-100%)}.transition__horizontalSlide .to-left.p-scene-leave-start{transform:translateX(0)}.transition__horizontalSlide .to-left.p-scene-leave-end{transform:translateX(100%)}";
   styleInject(css_248z$k);
 
-  var css_248z$l = ".transition__c .p-scene-enter-transition{transition:all .75s cubic-bezier(.2,.8,.05,.95)}.transition__c .p-scene-enter-start{transform:translateY(150%)}.transition__c .p-scene-enter-end{transform:translateY(0)}.transition__c .p-scene-leave-transition{transition:all .75s cubic-bezier(.2,.8,.05,.95)}.transition__c .p-scene-leave-start{transform:scale(1)}.transition__c .p-scene-leave-end{transform:scale(.5)}";
+  var css_248z$l = ".transition__slideUp .p-scene-enter-transition{transition:all .75s cubic-bezier(.2,.8,.05,.95)}.transition__slideUp .p-scene-enter-start{transform:translateY(150%)}.transition__slideUp .p-scene-enter-end{transform:translateY(0)}.transition__slideUp .p-scene-leave-transition{transition:all .75s cubic-bezier(.2,.8,.05,.95)}.transition__slideUp .p-scene-leave-start{transform:scale(1)}.transition__slideUp .p-scene-leave-end{transform:scale(.5)}";
   styleInject(css_248z$l);
 
-  const transitions = ['a', 'b', 'c'];
+  const transitions = ['fadeIn', 'horizontalSlide', 'slideUp'];
 
   var css_248z$m = ":root{--scenePadding:0;--sceneBackColor:none}.sceneVar__a{--scenePadding:0.5rem}.sceneVar__a,.sceneVar__b{--sceneBackColor:var(--colorFore)}.sceneVar__b{--scenePadding:2rem}.sceneVar__c{--scenePadding:3.5rem}.sceneVar__c,.sceneVar__d{--sceneBackColor:var(--colorFore)}.sceneVar__d{--scenePadding:0 4rem 4rem 0}.sceneVar__e{--scenePadding:4rem 0rem 4rem 0rem;--sceneBackColor:var(--colorFore)}";
   styleInject(css_248z$m);
@@ -676,30 +676,8 @@
     utils.props(child, sceneConfig);
     this.el = child;
     /*
-      Init modules if any
-    */
-
-    const afterModules = [];
-
-    if (sceneConfig.modules) {
-      for (const k in sceneConfig.modules) {
-        const modConfig = sceneConfig.modules[k];
-        const Mod = modules[k];
-        if (!Mod) console.log(`Module "${k}" not found. Maybe you forgot to include it.`);
-
-        if (Mod) {
-          if (modConfig && Mod.initBefore) {
-            new Mod(child.querySelector(`.${css$1.content}`), modConfig, sceneConfig, projectConfig);
-          } else {
-            afterModules.push([Mod, child.querySelector(`.${css$1.content}`), modConfig]);
-          }
-        }
-      }
-    }
-    /*
       Init blocks if any
     */
-
 
     const cblocks = sceneConfig.blocks;
     cblocks.forEach((blockConfig, i) => {
@@ -709,15 +687,26 @@
       blocks.push(block);
     });
     /*
-      Init after modules
+      Init modules if any
     */
 
-    afterModules.forEach(mod => {
-      new mod[0](mod[1], mod[2], sceneConfig, projectConfig);
-    });
+    if (sceneConfig.modules) {
+      for (const k in sceneConfig.modules) {
+        const modConfig = sceneConfig.modules[k];
+        const Mod = modules[k];
+        if (!Mod) console.log(`Module "${k}" not found. Maybe you forgot to include it.`);
+
+        if (Mod) {
+          if (modConfig) {
+            new Mod(child.querySelector(`.${css$1.content}`), modConfig, sceneConfig, projectConfig);
+          }
+        }
+      }
+    }
     /*
       Run the entering transition
     */
+
 
     if (hasTransition) {
       const wrap = this.el.querySelector('.sceneObject');
@@ -776,9 +765,10 @@
 
   const autoplay = function (rootElement, router, ctrlConfig, projectConfig) {
     let timer = null;
-    const defdelay = ctrlConfig.delay || 4000;
+    const defdelay = typeof ctrlConfig === 'number' ? ctrlConfig : 4000; // let lastdelay = 0
 
     const runTime = delay => {
+      // lastdelay = delay
       clearTimeout(timer);
       timer = setTimeout(() => {
         router.next();
@@ -787,7 +777,7 @@
 
     router.on('indexChanged', evt => {
       const cScene = projectConfig.scenes[evt.currentIndex];
-      const delay = cScene.autoplayDuration || defdelay;
+      const delay = cScene.autoplay || defdelay;
       runTime(delay);
     });
   };

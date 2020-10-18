@@ -57,25 +57,6 @@ const Scene = function (sceneConfig, projectConfig, rootElement) {
   this.el = child
 
   /*
-    Init modules if any
-  */
-  const afterModules = []
-  if (sceneConfig.modules) {
-    for (const k in sceneConfig.modules) {
-      const modConfig = sceneConfig.modules[k]
-      const Mod = modules[k]
-      if (!Mod) console.log(`Module "${k}" not found. Maybe you forgot to include it.`)
-      if (Mod) {
-        if (modConfig && Mod.initBefore) {
-          new Mod(child.querySelector(`.${css.content}`), modConfig, sceneConfig, projectConfig)
-        } else {
-          afterModules.push([Mod, child.querySelector(`.${css.content}`), modConfig])
-        }
-      }
-    }
-  }
-
-  /*
     Init blocks if any
   */
   const cblocks = sceneConfig.blocks
@@ -87,11 +68,20 @@ const Scene = function (sceneConfig, projectConfig, rootElement) {
   })
 
   /*
-    Init after modules
+    Init modules if any
   */
-  afterModules.forEach(mod => {
-    new mod[0](mod[1], mod[2], sceneConfig, projectConfig)
-  })
+  if (sceneConfig.modules) {
+    for (const k in sceneConfig.modules) {
+      const modConfig = sceneConfig.modules[k]
+      const Mod = modules[k]
+      if (!Mod) console.log(`Module "${k}" not found. Maybe you forgot to include it.`)
+      if (Mod) {
+        if (modConfig) {
+          new Mod(child.querySelector(`.${css.content}`), modConfig, sceneConfig, projectConfig)
+        }
+      }
+    }
+  }
 
   /*
     Run the entering transition

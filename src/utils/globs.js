@@ -19,9 +19,11 @@ const globs = (wrapper, config) => {
 
 const addGlob = clsType => {
   if (Array.isArray(clsType)) {
-    globprop = globprop.concat(clsType)
+    clsType.forEach(c => {
+      if (globprop.indexOf(c) === -1) globprop.push(c)
+    })
   } else {
-    globprop.push(clsType)
+    if (globprop.indexOf(clsType) === -1) globprop.push(clsType)
   }
 }
 

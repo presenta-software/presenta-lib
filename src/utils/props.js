@@ -25,9 +25,11 @@ const props = (wrapper, config) => {
 
 const addProp = prpType => {
   if (Array.isArray(prpType)) {
-    prps = prps.concat(prpType)
+    prpType.forEach(c => {
+      if (prps.indexOf(c) === -1) prps.push(c)
+    })
   } else {
-    prps.push(prpType)
+    if (prps.indexOf(prpType) === -1)prps.push(prpType)
   }
 }
 

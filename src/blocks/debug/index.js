@@ -1,9 +1,7 @@
 import css from './style.css'
 import u from '../../utils.js'
 
-const debug = function (_el, _config) {
-  const el = u.select(_el)
-
+const debug = function (el, config) {
   const child = u.div(`<div class="${css.debug}">
     <svg preserveAspectRatio="none" viewBox="0 0 200 200" fill="none" xmlns="http://www.w3.org/2000/svg">
       <rect width="50" height="150" fill="var(--colorFore)"/>

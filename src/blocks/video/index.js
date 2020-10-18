@@ -1,9 +1,6 @@
 import css from './style.css'
 import u from '../../utils.js'
 
-u.addProp(['videoSize', 'videoPosition'])
-u.addPreload({ type: 'video', field: 'url', as: 'video' })
-
 const video = function (el, config, rootElement, projectConfig) {
   const previewMode = projectConfig.mode === 'preview'
   const presentMode = projectConfig.mode === 'present'
@@ -58,5 +55,10 @@ window.addEventListener("keydown", function(e) {
     }
 }, false);
 */
+
+video.init = () => {
+  u.addProp(['videoSize', 'videoPosition'])
+  u.io.addPreload({ type: 'video', field: 'url', as: 'video' })
+}
 
 export { video }

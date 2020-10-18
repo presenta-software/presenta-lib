@@ -1,7 +1,7 @@
 import u from '../utils.js'
 import css from './css/container.css'
-import { Scene } from './Scene.js'
 import { Router } from './Router.js'
+import { Scene } from './Scene.js'
 
 const Container = function (rootElement, projectConfig) {
   this.config = projectConfig

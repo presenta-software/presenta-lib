@@ -76,4 +76,8 @@ const text = function (el, config) {
   setTimeout(compute)
 }
 
+text.init = () => {
+  if (u.io.addMarkdown) u.io.addMarkdown({ type: 'text', field: 'text' })
+}
+
 export { text }

@@ -6,6 +6,7 @@ import { Transition } from './Transition.js'
 
 const Scene = function (sceneConfig, projectConfig, rootElement) {
   const blocks = []
+  const modInstances = []
 
   /*
     Let's notify the user about missing fields
@@ -77,7 +78,8 @@ const Scene = function (sceneConfig, projectConfig, rootElement) {
       if (!Mod) console.log(`Module "${k}" not found. Maybe you forgot to include it.`)
       if (Mod) {
         if (modConfig) {
-          new Mod(child.querySelector(`.${css.content}`), modConfig, sceneConfig, projectConfig)
+          const mod = new Mod(child.querySelector(`.${css.content}`), modConfig, sceneConfig, projectConfig)
+          modInstances.push(mod)
         }
       }
     }
@@ -115,7 +117,8 @@ const Scene = function (sceneConfig, projectConfig, rootElement) {
     }
 
     const t = _t || 0
-    blocks.forEach(block => block.beforeDestroy())
+    modInstances.forEach(mod => { if (mod.beforeDestroy) mod.beforeDestroy() })
+    blocks.forEach(block => { if (block.beforeDestroy) block.beforeDestroy() })
 
     setTimeout(() => {
       this.destroy()
@@ -138,7 +141,8 @@ const Scene = function (sceneConfig, projectConfig, rootElement) {
     Immediate destroy for garbage collection
   */
   this.destroy = () => {
-    blocks.forEach(block => block.destroy())
+    modInstances.forEach(mod => { if (mod.destroy) mod.destroy() })
+    blocks.forEach(block => { if (block.destroy) block.destroy() })
   }
 
   this.sceneConfig = sceneConfig

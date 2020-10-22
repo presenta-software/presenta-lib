@@ -1,20 +1,20 @@
 .colors__irma,
-.colors__irma .colorVar__a,
-.colors__irma.colorVar__a {
+.colors__irma .colorVar__main,
+.colors__irma.colorVar__main {
   --colorBack: #ffe600;
   --colorFore: #000;
   --colorAccent: #ff6400;
   --colorAlt: #fff;
 }
-.colors__irma .colorVar__b,
-.colors__irma.colorVar__b {
+.colors__irma .colorVar__sec,
+.colors__irma.colorVar__sec {
   --colorBack: #000;
   --colorFore: rgb(255, 230, 0);
   --colorAccent: #fff;
   --colorAlt: rgb(255, 100, 0);
 }
-.colors__irma .colorVar__c,
-.colors__irma.colorVar__c {
+.colors__irma .colorVar__alt,
+.colors__irma.colorVar__alt {
   --colorBack: rgb(255, 100, 0);
   --colorFore: #fff;
   --colorAccent: rgb(255, 230, 0);

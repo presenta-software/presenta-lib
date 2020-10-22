@@ -1,11 +1,11 @@
-// https://lib.presenta.cc v0.0.41 Copyright 2020 Fabio Franchino
+// https://lib.presenta.cc v0.0.42 Copyright 2020 Fabio Franchino
 (function (global, factory) {
   typeof exports === 'object' && typeof module !== 'undefined' ? module.exports = factory() :
   typeof define === 'function' && define.amd ? define(factory) :
   (global = typeof globalThis !== 'undefined' ? globalThis : global || self, global.Presenta = factory());
 }(this, (function () { 'use strict';
 
-  var version = "0.0.41";
+  var version = "0.0.42";
 
   function styleInject(css, ref) {
     if ( ref === void 0 ) ref = {};
@@ -37,38 +37,38 @@
   var css_248z = ".presenta *{box-sizing:border-box}.presenta{position:relative;--presenta-pw:960;--presenta-w:960px;--presenta-h:540px;--presenta-vp:960;--presenta-fz:1;--presenta-p:calc(var(--presenta-pw)/var(--presenta-vp))}";
   styleInject(css_248z);
 
-  var css_248z$1 = ".colorVar__a,:root{--colorBack:#fff;--colorFore:#000;--colorAccent:#444;--colorAlt:#ddd}.colorVar__b{--colorBack:#000;--colorAccent:#999}.colorVar__b,.colorVar__c{--colorFore:#fff;--colorAlt:#ccc}.colorVar__c{--colorBack:#444;--colorAccent:#fff}";
+  var css_248z$1 = ".colorVar__main,:root{--colorBack:#fff;--colorFore:#000;--colorAccent:#444;--colorAlt:#ddd}.colorVar__sec{--colorBack:#000;--colorAccent:#999}.colorVar__alt,.colorVar__sec{--colorFore:#fff;--colorAlt:#ccc}.colorVar__alt{--colorBack:#444;--colorAccent:#fff}";
   styleInject(css_248z$1);
 
-  var css_248z$2 = ".colors__adele,.colors__adele.colorVar__a,.colors__adele .colorVar__a{--colorBack:#000;--colorFore:#fff;--colorAccent:#eeff2e;--colorAlt:#de1318}.colors__adele.colorVar__b,.colors__adele .colorVar__b{--colorBack:#eeff2e;--colorFore:#000;--colorAccent:#de1318;--colorAlt:#fff}.colors__adele.colorVar__c,.colors__adele .colorVar__c{--colorBack:#de1318;--colorFore:#eeff2e;--colorAccent:#fff;--colorAlt:#000}";
+  var css_248z$2 = ".colors__adele,.colors__adele.colorVar__main,.colors__adele .colorVar__main{--colorBack:#000;--colorFore:#fff;--colorAccent:#eeff2e;--colorAlt:#de1318}.colors__adele.colorVar__sec,.colors__adele .colorVar__sec{--colorBack:#eeff2e;--colorFore:#000;--colorAccent:#de1318;--colorAlt:#fff}.colors__adele.colorVar__alt,.colors__adele .colorVar__alt{--colorBack:#de1318;--colorFore:#eeff2e;--colorAccent:#fff;--colorAlt:#000}";
   styleInject(css_248z$2);
 
-  var css_248z$3 = ".colors__belle,.colors__belle.colorVar__a,.colors__belle .colorVar__a{--colorBack:#a9dbd5;--colorFore:#000;--colorAccent:#fff;--colorAlt:#38999d}.colors__belle.colorVar__b,.colors__belle .colorVar__b{--colorBack:#000;--colorFore:#a9dbd5;--colorAccent:#fff;--colorAlt:#38999d}.colors__belle.colorVar__c,.colors__belle .colorVar__c{--colorBack:#fff;--colorFore:#38999d;--colorAccent:#a9dbd5;--colorAlt:#000}";
+  var css_248z$3 = ".colors__belle,.colors__belle.colorVar__main,.colors__belle .colorVar__main{--colorBack:#a9dbd5;--colorFore:#000;--colorAccent:#fff;--colorAlt:#38999d}.colors__belle.colorVar__sec,.colors__belle .colorVar__sec{--colorBack:#000;--colorFore:#a9dbd5;--colorAccent:#fff;--colorAlt:#38999d}.colors__belle.colorVar__alt,.colors__belle .colorVar__alt{--colorBack:#fff;--colorFore:#38999d;--colorAccent:#a9dbd5;--colorAlt:#000}";
   styleInject(css_248z$3);
 
-  var css_248z$4 = ".colors__cati,.colors__cati.colorVar__a,.colors__cati .colorVar__a{--colorBack:#e5ff9d;--colorFore:#1c003f;--colorAccent:#69567c;--colorAlt:#fff}.colors__cati.colorVar__b,.colors__cati .colorVar__b{--colorBack:#1c003f;--colorFore:#fff;--colorAccent:#e5ff9d;--colorAlt:#69567c}.colors__cati.colorVar__c,.colors__cati .colorVar__c{--colorBack:#69567c;--colorFore:#e5ff9d;--colorAccent:#fff;--colorAlt:#1c003f}";
+  var css_248z$4 = ".colors__cati,.colors__cati.colorVar__main,.colors__cati .colorVar__main{--colorBack:#e5ff9d;--colorFore:#1c003f;--colorAccent:#69567c;--colorAlt:#fff}.colors__cati.colorVar__sec,.colors__cati .colorVar__sec{--colorBack:#1c003f;--colorFore:#fff;--colorAccent:#e5ff9d;--colorAlt:#69567c}.colors__cati.colorVar__alt,.colors__cati .colorVar__alt{--colorBack:#69567c;--colorFore:#e5ff9d;--colorAccent:#fff;--colorAlt:#1c003f}";
   styleInject(css_248z$4);
 
-  var css_248z$5 = ".colors__dania,.colors__dania.colorVar__a,.colors__dania .colorVar__a{--colorBack:#d0caa9;--colorFore:#30302f;--colorAccent:#ec4a25;--colorAlt:#fff}.colors__dania.colorVar__b,.colors__dania .colorVar__b{--colorBack:#30302f;--colorFore:#d0caa9;--colorAccent:#ec4a25;--colorAlt:#fff}.colors__dania.colorVar__c,.colors__dania .colorVar__c{--colorBack:#ec4a25;--colorFore:#fff;--colorAccent:#d0caa9;--colorAlt:#30302f}";
+  var css_248z$5 = ".colors__dania,.colors__dania.colorVar__main,.colors__dania .colorVar__main{--colorBack:#d0caa9;--colorFore:#30302f;--colorAccent:#ec4a25;--colorAlt:#fff}.colors__dania.colorVar__sec,.colors__dania .colorVar__sec{--colorBack:#30302f;--colorFore:#d0caa9;--colorAccent:#ec4a25;--colorAlt:#fff}.colors__dania.colorVar__alt,.colors__dania .colorVar__alt{--colorBack:#ec4a25;--colorFore:#fff;--colorAccent:#d0caa9;--colorAlt:#30302f}";
   styleInject(css_248z$5);
 
-  var css_248z$6 = ".colors__elane,.colors__elane.colorVar__a,.colors__elane .colorVar__a{--colorBack:#3b7bc3;--colorFore:#f9fb45;--colorAccent:#fff;--colorAlt:#000}.colors__elane.colorVar__b,.colors__elane .colorVar__b{--colorBack:#000;--colorFore:#f9fb45;--colorAccent:#fff;--colorAlt:#3b7bc3}.colors__elane.colorVar__c,.colors__elane .colorVar__c{--colorBack:#f9fb45;--colorFore:#000;--colorAccent:#3b7bc3;--colorAlt:#fff}";
+  var css_248z$6 = ".colors__elane,.colors__elane.colorVar__main,.colors__elane .colorVar__main{--colorBack:#3b7bc3;--colorFore:#f9fb45;--colorAccent:#fff;--colorAlt:#000}.colors__elane.colorVar__sec,.colors__elane .colorVar__sec{--colorBack:#000;--colorFore:#f9fb45;--colorAccent:#fff;--colorAlt:#3b7bc3}.colors__elane.colorVar__alt,.colors__elane .colorVar__alt{--colorBack:#f9fb45;--colorFore:#000;--colorAccent:#3b7bc3;--colorAlt:#fff}";
   styleInject(css_248z$6);
 
-  var css_248z$7 = ".colors__flo,.colors__flo.colorVar__a,.colors__flo .colorVar__a{--colorBack:#ebded1;--colorFore:#0a47d1;--colorAccent:#fb4138;--colorAlt:#fff}.colors__flo.colorVar__b,.colors__flo .colorVar__b{--colorBack:#0a47d1;--colorFore:#ebded1;--colorAccent:#fff;--colorAlt:#fb4138}.colors__flo.colorVar__c,.colors__flo .colorVar__c{--colorBack:#fb4138;--colorFore:#fff;--colorAccent:#ebded1;--colorAlt:#0a47d1}";
+  var css_248z$7 = ".colors__flo,.colors__flo.colorVar__main,.colors__flo .colorVar__main{--colorBack:#ebded1;--colorFore:#0a47d1;--colorAccent:#fb4138;--colorAlt:#fff}.colors__flo.colorVar__sec,.colors__flo .colorVar__sec{--colorBack:#0a47d1;--colorFore:#ebded1;--colorAccent:#fff;--colorAlt:#fb4138}.colors__flo.colorVar__alt,.colors__flo .colorVar__alt{--colorBack:#fb4138;--colorFore:#fff;--colorAccent:#ebded1;--colorAlt:#0a47d1}";
   styleInject(css_248z$7);
 
-  var css_248z$8 = ".colors__gina,.colors__gina.colorVar__a,.colors__gina .colorVar__a{--colorBack:#322067;--colorFore:#feb8ba;--colorAccent:#449eaf;--colorAlt:#fff}.colors__gina.colorVar__b,.colors__gina .colorVar__b{--colorBack:#feb8ba;--colorFore:#322067;--colorAccent:#fff;--colorAlt:#449eaf}.colors__gina.colorVar__c,.colors__gina .colorVar__c{--colorBack:#fff;--colorFore:#322067;--colorAccent:#449eaf;--colorAlt:#feb8ba}";
+  var css_248z$8 = ".colors__gina,.colors__gina.colorVar__main,.colors__gina .colorVar__main{--colorBack:#322067;--colorFore:#feb8ba;--colorAccent:#449eaf;--colorAlt:#fff}.colors__gina.colorVar__sec,.colors__gina .colorVar__sec{--colorBack:#feb8ba;--colorFore:#322067;--colorAccent:#fff;--colorAlt:#449eaf}.colors__gina.colorVar__alt,.colors__gina .colorVar__alt{--colorBack:#fff;--colorFore:#322067;--colorAccent:#449eaf;--colorAlt:#feb8ba}";
   styleInject(css_248z$8);
 
-  var css_248z$9 = ".colors__hedy,.colors__hedy.colorVar__a,.colors__hedy .colorVar__a{--colorBack:#f9ffb1;--colorFore:#072020;--colorAccent:#ec4225;--colorAlt:#9eb0bb}.colors__hedy.colorVar__b,.colors__hedy .colorVar__b{--colorBack:#072020;--colorFore:#f9ffb1;--colorAccent:#ec4225;--colorAlt:#9eb0bb}.colors__hedy.colorVar__c,.colors__hedy .colorVar__c{--colorBack:#ec4225;--colorFore:#f9ffb1;--colorAccent:#c5dbe9;--colorAlt:#072020}";
+  var css_248z$9 = ".colors__hedy,.colors__hedy.colorVar__main,.colors__hedy .colorVar__main{--colorBack:#f9ffb1;--colorFore:#072020;--colorAccent:#ec4225;--colorAlt:#9eb0bb}.colors__hedy.colorVar__sec,.colors__hedy .colorVar__sec{--colorBack:#072020;--colorFore:#f9ffb1;--colorAccent:#ec4225;--colorAlt:#9eb0bb}.colors__hedy.colorVar__alt,.colors__hedy .colorVar__alt{--colorBack:#ec4225;--colorFore:#f9ffb1;--colorAccent:#c5dbe9;--colorAlt:#072020}";
   styleInject(css_248z$9);
 
-  var css_248z$a = ".colors__irma,.colors__irma.colorVar__a,.colors__irma .colorVar__a{--colorBack:#ffe600;--colorFore:#000;--colorAccent:#ff6400;--colorAlt:#fff}.colors__irma.colorVar__b,.colors__irma .colorVar__b{--colorBack:#000;--colorFore:#ffe600;--colorAccent:#fff;--colorAlt:#ff6400}.colors__irma.colorVar__c,.colors__irma .colorVar__c{--colorBack:#ff6400;--colorFore:#fff;--colorAccent:#ffe600;--colorAlt:#000}";
+  var css_248z$a = ".colors__irma,.colors__irma.colorVar__main,.colors__irma .colorVar__main{--colorBack:#ffe600;--colorFore:#000;--colorAccent:#ff6400;--colorAlt:#fff}.colors__irma.colorVar__sec,.colors__irma .colorVar__sec{--colorBack:#000;--colorFore:#ffe600;--colorAccent:#fff;--colorAlt:#ff6400}.colors__irma.colorVar__alt,.colors__irma .colorVar__alt{--colorBack:#ff6400;--colorFore:#fff;--colorAccent:#ffe600;--colorAlt:#000}";
   styleInject(css_248z$a);
 
   const colors = ['adele', 'belle', 'cati', 'dania', 'elane', 'flo', 'gina', 'hedy', 'irma'];
-  const colorvars = ['a', 'b', 'c'];
+  const colorvars = ['main', 'sec', 'alt'];
 
   var css_248z$b = ":root{--fontHeading:Georgia,\"Times New Roman\",Times,serif;--fontText:\"Trebuchet MS\",\"Lucida Sans Unicode\",\"Lucida Grande\",\"Lucida Sans\",Arial,sans-serif}";
   styleInject(css_248z$b);

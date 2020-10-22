@@ -1,20 +1,20 @@
 .colors__adele,
-.colors__adele .colorVar__a,
-.colors__adele.colorVar__a {
+.colors__adele .colorVar__main,
+.colors__adele.colorVar__main {
   --colorBack: #000;
   --colorFore: #fff;
   --colorAccent: #EEFF2E;
   --colorAlt: #DE1318;
 }
-.colors__adele .colorVar__b,
-.colors__adele.colorVar__b {
+.colors__adele .colorVar__sec,
+.colors__adele.colorVar__sec {
   --colorBack: #EEFF2E;
   --colorFore: #000;
   --colorAccent: #DE1318;
   --colorAlt: #fff;
 }
-.colors__adele .colorVar__c,
-.colors__adele.colorVar__c {
+.colors__adele .colorVar__alt,
+.colors__adele.colorVar__alt {
   --colorBack: #DE1318;
   --colorFore: #EEFF2E;
   --colorAccent: #fff;

@@ -10,6 +10,6 @@ import './hedy.css'
 import './irma.css'
 
 const colors = ['adele', 'belle', 'cati', 'dania', 'elane', 'flo', 'gina', 'hedy', 'irma']
-const colorvars = ['a', 'b', 'c']
+const colorvars = ['main', 'sec', 'alt']
 
 export { colors, colorvars }

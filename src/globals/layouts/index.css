@@ -9,40 +9,64 @@
 
 
 /* Blocks as Columns, Default */
-.layout__a .blocksContainer {
+.layout__cols .blocksContainer {
   display: flex;
   flex-direction: row;
 }
-.layout__a .blocksContainer > div {
+.layout__cols .blocksContainer > div {
   height: 100%;
 }
 
 
 
 /* Blocks as Rows */
-.layout__b .blocksContainer {
+.layout__rows .blocksContainer {
   display: flex;
   flex-direction: column;
 }
-.layout__b .blocksContainer > div {
+.layout__rows .blocksContainer > div {
   width: 100%;
 }
 
 
 
-/* Blocks Stacked */
-.layout__c .blocksContainer {
+/* Quick stack with two blocks, typically an image and a text */
+.layout__stack .blocksContainer {
   position: relative;
 }
-.layout__c .blocksContainer > div {
+.layout__stack .blocksContainer > div {
   position: absolute;
   top: 0;
   left: 0;
   width: 100%;
   height: 100%;
 }
-.layout__c .blocksContainer > div:not(:first-child) {
+.layout__stack .blocksContainer > div:not(:first-child) {
   background: none;
+}
+.layout__stack .blocksContainer > div:first-child::after {
+  content: '';
+  position: absolute;
+  left: 0;
+  top: 0;
+  width: 100%;
+  height: 100%;
+  background-color: var(--colorBack);
+  opacity: .7;
+}
+
+
+
+/* Many Blocks Stacked */
+.layout__pile .blocksContainer {
+  position: relative;
+}
+.layout__pile .blocksContainer > div {
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
 }
 
 
@@ -53,15 +77,35 @@
 - content
 */
 
-.layout__d .blocksContainer {
+.layout__head .blocksContainer {
   display: flex;
   flex-direction: column;
 }
-.layout__d .blocksContainer > div {
+.layout__head .blocksContainer > div {
   width: 100%;
 }
-.layout__d .blocksContainer > div:first-child {
+.layout__head .blocksContainer > div:first-child {
 }
-.layout__d .blocksContainer > div:last-child {
+.layout__head .blocksContainer > div:last-child {
+  flex:5;
+}
+
+
+/*
+2 blocks
+- content
+- footer
+*/
+
+.layout__foot .blocksContainer {
+  display: flex;
+  flex-direction: column;
+}
+.layout__foot .blocksContainer > div {
+  width: 100%;
+}
+.layout__foot .blocksContainer > div:last-child {
+}
+.layout__foot .blocksContainer > div:first-child {
   flex:5;
 }

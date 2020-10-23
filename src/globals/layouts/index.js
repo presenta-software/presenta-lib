@@ -1,5 +1,5 @@
 import './index.css'
 
-const layouts = ['a', 'b', 'c', 'd']
+const layouts = ['cols', 'rows', 'head', 'foot', 'stack']
 
 export default layouts

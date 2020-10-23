@@ -1,7 +1,7 @@
 
-.transition__horizontalSlide{
+.transition__hSlide{
   .p-scene-enter-transition {
-    transition: transform 1s easeInOutExpo;
+    transition: transform .75s cubic-bezier(0.87, 0, 0.13, 1);
   }
   .to-right.p-scene-enter-start {
     transform: translateX(100%);
@@ -17,7 +17,7 @@
   }
 
   .p-scene-leave-transition {
-    transition: transform 1s easeInOutExpo;
+    transition: transform .75s cubic-bezier(0.87, 0, 0.13, 1);
   }
   .to-right.p-scene-leave-start {
     transform: translateX(0);

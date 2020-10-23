@@ -1,10 +1,10 @@
 
-.transition__slideUp{
+.transition__slideOver{
   .p-scene-enter-transition {
     transition: all .75s cubic-bezier(0.2, 0.8, 0.05, 0.95);
   }
   .p-scene-enter-start {
-    transform: translateY(150%);
+    transform: translateY(-150%);
   }
   .p-scene-enter-end {
     transform: translateY(0);

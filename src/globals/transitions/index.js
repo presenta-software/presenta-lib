@@ -1,7 +1,8 @@
 import './fadeIn.scss'
-import './horizontalSlide.scss'
-import './slideUp.scss'
+import './hSlide.scss'
+import './vSlide.scss'
+import './slideOver.scss'
 
-const transitions = ['fadeIn', 'horizontalSlide', 'slideUp']
+const transitions = ['fadeIn', 'hSlide', 'vSlide', 'slideOver']
 
 export default transitions

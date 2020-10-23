@@ -1,7 +1,7 @@
 import css from './style.css'
 import u from '../../utils.js'
 
-u.addProp(['progressbarHeight', 'progressbarBottom'])
+u.addProp(['progressbarHeight', 'progressbarBottom', 'progressbarColor'])
 
 const progressbar = function (rootElement, router, ctrlConfig, projectConfig) {
   const child = u.div(`<div class="${css.progressbar}"></div>`)

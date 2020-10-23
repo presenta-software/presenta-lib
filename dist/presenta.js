@@ -1,11 +1,11 @@
-// https://lib.presenta.cc v0.0.43 Copyright 2020 Fabio Franchino
+// https://lib.presenta.cc v0.0.44 Copyright 2020 Fabio Franchino
 (function (global, factory) {
   typeof exports === 'object' && typeof module !== 'undefined' ? module.exports = factory() :
   typeof define === 'function' && define.amd ? define(factory) :
   (global = typeof globalThis !== 'undefined' ? globalThis : global || self, global.Presenta = factory());
 }(this, (function () { 'use strict';
 
-  var version = "0.0.43";
+  var version = "0.0.44";
 
   function styleInject(css, ref) {
     if ( ref === void 0 ) ref = {};
@@ -73,31 +73,31 @@
   var css_248z$b = ":root{--fontHeading:Georgia,\"Times New Roman\",Times,serif;--fontText:\"Trebuchet MS\",\"Lucida Sans Unicode\",\"Lucida Grande\",\"Lucida Sans\",Arial,sans-serif}";
   styleInject(css_248z$b);
 
-  var css_248z$c = "@import url(\"https://fonts.googleapis.com/css2?family=Montserrat:wght@600&family=Roboto+Mono:ital,wght@0,400;0,700;1,400&display=swap\");.fonts__a{--fontHeading:\"Roboto Mono\",monospace;--fontText:\"Montserrat\",sans-serif}";
+  var css_248z$c = "@import url(\"https://fonts.googleapis.com/css2?family=Montserrat:wght@600&family=Roboto+Mono:ital,wght@0,400;0,700;1,400&display=swap\");.fonts__cardinal{--fontHeading:\"Roboto Mono\",monospace;--fontText:\"Montserrat\",sans-serif}";
   styleInject(css_248z$c);
 
-  var css_248z$d = "@import url(\"https://fonts.googleapis.com/css2?family=Playfair+Display:wght@600&family=Work+Sans&display=swap\");.fonts__b{--fontHeading:\"Work Sans\",sans-serif;--fontText:\"Playfair Display\",serif}";
+  var css_248z$d = "@import url(\"https://fonts.googleapis.com/css2?family=Playfair+Display:wght@600&family=Work+Sans&display=swap\");.fonts__corvid{--fontHeading:\"Work Sans\",sans-serif;--fontText:\"Playfair Display\",serif}";
   styleInject(css_248z$d);
 
-  var css_248z$e = "@import url(\"https://fonts.googleapis.com/css2?family=Roboto+Slab&family=Carrois+Gothic+SC&display=swap\");.fonts__c{--fontHeading:\"Roboto Slab\",serif;--fontText:\"Carrois Gothic SC\",sans-serif}";
+  var css_248z$e = "@import url(\"https://fonts.googleapis.com/css2?family=Roboto+Slab&family=Carrois+Gothic+SC&display=swap\");.fonts__creeper{--fontHeading:\"Roboto Slab\",serif;--fontText:\"Carrois Gothic SC\",sans-serif}";
   styleInject(css_248z$e);
 
-  var css_248z$f = "@import url(\"https://fonts.googleapis.com/css2?family=Amatic+SC:wght@700&family=Open+Sans&display=swap\");.fonts__d{--fontHeading:\"Amatic SC\",cursive;--fontText:\"Open Sans\",sans-serif}.fonts__d h1,.fonts__d h2,.fonts__d h3{font-size:3rem}";
+  var css_248z$f = "@import url(\"https://fonts.googleapis.com/css2?family=Amatic+SC:wght@700&family=Open+Sans&display=swap\");.fonts__duck{--fontHeading:\"Amatic SC\",cursive;--fontText:\"Open Sans\",sans-serif}.fonts__duck h1,.fonts__duck h2,.fonts__duck h3{font-size:3rem}";
   styleInject(css_248z$f);
 
-  var css_248z$g = "@import url(\"https://fonts.googleapis.com/css2?family=Bebas+Neue&family=Montserrat&display=swap\");.fonts__e{--fontHeading:\"Bebas Neue\",cursive;--fontText:\"Montserrat\",sans-serif}";
+  var css_248z$g = "@import url(\"https://fonts.googleapis.com/css2?family=Bebas+Neue&family=Montserrat&display=swap\");.fonts__finch{--fontHeading:\"Bebas Neue\",cursive;--fontText:\"Montserrat\",sans-serif}";
   styleInject(css_248z$g);
 
-  var css_248z$h = "@import url(\"https://fonts.googleapis.com/css2?family=Anton&family=Lato&display=swap\");.fonts__f{--fontHeading:\"Anton\",cursive;--fontText:\"Lato\",sans-serif}";
+  var css_248z$h = "@import url(\"https://fonts.googleapis.com/css2?family=Anton&family=Lato&display=swap\");.fonts__flow{--fontHeading:\"Anton\",cursive;--fontText:\"Lato\",sans-serif}";
   styleInject(css_248z$h);
 
-  var css_248z$i = "@import url(\"https://fonts.googleapis.com/css2?family=Inter:wght@400;900&display=swap\");.fonts__g{--fontHeading:\"Inter\",cursive;--fontText:\"Inter\",sans-serif}";
+  var css_248z$i = "@import url(\"https://fonts.googleapis.com/css2?family=Inter:wght@400;900&display=swap\");.fonts__goose{--fontHeading:\"Inter\",cursive;--fontText:\"Inter\",sans-serif}";
   styleInject(css_248z$i);
 
-  var css_248z$j = "@import url(\"https://fonts.googleapis.com/css2?family=Montserrat&family=Staatliches&display=swap\");.fonts__h{--fontHeading:\"Staatliches\",cursive;--fontText:\"Montserrat\",sans-serif}.fonts__h h1,.fonts__h h2,.fonts__h h3,.fonts__h h4,.fonts__h h5,.fonts__h h6{line-height:90%}";
+  var css_248z$j = "@import url(\"https://fonts.googleapis.com/css2?family=Montserrat&family=Staatliches&display=swap\");.fonts__heron{--fontHeading:\"Staatliches\",cursive;--fontText:\"Montserrat\",sans-serif}.fonts__heron h1,.fonts__heron h2,.fonts__heron h3,.fonts__heron h4,.fonts__heron h5,.fonts__heron h6{line-height:90%}";
   styleInject(css_248z$j);
 
-  const fonts = ['a', 'b', 'c', 'd', 'e', 'f', 'g', 'h'];
+  const fonts = ['cardinal', 'corvid', 'creeper', 'duck', 'finch', 'flow', 'goose', 'heron'];
 
   var css_248z$k = ".transition__fadeIn .p-scene-enter-transition{transition:opacity .75s cubic-bezier(.2,.8,.05,.95)}.transition__fadeIn .p-scene-enter-start{opacity:0}.transition__fadeIn .p-scene-enter-end{opacity:1}";
   styleInject(css_248z$k);
@@ -123,10 +123,10 @@
 
   const blockvars = ['a', 'b', 'c'];
 
-  var css_248z$q = ".layout__a .blocksContainer{display:flex;flex-direction:row}.layout__a .blocksContainer>div{height:100%}.layout__b .blocksContainer{display:flex;flex-direction:column}.layout__b .blocksContainer>div{width:100%}.layout__c .blocksContainer{position:relative}.layout__c .blocksContainer>div{position:absolute;top:0;left:0;width:100%;height:100%}.layout__c .blocksContainer>div:not(:first-child){background:none}.layout__d .blocksContainer{display:flex;flex-direction:column}.layout__d .blocksContainer>div{width:100%}.layout__d .blocksContainer>div:last-child{flex:5}";
+  var css_248z$q = ".layout__cols .blocksContainer{display:flex;flex-direction:row}.layout__cols .blocksContainer>div{height:100%}.layout__rows .blocksContainer{display:flex;flex-direction:column}.layout__rows .blocksContainer>div{width:100%}.layout__stack .blocksContainer{position:relative}.layout__stack .blocksContainer>div{position:absolute;top:0;left:0;width:100%;height:100%}.layout__stack .blocksContainer>div:not(:first-child){background:none}.layout__stack .blocksContainer>div:first-child:after{content:\"\";position:absolute;left:0;top:0;width:100%;height:100%;background-color:var(--colorBack);opacity:.7}.layout__pile .blocksContainer{position:relative}.layout__pile .blocksContainer>div{position:absolute;top:0;left:0;width:100%;height:100%}.layout__head .blocksContainer{display:flex;flex-direction:column}.layout__head .blocksContainer>div{width:100%}.layout__head .blocksContainer>div:last-child{flex:5}.layout__foot .blocksContainer{display:flex;flex-direction:column}.layout__foot .blocksContainer>div{width:100%}.layout__foot .blocksContainer>div:first-child{flex:5}";
   styleInject(css_248z$q);
 
-  const layouts = ['a', 'b', 'c', 'd'];
+  const layouts = ['cols', 'rows', 'head', 'foot', 'stack'];
 
   var globals = {
     colors,
@@ -429,7 +429,7 @@
   var css$2 = {"progressbar":"style_progressbar__37EFM","bar":"style_bar__3nLkk"};
   styleInject(css_248z$t);
 
-  utils.addProp(['progressbarHeight', 'progressbarBottom']);
+  utils.addProp(['progressbarHeight', 'progressbarBottom', 'progressbarColor']);
 
   const progressbar = function (rootElement, router, ctrlConfig, projectConfig) {
     const child = utils.div(`<div class="${css$2.progressbar}"></div>`);
@@ -485,8 +485,7 @@
 
   const loop = function (rootElement, router, ctrlConfig, projectConfig) {
     router.on('end', evt => {
-      router.goto(0);
-      router.notify('nextIndex');
+      router.goto(0); // router.notify('nextIndex')
     });
   };
 

@@ -1,6 +1,13 @@
 import css from './style.css'
 import u from '../../utils.js'
 
+u.addProp([
+  'arrowsOpacity',
+  'arrowsVerticalPosition',
+  'arrowsHorizontalPosition',
+  'arrowsPadding'
+])
+
 const arrows = function (rootElement, router, config) {
   let timer = null
 

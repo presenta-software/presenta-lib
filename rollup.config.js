@@ -6,7 +6,6 @@ import json from '@rollup/plugin-json'
 import postcss from 'rollup-plugin-postcss'
 import autoprefixer from 'autoprefixer'
 import cssnano from 'cssnano'
-import easing from 'postcss-easings'
 
 import pkg from './package.json'
 
@@ -42,7 +41,6 @@ export default [{
         ]
       },
       plugins: [
-        easing()
       ]
     })
   ]
@@ -76,8 +74,7 @@ export default [{
       autoModules: false,
       plugins: [
         autoprefixer({ grid: true }),
-        cssnano({ preset: 'default' }),
-        easing()
+        cssnano({ preset: 'default' })
       ]
     })
   ]

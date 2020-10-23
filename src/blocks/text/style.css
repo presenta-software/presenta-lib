@@ -71,6 +71,7 @@
 }
 .itext a {
   color: var(--textaccentcolor);
+  text-decoration: underline;
 }
 
 .itext blockquote {
@@ -89,8 +90,6 @@
 .itext ul,
 .itext blockquote {
   margin: 0;
-  line-height: inherit;
-  border: inherit;
 }
 
 .itext h1 strong,

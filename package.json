@@ -40,9 +40,7 @@
   },
   "browserslist": "> 0.5%, IE 11, not dead",
   "license": "MIT",
-  "dependencies": {
-    "postcss-easings": "^2.0.0"
-  },
+  "dependencies": {},
   "devDependencies": {
     "@babel/core": "^7.10.2",
     "@babel/preset-env": "^7.10.2",

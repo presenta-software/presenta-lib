@@ -18,3 +18,16 @@
   --sh: calc(var(--h) / var(--p) / var(--fz));
   --scal: calc(var(--pw) / var(--p) / var(--pw) / var(--fz)); */
 }
+
+
+.presenta h1,
+.presenta h2,
+.presenta h3,
+.presenta h4,
+.presenta h5,
+.presenta h6,
+.presenta p
+{
+  line-height: inherit;
+  border: inherit;
+}

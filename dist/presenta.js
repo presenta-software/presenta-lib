@@ -1,11 +1,11 @@
-// https://lib.presenta.cc v0.0.46 Copyright 2020 Fabio Franchino
+// https://lib.presenta.cc v0.0.47 Copyright 2020 Fabio Franchino
 (function (global, factory) {
   typeof exports === 'object' && typeof module !== 'undefined' ? module.exports = factory() :
   typeof define === 'function' && define.amd ? define(factory) :
   (global = typeof globalThis !== 'undefined' ? globalThis : global || self, global.Presenta = factory());
 }(this, (function () { 'use strict';
 
-  var version = "0.0.46";
+  var version = "0.0.47";
 
   function styleInject(css, ref) {
     if ( ref === void 0 ) ref = {};
@@ -140,10 +140,9 @@
 
   const autoplay = function (rootElement, router, ctrlConfig, projectConfig) {
     let timer = null;
-    const defdelay = typeof ctrlConfig === 'number' ? ctrlConfig : 4000; // let lastdelay = 0
+    const defdelay = typeof ctrlConfig === 'number' ? ctrlConfig : 4000;
 
     const runTime = delay => {
-      // lastdelay = delay
       clearTimeout(timer);
       timer = setTimeout(() => {
         router.next();
@@ -151,6 +150,11 @@
     };
 
     router.on('indexChanged', evt => {
+      const cScene = projectConfig.scenes[evt.currentIndex];
+      const delay = cScene.autoplay || defdelay;
+      runTime(delay);
+    });
+    router.on('stepChanged', evt => {
       const cScene = projectConfig.scenes[evt.currentIndex];
       const delay = cScene.autoplay || defdelay;
       runTime(delay);
@@ -286,7 +290,7 @@
       router.next();
       scheduleForHide();
     });
-    child.addEventListener('mousemove', e => {
+    document.addEventListener('mousemove', e => {
       scheduleForHide();
     });
     router.on('indexChanged', e => {

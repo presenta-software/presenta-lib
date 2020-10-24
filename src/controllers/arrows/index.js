@@ -31,7 +31,7 @@ const arrows = function (rootElement, router, ctrlConfig, projectConfig) {
     scheduleForHide()
   })
 
-  child.addEventListener('mousemove', e => {
+  document.addEventListener('mousemove', e => {
     scheduleForHide()
   })
 

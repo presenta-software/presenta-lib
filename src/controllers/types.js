@@ -11,6 +11,7 @@ import { shuffle } from './shuffle/index'
 import { loop } from './loop/index'
 import { current } from './current/index'
 import { hidecursor } from './hidecursor/index'
+import { hidden } from './hidden/index'
 
 const controllers = {
   autoplay,
@@ -25,7 +26,8 @@ const controllers = {
   shuffle,
   loop,
   current,
-  hidecursor
+  hidecursor,
+  hidden
 }
 
 const add = (type, module, override) => {

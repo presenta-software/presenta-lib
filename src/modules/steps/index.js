@@ -2,26 +2,26 @@ import css from './style.css'
 
 const steps = function (sceneElement, modConfig, sceneConfig, projectConfig) {
   sceneConfig.steps = []
-  // const effect = 'bounceIn'
 
-  let tag = ''
+  let allSteps = []
+
   sceneConfig.blocks.forEach(b => {
-    const btag = b.step + ', ' || ''
-    tag += btag
-  })
-  tag += 'step'
+    const blockEl = b._el
+    const tag = b.step || '.step'
 
-  const steps = [].slice.call(sceneElement.querySelectorAll(tag))
+    const blockSteps = [].slice.call(blockEl.querySelectorAll(tag))
 
-  steps.forEach(el => {
-    el.classList.add(css.step, css.initState)
-    sceneConfig.steps.push(0)
+    blockSteps.forEach(el => {
+      el.classList.add(css.step, css.initState)
+      sceneConfig.steps.push(0)
+    })
+
+    allSteps = allSteps.concat(blockSteps)
   })
 
   this.stepForward = step => {
-    const el = steps[step]
+    const el = allSteps[step]
     el.classList.remove(css.initState)
-    // el.classList.add('animate__animated', `animate__${effect}`)
   }
 }
 

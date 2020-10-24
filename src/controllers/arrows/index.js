@@ -8,7 +8,7 @@ u.addProp([
   'arrowsPadding'
 ])
 
-const arrows = function (rootElement, router, config) {
+const arrows = function (rootElement, router, ctrlConfig, projectConfig) {
   let timer = null
 
   const child = u.div(`<div class="${css.arrows}"></div>`)

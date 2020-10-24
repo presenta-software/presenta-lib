@@ -1,11 +1,11 @@
-// https://lib.presenta.cc v0.0.45 Copyright 2020 Fabio Franchino
+// https://lib.presenta.cc v0.0.46 Copyright 2020 Fabio Franchino
 (function (global, factory) {
   typeof exports === 'object' && typeof module !== 'undefined' ? module.exports = factory() :
   typeof define === 'function' && define.amd ? define(factory) :
   (global = typeof globalThis !== 'undefined' ? globalThis : global || self, global.Presenta = factory());
 }(this, (function () { 'use strict';
 
-  var version = "0.0.45";
+  var version = "0.0.46";
 
   function styleInject(css, ref) {
     if ( ref === void 0 ) ref = {};
@@ -270,7 +270,7 @@
 
   utils.addProp(['arrowsOpacity', 'arrowsVerticalPosition', 'arrowsHorizontalPosition', 'arrowsPadding']);
 
-  const arrows = function (rootElement, router, config) {
+  const arrows = function (rootElement, router, ctrlConfig, projectConfig) {
     let timer = null;
     const child = utils.div(`<div class="${css.arrows}"></div>`);
     const left = utils.div(`<div class="${css.left}"><div class="${css.ui}"></div></div>`);
@@ -499,6 +499,31 @@
     root.style.cursor = 'none';
   };
 
+  const hidden = function (rootElement, router, ctrlConfig, projectConfig) {
+    const scenesToRemove = [];
+    const scenes = projectConfig.scenes;
+    scenes.forEach((scene, i) => {
+      const blocks = scene.blocks;
+      const blocksToRemove = [];
+
+      if (scene.hidden) {
+        scenesToRemove.push(i);
+      } else {
+        blocks.forEach((block, j) => {
+          if (block.hidden) blocksToRemove.push(j);
+        });
+      }
+
+      for (var j = blocks.length - 1; j >= 0; j--) {
+        if (blocksToRemove.indexOf(j) >= 0) blocks.splice(j, 1);
+      }
+    });
+
+    for (var i = scenes.length - 1; i >= 0; i--) {
+      if (scenesToRemove.indexOf(i) >= 0) scenes.splice(i, 1);
+    }
+  };
+
   const controllers = {
     autoplay,
     keyboard,
@@ -512,7 +537,8 @@
     shuffle,
     loop,
     current,
-    hidecursor
+    hidecursor,
+    hidden
   };
 
   const add = (type, module, override) => {
@@ -532,23 +558,22 @@
   styleInject(css_248z$v);
 
   const steps = function (sceneElement, modConfig, sceneConfig, projectConfig) {
-    sceneConfig.steps = []; // const effect = 'bounceIn'
-
-    let tag = '';
+    sceneConfig.steps = [];
+    let allSteps = [];
     sceneConfig.blocks.forEach(b => {
-      const btag = b.step + ', ' || '';
-      tag += btag;
-    });
-    tag += 'step';
-    const steps = [].slice.call(sceneElement.querySelectorAll(tag));
-    steps.forEach(el => {
-      el.classList.add(css$4.step, css$4.initState);
-      sceneConfig.steps.push(0);
+      const blockEl = b._el;
+      const tag = b.step || '.step';
+      const blockSteps = [].slice.call(blockEl.querySelectorAll(tag));
+      blockSteps.forEach(el => {
+        el.classList.add(css$4.step, css$4.initState);
+        sceneConfig.steps.push(0);
+      });
+      allSteps = allSteps.concat(blockSteps);
     });
 
     this.stepForward = step => {
-      const el = steps[step];
-      el.classList.remove(css$4.initState); // el.classList.add('animate__animated', `animate__${effect}`)
+      const el = allSteps[step];
+      el.classList.remove(css$4.initState);
     };
   };
 
@@ -1054,7 +1079,6 @@
   </div>`);
     utils.globs(child, blockConfig);
     utils.props(child, blockConfig);
-    this.el = child;
     const blockContainer = child.querySelector('.blockContainer');
 
     if (!blocks[this.type]) {
@@ -1082,6 +1106,7 @@
     };
 
     blocksElement.appendChild(child);
+    blockConfig._el = child;
   };
 
   const Transition = wrapper => {
@@ -1379,7 +1404,8 @@
         keyboard: true,
         arrows: true,
         black: true,
-        fullscreen: true
+        fullscreen: true,
+        hidden: true
       },
       modules: {
         steps: true

@@ -7,7 +7,8 @@ export default config => {
       keyboard: true,
       arrows: true,
       black: true,
-      fullscreen: true
+      fullscreen: true,
+      hidden: true
     },
     modules: {
       steps: true

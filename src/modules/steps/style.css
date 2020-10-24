@@ -1,0 +1,7 @@
+.step{
+    transition: opacity .5s ease-in-out;
+}
+
+.initState{
+    opacity: 0;
+}

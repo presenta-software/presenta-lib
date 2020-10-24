@@ -1,5 +1,7 @@
+import steps from './steps/index'
 
 const modules = {
+  steps
 }
 
 const add = (type, module, override) => {

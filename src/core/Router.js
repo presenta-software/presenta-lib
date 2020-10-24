@@ -22,7 +22,7 @@ const Router = function (rootElement, projectConfig) {
       ? scenes[currentIndex].steps.length
       : 0
   }
-  setNumSteps()
+  // setNumSteps()
 
   const updateRouterWrapper = () => {
     const sceneConfig = scenes[currentIndex]
@@ -50,7 +50,6 @@ const Router = function (rootElement, projectConfig) {
     if (currentIndex < numScenes) {
       currentIndex++
       currentStep = 0
-      setNumSteps()
       this.notify('nextIndex')
       this.notify('indexChanged')
     } else {
@@ -58,12 +57,12 @@ const Router = function (rootElement, projectConfig) {
       currentStep = 0
       this.notify('end')
     }
+    setNumSteps()
   }
   this.prevIndex = () => {
     if (currentIndex > 0) {
       currentIndex--
       currentStep = 0
-      setNumSteps()
       this.notify('prevIndex')
       this.notify('indexChanged')
     } else {
@@ -71,6 +70,7 @@ const Router = function (rootElement, projectConfig) {
       currentStep = 0
       this.notify('begin')
     }
+    setNumSteps()
   }
 
   this.goto = v => {
@@ -129,7 +129,10 @@ const Router = function (rootElement, projectConfig) {
 
   this.notify('indexChanged')
 
-  setTimeout(() => this.notify('init'))
+  setTimeout(() => {
+    this.notify('init')
+    setNumSteps()
+  })
 }
 
 export { Router }

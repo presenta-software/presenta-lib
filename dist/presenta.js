@@ -1,11 +1,11 @@
-// https://lib.presenta.cc v0.0.44 Copyright 2020 Fabio Franchino
+// https://lib.presenta.cc v0.0.45 Copyright 2020 Fabio Franchino
 (function (global, factory) {
   typeof exports === 'object' && typeof module !== 'undefined' ? module.exports = factory() :
   typeof define === 'function' && define.amd ? define(factory) :
   (global = typeof globalThis !== 'undefined' ? globalThis : global || self, global.Presenta = factory());
 }(this, (function () { 'use strict';
 
-  var version = "0.0.44";
+  var version = "0.0.45";
 
   function styleInject(css, ref) {
     if ( ref === void 0 ) ref = {};
@@ -527,7 +527,34 @@
     controllers[type] = module;
   };
 
-  const modules = {};
+  var css_248z$v = ".style_step__2k6dh{transition:opacity .5s ease-in-out}.style_initState__3wzFT{opacity:0}";
+  var css$4 = {"step":"style_step__2k6dh","initState":"style_initState__3wzFT"};
+  styleInject(css_248z$v);
+
+  const steps = function (sceneElement, modConfig, sceneConfig, projectConfig) {
+    sceneConfig.steps = []; // const effect = 'bounceIn'
+
+    let tag = '';
+    sceneConfig.blocks.forEach(b => {
+      const btag = b.step + ', ' || '';
+      tag += btag;
+    });
+    tag += 'step';
+    const steps = [].slice.call(sceneElement.querySelectorAll(tag));
+    steps.forEach(el => {
+      el.classList.add(css$4.step, css$4.initState);
+      sceneConfig.steps.push(0);
+    });
+
+    this.stepForward = step => {
+      const el = steps[step];
+      el.classList.remove(css$4.initState); // el.classList.add('animate__animated', `animate__${effect}`)
+    };
+  };
+
+  const modules = {
+    steps
+  };
 
   const add$1 = (type, module, override) => {
     if (!override && modules[type]) {
@@ -541,12 +568,12 @@
     modules[type] = module;
   };
 
-  var css_248z$v = ".style_debug__1-XHT{display:flex;align-items:center;justify-content:center}.style_debug__1-XHT,.style_debug__1-XHT svg{width:100%;height:100%}";
-  var css$4 = {"debug":"style_debug__1-XHT"};
-  styleInject(css_248z$v);
+  var css_248z$w = ".style_debug__1-XHT{display:flex;align-items:center;justify-content:center}.style_debug__1-XHT,.style_debug__1-XHT svg{width:100%;height:100%}";
+  var css$5 = {"debug":"style_debug__1-XHT"};
+  styleInject(css_248z$w);
 
   const debug = function (el, config) {
-    const child = utils.div(`<div class="${css$4.debug}">
+    const child = utils.div(`<div class="${css$5.debug}">
     <svg preserveAspectRatio="none" viewBox="0 0 200 200" fill="none" xmlns="http://www.w3.org/2000/svg">
       <rect width="50" height="150" fill="var(--colorFore)"/>
       <rect x="50" width="50" height="150" fill="var(--colorBack)"/>
@@ -571,12 +598,12 @@
     el.appendChild(child);
   };
 
-  var css_248z$w = ".textVar__title{--textPadding:3rem;--textAlign:center;--textListAlign:center;--textFlexAlign:center;--textFlexJustify:center;--textSize:2.5rem}.textVar__text{--textAlign:left;--textListAlign:left;--textFlexJustify:flex-start;--textSize:1rem}.textVar__section,.textVar__text{--textPadding:2rem;--textFlexAlign:flex-start}.textVar__section{--textAlign:right;--textListAlign:right;--textFlexJustify:flex-end;--textSize:2rem}.textVar__mention{--textAlign:left;--textListAlign:left;--textFlexJustify:flex-start;--textSize:1.5rem}.textVar__mention,.textVar__suggest{--textPadding:2rem;--textFlexAlign:flex-end}.textVar__suggest{--textAlign:center;--textListAlign:center;--textFlexJustify:center;--textSize:0.8rem}.textStyle__a{--textboxpadding:0;--textboxbackcolor:var(--colorFore);--textboxradius:0;--textboxborder:0;--textboxshadow:0 0 0 var(--colorAccent);--textboxcolor:var(--colorBack)}";
-  styleInject(css_248z$w);
-
-  var css_248z$x = ":root{--textPadding:0;--textAlign:center;--textListAlign:left;--textFlexAlign:center;--textFlexJustify:center;--textSize:1rem}.style_text__3T1cl{color:var(--colorFore)}.style_inner__11UJC,.style_text__3T1cl{width:100%;height:100%;position:relative}.style_pretext__cLjqD{display:flex;width:100%;height:100%;align-items:var(--textFlexAlign);justify-content:var(--textFlexJustify)}.style_textbox__1Vb-V{padding:var(--textboxpadding);text-align:var(--textAlign);font-size:var(--textSize);color:var(--textboxcolor);--backmark:var(--colorAccent);--foremark:var(--colorBack);--textaccentcolor:var(--colorAccent);font-family:var(--fontText)}.style_itext__jz90o{border:var(--textboxborder) solid var(--colorAccent);padding:var(--textPadding);border-radius:var(--textboxradius);box-shadow:var(--textboxshadow);background-color:var(--textboxbackcolor)}.style_itext__jz90o img{object-fit:contain;height:4em;vertical-align:middle}.style_itext__jz90o mark{background-color:var(--backmark);color:var(--foremark);padding:0 .5rem}.style_itext__jz90o high{color:var(--textaccentcolor)}.style_itext__jz90o bord{border:8px solid var(--backmark);padding:0 .5rem}.style_itext__jz90o a{color:var(--textaccentcolor);text-decoration:underline}.style_itext__jz90o blockquote{font-size:2em;font-weight:400;font-style:italic}.style_itext__jz90o blockquote,.style_itext__jz90o h1,.style_itext__jz90o h2,.style_itext__jz90o h3,.style_itext__jz90o h4,.style_itext__jz90o h5,.style_itext__jz90o h6,.style_itext__jz90o p,.style_itext__jz90o ul{margin:0}.style_itext__jz90o h1 b,.style_itext__jz90o h1 strong,.style_itext__jz90o h2 b,.style_itext__jz90o h2 strong,.style_itext__jz90o h3 b,.style_itext__jz90o h3 strong,.style_itext__jz90o h4 b,.style_itext__jz90o h4 strong,.style_itext__jz90o h5 b,.style_itext__jz90o h5 strong,.style_itext__jz90o h6 b,.style_itext__jz90o h6 strong{color:var(--textaccentcolor)}.style_itext__jz90o ol,.style_itext__jz90o ul{font-size:1.5em;line-height:1.1em;text-align:var(--textListAlign);margin:0;list-style-type:none;counter-reset:li;padding:.5rem 0}.style_itext__jz90o li{list-style-position:inside;margin-bottom:2px;padding:.25em .25em .25em .8em}.style_itext__jz90o ul li:before{content:\"\\2013\";display:inline-block;width:.8em;margin-left:-.8em}.style_itext__jz90o ol li:before{counter-increment:li;content:\".\" counter(li);display:inline-block;width:1.1em;margin-left:-1.3em;margin-right:.2em;text-align:right;direction:rtl}.style_itext__jz90o li p{display:inline}.style_itext__jz90o code,.style_itext__jz90o pre{text-align:left}.style_itext__jz90o h1,.style_itext__jz90o h2,.style_itext__jz90o h3,.style_itext__jz90o h4,.style_itext__jz90o h5,.style_itext__jz90o h6{font-family:var(--fontHeading);padding:.5rem 0}.style_itext__jz90o h1{font-size:2em}.style_itext__jz90o h2{font-size:1.5em}.style_itext__jz90o h3{font-size:1.17em}.style_itext__jz90o h4{font-size:1em}.style_itext__jz90o h5{font-size:.83em}.style_itext__jz90o h6{font-size:.67em}.style_itext__jz90o p{padding:.5rem 0}.style_itext__jz90o hr{border:1px solid var(--colorFore);margin:.5rem 0}.style_itext__jz90o h1:first-child,.style_itext__jz90o h1:last-child,.style_itext__jz90o h2:first-child,.style_itext__jz90o h2:last-child,.style_itext__jz90o h3:first-child,.style_itext__jz90o h3:last-child{padding:0}.style_itext__jz90o table{width:100%}.style_itext__jz90o tr{padding:0}.style_itext__jz90o td,.style_itext__jz90o th{padding:.5rem;border-bottom:1px solid var(--colorFore)}";
-  var css$5 = {"text":"style_text__3T1cl","inner":"style_inner__11UJC","pretext":"style_pretext__cLjqD","textbox":"style_textbox__1Vb-V","itext":"style_itext__jz90o"};
+  var css_248z$x = ".textVar__title{--textPadding:3rem;--textAlign:center;--textListAlign:center;--textFlexAlign:center;--textFlexJustify:center;--textSize:2.5rem}.textVar__text{--textAlign:left;--textListAlign:left;--textFlexJustify:flex-start;--textSize:1rem}.textVar__section,.textVar__text{--textPadding:2rem;--textFlexAlign:flex-start}.textVar__section{--textAlign:right;--textListAlign:right;--textFlexJustify:flex-end;--textSize:2rem}.textVar__mention{--textAlign:left;--textListAlign:left;--textFlexJustify:flex-start;--textSize:1.5rem}.textVar__mention,.textVar__suggest{--textPadding:2rem;--textFlexAlign:flex-end}.textVar__suggest{--textAlign:center;--textListAlign:center;--textFlexJustify:center;--textSize:0.8rem}.textStyle__a{--textboxpadding:0;--textboxbackcolor:var(--colorFore);--textboxradius:0;--textboxborder:0;--textboxshadow:0 0 0 var(--colorAccent);--textboxcolor:var(--colorBack)}";
   styleInject(css_248z$x);
+
+  var css_248z$y = ":root{--textPadding:0;--textAlign:center;--textListAlign:left;--textFlexAlign:center;--textFlexJustify:center;--textSize:1rem}.style_text__3T1cl{color:var(--colorFore)}.style_inner__11UJC,.style_text__3T1cl{width:100%;height:100%;position:relative}.style_pretext__cLjqD{display:flex;width:100%;height:100%;align-items:var(--textFlexAlign);justify-content:var(--textFlexJustify)}.style_textbox__1Vb-V{padding:var(--textboxpadding);text-align:var(--textAlign);font-size:var(--textSize);color:var(--textboxcolor);--backmark:var(--colorAccent);--foremark:var(--colorBack);--textaccentcolor:var(--colorAccent);font-family:var(--fontText)}.style_itext__jz90o{border:var(--textboxborder) solid var(--colorAccent);padding:var(--textPadding);border-radius:var(--textboxradius);box-shadow:var(--textboxshadow);background-color:var(--textboxbackcolor)}.style_itext__jz90o img{object-fit:contain;height:4em;vertical-align:middle}.style_itext__jz90o mark{background-color:var(--backmark);color:var(--foremark);padding:0 .5rem}.style_itext__jz90o high{color:var(--textaccentcolor)}.style_itext__jz90o bord{border:8px solid var(--backmark);padding:0 .5rem}.style_itext__jz90o a{color:var(--textaccentcolor);text-decoration:underline}.style_itext__jz90o blockquote{font-size:2em;font-weight:400;font-style:italic}.style_itext__jz90o blockquote,.style_itext__jz90o h1,.style_itext__jz90o h2,.style_itext__jz90o h3,.style_itext__jz90o h4,.style_itext__jz90o h5,.style_itext__jz90o h6,.style_itext__jz90o p,.style_itext__jz90o ul{margin:0}.style_itext__jz90o h1 b,.style_itext__jz90o h1 strong,.style_itext__jz90o h2 b,.style_itext__jz90o h2 strong,.style_itext__jz90o h3 b,.style_itext__jz90o h3 strong,.style_itext__jz90o h4 b,.style_itext__jz90o h4 strong,.style_itext__jz90o h5 b,.style_itext__jz90o h5 strong,.style_itext__jz90o h6 b,.style_itext__jz90o h6 strong{color:var(--textaccentcolor)}.style_itext__jz90o ol,.style_itext__jz90o ul{font-size:1.5em;line-height:1.1em;text-align:var(--textListAlign);margin:0;list-style-type:none;counter-reset:li;padding:.5rem 0}.style_itext__jz90o li{list-style-position:inside;margin-bottom:2px;padding:.25em .25em .25em .8em}.style_itext__jz90o ul li:before{content:\"\\2013\";display:inline-block;width:.8em;margin-left:-.8em}.style_itext__jz90o ol li:before{counter-increment:li;content:\".\" counter(li);display:inline-block;width:1.1em;margin-left:-1.3em;margin-right:.2em;text-align:right;direction:rtl}.style_itext__jz90o li p{display:inline}.style_itext__jz90o code,.style_itext__jz90o pre{text-align:left}.style_itext__jz90o h1,.style_itext__jz90o h2,.style_itext__jz90o h3,.style_itext__jz90o h4,.style_itext__jz90o h5,.style_itext__jz90o h6{font-family:var(--fontHeading);padding:.5rem 0}.style_itext__jz90o h1{font-size:2em}.style_itext__jz90o h2{font-size:1.5em}.style_itext__jz90o h3{font-size:1.17em}.style_itext__jz90o h4{font-size:1em}.style_itext__jz90o h5{font-size:.83em}.style_itext__jz90o h6{font-size:.67em}.style_itext__jz90o p{padding:.5rem 0}.style_itext__jz90o hr{border:1px solid var(--colorFore);margin:.5rem 0}.style_itext__jz90o h1:first-child,.style_itext__jz90o h1:last-child,.style_itext__jz90o h2:first-child,.style_itext__jz90o h2:last-child,.style_itext__jz90o h3:first-child,.style_itext__jz90o h3:last-child{padding:0}.style_itext__jz90o table{width:100%}.style_itext__jz90o tr{padding:0}.style_itext__jz90o td,.style_itext__jz90o th{padding:.5rem;border-bottom:1px solid var(--colorFore)}";
+  var css$6 = {"text":"style_text__3T1cl","inner":"style_inner__11UJC","pretext":"style_pretext__cLjqD","textbox":"style_textbox__1Vb-V","itext":"style_itext__jz90o"};
+  styleInject(css_248z$y);
 
   utils.addGlob(['textVar', 'textStyle']);
   utils.addProp(['textPadding', 'textAlign']); // ['title', 'text', 'section', 'mention', 'suggest']
@@ -593,11 +620,11 @@
     };
     if (config.textVar) defsize = varSize[config.textVar];
     let fsize = config.scale || defsize;
-    const child = utils.div(`<div class="c ${css$5.text}">
-    <div class="${css$5.inner}">
-      <div class="pretext ${css$5.pretext}">
-        <div class="${css$5.textbox}">
-          <div class="textContent ${css$5.itext} ${css$5.fadein}">
+    const child = utils.div(`<div class="c ${css$6.text}">
+    <div class="${css$6.inner}">
+      <div class="pretext ${css$6.pretext}">
+        <div class="${css$6.textbox}">
+          <div class="textContent ${css$6.itext} ${css$6.fadein}">
             ${html}
           </div>
         </div>
@@ -628,9 +655,9 @@
 
     const compute = () => {
       child.style.setProperty('--textSize', `${fsize}rem`);
-      const mel = child.querySelector('.' + css$5.inner);
+      const mel = child.querySelector('.' + css$6.inner);
       const mbox = mel.getBoundingClientRect();
-      const el = child.querySelector('.' + css$5.textbox);
+      const el = child.querySelector('.' + css$6.textbox);
       const bbox = el.getBoundingClientRect();
 
       if (parseInt(mbox.width) < parseInt(bbox.width) || parseInt(mbox.height) < parseInt(bbox.height)) {
@@ -638,12 +665,12 @@
         return compute();
       } else {
         setTimeout(() => {
-          child.querySelector('.' + css$5.inner).style.visibility = 'visible';
+          child.querySelector('.' + css$6.inner).style.visibility = 'visible';
         });
       }
     };
 
-    child.querySelector('.' + css$5.inner).style.visibility = 'hidden';
+    child.querySelector('.' + css$6.inner).style.visibility = 'hidden';
     setTimeout(compute);
   };
 
@@ -654,9 +681,9 @@
     });
   };
 
-  var css_248z$y = ":root{--embedPadding:0;--embedBackcolor:none;--embedPosterSize:cover;--embedPosterPosition:center}.style_inner__3WOWs{padding:var(--embedPadding);position:relative}.style_frame__28PUh{background-color:var(--embedBackcolor);position:relative}.style_embed__2Pre2,.style_frame__28PUh,.style_inner__3WOWs{width:100%;height:100%}.style_frame__28PUh>iframe{width:100%;height:100%;border:none}.style_loading__1w7wc{position:absolute;top:0;left:0;width:100%;height:100%;display:flex;align-items:center;justify-content:center;color:var(--colorFore);font-family:var(--fontText);background-color:var(--colorBack)}.style_loading__1w7wc mark{background-color:var(--colorAccent);color:var(--colorBack)}.style_blockmouse__3bXSl,.style_poster__1TOx3{position:absolute;top:0;left:0;width:100%;height:100%}.style_poster__1TOx3{background-color:var(--colorBack)}.style_poster__1TOx3 img{width:100%;height:100%;object-fit:var(--embedPosterSize);object-position:var(--embedPosterPosition)}";
-  var css$6 = {"inner":"style_inner__3WOWs","frame":"style_frame__28PUh","embed":"style_embed__2Pre2","loading":"style_loading__1w7wc","blockmouse":"style_blockmouse__3bXSl","poster":"style_poster__1TOx3"};
-  styleInject(css_248z$y);
+  var css_248z$z = ":root{--embedPadding:0;--embedBackcolor:none;--embedPosterSize:cover;--embedPosterPosition:center}.style_inner__3WOWs{padding:var(--embedPadding);position:relative}.style_frame__28PUh{background-color:var(--embedBackcolor);position:relative}.style_embed__2Pre2,.style_frame__28PUh,.style_inner__3WOWs{width:100%;height:100%}.style_frame__28PUh>iframe{width:100%;height:100%;border:none}.style_loading__1w7wc{position:absolute;top:0;left:0;width:100%;height:100%;display:flex;align-items:center;justify-content:center;color:var(--colorFore);font-family:var(--fontText);background-color:var(--colorBack)}.style_loading__1w7wc mark{background-color:var(--colorAccent);color:var(--colorBack)}.style_blockmouse__3bXSl,.style_poster__1TOx3{position:absolute;top:0;left:0;width:100%;height:100%}.style_poster__1TOx3{background-color:var(--colorBack)}.style_poster__1TOx3 img{width:100%;height:100%;object-fit:var(--embedPosterSize);object-position:var(--embedPosterPosition)}";
+  var css$7 = {"inner":"style_inner__3WOWs","frame":"style_frame__28PUh","embed":"style_embed__2Pre2","loading":"style_loading__1w7wc","blockmouse":"style_blockmouse__3bXSl","poster":"style_poster__1TOx3"};
+  styleInject(css_248z$z);
 
   const iframePrimaryDomain = str => {
     if (!str) return '';
@@ -680,12 +707,12 @@
     }
 
     const name = iframePrimaryDomain(iframe);
-    const coverFrame = `<div class="cover ${css$6.loading}"><h1>Embed from <mark>${name}</mark></h1></div>`;
-    const blockPointer = config.blockPointer ? `<div class='${css$6.blockmouse}' />` : '';
-    const posterFrame = config.poster ? `<div class="${css$6.poster}"><img src="${config.poster}" /></div>` : '';
-    const child = utils.div(`<div class="c ${css$6.embed}">
-    <div class="${css$6.inner}">
-        <div class="${css$6.frame}">${iframe}</div>
+    const coverFrame = `<div class="cover ${css$7.loading}"><h1>Embed from <mark>${name}</mark></h1></div>`;
+    const blockPointer = config.blockPointer ? `<div class='${css$7.blockmouse}' />` : '';
+    const posterFrame = config.poster ? `<div class="${css$7.poster}"><img src="${config.poster}" /></div>` : '';
+    const child = utils.div(`<div class="c ${css$7.embed}">
+    <div class="${css$7.inner}">
+        <div class="${css$7.frame}">${iframe}</div>
         ${coverFrame}
         ${posterFrame}
         ${blockPointer}
@@ -698,8 +725,8 @@
     if (iframe && presentMode) {
       const frame = child.querySelector('iframe');
       frame.addEventListener('load', () => {
-        child.querySelector('.' + css$6.loading).style.display = 'none';
-        if (posterFrame) child.querySelector('.' + css$6.poster).style.display = 'none';
+        child.querySelector('.' + css$7.loading).style.display = 'none';
+        if (posterFrame) child.querySelector('.' + css$7.poster).style.display = 'none';
       });
     }
   };
@@ -708,17 +735,17 @@
     utils.addProp(['embedPadding', 'embedBackcolor', 'embedPosterSize', 'embedPosterPosition']);
   };
 
-  var css_248z$z = ":root{--imagePadding:0;--imageBorder:none;--imageShadow:none;--imageSize:cover;--imagePosition:center}.style_image__1fZIQ,.style_inner__3tyMU{width:100%;height:100%}.style_inner__3tyMU{display:flex}.style_preimg__2ypvx{overflow:hidden;flex:1;padding:var(--imagePadding)}.style_preimg__2ypvx img{width:100%;height:100%;border:var(--imageBorder);box-shadow:var(--imageShadow);object-fit:var(--imageSize);object-position:var(--imagePosition)}";
-  var css$7 = {"image":"style_image__1fZIQ","inner":"style_inner__3tyMU","preimg":"style_preimg__2ypvx"};
-  styleInject(css_248z$z);
+  var css_248z$A = ":root{--imagePadding:0;--imageBorder:none;--imageShadow:none;--imageSize:cover;--imagePosition:center}.style_image__1fZIQ,.style_inner__3tyMU{width:100%;height:100%}.style_inner__3tyMU{display:flex}.style_preimg__2ypvx{overflow:hidden;flex:1;padding:var(--imagePadding)}.style_preimg__2ypvx img{width:100%;height:100%;border:var(--imageBorder);box-shadow:var(--imageShadow);object-fit:var(--imageSize);object-position:var(--imagePosition)}";
+  var css$8 = {"image":"style_image__1fZIQ","inner":"style_inner__3tyMU","preimg":"style_preimg__2ypvx"};
+  styleInject(css_248z$A);
 
   const image = function (el, config) {
     const url = config.url;
-    const imageschunk = `<div class="presentablock__image ${css$7.preimg}">
+    const imageschunk = `<div class="presentablock__image ${css$8.preimg}">
         <img src="${url}" />
       </div>`;
-    const child = utils.div(`<div class="${css$7.image}">
-    <div class="imagesContainer ${css$7.inner}">
+    const child = utils.div(`<div class="${css$8.image}">
+    <div class="imagesContainer ${css$8.inner}">
         ${imageschunk}
     </div>
   </div>`);
@@ -739,9 +766,9 @@
     });
   };
 
-  var css_248z$A = ":root{--videoSize:cover;--videoPosition:center}.style_video__1qbdJ{width:100%;height:100%;display:flex;align-items:center;justify-content:center}.style_video__1qbdJ video{width:100%;height:100%;object-fit:var(--videoSize);object-position:var(--videoPosition)}";
-  var css$8 = {"video":"style_video__1qbdJ"};
-  styleInject(css_248z$A);
+  var css_248z$B = ":root{--videoSize:cover;--videoPosition:center}.style_video__1qbdJ{width:100%;height:100%;display:flex;align-items:center;justify-content:center}.style_video__1qbdJ video{width:100%;height:100%;object-fit:var(--videoSize);object-position:var(--videoPosition)}";
+  var css$9 = {"video":"style_video__1qbdJ"};
+  styleInject(css_248z$B);
 
   const video = function (el, config, rootElement, projectConfig) {
     const previewMode = projectConfig.mode === 'preview';
@@ -750,7 +777,7 @@
     const loop = config.loop ? 'loop' : '';
     const autoplay = config.autoplay && presentMode ? 'autoplay' : '';
     const src = config.url ? `src=${config.url}` : '';
-    const child = utils.div(`<div class="${css$8.video}">
+    const child = utils.div(`<div class="${css$9.video}">
     <video ${poster} ${src} ${loop} ${autoplay}></video>
   </div>`);
 
@@ -806,12 +833,12 @@
     });
   };
 
-  var css_248z$B = ".solidVar__a{--solidColor:#000}.solidVar__a,.solidVar__b{--solidOpacity:.7;--solidBlend:none}.solidVar__b{--solidColor:#fff}.solidVar__c{--solidColor:var(--colorBack);--solidOpacity:1;--solidBlend:multiply}";
-  styleInject(css_248z$B);
-
-  var css_248z$C = ":root{--solidOpacity:1;--solidBlend:none;--solidColor:var(--colorAccent)}.style_solid__wiwvr{width:100%;height:100%;display:flex;align-items:center;justify-content:center;background:var(--solidColor);opacity:var(--solidOpacity);mix-blend-mode:var(--solidBlend)}";
-  var css$9 = {"solid":"style_solid__wiwvr"};
+  var css_248z$C = ".solidVar__a{--solidColor:#000}.solidVar__a,.solidVar__b{--solidOpacity:.7;--solidBlend:none}.solidVar__b{--solidColor:#fff}.solidVar__c{--solidColor:var(--colorBack);--solidOpacity:1;--solidBlend:multiply}";
   styleInject(css_248z$C);
+
+  var css_248z$D = ":root{--solidOpacity:1;--solidBlend:none;--solidColor:var(--colorAccent)}.style_solid__wiwvr{width:100%;height:100%;display:flex;align-items:center;justify-content:center;background:var(--solidColor);opacity:var(--solidOpacity);mix-blend-mode:var(--solidBlend)}";
+  var css$a = {"solid":"style_solid__wiwvr"};
+  styleInject(css_248z$D);
 
   /*
   {
@@ -827,7 +854,7 @@
   utils.addProp(['solidColor', 'solidOpacity', 'solidColor']);
 
   const solid = function (el, config) {
-    const child = utils.div(`<div class="${css$9.solid}"></div>`);
+    const child = utils.div(`<div class="${css$a.solid}"></div>`);
 
     this.beforeDestroy = () => {};
 
@@ -857,16 +884,16 @@
     blocks[type] = module;
   };
 
-  var css_248z$D = ".container_mainwrapper__zelcO{outline:none}.container_container__3kBNh,.container_mainwrapper__zelcO{width:100%;height:100%;position:relative;overflow:hidden}.container_container__3kBNh>div{position:absolute;top:0;left:0;width:100%}";
-  var css$a = {"mainwrapper":"container_mainwrapper__zelcO","container":"container_container__3kBNh"};
-  styleInject(css_248z$D);
-
-  var css_248z$E = ".router_router__2r4NQ{width:100%;height:100%;position:absolute;top:0;left:0;pointer-events:none}";
-  var css$b = {"router":"router_router__2r4NQ"};
+  var css_248z$E = ".container_mainwrapper__zelcO{outline:none}.container_container__3kBNh,.container_mainwrapper__zelcO{width:100%;height:100%;position:relative;overflow:hidden}.container_container__3kBNh>div{position:absolute;top:0;left:0;width:100%}";
+  var css$b = {"mainwrapper":"container_mainwrapper__zelcO","container":"container_container__3kBNh"};
   styleInject(css_248z$E);
 
+  var css_248z$F = ".router_router__2r4NQ{width:100%;height:100%;position:absolute;top:0;left:0;pointer-events:none}";
+  var css$c = {"router":"router_router__2r4NQ"};
+  styleInject(css_248z$F);
+
   const Router = function (rootElement, projectConfig) {
-    const child = utils.div(`<div class="controller ${css$b.router}"></div>`);
+    const child = utils.div(`<div class="controller ${css$c.router}"></div>`);
     rootElement.appendChild(child);
     const scenes = projectConfig.scenes;
     const numScenes = scenes.length - 1;
@@ -878,14 +905,13 @@
 
     const setNumSteps = () => {
       numSteps = scenes[currentIndex] && scenes[currentIndex].steps ? scenes[currentIndex].steps.length : 0;
-    };
+    }; // setNumSteps()
 
-    setNumSteps();
 
     const updateRouterWrapper = () => {
       const sceneConfig = scenes[currentIndex];
       child.classList.remove(...child.classList);
-      child.classList.add('controller', css$b.router);
+      child.classList.add('controller', css$c.router);
       child.style = null;
       utils.globs(child, sceneConfig);
       utils.props(child, sceneConfig);
@@ -908,7 +934,6 @@
       if (currentIndex < numScenes) {
         currentIndex++;
         currentStep = 0;
-        setNumSteps();
         this.notify('nextIndex');
         this.notify('indexChanged');
       } else {
@@ -916,13 +941,14 @@
         currentStep = 0;
         this.notify('end');
       }
+
+      setNumSteps();
     };
 
     this.prevIndex = () => {
       if (currentIndex > 0) {
         currentIndex--;
         currentStep = 0;
-        setNumSteps();
         this.notify('prevIndex');
         this.notify('indexChanged');
       } else {
@@ -930,6 +956,8 @@
         currentStep = 0;
         this.notify('begin');
       }
+
+      setNumSteps();
     };
 
     this.goto = v => {
@@ -995,16 +1023,19 @@
     }
 
     this.notify('indexChanged');
-    setTimeout(() => this.notify('init'));
+    setTimeout(() => {
+      this.notify('init');
+      setNumSteps();
+    });
   };
 
-  var css_248z$F = ".scene_sceneContainer__IgSpB{width:100%;height:100%;display:flex;align-items:center;justify-content:center;position:relative}.scene_scene__3uvTl{--presenta-sw:calc(var(--presenta-w)/var(--presenta-p)/var(--presenta-fz));--presenta-sh:calc(var(--presenta-h)/var(--presenta-p)/var(--presenta-fz));--presenta-scal:calc(var(--presenta-pw)/var(--presenta-p)/var(--presenta-pw)/var(--presenta-fz));width:var(--presenta-sw);height:var(--presenta-sh);font-family:serif;user-select:none}.scene_wrapper__3yr1k{width:var(--presenta-w);height:var(--presenta-h);transform:scale(1);transform:scale(var(--presenta-scal));transform-origin:top left;overflow:hidden;padding:var(--scenePadding);background-color:var(--sceneBackColor)}.scene_content__1rJf0{width:100%;height:100%;display:flex;flex-direction:column;overflow:hidden}.scene_fcontainer__1E_0g{top:0;left:0;width:100%;height:100%;position:absolute;pointer-events:none}.scene_viewport__3uNLS{width:100%;height:100%;position:relative;flex:1;overflow:hidden;display:flex;flex-direction:row}.scene_viewport__3uNLS>div{height:100%}";
-  var css$c = {"sceneContainer":"scene_sceneContainer__IgSpB","scene":"scene_scene__3uvTl","wrapper":"scene_wrapper__3yr1k","content":"scene_content__1rJf0","fcontainer":"scene_fcontainer__1E_0g","viewport":"scene_viewport__3uNLS"};
-  styleInject(css_248z$F);
-
-  var css_248z$G = ".block_block__BWbaZ{background:var(--colorBack);width:100%;height:100%;flex:1;flex:var(--blockWeight);overflow:hidden;position:relative}.block_inner__3LS6s{width:100%;height:100%;padding:var(--blockPadding);opacity:var(--blockOpacity);mix-blend-mode:var(--blockBlend)}.block_bdecoration__3KJh-,.block_inner__3LS6s{top:0;left:0;width:100%;height:100%;position:absolute}.block_fdecoration__12tBw{pointer-events:none}";
-  var css$d = {"block":"block_block__BWbaZ","inner":"block_inner__3LS6s","bdecoration":"block_bdecoration__3KJh-","fdecoration":"block_fdecoration__12tBw"};
+  var css_248z$G = ".scene_sceneContainer__IgSpB{width:100%;height:100%;display:flex;align-items:center;justify-content:center;position:relative}.scene_scene__3uvTl{--presenta-sw:calc(var(--presenta-w)/var(--presenta-p)/var(--presenta-fz));--presenta-sh:calc(var(--presenta-h)/var(--presenta-p)/var(--presenta-fz));--presenta-scal:calc(var(--presenta-pw)/var(--presenta-p)/var(--presenta-pw)/var(--presenta-fz));width:var(--presenta-sw);height:var(--presenta-sh);font-family:serif;user-select:none}.scene_wrapper__3yr1k{width:var(--presenta-w);height:var(--presenta-h);transform:scale(1);transform:scale(var(--presenta-scal));transform-origin:top left;overflow:hidden;padding:var(--scenePadding);background-color:var(--sceneBackColor)}.scene_content__1rJf0{width:100%;height:100%;display:flex;flex-direction:column;overflow:hidden}.scene_fcontainer__1E_0g{top:0;left:0;width:100%;height:100%;position:absolute;pointer-events:none}.scene_viewport__3uNLS{width:100%;height:100%;position:relative;flex:1;overflow:hidden;display:flex;flex-direction:row}.scene_viewport__3uNLS>div{height:100%}";
+  var css$d = {"sceneContainer":"scene_sceneContainer__IgSpB","scene":"scene_scene__3uvTl","wrapper":"scene_wrapper__3yr1k","content":"scene_content__1rJf0","fcontainer":"scene_fcontainer__1E_0g","viewport":"scene_viewport__3uNLS"};
   styleInject(css_248z$G);
+
+  var css_248z$H = ".block_block__BWbaZ{background:var(--colorBack);width:100%;height:100%;flex:1;flex:var(--blockWeight);overflow:hidden;position:relative}.block_inner__3LS6s{width:100%;height:100%;padding:var(--blockPadding);opacity:var(--blockOpacity);mix-blend-mode:var(--blockBlend)}.block_bdecoration__3KJh-,.block_inner__3LS6s{top:0;left:0;width:100%;height:100%;position:absolute}.block_fdecoration__12tBw{pointer-events:none}";
+  var css$e = {"block":"block_block__BWbaZ","inner":"block_inner__3LS6s","bdecoration":"block_bdecoration__3KJh-","fdecoration":"block_fdecoration__12tBw"};
+  styleInject(css_248z$H);
 
   const Block = function (blocksElement, blockConfig, rootElement, projectConfig) {
     this.type = blockConfig.type;
@@ -1016,10 +1047,10 @@
     }
 
     let step = 0;
-    const child = utils.div(`<div class="block ${css$d.block} b b${this.index}">
-    <div class="backDecoration ${css$d.bdecoration}"></div>
-    <div class="blockContainer ${css$d.inner}"></div>
-    <div class="frontDecoration ${css$d.fdecoration}"></div>
+    const child = utils.div(`<div class="block ${css$e.block} b b${this.index}">
+    <div class="backDecoration ${css$e.bdecoration}"></div>
+    <div class="blockContainer ${css$e.inner}"></div>
+    <div class="frontDecoration ${css$e.fdecoration}"></div>
   </div>`);
     utils.globs(child, blockConfig);
     utils.props(child, blockConfig);
@@ -1124,14 +1155,14 @@
     */
 
     let currentStep = 0;
-    const steps = sceneConfig.steps || [];
+    let steps = null;
     const child = utils.div(`<div 
-      class="s ${css$c.sceneContainer}">
-      <div class="sceneObject ${css$c.scene}">
-        <div class="${css$c.wrapper}">
-            <div class="${css$c.content}">
-                <div class="blocksContainer ${css$c.viewport}"></div>
-                <div class="frontContainer ${css$c.fcontainer}"></div>
+      class="s ${css$d.sceneContainer}">
+      <div class="sceneObject ${css$d.scene}">
+        <div class="${css$d.wrapper}">
+            <div class="${css$d.content}">
+                <div class="blocksContainer ${css$d.viewport}"></div>
+                <div class="frontContainer ${css$d.fcontainer}"></div>
             </div>
         </div>
       </div>
@@ -1162,7 +1193,7 @@
 
         if (Mod) {
           if (modConfig) {
-            const mod = new Mod(child.querySelector(`.${css$c.content}`), modConfig, sceneConfig, projectConfig);
+            const mod = new Mod(child.querySelector(`.${css$d.content}`), modConfig, sceneConfig, projectConfig);
             modInstances.push(mod);
           }
         }
@@ -1214,10 +1245,15 @@
     */
 
 
+    steps = sceneConfig.steps || [];
+
     this.stepForward = () => {
       if (currentStep < steps.length) {
         const idx = steps[currentStep];
         blocks[idx].stepForward();
+        modInstances.forEach(mod => {
+          if (mod.stepForward) mod.stepForward(currentStep);
+        });
         currentStep++;
       }
     };
@@ -1276,12 +1312,12 @@
 
 
     rootElement.classList.add('presenta');
-    const child = utils.div(`<div class="${css$a.mainwrapper}"></div>`);
+    const child = utils.div(`<div class="${css$b.mainwrapper}"></div>`);
     child.setAttribute('tabindex', '0');
     utils.globs(child, projectConfig);
     utils.props(child, projectConfig);
     rootElement.appendChild(child);
-    const cont = utils.div(`<div class="a ${css$a.container}"></div>`);
+    const cont = utils.div(`<div class="a ${css$b.container}"></div>`);
     child.appendChild(cont);
     const scenes = projectConfig.scenes;
     var currentScene = null;
@@ -1345,7 +1381,9 @@
         black: true,
         fullscreen: true
       },
-      modules: {},
+      modules: {
+        steps: true
+      },
       scheme: null,
       fontkit: null,
       transition: null,

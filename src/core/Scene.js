@@ -39,7 +39,7 @@ const Scene = function (sceneConfig, projectConfig, rootElement) {
     Create the wrapper template
   */
   let currentStep = 0
-  const steps = sceneConfig.steps || []
+  let steps = null
 
   const child = u.div(`<div 
       class="s ${css.sceneContainer}">
@@ -129,10 +129,15 @@ const Scene = function (sceneConfig, projectConfig, rootElement) {
   /*
     Public method called by the container move forward the step progress
   */
+  steps = sceneConfig.steps || []
+
   this.stepForward = () => {
     if (currentStep < steps.length) {
       const idx = steps[currentStep]
       blocks[idx].stepForward()
+      modInstances.forEach(mod => {
+        if (mod.stepForward) mod.stepForward(currentStep)
+      })
       currentStep++
     }
   }

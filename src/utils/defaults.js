@@ -10,6 +10,7 @@ export default config => {
       fullscreen: true
     },
     modules: {
+      steps: true
     },
     scheme: null,
     fontkit: null,

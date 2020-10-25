@@ -34,7 +34,7 @@ const Container = function (rootElement, projectConfig) {
   }
 
   /*
-    Init the container
+    Init the wrapper
   */
   rootElement.classList.add('presenta')
 
@@ -44,6 +44,9 @@ const Container = function (rootElement, projectConfig) {
   u.props(child, projectConfig)
   rootElement.appendChild(child)
 
+  /*
+    Init the container
+  */
   const cont = u.div(`<div class="a ${css.container}"></div>`)
   child.appendChild(cont)
 

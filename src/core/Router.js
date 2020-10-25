@@ -8,7 +8,7 @@ const Router = function (rootElement, projectConfig) {
   rootElement.appendChild(child)
 
   const scenes = projectConfig.scenes
-  const numScenes = scenes.length - 1
+  const numScenes = () => scenes.length - 1
   const listeners = {}
   const registeredIO = {}
 
@@ -47,13 +47,13 @@ const Router = function (rootElement, projectConfig) {
   }
 
   this.nextIndex = () => {
-    if (currentIndex < numScenes) {
+    if (currentIndex < numScenes()) {
       currentIndex++
       currentStep = 0
       this.notify('nextIndex')
       this.notify('indexChanged')
     } else {
-      currentIndex = numScenes
+      currentIndex = numScenes()
       currentStep = 0
       this.notify('end')
     }
@@ -74,7 +74,7 @@ const Router = function (rootElement, projectConfig) {
   }
 
   this.goto = v => {
-    currentIndex = v < numScenes ? v : numScenes
+    currentIndex = v < numScenes() ? v : numScenes()
     currentStep = 0
     this.notify('nextIndex')
     this.notify('indexChanged')
@@ -89,8 +89,9 @@ const Router = function (rootElement, projectConfig) {
           currentIndex,
           currentStep,
           totalScenes: this.totalScenes(),
+          totalSteps: numSteps,
           isFirst: currentIndex === 0,
-          isLast: currentIndex === numScenes
+          isLast: currentIndex === numScenes()
         })
       })
     }
@@ -108,7 +109,7 @@ const Router = function (rootElement, projectConfig) {
     if (index >= 0) listeners[evt].splice(index, 1)
   }
 
-  this.totalScenes = () => numScenes + 1
+  this.totalScenes = () => numScenes() + 1
   this.totalSteps = () => numSteps
   this.currentIndex = () => currentIndex
   this.currentStep = () => currentStep

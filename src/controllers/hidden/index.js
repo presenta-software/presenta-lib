@@ -22,6 +22,7 @@ const hidden = function (rootElement, router, ctrlConfig, projectConfig) {
   for (var i = scenes.length - 1; i >= 0; i--) {
     if (scenesToRemove.indexOf(i) >= 0) scenes.splice(i, 1)
   }
+
 }
 
 export { hidden }

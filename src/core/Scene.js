@@ -55,6 +55,7 @@ const Scene = function (sceneConfig, projectConfig, rootElement) {
 
   u.globs(child, sceneConfig)
   u.props(child, sceneConfig)
+  sceneConfig._el = child
   this.el = child
 
   /*
@@ -89,7 +90,7 @@ const Scene = function (sceneConfig, projectConfig, rootElement) {
     Run the entering transition
   */
   if (hasTransition) {
-    const wrap = this.el.querySelector('.sceneObject')
+    const wrap = child.querySelector('.sceneObject')
     const dir = sceneConfig._presentatransdir === 'backward' ? 'to-left' : 'to-right'
     Transition(wrap)
       .start(dir)
@@ -108,7 +109,7 @@ const Scene = function (sceneConfig, projectConfig, rootElement) {
       Run the exiting transition
     */
     if (hasTransition) {
-      const wrap = this.el.querySelector('.sceneObject')
+      const wrap = child.querySelector('.sceneObject')
       const odir = sceneConfig._presentatransdir === 'backward' ? 'to-right' : 'to-left'
       const ndir = sceneConfig._presentatransdir === 'backward' ? 'to-left' : 'to-right'
       Transition(wrap)

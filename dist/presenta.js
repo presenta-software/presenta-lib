@@ -1,11 +1,11 @@
-// https://lib.presenta.cc v0.0.47 Copyright 2020 Fabio Franchino
+// https://lib.presenta.cc v0.0.48 Copyright 2020 Fabio Franchino
 (function (global, factory) {
   typeof exports === 'object' && typeof module !== 'undefined' ? module.exports = factory() :
   typeof define === 'function' && define.amd ? define(factory) :
   (global = typeof globalThis !== 'undefined' ? globalThis : global || self, global.Presenta = factory());
 }(this, (function () { 'use strict';
 
-  var version = "0.0.47";
+  var version = "0.0.48";
 
   function styleInject(css, ref) {
     if ( ref === void 0 ) ref = {};
@@ -925,7 +925,9 @@
     const child = utils.div(`<div class="controller ${css$c.router}"></div>`);
     rootElement.appendChild(child);
     const scenes = projectConfig.scenes;
-    const numScenes = scenes.length - 1;
+
+    const numScenes = () => scenes.length - 1;
+
     const listeners = {};
     const registeredIO = {};
     let currentIndex = 0;
@@ -960,13 +962,13 @@
     };
 
     this.nextIndex = () => {
-      if (currentIndex < numScenes) {
+      if (currentIndex < numScenes()) {
         currentIndex++;
         currentStep = 0;
         this.notify('nextIndex');
         this.notify('indexChanged');
       } else {
-        currentIndex = numScenes;
+        currentIndex = numScenes();
         currentStep = 0;
         this.notify('end');
       }
@@ -990,7 +992,7 @@
     };
 
     this.goto = v => {
-      currentIndex = v < numScenes ? v : numScenes;
+      currentIndex = v < numScenes() ? v : numScenes();
       currentStep = 0;
       this.notify('nextIndex');
       this.notify('indexChanged');
@@ -1005,8 +1007,9 @@
             currentIndex,
             currentStep,
             totalScenes: this.totalScenes(),
+            totalSteps: numSteps,
             isFirst: currentIndex === 0,
-            isLast: currentIndex === numScenes
+            isLast: currentIndex === numScenes()
           });
         });
       }
@@ -1025,7 +1028,7 @@
       if (index >= 0) listeners[evt].splice(index, 1);
     };
 
-    this.totalScenes = () => numScenes + 1;
+    this.totalScenes = () => numScenes() + 1;
 
     this.totalSteps = () => numSteps;
 
@@ -1198,6 +1201,7 @@
   </div>`);
     utils.globs(child, sceneConfig);
     utils.props(child, sceneConfig);
+    sceneConfig._el = child;
     this.el = child;
     /*
       Init blocks if any
@@ -1234,7 +1238,7 @@
 
 
     if (hasTransition) {
-      const wrap = this.el.querySelector('.sceneObject');
+      const wrap = child.querySelector('.sceneObject');
       const dir = sceneConfig._presentatransdir === 'backward' ? 'to-left' : 'to-right';
       Transition(wrap).start(dir);
       setTimeout(() => {
@@ -1251,7 +1255,7 @@
         Run the exiting transition
       */
       if (hasTransition) {
-        const wrap = this.el.querySelector('.sceneObject');
+        const wrap = child.querySelector('.sceneObject');
         const odir = sceneConfig._presentatransdir === 'backward' ? 'to-right' : 'to-left';
         const ndir = sceneConfig._presentatransdir === 'backward' ? 'to-left' : 'to-right';
         Transition(wrap).clear(odir).end(ndir);
@@ -1336,7 +1340,7 @@
       console.warn('`scenes` is empty');
     }
     /*
-      Init the container
+      Init the wrapper
     */
 
 
@@ -1346,6 +1350,10 @@
     utils.globs(child, projectConfig);
     utils.props(child, projectConfig);
     rootElement.appendChild(child);
+    /*
+      Init the container
+    */
+
     const cont = utils.div(`<div class="a ${css$b.container}"></div>`);
     child.appendChild(cont);
     const scenes = projectConfig.scenes;

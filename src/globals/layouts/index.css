@@ -1,50 +1,50 @@
 /* Simple Block, doesn't work */
-/* .layout__a .blocksContainer {
+/* .layout__a .layout {
   display: block;
 }
-.layout__a .blocksContainer > div {
+.layout__a .layout > div {
   height: initial;
 } */
 
 
 
 /* Blocks as Columns, Default */
-.layout__cols .blocksContainer {
+.layout__cols .layout {
   display: flex;
   flex-direction: row;
 }
-.layout__cols .blocksContainer > div {
+.layout__cols .layout > div {
   height: 100%;
 }
 
 
 
 /* Blocks as Rows */
-.layout__rows .blocksContainer {
+.layout__rows .layout {
   display: flex;
   flex-direction: column;
 }
-.layout__rows .blocksContainer > div {
+.layout__rows .layout > div {
   width: 100%;
 }
 
 
 
 /* Quick stack with two blocks, typically an image and a text */
-.layout__stack .blocksContainer {
+.layout__stack .layout {
   position: relative;
 }
-.layout__stack .blocksContainer > div {
+.layout__stack .layout > div {
   position: absolute;
   top: 0;
   left: 0;
   width: 100%;
   height: 100%;
 }
-.layout__stack .blocksContainer > div:not(:first-child) {
+.layout__stack .layout > div:not(:first-child) {
   background: none;
 }
-.layout__stack .blocksContainer > div:first-child::after {
+.layout__stack .layout > div:first-child::after {
   content: '';
   position: absolute;
   left: 0;
@@ -58,10 +58,10 @@
 
 
 /* Many Blocks Stacked */
-.layout__pile .blocksContainer {
+.layout__pile .layout {
   position: relative;
 }
-.layout__pile .blocksContainer > div {
+.layout__pile .layout > div {
   position: absolute;
   top: 0;
   left: 0;
@@ -77,16 +77,16 @@
 - content
 */
 
-.layout__head .blocksContainer {
+.layout__head .layout {
   display: flex;
   flex-direction: column;
 }
-.layout__head .blocksContainer > div {
+.layout__head .layout > div {
   width: 100%;
 }
-.layout__head .blocksContainer > div:first-child {
+.layout__head .layout > div:first-child {
 }
-.layout__head .blocksContainer > div:last-child {
+.layout__head .layout > div:last-child {
   flex:5;
 }
 
@@ -97,15 +97,53 @@
 - footer
 */
 
-.layout__foot .blocksContainer {
+.layout__foot .layout {
   display: flex;
   flex-direction: column;
 }
-.layout__foot .blocksContainer > div {
+.layout__foot .layout > div {
   width: 100%;
 }
-.layout__foot .blocksContainer > div:last-child {
-}
-.layout__foot .blocksContainer > div:first-child {
+.layout__foot .layout > div:first-child {
   flex:5;
+}
+.layout__foot .layout > div:last-child {
+}
+
+
+/*
+2 blocks
+- left main
+*/
+
+.layout__left .layout {
+  display: flex;
+  flex-direction: row;
+}
+.layout__left .layout > div {
+  width: 100%;
+}
+.layout__left .layout > div:first-child {
+  flex:2;
+}
+.layout__left .layout > div:last-child {
+}
+
+
+/*
+2 blocks
+- right main
+*/
+
+.layout__right .layout {
+  display: flex;
+  flex-direction: row;
+}
+.layout__right .layout > div {
+  width: 100%;
+}
+.layout__right .layout > div:first-child {
+}
+.layout__right .layout > div:last-child {
+  flex:2;
 }

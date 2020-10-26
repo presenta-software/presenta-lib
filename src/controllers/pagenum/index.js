@@ -1,13 +1,15 @@
 import css from './style.css'
 import u from '../../utils.js'
 
+u.addProp(['pagenumTextAlign', 'pagenumPadding', 'pagenumFontSize', 'pagenumFont'])
+
 const pagenum = function (rootElement, router, ctrlConfig, projectConfig) {
   const child = u.div(`<div class="${css.pagenum}"></div>`)
   const content = u.div(`<div class="${css.content}"></div>`)
   child.appendChild(content)
   rootElement.appendChild(child)
 
-  const template = ctrlConfig.template || '%s / %S'
+  const template = typeof ctrlConfig === 'string' ? ctrlConfig : '%s / %S'
   const totalScenes = projectConfig.scenes.length
 
   const change = e => {

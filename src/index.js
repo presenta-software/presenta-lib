@@ -7,6 +7,7 @@ import { modules, add as addModule } from './modules/types.js'
 import { blocks, add as addBlock } from './blocks/types.js'
 
 import { Container } from './core/Container.js'
+import { group } from './blocks/group' // this import to avoid circular dependencies warning
 
 import utils from './utils.js'
 import defaults from './utils/defaults.js'
@@ -20,6 +21,8 @@ const Presenta = function (el, config) {
 
   return new Container(utils.select(el), config)
 }
+
+addBlock('group', group) // this to avoid circular dependencies warning, since removed implicit inclusion in block types
 
 Presenta.version = version
 Presenta.colors = globals.colors

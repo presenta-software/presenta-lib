@@ -50,8 +50,7 @@ const Router = function (rootElement, projectConfig) {
     if (currentIndex < numScenes()) {
       currentIndex++
       currentStep = 0
-      this.notify('nextIndex')
-      this.notify('indexChanged')
+      this.notify(['nextIndex', 'indexChanged'])
     } else {
       currentIndex = numScenes()
       currentStep = 0
@@ -63,8 +62,7 @@ const Router = function (rootElement, projectConfig) {
     if (currentIndex > 0) {
       currentIndex--
       currentStep = 0
-      this.notify('prevIndex')
-      this.notify('indexChanged')
+      this.notify(['prevIndex', 'indexChanged'])
     } else {
       currentIndex = 0
       currentStep = 0
@@ -76,25 +74,28 @@ const Router = function (rootElement, projectConfig) {
   this.goto = v => {
     currentIndex = v < numScenes() ? v : numScenes()
     currentStep = 0
-    this.notify('nextIndex')
-    this.notify('indexChanged')
+    this.notify(['nextIndex', 'indexChanged'])
   }
 
   this.notify = evt => {
-    if (evt === 'indexChanged') updateRouterWrapper()
+    const evts = Array.isArray(evt) ? evt : [evt]
 
-    if (listeners[evt]) {
-      listeners[evt].forEach(clb => {
-        clb({
-          currentIndex,
-          currentStep,
-          totalScenes: this.totalScenes(),
-          totalSteps: numSteps,
-          isFirst: this.isFirst(),
-          isLast: this.isLast()
+    evts.forEach(ev => {
+      if (ev === 'indexChanged') updateRouterWrapper()
+
+      if (listeners[ev]) {
+        listeners[ev].forEach(clb => {
+          clb({
+            currentIndex,
+            currentStep,
+            totalScenes: this.totalScenes(),
+            totalSteps: numSteps,
+            isFirst: this.isFirst(),
+            isLast: this.isLast()
+          })
         })
-      })
-    }
+      }
+    })
   }
 
   this.on = (evt, clb) => {

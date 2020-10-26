@@ -1,11 +1,11 @@
-// https://lib.presenta.cc v0.0.49 Copyright 2020 Fabio Franchino
+// https://lib.presenta.cc v0.0.50 Copyright 2020 Fabio Franchino
 (function (global, factory) {
   typeof exports === 'object' && typeof module !== 'undefined' ? module.exports = factory() :
   typeof define === 'function' && define.amd ? define(factory) :
   (global = typeof globalThis !== 'undefined' ? globalThis : global || self, global.Presenta = factory());
 }(this, (function () { 'use strict';
 
-  var version = "0.0.49";
+  var version = "0.0.50";
 
   function styleInject(css, ref) {
     if ( ref === void 0 ) ref = {};
@@ -123,10 +123,10 @@
 
   const blockvars = ['a', 'b', 'c'];
 
-  var css_248z$q = ".layout__cols .blocksContainer{display:flex;flex-direction:row}.layout__cols .blocksContainer>div{height:100%}.layout__rows .blocksContainer{display:flex;flex-direction:column}.layout__rows .blocksContainer>div{width:100%}.layout__stack .blocksContainer{position:relative}.layout__stack .blocksContainer>div{position:absolute;top:0;left:0;width:100%;height:100%}.layout__stack .blocksContainer>div:not(:first-child){background:none}.layout__stack .blocksContainer>div:first-child:after{content:\"\";position:absolute;left:0;top:0;width:100%;height:100%;background-color:var(--colorBack);opacity:.7}.layout__pile .blocksContainer{position:relative}.layout__pile .blocksContainer>div{position:absolute;top:0;left:0;width:100%;height:100%}.layout__head .blocksContainer{display:flex;flex-direction:column}.layout__head .blocksContainer>div{width:100%}.layout__head .blocksContainer>div:last-child{flex:5}.layout__foot .blocksContainer{display:flex;flex-direction:column}.layout__foot .blocksContainer>div{width:100%}.layout__foot .blocksContainer>div:first-child{flex:5}";
+  var css_248z$q = ".layout__cols .layout{display:flex;flex-direction:row}.layout__cols .layout>div{height:100%}.layout__rows .layout{display:flex;flex-direction:column}.layout__rows .layout>div{width:100%}.layout__stack .layout{position:relative}.layout__stack .layout>div{position:absolute;top:0;left:0;width:100%;height:100%}.layout__stack .layout>div:not(:first-child){background:none}.layout__stack .layout>div:first-child:after{content:\"\";position:absolute;left:0;top:0;width:100%;height:100%;background-color:var(--colorBack);opacity:.7}.layout__pile .layout{position:relative}.layout__pile .layout>div{position:absolute;top:0;left:0;width:100%;height:100%}.layout__head .layout{display:flex;flex-direction:column}.layout__head .layout>div{width:100%}.layout__head .layout>div:last-child{flex:5}.layout__foot .layout{display:flex;flex-direction:column}.layout__foot .layout>div{width:100%}.layout__foot .layout>div:first-child{flex:5}.layout__left .layout{display:flex;flex-direction:row}.layout__left .layout>div{width:100%}.layout__left .layout>div:first-child{flex:2}.layout__right .layout{display:flex;flex-direction:row}.layout__right .layout>div{width:100%}.layout__right .layout>div:last-child{flex:2}";
   styleInject(css_248z$q);
 
-  const layouts = ['cols', 'rows', 'head', 'foot', 'stack'];
+  const layouts = ['cols', 'rows', 'head', 'foot', 'left', 'right', 'stack', 'pile'];
 
   var globals = {
     colors,
@@ -305,10 +305,11 @@
       scheduleForHide();
     });
     router.on('indexChanged', e => {
+      console.log(e);
       left.style.visibility = 'visible';
       right.style.visibility = 'visible';
       if (e.isFirst) left.style.visibility = 'hidden';
-      if (e.isLast) right.style.visibility = 'hidden';
+      if (e.isLast && e.totalSteps === e.currentStep) right.style.visibility = 'hidden';
     });
 
     const scheduleForHide = () => {
@@ -468,12 +469,14 @@
   var css$3 = {"pagenum":"style_pagenum__1OmQh","content":"style_content__3u2tr"};
   styleInject(css_248z$u);
 
+  utils.addProp(['pagenumTextAlign', 'pagenumPadding', 'pagenumFontSize', 'pagenumFont']);
+
   const pagenum = function (rootElement, router, ctrlConfig, projectConfig) {
     const child = utils.div(`<div class="${css$3.pagenum}"></div>`);
     const content = utils.div(`<div class="${css$3.content}"></div>`);
     child.appendChild(content);
     rootElement.appendChild(child);
-    const template = ctrlConfig.template || '%s / %S';
+    const template = typeof ctrlConfig === 'string' ? ctrlConfig : '%s / %S';
     const totalScenes = projectConfig.scenes.length;
 
     const change = e => {
@@ -1031,8 +1034,7 @@
       if (currentIndex < numScenes()) {
         currentIndex++;
         currentStep = 0;
-        this.notify('nextIndex');
-        this.notify('indexChanged');
+        this.notify(['nextIndex', 'indexChanged']);
       } else {
         currentIndex = numScenes();
         currentStep = 0;
@@ -1046,8 +1048,7 @@
       if (currentIndex > 0) {
         currentIndex--;
         currentStep = 0;
-        this.notify('prevIndex');
-        this.notify('indexChanged');
+        this.notify(['prevIndex', 'indexChanged']);
       } else {
         currentIndex = 0;
         currentStep = 0;
@@ -1060,25 +1061,27 @@
     this.goto = v => {
       currentIndex = v < numScenes() ? v : numScenes();
       currentStep = 0;
-      this.notify('nextIndex');
-      this.notify('indexChanged');
+      this.notify(['nextIndex', 'indexChanged']);
     };
 
     this.notify = evt => {
-      if (evt === 'indexChanged') updateRouterWrapper();
+      const evts = Array.isArray(evt) ? evt : [evt];
+      evts.forEach(ev => {
+        if (ev === 'indexChanged') updateRouterWrapper();
 
-      if (listeners[evt]) {
-        listeners[evt].forEach(clb => {
-          clb({
-            currentIndex,
-            currentStep,
-            totalScenes: this.totalScenes(),
-            totalSteps: numSteps,
-            isFirst: this.isFirst(),
-            isLast: this.isLast()
+        if (listeners[ev]) {
+          listeners[ev].forEach(clb => {
+            clb({
+              currentIndex,
+              currentStep,
+              totalScenes: this.totalScenes(),
+              totalSteps: numSteps,
+              isFirst: this.isFirst(),
+              isLast: this.isLast()
+            });
           });
-        });
-      }
+        }
+      });
     };
 
     this.on = (evt, clb) => {
@@ -1264,7 +1267,7 @@
       <div class="sceneObject ${css$e.scene}">
         <div class="${css$e.wrapper}">
             <div class="${css$e.content}">
-                <div class="blocksContainer ${css$e.viewport}"></div>
+                <div class="layout blocksContainer ${css$e.viewport}"></div>
                 <div class="frontContainer ${css$e.fcontainer}"></div>
             </div>
         </div>
@@ -1476,6 +1479,28 @@
     this.router = router;
   };
 
+  var css_248z$J = ".style_group__2AqP-,.style_group__2AqP->div{width:100%;height:100%;position:relative}";
+  var css$g = {"group":"style_group__2AqP-"};
+  styleInject(css_248z$J);
+
+  const group = function (el, config, sceneConfig, rootElement, projectConfig) {
+    const blocks = config.blocks;
+    const child = utils.div(`<div class="${css$g.group}">
+    <div class="layout"></div>
+  </div>`); // u.globs(child, config)
+    // u.props(child, config)
+
+    const cont = child.querySelector('.layout');
+    blocks.forEach((blockConfig, i) => {
+      blockConfig.index = i;
+      new Block(cont, blockConfig, sceneConfig, rootElement, projectConfig);
+    });
+    el.appendChild(child);
+  };
+
+  group.init = () => {// u.addGlob(['layout'])
+  };
+
   var defaults = (config => {
     const defaultConfig = {
       aspect: 1.6,
@@ -1529,6 +1554,8 @@
 
     return new Container(utils.select(el), config);
   };
+
+  add$2('group', group); // this to avoid circular dependencies warning, since removed implicit inclusion in block types
 
   Presenta.version = version;
   Presenta.colors = globals.colors;

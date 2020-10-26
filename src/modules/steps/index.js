@@ -1,27 +1,40 @@
 import css from './style.css'
 
 const steps = function (sceneElement, modConfig, sceneConfig, projectConfig) {
-  sceneConfig.steps = []
+  let allStepElements = []
 
-  let allSteps = []
-
+  let index = 0
   sceneConfig.blocks.forEach(b => {
     const blockEl = b._el
     const tag = b.step || '.step'
 
-    const blockSteps = [].slice.call(blockEl.querySelectorAll(tag))
+    const blockStepElements = [].slice.call(blockEl.querySelectorAll(tag))
 
-    blockSteps.forEach(el => {
-      el.classList.add(css.step, css.initState)
-      sceneConfig.steps.push(0)
+    blockStepElements.sort((a, b) => {
+      return a.dataset.order - b.dataset.order
     })
 
-    allSteps = allSteps.concat(blockSteps)
+    blockStepElements.forEach(el => {
+      el.classList.add(css.step, css.initState)
+
+      const id = {
+        sandbox: 'steps',
+        index
+      }
+      sceneConfig._steps.push(id)
+
+      index++
+    })
+
+    allStepElements = allStepElements.concat(blockStepElements)
   })
 
   this.stepForward = step => {
-    const el = allSteps[step]
-    el.classList.remove(css.initState)
+    if (step.sandbox === 'steps') {
+      const idx = step.index
+      const el = allStepElements[idx]
+      el.classList.remove(css.initState)
+    }
   }
 }
 

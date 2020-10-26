@@ -39,7 +39,8 @@ const Scene = function (sceneConfig, projectConfig, rootElement) {
     Create the wrapper template
   */
   let currentStep = 0
-  let steps = null
+  sceneConfig._steps = []
+  const steps = sceneConfig._steps
 
   const child = u.div(`<div 
       class="s ${css.sceneContainer}">
@@ -65,7 +66,7 @@ const Scene = function (sceneConfig, projectConfig, rootElement) {
   cblocks.forEach((blockConfig, i) => {
     blockConfig.index = i
     const blocksContainer = child.querySelector('.blocksContainer')
-    const block = new Block(blocksContainer, blockConfig, rootElement, projectConfig)
+    const block = new Block(blocksContainer, blockConfig, sceneConfig, rootElement, projectConfig)
     blocks.push(block)
   })
 
@@ -130,14 +131,12 @@ const Scene = function (sceneConfig, projectConfig, rootElement) {
   /*
     Public method called by the container move forward the step progress
   */
-  steps = sceneConfig.steps || []
-
   this.stepForward = () => {
     if (currentStep < steps.length) {
-      const idx = steps[currentStep]
-      blocks[idx].stepForward()
+      const stepData = steps[currentStep]
+      // blocks[idx].stepForward(stepData, currentStep) // need to find a way to notify a specific block
       modInstances.forEach(mod => {
-        if (mod.stepForward) mod.stepForward(currentStep)
+        if (mod.stepForward) mod.stepForward(stepData, currentStep)
       })
       currentStep++
     }

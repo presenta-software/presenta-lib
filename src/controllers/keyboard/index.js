@@ -1,5 +1,5 @@
 
-const keyboard = function (rootElement, router, config) {
+const keyboard = function (rootElement, router, ctrlConfig, projectConfig) {
   const setKeyListener = e => {
     if (e.key === 'ArrowRight' || e.key === 'ArrowDown') {
       router.next()

@@ -18,8 +18,8 @@ const Router = function (rootElement, projectConfig) {
 
   const setNumSteps = () => {
     numSteps = scenes[currentIndex] &&
-        scenes[currentIndex].steps
-      ? scenes[currentIndex].steps.length
+        scenes[currentIndex]._steps
+      ? scenes[currentIndex]._steps.length
       : 0
   }
   // setNumSteps()
@@ -90,8 +90,8 @@ const Router = function (rootElement, projectConfig) {
           currentStep,
           totalScenes: this.totalScenes(),
           totalSteps: numSteps,
-          isFirst: currentIndex === 0,
-          isLast: currentIndex === numScenes()
+          isFirst: this.isFirst(),
+          isLast: this.isLast()
         })
       })
     }
@@ -113,6 +113,8 @@ const Router = function (rootElement, projectConfig) {
   this.totalSteps = () => numSteps
   this.currentIndex = () => currentIndex
   this.currentStep = () => currentStep
+  this.isFirst = () => currentIndex === 0
+  this.isLast = () => currentIndex === numScenes()
   this.setCurrentIndex = idx => (currentIndex = idx)
   this.setCurrentStep = stp => (currentStep = stp)
   this.controllers = registeredIO

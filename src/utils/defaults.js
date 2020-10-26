@@ -8,7 +8,8 @@ export default config => {
       arrows: true,
       black: true,
       fullscreen: true,
-      hidden: true
+      hidden: true,
+      limitswitch: true
     },
     modules: {
       steps: true

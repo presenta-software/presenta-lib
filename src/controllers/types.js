@@ -12,6 +12,7 @@ import { loop } from './loop/index'
 import { current } from './current/index'
 import { hidecursor } from './hidecursor/index'
 import { hidden } from './hidden/index'
+import { limitswitch } from './limitswitch/index'
 
 const controllers = {
   autoplay,
@@ -27,7 +28,8 @@ const controllers = {
   loop,
   current,
   hidecursor,
-  hidden
+  hidden,
+  limitswitch
 }
 
 const add = (type, module, override) => {

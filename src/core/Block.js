@@ -2,7 +2,7 @@ import css from './css/block.css'
 import u from '../utils.js'
 import { blocks } from '../blocks/types'
 
-const Block = function (blocksElement, blockConfig, rootElement, projectConfig) {
+const Block = function (blocksElement, blockConfig, sceneConfig, rootElement, projectConfig) {
   this.type = blockConfig.type
   this.index = blockConfig.index
   var blockInstance = null
@@ -26,7 +26,7 @@ const Block = function (blocksElement, blockConfig, rootElement, projectConfig) 
   if (!blocks[this.type]) {
     console.log(`block "${this.type}" not found`)
   } else {
-    blockInstance = new blocks[this.type](blockContainer, blockConfig, rootElement, projectConfig)
+    blockInstance = new blocks[this.type](blockContainer, blockConfig, sceneConfig, rootElement, projectConfig)
   }
 
   this.beforeDestroy = () => {

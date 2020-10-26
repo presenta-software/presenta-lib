@@ -1,7 +1,7 @@
 import css from './style.css'
 import u from '../../utils.js'
 
-const video = function (el, config, rootElement, projectConfig) {
+const video = function (el, config, sceneConfig, rootElement, projectConfig) {
   const previewMode = projectConfig.mode === 'preview'
   const presentMode = projectConfig.mode === 'present'
 

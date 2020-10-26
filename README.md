@@ -7,7 +7,7 @@
 </h1>
 
 <p align="center">
-	A javascript library to build smart presentations using a config object
+	A javascript library to build expressive web presentations in seconds.
 </p>
 
 <p align="center">

@@ -1,11 +1,11 @@
-// https://lib.presenta.cc v0.0.50 Copyright 2020 Fabio Franchino
+// https://lib.presenta.cc v0.0.51 Copyright 2020 Fabio Franchino
 (function (global, factory) {
   typeof exports === 'object' && typeof module !== 'undefined' ? module.exports = factory() :
   typeof define === 'function' && define.amd ? define(factory) :
   (global = typeof globalThis !== 'undefined' ? globalThis : global || self, global.Presenta = factory());
 }(this, (function () { 'use strict';
 
-  var version = "0.0.50";
+  var version = "0.0.51";
 
   function styleInject(css, ref) {
     if ( ref === void 0 ) ref = {};
@@ -40,31 +40,31 @@
   var css_248z$1 = ".colorVar__main,:root{--colorBack:#fff;--colorFore:#000;--colorAccent:#444;--colorAlt:#ddd}.colorVar__sec{--colorBack:#000;--colorAccent:#999}.colorVar__alt,.colorVar__sec{--colorFore:#fff;--colorAlt:#ccc}.colorVar__alt{--colorBack:#444;--colorAccent:#fff}";
   styleInject(css_248z$1);
 
-  var css_248z$2 = ".colors__adele,.colors__adele.colorVar__main,.colors__adele .colorVar__main{--colorBack:#000;--colorFore:#fff;--colorAccent:#eeff2e;--colorAlt:#de1318}.colors__adele.colorVar__sec,.colors__adele .colorVar__sec{--colorBack:#eeff2e;--colorFore:#000;--colorAccent:#de1318;--colorAlt:#fff}.colors__adele.colorVar__alt,.colors__adele .colorVar__alt{--colorBack:#de1318;--colorFore:#eeff2e;--colorAccent:#fff;--colorAlt:#000}";
+  var css_248z$2 = ".colors__adele,.colors__adele .colorVar__main,.presenta .colors__adele.colorVar__main{--colorBack:#000;--colorFore:#fff;--colorAccent:#eeff2e;--colorAlt:#de1318}.colors__adele .colorVar__sec,.presenta .colors__adele.colorVar__sec{--colorBack:#eeff2e;--colorFore:#000;--colorAccent:#de1318;--colorAlt:#fff}.colors__adele .colorVar__alt,.presenta .colors__adele.colorVar__alt{--colorBack:#de1318;--colorFore:#eeff2e;--colorAccent:#fff;--colorAlt:#000}";
   styleInject(css_248z$2);
 
-  var css_248z$3 = ".colors__belle,.colors__belle.colorVar__main,.colors__belle .colorVar__main{--colorBack:#a9dbd5;--colorFore:#000;--colorAccent:#fff;--colorAlt:#38999d}.colors__belle.colorVar__sec,.colors__belle .colorVar__sec{--colorBack:#000;--colorFore:#a9dbd5;--colorAccent:#fff;--colorAlt:#38999d}.colors__belle.colorVar__alt,.colors__belle .colorVar__alt{--colorBack:#fff;--colorFore:#38999d;--colorAccent:#a9dbd5;--colorAlt:#000}";
+  var css_248z$3 = ".colors__belle,.colors__belle .colorVar__main,.presenta .colors__belle.colorVar__main{--colorBack:#a9dbd5;--colorFore:#000;--colorAccent:#fff;--colorAlt:#38999d}.colors__belle .colorVar__sec,.presenta .colors__belle.colorVar__sec{--colorBack:#000;--colorFore:#a9dbd5;--colorAccent:#fff;--colorAlt:#38999d}.colors__belle .colorVar__alt,.presenta .colors__belle.colorVar__alt{--colorBack:#fff;--colorFore:#38999d;--colorAccent:#a9dbd5;--colorAlt:#000}";
   styleInject(css_248z$3);
 
-  var css_248z$4 = ".colors__cati,.colors__cati.colorVar__main,.colors__cati .colorVar__main{--colorBack:#e5ff9d;--colorFore:#1c003f;--colorAccent:#69567c;--colorAlt:#fff}.colors__cati.colorVar__sec,.colors__cati .colorVar__sec{--colorBack:#1c003f;--colorFore:#fff;--colorAccent:#e5ff9d;--colorAlt:#69567c}.colors__cati.colorVar__alt,.colors__cati .colorVar__alt{--colorBack:#69567c;--colorFore:#e5ff9d;--colorAccent:#fff;--colorAlt:#1c003f}";
+  var css_248z$4 = ".colors__cati,.colors__cati .colorVar__main,.presenta .colors__cati.colorVar__main{--colorBack:#e5ff9d;--colorFore:#1c003f;--colorAccent:#69567c;--colorAlt:#fff}.colors__cati .colorVar__sec,.presenta .colors__cati.colorVar__sec{--colorBack:#1c003f;--colorFore:#fff;--colorAccent:#e5ff9d;--colorAlt:#69567c}.colors__cati .colorVar__alt,.presenta .colors__cati.colorVar__alt{--colorBack:#69567c;--colorFore:#e5ff9d;--colorAccent:#fff;--colorAlt:#1c003f}";
   styleInject(css_248z$4);
 
-  var css_248z$5 = ".colors__dania,.colors__dania.colorVar__main,.colors__dania .colorVar__main{--colorBack:#d0caa9;--colorFore:#30302f;--colorAccent:#ec4a25;--colorAlt:#fff}.colors__dania.colorVar__sec,.colors__dania .colorVar__sec{--colorBack:#30302f;--colorFore:#d0caa9;--colorAccent:#ec4a25;--colorAlt:#fff}.colors__dania.colorVar__alt,.colors__dania .colorVar__alt{--colorBack:#ec4a25;--colorFore:#fff;--colorAccent:#d0caa9;--colorAlt:#30302f}";
+  var css_248z$5 = ".colors__dania,.colors__dania .colorVar__main,.presenta .colors__dania.colorVar__main{--colorBack:#d0caa9;--colorFore:#30302f;--colorAccent:#ec4a25;--colorAlt:#fff}.colors__dania .colorVar__sec,.presenta .colors__dania.colorVar__sec{--colorBack:#30302f;--colorFore:#d0caa9;--colorAccent:#ec4a25;--colorAlt:#fff}.colors__dania .colorVar__alt,.presenta .colors__dania.colorVar__alt{--colorBack:#ec4a25;--colorFore:#fff;--colorAccent:#d0caa9;--colorAlt:#30302f}";
   styleInject(css_248z$5);
 
-  var css_248z$6 = ".colors__elane,.colors__elane.colorVar__main,.colors__elane .colorVar__main{--colorBack:#3b7bc3;--colorFore:#f9fb45;--colorAccent:#fff;--colorAlt:#000}.colors__elane.colorVar__sec,.colors__elane .colorVar__sec{--colorBack:#000;--colorFore:#f9fb45;--colorAccent:#fff;--colorAlt:#3b7bc3}.colors__elane.colorVar__alt,.colors__elane .colorVar__alt{--colorBack:#f9fb45;--colorFore:#000;--colorAccent:#3b7bc3;--colorAlt:#fff}";
+  var css_248z$6 = ".colors__elane,.colors__elane .colorVar__main,.presenta .colors__elane.colorVar__main{--colorBack:#3b7bc3;--colorFore:#f9fb45;--colorAccent:#fff;--colorAlt:#000}.colors__elane .colorVar__sec,.presenta .colors__elane.colorVar__sec{--colorBack:#000;--colorFore:#f9fb45;--colorAccent:#fff;--colorAlt:#3b7bc3}.colors__elane .colorVar__alt,.presenta .colors__elane.colorVar__alt{--colorBack:#f9fb45;--colorFore:#000;--colorAccent:#3b7bc3;--colorAlt:#fff}";
   styleInject(css_248z$6);
 
-  var css_248z$7 = ".colors__flo,.colors__flo.colorVar__main,.colors__flo .colorVar__main{--colorBack:#ebded1;--colorFore:#0a47d1;--colorAccent:#fb4138;--colorAlt:#fff}.colors__flo.colorVar__sec,.colors__flo .colorVar__sec{--colorBack:#0a47d1;--colorFore:#ebded1;--colorAccent:#fff;--colorAlt:#fb4138}.colors__flo.colorVar__alt,.colors__flo .colorVar__alt{--colorBack:#fb4138;--colorFore:#fff;--colorAccent:#ebded1;--colorAlt:#0a47d1}";
+  var css_248z$7 = ".colors__flo,.colors__flo .colorVar__main,.presenta .colors__flo.colorVar__main{--colorBack:#ebded1;--colorFore:#0a47d1;--colorAccent:#fb4138;--colorAlt:#fff}.colors__flo .colorVar__sec,.presenta .colors__flo.colorVar__sec{--colorBack:#0a47d1;--colorFore:#ebded1;--colorAccent:#fff;--colorAlt:#fb4138}.colors__flo .colorVar__alt,.presenta .colors__flo.colorVar__alt{--colorBack:#fb4138;--colorFore:#fff;--colorAccent:#ebded1;--colorAlt:#0a47d1}";
   styleInject(css_248z$7);
 
-  var css_248z$8 = ".colors__gina,.colors__gina.colorVar__main,.colors__gina .colorVar__main{--colorBack:#322067;--colorFore:#feb8ba;--colorAccent:#449eaf;--colorAlt:#fff}.colors__gina.colorVar__sec,.colors__gina .colorVar__sec{--colorBack:#feb8ba;--colorFore:#322067;--colorAccent:#fff;--colorAlt:#449eaf}.colors__gina.colorVar__alt,.colors__gina .colorVar__alt{--colorBack:#fff;--colorFore:#322067;--colorAccent:#449eaf;--colorAlt:#feb8ba}";
+  var css_248z$8 = ".colors__gina,.colors__gina .colorVar__main,.presenta .colors__gina.colorVar__main{--colorBack:#322067;--colorFore:#feb8ba;--colorAccent:#449eaf;--colorAlt:#fff}.colors__gina .colorVar__sec,.presenta .colors__gina.colorVar__sec{--colorBack:#feb8ba;--colorFore:#322067;--colorAccent:#fff;--colorAlt:#449eaf}.colors__gina .colorVar__alt,.presenta .colors__gina.colorVar__alt{--colorBack:#fff;--colorFore:#322067;--colorAccent:#449eaf;--colorAlt:#feb8ba}";
   styleInject(css_248z$8);
 
-  var css_248z$9 = ".colors__hedy,.colors__hedy.colorVar__main,.colors__hedy .colorVar__main{--colorBack:#f9ffb1;--colorFore:#072020;--colorAccent:#ec4225;--colorAlt:#9eb0bb}.colors__hedy.colorVar__sec,.colors__hedy .colorVar__sec{--colorBack:#072020;--colorFore:#f9ffb1;--colorAccent:#ec4225;--colorAlt:#9eb0bb}.colors__hedy.colorVar__alt,.colors__hedy .colorVar__alt{--colorBack:#ec4225;--colorFore:#f9ffb1;--colorAccent:#c5dbe9;--colorAlt:#072020}";
+  var css_248z$9 = ".colors__hedy,.colors__hedy .colorVar__main,.presenta .colors__hedy.colorVar__main{--colorBack:#f9ffb1;--colorFore:#072020;--colorAccent:#ec4225;--colorAlt:#9eb0bb}.colors__hedy .colorVar__sec,.presenta .colors__hedy.colorVar__sec{--colorBack:#072020;--colorFore:#f9ffb1;--colorAccent:#ec4225;--colorAlt:#9eb0bb}.colors__hedy .colorVar__alt,.presenta .colors__hedy.colorVar__alt{--colorBack:#ec4225;--colorFore:#f9ffb1;--colorAccent:#c5dbe9;--colorAlt:#072020}";
   styleInject(css_248z$9);
 
-  var css_248z$a = ".colors__irma,.colors__irma.colorVar__main,.colors__irma .colorVar__main{--colorBack:#ffe600;--colorFore:#000;--colorAccent:#ff6400;--colorAlt:#fff}.colors__irma.colorVar__sec,.colors__irma .colorVar__sec{--colorBack:#000;--colorFore:#ffe600;--colorAccent:#fff;--colorAlt:#ff6400}.colors__irma.colorVar__alt,.colors__irma .colorVar__alt{--colorBack:#ff6400;--colorFore:#fff;--colorAccent:#ffe600;--colorAlt:#000}";
+  var css_248z$a = ".colors__irma,.colors__irma .colorVar__main,.presenta .colors__irma.colorVar__main{--colorBack:#ffe600;--colorFore:#000;--colorAccent:#ff6400;--colorAlt:#fff}.colors__irma .colorVar__sec,.presenta .colors__irma.colorVar__sec{--colorBack:#000;--colorFore:#ffe600;--colorAccent:#fff;--colorAlt:#ff6400}.colors__irma .colorVar__alt,.presenta .colors__irma.colorVar__alt{--colorBack:#ff6400;--colorFore:#fff;--colorAccent:#ffe600;--colorAlt:#000}";
   styleInject(css_248z$a);
 
   const colors = ['adele', 'belle', 'cati', 'dania', 'elane', 'flo', 'gina', 'hedy', 'irma'];
@@ -123,7 +123,7 @@
 
   const blockvars = ['a', 'b', 'c'];
 
-  var css_248z$q = ".layout__cols .layout{display:flex;flex-direction:row}.layout__cols .layout>div{height:100%}.layout__rows .layout{display:flex;flex-direction:column}.layout__rows .layout>div{width:100%}.layout__stack .layout{position:relative}.layout__stack .layout>div{position:absolute;top:0;left:0;width:100%;height:100%}.layout__stack .layout>div:not(:first-child){background:none}.layout__stack .layout>div:first-child:after{content:\"\";position:absolute;left:0;top:0;width:100%;height:100%;background-color:var(--colorBack);opacity:.7}.layout__pile .layout{position:relative}.layout__pile .layout>div{position:absolute;top:0;left:0;width:100%;height:100%}.layout__head .layout{display:flex;flex-direction:column}.layout__head .layout>div{width:100%}.layout__head .layout>div:last-child{flex:5}.layout__foot .layout{display:flex;flex-direction:column}.layout__foot .layout>div{width:100%}.layout__foot .layout>div:first-child{flex:5}.layout__left .layout{display:flex;flex-direction:row}.layout__left .layout>div{width:100%}.layout__left .layout>div:first-child{flex:2}.layout__right .layout{display:flex;flex-direction:row}.layout__right .layout>div{width:100%}.layout__right .layout>div:last-child{flex:2}";
+  var css_248z$q = ".layout{display:flex}.layout>div{height:100%}.landscape .layout{flex-direction:row}.portrait .layout{flex-direction:column}.layout__cols .layout{display:flex;flex-direction:row}.layout__cols .layout>div{height:100%}.layout__rows .layout{display:flex;flex-direction:column}.layout__rows .layout>div{width:100%}.layout__stack .layout{position:relative}.layout__stack .layout>div{position:absolute;top:0;left:0;width:100%;height:100%}.layout__stack .layout>div:not(:first-child){background:none}.layout__stack .layout>div:first-child:after{content:\"\";position:absolute;left:0;top:0;width:100%;height:100%;background-color:var(--colorBack);opacity:.7}.layout__pile .layout{position:relative}.layout__pile .layout>div{position:absolute;top:0;left:0;width:100%;height:100%}.layout__head .layout{display:flex;flex-direction:column}.layout__head .layout>div{width:100%}.layout__head .layout>div:last-child{flex:5}.layout__foot .layout{display:flex;flex-direction:column}.layout__foot .layout>div{width:100%}.layout__foot .layout>div:first-child{flex:5}.layout__left .layout{display:flex;flex-direction:row}.layout__left .layout>div{width:100%}.layout__left .layout>div:first-child{flex:2}.layout__right .layout{display:flex;flex-direction:row}.layout__right .layout>div{width:100%}.layout__right .layout>div:last-child{flex:2}";
   styleInject(css_248z$q);
 
   const layouts = ['cols', 'rows', 'head', 'foot', 'left', 'right', 'stack', 'pile'];
@@ -248,6 +248,14 @@
     const scaleW = w * 100 / cw;
     const scaleH = h * 100 / ch;
     const scale = Math.max(scaleW, scaleH);
+    let orient = 'landscape';
+
+    if (w < h) {
+      orient = 'portrait';
+    }
+
+    par.classList.add(orient);
+    config._orientation = orient;
     par.style.setProperty('--presenta-fz', 1 / (100 / scale));
   };
 
@@ -612,7 +620,7 @@
     let index = 0;
     sceneConfig.blocks.forEach(b => {
       const blockEl = b._el;
-      const tag = b.step || '.step';
+      const tag = typeof b.step === 'string' ? b.step : '.step';
       const blockStepElements = [].slice.call(blockEl.querySelectorAll(tag));
       blockStepElements.sort((a, b) => {
         return a.dataset.order - b.dataset.order;
@@ -666,20 +674,20 @@
     const child = utils.div(`<div class="${css$6.debug}">
     <svg preserveAspectRatio="none" viewBox="0 0 200 200" fill="none" xmlns="http://www.w3.org/2000/svg">
       
-      <g class="step" data-order="3">
+      <g class="sstep" data-order="3">
         <rect width="50" height="150" fill="var(--colorFore)"/>
         <rect x="50" width="50" height="150" fill="var(--colorBack)"/>
         <rect x="100" width="50" height="150" fill="var(--colorAccent)"/>
         <rect x="150" width="50" height="150" fill="var(--colorAlt)"/>
       </g>
 
-      <g class="step" data-order="2">
+      <g class="sstep" data-order="2">
         <rect y="150" width="200" height="32" fill="var(--colorBack)"/>
         <text fill="var(--colorFore)" xml:space="preserve" style="white-space: pre" font-family="var(--fontHeading)" font-size="12" letter-spacing="0em"><tspan x="3" y="170.102">fontHeading</tspan></text>
         <text fill="var(--colorFore)" xml:space="preserve" style="white-space: pre" font-family="var(--fontText)" font-size="12" letter-spacing="0em"><tspan x="102" y="170.102">fontText</tspan></text>
       </g>    
 
-      <g class="step" data-order="1">
+      <g class="sstep" data-order="1">
         <rect y="182" width="50" height="18" fill="var(--colorAlt)"/>
         <rect x="50" y="182" width="50" height="18" fill="var(--colorAccent)"/>
         <rect x="100" y="182" width="50" height="18" fill="var(--colorBack)"/>
@@ -699,15 +707,18 @@
   var css_248z$y = ".textVar__title{--textPadding:3rem;--textAlign:center;--textListAlign:center;--textFlexAlign:center;--textFlexJustify:center;--textSize:2.5rem}.textVar__text{--textAlign:left;--textListAlign:left;--textFlexJustify:flex-start;--textSize:1rem}.textVar__section,.textVar__text{--textPadding:2rem;--textFlexAlign:flex-start}.textVar__section{--textAlign:right;--textListAlign:right;--textFlexJustify:flex-end;--textSize:2rem}.textVar__mention{--textAlign:left;--textListAlign:left;--textFlexJustify:flex-start;--textSize:1.5rem}.textVar__mention,.textVar__suggest{--textPadding:2rem;--textFlexAlign:flex-end}.textVar__suggest{--textAlign:center;--textListAlign:center;--textFlexJustify:center;--textSize:0.8rem}.textStyle__a{--textboxpadding:0;--textboxbackcolor:var(--colorFore);--textboxradius:0;--textboxborder:0;--textboxshadow:0 0 0 var(--colorAccent);--textboxcolor:var(--colorBack)}";
   styleInject(css_248z$y);
 
-  var css_248z$z = ":root{--textPadding:0;--textAlign:center;--textListAlign:left;--textFlexAlign:center;--textFlexJustify:center;--textSize:1rem}.style_text__3T1cl{color:var(--colorFore)}.style_inner__11UJC,.style_text__3T1cl{width:100%;height:100%;position:relative}.style_pretext__cLjqD{display:flex;width:100%;height:100%;align-items:var(--textFlexAlign);justify-content:var(--textFlexJustify)}.style_textbox__1Vb-V{padding:var(--textboxpadding);text-align:var(--textAlign);font-size:var(--textSize);color:var(--textboxcolor);--backmark:var(--colorAccent);--foremark:var(--colorBack);--textaccentcolor:var(--colorAccent);font-family:var(--fontText)}.style_itext__jz90o{border:var(--textboxborder) solid var(--colorAccent);padding:var(--textPadding);border-radius:var(--textboxradius);box-shadow:var(--textboxshadow);background-color:var(--textboxbackcolor)}.style_itext__jz90o img{object-fit:contain;height:4em;vertical-align:middle}.style_itext__jz90o mark{background-color:var(--backmark);color:var(--foremark);padding:0 .5rem}.style_itext__jz90o high{color:var(--textaccentcolor)}.style_itext__jz90o bord{border:8px solid var(--backmark);padding:0 .5rem}.style_itext__jz90o a{color:var(--textaccentcolor);text-decoration:underline}.style_itext__jz90o blockquote{font-size:2em;font-weight:400;font-style:italic}.style_itext__jz90o blockquote,.style_itext__jz90o h1,.style_itext__jz90o h2,.style_itext__jz90o h3,.style_itext__jz90o h4,.style_itext__jz90o h5,.style_itext__jz90o h6,.style_itext__jz90o p,.style_itext__jz90o ul{margin:0}.style_itext__jz90o h1 b,.style_itext__jz90o h1 strong,.style_itext__jz90o h2 b,.style_itext__jz90o h2 strong,.style_itext__jz90o h3 b,.style_itext__jz90o h3 strong,.style_itext__jz90o h4 b,.style_itext__jz90o h4 strong,.style_itext__jz90o h5 b,.style_itext__jz90o h5 strong,.style_itext__jz90o h6 b,.style_itext__jz90o h6 strong{color:var(--textaccentcolor)}.style_itext__jz90o ol,.style_itext__jz90o ul{font-size:1.5em;line-height:1.1em;text-align:var(--textListAlign);margin:0;list-style-type:none;counter-reset:li;padding:.5rem 0}.style_itext__jz90o li{list-style-position:inside;margin-bottom:2px;padding:.25em .25em .25em .8em}.style_itext__jz90o ul li:before{content:\"\\2013\";display:inline-block;width:.8em;margin-left:-.8em}.style_itext__jz90o ol li:before{counter-increment:li;content:\".\" counter(li);display:inline-block;width:1.1em;margin-left:-1.3em;margin-right:.2em;text-align:right;direction:rtl}.style_itext__jz90o li p{display:inline}.style_itext__jz90o code,.style_itext__jz90o pre{text-align:left}.style_itext__jz90o h1,.style_itext__jz90o h2,.style_itext__jz90o h3,.style_itext__jz90o h4,.style_itext__jz90o h5,.style_itext__jz90o h6{font-family:var(--fontHeading);padding:.5rem 0}.style_itext__jz90o h1{font-size:2em}.style_itext__jz90o h2{font-size:1.5em}.style_itext__jz90o h3{font-size:1.17em}.style_itext__jz90o h4{font-size:1em}.style_itext__jz90o h5{font-size:.83em}.style_itext__jz90o h6{font-size:.67em}.style_itext__jz90o p{padding:.5rem 0}.style_itext__jz90o hr{border:1px solid var(--colorFore);margin:.5rem 0}.style_itext__jz90o h1:first-child,.style_itext__jz90o h1:last-child,.style_itext__jz90o h2:first-child,.style_itext__jz90o h2:last-child,.style_itext__jz90o h3:first-child,.style_itext__jz90o h3:last-child{padding:0}.style_itext__jz90o table{width:100%}.style_itext__jz90o tr{padding:0}.style_itext__jz90o td,.style_itext__jz90o th{padding:.5rem;border-bottom:1px solid var(--colorFore)}";
+  var css_248z$z = ":root{--textPadding:0;--textAlign:center;--textListAlign:left;--textFlexAlign:center;--textFlexJustify:center;--textSize:1rem}.style_text__3T1cl{color:var(--colorFore)}.style_inner__11UJC,.style_text__3T1cl{width:100%;height:100%;position:relative}.style_pretext__cLjqD{display:flex;width:100%;height:100%;align-items:var(--textFlexAlign);justify-content:var(--textFlexJustify)}.style_textbox__1Vb-V{padding:var(--textboxpadding);text-align:var(--textAlign);font-size:var(--textSize);color:var(--textboxcolor);--backmark:var(--colorAccent);--foremark:var(--colorBack);--textaccentcolor:var(--colorAccent);font-family:var(--fontText)}.style_itext__jz90o{border:var(--textboxborder) solid var(--colorAccent);padding:var(--textPadding);border-radius:var(--textboxradius);box-shadow:var(--textboxshadow);background-color:var(--textboxbackcolor)}.style_itext__jz90o img{object-fit:contain;height:4em;vertical-align:middle}.style_itext__jz90o mark{background-color:var(--backmark);color:var(--foremark);padding:.5rem;display:inline-block}.style_itext__jz90o high{color:var(--textaccentcolor)}.style_itext__jz90o bord{border:8px solid var(--backmark);padding:0 .5rem}.style_itext__jz90o a{color:var(--textaccentcolor);text-decoration:underline}.style_itext__jz90o blockquote{font-size:2em;font-weight:400;font-style:italic}.style_itext__jz90o blockquote,.style_itext__jz90o h1,.style_itext__jz90o h2,.style_itext__jz90o h3,.style_itext__jz90o h4,.style_itext__jz90o h5,.style_itext__jz90o h6,.style_itext__jz90o p,.style_itext__jz90o ul{margin:0}.style_itext__jz90o h1 b,.style_itext__jz90o h1 strong,.style_itext__jz90o h2 b,.style_itext__jz90o h2 strong,.style_itext__jz90o h3 b,.style_itext__jz90o h3 strong,.style_itext__jz90o h4 b,.style_itext__jz90o h4 strong,.style_itext__jz90o h5 b,.style_itext__jz90o h5 strong,.style_itext__jz90o h6 b,.style_itext__jz90o h6 strong{color:var(--textaccentcolor)}.style_itext__jz90o ol,.style_itext__jz90o ul{font-size:1.5em;line-height:1.1em;text-align:var(--textListAlign);margin:0;list-style-type:none;counter-reset:li;padding:.5rem 0}.style_itext__jz90o li{list-style-position:inside;margin-bottom:2px;padding:.25em .25em .25em .8em}.style_itext__jz90o ul li:before{content:\"\\2013\";display:inline-block;width:.8em;margin-left:-.8em}.style_itext__jz90o ol li:before{counter-increment:li;content:\".\" counter(li);display:inline-block;width:1.1em;margin-left:-1.3em;margin-right:.2em;text-align:right;direction:rtl}.style_itext__jz90o li p{display:inline}.style_itext__jz90o code,.style_itext__jz90o pre{text-align:left}.style_itext__jz90o h1,.style_itext__jz90o h2,.style_itext__jz90o h3,.style_itext__jz90o h4,.style_itext__jz90o h5,.style_itext__jz90o h6{font-family:var(--fontHeading);padding:.5rem 0}.style_itext__jz90o h1{font-size:2em}.style_itext__jz90o h2{font-size:1.5em}.style_itext__jz90o h3{font-size:1.17em}.style_itext__jz90o h4{font-size:1em}.style_itext__jz90o h5{font-size:.83em}.style_itext__jz90o h6{font-size:.67em}.style_itext__jz90o p{padding:.5rem 0}.style_itext__jz90o hr{border:1px solid var(--colorFore);margin:.5rem 0}.style_itext__jz90o h1:first-child,.style_itext__jz90o h1:last-child,.style_itext__jz90o h2:first-child,.style_itext__jz90o h2:last-child,.style_itext__jz90o h3:first-child,.style_itext__jz90o h3:last-child{padding:0}.style_itext__jz90o table{width:100%}.style_itext__jz90o tr{padding:0}.style_itext__jz90o td,.style_itext__jz90o th{padding:.5rem;border-bottom:1px solid var(--colorFore)}";
   var css$7 = {"text":"style_text__3T1cl","inner":"style_inner__11UJC","pretext":"style_pretext__cLjqD","textbox":"style_textbox__1Vb-V","itext":"style_itext__jz90o"};
   styleInject(css_248z$z);
 
-  utils.addGlob(['textVar', 'textStyle']);
-  utils.addProp(['textPadding', 'textAlign']); // ['title', 'text', 'section', 'mention', 'suggest']
-
   const text = function (el, config) {
     const html = config.text || '';
+    let sizefactor = 1;
+
+    if (config.responsive && config._portrait) {
+      sizefactor = 2;
+    }
+
     let defsize = 1;
     const varSize = {
       title: 2.5,
@@ -717,7 +728,7 @@
       suggest: 0.8
     };
     if (config.textVar) defsize = varSize[config.textVar];
-    let fsize = config.scale || defsize;
+    let fsize = config.scale || defsize * sizefactor;
     const child = utils.div(`<div class="c ${css$7.text}">
     <div class="${css$7.inner}">
       <div class="pretext ${css$7.pretext}">
@@ -773,6 +784,8 @@
   };
 
   text.init = () => {
+    utils.addGlob(['textVar', 'textStyle']);
+    utils.addProp(['textPadding', 'textAlign']);
     if (utils.io.addMarkdown) utils.io.addMarkdown({
       type: 'text',
       field: 'text'
@@ -788,7 +801,7 @@
     const reg = new RegExp('src="(.*)', 'gim');
     const url = reg.exec(str);
     const dom = url[1].match(/http(s?):\/\/([\w]+\.){1}([\w]+\.?)+/gim);
-    return dom.length > 0 ? dom[0] : null;
+    return dom && dom.length > 0 ? dom[0] : null;
   };
 
   const embed = function (el, config, sceneConfig, rootElement, projectConfig) {
@@ -805,7 +818,8 @@
     }
 
     const name = iframePrimaryDomain(iframe);
-    const coverFrame = `<div class="cover ${css$8.loading}"><h1>Embed from <mark>${name}</mark></h1></div>`;
+    const msg = name ? `Embed from <mark>${name}</mark>` : 'Embed resource';
+    const coverFrame = `<div class="cover ${css$8.loading}"><h1>${msg}</h1></div>`;
     const blockPointer = config.blockPointer ? `<div class='${css$8.blockmouse}' />` : '';
     const posterFrame = config.poster ? `<div class="${css$8.poster}"><img src="${config.poster}" /></div>` : '';
     const child = utils.div(`<div class="c ${css$8.embed}">
@@ -837,12 +851,13 @@
   var css$9 = {"image":"style_image__1fZIQ","inner":"style_inner__3tyMU","preimg":"style_preimg__2ypvx"};
   styleInject(css_248z$B);
 
-  const image = function (el, config) {
+  const image = function (el, config, sceneConfig, rootElement, projectConfig) {
     const url = config.url;
+    const step = config.step ? 'step' : '';
     const imageschunk = `<div class="presentablock__image ${css$9.preimg}">
         <img src="${url}" />
       </div>`;
-    const child = utils.div(`<div class="${css$9.image}">
+    const child = utils.div(`<div class="${css$9.image} ${step}">
     <div class="imagesContainer ${css$9.inner}">
         ${imageschunk}
     </div>
@@ -869,8 +884,8 @@
   styleInject(css_248z$C);
 
   const video = function (el, config, sceneConfig, rootElement, projectConfig) {
-    const previewMode = projectConfig.mode === 'preview';
-    const presentMode = projectConfig.mode === 'present';
+    const previewMode = config._mode === 'preview';
+    const presentMode = config._mode === 'present';
     const poster = config.poster ? `poster=${config.poster}` : '';
     const loop = config.loop ? 'loop' : '';
     const autoplay = config.autoplay && presentMode ? 'autoplay' : '';
@@ -1152,6 +1167,12 @@
     }
 
     let step = 0;
+    /*
+      project level props ported to block level
+    */
+
+    blockConfig._portrait = projectConfig._orientation === 'portrait';
+    blockConfig._mode = projectConfig.mode;
     const child = utils.div(`<div class="block ${css$f.block} b b${this.index}">
     <div class="backDecoration ${css$f.bdecoration}"></div>
     <div class="blockContainer ${css$f.inner}"></div>

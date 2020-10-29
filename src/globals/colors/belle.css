@@ -1,20 +1,20 @@
 .colors__belle,
 .colors__belle .colorVar__main,
-.colors__belle.colorVar__main {
+.presenta .colors__belle.colorVar__main {
   --colorBack: #a9dbd5;
   --colorFore: #000;
   --colorAccent: #fff;
   --colorAlt: #38999d;
 }
 .colors__belle .colorVar__sec,
-.colors__belle.colorVar__sec {
+.presenta .colors__belle.colorVar__sec {
   --colorBack: #000;
   --colorFore: #a9dbd5;
   --colorAccent: #fff;
   --colorAlt: #38999d;
 }
 .colors__belle .colorVar__alt,
-.colors__belle.colorVar__alt {
+.presenta .colors__belle.colorVar__alt {
   --colorBack: #fff;
   --colorFore: #38999d;
   --colorAccent: #a9dbd5;

@@ -1,20 +1,20 @@
 .colors__dania,
 .colors__dania .colorVar__main,
-.colors__dania.colorVar__main {
+.presenta .colors__dania.colorVar__main {
   --colorBack: #D0CAA9;
   --colorFore: #30302F;
   --colorAccent: #EC4A25;
   --colorAlt: #fff;
 }
 .colors__dania .colorVar__sec,
-.colors__dania.colorVar__sec {
+.presenta .colors__dania.colorVar__sec {
   --colorBack: #30302F;
   --colorFore: #D0CAA9;
   --colorAccent: #EC4A25;
   --colorAlt: #fff;
 }
 .colors__dania .colorVar__alt,
-.colors__dania.colorVar__alt {
+.presenta .colors__dania.colorVar__alt {
   --colorBack: #EC4A25;
   --colorFore: #fff;
   --colorAccent: #D0CAA9;

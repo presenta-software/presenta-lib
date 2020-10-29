@@ -2,8 +2,8 @@ import css from './style.css'
 import u from '../../utils.js'
 
 const video = function (el, config, sceneConfig, rootElement, projectConfig) {
-  const previewMode = projectConfig.mode === 'preview'
-  const presentMode = projectConfig.mode === 'present'
+  const previewMode = config._mode === 'preview'
+  const presentMode = config._mode === 'present'
 
   const poster = config.poster ? `poster=${config.poster}` : ''
   const loop = config.loop ? 'loop' : ''

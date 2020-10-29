@@ -2,13 +2,15 @@ import './globals.css'
 import css from './style.css'
 import u from '../../utils.js'
 
-u.addGlob(['textVar', 'textStyle'])
-u.addProp(['textPadding', 'textAlign'])
-
 // ['title', 'text', 'section', 'mention', 'suggest']
 
 const text = function (el, config) {
   const html = config.text || ''
+
+  let sizefactor = 1
+  if (config.responsive && config._portrait) {
+    sizefactor = 2
+  }
 
   let defsize = 1
   const varSize = {
@@ -19,7 +21,7 @@ const text = function (el, config) {
     suggest: 0.8
   }
   if (config.textVar) defsize = varSize[config.textVar]
-  let fsize = config.scale || defsize
+  let fsize = config.scale || defsize * sizefactor
 
   const child = u.div(`<div class="c ${css.text}">
     <div class="${css.inner}">
@@ -77,6 +79,8 @@ const text = function (el, config) {
 }
 
 text.init = () => {
+  u.addGlob(['textVar', 'textStyle'])
+  u.addProp(['textPadding', 'textAlign'])
   if (u.io.addMarkdown) u.io.addMarkdown({ type: 'text', field: 'text' })
 }
 

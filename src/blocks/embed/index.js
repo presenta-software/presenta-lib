@@ -6,7 +6,7 @@ const iframePrimaryDomain = str => {
   const reg = new RegExp('src="(.*)', 'gim')
   const url = reg.exec(str)
   const dom = url[1].match(/http(s?):\/\/([\w]+\.){1}([\w]+\.?)+/gim)
-  return dom.length > 0 ? dom[0] : null
+  return dom && dom.length > 0 ? dom[0] : null
 }
 
 const embed = function (el, config, sceneConfig, rootElement, projectConfig) {
@@ -22,8 +22,9 @@ const embed = function (el, config, sceneConfig, rootElement, projectConfig) {
   }
 
   const name = iframePrimaryDomain(iframe)
+  const msg = name ? `Embed from <mark>${name}</mark>` : 'Embed resource'
 
-  const coverFrame = `<div class="cover ${css.loading}"><h1>Embed from <mark>${name}</mark></h1></div>`
+  const coverFrame = `<div class="cover ${css.loading}"><h1>${msg}</h1></div>`
   const blockPointer = config.blockPointer ? `<div class='${css.blockmouse}' />` : ''
   const posterFrame = config.poster ? `<div class="${css.poster}"><img src="${config.poster}" /></div>` : ''
 

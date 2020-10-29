@@ -1,14 +1,15 @@
 import css from './style.css'
 import u from '../../utils.js'
 
-const image = function (el, config) {
+const image = function (el, config, sceneConfig, rootElement, projectConfig) {
   const url = config.url
+  const step = config.step ? 'step' : ''
 
   const imageschunk = `<div class="presentablock__image ${css.preimg}">
         <img src="${url}" />
       </div>`
 
-  const child = u.div(`<div class="${css.image}">
+  const child = u.div(`<div class="${css.image} ${step}">
     <div class="imagesContainer ${css.inner}">
         ${imageschunk}
     </div>

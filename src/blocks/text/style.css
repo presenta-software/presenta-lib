@@ -60,7 +60,8 @@
 .itext mark {
   background-color: var(--backmark);
   color: var(--foremark);
-  padding: 0 0.5rem;
+  padding: .5rem .5rem;
+  display: inline-block;
 }
 .itext high {
   color: var(--textaccentcolor);

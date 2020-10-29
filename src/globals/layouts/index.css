@@ -6,9 +6,22 @@
   height: initial;
 } */
 
+/* Default, Blocks as Columns if landscape, Rows if portrait*/
+.layout {
+  display: flex;
+}
+.layout > div {
+  height: 100%;
+}
+.landscape .layout{
+  flex-direction: row;
+}
+.portrait .layout{
+  flex-direction: column;
+}
 
 
-/* Blocks as Columns, Default */
+/* Blocks as Columns */
 .layout__cols .layout {
   display: flex;
   flex-direction: row;

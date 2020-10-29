@@ -6,7 +6,7 @@ const steps = function (sceneElement, modConfig, sceneConfig, projectConfig) {
   let index = 0
   sceneConfig.blocks.forEach(b => {
     const blockEl = b._el
-    const tag = b.step || '.step'
+    const tag = typeof b.step === 'string' ? b.step : '.step'
 
     const blockStepElements = [].slice.call(blockEl.querySelectorAll(tag))
 

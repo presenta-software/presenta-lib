@@ -13,6 +13,12 @@ const Block = function (blocksElement, blockConfig, sceneConfig, rootElement, pr
 
   let step = 0
 
+  /*
+    project level props ported to block level
+  */
+  blockConfig._portrait = projectConfig._orientation === 'portrait'
+  blockConfig._mode = projectConfig.mode
+
   const child = u.div(`<div class="block ${css.block} b b${this.index}">
     <div class="backDecoration ${css.bdecoration}"></div>
     <div class="blockContainer ${css.inner}"></div>

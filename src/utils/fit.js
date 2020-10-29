@@ -18,6 +18,13 @@ const fit = (el, config, par) => {
   const scaleH = (h) * 100 / ch
   const scale = Math.max(scaleW, scaleH)
 
+  let orient = 'landscape'
+  if (w < h) {
+    orient = 'portrait'
+  }
+  par.classList.add(orient)
+  config._orientation = orient
+
   par.style.setProperty('--presenta-fz', (1 / (100 / scale)))
 }
 

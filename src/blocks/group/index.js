@@ -2,8 +2,9 @@ import { Block } from '../../core/Block.js'
 import css from './style.css'
 import u from '../../utils.js'
 
-const group = function (el, config, sceneConfig, rootElement, projectConfig) {
+const group = function (el, config) {
   const blocks = config.blocks
+  const instBlocks = []
 
   const child = u.div(`<div class="${css.group}">
     <div class="layout"></div>
@@ -16,7 +17,9 @@ const group = function (el, config, sceneConfig, rootElement, projectConfig) {
 
   blocks.forEach((blockConfig, i) => {
     blockConfig.index = i
-    new Block(cont, blockConfig, sceneConfig, rootElement, projectConfig)
+    instBlocks.push(
+      new Block(cont, blockConfig)
+    )
   })
 
   el.appendChild(child)

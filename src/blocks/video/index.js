@@ -1,7 +1,7 @@
 import css from './style.css'
 import u from '../../utils.js'
 
-const video = function (el, config, sceneConfig, rootElement, projectConfig) {
+const video = function (el, config) {
   const previewMode = config._mode === 'preview'
   const presentMode = config._mode === 'present'
 
@@ -15,7 +15,7 @@ const video = function (el, config, sceneConfig, rootElement, projectConfig) {
   </div>`)
 
   this.beforeDestroy = () => {
-    rootElement.removeEventListener('keyup', setKeyListener)
+    config._rootElement.removeEventListener('keyup', setKeyListener)
   }
 
   this.stepForward = (step) => {
@@ -43,7 +43,7 @@ const video = function (el, config, sceneConfig, rootElement, projectConfig) {
     }
   }
 
-  if (presentMode) rootElement.addEventListener('keyup', setKeyListener)
+  if (presentMode) config._rootElement.addEventListener('keyup', setKeyListener)
 }
 
 /*

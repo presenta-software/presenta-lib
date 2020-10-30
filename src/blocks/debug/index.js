@@ -1,7 +1,7 @@
 import css from './style.css'
 import u from '../../utils.js'
 
-const debug = function (el, config, sceneConfig, rootElement, projectConfig) {
+const debug = function (el, config) {
   sceneConfig._steps.push(1)
 
   const child = u.div(`<div class="${css.debug}">

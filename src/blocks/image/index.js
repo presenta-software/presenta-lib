@@ -1,7 +1,7 @@
 import css from './style.css'
 import u from '../../utils.js'
 
-const image = function (el, config, sceneConfig, rootElement, projectConfig) {
+const image = function (el, config) {
   const url = config.url
   const step = config.step ? 'step' : ''
 

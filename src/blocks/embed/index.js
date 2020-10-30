@@ -9,9 +9,9 @@ const iframePrimaryDomain = str => {
   return dom && dom.length > 0 ? dom[0] : null
 }
 
-const embed = function (el, config, sceneConfig, rootElement, projectConfig) {
-  const previewMode = projectConfig.mode === 'preview'
-  const presentMode = projectConfig.mode === 'present'
+const embed = function (el, config) {
+  const previewMode = config._mode === 'preview'
+  const presentMode = config._mode === 'present'
 
   let iframe = null
   if (config.url) {

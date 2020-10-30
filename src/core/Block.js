@@ -2,9 +2,9 @@ import css from './css/block.css'
 import u from '../utils.js'
 import { blocks } from '../blocks/types'
 
-const Block = function (blocksElement, blockConfig, sceneConfig, rootElement, projectConfig) {
+const Block = function (blocksElement, blockConfig) {
   this.type = blockConfig.type
-  this.index = blockConfig.index
+  this.index = blockConfig._index
   var blockInstance = null
 
   if (!this.type) {
@@ -12,12 +12,6 @@ const Block = function (blocksElement, blockConfig, sceneConfig, rootElement, pr
   }
 
   let step = 0
-
-  /*
-    project level props ported to block level
-  */
-  blockConfig._portrait = projectConfig._orientation === 'portrait'
-  blockConfig._mode = projectConfig.mode
 
   const child = u.div(`<div class="block ${css.block} b b${this.index}">
     <div class="backDecoration ${css.bdecoration}"></div>
@@ -32,7 +26,7 @@ const Block = function (blocksElement, blockConfig, sceneConfig, rootElement, pr
   if (!blocks[this.type]) {
     console.log(`block "${this.type}" not found`)
   } else {
-    blockInstance = new blocks[this.type](blockContainer, blockConfig, sceneConfig, rootElement, projectConfig)
+    blockInstance = new blocks[this.type](blockContainer, blockConfig)
   }
 
   this.beforeDestroy = () => {

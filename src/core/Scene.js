@@ -64,9 +64,14 @@ const Scene = function (sceneConfig, projectConfig, rootElement) {
   */
   const cblocks = sceneConfig.blocks
   cblocks.forEach((blockConfig, i) => {
-    blockConfig.index = i
+    blockConfig._index = i
+    blockConfig._portrait = projectConfig._orientation === 'portrait'
+    blockConfig._mode = projectConfig.mode
+    blockConfig._rootElement = rootElement
+
     const blocksContainer = child.querySelector('.blocksContainer')
-    const block = new Block(blocksContainer, blockConfig, sceneConfig, rootElement, projectConfig)
+    const block = new Block(blocksContainer, blockConfig)
+
     blocks.push(block)
   })
 

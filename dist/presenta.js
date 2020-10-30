@@ -1,11 +1,11 @@
-// https://lib.presenta.cc v0.0.51 Copyright 2020 Fabio Franchino
+// https://lib.presenta.cc v0.0.52 Copyright 2020 Fabio Franchino
 (function (global, factory) {
   typeof exports === 'object' && typeof module !== 'undefined' ? module.exports = factory() :
   typeof define === 'function' && define.amd ? define(factory) :
   (global = typeof globalThis !== 'undefined' ? globalThis : global || self, global.Presenta = factory());
 }(this, (function () { 'use strict';
 
-  var version = "0.0.51";
+  var version = "0.0.52";
 
   function styleInject(css, ref) {
     if ( ref === void 0 ) ref = {};
@@ -668,7 +668,7 @@
   var css$6 = {"debug":"style_debug__1-XHT"};
   styleInject(css_248z$x);
 
-  const debug = function (el, config, sceneConfig, rootElement, projectConfig) {
+  const debug = function (el, config) {
     sceneConfig._steps.push(1);
 
     const child = utils.div(`<div class="${css$6.debug}">
@@ -804,9 +804,9 @@
     return dom && dom.length > 0 ? dom[0] : null;
   };
 
-  const embed = function (el, config, sceneConfig, rootElement, projectConfig) {
-    const previewMode = projectConfig.mode === 'preview';
-    const presentMode = projectConfig.mode === 'present';
+  const embed = function (el, config) {
+    const previewMode = config._mode === 'preview';
+    const presentMode = config._mode === 'present';
     let iframe = null;
 
     if (config.url) {
@@ -851,7 +851,7 @@
   var css$9 = {"image":"style_image__1fZIQ","inner":"style_inner__3tyMU","preimg":"style_preimg__2ypvx"};
   styleInject(css_248z$B);
 
-  const image = function (el, config, sceneConfig, rootElement, projectConfig) {
+  const image = function (el, config) {
     const url = config.url;
     const step = config.step ? 'step' : '';
     const imageschunk = `<div class="presentablock__image ${css$9.preimg}">
@@ -883,7 +883,7 @@
   var css$a = {"video":"style_video__1qbdJ"};
   styleInject(css_248z$C);
 
-  const video = function (el, config, sceneConfig, rootElement, projectConfig) {
+  const video = function (el, config) {
     const previewMode = config._mode === 'preview';
     const presentMode = config._mode === 'present';
     const poster = config.poster ? `poster=${config.poster}` : '';
@@ -895,7 +895,7 @@
   </div>`);
 
     this.beforeDestroy = () => {
-      rootElement.removeEventListener('keyup', setKeyListener);
+      config._rootElement.removeEventListener('keyup', setKeyListener);
     };
 
     this.stepForward = step => {};
@@ -924,7 +924,7 @@
       }
     };
 
-    if (presentMode) rootElement.addEventListener('keyup', setKeyListener);
+    if (presentMode) config._rootElement.addEventListener('keyup', setKeyListener);
   };
   /*
   prevent body scroll
@@ -1157,9 +1157,9 @@
   var css$f = {"block":"block_block__BWbaZ","inner":"block_inner__3LS6s","bdecoration":"block_bdecoration__3KJh-","fdecoration":"block_fdecoration__12tBw"};
   styleInject(css_248z$I);
 
-  const Block = function (blocksElement, blockConfig, sceneConfig, rootElement, projectConfig) {
+  const Block = function (blocksElement, blockConfig) {
     this.type = blockConfig.type;
-    this.index = blockConfig.index;
+    this.index = blockConfig._index;
     var blockInstance = null;
 
     if (!this.type) {
@@ -1167,12 +1167,6 @@
     }
 
     let step = 0;
-    /*
-      project level props ported to block level
-    */
-
-    blockConfig._portrait = projectConfig._orientation === 'portrait';
-    blockConfig._mode = projectConfig.mode;
     const child = utils.div(`<div class="block ${css$f.block} b b${this.index}">
     <div class="backDecoration ${css$f.bdecoration}"></div>
     <div class="blockContainer ${css$f.inner}"></div>
@@ -1185,7 +1179,7 @@
     if (!blocks[this.type]) {
       console.log(`block "${this.type}" not found`);
     } else {
-      blockInstance = new blocks[this.type](blockContainer, blockConfig, sceneConfig, rootElement, projectConfig);
+      blockInstance = new blocks[this.type](blockContainer, blockConfig);
     }
 
     this.beforeDestroy = () => {
@@ -1304,9 +1298,12 @@
 
     const cblocks = sceneConfig.blocks;
     cblocks.forEach((blockConfig, i) => {
-      blockConfig.index = i;
+      blockConfig._index = i;
+      blockConfig._portrait = projectConfig._orientation === 'portrait';
+      blockConfig._mode = projectConfig.mode;
+      blockConfig._rootElement = rootElement;
       const blocksContainer = child.querySelector('.blocksContainer');
-      const block = new Block(blocksContainer, blockConfig, sceneConfig, rootElement, projectConfig);
+      const block = new Block(blocksContainer, blockConfig);
       blocks.push(block);
     });
     /*
@@ -1504,8 +1501,9 @@
   var css$g = {"group":"style_group__2AqP-"};
   styleInject(css_248z$J);
 
-  const group = function (el, config, sceneConfig, rootElement, projectConfig) {
+  const group = function (el, config) {
     const blocks = config.blocks;
+    const instBlocks = [];
     const child = utils.div(`<div class="${css$g.group}">
     <div class="layout"></div>
   </div>`); // u.globs(child, config)
@@ -1514,7 +1512,7 @@
     const cont = child.querySelector('.layout');
     blocks.forEach((blockConfig, i) => {
       blockConfig.index = i;
-      new Block(cont, blockConfig, sceneConfig, rootElement, projectConfig);
+      instBlocks.push(new Block(cont, blockConfig));
     });
     el.appendChild(child);
   };

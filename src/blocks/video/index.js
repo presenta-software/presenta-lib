@@ -7,15 +7,17 @@ const video = function (el, config) {
 
   const poster = config.poster ? `poster=${config.poster}` : ''
   const loop = config.loop ? 'loop' : ''
+  const muted = config.muted ? 'muted' : ''
   const autoplay = config.autoplay && presentMode ? 'autoplay' : ''
   const src = config.url ? `src=${config.url}` : ''
 
   const child = u.div(`<div class="${css.video}">
-    <video ${poster} ${src} ${loop} ${autoplay}></video>
+    <video ${poster} ${src} ${loop} ${autoplay} ${muted}></video>
   </div>`)
 
   this.beforeDestroy = () => {
     config._rootElement.removeEventListener('keyup', setKeyListener)
+    child.removeEventListener('click', toggleVideo)
   }
 
   this.stepForward = (step) => {
@@ -43,7 +45,10 @@ const video = function (el, config) {
     }
   }
 
-  if (presentMode) config._rootElement.addEventListener('keyup', setKeyListener)
+  if (presentMode) {
+    config._rootElement.addEventListener('keyup', setKeyListener)
+    child.addEventListener('click', toggleVideo)
+  }
 }
 
 /*

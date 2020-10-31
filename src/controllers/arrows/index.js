@@ -10,6 +10,7 @@ u.addProp([
 
 const arrows = function (rootElement, router, ctrlConfig, projectConfig) {
   let timer = null
+  let numInteraction = 0
 
   const child = u.div(`<div class="${css.arrows}"></div>`)
 
@@ -31,12 +32,17 @@ const arrows = function (rootElement, router, ctrlConfig, projectConfig) {
     scheduleForHide()
   })
 
-  document.addEventListener('mousemove', e => {
-    scheduleForHide()
-  })
+  const setMouseMove = () => {
+    numInteraction++
+    if (numInteraction === 2) {
+      document.addEventListener('mousemove', e => {
+        scheduleForHide()
+      })
+    }
+  }
 
   router.on('indexChanged', e => {
-    console.log(e)
+    setMouseMove()
     left.style.visibility = 'visible'
     right.style.visibility = 'visible'
     if (e.isFirst) left.style.visibility = 'hidden'
@@ -50,7 +56,7 @@ const arrows = function (rootElement, router, ctrlConfig, projectConfig) {
       child.classList.add(css.hide)
     }, 1500)
   }
-  scheduleForHide()
+  // scheduleForHide()
 }
 
 export { arrows }

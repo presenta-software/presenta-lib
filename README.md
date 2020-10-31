@@ -1,5 +1,5 @@
 <p align="center">
-	<img src="logo.png"/>
+	<a href="https://lib.presenta.cc/"><img src="logo.png"/></a>
 </p>
 
 <h1 align="center">

@@ -1,11 +1,11 @@
-// https://lib.presenta.cc v0.0.52 Copyright 2020 Fabio Franchino
+// https://lib.presenta.cc v0.0.53 Copyright 2020 Fabio Franchino
 (function (global, factory) {
   typeof exports === 'object' && typeof module !== 'undefined' ? module.exports = factory() :
   typeof define === 'function' && define.amd ? define(factory) :
   (global = typeof globalThis !== 'undefined' ? globalThis : global || self, global.Presenta = factory());
 }(this, (function () { 'use strict';
 
-  var version = "0.0.52";
+  var version = "0.0.53";
 
   function styleInject(css, ref) {
     if ( ref === void 0 ) ref = {};
@@ -295,6 +295,7 @@
 
   const arrows = function (rootElement, router, ctrlConfig, projectConfig) {
     let timer = null;
+    let numInteraction = 0;
     const child = utils.div(`<div class="${css.arrows}"></div>`);
     const left = utils.div(`<div class="${css.left}"><div class="${css.ui}"></div></div>`);
     child.appendChild(left);
@@ -309,11 +310,19 @@
       router.next();
       scheduleForHide();
     });
-    document.addEventListener('mousemove', e => {
-      scheduleForHide();
-    });
+
+    const setMouseMove = () => {
+      numInteraction++;
+
+      if (numInteraction === 2) {
+        document.addEventListener('mousemove', e => {
+          scheduleForHide();
+        });
+      }
+    };
+
     router.on('indexChanged', e => {
-      console.log(e);
+      setMouseMove();
       left.style.visibility = 'visible';
       right.style.visibility = 'visible';
       if (e.isFirst) left.style.visibility = 'hidden';
@@ -326,9 +335,8 @@
       timer = setTimeout(() => {
         child.classList.add(css.hide);
       }, 1500);
-    };
+    }; // scheduleForHide()
 
-    scheduleForHide();
   };
 
   var css_248z$s = ".style_black__3Nszx{width:100%;height:100%;position:absolute;top:0;left:0;background-color:#000;opacity:0;pointer-events:none;transition:opacity .5s cubic-bezier(.8,.2,.2,.8);z-index:999999}";
@@ -888,14 +896,17 @@
     const presentMode = config._mode === 'present';
     const poster = config.poster ? `poster=${config.poster}` : '';
     const loop = config.loop ? 'loop' : '';
+    const muted = config.muted ? 'muted' : '';
     const autoplay = config.autoplay && presentMode ? 'autoplay' : '';
     const src = config.url ? `src=${config.url}` : '';
     const child = utils.div(`<div class="${css$a.video}">
-    <video ${poster} ${src} ${loop} ${autoplay}></video>
+    <video ${poster} ${src} ${loop} ${autoplay} ${muted}></video>
   </div>`);
 
     this.beforeDestroy = () => {
       config._rootElement.removeEventListener('keyup', setKeyListener);
+
+      child.removeEventListener('click', toggleVideo);
     };
 
     this.stepForward = step => {};
@@ -924,7 +935,11 @@
       }
     };
 
-    if (presentMode) config._rootElement.addEventListener('keyup', setKeyListener);
+    if (presentMode) {
+      config._rootElement.addEventListener('keyup', setKeyListener);
+
+      child.addEventListener('click', toggleVideo);
+    }
   };
   /*
   prevent body scroll

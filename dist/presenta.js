@@ -1,11 +1,11 @@
-// https://lib.presenta.cc v0.0.53 Copyright 2020 Fabio Franchino
+// https://lib.presenta.cc v0.0.54 - BSD-3-Clause License - Copyright 2020 Fabio Franchino
 (function (global, factory) {
   typeof exports === 'object' && typeof module !== 'undefined' ? module.exports = factory() :
   typeof define === 'function' && define.amd ? define(factory) :
   (global = typeof globalThis !== 'undefined' ? globalThis : global || self, global.Presenta = factory());
 }(this, (function () { 'use strict';
 
-  var version = "0.0.53";
+  var version = "0.0.54";
 
   function styleInject(css, ref) {
     if ( ref === void 0 ) ref = {};
@@ -623,7 +623,7 @@
   var css$5 = {"step":"style_step__2k6dh","initState":"style_initState__3wzFT"};
   styleInject(css_248z$w);
 
-  const steps = function (sceneElement, modConfig, sceneConfig, projectConfig) {
+  const steps = function (sceneElement, modConfig, sceneConfig) {
     let allStepElements = [];
     let index = 0;
     sceneConfig.blocks.forEach(b => {
@@ -1306,6 +1306,7 @@
     utils.globs(child, sceneConfig);
     utils.props(child, sceneConfig);
     sceneConfig._el = child;
+    sceneConfig._rootElement = rootElement;
     this.el = child;
     /*
       Init blocks if any
@@ -1333,7 +1334,7 @@
 
         if (Mod) {
           if (modConfig) {
-            const mod = new Mod(child.querySelector(`.${css$e.content}`), modConfig, sceneConfig, projectConfig);
+            const mod = new Mod(child.querySelector(`.${css$e.content}`), modConfig, sceneConfig);
             modInstances.push(mod);
           }
         }

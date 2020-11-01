@@ -10,7 +10,7 @@ import cssnano from 'cssnano'
 import pkg from './package.json'
 
 const terser = require('rollup-plugin-terser').terser
-const copyright = `// ${pkg.homepage} v${pkg.version} Copyright ${(new Date()).getFullYear()} ${pkg.author.name}`
+const copyright = `// ${pkg.homepage} v${pkg.version} - BSD-3-Clause License - Copyright ${(new Date()).getFullYear()} ${pkg.author.name}`
 
 export default [{
   input: 'src/index.js',

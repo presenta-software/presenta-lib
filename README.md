@@ -37,3 +37,5 @@ To build a release:
 ## Licence
 
 **PRESENTA Lib** is released under the [3-Clause BSD license](LICENSE).
+
+Copyright © 2020 Fabio Franchino, [https://fabiofranchino.com](https://fabiofranchino.com)

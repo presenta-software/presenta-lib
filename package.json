@@ -39,7 +39,7 @@
     "exports": false
   },
   "browserslist": "> 0.5%, IE 11, not dead",
-  "license": "MIT",
+  "license": "BSD-3-Clause",
   "dependencies": {},
   "devDependencies": {
     "@babel/core": "^7.10.2",

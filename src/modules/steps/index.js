@@ -1,6 +1,6 @@
 import css from './style.css'
 
-const steps = function (sceneElement, modConfig, sceneConfig, projectConfig) {
+const steps = function (sceneElement, modConfig, sceneConfig) {
   let allStepElements = []
 
   let index = 0

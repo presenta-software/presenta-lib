@@ -57,6 +57,7 @@ const Scene = function (sceneConfig, projectConfig, rootElement) {
   u.globs(child, sceneConfig)
   u.props(child, sceneConfig)
   sceneConfig._el = child
+  sceneConfig._rootElement = rootElement
   this.el = child
 
   /*
@@ -85,7 +86,7 @@ const Scene = function (sceneConfig, projectConfig, rootElement) {
       if (!Mod) console.log(`Module "${k}" not found. Maybe you forgot to include it.`)
       if (Mod) {
         if (modConfig) {
-          const mod = new Mod(child.querySelector(`.${css.content}`), modConfig, sceneConfig, projectConfig)
+          const mod = new Mod(child.querySelector(`.${css.content}`), modConfig, sceneConfig)
           modInstances.push(mod)
         }
       }

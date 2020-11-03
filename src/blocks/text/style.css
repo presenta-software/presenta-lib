@@ -213,7 +213,9 @@
     border-bottom:1px solid var(--colorFore);
 }
 
-
+.itext small{
+  font-size: .6em;
+}
 
 
 

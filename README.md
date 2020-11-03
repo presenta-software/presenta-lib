@@ -1,5 +1,5 @@
 <p align="center">
-	<a href="https://lib.presenta.cc/"><img src="logo.png"/></a>
+	<a href="https://lib.presenta.cc/"><img src="teaser.gif"/></a>
 </p>
 
 <h1 align="center">
@@ -17,7 +17,6 @@
 
 
 
-![](teaser.gif)
 
 ## Documentation
 

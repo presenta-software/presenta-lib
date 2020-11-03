@@ -17,6 +17,7 @@
 
 
 
+![](teaser.gif)
 
 ## Documentation
 

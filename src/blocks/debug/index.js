@@ -2,7 +2,7 @@ import css from './style.css'
 import u from '../../utils.js'
 
 const debug = function (el, config) {
-  sceneConfig._steps.push(1)
+  config._sceneConfig._steps.push(1)
 
   const child = u.div(`<div class="${css.debug}">
     <svg preserveAspectRatio="none" viewBox="0 0 200 200" fill="none" xmlns="http://www.w3.org/2000/svg">

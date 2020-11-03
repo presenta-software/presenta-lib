@@ -69,6 +69,7 @@ const Scene = function (sceneConfig, projectConfig, rootElement) {
     blockConfig._portrait = projectConfig._orientation === 'portrait'
     blockConfig._mode = projectConfig.mode
     blockConfig._rootElement = rootElement
+    blockConfig._sceneConfig = sceneConfig
 
     const blocksContainer = child.querySelector('.blocksContainer')
     const block = new Block(blocksContainer, blockConfig)

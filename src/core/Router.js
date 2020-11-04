@@ -1,4 +1,3 @@
-
 import { controllers } from '../controllers/types.js'
 import u from '../utils.js'
 import css from './css/router.css'
@@ -26,7 +25,6 @@ const Router = function (rootElement, projectConfig) {
 
   const updateRouterWrapper = () => {
     const sceneConfig = scenes[currentIndex]
-
     child.classList.remove(...child.classList)
     child.classList.add('controller', css.router)
     child.style = null
@@ -39,22 +37,24 @@ const Router = function (rootElement, projectConfig) {
       this.nextIndex()
     } else {
       currentStep++
-      this.notify('stepChanged')
+      notify('stepChanged')
     }
+    notify('next')
   }
   this.prev = () => {
     this.prevIndex()
+    notify('prev')
   }
 
   this.nextIndex = () => {
     if (currentIndex < numScenes()) {
       currentIndex++
       currentStep = 0
-      this.notify(['nextIndex', 'indexChanged'])
+      notify(['nextIndex', 'indexChanged'])
     } else {
       currentIndex = numScenes()
-      currentStep = 0
-      this.notify('end')
+      currentStep = numSteps
+      notify('end')
     }
     setNumSteps()
   }
@@ -62,22 +62,23 @@ const Router = function (rootElement, projectConfig) {
     if (currentIndex > 0) {
       currentIndex--
       currentStep = 0
-      this.notify(['prevIndex', 'indexChanged'])
+      notify(['prevIndex', 'indexChanged'])
     } else {
       currentIndex = 0
       currentStep = 0
-      this.notify('begin')
+      notify('begin')
     }
     setNumSteps()
   }
 
   this.goto = v => {
+    const dir = currentIndex > v ? 'prevIndex' : 'nextIndex'
     currentIndex = v < numScenes() ? v : numScenes()
     currentStep = 0
-    this.notify(['nextIndex', 'indexChanged'])
+    notify(['goto', dir, 'indexChanged'])
   }
 
-  this.notify = evt => {
+  const notify = evt => {
     const evts = Array.isArray(evt) ? evt : [evt]
 
     evts.forEach(ev => {
@@ -131,10 +132,10 @@ const Router = function (rootElement, projectConfig) {
     }
   }
 
-  this.notify('indexChanged')
+  notify('indexChanged')
 
   setTimeout(() => {
-    this.notify('init')
+    notify('init')
     setNumSteps()
   })
 }

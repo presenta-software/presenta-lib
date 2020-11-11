@@ -99,6 +99,14 @@ const Router = function (rootElement, projectConfig) {
     })
   }
 
+  const dispatch = (name, params) => {
+    if (listeners[name]) {
+      listeners[name].forEach(clb => {
+        clb(params)
+      })
+    }
+  }
+
   this.on = (evt, clb) => {
     if (!listeners[evt]) {
       listeners[evt] = []
@@ -120,6 +128,7 @@ const Router = function (rootElement, projectConfig) {
   this.setCurrentIndex = idx => (currentIndex = idx)
   this.setCurrentStep = stp => (currentStep = stp)
   this.controllers = registeredIO
+  this.dispatch = dispatch
 
   if (projectConfig.controllers) {
     for (const k in projectConfig.controllers) {

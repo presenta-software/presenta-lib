@@ -24,16 +24,17 @@ const Scene = function (sceneConfig, projectConfig, rootElement) {
   if (projectConfig.modules) {
     for (const k in projectConfig.modules) {
       if (!sceneConfig.hasOwnProperty('modules')) sceneConfig.modules = {}
-      if (!sceneConfig.modules.hasOwnProperty(k)) sceneConfig.modules[k] = projectConfig.modules[k]
+      // console.log(k, projectConfig.modules[k], sceneConfig.modules[k])
+      if (!sceneConfig.modules.hasOwnProperty(k)) {
+        sceneConfig.modules[k] = projectConfig.modules[k]
+      }
     }
   }
 
   /*
     Check if transition has been defined at project level or scene level
   */
-  const hasTransition = projectConfig
-    ? projectConfig.transition || sceneConfig.transition
-    : sceneConfig.transition
+  const hasTransition = sceneConfig.transition || projectConfig.transition
 
   /*
     Create the wrapper template
@@ -58,6 +59,7 @@ const Scene = function (sceneConfig, projectConfig, rootElement) {
   u.props(child, sceneConfig)
   sceneConfig._el = child
   sceneConfig._rootElement = rootElement
+  sceneConfig._mode = projectConfig.mode
   this.el = child
 
   /*

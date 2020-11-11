@@ -14,6 +14,7 @@ import { hidecursor } from './hidecursor/index'
 import { hidden } from './hidden/index'
 import { limitswitch } from './limitswitch/index'
 import { sync } from './sync/index'
+import { sender } from './sender/index'
 
 const controllers = {
   autoplay,
@@ -31,7 +32,8 @@ const controllers = {
   hidecursor,
   hidden,
   limitswitch,
-  sync
+  sync,
+  sender
 }
 
 const add = (type, module, override) => {

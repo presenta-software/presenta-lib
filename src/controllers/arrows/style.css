@@ -13,6 +13,7 @@
     height: 100%;
     display: flex;
     transition: opacity .35s;
+    z-index: 100;
 
     justify-content: var(--arrowsHorizontalPosition);
     --arrowsColor: var(--colorFore);

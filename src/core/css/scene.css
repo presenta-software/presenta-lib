@@ -16,7 +16,7 @@
     width: var(--presenta-sw);
     height: var(--presenta-sh);
     font-family: serif;
-    user-select: none;
+    /* user-select: none; */
 }
 
 .wrapper{

@@ -8,8 +8,9 @@ import './flo.css'
 import './gina.css'
 import './hedy.css'
 import './irma.css'
+import './red.css'
 
-const colors = ['adele', 'belle', 'cati', 'dania', 'elane', 'flo', 'gina', 'hedy', 'irma']
+const colors = ['adele', 'belle', 'cati', 'dania', 'elane', 'flo', 'gina', 'hedy', 'irma', 'red']
 const colorvars = ['main', 'sec', 'alt']
 
 export { colors, colorvars }

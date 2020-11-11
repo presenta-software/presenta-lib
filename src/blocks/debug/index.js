@@ -30,7 +30,24 @@ const debug = function (el, config) {
     </svg>
   </div>`)
 
+  const router = config._sceneConfig._router
+
+  const keyup = e => {
+    console.log('keyup', e)
+  }
+
+  const click = e => {
+    console.log('click', e)
+  }
+
+  if (router) {
+    router.on('keyup', keyup)
+    router.on('click', click)
+  }
+
   this.beforeDestroy = () => {
+    router.off('keyup', keyup)
+    router.off('click', click)
   }
 
   this.stepForward = (step) => {

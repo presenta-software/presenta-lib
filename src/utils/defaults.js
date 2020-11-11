@@ -9,13 +9,12 @@ export default config => {
       black: true,
       fullscreen: true,
       hidden: true,
-      limitswitch: true
+      limitswitch: true,
+      sender: true
     },
     modules: {
       steps: true
     },
-    scheme: null,
-    fontkit: null,
     transition: null,
     colorvar: null,
     _transitionDestroyDelay: 1000

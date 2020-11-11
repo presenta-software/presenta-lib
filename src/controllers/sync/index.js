@@ -1,5 +1,10 @@
 const sync = function (rootElement, router, ctrlConfig, projectConfig) {
-  const bus = new BroadcastChannel('presenta')
+  if (!window.BroadcastChannel) {
+    console.log('sync controller is disabled because browser incompatibility')
+    return false
+  }
+
+  const bus = new BroadcastChannel('presenta.sync')
   let isReceiver = false
 
   const send = (name, e) => {
@@ -26,14 +31,18 @@ const sync = function (rootElement, router, ctrlConfig, projectConfig) {
 
     isReceiver = true
 
-    if (name === 'next') {
-      router.next()
-    }
-    if (name === 'prev') {
-      router.prev()
-    }
-    if (name === 'goto') {
-      router.goto(props.currentIndex)
+    switch (name) {
+      case 'next':
+        router.next()
+        break
+
+      case 'prev':
+        router.prev()
+        break
+
+      case 'goto':
+        router.goto(props.currentIndex)
+        break
     }
   }
 }

@@ -4,8 +4,6 @@ import { Router } from './Router.js'
 import { Scene } from './Scene.js'
 
 const Container = function (rootElement, projectConfig) {
-  this.config = projectConfig
-
   /*
       Let's check and fix the wrapper size
   */
@@ -61,6 +59,7 @@ const Container = function (rootElement, projectConfig) {
     if (scenes.length > 0) {
       const sceneConfig = scenes[index]
       sceneConfig._presentatransdir = dir
+      sceneConfig._router = router
       currentScene = new Scene(sceneConfig, projectConfig, rootElement)
       if (currentScene.el) cont.appendChild(currentScene.el)
     }
@@ -101,6 +100,7 @@ const Container = function (rootElement, projectConfig) {
   }
 
   this.router = router
+  this.config = projectConfig
 }
 
 export { Container }

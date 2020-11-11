@@ -1,0 +1,22 @@
+.colors__red,
+.colors__red .colorVar__main,
+.presenta .colors__irma.colorVar__main {
+  --colorBack: #fff;
+  --colorFore: #FC0D1B;
+  --colorAccent:#000;
+  --colorAlt: #F4F4F4;
+}
+.colors__red .colorVar__sec,
+.presenta .colors__irma.colorVar__sec {
+  --colorBack: #FC0D1B;
+  --colorFore: #fff;
+  --colorAccent:#000;
+  --colorAlt: #F4F4F4;
+}
+.colors__red .colorVar__alt,
+.presenta .colors__irma.colorVar__alt {
+  --colorBack: #F4F4F4;
+  --colorFore: #000;
+  --colorAccent:#FC0D1B;
+  --colorAlt: #fff;
+}

@@ -1,0 +1,22 @@
+.colors__blue,
+.colors__blue .colorVar__main,
+.presenta .colors__blue.colorVar__main {
+  --colorBack: #fff;
+  --colorFore: #0B24FB;
+  --colorAccent:#000;
+  --colorAlt: #eee;
+}
+.colors__blue .colorVar__sec,
+.presenta .colors__blue.colorVar__sec {
+  --colorBack: #0B24FB;
+  --colorFore: #fff;
+  --colorAccent:#b5bcff;
+  --colorAlt: #eee;
+}
+.colors__blue .colorVar__alt,
+.presenta .colors__blue.colorVar__alt {
+  --colorBack: #eee;
+  --colorFore: #000;
+  --colorAccent:#0B24FB;
+  --colorAlt: #fff;
+}

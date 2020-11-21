@@ -4,6 +4,8 @@ const sync = function (rootElement, router, ctrlConfig, projectConfig) {
     return false
   }
 
+  console.log('SYNC')
+
   const bus = new BroadcastChannel('presenta.sync')
   let isReceiver = false
 

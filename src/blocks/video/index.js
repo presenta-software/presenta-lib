@@ -43,6 +43,11 @@ const video = function (el, config) {
       e.stopPropagation()
       e.preventDefault()
     }
+    if (e.key === 'r') {
+      if (video) {
+        video.currentTime = 0
+      }
+    }
   }
 
   if (presentMode) {

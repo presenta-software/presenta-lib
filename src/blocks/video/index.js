@@ -48,6 +48,21 @@ const video = function (el, config) {
         video.currentTime = 0
       }
     }
+    if (e.key === 'm') {
+      if (video) {
+        video.volume = !video.volume ? 1 : 0
+      }
+    }
+    if (e.key === '+') {
+      if (video) {
+        video.volume += 0.1
+      }
+    }
+    if (e.key === '-') {
+      if (video) {
+        video.volume -= -0.1
+      }
+    }
   }
 
   if (presentMode) {

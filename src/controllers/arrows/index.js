@@ -41,12 +41,20 @@ const arrows = function (rootElement, router, ctrlConfig, projectConfig) {
     }
   }
 
-  router.on('indexChanged', e => {
+  const changed = e => {
     setMouseMove()
     left.style.visibility = 'visible'
     right.style.visibility = 'visible'
     if (e.isFirst) left.style.visibility = 'hidden'
     if (e.isLast && e.totalSteps === e.currentStep) right.style.visibility = 'hidden'
+  }
+
+  router.on('stepChanged', e => {
+    changed(e)
+  })
+
+  router.on('indexChanged', e => {
+    changed(e)
   })
 
   const scheduleForHide = () => {

@@ -13,15 +13,14 @@ const Router = function (rootElement, projectConfig) {
 
   let currentIndex = 0
   let currentStep = 0
-  let numSteps = 0
+  // let numSteps = 0
 
-  const setNumSteps = () => {
-    numSteps = scenes[currentIndex] &&
+  const numSteps = () => {
+    return scenes[currentIndex] &&
         scenes[currentIndex]._steps
       ? scenes[currentIndex]._steps.length
       : 0
   }
-  // setNumSteps()
 
   const updateRouterWrapper = () => {
     const sceneConfig = scenes[currentIndex]
@@ -33,7 +32,7 @@ const Router = function (rootElement, projectConfig) {
   }
 
   this.next = () => {
-    if (currentStep === numSteps) {
+    if (currentStep === numSteps()) {
       this.nextIndex()
     } else {
       currentStep++
@@ -53,10 +52,10 @@ const Router = function (rootElement, projectConfig) {
       notify(['nextIndex', 'indexChanged'])
     } else {
       currentIndex = numScenes()
-      currentStep = numSteps
+      currentStep = numSteps()
       notify('end')
     }
-    setNumSteps()
+    // setNumSteps()
   }
   this.prevIndex = () => {
     if (currentIndex > 0) {
@@ -68,7 +67,7 @@ const Router = function (rootElement, projectConfig) {
       currentStep = 0
       notify('begin')
     }
-    setNumSteps()
+    // setNumSteps()
   }
 
   this.goto = v => {
@@ -90,7 +89,7 @@ const Router = function (rootElement, projectConfig) {
             currentIndex,
             currentStep,
             totalScenes: this.totalScenes(),
-            totalSteps: numSteps,
+            totalSteps: numSteps(),
             isFirst: this.isFirst(),
             isLast: this.isLast()
           })
@@ -120,7 +119,7 @@ const Router = function (rootElement, projectConfig) {
   }
 
   this.totalScenes = () => numScenes() + 1
-  this.totalSteps = () => numSteps
+  this.totalSteps = () => numSteps()
   this.currentIndex = () => currentIndex
   this.currentStep = () => currentStep
   this.isFirst = () => currentIndex === 0
@@ -145,7 +144,7 @@ const Router = function (rootElement, projectConfig) {
 
   setTimeout(() => {
     notify('init')
-    setNumSteps()
+    // setNumSteps()
   })
 }
 

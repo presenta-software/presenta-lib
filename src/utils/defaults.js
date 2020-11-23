@@ -10,7 +10,7 @@ export default config => {
       fullscreen: true,
       hidden: true,
       limitswitch: true,
-      sender: true
+      cache: true
     },
     modules: {
       steps: true

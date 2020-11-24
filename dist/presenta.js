@@ -1,11 +1,11 @@
-// https://lib.presenta.cc v0.1.2 - BSD-3-Clause License - Copyright 2020 Fabio Franchino
+// https://lib.presenta.cc v0.1.3 - BSD-3-Clause License - Copyright 2020 Fabio Franchino
 (function (global, factory) {
   typeof exports === 'object' && typeof module !== 'undefined' ? module.exports = factory() :
   typeof define === 'function' && define.amd ? define(factory) :
   (global = typeof globalThis !== 'undefined' ? globalThis : global || self, global.Presenta = factory());
 }(this, (function () { 'use strict';
 
-  var version = "0.1.2";
+  var version = "0.1.3";
 
   function styleInject(css, ref) {
     if ( ref === void 0 ) ref = {};
@@ -327,12 +327,19 @@
       }
     };
 
-    router.on('indexChanged', e => {
+    const changed = e => {
       setMouseMove();
       left.style.visibility = 'visible';
       right.style.visibility = 'visible';
       if (e.isFirst) left.style.visibility = 'hidden';
       if (e.isLast && e.totalSteps === e.currentStep) right.style.visibility = 'hidden';
+    };
+
+    router.on('stepChanged', e => {
+      changed(e);
+    });
+    router.on('indexChanged', e => {
+      changed(e);
     });
 
     const scheduleForHide = () => {
@@ -700,6 +707,34 @@
     });
   };
 
+  const caches = [];
+
+  const cache = function (rootElement, router, ctrlConfig, projectConfig) {
+    projectConfig.scenes.forEach(s => {
+      s.blocks.forEach(b => {
+        const blk = caches.find(d => d.type === b.type);
+
+        if (blk && b.url) {
+          const f = blk => {
+            fetch(b.url).then(data => {
+              data.text().then(data => {
+                b._cache = data;
+              });
+            });
+          };
+
+          f();
+        }
+      });
+    });
+  };
+
+  const addCache = ob => {
+    caches.push(ob);
+  };
+
+  utils.io.addCache = addCache;
+
   const controllers = {
     autoplay,
     keyboard,
@@ -717,7 +752,8 @@
     hidden,
     limitswitch,
     sync,
-    sender
+    sender,
+    cache
   };
 
   const add = (type, module, override) => {
@@ -1077,6 +1113,30 @@
         e.stopPropagation();
         e.preventDefault();
       }
+
+      if (e.key === 'r') {
+        if (video) {
+          video.currentTime = 0;
+        }
+      }
+
+      if (e.key === 'm') {
+        if (video) {
+          video.volume = !video.volume ? 1 : 0;
+        }
+      }
+
+      if (e.key === '+') {
+        if (video) {
+          video.volume += 0.1;
+        }
+      }
+
+      if (e.key === '-') {
+        if (video) {
+          video.volume -= -0.1;
+        }
+      }
     };
 
     if (presentMode) {
@@ -1135,13 +1195,41 @@
     el.appendChild(child);
   };
 
+  var css_248z$I = ":root{--svgPadding:0}.style_inner__AjKjt,.style_svg__2xfFu{width:100%;height:100%}.style_inner__AjKjt{padding:var(--svgPadding)}.style_svg__2xfFu svg{width:100%;height:100%}";
+  var css$d = {"svg":"style_svg__2xfFu","inner":"style_inner__AjKjt"};
+  styleInject(css_248z$I);
+
+  const svg = function (el, config) {
+    const svg = config._cache || config.code;
+    if (!svg) return console.log('[block svg]', 'The svg is not present');
+    const child = utils.div(`<div class="c ${css$d.svg}">
+        <div class="${css$d.inner}">
+            ${svg}
+        </div>
+    </div>`);
+    el.appendChild(child);
+
+    this.beforeDestroy = () => {};
+
+    this.stepForward = () => {};
+  };
+
+  svg.init = () => {
+    utils.addProp(['svgPadding']);
+    utils.io.addCache({
+      type: 'svg',
+      field: 'url'
+    });
+  };
+
   const blocks = {
     debug,
     text,
     embed,
     image,
     video,
-    solid
+    solid,
+    svg
   };
 
   const add$2 = (type, module, override) => {
@@ -1156,16 +1244,16 @@
     blocks[type] = module;
   };
 
-  var css_248z$I = ".container_mainwrapper__zelcO{outline:none}.container_container__3kBNh,.container_mainwrapper__zelcO{width:100%;height:100%;position:relative;overflow:hidden}.container_container__3kBNh>div{position:absolute;top:0;left:0;width:100%}";
-  var css$d = {"mainwrapper":"container_mainwrapper__zelcO","container":"container_container__3kBNh"};
-  styleInject(css_248z$I);
-
-  var css_248z$J = ".router_router__2r4NQ{width:100%;height:100%;position:absolute;top:0;left:0;pointer-events:none}";
-  var css$e = {"router":"router_router__2r4NQ"};
+  var css_248z$J = ".container_mainwrapper__zelcO{outline:none}.container_container__3kBNh,.container_mainwrapper__zelcO{width:100%;height:100%;position:relative;overflow:hidden}.container_container__3kBNh>div{position:absolute;top:0;left:0;width:100%}";
+  var css$e = {"mainwrapper":"container_mainwrapper__zelcO","container":"container_container__3kBNh"};
   styleInject(css_248z$J);
 
+  var css_248z$K = ".router_router__2r4NQ{width:100%;height:100%;position:absolute;top:0;left:0;pointer-events:none}";
+  var css$f = {"router":"router_router__2r4NQ"};
+  styleInject(css_248z$K);
+
   const Router = function (rootElement, projectConfig) {
-    const child = utils.div(`<div class="controller ${css$e.router}"></div>`);
+    const child = utils.div(`<div class="controller ${css$f.router}"></div>`);
     rootElement.appendChild(child);
     const scenes = projectConfig.scenes;
 
@@ -1174,25 +1262,23 @@
     const listeners = {};
     const registeredIO = {};
     let currentIndex = 0;
-    let currentStep = 0;
-    let numSteps = 0;
+    let currentStep = 0; // let numSteps = 0
 
-    const setNumSteps = () => {
-      numSteps = scenes[currentIndex] && scenes[currentIndex]._steps ? scenes[currentIndex]._steps.length : 0;
-    }; // setNumSteps()
-
+    const numSteps = () => {
+      return scenes[currentIndex] && scenes[currentIndex]._steps ? scenes[currentIndex]._steps.length : 0;
+    };
 
     const updateRouterWrapper = () => {
       const sceneConfig = scenes[currentIndex];
       child.classList.remove(...child.classList);
-      child.classList.add('controller', css$e.router);
+      child.classList.add('controller', css$f.router);
       child.style = null;
       utils.globs(child, sceneConfig);
       utils.props(child, sceneConfig);
     };
 
     this.next = () => {
-      if (currentStep === numSteps) {
+      if (currentStep === numSteps()) {
         this.nextIndex();
       } else {
         currentStep++;
@@ -1214,11 +1300,10 @@
         notify(['nextIndex', 'indexChanged']);
       } else {
         currentIndex = numScenes();
-        currentStep = numSteps;
+        currentStep = numSteps();
         notify('end');
-      }
+      } // setNumSteps()
 
-      setNumSteps();
     };
 
     this.prevIndex = () => {
@@ -1230,9 +1315,8 @@
         currentIndex = 0;
         currentStep = 0;
         notify('begin');
-      }
+      } // setNumSteps()
 
-      setNumSteps();
     };
 
     this.goto = v => {
@@ -1253,7 +1337,7 @@
               currentIndex,
               currentStep,
               totalScenes: this.totalScenes(),
-              totalSteps: numSteps,
+              totalSteps: numSteps(),
               isFirst: this.isFirst(),
               isLast: this.isLast()
             });
@@ -1285,7 +1369,7 @@
 
     this.totalScenes = () => numScenes() + 1;
 
-    this.totalSteps = () => numSteps;
+    this.totalSteps = () => numSteps();
 
     this.currentIndex = () => currentIndex;
 
@@ -1316,18 +1400,17 @@
 
     notify('indexChanged');
     setTimeout(() => {
-      notify('init');
-      setNumSteps();
+      notify('init'); // setNumSteps()
     });
   };
 
-  var css_248z$K = ".scene_sceneContainer__IgSpB{width:100%;height:100%;display:flex;align-items:center;justify-content:center;position:relative}.scene_scene__3uvTl{--presenta-sw:calc(var(--presenta-w)/var(--presenta-p)/var(--presenta-fz));--presenta-sh:calc(var(--presenta-h)/var(--presenta-p)/var(--presenta-fz));--presenta-scal:calc(var(--presenta-pw)/var(--presenta-p)/var(--presenta-pw)/var(--presenta-fz));width:var(--presenta-sw);height:var(--presenta-sh);font-family:serif}.scene_wrapper__3yr1k{width:var(--presenta-w);height:var(--presenta-h);transform:scale(1);transform:scale(var(--presenta-scal));transform-origin:top left;overflow:hidden;padding:var(--scenePadding);background-color:var(--sceneBackColor)}.scene_content__1rJf0{width:100%;height:100%;display:flex;flex-direction:column;overflow:hidden}.scene_fcontainer__1E_0g{top:0;left:0;width:100%;height:100%;position:absolute;pointer-events:none}.scene_viewport__3uNLS{width:100%;height:100%;position:relative;flex:1;overflow:hidden;display:flex;flex-direction:row}.scene_viewport__3uNLS>div{height:100%}";
-  var css$f = {"sceneContainer":"scene_sceneContainer__IgSpB","scene":"scene_scene__3uvTl","wrapper":"scene_wrapper__3yr1k","content":"scene_content__1rJf0","fcontainer":"scene_fcontainer__1E_0g","viewport":"scene_viewport__3uNLS"};
-  styleInject(css_248z$K);
-
-  var css_248z$L = ".block_block__BWbaZ{background:var(--colorBack);width:100%;height:100%;flex:1;flex:var(--blockWeight);overflow:hidden;position:relative}.block_inner__3LS6s{width:100%;height:100%;padding:var(--blockPadding);opacity:var(--blockOpacity);mix-blend-mode:var(--blockBlend)}.block_bdecoration__3KJh-,.block_inner__3LS6s{top:0;left:0;width:100%;height:100%;position:absolute}.block_fdecoration__12tBw{pointer-events:none}";
-  var css$g = {"block":"block_block__BWbaZ","inner":"block_inner__3LS6s","bdecoration":"block_bdecoration__3KJh-","fdecoration":"block_fdecoration__12tBw"};
+  var css_248z$L = ".scene_sceneContainer__IgSpB{width:100%;height:100%;display:flex;align-items:center;justify-content:center;position:relative}.scene_scene__3uvTl{--presenta-sw:calc(var(--presenta-w)/var(--presenta-p)/var(--presenta-fz));--presenta-sh:calc(var(--presenta-h)/var(--presenta-p)/var(--presenta-fz));--presenta-scal:calc(var(--presenta-pw)/var(--presenta-p)/var(--presenta-pw)/var(--presenta-fz));width:var(--presenta-sw);height:var(--presenta-sh);font-family:serif}.scene_wrapper__3yr1k{width:var(--presenta-w);height:var(--presenta-h);transform:scale(1);transform:scale(var(--presenta-scal));transform-origin:top left;overflow:hidden;padding:var(--scenePadding);background-color:var(--sceneBackColor)}.scene_content__1rJf0{width:100%;height:100%;display:flex;flex-direction:column;overflow:hidden}.scene_fcontainer__1E_0g{top:0;left:0;width:100%;height:100%;position:absolute;pointer-events:none}.scene_viewport__3uNLS{width:100%;height:100%;position:relative;flex:1;overflow:hidden;display:flex;flex-direction:row}.scene_viewport__3uNLS>div{height:100%}";
+  var css$g = {"sceneContainer":"scene_sceneContainer__IgSpB","scene":"scene_scene__3uvTl","wrapper":"scene_wrapper__3yr1k","content":"scene_content__1rJf0","fcontainer":"scene_fcontainer__1E_0g","viewport":"scene_viewport__3uNLS"};
   styleInject(css_248z$L);
+
+  var css_248z$M = ".block_block__BWbaZ{background:var(--colorBack);width:100%;height:100%;flex:1;flex:var(--blockWeight);overflow:hidden;position:relative}.block_inner__3LS6s{width:100%;height:100%;padding:var(--blockPadding);opacity:var(--blockOpacity);mix-blend-mode:var(--blockBlend)}.block_bdecoration__3KJh-,.block_inner__3LS6s{top:0;left:0;width:100%;height:100%;position:absolute}.block_fdecoration__12tBw{pointer-events:none}";
+  var css$h = {"block":"block_block__BWbaZ","inner":"block_inner__3LS6s","bdecoration":"block_bdecoration__3KJh-","fdecoration":"block_fdecoration__12tBw"};
+  styleInject(css_248z$M);
 
   const Block = function (blocksElement, blockConfig) {
     this.type = blockConfig.type;
@@ -1339,10 +1422,10 @@
     }
 
     let step = 0;
-    const child = utils.div(`<div class="block ${css$g.block} b b${this.index}">
-    <div class="backDecoration ${css$g.bdecoration}"></div>
-    <div class="blockContainer ${css$g.inner}"></div>
-    <div class="frontDecoration ${css$g.fdecoration}"></div>
+    const child = utils.div(`<div class="block ${css$h.block} b b${this.index}">
+    <div class="backDecoration ${css$h.bdecoration}"></div>
+    <div class="blockContainer ${css$h.inner}"></div>
+    <div class="frontDecoration ${css$h.fdecoration}"></div>
   </div>`);
     utils.globs(child, blockConfig);
     utils.props(child, blockConfig);
@@ -1453,12 +1536,12 @@
     sceneConfig._steps = [];
     const steps = sceneConfig._steps;
     const child = utils.div(`<div 
-      class="s ${css$f.sceneContainer}">
-      <div class="sceneObject ${css$f.scene}">
-        <div class="${css$f.wrapper}">
-            <div class="${css$f.content}">
-                <div class="layout blocksContainer ${css$f.viewport}"></div>
-                <div class="frontContainer ${css$f.fcontainer}"></div>
+      class="s ${css$g.sceneContainer}">
+      <div class="sceneObject ${css$g.scene}">
+        <div class="${css$g.wrapper}">
+            <div class="${css$g.content}">
+                <div class="layout blocksContainer ${css$g.viewport}"></div>
+                <div class="frontContainer ${css$g.fcontainer}"></div>
             </div>
         </div>
       </div>
@@ -1496,7 +1579,7 @@
 
         if (Mod) {
           if (modConfig) {
-            const mod = new Mod(child.querySelector(`.${css$f.content}`), modConfig, sceneConfig);
+            const mod = new Mod(child.querySelector(`.${css$g.content}`), modConfig, sceneConfig);
             modInstances.push(mod);
           }
         }
@@ -1611,7 +1694,7 @@
 
 
     rootElement.classList.add('presenta');
-    const child = utils.div(`<div class="${css$d.mainwrapper}"></div>`);
+    const child = utils.div(`<div class="${css$e.mainwrapper}"></div>`);
     child.setAttribute('tabindex', '0');
     utils.globs(child, projectConfig);
     utils.props(child, projectConfig);
@@ -1620,7 +1703,7 @@
       Init the container
     */
 
-    const cont = utils.div(`<div class="a ${css$d.container}"></div>`);
+    const cont = utils.div(`<div class="a ${css$e.container}"></div>`);
     child.appendChild(cont);
     const scenes = projectConfig.scenes;
     var currentScene = null;
@@ -1675,14 +1758,14 @@
     this.config = projectConfig;
   };
 
-  var css_248z$M = ".style_group__2AqP-,.style_group__2AqP->div{width:100%;height:100%;position:relative}";
-  var css$h = {"group":"style_group__2AqP-"};
-  styleInject(css_248z$M);
+  var css_248z$N = ".style_group__2AqP-,.style_group__2AqP->div{width:100%;height:100%;position:relative}";
+  var css$i = {"group":"style_group__2AqP-"};
+  styleInject(css_248z$N);
 
   const group = function (el, config) {
     const blocks = config.blocks;
     const instBlocks = [];
-    const child = utils.div(`<div class="${css$h.group}">
+    const child = utils.div(`<div class="${css$i.group}">
     <div class="layout"></div>
   </div>`); // u.globs(child, config)
     // u.props(child, config)
@@ -1710,7 +1793,7 @@
         fullscreen: true,
         hidden: true,
         limitswitch: true,
-        sender: true
+        cache: true
       },
       modules: {
         steps: true

@@ -1,11 +1,11 @@
-// https://lib.presenta.cc v0.1.3 - BSD-3-Clause License - Copyright 2020 Fabio Franchino
+// https://lib.presenta.cc v0.1.4 - BSD-3-Clause License - Copyright 2020 Fabio Franchino
 (function (global, factory) {
   typeof exports === 'object' && typeof module !== 'undefined' ? module.exports = factory() :
   typeof define === 'function' && define.amd ? define(factory) :
   (global = typeof globalThis !== 'undefined' ? globalThis : global || self, global.Presenta = factory());
 }(this, (function () { 'use strict';
 
-  var version = "0.1.3";
+  var version = "0.1.4";
 
   function styleInject(css, ref) {
     if ( ref === void 0 ) ref = {};
@@ -709,31 +709,46 @@
 
   const caches = [];
 
-  const cache = function (rootElement, router, ctrlConfig, projectConfig) {
-    projectConfig.scenes.forEach(s => {
-      s.blocks.forEach(b => {
-        const blk = caches.find(d => d.type === b.type);
-
-        if (blk && b.url) {
-          const f = blk => {
-            fetch(b.url).then(data => {
-              data.text().then(data => {
-                b._cache = data;
-              });
-            });
-          };
-
-          f();
-        }
-      });
-    });
-  };
+  const cache = function (rootElement, router, ctrlConfig, projectConfig) {};
 
   const addCache = ob => {
     caches.push(ob);
   };
 
   utils.io.addCache = addCache;
+
+  cache.run = config => {
+    return new Promise((resolve, reject) => {
+      let len = 0;
+      let cnt = 0;
+      const blocks = config.scenes.reduce((a, s) => {
+        s.blocks.reduce((a2, b) => {
+          const blk = caches.find(d => d.type === b.type);
+          if (blk && b.url) a.push(b);
+        }, []);
+        return a;
+      }, []);
+      if (blocks.length === 0) resolve();
+      blocks.forEach(block => {
+        const f = block => {
+          fetch(block.url).then(data => {
+            data.text().then(data => {
+              block._cache = data;
+              cnt++;
+              if (cnt === len) resolve();
+            });
+          }).catch(err => {
+            cnt++;
+            block._cache = err + ': ' + block.url;
+            if (cnt === len) resolve();
+          });
+        };
+
+        len++;
+        f(block);
+      });
+    });
+  };
 
   const controllers = {
     autoplay,
@@ -1829,9 +1844,19 @@
 
     for (const k in plugins) if (plugins[k].init) plugins[k].init();
 
-    for (const k in plugins) if (plugins[k].run) plugins[k].run(config);
+    const all = [];
 
-    return new Container(utils.select(el), config);
+    for (const k in plugins) {
+      if (plugins[k].run) {
+        all.push(plugins[k].run(config));
+      }
+    }
+
+    return new Promise((resolve, reject) => {
+      Promise.all(all).then(values => {
+        resolve(new Container(utils.select(el), config));
+      });
+    });
   };
 
   add$2('group', group); // this to avoid circular dependencies warning, since removed implicit inclusion in block types

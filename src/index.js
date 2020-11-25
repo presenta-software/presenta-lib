@@ -17,9 +17,19 @@ const Presenta = function (el, config) {
 
   const plugins = { ...controllers, ...modules, ...blocks }
   for (const k in plugins) if (plugins[k].init) plugins[k].init()
-  for (const k in plugins) if (plugins[k].run) plugins[k].run(config)
 
-  return new Container(utils.select(el), config)
+  const all = []
+  for (const k in plugins) {
+    if (plugins[k].run) {
+      all.push(plugins[k].run(config))
+    }
+  }
+
+  return new Promise((resolve, reject) => {
+    Promise.all(all).then(values => {
+      resolve(new Container(utils.select(el), config))
+    })
+  })
 }
 
 addBlock('group', group) // this to avoid circular dependencies warning, since removed implicit inclusion in block types

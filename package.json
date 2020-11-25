@@ -1,7 +1,7 @@
 {
   "name": "@presenta/lib",
   "homepage": "https://lib.presenta.cc",
-  "version": "0.1.4",
+  "version": "0.1.5",
   "description": "Build presentations, the modern way.",
   "main": "src/index.js",
   "unpkg": "dist/presenta.min.js",

@@ -14,13 +14,18 @@ cache.run = config => {
     let len = 0
     let cnt = 0
 
-    const blocks = config.scenes.reduce((a, s) => {
-      s.blocks.reduce((a2, b) => {
-        const blk = caches.find(d => d.type === b.type)
-        if (blk && b.url) a.push(b)
-      }, [])
-      return a
-    }, [])
+    const checkBlock = block => {
+      const isSet = caches.find(d => d.type === block.type)
+      if (isSet && block[isSet.field]) blocks.push(block)
+    }
+
+    const blocks = []
+    config.scenes.forEach(scene => {
+      scene.blocks.forEach(block => {
+        checkBlock(block)
+        if (block.type === 'group') block.blocks.forEach(suBlock => checkBlock(suBlock))
+      })
+    })
 
     if (blocks.length === 0) resolve()
 

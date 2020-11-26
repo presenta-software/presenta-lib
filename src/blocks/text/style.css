@@ -151,6 +151,7 @@
 
 .itext pre, .itext code{
   text-align: left;
+  margin: 0;
 }
 
 

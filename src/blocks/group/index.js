@@ -20,6 +20,8 @@ const group = function (el, config) {
     instBlocks.push(
       new Block(cont, blockConfig)
     )
+
+    blockConfig._el.classList.add(css.gblock)
   })
 
   el.appendChild(child)

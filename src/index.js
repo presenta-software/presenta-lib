@@ -2,28 +2,21 @@ import { version } from '../package.json'
 
 import globals from './globals/index'
 
-import { controllers, add as addController } from './controllers/types.js'
-import { modules, add as addModule } from './modules/types.js'
-import { blocks, add as addBlock } from './blocks/types.js'
+import { add as addController } from './controllers/types.js'
+import { add as addModule } from './modules/types.js'
+import { add as addBlock } from './blocks/types.js'
 
 import { Container } from './core/Container.js'
 import { group } from './blocks/group' // this import to avoid circular dependencies warning
 
-import utils from './utils.js'
-import defaults from './utils/defaults.js'
+import utils from './utils'
+import defaults from './utils/defaults'
+import pluginsInit from './utils/pluginsInit'
 
 const Presenta = function (el, config) {
   defaults(config)
 
-  const plugins = { ...controllers, ...modules, ...blocks }
-  for (const k in plugins) if (plugins[k].init) plugins[k].init()
-
-  const all = []
-  for (const k in plugins) {
-    if (plugins[k].run) {
-      all.push(plugins[k].run(config))
-    }
-  }
+  const all = pluginsInit(config)
 
   return new Promise((resolve, reject) => {
     Promise.all(all).then(values => {

@@ -1,11 +1,11 @@
-// https://lib.presenta.cc v0.1.4 - BSD-3-Clause License - Copyright 2020 Fabio Franchino
+// https://lib.presenta.cc v0.1.5 - BSD-3-Clause License - Copyright 2020 Fabio Franchino
 (function (global, factory) {
   typeof exports === 'object' && typeof module !== 'undefined' ? module.exports = factory() :
   typeof define === 'function' && define.amd ? define(factory) :
   (global = typeof globalThis !== 'undefined' ? globalThis : global || self, global.Presenta = factory());
 }(this, (function () { 'use strict';
 
-  var version = "0.1.4";
+  var version = "0.1.5";
 
   function styleInject(css, ref) {
     if ( ref === void 0 ) ref = {};
@@ -721,13 +721,19 @@
     return new Promise((resolve, reject) => {
       let len = 0;
       let cnt = 0;
-      const blocks = config.scenes.reduce((a, s) => {
-        s.blocks.reduce((a2, b) => {
-          const blk = caches.find(d => d.type === b.type);
-          if (blk && b.url) a.push(b);
-        }, []);
-        return a;
-      }, []);
+
+      const checkBlock = block => {
+        const isSet = caches.find(d => d.type === block.type);
+        if (isSet && block[isSet.field]) blocks.push(block);
+      };
+
+      const blocks = [];
+      config.scenes.forEach(scene => {
+        scene.blocks.forEach(block => {
+          checkBlock(block);
+          if (block.type === 'group') block.blocks.forEach(suBlock => checkBlock(suBlock));
+        });
+      });
       if (blocks.length === 0) resolve();
       blocks.forEach(block => {
         const f = block => {
@@ -783,53 +789,93 @@
     controllers[type] = module;
   };
 
-  var css_248z$z = ".style_step__2k6dh{transition:opacity .5s ease-in-out}.style_initState__3wzFT{opacity:0}";
+  var css_248z$z = ".style_step__2k6dh{transition:opacity .5s ease-in-out}.style_initState__3wzFT{opacity:0!important}";
   var css$6 = {"step":"style_step__2k6dh","initState":"style_initState__3wzFT"};
   styleInject(css_248z$z);
 
   const steps = function (sceneElement, modConfig, sceneConfig) {
     if (sceneConfig._mode !== 'present') return;
-    let allStepElements = [];
+    const sceneMode = sceneConfig.steps || 'sequential';
     const defaultSteps = typeof modConfig === 'string' ? modConfig : '.step';
+    const allElems = {};
     let index = 0;
-    const blocks = sceneConfig.blocks.filter(b => {
-      if (b.hasOwnProperty('steps') && !b.steps) {
-        return false;
-      } else {
-        return true;
-      }
-    });
+    const blocks = sceneConfig.blocks.filter(b => !(b.hasOwnProperty('steps') && !b.steps));
     blocks.forEach(b => {
       const blockEl = b._el;
       const tag = typeof b.steps === 'string' ? b.steps : defaultSteps;
       const tags = tag.split(',');
-      let blockStepElements = [];
+      const blockStepElements = [];
       tags.forEach(tg => {
-        const elms = [].slice.call(blockEl.querySelectorAll(tg));
-        elms.sort((a, b) => {
-          return a.dataset.order - b.dataset.order;
+        const isSingle = tg.indexOf('#') >= 0;
+        const query = isSingle ? 'querySelector' : 'querySelectorAll';
+        const select = blockEl[query](tg);
+
+        if (isSingle) {
+          blockStepElements.push({
+            selector: tg,
+            els: select ? [select] : []
+          });
+        } else {
+          const elms = Array.from(select);
+          elms.sort((a, b) => {
+            return a.dataset.order - b.dataset.order;
+          });
+          blockStepElements.push({
+            selector: tg,
+            els: elms
+          });
+        }
+      });
+
+      if (sceneMode === 'sequential') {
+        blockStepElements.forEach(ob => {
+          const els = ob.els;
+          els.forEach(el => {
+            el.classList.add(css$6.step, css$6.initState);
+            const id = {
+              sandbox: 'steps',
+              index,
+              els: [el]
+            };
+
+            sceneConfig._steps.push(id);
+
+            index++;
+          });
         });
-        blockStepElements = blockStepElements.concat(elms);
-      });
-      blockStepElements.forEach(el => {
-        el.classList.add(css$6.step, css$6.initState);
-        const id = {
-          sandbox: 'steps',
-          index
-        };
+      }
 
-        sceneConfig._steps.push(id);
+      if (sceneMode === 'match') {
+        blockStepElements.forEach(ob => {
+          const sel = ob.selector;
+          const els = ob.els;
 
-        index++;
-      });
-      allStepElements = allStepElements.concat(blockStepElements);
+          if (!allElems[sel]) {
+            allElems[sel] = els;
+          } else {
+            allElems[sel] = allElems[sel].concat(els);
+          }
+        });
+      }
     });
+
+    for (const k in allElems) {
+      allElems[k].forEach(el => el.classList.add(css$6.step, css$6.initState));
+      const id = {
+        sandbox: 'steps',
+        index,
+        els: allElems[k]
+      };
+
+      sceneConfig._steps.push(id);
+
+      index++;
+    }
 
     this.stepForward = step => {
       if (step.sandbox === 'steps') {
-        const idx = step.index;
-        const el = allStepElements[idx];
-        el.classList.remove(css$6.initState);
+        const els = step.els;
+        els.forEach(el => el.classList.remove(css$6.initState));
       }
     };
   };
@@ -910,7 +956,7 @@
   var css_248z$B = ".textVar__title{--textPadding:3rem;--textAlign:center;--textListAlign:center;--textFlexAlign:center;--textFlexJustify:center;--textSize:2.5rem}.textVar__text{--textAlign:left;--textListAlign:left;--textFlexJustify:flex-start;--textSize:1rem}.textVar__section,.textVar__text{--textPadding:2rem;--textFlexAlign:flex-start}.textVar__section{--textAlign:right;--textListAlign:right;--textFlexJustify:flex-end;--textSize:2rem}.textVar__mention{--textAlign:left;--textListAlign:left;--textFlexJustify:flex-start;--textSize:1.5rem}.textVar__mention,.textVar__suggest{--textPadding:2rem;--textFlexAlign:flex-end}.textVar__suggest{--textAlign:center;--textListAlign:center;--textFlexJustify:center;--textSize:0.8rem}.textStyle__a{--textboxpadding:0;--textboxbackcolor:var(--colorFore);--textboxradius:0;--textboxborder:0;--textboxshadow:0 0 0 var(--colorAccent);--textboxcolor:var(--colorBack)}";
   styleInject(css_248z$B);
 
-  var css_248z$C = ":root{--textPadding:0;--textAlign:center;--textListAlign:left;--textFlexAlign:center;--textFlexJustify:center;--textSize:1rem}.style_text__3T1cl{color:var(--colorFore)}.style_inner__11UJC,.style_text__3T1cl{width:100%;height:100%;position:relative}.style_pretext__cLjqD{display:flex;width:100%;height:100%;align-items:var(--textFlexAlign);justify-content:var(--textFlexJustify)}.style_textbox__1Vb-V{padding:var(--textboxpadding);text-align:var(--textAlign);font-size:var(--textSize);color:var(--textboxcolor);--backmark:var(--colorAccent);--foremark:var(--colorBack);--textaccentcolor:var(--colorAccent);font-family:var(--fontText)}.style_itext__jz90o{border:var(--textboxborder) solid var(--colorAccent);padding:var(--textPadding);border-radius:var(--textboxradius);box-shadow:var(--textboxshadow);background-color:var(--textboxbackcolor)}.style_itext__jz90o img{object-fit:contain;height:4em;vertical-align:middle}.style_itext__jz90o mark{background-color:var(--backmark);color:var(--foremark);padding:.5rem;display:inline-block}.style_itext__jz90o high{color:var(--textaccentcolor)}.style_itext__jz90o bord{border:8px solid var(--backmark);padding:0 .5rem}.style_itext__jz90o a{color:var(--textaccentcolor);text-decoration:underline}.style_itext__jz90o blockquote{font-size:2em;font-weight:400;font-style:italic}.style_itext__jz90o blockquote,.style_itext__jz90o h1,.style_itext__jz90o h2,.style_itext__jz90o h3,.style_itext__jz90o h4,.style_itext__jz90o h5,.style_itext__jz90o h6,.style_itext__jz90o p,.style_itext__jz90o ul{margin:0}.style_itext__jz90o h1 b,.style_itext__jz90o h1 strong,.style_itext__jz90o h2 b,.style_itext__jz90o h2 strong,.style_itext__jz90o h3 b,.style_itext__jz90o h3 strong,.style_itext__jz90o h4 b,.style_itext__jz90o h4 strong,.style_itext__jz90o h5 b,.style_itext__jz90o h5 strong,.style_itext__jz90o h6 b,.style_itext__jz90o h6 strong{color:var(--textaccentcolor)}.style_itext__jz90o ol,.style_itext__jz90o ul{font-size:1.5em;line-height:1.1em;text-align:var(--textListAlign);margin:0;list-style-type:none;counter-reset:li;padding:.5rem 0}.style_itext__jz90o li{list-style-position:inside;margin-bottom:2px;padding:.25em .25em .25em .8em}.style_itext__jz90o ul li:before{content:\"\\2013\";display:inline-block;width:.8em;margin-left:-.8em}.style_itext__jz90o ol li:before{counter-increment:li;content:\".\" counter(li);display:inline-block;width:1.1em;margin-left:-1.3em;margin-right:.2em;text-align:right;direction:rtl}.style_itext__jz90o li p{display:inline}.style_itext__jz90o code,.style_itext__jz90o pre{text-align:left}.style_itext__jz90o h1,.style_itext__jz90o h2,.style_itext__jz90o h3,.style_itext__jz90o h4,.style_itext__jz90o h5,.style_itext__jz90o h6{font-family:var(--fontHeading);padding:.5rem 0}.style_itext__jz90o h1{font-size:2em}.style_itext__jz90o h2{font-size:1.5em}.style_itext__jz90o h3{font-size:1.17em}.style_itext__jz90o h4{font-size:1em}.style_itext__jz90o h5{font-size:.83em}.style_itext__jz90o h6{font-size:.67em}.style_itext__jz90o p{padding:.5rem 0}.style_itext__jz90o hr{border:1px solid var(--colorFore);margin:.5rem 0}.style_itext__jz90o h1:first-child,.style_itext__jz90o h1:last-child,.style_itext__jz90o h2:first-child,.style_itext__jz90o h2:last-child,.style_itext__jz90o h3:first-child,.style_itext__jz90o h3:last-child{padding:0}.style_itext__jz90o table{width:100%}.style_itext__jz90o tr{padding:0}.style_itext__jz90o td,.style_itext__jz90o th{padding:.5rem;border-bottom:1px solid var(--colorFore)}.style_itext__jz90o small{font-size:.6em}";
+  var css_248z$C = ":root{--textPadding:0;--textAlign:center;--textListAlign:left;--textFlexAlign:center;--textFlexJustify:center;--textSize:1rem}.style_text__3T1cl{color:var(--colorFore)}.style_inner__11UJC,.style_text__3T1cl{width:100%;height:100%;position:relative}.style_pretext__cLjqD{display:flex;width:100%;height:100%;align-items:var(--textFlexAlign);justify-content:var(--textFlexJustify)}.style_textbox__1Vb-V{padding:var(--textboxpadding);text-align:var(--textAlign);font-size:var(--textSize);color:var(--textboxcolor);--backmark:var(--colorAccent);--foremark:var(--colorBack);--textaccentcolor:var(--colorAccent);font-family:var(--fontText)}.style_itext__jz90o{border:var(--textboxborder) solid var(--colorAccent);padding:var(--textPadding);border-radius:var(--textboxradius);box-shadow:var(--textboxshadow);background-color:var(--textboxbackcolor)}.style_itext__jz90o img{object-fit:contain;height:4em;vertical-align:middle}.style_itext__jz90o mark{background-color:var(--backmark);color:var(--foremark);padding:.5rem;display:inline-block}.style_itext__jz90o high{color:var(--textaccentcolor)}.style_itext__jz90o bord{border:8px solid var(--backmark);padding:0 .5rem}.style_itext__jz90o a{color:var(--textaccentcolor);text-decoration:underline}.style_itext__jz90o blockquote{font-size:2em;font-weight:400;font-style:italic}.style_itext__jz90o blockquote,.style_itext__jz90o h1,.style_itext__jz90o h2,.style_itext__jz90o h3,.style_itext__jz90o h4,.style_itext__jz90o h5,.style_itext__jz90o h6,.style_itext__jz90o p,.style_itext__jz90o ul{margin:0}.style_itext__jz90o h1 b,.style_itext__jz90o h1 strong,.style_itext__jz90o h2 b,.style_itext__jz90o h2 strong,.style_itext__jz90o h3 b,.style_itext__jz90o h3 strong,.style_itext__jz90o h4 b,.style_itext__jz90o h4 strong,.style_itext__jz90o h5 b,.style_itext__jz90o h5 strong,.style_itext__jz90o h6 b,.style_itext__jz90o h6 strong{color:var(--textaccentcolor)}.style_itext__jz90o ol,.style_itext__jz90o ul{font-size:1.5em;line-height:1.1em;text-align:var(--textListAlign);margin:0;list-style-type:none;counter-reset:li;padding:.5rem 0}.style_itext__jz90o li{list-style-position:inside;margin-bottom:2px;padding:.25em .25em .25em .8em}.style_itext__jz90o ul li:before{content:\"\\2013\";display:inline-block;width:.8em;margin-left:-.8em}.style_itext__jz90o ol li:before{counter-increment:li;content:\".\" counter(li);display:inline-block;width:1.1em;margin-left:-1.3em;margin-right:.2em;text-align:right;direction:rtl}.style_itext__jz90o li p{display:inline}.style_itext__jz90o code,.style_itext__jz90o pre{text-align:left;margin:0}.style_itext__jz90o h1,.style_itext__jz90o h2,.style_itext__jz90o h3,.style_itext__jz90o h4,.style_itext__jz90o h5,.style_itext__jz90o h6{font-family:var(--fontHeading);padding:.5rem 0}.style_itext__jz90o h1{font-size:2em}.style_itext__jz90o h2{font-size:1.5em}.style_itext__jz90o h3{font-size:1.17em}.style_itext__jz90o h4{font-size:1em}.style_itext__jz90o h5{font-size:.83em}.style_itext__jz90o h6{font-size:.67em}.style_itext__jz90o p{padding:.5rem 0}.style_itext__jz90o hr{border:1px solid var(--colorFore);margin:.5rem 0}.style_itext__jz90o h1:first-child,.style_itext__jz90o h1:last-child,.style_itext__jz90o h2:first-child,.style_itext__jz90o h2:last-child,.style_itext__jz90o h3:first-child,.style_itext__jz90o h3:last-child{padding:0}.style_itext__jz90o table{width:100%}.style_itext__jz90o tr{padding:0}.style_itext__jz90o td,.style_itext__jz90o th{padding:.5rem;border-bottom:1px solid var(--colorFore)}.style_itext__jz90o small{font-size:.6em}";
   var css$8 = {"text":"style_text__3T1cl","inner":"style_inner__11UJC","pretext":"style_pretext__cLjqD","textbox":"style_textbox__1Vb-V","itext":"style_itext__jz90o"};
   styleInject(css_248z$C);
 
@@ -1437,9 +1483,10 @@
     }
 
     let step = 0;
+    const customSelector = blockConfig.id && blockConfig.id.indexOf('#') === 0 ? `id="${blockConfig.id.replace('#', '')}"` : '';
     const child = utils.div(`<div class="block ${css$h.block} b b${this.index}">
     <div class="backDecoration ${css$h.bdecoration}"></div>
-    <div class="blockContainer ${css$h.inner}"></div>
+    <div ${customSelector} class="blockContainer ${css$h.inner}"></div>
     <div class="frontDecoration ${css$h.fdecoration}"></div>
   </div>`);
     utils.globs(child, blockConfig);
@@ -1773,8 +1820,8 @@
     this.config = projectConfig;
   };
 
-  var css_248z$N = ".style_group__2AqP-,.style_group__2AqP->div{width:100%;height:100%;position:relative}";
-  var css$i = {"group":"style_group__2AqP-"};
+  var css_248z$N = ".style_group__2AqP-,.style_group__2AqP->div{width:100%;height:100%;position:relative}.style_gblock__3SGer{background:none}";
+  var css$i = {"group":"style_group__2AqP-","gblock":"style_gblock__3SGer"};
   styleInject(css_248z$N);
 
   const group = function (el, config) {
@@ -1789,6 +1836,8 @@
     blocks.forEach((blockConfig, i) => {
       blockConfig.index = i;
       instBlocks.push(new Block(cont, blockConfig));
+
+      blockConfig._el.classList.add(css$i.gblock);
     });
     el.appendChild(child);
   };
@@ -1835,15 +1884,28 @@
     return config;
   });
 
-  const Presenta = function (el, config) {
-    defaults(config);
-    const plugins = { ...controllers,
-      ...modules,
-      ...blocks
-    };
+  const plugInit = (all, plugs, store) => {
+    const activeKeys = Object.keys(plugs);
+    activeKeys.forEach(k => {
+      const p = all[k];
+      if (p.init) p.init(plugs[k]);
+      store.push(p);
+    });
+  };
 
-    for (const k in plugins) if (plugins[k].init) plugins[k].init();
-
+  var pluginsInit = (config => {
+    const plugins = [];
+    plugInit(controllers, config.controllers, plugins);
+    plugInit(modules, config.modules, plugins);
+    const blocksKeysArr = config.scenes.reduce((a, s) => {
+      s.blocks.reduce((a2, b) => {
+        if (a.indexOf(b.type) === -1) a.push(b.type);
+      }, []);
+      return a;
+    }, []);
+    const blocksKeys = [];
+    blocksKeysArr.forEach(d => blocksKeys[d] = true);
+    plugInit(blocks, blocksKeys, plugins);
     const all = [];
 
     for (const k in plugins) {
@@ -1852,6 +1914,12 @@
       }
     }
 
+    return all;
+  });
+
+  const Presenta = function (el, config) {
+    defaults(config);
+    const all = pluginsInit(config);
     return new Promise((resolve, reject) => {
       Promise.all(all).then(values => {
         resolve(new Container(utils.select(el), config));

@@ -13,7 +13,6 @@ const Router = function (rootElement, projectConfig) {
 
   let currentIndex = 0
   let currentStep = 0
-  // let numSteps = 0
 
   const numSteps = () => {
     return scenes[currentIndex] &&
@@ -86,6 +85,7 @@ const Router = function (rootElement, projectConfig) {
       if (listeners[ev]) {
         listeners[ev].forEach(clb => {
           clb({
+            name: ev,
             currentIndex,
             currentStep,
             totalScenes: this.totalScenes(),
@@ -144,7 +144,9 @@ const Router = function (rootElement, projectConfig) {
 
   setTimeout(() => {
     notify('init')
-    // setNumSteps()
+    setTimeout(() => {
+      notify('inited')
+    })
   })
 }
 

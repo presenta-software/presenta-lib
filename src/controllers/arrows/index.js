@@ -57,6 +57,10 @@ const arrows = function (rootElement, router, ctrlConfig, projectConfig) {
     changed(e)
   })
 
+  router.on('inited', e => {
+    changed(e)
+  })
+
   const scheduleForHide = () => {
     clearTimeout(timer)
     child.classList.remove(css.hide)

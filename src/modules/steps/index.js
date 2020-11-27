@@ -28,7 +28,7 @@ const steps = function (sceneElement, modConfig, sceneConfig) {
   const defMode = modSett.mode || validModes[0]
 
   const sceneSett = parseSettings(sceneConfig.steps)
-  let sceneMode = sceneSett.mode || defMode
+  let sceneMode = sceneSett.mode || sceneSett.tag || defMode
   if (validModes.indexOf(sceneMode) === -1) sceneMode = validModes[0]
 
   defTag = sceneSett.tag || defTag

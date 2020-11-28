@@ -24,7 +24,6 @@ const Scene = function (sceneConfig, projectConfig, rootElement) {
   if (projectConfig.modules) {
     for (const k in projectConfig.modules) {
       if (!sceneConfig.hasOwnProperty('modules')) sceneConfig.modules = {}
-      // console.log(k, projectConfig.modules[k], sceneConfig.modules[k])
       if (!sceneConfig.modules.hasOwnProperty(k)) {
         sceneConfig.modules[k] = projectConfig.modules[k]
       }
@@ -97,7 +96,7 @@ const Scene = function (sceneConfig, projectConfig, rootElement) {
   }
 
   /*
-    Run the entering transition
+    Run the enter transition
   */
   if (hasTransition) {
     const wrap = child.querySelector('.sceneObject')
@@ -116,7 +115,7 @@ const Scene = function (sceneConfig, projectConfig, rootElement) {
   */
   this.destroyAfter = _t => {
     /*
-      Run the exiting transition
+      Run the exit transition
     */
     if (hasTransition) {
       const wrap = child.querySelector('.sceneObject')
@@ -143,10 +142,8 @@ const Scene = function (sceneConfig, projectConfig, rootElement) {
   this.stepForward = () => {
     if (currentStep < steps.length) {
       const stepData = steps[currentStep]
-      // blocks[idx].stepForward(stepData, currentStep) // need to find a way to notify a specific block
-      modInstances.forEach(mod => {
-        if (mod.stepForward) mod.stepForward(stepData, currentStep)
-      })
+      modInstances.forEach(mod => { if (mod.stepForward) mod.stepForward(stepData, currentStep) })
+      blocks.forEach(block => { if (block.stepForward) block.stepForward(stepData, currentStep) })
       currentStep++
     }
   }

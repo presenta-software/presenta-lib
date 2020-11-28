@@ -14,9 +14,6 @@ const svg = function (el, config) {
 
   this.beforeDestroy = () => {
   }
-
-  this.stepForward = () => {
-  }
 }
 
 svg.init = () => {

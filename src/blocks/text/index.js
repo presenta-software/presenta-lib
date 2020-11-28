@@ -39,9 +39,6 @@ const text = function (el, config) {
   this.beforeDestroy = () => {
   }
 
-  this.stepForward = () => {
-  }
-
   // if there are images, let's exploit the alt attribute if contains a number
   // as a scale multiplier
   let images = child.querySelectorAll('img')

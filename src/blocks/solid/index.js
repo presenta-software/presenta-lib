@@ -21,9 +21,6 @@ const solid = function (el, config) {
   this.beforeDestroy = () => {
   }
 
-  this.stepForward = (step) => {
-  }
-
   el.appendChild(child)
 }
 

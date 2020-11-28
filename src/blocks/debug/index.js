@@ -50,9 +50,6 @@ const debug = function (el, config) {
     router.off('click', click)
   }
 
-  this.stepForward = (step) => {
-  }
-
   el.appendChild(child)
 }
 

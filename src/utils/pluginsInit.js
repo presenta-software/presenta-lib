@@ -6,7 +6,7 @@ const plugInit = (all, plugs, store) => {
   const activeKeys = Object.keys(plugs)
   activeKeys.forEach(k => {
     const p = all[k]
-    if (p.init) p.init(plugs[k])
+    if (p && p.init) p.init(plugs[k])
     store.push(p)
   })
 }
@@ -29,8 +29,9 @@ export default config => {
 
   const all = []
   for (const k in plugins) {
-    if (plugins[k].run) {
-      all.push(plugins[k].run(config))
+    const p = plugins[k]
+    if (p && p.run) {
+      all.push(p.run(config))
     }
   }
 

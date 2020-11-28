@@ -20,9 +20,6 @@ const video = function (el, config) {
     child.removeEventListener('click', toggleVideo)
   }
 
-  this.stepForward = (step) => {
-  }
-
   el.appendChild(child)
 
   let video

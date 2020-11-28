@@ -11,7 +11,6 @@ const Block = function (blocksElement, blockConfig) {
     return console.warn('No `type` field found in block ' + this.index)
   }
 
-  let step = 0
   const customSelector = blockConfig.id && blockConfig.id.indexOf('#') === 0 ? `id="${blockConfig.id.replace('#', '')}"` : ''
 
   const child = u.div(`<div class="block ${css.block} b b${this.index}">
@@ -34,13 +33,8 @@ const Block = function (blocksElement, blockConfig) {
     if (blockInstance && blockInstance.beforeDestroy) blockInstance.beforeDestroy()
   }
 
-  this.stepForward = () => {
-    step++
-    if (blockInstance.stepForward) {
-      blockInstance.stepForward(step)
-    } else {
-      console.warn(`The block "${this.type}" doesn't implement the method "stepForward" but this scene tried to use it`)
-    }
+  this.stepForward = (step, index) => {
+    if (blockInstance.stepForward) blockInstance.stepForward(step, index)
   }
 
   this.destroy = () => {

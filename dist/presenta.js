@@ -1,11 +1,11 @@
-// https://lib.presenta.cc v0.1.5 - BSD-3-Clause License - Copyright 2020 Fabio Franchino
+// https://lib.presenta.cc v0.1.6 - BSD-3-Clause License - Copyright 2020 Fabio Franchino
 (function (global, factory) {
   typeof exports === 'object' && typeof module !== 'undefined' ? module.exports = factory() :
   typeof define === 'function' && define.amd ? define(factory) :
   (global = typeof globalThis !== 'undefined' ? globalThis : global || self, global.Presenta = factory());
 }(this, (function () { 'use strict';
 
-  var version = "0.1.5";
+  var version = "0.1.6";
 
   function styleInject(css, ref) {
     if ( ref === void 0 ) ref = {};
@@ -339,6 +339,9 @@
       changed(e);
     });
     router.on('indexChanged', e => {
+      changed(e);
+    });
+    router.on('inited', e => {
       changed(e);
     });
 
@@ -789,20 +792,55 @@
     controllers[type] = module;
   };
 
-  var css_248z$z = ".style_step__2k6dh{transition:opacity .5s ease-in-out}.style_initState__3wzFT{opacity:0!important}";
-  var css$6 = {"step":"style_step__2k6dh","initState":"style_initState__3wzFT"};
+  var css_248z$z = ".style_step__2k6dh{transition:all 1.33s cubic-bezier(.19,1,.22,1);transform-origin:center}.style_fadeIn__1qNon{opacity:0!important}.style_zoomOut__FobL2{opacity:0!important;transform:scale(1.3)!important}.style_zoomIn__3R2ad{opacity:0!important;transform:scale(.7)!important}.style_slideUp__2aPxJ{opacity:0!important;transform:translateY(40px)!important}.style_slideDown__3Wu--{opacity:0!important;transform:translateY(-40px)!important}";
+  var css$6 = {"step":"style_step__2k6dh","fadeIn":"style_fadeIn__1qNon","zoomOut":"style_zoomOut__FobL2","zoomIn":"style_zoomIn__3R2ad","slideUp":"style_slideUp__2aPxJ","slideDown":"style_slideDown__3Wu--"};
   styleInject(css_248z$z);
+
+  const validTrans = ['fadeIn', 'zoomOut', 'zoomIn', 'slideUp', 'slideDown'];
+  const validModes = ['sequential', 'match'];
+
+  const parseSettings = cnf => {
+    let tag = null;
+    let trans = null;
+    let mode = null;
+
+    if (typeof cnf === 'string') {
+      tag = cnf;
+    }
+
+    if (typeof cnf === 'object') {
+      tag = cnf.selector;
+      trans = cnf.transition;
+      mode = cnf.mode;
+    }
+
+    return {
+      tag,
+      trans,
+      mode
+    };
+  };
 
   const steps = function (sceneElement, modConfig, sceneConfig) {
     if (sceneConfig._mode !== 'present') return;
-    const sceneMode = sceneConfig.steps || 'sequential';
-    const defaultSteps = typeof modConfig === 'string' ? modConfig : '.step';
-    const allElems = {};
+    const modSett = parseSettings(modConfig);
+    let defTag = modSett.tag || '.step';
+    let defTrans = modSett.trans || validTrans[0];
+    const defMode = modSett.mode || validModes[0];
+    const sceneSett = parseSettings(sceneConfig.steps);
+    let sceneMode = sceneSett.mode || sceneSett.tag || defMode;
+    if (validModes.indexOf(sceneMode) === -1) sceneMode = validModes[0];
+    defTag = sceneSett.tag || defTag;
+    defTrans = sceneSett.trans || defTrans;
     let index = 0;
+    const allElems = {};
     const blocks = sceneConfig.blocks.filter(b => !(b.hasOwnProperty('steps') && !b.steps));
     blocks.forEach(b => {
       const blockEl = b._el;
-      const tag = typeof b.steps === 'string' ? b.steps : defaultSteps;
+      const sett = parseSettings(b.steps);
+      const tag = sett.tag || defTag;
+      let trans = sett.trans || defTrans;
+      if (validTrans.indexOf(trans) === -1) trans = validTrans[0];
       const tags = tag.split(',');
       const blockStepElements = [];
       tags.forEach(tg => {
@@ -831,10 +869,11 @@
         blockStepElements.forEach(ob => {
           const els = ob.els;
           els.forEach(el => {
-            el.classList.add(css$6.step, css$6.initState);
+            el.classList.add(css$6.step, css$6[trans]);
             const id = {
               sandbox: 'steps',
               index,
+              trans,
               els: [el]
             };
 
@@ -851,20 +890,26 @@
           const els = ob.els;
 
           if (!allElems[sel]) {
-            allElems[sel] = els;
+            allElems[sel] = {
+              arr: els,
+              trans
+            };
           } else {
-            allElems[sel] = allElems[sel].concat(els);
+            allElems[sel].arr = allElems[sel].arr.concat(els);
           }
         });
-      }
+      } // end blocks
+
     });
 
     for (const k in allElems) {
-      allElems[k].forEach(el => el.classList.add(css$6.step, css$6.initState));
+      const trans = allElems[k].trans;
+      allElems[k].arr.forEach(el => el.classList.add(css$6.step, css$6[trans]));
       const id = {
         sandbox: 'steps',
         index,
-        els: allElems[k]
+        trans,
+        els: allElems[k].arr
       };
 
       sceneConfig._steps.push(id);
@@ -875,7 +920,7 @@
     this.stepForward = step => {
       if (step.sandbox === 'steps') {
         const els = step.els;
-        els.forEach(el => el.classList.remove(css$6.initState));
+        els.forEach(el => el.classList.remove(css$6[step.trans]));
       }
     };
   };
@@ -948,8 +993,6 @@
       router.off('click', click);
     };
 
-    this.stepForward = step => {};
-
     el.appendChild(child);
   };
 
@@ -991,9 +1034,7 @@
   </div>`);
     el.appendChild(child);
 
-    this.beforeDestroy = () => {};
-
-    this.stepForward = () => {}; // if there are images, let's exploit the alt attribute if contains a number
+    this.beforeDestroy = () => {}; // if there are images, let's exploit the alt attribute if contains a number
     // as a scale multiplier
 
 
@@ -1114,8 +1155,6 @@
 
     this.beforeDestroy = () => {};
 
-    this.stepForward = step => {};
-
     el.appendChild(child);
   };
 
@@ -1149,8 +1188,6 @@
 
       child.removeEventListener('click', toggleVideo);
     };
-
-    this.stepForward = step => {};
 
     el.appendChild(child);
     let video;
@@ -1251,8 +1288,6 @@
 
     this.beforeDestroy = () => {};
 
-    this.stepForward = step => {};
-
     el.appendChild(child);
   };
 
@@ -1271,8 +1306,6 @@
     el.appendChild(child);
 
     this.beforeDestroy = () => {};
-
-    this.stepForward = () => {};
   };
 
   svg.init = () => {
@@ -1323,7 +1356,7 @@
     const listeners = {};
     const registeredIO = {};
     let currentIndex = 0;
-    let currentStep = 0; // let numSteps = 0
+    let currentStep = 0;
 
     const numSteps = () => {
       return scenes[currentIndex] && scenes[currentIndex]._steps ? scenes[currentIndex]._steps.length : 0;
@@ -1395,6 +1428,7 @@
         if (listeners[ev]) {
           listeners[ev].forEach(clb => {
             clb({
+              name: ev,
               currentIndex,
               currentStep,
               totalScenes: this.totalScenes(),
@@ -1461,7 +1495,10 @@
 
     notify('indexChanged');
     setTimeout(() => {
-      notify('init'); // setNumSteps()
+      notify('init');
+      setTimeout(() => {
+        notify('inited');
+      });
     });
   };
 
@@ -1482,7 +1519,6 @@
       return console.warn('No `type` field found in block ' + this.index);
     }
 
-    let step = 0;
     const customSelector = blockConfig.id && blockConfig.id.indexOf('#') === 0 ? `id="${blockConfig.id.replace('#', '')}"` : '';
     const child = utils.div(`<div class="block ${css$h.block} b b${this.index}">
     <div class="backDecoration ${css$h.bdecoration}"></div>
@@ -1503,14 +1539,8 @@
       if (blockInstance && blockInstance.beforeDestroy) blockInstance.beforeDestroy();
     };
 
-    this.stepForward = () => {
-      step++;
-
-      if (blockInstance.stepForward) {
-        blockInstance.stepForward(step);
-      } else {
-        console.warn(`The block "${this.type}" doesn't implement the method "stepForward" but this scene tried to use it`);
-      }
+    this.stepForward = (step, index) => {
+      if (blockInstance.stepForward) blockInstance.stepForward(step, index);
     };
 
     this.destroy = () => {
@@ -1577,7 +1607,7 @@
 
     if (projectConfig.modules) {
       for (const k in projectConfig.modules) {
-        if (!sceneConfig.hasOwnProperty('modules')) sceneConfig.modules = {}; // console.log(k, projectConfig.modules[k], sceneConfig.modules[k])
+        if (!sceneConfig.hasOwnProperty('modules')) sceneConfig.modules = {};
 
         if (!sceneConfig.modules.hasOwnProperty(k)) {
           sceneConfig.modules[k] = projectConfig.modules[k];
@@ -1648,7 +1678,7 @@
       }
     }
     /*
-      Run the entering transition
+      Run the enter transition
     */
 
 
@@ -1667,7 +1697,7 @@
 
     this.destroyAfter = _t => {
       /*
-        Run the exiting transition
+        Run the exit transition
       */
       if (hasTransition) {
         const wrap = child.querySelector('.sceneObject');
@@ -1695,10 +1725,12 @@
 
     this.stepForward = () => {
       if (currentStep < steps.length) {
-        const stepData = steps[currentStep]; // blocks[idx].stepForward(stepData, currentStep) // need to find a way to notify a specific block
-
+        const stepData = steps[currentStep];
         modInstances.forEach(mod => {
           if (mod.stepForward) mod.stepForward(stepData, currentStep);
+        });
+        blocks.forEach(block => {
+          if (block.stepForward) block.stepForward(stepData, currentStep);
         });
         currentStep++;
       }
@@ -1888,7 +1920,7 @@
     const activeKeys = Object.keys(plugs);
     activeKeys.forEach(k => {
       const p = all[k];
-      if (p.init) p.init(plugs[k]);
+      if (p && p.init) p.init(plugs[k]);
       store.push(p);
     });
   };
@@ -1909,8 +1941,10 @@
     const all = [];
 
     for (const k in plugins) {
-      if (plugins[k].run) {
-        all.push(plugins[k].run(config));
+      const p = plugins[k];
+
+      if (p && p.run) {
+        all.push(p.run(config));
       }
     }
 

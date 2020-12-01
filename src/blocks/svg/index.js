@@ -18,7 +18,9 @@ const svg = function (el, config) {
 
 svg.init = () => {
   u.addProp(['svgPadding'])
-  u.io.addCache({ type: 'svg', field: 'url' })
+
+  if (u.io.addCache) u.io.addCache({ type: 'svg', field: 'url' })
+  if (u.io.addBaseurl) u.io.addBaseurl({ type: 'svg', field: 'url' })
 }
 
 export { svg }

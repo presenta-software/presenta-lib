@@ -23,7 +23,9 @@ const image = function (el, config) {
 
 image.init = () => {
   u.addProp(['imagePadding', 'imageBorder', 'imageShadow', 'imageSize', 'imagePosition'])
-  u.io.addPreload({ type: 'image', field: 'url', as: 'image' })
+
+  if (u.io.addPreload) u.io.addPreload({ type: 'image', field: 'url', as: 'image' })
+  if (u.io.addBaseurl) u.io.addBaseurl({ type: 'image', field: 'url' })
 }
 
 export { image }

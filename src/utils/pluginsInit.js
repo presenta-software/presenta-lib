@@ -7,7 +7,7 @@ const plugInit = (all, plugs, store) => {
   activeKeys.forEach(k => {
     const p = all[k]
     if (p && p.init) p.init(plugs[k])
-    store.push(p)
+    store.push({ plugin: p, conf: plugs[k], key: k })
   })
 }
 
@@ -28,12 +28,13 @@ export default config => {
   plugInit(blocks, blocksKeys, plugins)
 
   const all = []
-  for (const k in plugins) {
-    const p = plugins[k]
+  plugins.forEach(plug => {
+    const p = plug.plugin
+    const c = plug.conf
     if (p && p.run) {
-      all.push(p.run(config))
+      all.push(p.run(config, c))
     }
-  }
+  })
 
   return all
 }

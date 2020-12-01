@@ -80,7 +80,8 @@ window.addEventListener("keydown", function(e) {
 
 video.init = () => {
   u.addProp(['videoSize', 'videoPosition'])
-  u.io.addPreload({ type: 'video', field: 'url', as: 'video' })
+  if (u.io.addPreload) u.io.addPreload({ type: 'video', field: 'url', as: 'video' })
+  if (u.io.addBaseurl) u.io.addBaseurl({ type: 'video', field: 'url' })
 }
 
 export { video }

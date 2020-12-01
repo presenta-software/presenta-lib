@@ -38,6 +38,9 @@
     "console": false,
     "exports": false
   },
+  "standard": {
+    "globals":["DOMParser"]
+  },
   "browserslist": "> 0.5%, IE 11, not dead",
   "license": "BSD-3-Clause",
   "dependencies": {},

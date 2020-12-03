@@ -30,19 +30,24 @@ const baseurls = []
 
 const baseurl = function (rootElement, router, ctrlConfig, projectConfig) {}
 
+const inferBlock = (block, base) => {
+  const blk = baseurls.find(d => d.type === block.type)
+  if (blk) {
+    if (blk.html) {
+      inferHTML(block, base)
+    } else {
+      infer(block, blk.field, base)
+    }
+  }
+}
+
 baseurl.run = (config, pconf) => {
   return new Promise((resolve, reject) => {
     const base = pconf
     config.scenes.forEach(scene => {
       scene.blocks.forEach(block => {
-        const blk = baseurls.find(d => d.type === block.type)
-        if (blk) {
-          if (blk.html) {
-            inferHTML(block, base)
-          } else {
-            infer(block, blk.field, base)
-          }
-        }
+        const blks = block.type === 'group' ? block.blocks : [block]
+        blks.forEach(block => { inferBlock(block, base) })
       })
     })
     resolve()

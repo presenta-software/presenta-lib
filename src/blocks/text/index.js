@@ -77,7 +77,7 @@ const text = function (el, config) {
 
 text.init = () => {
   u.addGlob(['textVar', 'textStyle'])
-  u.addProp(['textPadding', 'textAlign', 'textFlexAlign', 'textFlexJustify'])
+  u.addProp(['textPadding', 'textAlign', 'textFlexAlign', 'textFlexJustify', 'textWidth'])
 
   if (u.io.addBaseurl) u.io.addBaseurl({ type: 'text', html: true })
   if (u.io.addMarkdown) u.io.addMarkdown({ type: 'text', field: 'text' })

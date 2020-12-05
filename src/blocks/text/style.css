@@ -5,6 +5,7 @@
   --textFlexAlign: center;
   --textFlexJustify: center;
   --textSize:1rem;
+  --textWidth: auto;
 }
 
 
@@ -40,6 +41,7 @@
     --foremark: var(--colorBack);
     --textaccentcolor: var(--colorAccent);
     font-family: var(--fontText);
+    width: var(--textWidth);
 }
 
 .itext{

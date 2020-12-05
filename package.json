@@ -1,7 +1,7 @@
 {
   "name": "@presenta/lib",
   "homepage": "https://lib.presenta.cc",
-  "version": "0.1.7",
+  "version": "0.1.8",
   "description": "Build presentations, the modern way.",
   "main": "src/index.js",
   "unpkg": "dist/presenta.min.js",
@@ -39,7 +39,9 @@
     "exports": false
   },
   "standard": {
-    "globals":["DOMParser"]
+    "globals": [
+      "DOMParser"
+    ]
   },
   "browserslist": "> 0.5%, IE 11, not dead",
   "license": "BSD-3-Clause",

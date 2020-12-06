@@ -1,8 +1,7 @@
 import u from '../../utils.js'
 
-const parser = new DOMParser()
-
 const inferHTML = (ob, base) => {
+  const parser = new DOMParser()
   const dom = parser.parseFromString(ob.text, 'text/html').body
   const images = dom.querySelectorAll('img')
   const imagesArr = Array.from(images)

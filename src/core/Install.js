@@ -1,4 +1,6 @@
 
+const installed = {}
+
 const Install = function (config) {
   return new Promise((resolve, reject) => {
     let len = 0
@@ -28,6 +30,7 @@ const Install = function (config) {
       }
 
       len++
+      installed[s.url] = s
       addSource(s.url)
 
       if (len === 0) resolve()

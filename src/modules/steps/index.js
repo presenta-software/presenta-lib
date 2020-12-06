@@ -70,7 +70,7 @@ const steps = function (sceneElement, modConfig, sceneConfig) {
       blockStepElements.forEach(ob => {
         const els = ob.els
         els.forEach(el => {
-          el.classList.add(css.step, css[trans])
+          el.classList.add(css.stepItem, css[trans])
 
           const id = {
             sandbox: 'steps',
@@ -103,7 +103,7 @@ const steps = function (sceneElement, modConfig, sceneConfig) {
 
   for (const k in allElems) {
     const trans = allElems[k].trans
-    allElems[k].arr.forEach(el => (el.classList.add(css.step, css[trans])))
+    allElems[k].arr.forEach(el => (el.classList.add(css.stepItem, css[trans])))
 
     const id = {
       sandbox: 'steps',

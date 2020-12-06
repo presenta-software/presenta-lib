@@ -5,23 +5,6 @@ import { Scene } from './Scene.js'
 
 const Container = function (rootElement, projectConfig) {
   /*
-      Let's check and fix the wrapper size
-  */
-  const size = getComputedStyle(rootElement)
-  let w = +size.width.split('px')[0]
-  let h = +size.height.split('px')[0]
-
-  if (w <= 0) {
-    w = 360
-    rootElement.style.width = `${w}px`
-  }
-  if (h <= 0) {
-    h = 200
-    if (projectConfig.aspect) h = w / projectConfig.aspect
-    rootElement.style.height = `${h}px`
-  }
-
-  /*
     Let's notify the user about mandatory fields
   */
   if (!projectConfig.scenes) {

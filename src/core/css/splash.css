@@ -1,0 +1,10 @@
+.splash{
+    width: 100%;
+    height: 100%;
+    background-color: var(--colorBack);
+    color: var(--colorFore);
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    font-family: var(--fontHead);
+}

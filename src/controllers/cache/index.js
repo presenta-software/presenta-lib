@@ -9,7 +9,7 @@ const addCache = ob => {
 }
 u.io.addCache = addCache
 
-cache.run = config => {
+cache.run = projectConfig => {
   return new Promise((resolve, reject) => {
     let len = 0
     let cnt = 0
@@ -20,7 +20,7 @@ cache.run = config => {
     }
 
     const blocks = []
-    config.scenes.forEach(scene => {
+    projectConfig.scenes.forEach(scene => {
       scene.blocks.forEach(block => {
         checkBlock(block)
         if (block.type === 'group') block.blocks.forEach(suBlock => checkBlock(suBlock))

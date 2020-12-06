@@ -15,6 +15,7 @@ export default config => {
     modules: {
       steps: true
     },
+    plugins: [],
     transition: null,
     colorvar: null,
     _transitionDestroyDelay: 1000

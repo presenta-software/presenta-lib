@@ -2,11 +2,13 @@ import { version } from '../package.json'
 
 import globals from './globals/index'
 
-import { add as addController } from './controllers/types.js'
-import { add as addModule } from './modules/types.js'
-import { add as addBlock } from './blocks/types.js'
+import { add as addController, controllers } from './controllers/types.js'
+import { add as addModule, modules } from './modules/types.js'
+import { add as addBlock, blocks } from './blocks/types.js'
 
+import { Splash } from './core/Splash.js'
 import { Container } from './core/Container.js'
+import { Install } from './core/Install.js'
 import { group } from './blocks/group' // this import to avoid circular dependencies warning
 
 import utils from './utils'
@@ -14,13 +16,17 @@ import defaults from './utils/defaults'
 import pluginsInit from './utils/pluginsInit'
 
 const Presenta = function (el, config) {
+  const splash = new Splash(utils.select(el), config)
+
   defaults(config)
 
-  const all = pluginsInit(config)
-
   return new Promise((resolve, reject) => {
-    Promise.all(all).then(values => {
-      resolve(new Container(utils.select(el), config))
+    new Install(config.plugins).then(() => {
+      const all = pluginsInit(config)
+      Promise.all(all).then(values => {
+        resolve(new Container(utils.select(el), config))
+        splash.destroy()
+      })
     })
   })
 }
@@ -38,6 +44,8 @@ Presenta.scenevars = globals.scenevars
 Presenta.addBlock = addBlock
 Presenta.addController = addController
 Presenta.addModule = addModule
+
+Presenta.intalled = { controllers, modules, blocks }
 
 Presenta.addGlob = utils.addGlob
 Presenta.addProp = utils.addProp

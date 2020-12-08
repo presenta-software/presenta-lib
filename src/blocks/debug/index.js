@@ -2,9 +2,11 @@ import css from './style.css'
 import u from '../../utils.js'
 
 const debug = function (el, config) {
-  config._sceneConfig._steps.push(1)
+  const that = this
+  return new Promise((resolve, reject) => {
+    config._sceneConfig._steps.push(1)
 
-  const child = u.div(`<div class="${css.debug}">
+    const child = u.div(`<div class="${css.debug}">
     <svg preserveAspectRatio="none" viewBox="0 0 200 200" fill="none" xmlns="http://www.w3.org/2000/svg">
       
       <g class="sstep" data-order="3">
@@ -30,27 +32,32 @@ const debug = function (el, config) {
     </svg>
   </div>`)
 
-  const router = config._sceneConfig._router
+    const router = config._sceneConfig._router
 
-  const keyup = e => {
-    console.log('keyup', e)
-  }
+    const keyup = e => {
+      console.log('keyup', e)
+    }
 
-  const click = e => {
-    console.log('click', e)
-  }
+    const click = e => {
+      console.log('click', e)
+    }
 
-  if (router) {
-    router.on('keyup', keyup)
-    router.on('click', click)
-  }
+    if (router) {
+      router.on('keyup', keyup)
+      router.on('click', click)
+    }
 
-  this.beforeDestroy = () => {
-    router.off('keyup', keyup)
-    router.off('click', click)
-  }
+    that.beforeDestroy = () => {
+      router.off('keyup', keyup)
+      router.off('click', click)
+    }
 
-  el.appendChild(child)
+    el.appendChild(child)
+
+    setTimeout(() => {
+      resolve(that)
+    }, 1000)
+  })
 }
 
 export { debug }

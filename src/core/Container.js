@@ -43,7 +43,7 @@ const Container = function (rootElement, projectConfig) {
       const sceneConfig = scenes[index]
       sceneConfig._presentatransdir = dir
       sceneConfig._router = router
-      new Scene(cont, sceneConfig, projectConfig, rootElement).then(scene => {
+      new Scene(cont, sceneConfig, projectConfig, child).then(scene => {
         currentScene = scene
       })
     }

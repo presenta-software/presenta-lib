@@ -11,7 +11,7 @@ const video = function (el, config) {
   const autoplay = config.autoplay && presentMode ? 'autoplay' : ''
   const src = config.url ? `src=${config.url}` : ''
 
-  const child = u.div(`<div class="${css.video}">
+  const child = u.div(`<div class="${css.video}" id="evt_trg_uid_block_video_${config._index}">
     <video ${poster} ${src} ${loop} ${autoplay} ${muted}></video>
   </div>`)
 
@@ -24,7 +24,7 @@ const video = function (el, config) {
 
   let video
   let isPlaying = config.autoplay
-  const toggleVideo = () => {
+  const toggleVideo = (e) => {
     if (!video) video = child.querySelector('video')
     if (isPlaying) {
       video.pause()
@@ -64,7 +64,7 @@ const video = function (el, config) {
 
   if (presentMode) {
     config._rootElement.addEventListener('keyup', setKeyListener)
-    child.addEventListener('click', toggleVideo)
+    child.addEventListener('click', toggleVideo) // was child
   }
 }
 

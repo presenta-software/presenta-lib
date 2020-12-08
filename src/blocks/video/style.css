@@ -18,4 +18,6 @@
 
     object-fit: var(--videoSize);
     object-position: var(--videoPosition);
+
+    pointer-events: none;
 }

@@ -40,6 +40,8 @@
 	border-top: 10px solid transparent;
     border-bottom: 10px solid transparent;
     opacity: var(--arrowsOpacity);
+
+    pointer-events: none;
 }
 .left .ui{
 	border-right: 10px solid var(--arrowsColor);

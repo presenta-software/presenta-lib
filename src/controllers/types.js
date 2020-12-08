@@ -14,7 +14,6 @@ import { hidecursor } from './hidecursor/index'
 import { hidden } from './hidden/index'
 import { limitswitch } from './limitswitch/index'
 import { sync } from './sync/index'
-import { sender } from './sender/index'
 import { cache } from './cache/index'
 import { baseurl } from './baseurl/index'
 
@@ -35,7 +34,6 @@ const controllers = {
   hidden,
   limitswitch,
   sync,
-  sender,
   cache,
   baseurl
 }

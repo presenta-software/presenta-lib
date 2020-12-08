@@ -14,10 +14,10 @@ const arrows = function (rootElement, router, ctrlConfig, projectConfig) {
 
   const child = u.div(`<div class="${css.arrows}"></div>`)
 
-  const left = u.div(`<div class="${css.left}"><div class="${css.ui}"></div></div>`)
+  const left = u.div(`<div id="evt_trg_ctrl_arrow_left" class="${css.left}"><div class="${css.ui}"></div></div>`)
   child.appendChild(left)
 
-  const right = u.div(`<div class="${css.right}"><div class="${css.ui}"></div></div>`)
+  const right = u.div(`<div id="evt_trg_ctrl_arrow_right" class="${css.right}"><div class="${css.ui}"></div></div>`)
   child.appendChild(right)
 
   rootElement.appendChild(child)

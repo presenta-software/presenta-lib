@@ -4,46 +4,48 @@ import { Block } from './Block.js'
 import { modules } from '../modules/types.js'
 import { Transition } from './Transition.js'
 
-const Scene = function (sceneConfig, projectConfig, rootElement) {
-  const blocks = []
-  const modInstances = []
+const Scene = function (cont, sceneConfig, projectConfig, rootElement) {
+  const that = this
+  return new Promise((resolve, reject) => {
+    let blocks = []
+    const modInstances = []
 
-  /*
+    /*
     Let's notify the user about missing fields
   */
-  if (!sceneConfig.blocks) {
-    return console.warn('No `blocks` array found in scene ' + sceneConfig.index)
-  }
-  if (sceneConfig.blocks.length === 0) {
-    console.warn('`blocks` is empty in scene ' + sceneConfig.index)
-  }
+    if (!sceneConfig.blocks) {
+      return console.warn('No `blocks` array found in scene ' + sceneConfig.index)
+    }
+    if (sceneConfig.blocks.length === 0) {
+      console.warn('`blocks` is empty in scene ' + sceneConfig.index)
+    }
 
-  /*
+    /*
     Set the module config from project settings
   */
-  if (projectConfig.modules) {
-    for (const k in projectConfig.modules) {
-      if (!sceneConfig.hasOwnProperty('modules')) sceneConfig.modules = {}
-      if (!sceneConfig.modules.hasOwnProperty(k)) {
-        sceneConfig.modules[k] = projectConfig.modules[k]
+    if (projectConfig.modules) {
+      for (const k in projectConfig.modules) {
+        if (!sceneConfig.hasOwnProperty('modules')) sceneConfig.modules = {}
+        if (!sceneConfig.modules.hasOwnProperty(k)) {
+          sceneConfig.modules[k] = projectConfig.modules[k]
+        }
       }
     }
-  }
 
-  /*
+    /*
     Check if transition has been defined at project level or scene level
   */
-  const hasTransition = sceneConfig.transition || projectConfig.transition
+    const hasTransition = sceneConfig.transition || projectConfig.transition
 
-  /*
+    /*
     Create the wrapper template
   */
-  let currentStep = 0
-  sceneConfig._steps = []
-  const steps = sceneConfig._steps
+    let currentStep = 0
+    sceneConfig._steps = []
+    const steps = sceneConfig._steps
 
-  const child = u.div(`<div 
-      class="s ${css.sceneContainer}">
+    const child = u.div(`<div 
+      class="s ${css.sceneContainer} ${css.promise}">
       <div class="sceneObject ${css.scene}">
         <div class="${css.wrapper}">
             <div class="${css.content}">
@@ -54,109 +56,112 @@ const Scene = function (sceneConfig, projectConfig, rootElement) {
       </div>
   </div>`)
 
-  u.globs(child, sceneConfig)
-  u.props(child, sceneConfig)
-  sceneConfig._el = child
-  sceneConfig._rootElement = rootElement
-  sceneConfig._mode = projectConfig.mode
-  this.el = child
+    u.globs(child, sceneConfig)
+    u.props(child, sceneConfig)
+    sceneConfig._el = child
+    sceneConfig._rootElement = rootElement
+    sceneConfig._mode = projectConfig.mode
 
-  /*
+    /*
     Init blocks if any
   */
-  const cblocks = sceneConfig.blocks
-  cblocks.forEach((blockConfig, i) => {
-    blockConfig._index = i
-    blockConfig._portrait = projectConfig._orientation === 'portrait'
-    blockConfig._mode = projectConfig.mode
-    blockConfig._rootElement = rootElement
-    blockConfig._sceneConfig = sceneConfig
+    const cblocks = sceneConfig.blocks
+    const blockPromises = []
+    cblocks.forEach((blockConfig, i) => {
+      blockConfig._index = i
+      blockConfig._portrait = projectConfig._orientation === 'portrait'
+      blockConfig._mode = projectConfig.mode
+      blockConfig._rootElement = rootElement
+      blockConfig._sceneConfig = sceneConfig
 
-    const blocksContainer = child.querySelector('.blocksContainer')
-    const block = new Block(blocksContainer, blockConfig)
+      const blocksContainer = child.querySelector('.blocksContainer')
+      blockPromises.push(new Block(blocksContainer, blockConfig))
+    })
 
-    blocks.push(block)
-  })
-
-  /*
-    Init modules if any
-  */
-  if (sceneConfig.modules) {
-    for (const k in sceneConfig.modules) {
-      const modConfig = sceneConfig.modules[k]
-      const Mod = modules[k]
-      if (!Mod) console.log(`Module "${k}" not found. Maybe you forgot to include it.`)
-      if (Mod) {
-        if (modConfig) {
-          const mod = new Mod(child.querySelector(`.${css.content}`), modConfig, sceneConfig)
-          modInstances.push(mod)
+    const initModules = () => {
+      if (sceneConfig.modules) {
+        for (const k in sceneConfig.modules) {
+          const modConfig = sceneConfig.modules[k]
+          const Mod = modules[k]
+          if (!Mod) console.log(`Module "${k}" not found. Maybe you forgot to include it.`)
+          if (Mod) {
+            if (modConfig) {
+              const mod = new Mod(child.querySelector(`.${css.content}`), modConfig, sceneConfig)
+              modInstances.push(mod)
+            }
+          }
         }
       }
     }
-  }
 
-  /*
-    Run the enter transition
-  */
-  if (hasTransition) {
-    const wrap = child.querySelector('.sceneObject')
-    const dir = sceneConfig._presentatransdir === 'backward' ? 'to-left' : 'to-right'
-    Transition(wrap)
-      .start(dir)
+    const enterTransition = () => {
+      if (hasTransition) {
+        const wrap = child.querySelector('.sceneObject')
+        const dir = sceneConfig._presentatransdir === 'backward' ? 'to-left' : 'to-right'
+        Transition(wrap)
+          .start(dir)
 
-    setTimeout(() => {
-      Transition(wrap)
-        .swap()
-    }, projectConfig._transitionDestroyDelay)
-  }
+        setTimeout(() => {
+          Transition(wrap)
+            .swap()
+        }, projectConfig._transitionDestroyDelay)
+      }
+    }
 
-  /*
-    Public method called by the container to init the destroy phase
-  */
-  this.destroyAfter = _t => {
     /*
-      Run the exit transition
+    Public method called by the container to init the destroy phase
     */
-    if (hasTransition) {
-      const wrap = child.querySelector('.sceneObject')
-      const odir = sceneConfig._presentatransdir === 'backward' ? 'to-right' : 'to-left'
-      const ndir = sceneConfig._presentatransdir === 'backward' ? 'to-left' : 'to-right'
-      Transition(wrap)
-        .clear(odir)
-        .end(ndir)
+    that.destroyAfter = _t => {
+      if (hasTransition) {
+        const wrap = child.querySelector('.sceneObject')
+        const odir = sceneConfig._presentatransdir === 'backward' ? 'to-right' : 'to-left'
+        const ndir = sceneConfig._presentatransdir === 'backward' ? 'to-left' : 'to-right'
+        Transition(wrap)
+          .clear(odir)
+          .end(ndir)
+      }
+
+      const t = _t || 0
+      modInstances.forEach(mod => { if (mod.beforeDestroy) mod.beforeDestroy() })
+      blocks.forEach(block => { if (block.beforeDestroy) block.beforeDestroy() })
+
+      setTimeout(() => {
+        that.destroy()
+        child.parentNode.removeChild(child)
+      }, t)
     }
 
-    const t = _t || 0
-    modInstances.forEach(mod => { if (mod.beforeDestroy) mod.beforeDestroy() })
-    blocks.forEach(block => { if (block.beforeDestroy) block.beforeDestroy() })
-
-    setTimeout(() => {
-      this.destroy()
-      child.parentNode.removeChild(child)
-    }, t)
-  }
-
-  /*
+    /*
     Public method called by the container move forward the step progress
-  */
-  this.stepForward = () => {
-    if (currentStep < steps.length) {
-      const stepData = steps[currentStep]
-      modInstances.forEach(mod => { if (mod.stepForward) mod.stepForward(stepData, currentStep) })
-      blocks.forEach(block => { if (block.stepForward) block.stepForward(stepData, currentStep) })
-      currentStep++
+   */
+    that.stepForward = () => {
+      if (currentStep < steps.length) {
+        const stepData = steps[currentStep]
+        modInstances.forEach(mod => { if (mod.stepForward) mod.stepForward(stepData, currentStep) })
+        blocks.forEach(block => { if (block.stepForward) block.stepForward(stepData, currentStep) })
+        currentStep++
+      }
     }
-  }
 
-  /*
+    /*
     Immediate destroy for garbage collection
-  */
-  this.destroy = () => {
-    modInstances.forEach(mod => { if (mod.destroy) mod.destroy() })
-    blocks.forEach(block => { if (block.destroy) block.destroy() })
-  }
+   */
+    that.destroy = () => {
+      modInstances.forEach(mod => { if (mod.destroy) mod.destroy() })
+      blocks.forEach(block => { if (block.destroy) block.destroy() })
+    }
 
-  this.sceneConfig = sceneConfig
+    that.sceneConfig = sceneConfig
+    cont.appendChild(child)
+
+    Promise.all(blockPromises).then(data => {
+      blocks = data
+      child.classList.remove(css.promise)
+      initModules()
+      enterTransition()
+      resolve(that)
+    })
+  })
 }
 
 export { Scene }

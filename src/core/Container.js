@@ -43,8 +43,9 @@ const Container = function (rootElement, projectConfig) {
       const sceneConfig = scenes[index]
       sceneConfig._presentatransdir = dir
       sceneConfig._router = router
-      currentScene = new Scene(sceneConfig, projectConfig, rootElement)
-      if (currentScene.el) cont.appendChild(currentScene.el)
+      new Scene(cont, sceneConfig, projectConfig, rootElement).then(scene => {
+        currentScene = scene
+      })
     }
   }
 

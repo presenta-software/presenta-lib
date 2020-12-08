@@ -19,6 +19,10 @@
     /* user-select: none; */
 }
 
+.promise{
+    visibility: hidden;
+}
+
 .wrapper{
     width: var(--presenta-w);
     height: var(--presenta-h);

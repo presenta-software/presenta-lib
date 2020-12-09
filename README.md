@@ -19,9 +19,11 @@
 
 
 
-## Documentation
+## Get started
 
-Full documentation can be found [here](https://lib.presenta.cc/).
+- [Library documentation](https://lib.presenta.cc/)
+- [Quick Starterkit](https://github.com/presenta-software/presenta-lib-starterkit)
+- [Online Playground](http://play.presenta.cc/)
 
 ## Contribute
 

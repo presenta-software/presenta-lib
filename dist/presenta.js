@@ -1,11 +1,11 @@
-// https://lib.presenta.cc v0.1.7 - BSD-3-Clause License - Copyright 2020 Fabio Franchino
+// https://lib.presenta.cc v0.1.8 - BSD-3-Clause License - Copyright 2020 Fabio Franchino
 (function (global, factory) {
   typeof exports === 'object' && typeof module !== 'undefined' ? module.exports = factory() :
   typeof define === 'function' && define.amd ? define(factory) :
   (global = typeof globalThis !== 'undefined' ? globalThis : global || self, global.Presenta = factory());
 }(this, (function () { 'use strict';
 
-  var version = "0.1.7";
+  var version = "0.1.8";
 
   function styleInject(css, ref) {
     if ( ref === void 0 ) ref = {};
@@ -185,7 +185,7 @@
     rootElement.parentNode.addEventListener('keyup', setKeyListener);
   };
 
-  var css_248z$t = ":root{--arrowsOpacity:1;--arrowsVerticalPosition:center;--arrowsHorizontalPosition:space-between;--arrowsPadding:10px}.style_arrows__2J_-T{position:absolute;top:0;left:0;width:100%;height:100%;display:flex;transition:opacity .35s;z-index:100;justify-content:var(--arrowsHorizontalPosition);--arrowsColor:var(--colorFore)}.style_left__199CL,.style_right__2Bn_p{height:100%;display:flex;align-items:var(--arrowsVerticalPosition);justify-content:center;cursor:pointer;padding:var(--arrowsPadding);pointer-events:all}.style_ui__1jWCU{width:20px;height:20px;transition:background-color .3s ease-in-out;width:0;height:0;border-top:10px solid transparent;border-bottom:10px solid transparent;opacity:var(--arrowsOpacity)}.style_left__199CL .style_ui__1jWCU{border-right:10px solid var(--arrowsColor)}.style_right__2Bn_p .style_ui__1jWCU{border-left:10px solid var(--arrowsColor)}.style_arrows__2J_-T.style_hide__4RZI1{opacity:0}";
+  var css_248z$t = ":root{--arrowsOpacity:1;--arrowsVerticalPosition:center;--arrowsHorizontalPosition:space-between;--arrowsPadding:10px}.style_arrows__2J_-T{position:absolute;top:0;left:0;width:100%;height:100%;display:flex;transition:opacity .35s;z-index:100;justify-content:var(--arrowsHorizontalPosition);--arrowsColor:var(--colorFore)}.style_left__199CL,.style_right__2Bn_p{height:100%;display:flex;align-items:var(--arrowsVerticalPosition);justify-content:center;cursor:pointer;padding:var(--arrowsPadding);pointer-events:all}.style_ui__1jWCU{width:20px;height:20px;transition:background-color .3s ease-in-out;width:0;height:0;border-top:10px solid transparent;border-bottom:10px solid transparent;opacity:var(--arrowsOpacity);pointer-events:none}.style_left__199CL .style_ui__1jWCU{border-right:10px solid var(--arrowsColor)}.style_right__2Bn_p .style_ui__1jWCU{border-left:10px solid var(--arrowsColor)}.style_arrows__2J_-T.style_hide__4RZI1{opacity:0}";
   var css = {"arrows":"style_arrows__2J_-T","left":"style_left__199CL","right":"style_right__2Bn_p","ui":"style_ui__1jWCU","hide":"style_hide__4RZI1"};
   styleInject(css_248z$t);
 
@@ -273,7 +273,6 @@
     return new CustomEvent(name, prop);
   };
 
-  // import md5 from 'md5'
   const md5 = s => s.split('').reduce((a, b) => {
     a = (a << 5) - a + b.charCodeAt(0);
     return a & a;
@@ -303,9 +302,9 @@
     let timer = null;
     let numInteraction = 0;
     const child = utils.div(`<div class="${css.arrows}"></div>`);
-    const left = utils.div(`<div class="${css.left}"><div class="${css.ui}"></div></div>`);
+    const left = utils.div(`<div id="evt_trg_ctrl_arrow_left" class="${css.left}"><div class="${css.ui}"></div></div>`);
     child.appendChild(left);
-    const right = utils.div(`<div class="${css.right}"><div class="${css.ui}"></div></div>`);
+    const right = utils.div(`<div id="evt_trg_ctrl_arrow_right" class="${css.right}"><div class="${css.ui}"></div></div>`);
     child.appendChild(right);
     rootElement.appendChild(child);
     left.addEventListener('click', e => {
@@ -445,25 +444,37 @@
     observer.observe(root);
   };
 
-  const addLink = (url, type) => {
-    const preloadLink = document.createElement('link');
-    preloadLink.href = url;
-    preloadLink.rel = 'preload';
-    preloadLink.as = type;
-    document.head.appendChild(preloadLink);
-  };
-
   const preloads = [];
 
-  const preload = function (rootElement, router, ctrlConfig, projectConfig) {
-    projectConfig.scenes.forEach(s => {
-      s.blocks.forEach(b => {
-        const blk = preloads.find(d => d.type === b.type);
+  const preload = function (rootElement, router, ctrlConfig, projectConfig) {};
 
-        if (blk) {
-          addLink(b[blk.field], blk.as);
-        }
+  preload.run = projectConfig => {
+    return new Promise((resolve, reject) => {
+      let len = 0;
+      let cnt = 0;
+      projectConfig.scenes.forEach(s => {
+        s.blocks.forEach(b => {
+          const blk = preloads.find(d => d.type === b.type);
+
+          if (blk) {
+            const addLink = (url, type) => {
+              setTimeout(() => {
+                const preloadLink = document.createElement('link');
+                preloadLink.href = url;
+                preloadLink.rel = 'preload';
+                preloadLink.as = type;
+                document.head.appendChild(preloadLink);
+                cnt++;
+                if (cnt === len) resolve();
+              }, len);
+            };
+
+            len++;
+            addLink(b[blk.field], blk.as);
+          }
+        });
       });
+      if (len === 0) resolve();
     });
   };
 
@@ -605,95 +616,65 @@
     });
   };
 
-  const sync = function (rootElement, router, ctrlConfig, projectConfig) {
-    if (!window.BroadcastChannel) {
-      console.log('sync controller is disabled because browser incompatibility');
-      return false;
-    }
-
-    console.log('SYNC');
-    const bus = new BroadcastChannel('presenta.sync');
-    let isReceiver = false;
-
-    const send = (name, e) => {
-      if (!isReceiver) bus.postMessage({
-        name,
-        props: e
-      });
-      isReceiver = false;
-    };
-
-    router.on('next', e => {
-      send('next', e);
-    });
-    router.on('prev', e => {
-      send('prev', e);
-    });
-    router.on('goto', e => {
-      send('goto', e);
-    });
-
-    bus.onmessage = e => {
-      const ev = e.data;
-      const name = ev.name;
-      const props = ev.props;
-      isReceiver = true;
-
-      switch (name) {
-        case 'next':
-          router.next();
-          break;
-
-        case 'prev':
-          router.prev();
-          break;
-
-        case 'goto':
-          router.goto(props.currentIndex);
-          break;
-      }
-    };
-  };
-
-  var css_248z$y = ".style_sender__14oK8{width:100%;height:100%;position:absolute;top:0;left:0;pointer-events:all}";
-  var css$5 = {"sender":"style_sender__14oK8"};
+  var css_248z$y = ".style_sync__2HAFR{width:100%;height:100%;position:absolute;top:0;left:0;pointer-events:none}";
+  var css$5 = {"sync":"style_sync__2HAFR"};
   styleInject(css_248z$y);
 
-  const sender = function (rootElement, router, ctrlConfig, projectConfig) {
+  const sync = function (rootElement, router, ctrlConfig, projectConfig) {
     if (!window.BroadcastChannel) {
-      console.log('sender controller is disabled because browser incompatibility');
+      console.log('[sync controller] disabled due browser incompatibility');
       return false;
     }
 
-    const bus = new BroadcastChannel('presenta.sender');
-    const child = utils.div(`<div class="${css$5.sender}"></div>`);
+    const bus = new BroadcastChannel('presenta.sync');
+    const child = utils.div(`<div class="${css$5.sync}"></div>`);
     rootElement.appendChild(child);
 
     bus.onmessage = e => {
       const ev = e.data;
       const name = ev.name;
       const props = ev.props;
-      router.dispatch(name, props);
+
+      if (name.indexOf('key') === 0) {
+        const evt = {
+          key: props.key
+        };
+        rootElement.parentNode.dispatchEvent(new KeyboardEvent(name, evt));
+      }
+
+      if (name.indexOf('mouse') === 0 || name.indexOf('click') === 0) {
+        const evt = {
+          x: props.x,
+          y: props.y
+        };
+        const uid = props.uuid;
+        const el = uid ? rootElement.parentNode.querySelector('#' + uid) : rootElement.parentNode;
+        const sendEl = el || rootElement.parentNode;
+        sendEl.dispatchEvent(new MouseEvent(name, evt));
+      }
     };
 
     const sendKey = (name, e) => {
       const ob = {
-        key: e.key
+        key: e.key,
+        type: e.type
       };
-      router.dispatch(name, ob);
-      bus.postMessage({
+      if (e.isTrusted) bus.postMessage({
         name,
         props: ob
       });
     };
 
     const sendMouse = (name, e) => {
+      const target = e.target;
+      const uuid = target ? target.getAttribute('id') : null;
       const ob = {
+        uuid,
+        type: e.type,
         x: e.clientX,
         y: e.clientY
       };
-      router.dispatch(name, ob);
-      bus.postMessage({
+      if (e.isTrusted) bus.postMessage({
         name,
         props: ob
       });
@@ -720,7 +701,7 @@
 
   utils.io.addCache = addCache;
 
-  cache.run = config => {
+  cache.run = projectConfig => {
     return new Promise((resolve, reject) => {
       let len = 0;
       let cnt = 0;
@@ -731,7 +712,7 @@
       };
 
       const blocks = [];
-      config.scenes.forEach(scene => {
+      projectConfig.scenes.forEach(scene => {
         scene.blocks.forEach(block => {
           checkBlock(block);
           if (block.type === 'group') block.blocks.forEach(suBlock => checkBlock(suBlock));
@@ -759,9 +740,8 @@
     });
   };
 
-  const parser = new DOMParser();
-
   const inferHTML = (ob, base) => {
+    const parser = new DOMParser();
     const dom = parser.parseFromString(ob.text, 'text/html').body;
     const images = dom.querySelectorAll('img');
     const imagesArr = Array.from(images);
@@ -842,7 +822,6 @@
     hidden,
     limitswitch,
     sync,
-    sender,
     cache,
     baseurl
   };
@@ -859,8 +838,8 @@
     controllers[type] = module;
   };
 
-  var css_248z$z = ".style_step__2k6dh{transition:all 1.33s cubic-bezier(.19,1,.22,1);transform-origin:center}.style_fadeIn__1qNon{opacity:0!important}.style_zoomOut__FobL2{opacity:0!important;transform:scale(1.3)!important}.style_zoomIn__3R2ad{opacity:0!important;transform:scale(.7)!important}.style_slideUp__2aPxJ{opacity:0!important;transform:translateY(40px)!important}.style_slideDown__3Wu--{opacity:0!important;transform:translateY(-40px)!important}";
-  var css$6 = {"step":"style_step__2k6dh","fadeIn":"style_fadeIn__1qNon","zoomOut":"style_zoomOut__FobL2","zoomIn":"style_zoomIn__3R2ad","slideUp":"style_slideUp__2aPxJ","slideDown":"style_slideDown__3Wu--"};
+  var css_248z$z = ".style_stepItem__1Iv29{transition:opacity 1.33s cubic-bezier(.19,1,.22,1),transform 1.33s cubic-bezier(.19,1,.22,1);transform-origin:center}.style_fadeIn__1qNon{opacity:0!important}.style_zoomOut__FobL2{opacity:0!important;transform:scale(1.3)!important}.style_zoomIn__3R2ad{opacity:0!important;transform:scale(.7)!important}.style_slideUp__2aPxJ{opacity:0!important;transform:translateY(40px)!important}.style_slideDown__3Wu--{opacity:0!important;transform:translateY(-40px)!important}";
+  var css$6 = {"stepItem":"style_stepItem__1Iv29","fadeIn":"style_fadeIn__1qNon","zoomOut":"style_zoomOut__FobL2","zoomIn":"style_zoomIn__3R2ad","slideUp":"style_slideUp__2aPxJ","slideDown":"style_slideDown__3Wu--"};
   styleInject(css_248z$z);
 
   const validTrans = ['fadeIn', 'zoomOut', 'zoomIn', 'slideUp', 'slideDown'];
@@ -936,7 +915,7 @@
         blockStepElements.forEach(ob => {
           const els = ob.els;
           els.forEach(el => {
-            el.classList.add(css$6.step, css$6[trans]);
+            el.classList.add(css$6.stepItem, css$6[trans]);
             const id = {
               sandbox: 'steps',
               index,
@@ -971,7 +950,7 @@
 
     for (const k in allElems) {
       const trans = allElems[k].trans;
-      allElems[k].arr.forEach(el => el.classList.add(css$6.step, css$6[trans]));
+      allElems[k].arr.forEach(el => el.classList.add(css$6.stepItem, css$6[trans]));
       const id = {
         sandbox: 'steps',
         index,
@@ -1013,9 +992,11 @@
   styleInject(css_248z$A);
 
   const debug = function (el, config) {
-    config._sceneConfig._steps.push(1);
+    const that = this;
+    return new Promise((resolve, reject) => {
+      config._sceneConfig._steps.push(1);
 
-    const child = utils.div(`<div class="${css$7.debug}">
+      const child = utils.div(`<div class="${css$7.debug}">
     <svg preserveAspectRatio="none" viewBox="0 0 200 200" fill="none" xmlns="http://www.w3.org/2000/svg">
       
       <g class="sstep" data-order="3">
@@ -1040,55 +1021,61 @@
 
     </svg>
   </div>`);
-    const router = config._sceneConfig._router;
+      const router = config._sceneConfig._router;
 
-    const keyup = e => {
-      console.log('keyup', e);
-    };
+      const keyup = e => {
+        console.log('keyup', e);
+      };
 
-    const click = e => {
-      console.log('click', e);
-    };
+      const click = e => {
+        console.log('click', e);
+      };
 
-    if (router) {
-      router.on('keyup', keyup);
-      router.on('click', click);
-    }
+      if (router) {
+        router.on('keyup', keyup);
+        router.on('click', click);
+      }
 
-    this.beforeDestroy = () => {
-      router.off('keyup', keyup);
-      router.off('click', click);
-    };
+      that.beforeDestroy = () => {
+        router.off('keyup', keyup);
+        router.off('click', click);
+      };
 
-    el.appendChild(child);
+      el.appendChild(child);
+      setTimeout(() => {
+        resolve(that);
+      }, 1000);
+    });
   };
 
   var css_248z$B = ".textVar__title{--textPadding:3rem;--textAlign:center;--textListAlign:center;--textFlexAlign:center;--textFlexJustify:center;--textSize:2.5rem}.textVar__text{--textAlign:left;--textListAlign:left;--textFlexJustify:flex-start;--textSize:1rem}.textVar__section,.textVar__text{--textPadding:2rem;--textFlexAlign:flex-start}.textVar__section{--textAlign:right;--textListAlign:right;--textFlexJustify:flex-end;--textSize:2rem}.textVar__mention{--textAlign:left;--textListAlign:left;--textFlexJustify:flex-start;--textSize:1.5rem}.textVar__mention,.textVar__suggest{--textPadding:2rem;--textFlexAlign:flex-end}.textVar__suggest{--textAlign:center;--textListAlign:center;--textFlexJustify:center;--textSize:0.8rem}.textStyle__a{--textboxpadding:0;--textboxbackcolor:var(--colorFore);--textboxradius:0;--textboxborder:0;--textboxshadow:0 0 0 var(--colorAccent);--textboxcolor:var(--colorBack)}";
   styleInject(css_248z$B);
 
-  var css_248z$C = ":root{--textPadding:0;--textAlign:center;--textListAlign:left;--textFlexAlign:center;--textFlexJustify:center;--textSize:1rem;--textWidth:auto}.style_text__3T1cl{color:var(--colorFore)}.style_inner__11UJC,.style_text__3T1cl{width:100%;height:100%;position:relative}.style_pretext__cLjqD{display:flex;width:100%;height:100%;align-items:var(--textFlexAlign);justify-content:var(--textFlexJustify)}.style_textbox__1Vb-V{padding:var(--textboxpadding);text-align:var(--textAlign);font-size:var(--textSize);color:var(--textboxcolor);--backmark:var(--colorAccent);--foremark:var(--colorBack);--textaccentcolor:var(--colorAccent);font-family:var(--fontText);width:var(--textWidth)}.style_itext__jz90o{border:var(--textboxborder) solid var(--colorAccent);padding:var(--textPadding);border-radius:var(--textboxradius);box-shadow:var(--textboxshadow);background-color:var(--textboxbackcolor)}.style_itext__jz90o img{object-fit:contain;height:4em;vertical-align:middle}.style_itext__jz90o mark{background-color:var(--backmark);color:var(--foremark);padding:.5rem;display:inline-block}.style_itext__jz90o high{color:var(--textaccentcolor)}.style_itext__jz90o bord{border:8px solid var(--backmark);padding:0 .5rem}.style_itext__jz90o a{color:var(--textaccentcolor);text-decoration:underline}.style_itext__jz90o blockquote{font-size:2em;font-weight:400;font-style:italic}.style_itext__jz90o blockquote,.style_itext__jz90o h1,.style_itext__jz90o h2,.style_itext__jz90o h3,.style_itext__jz90o h4,.style_itext__jz90o h5,.style_itext__jz90o h6,.style_itext__jz90o p,.style_itext__jz90o ul{margin:0}.style_itext__jz90o h1 b,.style_itext__jz90o h1 strong,.style_itext__jz90o h2 b,.style_itext__jz90o h2 strong,.style_itext__jz90o h3 b,.style_itext__jz90o h3 strong,.style_itext__jz90o h4 b,.style_itext__jz90o h4 strong,.style_itext__jz90o h5 b,.style_itext__jz90o h5 strong,.style_itext__jz90o h6 b,.style_itext__jz90o h6 strong{color:var(--textaccentcolor)}.style_itext__jz90o ol,.style_itext__jz90o ul{font-size:1.5em;line-height:1.1em;text-align:var(--textListAlign);margin:0;list-style-type:none;counter-reset:li;padding:.5rem 0}.style_itext__jz90o li{list-style-position:inside;margin-bottom:2px;padding:.25em .25em .25em .8em}.style_itext__jz90o ul li:before{content:\"\\2013\";display:inline-block;width:.8em;margin-left:-.8em}.style_itext__jz90o ol li:before{counter-increment:li;content:\".\" counter(li);display:inline-block;width:1.1em;margin-left:-1.3em;margin-right:.2em;text-align:right;direction:rtl}.style_itext__jz90o li p{display:inline}.style_itext__jz90o code,.style_itext__jz90o pre{text-align:left;margin:0}.style_itext__jz90o h1,.style_itext__jz90o h2,.style_itext__jz90o h3,.style_itext__jz90o h4,.style_itext__jz90o h5,.style_itext__jz90o h6{font-family:var(--fontHeading);padding:.5rem 0}.style_itext__jz90o h1{font-size:2em}.style_itext__jz90o h2{font-size:1.5em}.style_itext__jz90o h3{font-size:1.17em}.style_itext__jz90o h4{font-size:1em}.style_itext__jz90o h5{font-size:.83em}.style_itext__jz90o h6{font-size:.67em}.style_itext__jz90o p{padding:.5rem 0}.style_itext__jz90o hr{border:1px solid var(--colorFore);margin:.5rem 0}.style_itext__jz90o h1:first-child,.style_itext__jz90o h1:last-child,.style_itext__jz90o h2:first-child,.style_itext__jz90o h2:last-child,.style_itext__jz90o h3:first-child,.style_itext__jz90o h3:last-child{padding:0}.style_itext__jz90o table{width:100%}.style_itext__jz90o tr{padding:0}.style_itext__jz90o td,.style_itext__jz90o th{padding:.5rem;border-bottom:1px solid var(--colorFore)}.style_itext__jz90o small{font-size:.6em}";
-  var css$8 = {"text":"style_text__3T1cl","inner":"style_inner__11UJC","pretext":"style_pretext__cLjqD","textbox":"style_textbox__1Vb-V","itext":"style_itext__jz90o"};
+  var css_248z$C = ":root{--textPadding:0;--textAlign:center;--textListAlign:left;--textFlexAlign:center;--textFlexJustify:center;--textSize:1rem;--textWidth:auto}.style_text__3T1cl{width:100%;height:100%;position:relative;color:var(--colorFore)}.style_promise__1-2R_{visibility:hidden}.style_inner__11UJC{position:relative;width:100%;height:100%}.style_pretext__cLjqD{display:flex;width:100%;height:100%;align-items:var(--textFlexAlign);justify-content:var(--textFlexJustify)}.style_textbox__1Vb-V{padding:var(--textboxpadding);text-align:var(--textAlign);font-size:var(--textSize);color:var(--textboxcolor);--backmark:var(--colorAccent);--foremark:var(--colorBack);--textaccentcolor:var(--colorAccent);font-family:var(--fontText);width:var(--textWidth)}.style_itext__jz90o{border:var(--textboxborder) solid var(--colorAccent);padding:var(--textPadding);border-radius:var(--textboxradius);box-shadow:var(--textboxshadow);background-color:var(--textboxbackcolor)}.style_itext__jz90o img{object-fit:contain;height:4em;vertical-align:middle}.style_itext__jz90o mark{background-color:var(--backmark);color:var(--foremark);padding:.5rem;display:inline-block}.style_itext__jz90o high{color:var(--textaccentcolor)}.style_itext__jz90o bord{border:8px solid var(--backmark);padding:0 .5rem}.style_itext__jz90o a{color:var(--textaccentcolor);text-decoration:underline}.style_itext__jz90o blockquote{font-size:2em;font-weight:400;font-style:italic}.style_itext__jz90o blockquote,.style_itext__jz90o h1,.style_itext__jz90o h2,.style_itext__jz90o h3,.style_itext__jz90o h4,.style_itext__jz90o h5,.style_itext__jz90o h6,.style_itext__jz90o p,.style_itext__jz90o ul{margin:0}.style_itext__jz90o h1 b,.style_itext__jz90o h1 strong,.style_itext__jz90o h2 b,.style_itext__jz90o h2 strong,.style_itext__jz90o h3 b,.style_itext__jz90o h3 strong,.style_itext__jz90o h4 b,.style_itext__jz90o h4 strong,.style_itext__jz90o h5 b,.style_itext__jz90o h5 strong,.style_itext__jz90o h6 b,.style_itext__jz90o h6 strong{color:var(--textaccentcolor)}.style_itext__jz90o ol,.style_itext__jz90o ul{font-size:1.5em;line-height:1.1em;text-align:var(--textListAlign);margin:0;list-style-type:none;counter-reset:li;padding:.5rem 0}.style_itext__jz90o li{list-style-position:inside;margin-bottom:2px;padding:.25em .25em .25em .8em}.style_itext__jz90o ul li:before{content:\"\\2013\";display:inline-block;width:.8em;margin-left:-.8em}.style_itext__jz90o ol li:before{counter-increment:li;content:\".\" counter(li);display:inline-block;width:1.1em;margin-left:-1.3em;margin-right:.2em;text-align:right;direction:rtl}.style_itext__jz90o li p{display:inline}.style_itext__jz90o code,.style_itext__jz90o pre{text-align:left;margin:0}.style_itext__jz90o h1,.style_itext__jz90o h2,.style_itext__jz90o h3,.style_itext__jz90o h4,.style_itext__jz90o h5,.style_itext__jz90o h6{font-family:var(--fontHeading);padding:.5rem 0}.style_itext__jz90o h1{font-size:2em}.style_itext__jz90o h2{font-size:1.5em}.style_itext__jz90o h3{font-size:1.17em}.style_itext__jz90o h4{font-size:1em}.style_itext__jz90o h5{font-size:.83em}.style_itext__jz90o h6{font-size:.67em}.style_itext__jz90o p{padding:.5rem 0}.style_itext__jz90o hr{border:1px solid var(--colorFore);margin:.5rem 0}.style_itext__jz90o h1:first-child,.style_itext__jz90o h1:last-child,.style_itext__jz90o h2:first-child,.style_itext__jz90o h2:last-child,.style_itext__jz90o h3:first-child,.style_itext__jz90o h3:last-child{padding:0}.style_itext__jz90o table{width:100%}.style_itext__jz90o tr{padding:0}.style_itext__jz90o td,.style_itext__jz90o th{padding:.5rem;border-bottom:1px solid var(--colorFore)}.style_itext__jz90o small{font-size:.6em}";
+  var css$8 = {"text":"style_text__3T1cl","promise":"style_promise__1-2R_","inner":"style_inner__11UJC","pretext":"style_pretext__cLjqD","textbox":"style_textbox__1Vb-V","itext":"style_itext__jz90o"};
   styleInject(css_248z$C);
 
   const text = function (el, config) {
-    const html = config.text || '';
-    let sizefactor = 1;
+    const that = this;
+    return new Promise((resolve, reject) => {
+      const html = config.text || '';
+      let sizefactor = 1;
 
-    if (config.responsive && config._portrait) {
-      sizefactor = 2;
-    }
+      if (config.responsive && config._portrait) {
+        sizefactor = 2;
+      }
 
-    let defsize = 1;
-    const varSize = {
-      title: 2.5,
-      text: 1,
-      section: 2,
-      mention: 1.5,
-      suggest: 0.8
-    };
-    if (config.textVar) defsize = varSize[config.textVar];
-    let fsize = config.scale || defsize * sizefactor;
-    const child = utils.div(`<div class="c ${css$8.text}">
+      let defsize = 1;
+      const varSize = {
+        title: 2.5,
+        text: 1,
+        section: 2,
+        mention: 1.5,
+        suggest: 0.8
+      };
+      if (config.textVar) defsize = varSize[config.textVar];
+      let fsize = config.scale || defsize * sizefactor;
+      const child = utils.div(`<div class="c ${css$8.text} ${css$8.promise}">
     <div class="${css$8.inner}">
       <div class="pretext ${css$8.pretext}">
         <div class="${css$8.textbox}">
@@ -1099,45 +1086,43 @@
       </div>
     </div>
   </div>`);
-    el.appendChild(child);
+      el.appendChild(child); // if there are images, let's exploit the alt attribute if contains a number
+      // as a scale multiplier
 
-    this.beforeDestroy = () => {}; // if there are images, let's exploit the alt attribute if contains a number
-    // as a scale multiplier
+      let images = child.querySelectorAll('img');
 
+      if (images) {
+        images = [...images].forEach(img => {
+          const a = img.getAttribute('alt');
 
-    let images = child.querySelectorAll('img');
-
-    if (images) {
-      images = [...images].forEach(img => {
-        const a = img.getAttribute('alt');
-
-        if (a) {
-          const val = +a;
-          if (val > 0) img.style.height = 4 * val + 'em';
-        }
-      });
-    } // this is the iterative scale routine
-
-
-    const compute = () => {
-      child.style.setProperty('--textSize', `${fsize}rem`);
-      const mel = child.querySelector('.' + css$8.inner);
-      const mbox = mel.getBoundingClientRect();
-      const el = child.querySelector('.' + css$8.textbox);
-      const bbox = el.getBoundingClientRect();
-
-      if (parseInt(mbox.width) < parseInt(bbox.width) || parseInt(mbox.height) < parseInt(bbox.height)) {
-        fsize -= 0.1;
-        return compute();
-      } else {
-        setTimeout(() => {
-          child.querySelector('.' + css$8.inner).style.visibility = 'visible';
+          if (a) {
+            const val = +a;
+            if (val > 0) img.style.height = 4 * val + 'em';
+          }
         });
-      }
-    };
+      } // this is the iterative scale routine
 
-    child.querySelector('.' + css$8.inner).style.visibility = 'hidden';
-    setTimeout(compute);
+
+      const compute = () => {
+        child.style.setProperty('--textSize', `${fsize}rem`);
+        const mel = child.querySelector('.' + css$8.inner);
+        const mbox = mel.getBoundingClientRect();
+        const el = child.querySelector('.' + css$8.textbox);
+        const bbox = el.getBoundingClientRect();
+
+        if (parseInt(mbox.width) < parseInt(bbox.width) || parseInt(mbox.height) < parseInt(bbox.height)) {
+          fsize -= 0.1;
+          return compute();
+        } else {
+          setTimeout(() => {
+            child.classList.remove(css$8.promise);
+            resolve(that);
+          });
+        }
+      };
+
+      setTimeout(compute);
+    });
   };
 
   text.init = () => {
@@ -1242,7 +1227,7 @@
     });
   };
 
-  var css_248z$F = ":root{--videoSize:cover;--videoPosition:center}.style_video__1qbdJ{width:100%;height:100%;display:flex;align-items:center;justify-content:center}.style_video__1qbdJ video{width:100%;height:100%;object-fit:var(--videoSize);object-position:var(--videoPosition)}";
+  var css_248z$F = ":root{--videoSize:cover;--videoPosition:center}.style_video__1qbdJ{width:100%;height:100%;display:flex;align-items:center;justify-content:center}.style_video__1qbdJ video{width:100%;height:100%;object-fit:var(--videoSize);object-position:var(--videoPosition);pointer-events:none}";
   var css$b = {"video":"style_video__1qbdJ"};
   styleInject(css_248z$F);
 
@@ -1254,7 +1239,7 @@
     const muted = config.muted ? 'muted' : '';
     const autoplay = config.autoplay && presentMode ? 'autoplay' : '';
     const src = config.url ? `src=${config.url}` : '';
-    const child = utils.div(`<div class="${css$b.video}">
+    const child = utils.div(`<div class="${css$b.video}" id="evt_trg_uid_block_video_${config._index}">
     <video ${poster} ${src} ${loop} ${autoplay} ${muted}></video>
   </div>`);
 
@@ -1268,7 +1253,7 @@
     let video;
     let isPlaying = config.autoplay;
 
-    const toggleVideo = () => {
+    const toggleVideo = e => {
       if (!video) video = child.querySelector('video');
 
       if (isPlaying) {
@@ -1315,7 +1300,7 @@
     if (presentMode) {
       config._rootElement.addEventListener('keyup', setKeyListener);
 
-      child.addEventListener('click', toggleVideo);
+      child.addEventListener('click', toggleVideo); // was child
     }
   };
   /*
@@ -1421,16 +1406,48 @@
     blocks[type] = module;
   };
 
-  var css_248z$J = ".container_mainwrapper__zelcO{outline:none}.container_container__3kBNh,.container_mainwrapper__zelcO{width:100%;height:100%;position:relative;overflow:hidden}.container_container__3kBNh>div{position:absolute;top:0;left:0;width:100%}";
-  var css$e = {"mainwrapper":"container_mainwrapper__zelcO","container":"container_container__3kBNh"};
+  var css_248z$J = ".splash_splash__3mb9V{width:100%;height:100%;background-color:var(--colorBack);color:var(--colorFore);display:flex;align-items:center;justify-content:center;font-family:var(--fontHead)}";
+  var css$e = {"splash":"splash_splash__3mb9V"};
   styleInject(css_248z$J);
 
-  var css_248z$K = ".router_router__2r4NQ{width:100%;height:100%;position:absolute;top:0;left:0;pointer-events:none}";
-  var css$f = {"router":"router_router__2r4NQ"};
+  const Splash = function (rootElement, projectConfig) {
+    /*
+        Let's check and fix the wrapper size
+    */
+    const size = getComputedStyle(rootElement);
+    let w = +size.width.split('px')[0];
+    let h = +size.height.split('px')[0];
+
+    if (w <= 0) {
+      w = 360;
+      rootElement.style.width = `${w}px`;
+    }
+
+    if (h <= 0) {
+      h = 200;
+      if (projectConfig.aspect) h = w / projectConfig.aspect;
+      rootElement.style.height = `${h}px`;
+    }
+
+    const child = utils.div(`<div class="${css$e.splash}">Loading...</div>`);
+    rootElement.appendChild(child);
+    utils.globs(child, projectConfig);
+
+    this.destroy = () => {
+      rootElement.removeChild(child);
+    };
+  };
+
+  var css_248z$K = ".container_mainwrapper__zelcO{outline:none}.container_container__3kBNh,.container_mainwrapper__zelcO{width:100%;height:100%;position:relative;overflow:hidden}.container_container__3kBNh>div{position:absolute;top:0;left:0;width:100%}";
+  var css$f = {"mainwrapper":"container_mainwrapper__zelcO","container":"container_container__3kBNh"};
   styleInject(css_248z$K);
 
+  var css_248z$L = ".router_router__2r4NQ{width:100%;height:100%;position:absolute;top:0;left:0;pointer-events:none}";
+  var css$g = {"router":"router_router__2r4NQ"};
+  styleInject(css_248z$L);
+
   const Router = function (rootElement, projectConfig) {
-    const child = utils.div(`<div class="controller ${css$f.router}"></div>`);
+    const child = utils.div(`<div class="controller ${css$g.router}"></div>`);
     rootElement.appendChild(child);
     const scenes = projectConfig.scenes;
 
@@ -1448,7 +1465,7 @@
     const updateRouterWrapper = () => {
       const sceneConfig = scenes[currentIndex];
       child.classList.remove(...child.classList);
-      child.classList.add('controller', css$f.router);
+      child.classList.add('controller', css$g.router);
       child.style = null;
       utils.globs(child, sceneConfig);
       utils.props(child, sceneConfig);
@@ -1585,53 +1602,60 @@
     });
   };
 
-  var css_248z$L = ".scene_sceneContainer__IgSpB{width:100%;height:100%;display:flex;align-items:center;justify-content:center;position:relative}.scene_scene__3uvTl{--presenta-sw:calc(var(--presenta-w)/var(--presenta-p)/var(--presenta-fz));--presenta-sh:calc(var(--presenta-h)/var(--presenta-p)/var(--presenta-fz));--presenta-scal:calc(var(--presenta-pw)/var(--presenta-p)/var(--presenta-pw)/var(--presenta-fz));width:var(--presenta-sw);height:var(--presenta-sh);font-family:serif}.scene_wrapper__3yr1k{width:var(--presenta-w);height:var(--presenta-h);transform:scale(1);transform:scale(var(--presenta-scal));transform-origin:top left;overflow:hidden;padding:var(--scenePadding);background-color:var(--sceneBackColor)}.scene_content__1rJf0{width:100%;height:100%;display:flex;flex-direction:column;overflow:hidden}.scene_fcontainer__1E_0g{top:0;left:0;width:100%;height:100%;position:absolute;pointer-events:none}.scene_viewport__3uNLS{width:100%;height:100%;position:relative;flex:1;overflow:hidden;display:flex;flex-direction:row}.scene_viewport__3uNLS>div{height:100%}";
-  var css$g = {"sceneContainer":"scene_sceneContainer__IgSpB","scene":"scene_scene__3uvTl","wrapper":"scene_wrapper__3yr1k","content":"scene_content__1rJf0","fcontainer":"scene_fcontainer__1E_0g","viewport":"scene_viewport__3uNLS"};
-  styleInject(css_248z$L);
-
-  var css_248z$M = ".block_block__BWbaZ{background:var(--colorBack);width:100%;height:100%;flex:1;flex:var(--blockWeight);overflow:hidden;position:relative}.block_inner__3LS6s{width:100%;height:100%;padding:var(--blockPadding);opacity:var(--blockOpacity);mix-blend-mode:var(--blockBlend)}.block_bdecoration__3KJh-,.block_inner__3LS6s{top:0;left:0;width:100%;height:100%;position:absolute}.block_fdecoration__12tBw{pointer-events:none}";
-  var css$h = {"block":"block_block__BWbaZ","inner":"block_inner__3LS6s","bdecoration":"block_bdecoration__3KJh-","fdecoration":"block_fdecoration__12tBw"};
+  var css_248z$M = ".scene_sceneContainer__IgSpB{width:100%;height:100%;display:flex;align-items:center;justify-content:center;position:relative}.scene_scene__3uvTl{--presenta-sw:calc(var(--presenta-w)/var(--presenta-p)/var(--presenta-fz));--presenta-sh:calc(var(--presenta-h)/var(--presenta-p)/var(--presenta-fz));--presenta-scal:calc(var(--presenta-pw)/var(--presenta-p)/var(--presenta-pw)/var(--presenta-fz));width:var(--presenta-sw);height:var(--presenta-sh);font-family:serif}.scene_promise__24VCP{visibility:hidden}.scene_wrapper__3yr1k{width:var(--presenta-w);height:var(--presenta-h);transform:scale(1);transform:scale(var(--presenta-scal));transform-origin:top left;overflow:hidden;padding:var(--scenePadding);background-color:var(--sceneBackColor)}.scene_content__1rJf0{width:100%;height:100%;display:flex;flex-direction:column;overflow:hidden}.scene_fcontainer__1E_0g{top:0;left:0;width:100%;height:100%;position:absolute;pointer-events:none}.scene_viewport__3uNLS{width:100%;height:100%;position:relative;flex:1;overflow:hidden;display:flex;flex-direction:row}.scene_viewport__3uNLS>div{height:100%}";
+  var css$h = {"sceneContainer":"scene_sceneContainer__IgSpB","scene":"scene_scene__3uvTl","promise":"scene_promise__24VCP","wrapper":"scene_wrapper__3yr1k","content":"scene_content__1rJf0","fcontainer":"scene_fcontainer__1E_0g","viewport":"scene_viewport__3uNLS"};
   styleInject(css_248z$M);
 
+  var css_248z$N = ".block_block__BWbaZ{background:var(--colorBack);width:100%;height:100%;flex:1;flex:var(--blockWeight);overflow:hidden;position:relative}.block_inner__3LS6s{width:100%;height:100%;padding:var(--blockPadding);opacity:var(--blockOpacity);mix-blend-mode:var(--blockBlend)}.block_bdecoration__3KJh-,.block_inner__3LS6s{top:0;left:0;width:100%;height:100%;position:absolute}.block_fdecoration__12tBw{pointer-events:none}";
+  var css$i = {"block":"block_block__BWbaZ","inner":"block_inner__3LS6s","bdecoration":"block_bdecoration__3KJh-","fdecoration":"block_fdecoration__12tBw"};
+  styleInject(css_248z$N);
+
   const Block = function (blocksElement, blockConfig) {
-    this.type = blockConfig.type;
-    this.index = blockConfig._index;
-    var blockInstance = null;
+    const that = this;
+    return new Promise((resolve, reject) => {
+      that.type = blockConfig.type;
+      that.index = blockConfig._index;
+      var blockInstance = null;
 
-    if (!this.type) {
-      return console.warn('No `type` field found in block ' + this.index);
-    }
+      if (!that.type) {
+        return console.warn('No `type` field found in block ' + that.index);
+      }
 
-    const customSelector = blockConfig.id && blockConfig.id.indexOf('#') === 0 ? `id="${blockConfig.id.replace('#', '')}"` : '';
-    const child = utils.div(`<div class="block ${css$h.block} b b${this.index}">
-    <div class="backDecoration ${css$h.bdecoration}"></div>
-    <div ${customSelector} class="blockContainer ${css$h.inner}"></div>
-    <div class="frontDecoration ${css$h.fdecoration}"></div>
+      const customSelector = blockConfig.id && blockConfig.id.indexOf('#') === 0 ? `id="${blockConfig.id.replace('#', '')}"` : '';
+      const child = utils.div(`<div class="block ${css$i.block} b b${that.index}">
+    <div class="backDecoration ${css$i.bdecoration}"></div>
+    <div ${customSelector} class="blockContainer ${css$i.inner}"></div>
+    <div class="frontDecoration ${css$i.fdecoration}"></div>
   </div>`);
-    utils.globs(child, blockConfig);
-    utils.props(child, blockConfig);
-    const blockContainer = child.querySelector('.blockContainer');
+      utils.globs(child, blockConfig);
+      utils.props(child, blockConfig);
+      const blockContainer = child.querySelector('.blockContainer');
 
-    if (!blocks[this.type]) {
-      console.log(`block "${this.type}" not found`);
-    } else {
-      blockInstance = new blocks[this.type](blockContainer, blockConfig);
-    }
+      if (!blocks[that.type]) {
+        console.log(`block "${that.type}" not found`);
+      } else {
+        const prom = new blocks[that.type](blockContainer, blockConfig);
+        Promise.all([prom]).then(data => {
+          blockInstance = data;
+          resolve(that);
+        });
+      }
 
-    this.beforeDestroy = () => {
-      if (blockInstance && blockInstance.beforeDestroy) blockInstance.beforeDestroy();
-    };
+      that.beforeDestroy = () => {
+        if (blockInstance && blockInstance.beforeDestroy) blockInstance.beforeDestroy();
+      };
 
-    this.stepForward = (step, index) => {
-      if (blockInstance.stepForward) blockInstance.stepForward(step, index);
-    };
+      that.stepForward = (step, index) => {
+        if (blockInstance.stepForward) blockInstance.stepForward(step, index);
+      };
 
-    this.destroy = () => {
-      if (blockInstance && blockInstance.destroy) blockInstance.destroy();
-    };
+      that.destroy = () => {
+        if (blockInstance && blockInstance.destroy) blockInstance.destroy();
+      };
 
-    blocksElement.appendChild(child);
-    blockConfig._el = child;
+      blocksElement.appendChild(child);
+      blockConfig._el = child;
+    });
   };
 
   const Transition = wrapper => {
@@ -1641,11 +1665,15 @@
         return this;
       };
 
-      this.start = prefix => {
+      this.init = prefix => {
         wrapper.classList.add(prefix, 'p-scene-enter-transition', 'p-scene-enter-start');
+        return this;
+      };
+
+      this.start = prefix => {
         setTimeout(() => {
-          wrapper.classList.add('p-scene-enter-end');
           wrapper.classList.remove('p-scene-enter-start');
+          wrapper.classList.add('p-scene-enter-end');
         });
         return this;
       };
@@ -1669,195 +1697,187 @@
     return new functor(wrapper);
   };
 
-  const Scene = function (sceneConfig, projectConfig, rootElement) {
-    const blocks = [];
-    const modInstances = [];
-    /*
+  const Scene = function (cont, sceneConfig, projectConfig, rootElement) {
+    const that = this;
+    return new Promise((resolve, reject) => {
+      let blocks = [];
+      const modInstances = [];
+      /*
       Let's notify the user about missing fields
-    */
+      */
 
-    if (!sceneConfig.blocks) {
-      return console.warn('No `blocks` array found in scene ' + sceneConfig.index);
-    }
+      if (!sceneConfig.blocks) {
+        return console.warn('No `blocks` array found in scene ' + sceneConfig.index);
+      }
 
-    if (sceneConfig.blocks.length === 0) {
-      console.warn('`blocks` is empty in scene ' + sceneConfig.index);
-    }
-    /*
+      if (sceneConfig.blocks.length === 0) {
+        console.warn('`blocks` is empty in scene ' + sceneConfig.index);
+      }
+      /*
       Set the module config from project settings
-    */
+      */
 
 
-    if (projectConfig.modules) {
-      for (const k in projectConfig.modules) {
-        if (!sceneConfig.hasOwnProperty('modules')) sceneConfig.modules = {};
+      if (projectConfig.modules) {
+        for (const k in projectConfig.modules) {
+          if (!sceneConfig.hasOwnProperty('modules')) sceneConfig.modules = {};
 
-        if (!sceneConfig.modules.hasOwnProperty(k)) {
-          sceneConfig.modules[k] = projectConfig.modules[k];
+          if (!sceneConfig.modules.hasOwnProperty(k)) {
+            sceneConfig.modules[k] = projectConfig.modules[k];
+          }
         }
       }
-    }
-    /*
+      /*
       Check if transition has been defined at project level or scene level
-    */
+      */
 
 
-    const hasTransition = sceneConfig.transition || projectConfig.transition;
-    /*
+      const hasTransition = sceneConfig.transition || projectConfig.transition;
+      /*
       Create the wrapper template
-    */
+      */
 
-    let currentStep = 0;
-    sceneConfig._steps = [];
-    const steps = sceneConfig._steps;
-    const child = utils.div(`<div 
-      class="s ${css$g.sceneContainer}">
-      <div class="sceneObject ${css$g.scene}">
-        <div class="${css$g.wrapper}">
-            <div class="${css$g.content}">
-                <div class="layout blocksContainer ${css$g.viewport}"></div>
-                <div class="frontContainer ${css$g.fcontainer}"></div>
+      let currentStep = 0;
+      sceneConfig._steps = [];
+      const steps = sceneConfig._steps;
+      const child = utils.div(`<div 
+      class="s ${css$h.sceneContainer}">
+      <div class="sceneObject ${css$h.scene}">
+        <div class="${css$h.wrapper}">
+            <div class="${css$h.content}">
+                <div class="layout blocksContainer ${css$h.viewport}"></div>
+                <div class="frontContainer ${css$h.fcontainer}"></div>
             </div>
         </div>
       </div>
   </div>`);
-    utils.globs(child, sceneConfig);
-    utils.props(child, sceneConfig);
-    sceneConfig._el = child;
-    sceneConfig._rootElement = rootElement;
-    sceneConfig._mode = projectConfig.mode;
-    this.el = child;
-    /*
+      utils.globs(child, sceneConfig);
+      utils.props(child, sceneConfig);
+      sceneConfig._el = child;
+      sceneConfig._rootElement = rootElement;
+      sceneConfig._mode = projectConfig.mode;
+      /*
       Init blocks if any
-    */
+      */
 
-    const cblocks = sceneConfig.blocks;
-    cblocks.forEach((blockConfig, i) => {
-      blockConfig._index = i;
-      blockConfig._portrait = projectConfig._orientation === 'portrait';
-      blockConfig._mode = projectConfig.mode;
-      blockConfig._rootElement = rootElement;
-      blockConfig._sceneConfig = sceneConfig;
-      const blocksContainer = child.querySelector('.blocksContainer');
-      const block = new Block(blocksContainer, blockConfig);
-      blocks.push(block);
-    });
-    /*
-      Init modules if any
-    */
+      const cblocks = sceneConfig.blocks;
+      const blockPromises = [];
+      cblocks.forEach((blockConfig, i) => {
+        blockConfig._index = i;
+        blockConfig._portrait = projectConfig._orientation === 'portrait';
+        blockConfig._mode = projectConfig.mode;
+        blockConfig._rootElement = rootElement;
+        blockConfig._sceneConfig = sceneConfig;
+        const blocksContainer = child.querySelector('.blocksContainer');
+        blockPromises.push(new Block(blocksContainer, blockConfig));
+      });
 
-    if (sceneConfig.modules) {
-      for (const k in sceneConfig.modules) {
-        const modConfig = sceneConfig.modules[k];
-        const Mod = modules[k];
-        if (!Mod) console.log(`Module "${k}" not found. Maybe you forgot to include it.`);
+      const initModules = () => {
+        if (sceneConfig.modules) {
+          for (const k in sceneConfig.modules) {
+            const modConfig = sceneConfig.modules[k];
+            const Mod = modules[k];
+            if (!Mod) console.log(`Module "${k}" not found. Maybe you forgot to include it.`);
 
-        if (Mod) {
-          if (modConfig) {
-            const mod = new Mod(child.querySelector(`.${css$g.content}`), modConfig, sceneConfig);
-            modInstances.push(mod);
+            if (Mod) {
+              if (modConfig) {
+                const mod = new Mod(child.querySelector(`.${css$h.content}`), modConfig, sceneConfig);
+                modInstances.push(mod);
+              }
+            }
           }
         }
-      }
-    }
-    /*
-      Run the enter transition
-    */
+      };
 
+      const initTransition = () => {
+        if (hasTransition) {
+          const wrap = child.querySelector('.sceneObject');
+          const dir = sceneConfig._presentatransdir === 'backward' ? 'to-left' : 'to-right';
+          Transition(wrap).init(dir);
+        }
+      };
 
-    if (hasTransition) {
-      const wrap = child.querySelector('.sceneObject');
-      const dir = sceneConfig._presentatransdir === 'backward' ? 'to-left' : 'to-right';
-      Transition(wrap).start(dir);
-      setTimeout(() => {
-        Transition(wrap).swap();
-      }, projectConfig._transitionDestroyDelay);
-    }
-    /*
-      Public method called by the container to init the destroy phase
-    */
-
-
-    this.destroyAfter = _t => {
+      const startTransition = () => {
+        if (hasTransition) {
+          const wrap = child.querySelector('.sceneObject');
+          Transition(wrap).start();
+          setTimeout(() => {
+            Transition(wrap).swap();
+          }, projectConfig._transitionDestroyDelay);
+        }
+      };
       /*
-        Run the exit transition
+      Public method called by the container to init the destroy phase
       */
-      if (hasTransition) {
-        const wrap = child.querySelector('.sceneObject');
-        const odir = sceneConfig._presentatransdir === 'backward' ? 'to-right' : 'to-left';
-        const ndir = sceneConfig._presentatransdir === 'backward' ? 'to-left' : 'to-right';
-        Transition(wrap).clear(odir).end(ndir);
-      }
-
-      const t = _t || 0;
-      modInstances.forEach(mod => {
-        if (mod.beforeDestroy) mod.beforeDestroy();
-      });
-      blocks.forEach(block => {
-        if (block.beforeDestroy) block.beforeDestroy();
-      });
-      setTimeout(() => {
-        this.destroy();
-        child.parentNode.removeChild(child);
-      }, t);
-    };
-    /*
-      Public method called by the container move forward the step progress
-    */
 
 
-    this.stepForward = () => {
-      if (currentStep < steps.length) {
-        const stepData = steps[currentStep];
+      that.destroyAfter = _t => {
+        if (hasTransition) {
+          const wrap = child.querySelector('.sceneObject');
+          const odir = sceneConfig._presentatransdir === 'backward' ? 'to-right' : 'to-left';
+          const ndir = sceneConfig._presentatransdir === 'backward' ? 'to-left' : 'to-right';
+          Transition(wrap).clear(odir).end(ndir);
+        }
+
+        const t = _t || 0;
         modInstances.forEach(mod => {
-          if (mod.stepForward) mod.stepForward(stepData, currentStep);
+          if (mod.beforeDestroy) mod.beforeDestroy();
         });
         blocks.forEach(block => {
-          if (block.stepForward) block.stepForward(stepData, currentStep);
+          if (block.beforeDestroy) block.beforeDestroy();
         });
-        currentStep++;
-      }
-    };
-    /*
+        setTimeout(() => {
+          that.destroy();
+          child.parentNode.removeChild(child);
+        }, t);
+      };
+      /*
+      Public method called by the container move forward the step progress
+      */
+
+
+      that.stepForward = () => {
+        if (currentStep < steps.length) {
+          const stepData = steps[currentStep];
+          modInstances.forEach(mod => {
+            if (mod.stepForward) mod.stepForward(stepData, currentStep);
+          });
+          blocks.forEach(block => {
+            if (block.stepForward) block.stepForward(stepData, currentStep);
+          });
+          currentStep++;
+        }
+      };
+      /*
       Immediate destroy for garbage collection
-    */
+      */
 
 
-    this.destroy = () => {
-      modInstances.forEach(mod => {
-        if (mod.destroy) mod.destroy();
+      that.destroy = () => {
+        modInstances.forEach(mod => {
+          if (mod.destroy) mod.destroy();
+        });
+        blocks.forEach(block => {
+          if (block.destroy) block.destroy();
+        });
+      };
+
+      that.sceneConfig = sceneConfig;
+      cont.appendChild(child);
+      initTransition();
+      initModules();
+      Promise.all(blockPromises).then(data => {
+        blocks = data;
+        startTransition();
+        resolve(that);
       });
-      blocks.forEach(block => {
-        if (block.destroy) block.destroy();
-      });
-    };
-
-    this.sceneConfig = sceneConfig;
+    });
   };
 
   const Container = function (rootElement, projectConfig) {
     /*
-        Let's check and fix the wrapper size
-    */
-    const size = getComputedStyle(rootElement);
-    let w = +size.width.split('px')[0];
-    let h = +size.height.split('px')[0];
-
-    if (w <= 0) {
-      w = 360;
-      rootElement.style.width = `${w}px`;
-    }
-
-    if (h <= 0) {
-      h = 200;
-      if (projectConfig.aspect) h = w / projectConfig.aspect;
-      rootElement.style.height = `${h}px`;
-    }
-    /*
       Let's notify the user about mandatory fields
     */
-
-
     if (!projectConfig.scenes) {
       return console.warn('No `scenes` array found');
     }
@@ -1871,7 +1891,7 @@
 
 
     rootElement.classList.add('presenta');
-    const child = utils.div(`<div class="${css$e.mainwrapper}"></div>`);
+    const child = utils.div(`<div class="${css$f.mainwrapper}"></div>`);
     child.setAttribute('tabindex', '0');
     utils.globs(child, projectConfig);
     utils.props(child, projectConfig);
@@ -1880,7 +1900,7 @@
       Init the container
     */
 
-    const cont = utils.div(`<div class="a ${css$e.container}"></div>`);
+    const cont = utils.div(`<div class="a ${css$f.container}"></div>`);
     child.appendChild(cont);
     const scenes = projectConfig.scenes;
     var currentScene = null;
@@ -1895,8 +1915,9 @@
         const sceneConfig = scenes[index];
         sceneConfig._presentatransdir = dir;
         sceneConfig._router = router;
-        currentScene = new Scene(sceneConfig, projectConfig, rootElement);
-        if (currentScene.el) cont.appendChild(currentScene.el);
+        new Scene(cont, sceneConfig, projectConfig, child).then(scene => {
+          currentScene = scene;
+        });
       }
     };
     /*
@@ -1935,14 +1956,51 @@
     this.config = projectConfig;
   };
 
-  var css_248z$N = ".style_group__2AqP-,.style_group__2AqP->div{width:100%;height:100%;position:relative}.style_gblock__3SGer{background:none}";
-  var css$i = {"group":"style_group__2AqP-","gblock":"style_gblock__3SGer"};
-  styleInject(css_248z$N);
+  const installed = {};
+
+  const Install = function (config) {
+    return new Promise((resolve, reject) => {
+      let len = 0;
+      let cnt = 0;
+      if (config.length === 0) resolve();
+      config.forEach(s => {
+        const addSource = url => {
+          setTimeout(() => {
+            const newScript = document.createElement('script');
+
+            newScript.onerror = err => {
+              console.log('[Plugin install error]', err);
+              cnt++;
+              if (cnt === len) resolve();
+            };
+
+            newScript.onload = ldr => {
+              console.log('[Plugin install loaded]');
+              cnt++;
+              if (cnt === len) resolve();
+            };
+
+            document.body.appendChild(newScript);
+            newScript.src = url;
+          }, len);
+        };
+
+        len++;
+        installed[s.url] = s;
+        addSource(s.url);
+        if (len === 0) resolve();
+      });
+    });
+  };
+
+  var css_248z$O = ".style_group__2AqP-,.style_group__2AqP->div{width:100%;height:100%;position:relative}.style_gblock__3SGer{background:none}";
+  var css$j = {"group":"style_group__2AqP-","gblock":"style_gblock__3SGer"};
+  styleInject(css_248z$O);
 
   const group = function (el, config) {
     const blocks = config.blocks;
     const instBlocks = [];
-    const child = utils.div(`<div class="${css$i.group}">
+    const child = utils.div(`<div class="${css$j.group}">
     <div class="layout"></div>
   </div>`); // u.globs(child, config)
     // u.props(child, config)
@@ -1952,7 +2010,7 @@
       blockConfig.index = i;
       instBlocks.push(new Block(cont, blockConfig));
 
-      blockConfig._el.classList.add(css$i.gblock);
+      blockConfig._el.classList.add(css$j.gblock);
     });
     el.appendChild(child);
   };
@@ -1977,6 +2035,7 @@
       modules: {
         steps: true
       },
+      plugins: [],
       transition: null,
       colorvar: null,
       _transitionDestroyDelay: 1000
@@ -2038,11 +2097,15 @@
   });
 
   const Presenta = function (el, config) {
+    const splash = new Splash(utils.select(el), config);
     defaults(config);
-    const all = pluginsInit(config);
     return new Promise((resolve, reject) => {
-      Promise.all(all).then(values => {
-        resolve(new Container(utils.select(el), config));
+      new Install(config.plugins).then(() => {
+        const all = pluginsInit(config);
+        Promise.all(all).then(values => {
+          resolve(new Container(utils.select(el), config));
+          splash.destroy();
+        });
       });
     });
   };
@@ -2059,6 +2122,11 @@
   Presenta.addBlock = add$2;
   Presenta.addController = add;
   Presenta.addModule = add$1;
+  Presenta.intalled = {
+    controllers,
+    modules,
+    blocks
+  };
   Presenta.addGlob = utils.addGlob;
   Presenta.addProp = utils.addProp;
   Presenta.io = utils.io;

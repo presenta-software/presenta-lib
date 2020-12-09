@@ -25,7 +25,7 @@ const text = function (el, config) {
     if (config.textVar) defsize = varSize[config.textVar]
     let fsize = config.scale || defsize * sizefactor
 
-    const child = u.div(`<div class="c ${css.text}">
+    const child = u.div(`<div class="c ${css.text} ${css.promise}">
     <div class="${css.inner}">
       <div class="pretext ${css.pretext}">
         <div class="${css.textbox}">
@@ -65,6 +65,7 @@ const text = function (el, config) {
         return compute()
       } else {
         setTimeout(() => {
+          child.classList.remove(css.promise)
           resolve(that)
         })
       }

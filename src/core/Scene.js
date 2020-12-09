@@ -45,7 +45,7 @@ const Scene = function (cont, sceneConfig, projectConfig, rootElement) {
     const steps = sceneConfig._steps
 
     const child = u.div(`<div 
-      class="s ${css.sceneContainer} ${css.promise}">
+      class="s ${css.sceneContainer}">
       <div class="sceneObject ${css.scene}">
         <div class="${css.wrapper}">
             <div class="${css.content}">
@@ -94,12 +94,20 @@ const Scene = function (cont, sceneConfig, projectConfig, rootElement) {
       }
     }
 
-    const enterTransition = () => {
+    const initTransition = () => {
       if (hasTransition) {
         const wrap = child.querySelector('.sceneObject')
         const dir = sceneConfig._presentatransdir === 'backward' ? 'to-left' : 'to-right'
         Transition(wrap)
-          .start(dir)
+          .init(dir)
+      }
+    }
+
+    const startTransition = () => {
+      if (hasTransition) {
+        const wrap = child.querySelector('.sceneObject')
+        Transition(wrap)
+          .start()
 
         setTimeout(() => {
           Transition(wrap)
@@ -153,12 +161,14 @@ const Scene = function (cont, sceneConfig, projectConfig, rootElement) {
 
     that.sceneConfig = sceneConfig
     cont.appendChild(child)
+    initTransition()
+    initModules()
 
     Promise.all(blockPromises).then(data => {
       blocks = data
-      child.classList.remove(css.promise)
-      initModules()
-      enterTransition()
+
+      startTransition()
+
       resolve(that)
     })
   })

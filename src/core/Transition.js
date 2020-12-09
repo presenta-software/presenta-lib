@@ -6,15 +6,18 @@ const Transition = wrapper => {
       return this
     }
 
-    this.start = prefix => {
+    this.init = prefix => {
       wrapper.classList.add(prefix,
         'p-scene-enter-transition',
         'p-scene-enter-start'
       )
+      return this
+    }
 
+    this.start = prefix => {
       setTimeout(() => {
-        wrapper.classList.add('p-scene-enter-end')
         wrapper.classList.remove('p-scene-enter-start')
+        wrapper.classList.add('p-scene-enter-end')
       })
       return this
     }

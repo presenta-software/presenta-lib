@@ -17,6 +17,10 @@
     color: var(--colorFore)
 }
 
+.promise{
+  visibility: hidden;
+}
+
 .inner{
     position: relative;
     width: 100%;

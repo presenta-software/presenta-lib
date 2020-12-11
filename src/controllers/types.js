@@ -14,6 +14,7 @@ import { hidecursor } from './hidecursor/index'
 import { hidden } from './hidden/index'
 import { limitswitch } from './limitswitch/index'
 import { sync } from './sync/index'
+import { rsync } from './rsync/index'
 import { cache } from './cache/index'
 import { baseurl } from './baseurl/index'
 
@@ -34,6 +35,7 @@ const controllers = {
   hidden,
   limitswitch,
   sync,
+  rsync,
   cache,
   baseurl
 }

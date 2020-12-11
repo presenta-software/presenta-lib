@@ -34,13 +34,15 @@ export default [{
     }),
     commonjs(),
     postcss({
-      minimize: true,
       modules: {
         globalModulePaths: [
           /globals/
         ]
       },
+      autoModules: false,
       plugins: [
+        autoprefixer({ grid: true }),
+        cssnano({ preset: 'default' })
       ]
     })
   ]

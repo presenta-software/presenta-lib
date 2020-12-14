@@ -19,7 +19,9 @@ const Splash = function (rootElement, projectConfig) {
     rootElement.style.height = `${h}px`
   }
 
-  const child = u.div(`<div class="${css.splash}">Loading...</div>`)
+  const label = projectConfig.loading || 'Loading...'
+
+  const child = u.div(`<div class="${css.splash}">${label}</div>`)
   rootElement.appendChild(child)
   u.globs(child, projectConfig)
 

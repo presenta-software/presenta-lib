@@ -35,6 +35,7 @@ const sync = function (rootElement, router, ctrlConfig, projectConfig) {
   }
 
   const sendMouse = (name, e) => {
+    console.log(e.target, e.currentTarget)
     const target = e.target
     const uuid = target ? target.getAttribute('id') : null
     const ob = { uuid, type: e.type, x: e.clientX, y: e.clientY }

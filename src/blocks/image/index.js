@@ -1,4 +1,5 @@
 import css from './style.css'
+import './globals.css'
 import u from '../../utils.js'
 
 const image = function (el, config) {
@@ -22,7 +23,8 @@ const image = function (el, config) {
 }
 
 image.init = () => {
-  u.addProp(['imagePadding', 'imageBorder', 'imageShadow', 'imageSize', 'imagePosition'])
+  u.addGlob(['imageStyle'])
+  u.addProp(['imagePadding', 'imageBorder', 'imageShadow', 'imageSize', 'imagePosition', 'imageWidth', 'imageHeight'])
 
   if (u.io.addPreload) u.io.addPreload({ type: 'image', field: 'url', as: 'image' })
   if (u.io.addBaseurl) u.io.addBaseurl({ type: 'image', field: 'url' })

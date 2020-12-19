@@ -4,6 +4,8 @@
     --imageShadow: none;
     --imageSize: cover;
     --imagePosition: center;
+    --imageWidth: 100%;
+    --imageHeight: 100%;
 }
 
 
@@ -19,16 +21,20 @@
 }
 
 .preimg{
-    overflow: hidden;
     flex:1;
     padding: var(--imagePadding);
+
+    display: flex;
+    align-items: center;
+    justify-content: center;
 }
 .preimg img{
-    width: 100%;
-    height:100%;
+    width: var(--imageWidth);
+    height: var(--imageHeight);
     border: var(--imageBorder);
     box-shadow: var(--imageShadow);
 
     object-fit: var(--imageSize);
     object-position: var(--imagePosition);
 }
+

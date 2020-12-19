@@ -4,9 +4,9 @@ import u from '../../utils.js'
 const debug = function (el, config) {
   const that = this
   return new Promise((resolve, reject) => {
-    config._sceneConfig._steps.push(1)
+    // config._sceneConfig._steps.push(1)
 
-    const child = u.div(`<div class="${css.debug}">
+    const child = u.div(`<div class="${css.debug}" id="evt_trg_uid_block_debug_${config._index}">
     <svg preserveAspectRatio="none" viewBox="0 0 200 200" fill="none" xmlns="http://www.w3.org/2000/svg">
       
       <g class="sstep" data-order="3">
@@ -32,31 +32,25 @@ const debug = function (el, config) {
     </svg>
   </div>`)
 
-    const router = config._sceneConfig._router
-
-    const keyup = e => {
-      console.log('keyup', e)
-    }
-
-    const click = e => {
-      console.log('click', e)
-    }
-
-    if (router) {
-      router.on('keyup', keyup)
-      router.on('click', click)
-    }
-
     that.beforeDestroy = () => {
-      router.off('keyup', keyup)
-      router.off('click', click)
+      config._rootElement.removeEventListener('keyup', key)
+      child.removeEventListener('click', click)
     }
 
     el.appendChild(child)
 
-    setTimeout(() => {
-      resolve(that)
-    }, 1000)
+    const key = e => {
+      console.log(e)
+    }
+
+    const click = e => {
+      console.log(e)
+    }
+
+    config._rootElement.addEventListener('keyup', key)
+    child.addEventListener('click', click)
+
+    resolve(that)
   })
 }
 

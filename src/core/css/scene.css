@@ -1,4 +1,6 @@
-
+:root{
+    --scenePadding: 0;
+}
 
 .sceneContainer{
     width: 100%;
@@ -7,6 +9,7 @@
     align-items: center;
     justify-content: center;
     position: relative;
+
 }
 .scene{
     --presenta-sw: calc(var(--presenta-w) / var(--presenta-p) / var(--presenta-fz));

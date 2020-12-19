@@ -15,7 +15,7 @@ const Splash = function (rootElement, projectConfig) {
   }
   if (h <= 0) {
     h = 200
-    if (projectConfig.aspect) h = w / projectConfig.aspect
+    if (projectConfig) h = w / projectConfig.aspect
     rootElement.style.height = `${h}px`
   }
 

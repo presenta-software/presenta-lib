@@ -17,12 +17,13 @@ export default config => {
   plugInit(controllers, config.controllers, plugins)
   plugInit(modules, config.modules, plugins)
 
-  const blocksKeysArr = config.scenes.reduce((a, s) => {
-    s.blocks.reduce((a2, b) => {
-      if (a.indexOf(b.type) === -1) a.push(b.type)
-    }, [])
-    return a
-  }, [])
+  const blocksKeysArr = []
+  config.scenes.forEach(s => {
+    s.blocks.forEach(b => {
+      if (blocksKeysArr.indexOf(b.type) === -1) blocksKeysArr.push(b.type)
+    })
+  })
+
   const blocksKeys = []
   blocksKeysArr.forEach(d => (blocksKeys[d] = true))
   plugInit(blocks, blocksKeys, plugins)

@@ -5,16 +5,6 @@ import { Scene } from './Scene.js'
 
 const Container = function (rootElement, projectConfig) {
   /*
-    Let's notify the user about mandatory fields
-  */
-  if (!projectConfig.scenes) {
-    return console.warn('No `scenes` array found')
-  }
-  if (projectConfig.scenes.length === 0) {
-    console.warn('`scenes` is empty')
-  }
-
-  /*
     Init the wrapper
   */
   rootElement.classList.add('presenta')
@@ -28,8 +18,10 @@ const Container = function (rootElement, projectConfig) {
   /*
     Init the container
   */
+  const supercont = u.div(`<div class="b ${css.superContainer}"></div>`)
   const cont = u.div(`<div class="a ${css.container}"></div>`)
-  child.appendChild(cont)
+  child.appendChild(supercont)
+  supercont.appendChild(cont)
 
   const scenes = projectConfig.scenes
   var currentScene = null

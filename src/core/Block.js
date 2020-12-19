@@ -30,7 +30,7 @@ const Block = function (blocksElement, blockConfig) {
     } else {
       const prom = new blocks[that.type](blockContainer, blockConfig)
       Promise.all([prom]).then(data => {
-        blockInstance = data
+        blockInstance = data[0]
         resolve(that)
       })
     }

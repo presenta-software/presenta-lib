@@ -1,11 +1,11 @@
-// https://lib.presenta.cc v0.1.9 - BSD-3-Clause License - Copyright 2020 Fabio Franchino
+// https://lib.presenta.cc v0.1.10 - BSD-3-Clause License - Copyright 2020 Fabio Franchino
 (function (global, factory) {
   typeof exports === 'object' && typeof module !== 'undefined' ? module.exports = factory() :
   typeof define === 'function' && define.amd ? define(factory) :
   (global = typeof globalThis !== 'undefined' ? globalThis : global || self, global.Presenta = factory());
 }(this, (function () { 'use strict';
 
-  var version = "0.1.9";
+  var version = "0.1.10";
 
   function styleInject(css, ref) {
     if ( ref === void 0 ) ref = {};
@@ -666,6 +666,7 @@
     };
 
     const sendMouse = (name, e) => {
+      console.log(e.target, e.currentTarget);
       const target = e.target;
       const uuid = target ? target.getAttribute('id') : null;
       const ob = {
@@ -1037,16 +1038,15 @@
     modules[type] = module;
   };
 
-  var css_248z$A = ".style_debug__1-XHT{display:flex;align-items:center;justify-content:center}.style_debug__1-XHT,.style_debug__1-XHT svg{width:100%;height:100%}";
+  var css_248z$A = ".style_debug__1-XHT{width:100%;height:100%;display:flex;align-items:center;justify-content:center}.style_debug__1-XHT svg{width:100%;height:100%;pointer-events:none}";
   var css$7 = {"debug":"style_debug__1-XHT"};
   styleInject(css_248z$A);
 
   const debug = function (el, config) {
     const that = this;
     return new Promise((resolve, reject) => {
-      config._sceneConfig._steps.push(1);
-
-      const child = utils.div(`<div class="${css$7.debug}">
+      // config._sceneConfig._steps.push(1)
+      const child = utils.div(`<div class="${css$7.debug}" id="evt_trg_uid_block_debug_${config._index}">
     <svg preserveAspectRatio="none" viewBox="0 0 200 200" fill="none" xmlns="http://www.w3.org/2000/svg">
       
       <g class="sstep" data-order="3">
@@ -1071,30 +1071,27 @@
 
     </svg>
   </div>`);
-      const router = config._sceneConfig._router;
-
-      const keyup = e => {
-        console.log('keyup', e);
-      };
-
-      const click = e => {
-        console.log('click', e);
-      };
-
-      if (router) {
-        router.on('keyup', keyup);
-        router.on('click', click);
-      }
 
       that.beforeDestroy = () => {
-        router.off('keyup', keyup);
-        router.off('click', click);
+        config._rootElement.removeEventListener('keyup', key);
+
+        child.removeEventListener('click', click);
       };
 
       el.appendChild(child);
-      setTimeout(() => {
-        resolve(that);
-      }, 1000);
+
+      const key = e => {
+        console.log(e);
+      };
+
+      const click = e => {
+        console.log(e);
+      };
+
+      config._rootElement.addEventListener('keyup', key);
+
+      child.addEventListener('click', click);
+      resolve(that);
     });
   };
 
@@ -1243,9 +1240,12 @@
     utils.addProp(['embedPadding', 'embedBackcolor', 'embedPosterSize', 'embedPosterPosition']);
   };
 
-  var css_248z$E = ":root{--imagePadding:0;--imageBorder:none;--imageShadow:none;--imageSize:cover;--imagePosition:center}.style_image__1fZIQ,.style_inner__3tyMU{width:100%;height:100%}.style_inner__3tyMU{display:flex}.style_preimg__2ypvx{overflow:hidden;flex:1;padding:var(--imagePadding)}.style_preimg__2ypvx img{width:100%;height:100%;border:var(--imageBorder);box-shadow:var(--imageShadow);-o-object-fit:var(--imageSize);object-fit:var(--imageSize);-o-object-position:var(--imagePosition);object-position:var(--imagePosition)}";
+  var css_248z$E = ":root{--imagePadding:0;--imageBorder:none;--imageShadow:none;--imageSize:cover;--imagePosition:center;--imageWidth:100%;--imageHeight:100%}.style_image__1fZIQ,.style_inner__3tyMU{width:100%;height:100%}.style_inner__3tyMU{display:flex}.style_preimg__2ypvx{flex:1;padding:var(--imagePadding);display:flex;align-items:center;justify-content:center}.style_preimg__2ypvx img{width:var(--imageWidth);height:var(--imageHeight);border:var(--imageBorder);box-shadow:var(--imageShadow);-o-object-fit:var(--imageSize);object-fit:var(--imageSize);-o-object-position:var(--imagePosition);object-position:var(--imagePosition)}";
   var css$a = {"image":"style_image__1fZIQ","inner":"style_inner__3tyMU","preimg":"style_preimg__2ypvx"};
   styleInject(css_248z$E);
+
+  var css_248z$F = ".imageStyle__solid{--imageWidth:auto;--imageHeight:auto}";
+  styleInject(css_248z$F);
 
   const image = function (el, config) {
     const url = config.url;
@@ -1265,7 +1265,8 @@
   };
 
   image.init = () => {
-    utils.addProp(['imagePadding', 'imageBorder', 'imageShadow', 'imageSize', 'imagePosition']);
+    utils.addGlob(['imageStyle']);
+    utils.addProp(['imagePadding', 'imageBorder', 'imageShadow', 'imageSize', 'imagePosition', 'imageWidth', 'imageHeight']);
     if (utils.io.addPreload) utils.io.addPreload({
       type: 'image',
       field: 'url',
@@ -1277,9 +1278,9 @@
     });
   };
 
-  var css_248z$F = ":root{--videoSize:cover;--videoPosition:center}.style_video__1qbdJ{width:100%;height:100%;display:flex;align-items:center;justify-content:center}.style_video__1qbdJ video{width:100%;height:100%;-o-object-fit:var(--videoSize);object-fit:var(--videoSize);-o-object-position:var(--videoPosition);object-position:var(--videoPosition);pointer-events:none}";
+  var css_248z$G = ":root{--videoSize:cover;--videoPosition:center}.style_video__1qbdJ{width:100%;height:100%;display:flex;align-items:center;justify-content:center}.style_video__1qbdJ video{width:100%;height:100%;-o-object-fit:var(--videoSize);object-fit:var(--videoSize);-o-object-position:var(--videoPosition);object-position:var(--videoPosition);pointer-events:none}";
   var css$b = {"video":"style_video__1qbdJ"};
-  styleInject(css_248z$F);
+  styleInject(css_248z$G);
 
   const video = function (el, config) {
     const previewMode = config._mode === 'preview';
@@ -1377,12 +1378,12 @@
     });
   };
 
-  var css_248z$G = ".solidVar__a{--solidColor:#000}.solidVar__a,.solidVar__b{--solidOpacity:.7;--solidBlend:none}.solidVar__b{--solidColor:#fff}.solidVar__c{--solidColor:var(--colorBack);--solidOpacity:1;--solidBlend:multiply}";
-  styleInject(css_248z$G);
-
-  var css_248z$H = ":root{--solidOpacity:1;--solidBlend:none;--solidColor:var(--colorAccent)}.style_solid__wiwvr{width:100%;height:100%;display:flex;align-items:center;justify-content:center;background:var(--solidColor);opacity:var(--solidOpacity);mix-blend-mode:var(--solidBlend)}";
-  var css$c = {"solid":"style_solid__wiwvr"};
+  var css_248z$H = ".solidVar__a{--solidColor:#000}.solidVar__a,.solidVar__b{--solidOpacity:.7;--solidBlend:none}.solidVar__b{--solidColor:#fff}.solidVar__c{--solidColor:var(--colorBack);--solidOpacity:1;--solidBlend:multiply}";
   styleInject(css_248z$H);
+
+  var css_248z$I = ":root{--solidOpacity:1;--solidBlend:none;--solidColor:var(--colorAccent)}.style_solid__wiwvr{width:100%;height:100%;display:flex;align-items:center;justify-content:center;background:var(--solidColor);opacity:var(--solidOpacity);mix-blend-mode:var(--solidBlend)}";
+  var css$c = {"solid":"style_solid__wiwvr"};
+  styleInject(css_248z$I);
 
   /*
   {
@@ -1405,9 +1406,9 @@
     el.appendChild(child);
   };
 
-  var css_248z$I = ":root{--svgPadding:0}.style_inner__AjKjt,.style_svg__2xfFu{width:100%;height:100%}.style_inner__AjKjt{padding:var(--svgPadding)}.style_svg__2xfFu svg{width:100%;height:100%}";
+  var css_248z$J = ":root{--svgPadding:0}.style_inner__AjKjt,.style_svg__2xfFu{width:100%;height:100%}.style_inner__AjKjt{padding:var(--svgPadding)}.style_svg__2xfFu svg{width:100%;height:100%}";
   var css$d = {"svg":"style_svg__2xfFu","inner":"style_inner__AjKjt"};
-  styleInject(css_248z$I);
+  styleInject(css_248z$J);
 
   const svg = function (el, config) {
     const svg = config._cache || config.code;
@@ -1456,9 +1457,9 @@
     blocks[type] = module;
   };
 
-  var css_248z$J = ".splash_splash__3mb9V{width:100%;height:100%;background-color:var(--colorBack);color:var(--colorFore);display:flex;align-items:center;justify-content:center;font-family:var(--fontHead)}";
+  var css_248z$K = ".splash_splash__3mb9V{width:100%;height:100%;background-color:var(--colorBack);color:var(--colorFore);display:flex;align-items:center;justify-content:center;font-family:var(--fontHead)}";
   var css$e = {"splash":"splash_splash__3mb9V"};
-  styleInject(css_248z$J);
+  styleInject(css_248z$K);
 
   const Splash = function (rootElement, projectConfig) {
     /*
@@ -1475,11 +1476,12 @@
 
     if (h <= 0) {
       h = 200;
-      if (projectConfig.aspect) h = w / projectConfig.aspect;
+      if (projectConfig) h = w / projectConfig.aspect;
       rootElement.style.height = `${h}px`;
     }
 
-    const child = utils.div(`<div class="${css$e.splash}">Loading...</div>`);
+    const label = projectConfig.loading || 'Loading...';
+    const child = utils.div(`<div class="${css$e.splash}">${label}</div>`);
     rootElement.appendChild(child);
     utils.globs(child, projectConfig);
 
@@ -1488,13 +1490,13 @@
     };
   };
 
-  var css_248z$K = ".container_mainwrapper__zelcO{outline:none}.container_container__3kBNh,.container_mainwrapper__zelcO{width:100%;height:100%;position:relative;overflow:hidden}.container_container__3kBNh>div{position:absolute;top:0;left:0;width:100%}";
-  var css$f = {"mainwrapper":"container_mainwrapper__zelcO","container":"container_container__3kBNh"};
-  styleInject(css_248z$K);
-
-  var css_248z$L = ".router_router__2r4NQ{width:100%;height:100%;position:absolute;top:0;left:0;pointer-events:none}";
-  var css$g = {"router":"router_router__2r4NQ"};
+  var css_248z$L = ":root{--containerPadding:0}.container_mainwrapper__zelcO{width:100%;height:100%;position:relative;overflow:hidden;outline:none}.container_superContainer__2mwZX{padding:var(--containerPadding)}.container_container__3kBNh,.container_superContainer__2mwZX{width:100%;height:100%;position:relative;overflow:hidden}.container_container__3kBNh>div{position:absolute;top:0;left:0;width:100%}";
+  var css$f = {"mainwrapper":"container_mainwrapper__zelcO","superContainer":"container_superContainer__2mwZX","container":"container_container__3kBNh"};
   styleInject(css_248z$L);
+
+  var css_248z$M = ".router_router__2r4NQ{width:100%;height:100%;position:absolute;top:0;left:0;pointer-events:none}";
+  var css$g = {"router":"router_router__2r4NQ"};
+  styleInject(css_248z$M);
 
   const Router = function (rootElement, projectConfig) {
     const child = utils.div(`<div class="controller ${css$g.router}"></div>`);
@@ -1652,13 +1654,13 @@
     });
   };
 
-  var css_248z$M = ".scene_sceneContainer__IgSpB{width:100%;height:100%;display:flex;align-items:center;justify-content:center;position:relative}.scene_scene__3uvTl{--presenta-sw:calc(var(--presenta-w)/var(--presenta-p)/var(--presenta-fz));--presenta-sh:calc(var(--presenta-h)/var(--presenta-p)/var(--presenta-fz));--presenta-scal:calc(var(--presenta-pw)/var(--presenta-p)/var(--presenta-pw)/var(--presenta-fz));width:var(--presenta-sw);height:var(--presenta-sh);font-family:serif}.scene_promise__24VCP{visibility:hidden}.scene_wrapper__3yr1k{width:var(--presenta-w);height:var(--presenta-h);transform:scale(1);transform:scale(var(--presenta-scal));transform-origin:top left;overflow:hidden;padding:var(--scenePadding);background-color:var(--sceneBackColor)}.scene_content__1rJf0{width:100%;height:100%;display:flex;flex-direction:column;overflow:hidden}.scene_fcontainer__1E_0g{top:0;left:0;width:100%;height:100%;position:absolute;pointer-events:none}.scene_viewport__3uNLS{width:100%;height:100%;position:relative;flex:1;overflow:hidden;display:flex;flex-direction:row}.scene_viewport__3uNLS>div{height:100%}";
+  var css_248z$N = ":root{--scenePadding:0}.scene_sceneContainer__IgSpB{width:100%;height:100%;display:flex;align-items:center;justify-content:center;position:relative}.scene_scene__3uvTl{--presenta-sw:calc(var(--presenta-w)/var(--presenta-p)/var(--presenta-fz));--presenta-sh:calc(var(--presenta-h)/var(--presenta-p)/var(--presenta-fz));--presenta-scal:calc(var(--presenta-pw)/var(--presenta-p)/var(--presenta-pw)/var(--presenta-fz));width:var(--presenta-sw);height:var(--presenta-sh);font-family:serif}.scene_promise__24VCP{visibility:hidden}.scene_wrapper__3yr1k{width:var(--presenta-w);height:var(--presenta-h);transform:scale(1);transform:scale(var(--presenta-scal));transform-origin:top left;overflow:hidden;padding:var(--scenePadding);background-color:var(--sceneBackColor)}.scene_content__1rJf0{width:100%;height:100%;display:flex;flex-direction:column;overflow:hidden}.scene_fcontainer__1E_0g{top:0;left:0;width:100%;height:100%;position:absolute;pointer-events:none}.scene_viewport__3uNLS{width:100%;height:100%;position:relative;flex:1;overflow:hidden;display:flex;flex-direction:row}.scene_viewport__3uNLS>div{height:100%}";
   var css$h = {"sceneContainer":"scene_sceneContainer__IgSpB","scene":"scene_scene__3uvTl","promise":"scene_promise__24VCP","wrapper":"scene_wrapper__3yr1k","content":"scene_content__1rJf0","fcontainer":"scene_fcontainer__1E_0g","viewport":"scene_viewport__3uNLS"};
-  styleInject(css_248z$M);
-
-  var css_248z$N = ".block_block__BWbaZ{background:var(--colorBack);width:100%;height:100%;flex:1;flex:var(--blockWeight);overflow:hidden;position:relative}.block_inner__3LS6s{width:100%;height:100%;padding:var(--blockPadding);opacity:var(--blockOpacity);mix-blend-mode:var(--blockBlend)}.block_bdecoration__3KJh-,.block_inner__3LS6s{top:0;left:0;width:100%;height:100%;position:absolute}.block_fdecoration__12tBw{pointer-events:none}";
-  var css$i = {"block":"block_block__BWbaZ","inner":"block_inner__3LS6s","bdecoration":"block_bdecoration__3KJh-","fdecoration":"block_fdecoration__12tBw"};
   styleInject(css_248z$N);
+
+  var css_248z$O = ".block_block__BWbaZ{background:var(--colorBack);width:100%;height:100%;flex:1;flex:var(--blockWeight);overflow:hidden;position:relative}.block_inner__3LS6s{width:100%;height:100%;padding:var(--blockPadding);opacity:var(--blockOpacity);mix-blend-mode:var(--blockBlend)}.block_bdecoration__3KJh-,.block_inner__3LS6s{top:0;left:0;width:100%;height:100%;position:absolute}.block_fdecoration__12tBw{pointer-events:none}";
+  var css$i = {"block":"block_block__BWbaZ","inner":"block_inner__3LS6s","bdecoration":"block_bdecoration__3KJh-","fdecoration":"block_fdecoration__12tBw"};
+  styleInject(css_248z$O);
 
   const Block = function (blocksElement, blockConfig) {
     const that = this;
@@ -1686,7 +1688,7 @@
       } else {
         const prom = new blocks[that.type](blockContainer, blockConfig);
         Promise.all([prom]).then(data => {
-          blockInstance = data;
+          blockInstance = data[0];
           resolve(that);
         });
       }
@@ -1926,20 +1928,8 @@
 
   const Container = function (rootElement, projectConfig) {
     /*
-      Let's notify the user about mandatory fields
-    */
-    if (!projectConfig.scenes) {
-      return console.warn('No `scenes` array found');
-    }
-
-    if (projectConfig.scenes.length === 0) {
-      console.warn('`scenes` is empty');
-    }
-    /*
       Init the wrapper
     */
-
-
     rootElement.classList.add('presenta');
     const child = utils.div(`<div class="${css$f.mainwrapper}"></div>`);
     child.setAttribute('tabindex', '0');
@@ -1950,8 +1940,10 @@
       Init the container
     */
 
+    const supercont = utils.div(`<div class="b ${css$f.superContainer}"></div>`);
     const cont = utils.div(`<div class="a ${css$f.container}"></div>`);
-    child.appendChild(cont);
+    child.appendChild(supercont);
+    supercont.appendChild(cont);
     const scenes = projectConfig.scenes;
     var currentScene = null;
 
@@ -2043,9 +2035,9 @@
     });
   };
 
-  var css_248z$O = ".style_group__2AqP-,.style_group__2AqP->div{width:100%;height:100%;position:relative}.style_gblock__3SGer{background:none}";
+  var css_248z$P = ".style_group__2AqP-,.style_group__2AqP->div{width:100%;height:100%;position:relative}.style_gblock__3SGer{background:none}";
   var css$j = {"group":"style_group__2AqP-","gblock":"style_gblock__3SGer"};
-  styleInject(css_248z$O);
+  styleInject(css_248z$P);
 
   const group = function (el, config) {
     const blocks = config.blocks;
@@ -2125,12 +2117,12 @@
     const plugins = [];
     plugInit(controllers, config.controllers, plugins);
     plugInit(modules, config.modules, plugins);
-    const blocksKeysArr = config.scenes.reduce((a, s) => {
-      s.blocks.reduce((a2, b) => {
-        if (a.indexOf(b.type) === -1) a.push(b.type);
-      }, []);
-      return a;
-    }, []);
+    const blocksKeysArr = [];
+    config.scenes.forEach(s => {
+      s.blocks.forEach(b => {
+        if (blocksKeysArr.indexOf(b.type) === -1) blocksKeysArr.push(b.type);
+      });
+    });
     const blocksKeys = [];
     blocksKeysArr.forEach(d => blocksKeys[d] = true);
     plugInit(blocks, blocksKeys, plugins);
@@ -2146,9 +2138,38 @@
     return all;
   });
 
+  var validate = (config => {
+    let status = true;
+
+    if (!config.scenes) {
+      console.error('No `scenes` array found');
+      status = false;
+    }
+
+    config.scenes.forEach((s, i) => {
+      if (!s.blocks) {
+        console.error(`No 'blocks' array in scene ${i} found`);
+        status = false;
+      }
+    });
+
+    if (config.scenes.length === 0) {
+      console.warn('`scenes` is empty');
+    }
+
+    return status;
+  });
+
   const Presenta = function (el, config) {
-    const splash = new Splash(utils.select(el), config);
+    if (!el || !config) return console.log('Missing required parameters, wrapper or config.');
+    const isValid = validate(config);
+
+    if (!isValid) {
+      return console.log('library init stopped due errors in config');
+    }
+
     defaults(config);
+    const splash = new Splash(utils.select(el), config);
     return new Promise((resolve, reject) => {
       new Install(config.plugins).then(() => {
         const all = pluginsInit(config);

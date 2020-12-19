@@ -14,11 +14,19 @@ import { group } from './blocks/group' // this import to avoid circular dependen
 import utils from './utils'
 import defaults from './utils/defaults'
 import pluginsInit from './utils/pluginsInit'
+import validate from './utils/validate'
 
 const Presenta = function (el, config) {
-  const splash = new Splash(utils.select(el), config)
+  if (!el || !config) return console.log('Missing required parameters, wrapper or config.')
+
+  const isValid = validate(config)
+  if (!isValid) {
+    return console.log('library init stopped due errors in config')
+  }
 
   defaults(config)
+
+  const splash = new Splash(utils.select(el), config)
 
   return new Promise((resolve, reject) => {
     new Install(config.plugins).then(() => {

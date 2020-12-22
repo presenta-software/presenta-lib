@@ -64,12 +64,12 @@ const Container = function (rootElement, projectConfig) {
 
   if (window.ResizeObserver) {
     const resizeObserver = new ResizeObserver(entries => {
-      u.fit(child, projectConfig, rootElement)
+      u.fit(cont, projectConfig, rootElement)
     })
     resizeObserver.observe(child)
   }
 
-  u.fit(child, projectConfig, rootElement)
+  u.fit(cont, projectConfig, rootElement)
 
   this.destroy = () => {
     currentScene.destroy()

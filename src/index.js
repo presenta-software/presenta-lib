@@ -26,13 +26,16 @@ const Presenta = function (el, config) {
 
   defaults(config)
 
-  const splash = new Splash(utils.select(el), config)
+  const root = utils.select(el)
+  config._root = root
+
+  const splash = new Splash(root, config)
 
   return new Promise((resolve, reject) => {
     new Install(config.plugins).then(() => {
       const all = pluginsInit(config)
       Promise.all(all).then(values => {
-        resolve(new Container(utils.select(el), config))
+        resolve(new Container(root, config))
         splash.destroy()
       })
     })

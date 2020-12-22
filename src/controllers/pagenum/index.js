@@ -1,3 +1,4 @@
+import './globals.css'
 import css from './style.css'
 import u from '../../utils.js'
 
@@ -14,11 +15,14 @@ u.addProp([
   'pagenumFlexAlign',
   'pagenumFlexJustify'
 ])
+u.addGlob(['pagenumPosition'])
 
 const pagenum = function (rootElement, router, ctrlConfig, projectConfig) {
   const child = u.div(`<div class="${css.pagenum}"></div>`)
+  const inner = u.div(`<div class="${css.inner}"></div>`)
   const content = u.div(`<div class="${css.content}"></div>`)
-  child.appendChild(content)
+  inner.appendChild(content)
+  child.appendChild(inner)
   rootElement.appendChild(child)
 
   const template = typeof ctrlConfig === 'string' ? ctrlConfig : '%s / %S'

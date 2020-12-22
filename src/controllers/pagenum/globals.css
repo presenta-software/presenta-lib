@@ -1,0 +1,36 @@
+.pagenumPosition__tl{
+    --pagenumFlexAlign: flex-start;
+    --pagenumFlexJustify: flex-start;
+}
+.pagenumPosition__tc{
+    --pagenumFlexAlign: flex-start;
+    --pagenumFlexJustify: center;
+}
+.pagenumPosition__tr{
+    --pagenumFlexAlign: flex-start;
+    --pagenumFlexJustify: flex-end;
+}
+.pagenumPosition__cl{
+    --pagenumFlexAlign: center;
+    --pagenumFlexJustify: flex-start;
+}
+.pagenumPosition__cc{
+    --pagenumFlexAlign: center;
+    --pagenumFlexJustify: center;
+}
+.pagenumPosition__cr{
+    --pagenumFlexAlign: center;
+    --pagenumFlexJustify: flex-end;
+}
+.pagenumPosition__bl{
+    --pagenumFlexAlign: flex-end;
+    --pagenumFlexJustify: flex-start;
+}
+.pagenumPosition__bc{
+    --pagenumFlexAlign: flex-end;
+    --pagenumFlexJustify: center;
+}
+.pagenumPosition__br{
+    --pagenumFlexAlign: flex-end;
+    --pagenumFlexJustify: flex-end;
+}

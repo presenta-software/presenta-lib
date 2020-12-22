@@ -17,6 +17,7 @@ import { sync } from './sync/index'
 import { rsync } from './rsync/index'
 import { cache } from './cache/index'
 import { baseurl } from './baseurl/index'
+import { minitools } from './minitools/index'
 
 const controllers = {
   autoplay,
@@ -37,7 +38,8 @@ const controllers = {
   sync,
   rsync,
   cache,
-  baseurl
+  baseurl,
+  minitools
 }
 
 const add = (type, module, override) => {

@@ -1,5 +1,8 @@
 :root{
-    --containerPadding: 0;
+    --containerPaddingTop: 0;
+    --containerPaddingLeft: 0;
+    --containerPaddingRight: 0;
+    --containerPaddingBottom: 0;
 }
 
 .mainwrapper{
@@ -16,7 +19,10 @@
     height: 100%;
     position: relative;
     overflow: hidden;
-    padding: var(--containerPadding);
+    padding-top: var(--containerPaddingTop);
+    padding-left: var(--containerPaddingLeft);
+    padding-right: var(--containerPaddingRight);
+    padding-bottom: var(--containerPaddingBottom);
 }
 
 .container {

@@ -1,5 +1,10 @@
 
 var prps = [
+  'containerPaddingTop',
+  'containerPaddingLeft',
+  'containerPaddingRight',
+  'containerPaddingBottom',
+
   'colorBack',
   'colorFore',
   'colorAccent',

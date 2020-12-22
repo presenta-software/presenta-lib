@@ -5,10 +5,12 @@
     
     --pagenumBackColor: none;
     --pagenumFont: var(--fontText);
+
+    --pagenumFlexAlign: flex-end;
+    --pagenumFlexJustify: flex-end;
 }
 
 .pagenum{
-    --pagenumColor: var(--colorFore);
 
     width: 100%;
     height: 100%;
@@ -17,24 +19,27 @@
     left:0;
 
     display: flex;
-    align-items: flex-end; 
+    align-items: var(--pagenumFlexAlign);
+    justify-content: var(--pagenumFlexJustify);
 
+    padding: var(--pagenumPadding);
     pointer-events: none;
 }
 
 
 
 .content{
-    width: 100%;
 
     text-align: var(--pagenumTextAlign);
-    padding: var(--pagenumPadding);
+    padding: var(--pagenumInnerPadding);
     font-size: var(--pagenumFontSize);
 
     color: var(--pagenumColor);
     font-family: var(--pagenumFont);
 
     background-color: var(--pagenumBackColor);
+    border: var(--pagenumBorder);
+    border-radius: var(--pagenumBorderRadius);
 
     transition: all .3s ease-in-out;
 }

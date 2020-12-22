@@ -1,7 +1,19 @@
 import css from './style.css'
 import u from '../../utils.js'
 
-u.addProp(['pagenumTextAlign', 'pagenumPadding', 'pagenumFontSize', 'pagenumFont'])
+u.addProp([
+  'pagenumTextAlign',
+  'pagenumPadding',
+  'pagenumInnerPadding',
+  'pagenumFontSize',
+  'pagenumFont',
+  'pagenumBackColor',
+  'pagenumColor',
+  'pagenumBorder',
+  'pagenumBorderRadius',
+  'pagenumFlexAlign',
+  'pagenumFlexJustify'
+])
 
 const pagenum = function (rootElement, router, ctrlConfig, projectConfig) {
   const child = u.div(`<div class="${css.pagenum}"></div>`)

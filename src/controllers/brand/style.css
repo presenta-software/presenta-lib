@@ -1,0 +1,45 @@
+:root{
+    --brandPadding: 0;
+    --brandBackColor: none;
+    --brandFlexAlign: flex-start;
+    --brandFlexJustify: flex-start;
+}
+
+.brand{
+    width: 100%;
+    height: 100%;
+    position: absolute;
+    top:0;
+    left:0;
+    z-index: 200;
+    padding-top: var(--containerPaddingTop);
+    padding-left: var(--containerPaddingLeft);
+    padding-right: var(--containerPaddingRight);
+    padding-bottom: var(--containerPaddingBottom);
+    pointer-events: none;
+    transition: opacity .35s;
+}
+
+
+.inner{
+    width: 100%;
+    height: 100%;
+    display: flex;
+    align-items: var(--brandFlexAlign);
+    justify-content: var(--brandFlexJustify);
+    padding: var(--brandPadding);
+}
+
+
+.content{
+    padding: var(--brandInnerPadding);
+    color: var(--brandColor);
+    background-color: var(--brandBackColor);
+    border: var(--brandBorder);
+    border-radius: var(--brandBorderRadius);
+}
+
+
+.hide{
+    opacity: 0;
+}

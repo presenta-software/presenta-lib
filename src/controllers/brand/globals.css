@@ -1,0 +1,45 @@
+.brandPosition__tl{
+    --brandFlexAlign: flex-start;
+    --brandFlexJustify: flex-start;
+}
+.brandPosition__tc{
+    --brandFlexAlign: flex-start;
+    --brandFlexJustify: center;
+}
+.brandPosition__tr{
+    --brandFlexAlign: flex-start;
+    --brandFlexJustify: flex-end;
+}
+.brandPosition__cl{
+    --brandFlexAlign: center;
+    --brandFlexJustify: flex-start;
+}
+.brandPosition__cc{
+    --brandFlexAlign: center;
+    --brandFlexJustify: center;
+}
+.brandPosition__cr{
+    --brandFlexAlign: center;
+    --brandFlexJustify: flex-end;
+}
+.brandPosition__bl{
+    --brandFlexAlign: flex-end;
+    --brandFlexJustify: flex-start;
+}
+.brandPosition__bc{
+    --brandFlexAlign: flex-end;
+    --brandFlexJustify: center;
+}
+.brandPosition__br{
+    --brandFlexAlign: flex-end;
+    --brandFlexJustify: flex-end;
+}
+
+.brandDirection__horizontal{
+    --brandDirection: row;
+    --brandIconMargin: 0 3px;
+}
+.brandDirection__vertical{
+    --brandDirection: column;
+    --brandIconMargin: 3px 0;
+}

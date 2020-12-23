@@ -13,13 +13,15 @@ const arrows = function (rootElement, router, ctrlConfig, projectConfig) {
   let numInteraction = 0
 
   const child = u.div(`<div class="${css.arrows}"></div>`)
+  const inner = u.div(`<div class="${css.inner}"></div>`)
 
   const left = u.div(`<div id="evt_trg_ctrl_arrow_left" class="${css.left}"><div class="${css.ui}"></div></div>`)
-  child.appendChild(left)
+  inner.appendChild(left)
 
   const right = u.div(`<div id="evt_trg_ctrl_arrow_right" class="${css.right}"><div class="${css.ui}"></div></div>`)
-  child.appendChild(right)
+  inner.appendChild(right)
 
+  child.appendChild(inner)
   rootElement.appendChild(child)
 
   left.addEventListener('click', e => {
@@ -35,7 +37,7 @@ const arrows = function (rootElement, router, ctrlConfig, projectConfig) {
   const setMouseMove = () => {
     numInteraction++
     if (numInteraction === 2) {
-      document.addEventListener('mousemove', e => {
+      rootElement.parentNode.addEventListener('mousemove', e => {
         scheduleForHide()
       })
     }

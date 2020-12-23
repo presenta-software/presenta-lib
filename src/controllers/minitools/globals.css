@@ -34,3 +34,12 @@
     --minitoolsFlexAlign: flex-end;
     --minitoolsFlexJustify: flex-end;
 }
+
+.minitoolsDirection__horizontal{
+    --minitoolsDirection: row;
+    --minitoolsIconMargin: 0 3px;
+}
+.minitoolsDirection__vertical{
+    --minitoolsDirection: column;
+    --minitoolsIconMargin: 3px 0;
+}

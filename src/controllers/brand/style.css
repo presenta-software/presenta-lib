@@ -37,6 +37,7 @@
     background-color: var(--brandBackColor);
     border: var(--brandBorder);
     border-radius: var(--brandBorderRadius);
+    pointer-events: all;
 }
 
 

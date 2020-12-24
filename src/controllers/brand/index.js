@@ -23,7 +23,7 @@ const brand = function (rootElement, router, ctrlConfig, projectConfig) {
   child.appendChild(inner)
   rootElement.appendChild(child)
 
-  content.innerHTML = '<h1>BRAND</h1>'
+  content.innerHTML = ctrlConfig
 
   rootElement.parentNode.addEventListener('mousemove', e => {
     scheduleForHide()

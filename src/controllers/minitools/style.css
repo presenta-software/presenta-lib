@@ -50,7 +50,7 @@
     width: 20px;
     height: 20px;
     margin: var(--minitoolsIconMargin);
-    opacity: .75;
+    opacity: 1;
     pointer-events: all;
     cursor: pointer;
 }
@@ -68,7 +68,7 @@
 }
 
 .icon:hover{
-    opacity:1;
+    opacity:.8;
 }
 
 .icon a{

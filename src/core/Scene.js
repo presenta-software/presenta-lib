@@ -44,9 +44,11 @@ const Scene = function (cont, sceneConfig, projectConfig, rootElement) {
     sceneConfig._steps = []
     const steps = sceneConfig._steps
 
+    const noResize = sceneConfig.noResize || projectConfig.noResize ? css.noResize : ''
+
     const child = u.div(`<div 
       class="s ${css.sceneContainer}">
-      <div class="sceneObject ${css.scene}">
+      <div class="sceneObject ${css.scene} ${noResize}">
         <div class="${css.wrapper}">
             <div class="${css.content}">
                 <div class="layout blocksContainer ${css.viewport}"></div>

@@ -65,6 +65,12 @@ const Container = function (rootElement, projectConfig) {
   if (window.ResizeObserver) {
     const resizeObserver = new ResizeObserver(entries => {
       u.fit(cont, projectConfig, rootElement)
+
+      const el = entries[0]
+      const w = el.contentRect.width
+      const h = el.contentRect.height
+      rootElement.style.setProperty('--presenta-w-mult', parseInt(w / 100))
+      rootElement.style.setProperty('--presenta-h-mult', parseInt(h / 100))
     })
     resizeObserver.observe(child)
   }

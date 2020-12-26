@@ -1,5 +1,12 @@
+import { version } from '../../package.json'
+
 export default config => {
   let status = true
+
+  if (config.version) {
+    if (config.version !== version) console.warn('Config version is different from Library version')
+  }
+
   if (!config.scenes) {
     console.error('No `scenes` array found')
     status = false

@@ -1,6 +1,11 @@
 import css from './style.css'
 import u from '../../utils.js'
 
+import leftArrow from './icons/arrow-left-circle.svg'
+import rightArrow from './icons/arrow-right-circle.svg'
+import upArrow from './icons/arrow-up-circle.svg'
+import downArrow from './icons/arrow-down-circle.svg'
+
 u.addProp([
   'arrowsOpacity',
   'arrowsVerticalPosition',
@@ -12,13 +17,22 @@ const arrows = function (rootElement, router, ctrlConfig, projectConfig) {
   let timer = null
   let numInteraction = 0
 
-  const child = u.div(`<div class="${css.arrows}"></div>`)
+  const vertical = ctrlConfig === 'vertical' ? css.vertical : ''
+
+  const firstArrow = vertical ? upArrow : leftArrow
+  const lastArrow = vertical ? downArrow : rightArrow
+
+  const child = u.div(`<div class="${css.arrows} ${vertical}"></div>`)
   const inner = u.div(`<div class="${css.inner}"></div>`)
 
-  const left = u.div(`<div id="evt_trg_ctrl_arrow_left" class="${css.left}"><div class="${css.ui}"></div></div>`)
+  const left = u.div(`<div id="evt_trg_ctrl_arrow_left" class="${css.left}">
+    <div class="${css.ui}">${firstArrow}</div>
+  </div>`)
   inner.appendChild(left)
 
-  const right = u.div(`<div id="evt_trg_ctrl_arrow_right" class="${css.right}"><div class="${css.ui}"></div></div>`)
+  const right = u.div(`<div id="evt_trg_ctrl_arrow_right" class="${css.right}">
+    <div class="${css.ui}">${lastArrow}</div>
+  </div>`)
   inner.appendChild(right)
 
   child.appendChild(inner)

@@ -1,27 +1,25 @@
 import { version } from '../../package.json'
 
 export default config => {
-  let status = true
+  const err = []
 
   if (config.version) {
-    if (config.version !== version) console.warn('Config version is different from Library version')
+    err.push('Config version is different from Library version')
   }
 
   if (!config.scenes) {
-    console.error('No `scenes` array found')
-    status = false
+    err.push('No `scenes` array found')
   }
 
   config.scenes.forEach((s, i) => {
     if (!s.blocks) {
-      console.error(`No 'blocks' array in scene ${i} found`)
-      status = false
+      err.push(`No 'blocks' array in scene ${i} found`)
     }
   })
 
   if (config.scenes.length === 0) {
-    console.warn('`scenes` is empty')
+    err.push('`scenes` is empty')
   }
 
-  return status
+  return err
 }

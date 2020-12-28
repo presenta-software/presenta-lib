@@ -19,9 +19,11 @@ import validate from './utils/validate'
 const Presenta = function (el, config) {
   if (!el || !config) return console.log('Missing required parameters, wrapper or config.')
 
-  const isValid = validate(config)
-  if (!isValid) {
-    return console.log('library init stopped due errors in config')
+  const hasErr = validate(config)
+  if (hasErr.length > 0) {
+    return new Promise((resolve, reject) => {
+      reject(hasErr)
+    })
   }
 
   defaults(config)

@@ -10,3 +10,16 @@
     outline: none;
     outline: 10px solid red;
 } */
+
+.router > div{
+    padding-top: var(--containerPaddingTop);
+    padding-left: var(--containerPaddingLeft);
+    padding-right: var(--containerPaddingRight);
+    padding-bottom: var(--containerPaddingBottom);
+}
+.router > div.ignorePad{
+    padding-top:   0;
+    padding-left:  0;
+    padding-right: 0;
+    padding-bottom:0;
+}

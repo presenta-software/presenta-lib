@@ -15,6 +15,9 @@ const Container = function (rootElement, projectConfig) {
   u.props(child, projectConfig)
   rootElement.appendChild(child)
 
+  let perPage = projectConfig.perPage ? parseInt(projectConfig.perPage) : 1
+  if (perPage < 1) perPage = 1
+
   /*
     Init the container
   */
@@ -24,19 +27,38 @@ const Container = function (rootElement, projectConfig) {
   supercont.appendChild(cont)
 
   const scenes = projectConfig.scenes
-  var currentScene = null
+  var currentScenes = []
 
-  const swapScene = (index, dir) => {
-    if (currentScene) {
-      currentScene.sceneConfig._presentatransdir = dir
-      currentScene.destroyAfter(projectConfig._transitionDestroyDelay)
+  const swapScenes = (index, dir) => {
+    const sceneProms = []
+
+    for (let i = 0; i < perPage; ++i) {
+      const idx = index + i
+      if (idx < scenes.length) {
+        const sceneConfig = scenes[idx]
+        sceneConfig._presentatransdir = dir
+        sceneConfig._router = router
+        sceneProms.push(new Scene(cont, sceneConfig, projectConfig, child))
+      }
     }
-    const sceneConfig = scenes[index]
-    sceneConfig._presentatransdir = dir
-    sceneConfig._router = router
-    new Scene(cont, sceneConfig, projectConfig, child).then(scene => {
-      currentScene = scene
-    })
+
+    Promise.all(sceneProms)
+      .then(data => {
+        currentScenes.forEach(s => {
+          s.sceneConfig._presentatransdir = dir
+          s.destroyAfter(projectConfig._transitionDestroyDelay)
+        })
+        if (perPage > 1) {
+          data.forEach((s, i) => {
+            const div = s.sceneConfig._el
+            const w = 100 / perPage + '%'
+            const l = 100 / perPage * i + '%'
+            div.style.width = w
+            div.style.left = l
+          })
+        }
+        currentScenes = data
+      })
   }
 
   /*
@@ -45,30 +67,26 @@ const Container = function (rootElement, projectConfig) {
   const router = new Router(child, projectConfig)
 
   router.on('nextIndex', evt => {
-    swapScene(evt.currentIndex, 'foreward')
+    swapScenes(evt.currentIndex, 'foreward')
   })
 
   router.on('prevIndex', evt => {
-    swapScene(evt.currentIndex, 'backward')
+    swapScenes(evt.currentIndex, 'backward')
   })
 
   router.on('stepChanged', evt => {
-    currentScene.stepForward()
+    currentScenes.forEach(s => {
+      s.stepForward()
+    })
   })
 
   router.on('init', evt => {
-    swapScene(evt.currentIndex, 'foreward')
+    swapScenes(evt.currentIndex, 'foreward')
   })
 
   if (window.ResizeObserver) {
     const resizeObserver = new ResizeObserver(entries => {
       u.fit(cont, projectConfig, rootElement)
-
-      // const el = entries[0]
-      // const w = el.contentRect.width
-      // const h = el.contentRect.height
-      // rootElement.style.setProperty('--presenta-w-mult', parseInt(w / 100))
-      // rootElement.style.setProperty('--presenta-h-mult', parseInt(h / 100))
     })
     resizeObserver.observe(child)
   }
@@ -76,7 +94,9 @@ const Container = function (rootElement, projectConfig) {
   u.fit(cont, projectConfig, rootElement)
 
   this.destroy = () => {
-    currentScene.destroy()
+    currentScenes.forEach(s => {
+      s.destroy()
+    })
   }
 
   this.router = router

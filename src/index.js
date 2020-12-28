@@ -20,11 +20,14 @@ const Presenta = function (el, config) {
   if (!el || !config) return console.log('Missing required parameters, wrapper or config.')
 
   const hasErr = validate(config)
-  if (hasErr.length > 0) {
+  const isBlocking = hasErr.filter(d => d.hard)
+  if (isBlocking.length > 0) {
     return new Promise((resolve, reject) => {
       reject(hasErr)
     })
   }
+
+  if (hasErr.length > 0) hasErr.forEach(e => (console.warn(e.message)))
 
   defaults(config)
 

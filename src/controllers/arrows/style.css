@@ -13,10 +13,6 @@
     height: 100%;
     z-index: 100;
     transition: opacity .35s;
-    padding-top: var(--containerPaddingTop);
-    padding-left: var(--containerPaddingLeft);
-    padding-right: var(--containerPaddingRight);
-    padding-bottom: var(--containerPaddingBottom);
 }
 
 

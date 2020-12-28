@@ -17,7 +17,6 @@ import { sync } from './sync/index'
 import { rsync } from './rsync/index'
 import { cache } from './cache/index'
 import { baseurl } from './baseurl/index'
-import { minitools } from './minitools/index'
 import { brand } from './brand/index'
 
 const controllers = {
@@ -40,7 +39,6 @@ const controllers = {
   rsync,
   cache,
   baseurl,
-  minitools,
   brand
 }
 

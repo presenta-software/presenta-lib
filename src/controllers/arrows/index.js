@@ -85,6 +85,8 @@ const arrows = function (rootElement, router, ctrlConfig, projectConfig) {
     }, 1500)
   }
   // scheduleForHide()
+
+  this._el = child
 }
 
 export { arrows }

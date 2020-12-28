@@ -31,14 +31,12 @@ const Container = function (rootElement, projectConfig) {
       currentScene.sceneConfig._presentatransdir = dir
       currentScene.destroyAfter(projectConfig._transitionDestroyDelay)
     }
-    if (scenes.length > 0) {
-      const sceneConfig = scenes[index]
-      sceneConfig._presentatransdir = dir
-      sceneConfig._router = router
-      new Scene(cont, sceneConfig, projectConfig, child).then(scene => {
-        currentScene = scene
-      })
-    }
+    const sceneConfig = scenes[index]
+    sceneConfig._presentatransdir = dir
+    sceneConfig._router = router
+    new Scene(cont, sceneConfig, projectConfig, child).then(scene => {
+      currentScene = scene
+    })
   }
 
   /*

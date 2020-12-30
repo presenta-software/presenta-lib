@@ -1,19 +1,6 @@
-:root,
-.colorVar__main {
+:root{
   --colorBack: #fff;
   --colorFore: #000;
   --colorAccent: #444;
   --colorAlt: #ddd;
-}
-.colorVar__sec {
-  --colorBack: #000;
-  --colorFore: #fff;
-  --colorAccent: #999;
-  --colorAlt: #ccc;
-}
-.colorVar__alt {
-  --colorBack: #444;
-  --colorFore: #ffffff;
-  --colorAccent: #fff;
-  --colorAlt: #ccc;
 }

@@ -1,4 +1,5 @@
 import './default.css'
+import './bn.css'
 import './adele.css'
 import './belle.css'
 import './cati.css'
@@ -11,7 +12,7 @@ import './irma.css'
 import './red.css'
 import './blue.css'
 
-const colors = ['blue', 'red', 'adele', 'belle', 'cati', 'dania', 'elane', 'flo', 'gina', 'hedy', 'irma']
+const colors = ['bn', 'blue', 'red', 'adele', 'belle', 'cati', 'dania', 'elane', 'flo', 'gina', 'hedy', 'irma']
 const colorvars = ['main', 'sec', 'alt']
 
 export { colors, colorvars }

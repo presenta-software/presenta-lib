@@ -1,0 +1,22 @@
+.colors__bn,
+.colors__bn .colorVar__main,
+.presenta .colors__bn.colorVar__main {
+  --colorBack: #fff;
+  --colorFore: #000;
+  --colorAccent: #444;
+  --colorAlt: #ddd;
+}
+.colors__bn .colorVar__sec,
+.presenta .colors__bn.colorVar__sec {
+  --colorBack: #000;
+  --colorFore: #fff;
+  --colorAccent: #999;
+  --colorAlt: #ccc;
+}
+.colors__bn .colorVar__alt,
+.presenta .colors__bn.colorVar__alt {
+  --colorBack: #444;
+  --colorFore: #ffffff;
+  --colorAccent: #fff;
+  --colorAlt: #ccc;
+}

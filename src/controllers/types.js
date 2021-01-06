@@ -18,6 +18,7 @@ import { rsync } from './rsync/index'
 import { cache } from './cache/index'
 import { baseurl } from './baseurl/index'
 import { brand } from './brand/index'
+import { fonts } from './fonts/index'
 
 const controllers = {
   autoplay,
@@ -39,7 +40,8 @@ const controllers = {
   rsync,
   cache,
   baseurl,
-  brand
+  brand,
+  fonts
 }
 
 const add = (type, module, override) => {

@@ -1,5 +1,7 @@
 
 const installed = {}
+const listeners = []
+let loading = false
 
 const Install = function (config) {
   return new Promise((resolve, reject) => {
@@ -14,14 +16,26 @@ const Install = function (config) {
           const newScript = document.createElement('script')
 
           newScript.onerror = (err) => {
-            console.log('[Plugin install error]', err)
+            console.log('[Plugin error]', err)
             cnt++
-            if (cnt === len) resolve()
+            if (cnt === len) {
+              resolve()
+              listeners.forEach(p => {
+                p.resolve()
+              })
+              loading = false
+            }
           }
           newScript.onload = (ldr) => {
-            console.log('[Plugin install loaded]')
+            console.log('[Plugin loaded]')
             cnt++
-            if (cnt === len) resolve()
+            if (cnt === len) {
+              resolve()
+              listeners.forEach(res => {
+                res()
+              })
+              loading = false
+            }
           }
 
           document.body.appendChild(newScript)
@@ -29,11 +43,25 @@ const Install = function (config) {
         }, len)
       }
 
-      len++
-      installed[s.url] = s
-      addSource(s.url)
+      const addNotifier = url => {
+        listeners.push(resolve)
+        cnt++
+      }
 
-      if (len === 0) resolve()
+      len++
+      if (!installed[s.url]) {
+        loading = true
+        addSource(s.url)
+        installed[s.url] = s
+      } else {
+        if (loading) {
+          addNotifier(s.url)
+        } else {
+          resolve()
+        }
+      }
+
+      // if (len === 0) resolve()
     })
   })
 }

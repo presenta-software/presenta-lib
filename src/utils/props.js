@@ -10,6 +10,9 @@ var prps = [
   'colorAccent',
   'colorAlt',
 
+  'fontText',
+  'fontHeading',
+
   'scenePadding',
   'sceneBackColor',
 

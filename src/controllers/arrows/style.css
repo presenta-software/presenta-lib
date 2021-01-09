@@ -1,5 +1,5 @@
 :root{
-    --arrowsOpacity: 1;
+    --arrowsOpacity: .5;
     --arrowsVerticalPosition: center;
     --arrowsHorizontalPosition: space-between;
     --arrowsPadding: 10px;
@@ -13,19 +13,22 @@
     height: 100%;
     z-index: 100;
     transition: opacity .35s;
-    padding-top: var(--containerPaddingTop);
-    padding-left: var(--containerPaddingLeft);
-    padding-right: var(--containerPaddingRight);
-    padding-bottom: var(--containerPaddingBottom);
 }
+
+
 
 .inner{
     width: 100%;
     height: 100%;
     display: flex;
     justify-content: var(--arrowsHorizontalPosition);
-    --arrowsColor: var(--colorFore);
+    color: var(--colorFore);
 }
+
+.direction .inner{
+    flex-direction: column;
+}
+
 
 .left, .right{
     height: 100%;
@@ -38,24 +41,21 @@
     pointer-events: all;
 }
 
+.vertical .left, .vertical .right{
+    height: unset;
+}
+
 .ui{
-    width: 20px;
-    height: 20px;
+    width: 24px;
+    height: 24px;
     transition: background-color .3s ease-in-out;
     
-    width: 0;
-	height: 0;
-	border-top: 10px solid transparent;
-    border-bottom: 10px solid transparent;
-    opacity: var(--arrowsOpacity);
-
     pointer-events: none;
 }
-.left .ui{
-	border-right: 10px solid var(--arrowsColor);
-}
-.right .ui{
-	border-left: 10px solid var(--arrowsColor);
+.ui circle{
+    stroke: none;
+    fill: var(--colorBack);
+    opacity: var(--arrowsOpacity);
 }
 
 .hide{

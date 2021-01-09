@@ -4,7 +4,19 @@
     background-color: var(--colorBack);
     color: var(--colorFore);
     display: flex;
+    flex-direction: column;
     align-items: center;
     justify-content: center;
     font-family: var(--fontHead);
+}
+
+.spinner{
+    display: flex;
+    animation: spin 2s linear infinite;
+}
+
+@keyframes spin{
+    100%{
+        transform: rotate(360deg);
+    }
 }

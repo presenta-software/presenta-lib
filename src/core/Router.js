@@ -135,7 +135,15 @@ const Router = function (rootElement, projectConfig) {
       const Mod = controllers[k]
       if (!Mod) console.log(`Controller "${k}" not found. Maybe you forgot to include it.`)
       if (modConfig && Mod) {
-        registeredIO[k] = new Mod(child, this, modConfig, projectConfig)
+        const md = new Mod(child, this, modConfig, projectConfig)
+        registeredIO[k] = md
+        if (modConfig.ignorePad) {
+          if (md._el) {
+            md._el.classList.add(css.ignorePad)
+          } else {
+            console.warn(`Controller ${k} uses ignorePad but _el is undefined`)
+          }
+        }
       }
     }
   }

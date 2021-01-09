@@ -9,8 +9,8 @@
     align-items: center;
     justify-content: center;
     position: relative;
-
 }
+
 .scene{
     --presenta-sw: calc(var(--presenta-w) / var(--presenta-p) / var(--presenta-fz));
     --presenta-sh: calc(var(--presenta-h) / var(--presenta-p) / var(--presenta-fz));

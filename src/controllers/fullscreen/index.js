@@ -1,3 +1,4 @@
+
 const isAlreadyFullscreen = () => {
   return (document.fullscreenElement ||
         document.webkitFullscreenElement ||
@@ -52,6 +53,8 @@ const fullscreen = function (rootElement, router, ctrlConfig, projectConfig) {
   }
 
   this.toggle = toggle
+
+  router.on('toggleFullscreen', toggle)
 
   rootEl.addEventListener('keyup', setKeyListener)
 }

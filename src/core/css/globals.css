@@ -1,0 +1,33 @@
+:root{
+    --fontHeading: Georgia, "Times New Roman", Times, serif;
+    --fontText: "Trebuchet MS", "Lucida Sans Unicode", "Lucida Grande",
+        "Lucida Sans", Arial, sans-serif;
+    --colorBack: #fff;
+    --colorFore: #000;
+    --colorAccent: #444;
+    --colorAlt: #ddd;
+    --blockWeight: 1;
+    --blockPadding: 0;
+    --blockOpacity: 1;
+    --blockBlend: unset;
+    --scenePadding: 0;
+    --sceneBackColor: none;
+}
+
+.presenta * {
+    box-sizing: border-box;
+}
+
+
+.presenta {
+    position: relative;
+    /* width: 100%;
+        height: 100%; */
+
+    --presenta-pw: 960;
+    --presenta-w: 960px;
+    --presenta-h: 540px;
+    --presenta-vp: 960;
+    --presenta-fz: 1;
+    --presenta-p: calc(var(--presenta-pw) / var(--presenta-vp));
+}

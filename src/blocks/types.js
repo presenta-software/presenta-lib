@@ -1,18 +1,14 @@
-import { debug } from './debug'
 import { text } from './text'
 import { embed } from './embed'
 import { image } from './image'
 import { video } from './video'
-import { solid } from './solid'
 import { svg } from './svg'
 
 const blocks = {
-  debug,
   text,
   embed,
   image,
   video,
-  solid,
   svg
 }
 

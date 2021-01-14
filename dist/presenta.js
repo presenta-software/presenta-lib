@@ -1121,7 +1121,6 @@
         }
       };
 
-      child.classList.remove(css$8.promise);
       setTimeout(compute);
     });
   };

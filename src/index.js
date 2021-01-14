@@ -1,6 +1,6 @@
 import { version } from '../package.json'
 
-import globals from './globals/index'
+import './core/css/globals.css'
 
 import { add as addController, controllers } from './controllers/types.js'
 import { add as addModule, modules } from './modules/types.js'
@@ -50,12 +50,6 @@ const Presenta = function (el, config) {
 addBlock('group', group) // this to avoid circular dependencies warning, since removed implicit inclusion in block types
 
 Presenta.version = version
-Presenta.colors = globals.colors
-Presenta.fonts = globals.fonts
-Presenta.transitions = globals.transitions
-Presenta.layouts = globals.layouts
-Presenta.colorvars = globals.colorvars
-Presenta.scenevars = globals.scenevars
 
 Presenta.addBlock = addBlock
 Presenta.addController = addController

@@ -114,16 +114,19 @@
   color: var(--textaccentcolor);
 }
 
-.itext ul,
-.itext ol {
+.itext > ul,
+.itext > ol {
   font-size: 1.5em;
   line-height: 1.1em;
+}
+.itext ul,
+.itext ol { 
   text-align: var(--textListAlign);
   margin: 0;
   padding: 0;
   list-style-type: none;
   counter-reset: li;
-  padding: 0.5rem 0;
+  padding: 0.5em 0;
 }
 
 .itext li{

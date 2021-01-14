@@ -71,6 +71,7 @@ const text = function (el, config) {
       }
     }
 
+    child.classList.remove(css.promise)
     setTimeout(compute)
   })
 }

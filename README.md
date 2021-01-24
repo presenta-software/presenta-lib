@@ -13,6 +13,8 @@
 <p align="center">
 	<img src="https://travis-ci.org/presenta-software/presenta-lib.svg?branch=master"/>
 	<img src="https://img.shields.io/npm/v/@presenta/lib"/>
+	<img src="https://badgen.net/github/release/presenta-software/presenta-lib"/>
+	<img src="https://badgen.net/github/stars/presenta-software/presenta-lib"/>
 	<a href="https://standardjs.com"><img src="https://img.shields.io/badge/code_style-standard-brightgreen.svg"/></a>
 </p>
 

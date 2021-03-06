@@ -19,7 +19,6 @@ import { cache } from './cache/index'
 import { baseurl } from './baseurl/index'
 import { brand } from './brand/index'
 import { fonts } from './fonts/index'
-import { redirect } from './redirect/index'
 
 const controllers = {
   autoplay,
@@ -42,8 +41,7 @@ const controllers = {
   cache,
   baseurl,
   brand,
-  fonts,
-  redirect
+  fonts
 }
 
 const add = (type, module, override) => {

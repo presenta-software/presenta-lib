@@ -7,8 +7,10 @@ import { Transition } from './Transition.js'
 const Scene = function (cont, sceneConfig, projectConfig, rootElement) {
   const that = this
   return new Promise((resolve, reject) => {
-    let blocks = []
-    const modInstances = []
+    let blockInstances = []
+
+    let modInstances = []
+    const modPromises = []
 
     /*
     Let's notify the user about missing fields
@@ -89,7 +91,7 @@ const Scene = function (cont, sceneConfig, projectConfig, rootElement) {
           if (Mod) {
             if (modConfig) {
               const mod = new Mod(child.querySelector(`.${css.content}`), modConfig, sceneConfig)
-              modInstances.push(mod)
+              modPromises.push(mod)
             }
           }
         }
@@ -133,7 +135,7 @@ const Scene = function (cont, sceneConfig, projectConfig, rootElement) {
 
       const t = _t || 0
       modInstances.forEach(mod => { if (mod.beforeDestroy) mod.beforeDestroy() })
-      blocks.forEach(block => { if (block.beforeDestroy) block.beforeDestroy() })
+      blockInstances.forEach(block => { if (block.beforeDestroy) block.beforeDestroy() })
 
       setTimeout(() => {
         that.destroy()
@@ -148,7 +150,7 @@ const Scene = function (cont, sceneConfig, projectConfig, rootElement) {
       if (currentStep < steps.length) {
         const stepData = steps[currentStep]
         modInstances.forEach(mod => { if (mod.stepForward) mod.stepForward(stepData, currentStep) })
-        blocks.forEach(block => { if (block.stepForward) block.stepForward(stepData, currentStep) })
+        blockInstances.forEach(block => { if (block.stepForward) block.stepForward(stepData, currentStep) })
         currentStep++
       }
     }
@@ -158,20 +160,24 @@ const Scene = function (cont, sceneConfig, projectConfig, rootElement) {
    */
     that.destroy = () => {
       modInstances.forEach(mod => { if (mod.destroy) mod.destroy() })
-      blocks.forEach(block => { if (block.destroy) block.destroy() })
+      blockInstances.forEach(block => { if (block.destroy) block.destroy() })
     }
 
     that.sceneConfig = sceneConfig
     cont.appendChild(child)
     initTransition()
-    initModules()
+    // initModules()
 
     Promise.all(blockPromises).then(data => {
-      blocks = data
+      blockInstances = data
 
-      startTransition()
+      initModules()
 
-      resolve(that)
+      Promise.all(modPromises).then(data => {
+        modInstances = data
+        startTransition()
+        resolve(that)
+      })
     })
   })
 }

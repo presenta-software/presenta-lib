@@ -55,7 +55,7 @@ Presenta.addBlock = addBlock
 Presenta.addController = addController
 Presenta.addModule = addModule
 
-Presenta.intalled = { controllers, modules, blocks }
+Presenta.installed = { controllers, modules, blocks }
 
 Presenta.addGlob = utils.addGlob
 Presenta.addProp = utils.addProp

@@ -22,6 +22,7 @@ const parseSettings = cnf => {
 }
 
 const steps = function (sceneElement, modConfig, sceneConfig) {
+  // we don't want to performe steps in non-presentation mode
   if (sceneConfig._mode !== 'present') return
 
   const modSett = parseSettings(modConfig)
@@ -39,6 +40,7 @@ const steps = function (sceneElement, modConfig, sceneConfig) {
 
   let index = 0
   const allElems = {}
+  let allFlatElems = []
   const blocks = sceneConfig.blocks.filter(b => !(b.hasOwnProperty('steps') && !b.steps))
   let prevEls = null
 
@@ -74,8 +76,9 @@ const steps = function (sceneElement, modConfig, sceneConfig) {
     if (sceneMode === 'sequential') {
       blockStepElements.forEach(ob => {
         const els = ob.els
+        allFlatElems = allFlatElems.concat(els)
         els.forEach(el => {
-          el.classList.add(css.stepItem, css[trans])
+          el.classList.add(css[trans])
 
           const id = {
             sandbox: 'steps',
@@ -112,7 +115,7 @@ const steps = function (sceneElement, modConfig, sceneConfig) {
   for (const k in allElems) {
     const trans = allElems[k].trans
     const outs = allElems[k].outs
-    allElems[k].arr.forEach(el => (el.classList.add(css.stepItem, css[trans])))
+    allElems[k].arr.forEach(el => (el.classList.add(css[trans])))
 
     const id = {
       sandbox: 'steps',
@@ -126,6 +129,18 @@ const steps = function (sceneElement, modConfig, sceneConfig) {
 
     index++
   }
+
+  // postponing the add of the transition class to avoid initial unwanted transition
+  setTimeout(() => {
+    // routine only for sequential mode
+    allFlatElems.forEach(el => {
+      el.classList.add(css.stepItem)
+    })
+    // routine only for match mode
+    for (const k in allElems) {
+      allElems[k].arr.forEach(el => (el.classList.add(css.stepItem)))
+    }
+  }, 100)
 
   this.stepForward = step => {
     if (step.sandbox === 'steps') {

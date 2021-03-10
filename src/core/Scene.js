@@ -14,7 +14,7 @@ const Scene = function (cont, sceneConfig, projectConfig, rootElement) {
 
     /*
     Let's notify the user about missing fields
-  */
+    */
     if (!sceneConfig.blocks) {
       return console.warn('No `blocks` array found in scene ' + sceneConfig.index)
     }
@@ -59,6 +59,7 @@ const Scene = function (cont, sceneConfig, projectConfig, rootElement) {
         </div>
       </div>
   </div>`)
+    cont.appendChild(child)
 
     u.globs(child, sceneConfig)
     u.props(child, sceneConfig)
@@ -66,9 +67,9 @@ const Scene = function (cont, sceneConfig, projectConfig, rootElement) {
     sceneConfig._rootElement = rootElement
     sceneConfig._mode = projectConfig.mode
 
-    /*
+    /**
     Init blocks if any
-  */
+    */
     const cblocks = sceneConfig.blocks
     const blockPromises = []
     cblocks.forEach((blockConfig, i) => {
@@ -90,7 +91,7 @@ const Scene = function (cont, sceneConfig, projectConfig, rootElement) {
           if (!Mod) console.log(`Module "${k}" not found. Maybe you forgot to include it.`)
           if (Mod) {
             if (modConfig) {
-              const mod = new Mod(child.querySelector(`.${css.content}`), modConfig, sceneConfig)
+              const mod = new Mod(child, modConfig, sceneConfig)
               modPromises.push(mod)
             }
           }
@@ -164,7 +165,6 @@ const Scene = function (cont, sceneConfig, projectConfig, rootElement) {
     }
 
     that.sceneConfig = sceneConfig
-    cont.appendChild(child)
     initTransition()
     // initModules()
 

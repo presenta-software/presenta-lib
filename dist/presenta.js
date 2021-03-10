@@ -1,11 +1,11 @@
-// https://lib.presenta.cc v0.1.14 - BSD-3-Clause License - Copyright 2021 Fabio Franchino
+// https://lib.presenta.cc v0.1.15 - BSD-3-Clause License - Copyright 2021 Fabio Franchino
 (function (global, factory) {
   typeof exports === 'object' && typeof module !== 'undefined' ? module.exports = factory() :
   typeof define === 'function' && define.amd ? define(factory) :
   (global = typeof globalThis !== 'undefined' ? globalThis : global || self, global.Presenta = factory());
 }(this, (function () { 'use strict';
 
-  var version = "0.1.14";
+  var version = "0.1.15";
 
   function styleInject(css, ref) {
     if ( ref === void 0 ) ref = {};
@@ -908,6 +908,7 @@
   };
 
   const steps = function (sceneElement, modConfig, sceneConfig) {
+    // we don't want to performe steps in non-presentation mode
     if (sceneConfig._mode !== 'present') return;
     const modSett = parseSettings(modConfig);
     let defTag = modSett.tag || '.step';
@@ -921,6 +922,7 @@
     defTrans = sceneSett.trans || defTrans;
     let index = 0;
     const allElems = {};
+    let allFlatElems = [];
     const blocks = sceneConfig.blocks.filter(b => !(b.hasOwnProperty('steps') && !b.steps));
     let prevEls = null;
     blocks.forEach(b => {
@@ -957,8 +959,9 @@
       if (sceneMode === 'sequential') {
         blockStepElements.forEach(ob => {
           const els = ob.els;
+          allFlatElems = allFlatElems.concat(els);
           els.forEach(el => {
-            el.classList.add(css$7.stepItem, css$7[trans]);
+            el.classList.add(css$7[trans]);
             const id = {
               sandbox: 'steps',
               index,
@@ -997,7 +1000,7 @@
     for (const k in allElems) {
       const trans = allElems[k].trans;
       const outs = allElems[k].outs;
-      allElems[k].arr.forEach(el => el.classList.add(css$7.stepItem, css$7[trans]));
+      allElems[k].arr.forEach(el => el.classList.add(css$7[trans]));
       const id = {
         sandbox: 'steps',
         index,
@@ -1010,7 +1013,19 @@
       sceneConfig._steps.push(id);
 
       index++;
-    }
+    } // postponing the add of the transition class to avoid initial unwanted transition
+
+
+    setTimeout(() => {
+      // routine only for sequential mode
+      allFlatElems.forEach(el => {
+        el.classList.add(css$7.stepItem);
+      }); // routine only for match mode
+
+      for (const k in allElems) {
+        allElems[k].arr.forEach(el => el.classList.add(css$7.stepItem));
+      }
+    }, 100);
 
     this.stepForward = step => {
       if (step.sandbox === 'steps') {
@@ -1689,8 +1704,9 @@
   const Scene = function (cont, sceneConfig, projectConfig, rootElement) {
     const that = this;
     return new Promise((resolve, reject) => {
-      let blocks = [];
-      const modInstances = [];
+      let blockInstances = [];
+      let modInstances = [];
+      const modPromises = [];
       /*
       Let's notify the user about missing fields
       */
@@ -1741,12 +1757,13 @@
         </div>
       </div>
   </div>`);
+      cont.appendChild(child);
       utils.globs(child, sceneConfig);
       utils.props(child, sceneConfig);
       sceneConfig._el = child;
       sceneConfig._rootElement = rootElement;
       sceneConfig._mode = projectConfig.mode;
-      /*
+      /**
       Init blocks if any
       */
 
@@ -1771,8 +1788,8 @@
 
             if (Mod) {
               if (modConfig) {
-                const mod = new Mod(child.querySelector(`.${css$g.content}`), modConfig, sceneConfig);
-                modInstances.push(mod);
+                const mod = new Mod(child, modConfig, sceneConfig);
+                modPromises.push(mod);
               }
             }
           }
@@ -1813,7 +1830,7 @@
         modInstances.forEach(mod => {
           if (mod.beforeDestroy) mod.beforeDestroy();
         });
-        blocks.forEach(block => {
+        blockInstances.forEach(block => {
           if (block.beforeDestroy) block.beforeDestroy();
         });
         setTimeout(() => {
@@ -1832,7 +1849,7 @@
           modInstances.forEach(mod => {
             if (mod.stepForward) mod.stepForward(stepData, currentStep);
           });
-          blocks.forEach(block => {
+          blockInstances.forEach(block => {
             if (block.stepForward) block.stepForward(stepData, currentStep);
           });
           currentStep++;
@@ -1847,19 +1864,22 @@
         modInstances.forEach(mod => {
           if (mod.destroy) mod.destroy();
         });
-        blocks.forEach(block => {
+        blockInstances.forEach(block => {
           if (block.destroy) block.destroy();
         });
       };
 
       that.sceneConfig = sceneConfig;
-      cont.appendChild(child);
-      initTransition();
-      initModules();
+      initTransition(); // initModules()
+
       Promise.all(blockPromises).then(data => {
-        blocks = data;
-        startTransition();
-        resolve(that);
+        blockInstances = data;
+        initModules();
+        Promise.all(modPromises).then(data => {
+          modInstances = data;
+          startTransition();
+          resolve(that);
+        });
       });
     });
   };
@@ -2199,7 +2219,7 @@
   Presenta.addBlock = add$2;
   Presenta.addController = add;
   Presenta.addModule = add$1;
-  Presenta.intalled = {
+  Presenta.installed = {
     controllers,
     modules,
     blocks

@@ -54,7 +54,7 @@ const Scene = function (cont, sceneConfig, projectConfig, rootElement) {
         <div class="${css.wrapper}">
             <div class="${css.content}">
                 <div class="layout blocksContainer ${css.viewport}"></div>
-                <div class="frontContainer ${css.fcontainer}"></div>
+                <div class="moduleFrontWrapper ${css.fcontainer}"></div>
             </div>
         </div>
       </div>

@@ -16,9 +16,9 @@ const Block = function (blocksElement, blockConfig) {
     const customSelector = blockConfig.id && blockConfig.id.indexOf('#') === 0 ? `id="${blockConfig.id.replace('#', '')}"` : ''
 
     const child = u.div(`<div class="block ${css.block} b b${that.index}">
-    <div class="backDecoration ${css.bdecoration}"></div>
+    <div class="blockBackWrapper ${css.bdecoration}"></div>
     <div ${customSelector} class="blockContainer ${css.inner}"></div>
-    <div class="frontDecoration ${css.fdecoration}"></div>
+    <div class="blockFrontWrapper ${css.fdecoration}"></div>
   </div>`)
     u.globs(child, blockConfig)
     u.props(child, blockConfig)

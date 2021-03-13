@@ -14,7 +14,8 @@ export default config => {
       cache: true
     },
     modules: {
-      steps: true
+      steps: true,
+      jump: true
     },
     plugins: [],
     transition: null,

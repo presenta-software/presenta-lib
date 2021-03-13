@@ -1,11 +1,11 @@
-// https://lib.presenta.cc v0.1.15 - BSD-3-Clause License - Copyright 2021 Fabio Franchino
+// https://lib.presenta.cc v0.1.16 - BSD-3-Clause License - Copyright 2021 Fabio Franchino
 (function (global, factory) {
   typeof exports === 'object' && typeof module !== 'undefined' ? module.exports = factory() :
   typeof define === 'function' && define.amd ? define(factory) :
   (global = typeof globalThis !== 'undefined' ? globalThis : global || self, global.Presenta = factory());
 }(this, (function () { 'use strict';
 
-  var version = "0.1.15";
+  var version = "0.1.16";
 
   function styleInject(css, ref) {
     if ( ref === void 0 ) ref = {};
@@ -1610,7 +1610,7 @@
   var css$g = {"sceneContainer":"scene_sceneContainer__IgSpB","scene":"scene_scene__3uvTl","promise":"scene_promise__24VCP","wrapper":"scene_wrapper__3yr1k","noResize":"scene_noResize__M8OwW","content":"scene_content__1rJf0","fcontainer":"scene_fcontainer__1E_0g","viewport":"scene_viewport__3uNLS"};
   styleInject(css_248z$l);
 
-  var css_248z$m = ".block_block__BWbaZ{background:var(--colorBack);width:100%;height:100%;flex:1;flex:var(--blockWeight);overflow:hidden;position:relative}.block_inner__3LS6s{width:100%;height:100%;padding:var(--blockPadding);opacity:var(--blockOpacity);mix-blend-mode:var(--blockBlend)}.block_bdecoration__3KJh-,.block_inner__3LS6s{top:0;left:0;width:100%;height:100%;position:absolute}.block_fdecoration__12tBw{pointer-events:none}";
+  var css_248z$m = ".block_block__BWbaZ{background:var(--colorBack);width:100%;height:100%;flex:1;flex:var(--blockWeight);overflow:hidden;position:relative}.block_inner__3LS6s{width:100%;height:100%;padding:var(--blockPadding);opacity:var(--blockOpacity);mix-blend-mode:var(--blockBlend)}.block_bdecoration__3KJh-,.block_fdecoration__12tBw,.block_inner__3LS6s{top:0;left:0;width:100%;height:100%;position:absolute}.block_fdecoration__12tBw{pointer-events:none}";
   var css$h = {"block":"block_block__BWbaZ","inner":"block_inner__3LS6s","bdecoration":"block_bdecoration__3KJh-","fdecoration":"block_fdecoration__12tBw"};
   styleInject(css_248z$m);
 
@@ -1627,9 +1627,9 @@
 
       const customSelector = blockConfig.id && blockConfig.id.indexOf('#') === 0 ? `id="${blockConfig.id.replace('#', '')}"` : '';
       const child = utils.div(`<div class="block ${css$h.block} b b${that.index}">
-    <div class="backDecoration ${css$h.bdecoration}"></div>
+    <div class="blockBackWrapper ${css$h.bdecoration}"></div>
     <div ${customSelector} class="blockContainer ${css$h.inner}"></div>
-    <div class="frontDecoration ${css$h.fdecoration}"></div>
+    <div class="blockFrontWrapper ${css$h.fdecoration}"></div>
   </div>`);
       utils.globs(child, blockConfig);
       utils.props(child, blockConfig);
@@ -1752,7 +1752,7 @@
         <div class="${css$g.wrapper}">
             <div class="${css$g.content}">
                 <div class="layout blocksContainer ${css$g.viewport}"></div>
-                <div class="frontContainer ${css$g.fcontainer}"></div>
+                <div class="moduleFrontWrapper ${css$g.fcontainer}"></div>
             </div>
         </div>
       </div>

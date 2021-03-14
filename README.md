@@ -29,9 +29,9 @@
 
 ## Interact!
 
-To ask any kind of question, use the [Discussions](/presenta-software/presenta-lib/discussions) board.
+To ask any kind of question, use the [Discussions](https://github.com/presenta-software/presenta-lib/discussions) board.
 
-To fill an issue or bug, use the [Issues](/presenta-software/presenta-lib/issues) board.
+To fill an issue or bug, use the [Issues](https://github.com/presenta-software/presenta-lib/issues) board.
 
 
 ## Contribute

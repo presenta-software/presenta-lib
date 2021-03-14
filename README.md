@@ -7,7 +7,7 @@
 </h1>
 
 <h3 align="center"> 
-	A javascript library to build expressive web presentations in seconds. 👀
+	👀 A javascript library to build expressive web presentations in seconds. 👀
 </h3>
 
 <p align="center">
@@ -26,6 +26,13 @@
 - 📃 [Library documentation](https://lib.presenta.cc/)
 - 🚀 [Quick Starterkit](https://github.com/presenta-software/presenta-lib-starterkit)
 - ⏯ [Online Playground](http://play.presenta.cc/)
+
+## Interact!
+
+To ask any kind of question, use the [Discussions](/presenta-software/presenta-lib/discussions) board.
+
+To fill an issue or bug, use the [Issues](/presenta-software/presenta-lib/issues) board.
+
 
 ## Contribute
 

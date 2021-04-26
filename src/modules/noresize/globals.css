@@ -1,0 +1,9 @@
+.noresize.sceneObject{
+    width: 100%;
+    height: 100%;
+}
+.noresize.sceneObject .sceneWrapper{
+    width: 100%;
+    height: 100%;
+    transform: scale(1);
+}

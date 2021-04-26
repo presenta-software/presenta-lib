@@ -40,15 +40,6 @@
 }
 
 
-.noResize.scene{
-    width: 100%;
-    height: 100%;
-}
-.noResize .wrapper{
-    width: 100%;
-    height: 100%;
-    transform: scale(1);
-}
 
 .content{
     width: 100%;

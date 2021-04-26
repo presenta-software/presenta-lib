@@ -1,9 +1,11 @@
 import steps from './steps/index'
 import jump from './jump/index'
+import noresize from './noresize/index'
 
 const modules = {
   steps,
-  jump
+  jump,
+  noresize
 }
 
 const add = (type, module, override) => {

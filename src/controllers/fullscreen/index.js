@@ -1,3 +1,4 @@
+const DEFAULT_KEY = 'f'
 
 const isAlreadyFullscreen = () => {
   return (document.fullscreenElement ||
@@ -31,7 +32,7 @@ const makeFullscreen = el => {
 }
 
 const fullscreen = function (rootElement, router, ctrlConfig, projectConfig) {
-  const key = ctrlConfig.key || 'f'
+  const key = ctrlConfig.key || DEFAULT_KEY
 
   const rootEl = rootElement.parentNode
   const root = rootEl.parentNode
@@ -57,6 +58,15 @@ const fullscreen = function (rootElement, router, ctrlConfig, projectConfig) {
   router.on('toggleFullscreen', toggle)
 
   rootEl.addEventListener('keyup', setKeyListener)
+}
+
+fullscreen.def = {
+  name: 'Fullscreen',
+  description: '',
+  options: [
+    { key: 'active', name: 'Active', description: '', type: 'checkbox', value: true },
+    { key: 'key', name: 'Default key', description: '', type: 'text', value: DEFAULT_KEY }
+  ]
 }
 
 export { fullscreen }

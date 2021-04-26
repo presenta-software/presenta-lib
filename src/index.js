@@ -9,7 +9,7 @@ import { add as addBlock, blocks } from './blocks/types.js'
 import { Splash } from './core/Splash.js'
 import { Container } from './core/Container.js'
 import { Install } from './core/Install.js'
-import { group } from './blocks/group' // this import to avoid circular dependencies warning
+// import { group } from './blocks/group' // this import to avoid circular dependencies warning
 
 import utils from './utils'
 import defaults from './utils/defaults'
@@ -17,7 +17,11 @@ import pluginsInit from './utils/pluginsInit'
 import validate from './utils/validate'
 
 const Presenta = function (el, config) {
-  if (!el || !config) return console.log('Missing required parameters, wrapper or config.')
+  if (!el || !config) {
+    return new Promise((resolve, reject) => {
+      reject({ message: 'Missing required parameters, wrapper or config.' })
+    })
+  }
 
   const hasErr = validate(config)
   const isBlocking = hasErr.filter(d => d.hard)
@@ -47,7 +51,7 @@ const Presenta = function (el, config) {
   })
 }
 
-addBlock('group', group) // this to avoid circular dependencies warning, since removed implicit inclusion in block types
+// addBlock('group', group) // this to avoid circular dependencies warning, since removed implicit inclusion in block types
 
 Presenta.version = version
 

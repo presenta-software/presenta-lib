@@ -1,4 +1,3 @@
-import { version } from '../../package.json'
 
 export default config => {
   const err = []

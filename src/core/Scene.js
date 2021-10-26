@@ -10,7 +10,11 @@ const Scene = function (cont, sceneConfig, projectConfig, rootElement) {
     let blockInstances = []
 
     let modInstances = []
+    const blockPromises = []
+    const preModPromises = []
     const modPromises = []
+
+    sceneConfig.contextType = 'scene'
 
     /*
     Let's notify the user about missing fields
@@ -30,14 +34,13 @@ const Scene = function (cont, sceneConfig, projectConfig, rootElement) {
         if (!sceneConfig.hasOwnProperty('modules')) sceneConfig.modules = {}
         if (!sceneConfig.modules.hasOwnProperty(k)) {
           sceneConfig.modules[k] = projectConfig.modules[k]
+        } else {
+          for (const ks in projectConfig.modules[k]) {
+            if (sceneConfig.modules[k] && !sceneConfig.modules[k][ks]) sceneConfig.modules[k][ks] = projectConfig.modules[k][ks]
+          }
         }
       }
     }
-
-    /*
-    Check if transition has been defined at project level or scene level
-  */
-    const hasTransition = sceneConfig.transition || projectConfig.transition
 
     /*
     Create the wrapper template
@@ -46,44 +49,42 @@ const Scene = function (cont, sceneConfig, projectConfig, rootElement) {
     sceneConfig._steps = []
     const steps = sceneConfig._steps
 
-    const noResize = sceneConfig.noResize || projectConfig.noResize ? css.noResize : ''
-
     const child = u.div(`<div 
       class="s ${css.sceneContainer}">
-      <div class="sceneObject ${css.scene} ${noResize}">
-        <div class="${css.wrapper}">
+      <div class="sceneObject ${css.scene}">
+        <div class="sceneWrapper ${css.wrapper}">
             <div class="${css.content}">
                 <div class="layout blocksContainer ${css.viewport}"></div>
-                <div class="moduleFrontWrapper ${css.fcontainer}"></div>
             </div>
         </div>
       </div>
-  </div>`)
+    </div>`)
     cont.appendChild(child)
 
-    u.globs(child, sceneConfig)
-    u.props(child, sceneConfig)
     sceneConfig._el = child
     sceneConfig._rootElement = rootElement
     sceneConfig._mode = projectConfig.mode
+    sceneConfig._projectConfig = projectConfig
 
     /**
     Init blocks if any
     */
-    const cblocks = sceneConfig.blocks
-    const blockPromises = []
-    cblocks.forEach((blockConfig, i) => {
-      blockConfig._index = i
-      blockConfig._portrait = projectConfig._orientation === 'portrait'
-      blockConfig._mode = projectConfig.mode
-      blockConfig._rootElement = rootElement
-      blockConfig._sceneConfig = sceneConfig
+    const initBlocks = () => {
+      const cblocks = sceneConfig.blocks
 
-      const blocksContainer = child.querySelector('.blocksContainer')
-      blockPromises.push(new Block(blocksContainer, blockConfig))
-    })
+      cblocks.forEach((blockConfig, i) => {
+        blockConfig._index = i
+        blockConfig._portrait = projectConfig._orientation === 'portrait'
+        blockConfig._mode = projectConfig.mode
+        blockConfig._rootElement = rootElement
+        blockConfig._sceneConfig = sceneConfig
 
-    const initModules = () => {
+        const blocksContainer = child.querySelector('.blocksContainer')
+        blockPromises.push(new Block(blocksContainer, blockConfig))
+      })
+    }
+
+    const initModules = (runBefore) => {
       if (sceneConfig.modules) {
         for (const k in sceneConfig.modules) {
           const modConfig = sceneConfig.modules[k]
@@ -91,8 +92,12 @@ const Scene = function (cont, sceneConfig, projectConfig, rootElement) {
           if (!Mod) console.log(`Module "${k}" not found. Maybe you forgot to include it.`)
           if (Mod) {
             if (modConfig) {
-              const mod = new Mod(child, modConfig, sceneConfig)
-              modPromises.push(mod)
+              if (Mod.runBefore === true && runBefore) {
+                preModPromises.push(new Mod(child, modConfig, sceneConfig))
+              } else if (!Mod.runBefore && !runBefore) {
+                const mod = new Mod(child, modConfig, sceneConfig)
+                modPromises.push(mod)
+              }
             }
           }
         }
@@ -100,39 +105,33 @@ const Scene = function (cont, sceneConfig, projectConfig, rootElement) {
     }
 
     const initTransition = () => {
-      if (hasTransition) {
-        const wrap = child.querySelector('.sceneObject')
-        const dir = sceneConfig._presentatransdir === 'backward' ? 'to-left' : 'to-right'
-        Transition(wrap)
-          .init(dir)
-      }
+      const wrap = child.querySelector('.sceneObject')
+      const dir = sceneConfig._presentatransdir === 'backward' ? 'to-left' : 'to-right'
+      Transition(wrap)
+        .init(dir)
     }
 
     const startTransition = () => {
-      if (hasTransition) {
-        const wrap = child.querySelector('.sceneObject')
-        Transition(wrap)
-          .start()
+      const wrap = child.querySelector('.sceneObject')
+      Transition(wrap)
+        .start()
 
-        setTimeout(() => {
-          Transition(wrap)
-            .swap()
-        }, projectConfig._transitionDestroyDelay)
-      }
+      setTimeout(() => {
+        Transition(wrap)
+          .swap()
+      }, projectConfig._transitionDestroyDelay)
     }
 
     /*
     Public method called by the container to init the destroy phase
     */
     that.destroyAfter = _t => {
-      if (hasTransition) {
-        const wrap = child.querySelector('.sceneObject')
-        const odir = sceneConfig._presentatransdir === 'backward' ? 'to-right' : 'to-left'
-        const ndir = sceneConfig._presentatransdir === 'backward' ? 'to-left' : 'to-right'
-        Transition(wrap)
-          .clear(odir)
-          .end(ndir)
-      }
+      const wrap = child.querySelector('.sceneObject')
+      const odir = sceneConfig._presentatransdir === 'backward' ? 'to-right' : 'to-left'
+      const ndir = sceneConfig._presentatransdir === 'backward' ? 'to-left' : 'to-right'
+      Transition(wrap)
+        .clear(odir)
+        .end(ndir)
 
       const t = _t || 0
       modInstances.forEach(mod => { if (mod.beforeDestroy) mod.beforeDestroy() })
@@ -164,19 +163,35 @@ const Scene = function (cont, sceneConfig, projectConfig, rootElement) {
       blockInstances.forEach(block => { if (block.destroy) block.destroy() })
     }
 
+    that.updateBlock = (index, blockConfig) => {
+      blockInstances[index].destroy()
+      blockConfig._index = index
+
+      const blocksContainer = child.querySelector('.blocksContainer')
+      const prom = new Block(blocksContainer, blockConfig)
+      Promise.all([prom]).then(data => {
+        blockInstances[index] = data[0]
+        sceneConfig.blocks[index] = blockConfig
+      })
+    }
+
     that.sceneConfig = sceneConfig
     initTransition()
-    // initModules()
+    initModules(true)
 
-    Promise.all(blockPromises).then(data => {
-      blockInstances = data
+    Promise.all(preModPromises).then(data => {
+      initBlocks()
 
-      initModules()
+      Promise.all(blockPromises).then(data => {
+        blockInstances = data
+        initModules(false)
 
-      Promise.all(modPromises).then(data => {
-        modInstances = data
-        startTransition()
-        resolve(that)
+        Promise.all(modPromises).then(data => {
+          modInstances = data
+          startTransition()
+          child.classList.add('presentaSceneMounted')
+          resolve(that)
+        })
       })
     })
   })

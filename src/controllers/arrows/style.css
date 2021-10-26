@@ -1,8 +1,9 @@
 :root{
     --arrowsOpacity: .5;
-    --arrowsVerticalPosition: center;
-    --arrowsHorizontalPosition: space-between;
+    --arrowsflexAlign: center;
+    --arrowsflexJustify: space-between;
     --arrowsPadding: 10px;
+    --arrowsDirection: row;
 }
 
 .arrows{
@@ -21,11 +22,13 @@
     width: 100%;
     height: 100%;
     display: flex;
-    justify-content: var(--arrowsHorizontalPosition);
+    flex-direction: var(--arrowsDirection);
+
+    justify-content: var(--arrowsflexJustify);
     color: var(--colorFore);
 }
 
-.direction .inner{
+.vertical .inner{
     flex-direction: column;
 }
 
@@ -33,7 +36,7 @@
 .left, .right{
     height: 100%;
     display: flex;
-    align-items: var(--arrowsVerticalPosition);
+    align-items: var(--arrowsflexAlign);
     justify-content: center;
     cursor: pointer;
 

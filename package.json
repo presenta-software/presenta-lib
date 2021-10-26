@@ -5,10 +5,11 @@
   "description": "Build presentations, the modern way.",
   "main": "src/index.js",
   "unpkg": "dist/presenta.min.js",
-  "module": "dist/presenta.min.js",
+  "module": "dist/presenta.js",
   "scripts": {
     "start": "rollup -c --watch",
     "build": "rollup -c",
+    "test": "browser-sync start -s -f \"dist/*, test/*\" --startPath test",
     "bump": "npm run build && git add -u && git commit -m \"bump release\" && npm version patch && git push && npm publish && cd ../ && node starterkit.js"
   },
   "keywords": [
@@ -31,7 +32,7 @@
     "url": "https://github.com/presenta-software/presenta-lib/issues"
   },
   "engines": {
-    "node": ">=12.0.0"
+    "node": ">=16.0.0"
   },
   "globals": {
     "module": false,
@@ -47,20 +48,20 @@
   "license": "BSD-3-Clause",
   "dependencies": {},
   "devDependencies": {
-    "@babel/core": "^7.12.10",
-    "@babel/preset-env": "^7.12.10",
-    "@rollup/plugin-babel": "^5.2.2",
+    "@babel/core": "^7.14.3",
+    "@babel/preset-env": "^7.14.4",
+    "@rollup/plugin-babel": "^5.3.0",
     "@rollup/plugin-commonjs": "^13.0.2",
     "@rollup/plugin-json": "^4.1.0",
     "@rollup/plugin-node-resolve": "^8.4.0",
     "autoprefixer": "^9.8.6",
-    "cssnano": "^4.1.10",
+    "cssnano": "^4.1.11",
     "node-sass": "^4.14.1",
-    "rollup": "^2.34.2",
+    "rollup": "^2.50.6",
     "rollup-plugin-postcss": "^3.1.8",
     "rollup-plugin-svg": "^2.0.0",
     "rollup-plugin-terser": "^7.0.2",
-    "sass": "^1.32.0",
+    "sass": "^1.37.5",
     "standard": "^14.3.4"
   }
 }

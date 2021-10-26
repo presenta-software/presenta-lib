@@ -84,4 +84,6 @@ video.init = () => {
   if (u.io.addBaseurl) u.io.addBaseurl({ type: 'video', field: 'url' })
 }
 
+u.addBlockMainKey('video', 'url')
+
 export { video }

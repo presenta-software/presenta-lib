@@ -1,27 +1,23 @@
-import { autoplay } from './autoplay/index'
-import { keyboard } from './keyboard/index'
-import { arrows } from './arrows/index'
-import { black } from './black/index'
-import { fullscreen } from './fullscreen/index'
-import { focus } from './focus/index'
-import { preload } from './preload/index'
-import { progressbar } from './progressbar/index'
-import { pagenum } from './pagenum/index'
-import { shuffle } from './shuffle/index'
-import { loop } from './loop/index'
-import { current } from './current/index'
-import { hidecursor } from './hidecursor/index'
-import { hidden } from './hidden/index'
-import { limitswitch } from './limitswitch/index'
-import { sync } from './sync/index'
-import { rsync } from './rsync/index'
-import { cache } from './cache/index'
-import { baseurl } from './baseurl/index'
-import { brand } from './brand/index'
-import { fonts } from './fonts/index'
+import { keyboard } from './keyboard'
+import { arrows } from './arrows'
+import { black } from './black'
+import { fullscreen } from './fullscreen'
+import { focus } from './focus'
+import { preload } from './preload'
+import { progressbar } from './progressbar'
+import { shuffle } from './shuffle'
+import { loop } from './loop'
+import { current } from './current'
+import { hidecursor } from './hidecursor'
+import { hidden } from './hidden'
+import { limitswitch } from './limitswitch'
+import { sync } from './sync'
+import { rsync } from './rsync'
+import { cache } from './cache'
+import { baseurl } from './baseurl'
+import { transitions } from './transitions'
 
 const controllers = {
-  autoplay,
   keyboard,
   arrows,
   black,
@@ -29,7 +25,6 @@ const controllers = {
   focus,
   preload,
   progressbar,
-  pagenum,
   shuffle,
   loop,
   current,
@@ -40,8 +35,7 @@ const controllers = {
   rsync,
   cache,
   baseurl,
-  brand,
-  fonts
+  transitions
 }
 
 const add = (type, module, override) => {

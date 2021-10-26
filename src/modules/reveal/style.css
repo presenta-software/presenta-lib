@@ -1,0 +1,59 @@
+
+.reveal{
+
+    --revealTextAlign: center;
+    --revealPadding: 5px;
+    --revealFontSize: 2rem;
+    
+    --revealFont: var(--fontText);
+    --revealBackColor: var(--colorFore);
+    --revealColor: var(--colorBack);
+
+    --revealFlexAlign: center;
+    --revealFlexJustify: center;
+
+    width: 100%;
+    height: 100%;
+    position: absolute;
+    top:0;
+    left:0;
+
+    pointer-events: none;
+
+    transition-property: opacity, transform;
+    transition-duration: 1.33s;
+    transition-timing-function: cubic-bezier(0.19, 1, 0.22, 1);
+}
+
+.inner{
+    width: 100%;
+    height: 100%;
+    padding: var(--revealPadding);
+    background-color: var(--revealBackColor);
+    display: flex;
+    align-items: var(--revealFlexAlign);
+    justify-content: var(--revealFlexJustify);
+}
+
+
+.content{
+    
+    text-align: var(--revealTextAlign);
+    font-size: var(--revealFontSize);
+
+    color: var(--revealColor);
+    font-family: var(--revealFont);
+
+
+}
+
+.preview{
+    opacity: .3;
+}
+
+.exitSlideUp{
+    transform: translateY(-100%);
+}
+.exitFadeOut{
+    opacity: 0;
+}

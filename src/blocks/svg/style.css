@@ -1,6 +1,4 @@
-:root{
-    --svgPadding: 0;
-}
+
 
 .svg{
     width: 100%;
@@ -10,7 +8,6 @@
 .inner{
     width: 100%;
     height: 100%;
-    padding: var(--svgPadding);
 }
 
 .svg svg{

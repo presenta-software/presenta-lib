@@ -10,8 +10,7 @@ const iframePrimaryDomain = str => {
 }
 
 const embed = function (el, config) {
-  const previewMode = config._mode === 'preview'
-  const presentMode = config._mode === 'present'
+  const presentMode = config._mode === 'present' || config._mode === 'print' || config.overrideMode
 
   let iframe = null
   if (config.url) {
@@ -21,14 +20,35 @@ const embed = function (el, config) {
     iframe = config.code
   }
 
-  const name = iframePrimaryDomain(iframe)
-  const msg = name ? `Embed from <mark>${name}</mark>` : 'Embed resource'
+  if (!iframe) return false
 
-  const coverFrame = `<div class="cover ${css.loading}"><h1>${msg}</h1></div>`
-  const blockPointer = config.blockPointer ? `<div class='${css.blockmouse}' />` : ''
-  const posterFrame = config.poster ? `<div class="${css.poster}"><img src="${config.poster}" /></div>` : ''
+  const that = this
+  return new Promise((resolve, reject) => {
+    const name = iframePrimaryDomain(iframe)
+    const msg = name ? `Embed from <mark>${name}</mark>` : 'Embed resource'
 
-  const child = u.div(`<div class="c ${css.embed}">
+    const coverFrame = `<div class="cover ${css.loading}"><h1>${msg}</h1></div>`
+    const blockPointer = config.blockPointer ? `<div class='${css.blockmouse}' />` : ''
+    const posterFrame = config.poster ? `<div class="${css.poster}"><img src="${config.poster}" /></div>` : ''
+
+    const done = () => {
+      child.querySelector('.' + css.loading).style.display = 'none'
+      child.querySelector('.' + css.poster).style.display = 'none'
+      resolve(that)
+    }
+
+    const waitForReady = config.waitReady
+    if (presentMode && waitForReady) {
+      console.log('waitReady')
+      window.addEventListener('message', e => {
+        console.log('message', e.data)
+        if (e.data === 'presenta.iframe.ready') {
+          done()
+        }
+      })
+    }
+
+    const child = u.div(`<div class="c ${css.embed}">
     <div class="${css.inner}">
         <div class="${css.frame}">${iframe}</div>
         ${coverFrame}
@@ -36,22 +56,25 @@ const embed = function (el, config) {
         ${blockPointer}
     </div>
   </div>`)
-  el.appendChild(child)
+    el.appendChild(child)
 
-  this.beforeDestroy = () => {
-  }
+    if (presentMode) {
+      const frame = child.querySelector('iframe')
 
-  if (iframe && presentMode) {
-    const frame = child.querySelector('iframe')
-    frame.addEventListener('load', () => {
-      child.querySelector('.' + css.loading).style.display = 'none'
-      if (posterFrame) child.querySelector('.' + css.poster).style.display = 'none'
-    })
-  }
+      if (waitForReady) {
+      } else {
+        console.log('waitLoad')
+        frame.addEventListener('load', () => {
+          console.log('load')
+          done()
+        })
+      }
+    } else {
+      resolve(that)
+    }
+  })
 }
 
-embed.init = () => {
-  u.addProp(['embedPadding', 'embedBackcolor', 'embedPosterSize', 'embedPosterPosition'])
-}
+u.addBlockMainKey('embed', 'url')
 
 export { embed }

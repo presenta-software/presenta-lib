@@ -1,7 +1,3 @@
-:root{
-    --scenePadding: 0;
-}
-
 .sceneContainer{
     width: 100%;
     height: 100%;
@@ -20,6 +16,7 @@
     height: var(--presenta-sh);
     font-family: serif;
     /* user-select: none; */
+    --sceneColorBack: var(--colorBack);
 }
 
 
@@ -33,39 +30,22 @@
     transform: scale(1);
     transform: scale(var(--presenta-scal));
     transform-origin: top left;
-    overflow: hidden;
+    /* overflow: hidden; */
 
     padding: var(--scenePadding);
-    background-color: var(--sceneBackColor);
+    background: var(--sceneColorBack);
 }
 
 
-.noResize.scene{
-    width: 100%;
-    height: 100%;
-}
-.noResize .wrapper{
-    width: 100%;
-    height: 100%;
-    transform: scale(1);
-}
 
 .content{
     width: 100%;
     height: 100%;
     display: flex;
     flex-direction: column;
-    overflow: hidden;
+    /* overflow: hidden; */
 }
 
-.fcontainer{
-    top:0;
-    left:0;
-    width: 100%;
-    height: 100%;
-    position: absolute;
-    pointer-events: none;
-}
 
 
 .viewport{
@@ -78,7 +58,7 @@
     display: flex;
     flex-direction: row;
 }
-.viewport > div{
+/* .viewport > div{
     height: 100%;
-}
+} */
 

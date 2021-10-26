@@ -24,6 +24,7 @@ const parseSettings = cnf => {
 const steps = function (sceneElement, modConfig, sceneConfig) {
   // we don't want to performe steps in non-presentation mode
   if (sceneConfig._mode !== 'present') return
+  if (sceneConfig.contextType !== 'scene') return
 
   const modSett = parseSettings(modConfig)
   let defTag = modSett.tag || '.step'

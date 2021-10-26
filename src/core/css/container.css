@@ -9,7 +9,7 @@
     width: 100%;
     height: 100%;
     position: relative;
-    overflow: hidden;
+    /* overflow: hidden; */
 
     outline: none;
 }
@@ -18,7 +18,7 @@
     width: 100%;
     height: 100%;
     position: relative;
-    overflow: hidden;
+    /* overflow: hidden; */
     padding-top: var(--containerPaddingTop);
     padding-left: var(--containerPaddingLeft);
     padding-right: var(--containerPaddingRight);
@@ -29,7 +29,7 @@
     width: 100%;
     height: 100%;
     position: relative;
-    overflow: hidden;
+    /* overflow: hidden; */
 }
 
 .container > div{

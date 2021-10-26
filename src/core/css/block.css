@@ -1,36 +1,64 @@
-
+:root{
+  --left: inherit;
+  --top: inherit;
+  --width: 100%;
+  --height: 100%;
+  --angle: 0;
+  --skew: 0;
+  --right: inherit;
+  --bottom: inherit;
+  --position: absolute;
+  --radius: none;
+}
 
 .block {
-  background: var(--colorBack);
+  top: var(--top);
+  left: var(--left);
+  width: var(--width);
+  height: var(--height);
+  bottom: var(--bottom);
+  right: var(--right);
+  position: var(--position);
   
-  width: 100%;
-  height: 100%;
-  flex: 1;
-  flex: var(--blockWeight);
-  overflow: hidden;
+  --blockColor: var(--colorFore);
+  /* --blockBackground: var(--colorBack); */
+  --blockBorder: 0;
 
-  position: relative;
+  transform-origin: top left;
+  transform: rotate(var(--angle)) skew(var(--skew));
+
 }
 
 .inner {
   width: 100%;
   height: 100%;
-  padding: var(--blockPadding);
+  
   opacity: var(--blockOpacity);
   mix-blend-mode: var(--blockBlend);
+  clip-path: var(--blockClip);
+  box-shadow: var(--blockShadow);
+  
+  overflow: hidden;
+}
+.subinner{
+  width: 100%;
+  height: 100%;
+  background: var(--blockBackground);
+  color: var(--blockColor);
+  padding: var(--blockPadding);
+  border-radius: var(--blockRadius);
+  border-width: var(--blockBorder);
+  border-style: solid;
+  overflow: hidden;
 }
 
 
-.bdecoration,
-.fdecoration,
+
 .inner{
     top:0;
     left:0;
     width: 100%;
     height: 100%;
     position: absolute;
-}
-
-.fdecoration{
-  pointer-events: none;
+    
 }

@@ -4,6 +4,8 @@ import u from '../../utils.js'
 u.addProp(['progressbarHeight', 'progressbarBottom', 'progressbarColor'])
 
 const progressbar = function (rootElement, router, ctrlConfig, projectConfig) {
+  if (projectConfig.mode === 'preview') return
+
   const child = u.div(`<div class="${css.progressbar}"></div>`)
   const bar = u.div(`<div class="${css.bar}"></div>`)
   child.appendChild(bar)

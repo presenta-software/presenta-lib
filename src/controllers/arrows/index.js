@@ -6,24 +6,38 @@ import rightArrow from './icons/arrow-right-circle.svg'
 import upArrow from './icons/arrow-up-circle.svg'
 import downArrow from './icons/arrow-down-circle.svg'
 
-u.addProp([
-  'arrowsOpacity',
-  'arrowsVerticalPosition',
-  'arrowsHorizontalPosition',
-  'arrowsPadding'
-])
+const props = [
+  'opacity',
+  'direction',
+  'flexAlign',
+  'flexJustify',
+  'padding'
+]
+
+/*
+controllers:{
+  arrows: {
+    opacity: 0.5,
+    flexAlign: '',
+    flexJustify: '',
+    padding: ''
+  }
+}
+*/
 
 const arrows = function (rootElement, router, ctrlConfig, projectConfig) {
   let timer = null
   let numInteraction = 0
 
-  const vertical = ctrlConfig === 'vertical' ? css.vertical : ''
+  const vertical = ctrlConfig.direction === 'vertical' ? css.vertical : ''
+
+  const rawp = u.rawProps('arrows', props, ctrlConfig)
 
   const firstArrow = vertical ? upArrow : leftArrow
   const lastArrow = vertical ? downArrow : rightArrow
 
   const child = u.div(`<div class="${css.arrows} ${vertical}"></div>`)
-  const inner = u.div(`<div class="${css.inner}"></div>`)
+  const inner = u.div(`<div class="${css.inner}" style="${rawp}"></div>`)
 
   const left = u.div(`<div id="evt_trg_ctrl_arrow_left" class="${css.left}">
     <div class="${css.ui}">${firstArrow}</div>

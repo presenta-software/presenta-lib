@@ -3,6 +3,8 @@ import u from '../utils.js'
 import loader from './icons/loader.svg'
 
 const Splash = function (rootElement, projectConfig) {
+  const aspect = projectConfig.aspect || 1.6
+
   /*
       Let's check and fix the wrapper size
   */
@@ -16,7 +18,7 @@ const Splash = function (rootElement, projectConfig) {
   }
   if (h < 50) {
     h = 200
-    if (projectConfig) h = w / projectConfig.aspect
+    h = w / aspect
     rootElement.style.height = `${h}px`
   }
 

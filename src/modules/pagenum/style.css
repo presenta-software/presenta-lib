@@ -1,16 +1,16 @@
-:root{
+
+.pagenum{
+
     --pagenumTextAlign: right;
-    --pagenumPadding: 5px;
-    --pagenumFontSize: 10px;
+    --pagenumPadding: .75rem;
+    --pagenumFontSize: .9rem;
     
     --pagenumBackColor: none;
     --pagenumFont: var(--fontText);
+    --pagenumColor: var(--colorFore);
 
     --pagenumFlexAlign: flex-end;
     --pagenumFlexJustify: flex-end;
-}
-
-.pagenum{
 
     width: 100%;
     height: 100%;

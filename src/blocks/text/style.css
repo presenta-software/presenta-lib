@@ -1,20 +1,39 @@
-:root{
-  --textPadding: 0;
-  --textAlign: center;
-  --textListAlign: left;
-  --textFlexAlign: center;
-  --textFlexJustify: center;
-  --textSize:1rem;
-  --textWidth: auto;
-}
-
-
 .text{
-    
     width: 100%;
     height: 100%;
     position: relative;
-    color: var(--colorFore)
+
+    --textAlign: center;
+    --textVertical: center;
+    --textHorizontal: center;
+    --textSize:1rem;
+
+    --textWidth: auto;
+    --textFont: var(--fontText);
+
+    --textBackground: none;
+    --textColor: var(--colorFore);
+    --textPadding: 0;    
+    --textLineHeight: inherit;
+    --textBorderTop: none;
+    --textBorderLeft: none;
+    --textBorderRight: none;
+    --textBorderBottom: none;
+    --textBorderRadius: 0; 
+    --textShadow: none;   
+    --textBlend: none;   
+}
+
+
+.overlay::before{
+  left:0;
+  top:0;
+  width: 100%;
+  height: 100%;
+  position: absolute;
+  content: '';
+  background: var(--colorBack);
+  opacity: 0.6;
 }
 
 .promise{
@@ -31,29 +50,37 @@
     display: flex;
     width: 100%;
     height: 100%;
-    align-items: var(--textFlexAlign);
-    justify-content: var(--textFlexJustify);
+    align-items: var(--textVertical);
+    justify-content: var(--textHorizontal);
 }
 
 .textbox{
-    padding: var(--textboxpadding);
     text-align: var(--textAlign);
     /*overflow: hidden; */ /* removed for shadow, maybe neccessary */
     font-size: var(--textSize);
-    color: var(--textboxcolor);
+    font-family: var(--textFont);
+
     --backmark: var(--colorAccent);
     --foremark: var(--colorBack);
     --textaccentcolor: var(--colorAccent);
-    font-family: var(--fontText);
     width: var(--textWidth);
 }
 
 .itext{
-    border: var(--textboxborder) solid var(--colorAccent);
     padding: var(--textPadding);
-    border-radius: var(--textboxradius);
-    box-shadow: var(--textboxshadow);
-    background-color: var(--textboxbackcolor);
+
+    background: var(--textBackground);
+    color: var(--textColor);
+    line-height: var(--textLineHeight);
+
+    border-top: var(--textBorderTop);
+    border-left: var(--textBorderLeft);
+    border-right: var(--textBorderRight);
+    border-bottom: var(--textBorderBottom);
+    border-radius: var(--textBorderRadius);
+    
+    box-shadow: var(--textShadow);
+    mix-blend-mode: var(--textBlend);
 }
 
 .itext img{
@@ -67,7 +94,7 @@
   background-color: var(--backmark);
   color: var(--foremark);
   padding: .5rem .5rem;
-  display: inline-block;
+  /* display: inline-block; */
 }
 .itext high {
   color: var(--textaccentcolor);
@@ -80,11 +107,20 @@
   color: var(--textaccentcolor);
   text-decoration: underline;
 }
+.itext btn{
+  background-color: var(--colorFore);
+  color: var(--colorBack);
+  padding: 1rem 2rem;
+  display: inline-block;
+  border-radius: 12px;
+  overflow: hidden;
+}
 
 .itext blockquote {
   font-size: 2em;
   font-weight: 400;
   font-style: italic;
+  font-family: var(--fontAlt);
 }
 
 .itext h1,
@@ -116,12 +152,12 @@
 
 .itext > ul,
 .itext > ol {
-  font-size: 1.5em;
-  line-height: 1.1em;
+  /* font-size: 1.5em;
+  line-height: 1.1em; */
 }
 .itext ul,
 .itext ol { 
-  text-align: var(--textListAlign);
+  text-align: left;
   margin: 0;
   padding: 0;
   list-style-type: none;
@@ -170,7 +206,7 @@
 .itext h4,
 .itext h5,
 .itext h6 {
-  font-family: var(--fontHeading);
+  font-family: var(--fontHead);
   padding: .5rem 0;
 }
 
@@ -196,6 +232,13 @@
 .itext p{
   padding: .5rem 0;
 }
+.itext p:first-child{
+  padding-top: 0;
+}
+.itext p:last-child{
+  padding-bottom: 0;
+}
+
 
 .itext hr{
   border: 1px solid var(--colorFore);

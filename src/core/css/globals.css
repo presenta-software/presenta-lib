@@ -11,7 +11,7 @@
     --blockOpacity: 1;
     --blockBlend: unset;
     --scenePadding: 0;
-    --sceneBackColor: none;
+    --sceneColorBack: #fff;
 }
 
 .presenta * {

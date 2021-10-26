@@ -1,0 +1,23 @@
+.line{
+    --lineColor: var(--colorFore);
+    --lineTickness: 1;
+    
+    width: 100%;
+    height: 100%;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+
+.horizontal .el{
+    width: 100%;
+    height: var(--lineTickness);
+}
+.vertical .el{
+    height: 100%;
+    width: var(--lineTickness);
+}
+
+.el{
+    background: var(--lineColor);
+}

@@ -80,7 +80,7 @@ const Router = function (rootElement, projectConfig) {
     const evts = Array.isArray(evt) ? evt : [evt]
 
     evts.forEach(ev => {
-      if (ev === 'indexChanged') updateRouterWrapper()
+      // if (ev === 'indexChanged') updateRouterWrapper()
 
       if (listeners[ev]) {
         listeners[ev].forEach(clb => {
@@ -116,6 +116,13 @@ const Router = function (rootElement, projectConfig) {
   this.off = (evt, clb) => {
     const index = listeners[evt].indexOf(clb)
     if (index >= 0) listeners[evt].splice(index, 1)
+  }
+
+  this.destroy = () => {
+    for (const k in listeners) {
+      listeners[k] = null
+      delete listeners[k]
+    }
   }
 
   this.totalScenes = () => numScenes() + 1

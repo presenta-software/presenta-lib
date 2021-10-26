@@ -1,0 +1,8 @@
+.viewportLimit{
+    width: 100%;
+    height: 100%;
+    position: absolute;
+    border: 3px dashed red;
+    pointer-events: none;
+    visibility: hidden;
+}

@@ -60,13 +60,4 @@ const fullscreen = function (rootElement, router, ctrlConfig, projectConfig) {
   rootEl.addEventListener('keyup', setKeyListener)
 }
 
-fullscreen.def = {
-  name: 'Fullscreen',
-  description: '',
-  options: [
-    { key: 'active', name: 'Active', description: '', type: 'checkbox', value: true },
-    { key: 'key', name: 'Default key', description: '', type: 'text', value: DEFAULT_KEY }
-  ]
-}
-
 export { fullscreen }

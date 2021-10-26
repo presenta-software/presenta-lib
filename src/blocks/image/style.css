@@ -1,11 +1,8 @@
 :root{
-    --imagePadding: 0;
-    --imageBorder: none;
-    --imageShadow: none;
-    --imageSize: cover;
     --imagePosition: center;
-    --imageWidth: 100%;
-    --imageHeight: 100%;
+    --imageFilter: none;
+    --imageScale: 1;
+    --imageSize: cover;
 }
 
 
@@ -22,19 +19,18 @@
 
 .preimg{
     flex:1;
-    padding: var(--imagePadding);
-
     display: flex;
     align-items: center;
     justify-content: center;
+    overflow: hidden;
 }
 .preimg img{
-    width: var(--imageWidth);
-    height: var(--imageHeight);
-    border: var(--imageBorder);
-    box-shadow: var(--imageShadow);
+    width: calc(var(--imageScale) * 100%);
+    height: calc(var(--imageScale) * 100%);
 
     object-fit: var(--imageSize);
     object-position: var(--imagePosition);
+
+    filter: var(--imageFilter);
 }
 

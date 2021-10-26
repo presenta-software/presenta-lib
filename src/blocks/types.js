@@ -3,13 +3,19 @@ import { embed } from './embed'
 import { image } from './image'
 import { video } from './video'
 import { svg } from './svg'
+import { shape } from './shape'
+import { line } from './line'
+import { gtext } from './gtext'
 
 const blocks = {
   text,
   embed,
   image,
   video,
-  svg
+  svg,
+  shape,
+  line,
+  gtext
 }
 
 const add = (type, module, override) => {

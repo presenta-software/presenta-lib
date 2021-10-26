@@ -9,12 +9,13 @@ import { add as addBlock, blocks } from './blocks/types.js'
 import { Splash } from './core/Splash.js'
 import { Container } from './core/Container.js'
 import { Install } from './core/Install.js'
-// import { group } from './blocks/group' // this import to avoid circular dependencies warning
 
 import utils from './utils'
 import defaults from './utils/defaults'
 import pluginsInit from './utils/pluginsInit'
 import validate from './utils/validate'
+
+import { interpolate, addBlockMainKey, blocksMainKey } from './utils/interpolateConfig'
 
 const Presenta = function (el, config) {
   if (!el || !config) {
@@ -51,8 +52,6 @@ const Presenta = function (el, config) {
   })
 }
 
-// addBlock('group', group) // this to avoid circular dependencies warning, since removed implicit inclusion in block types
-
 Presenta.version = version
 
 Presenta.addBlock = addBlock
@@ -65,6 +64,10 @@ Presenta.addGlob = utils.addGlob
 Presenta.addProp = utils.addProp
 
 Presenta.io = utils.io
+
+Presenta.interpolate = interpolate
+Presenta.addBlockMainKey = addBlockMainKey
+Presenta.blocksMainKey = blocksMainKey
 
 Presenta.use = plugin => {
   plugin.install(Presenta)

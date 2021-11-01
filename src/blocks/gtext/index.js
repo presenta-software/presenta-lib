@@ -63,7 +63,7 @@ const gtext = function (el, config) {
       clampClass = css.clamp
     }
 
-    const child = u.div(`<div class="c ${css.stext} ${css.promise} ${inlineStyleClasses}">
+    const child = u.div(`<div class="c ${css.gtext} ${css.promise} ${inlineStyleClasses}">
     <div style="${rawp}" class="${css.inner}">
       <div class="pretext ${css.pretext}">
         <div class="${css.textbox}">
@@ -135,7 +135,5 @@ const gtext = function (el, config) {
     }
   })
 }
-
-u.addBlockMainKey('gtext', 'content')
 
 export { gtext }

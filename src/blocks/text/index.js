@@ -117,6 +117,4 @@ text.init = () => {
   // if (u.io.addMarkdown) u.io.addMarkdown({ type: 'text', field: 'text' })
 }
 
-u.addBlockMainKey('text', 'content')
-
 export { text }

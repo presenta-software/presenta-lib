@@ -75,6 +75,4 @@ const embed = function (el, config) {
   })
 }
 
-u.addBlockMainKey('embed', 'url')
-
 export { embed }

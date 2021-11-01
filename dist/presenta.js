@@ -183,105 +183,6 @@
     return fontUniqueName;
   };
 
-  const blocksMainKey = {};
-
-  const addBlockMainKey = (type, field) => {
-    blocksMainKey[type] = field;
-  };
-
-  const setValue = (val, def) => {
-    if (!def) return val; // simple template present
-
-    if (def.indexOf('$$') >= 0) {
-      return def.replace(/\$\$/gmi, val);
-    }
-
-    let stres = def;
-    const reg = /\$([a-zA-Z0-9]+)\b/gim;
-    const res = def.match(reg); // no templating present
-
-    if (!res) return val;
-    const pr = val.split('|');
-    const prp = {};
-    pr.forEach(p => {
-      const sp = p.split(':');
-      prp[sp[0]] = sp[1];
-    });
-    res.forEach(r => {
-      const v = prp[r] || '';
-      stres = stres.replace(r, v);
-    });
-    return stres;
-  };
-
-  const processScene = (scene, qry) => {
-    if (!scene.otherParams) scene.otherParams = {};
-
-    for (const k in qry) {
-      const p = qry[k];
-
-      if (!Array.isArray(p)) {
-        const block = scene.blocks.find(b => b.ukey === k);
-
-        if (block) {
-          if (typeof p === 'object') {
-            for (const y in p) {
-              const md = p[y];
-
-              if (typeof md === 'object') {
-                for (const g in md) {
-                  if (!block.modules[y]) block.modules[y] = {}; // module property
-
-                  block.modules[y][g] = md[g];
-                }
-              } else {
-                // explicit block property, i.e. my[content]=1
-                block[y] = setValue(md, block[y]);
-              }
-            }
-          } else {
-            // implicit default block property, i.e. my=1
-            const d = blocksMainKey[block.type];
-            if (d) block[d] = setValue(p, block[d]);
-          }
-        } else {
-          scene.otherParams[k] = p;
-        }
-      }
-    }
-  };
-
-  const interpolate = (conf, template) => {
-    template.scenes.forEach(scene => {
-      processScene(scene, conf);
-    }); // multi-frame structured mode
-
-    if (conf.frames) {
-      const newScenesList = [];
-      conf.frames.forEach(frame => {
-        const pid = frame.frameID;
-        const defFrame = template.scenes.find(s => s.pFrameID === pid);
-
-        if (defFrame) {
-          const clonedFrame = JSON.parse(JSON.stringify(defFrame));
-          processScene(clonedFrame, frame);
-          newScenesList.push(clonedFrame);
-        } else {
-          console.log(`frame ${pid} not found`);
-          newScenesList.push({
-            blocks: [{
-              type: 'text',
-              content: `frame ${pid} not found`
-            }]
-          });
-        }
-      });
-      template.scenes = newScenesList;
-    }
-
-    return template;
-  };
-
   const io = {};
   var utils = {
     select,
@@ -295,10 +196,7 @@
     div,
     fit,
     event,
-    io,
-    interpolate,
-    addBlockMainKey,
-    blocksMainKey
+    io
   };
 
   var leftArrow = "<svg xmlns=\"http://www.w3.org/2000/svg\" width=\"24\" height=\"24\" viewBox=\"0 0 24 24\" fill=\"none\" stroke=\"currentColor\" stroke-width=\"1.5\" stroke-linecap=\"round\" stroke-linejoin=\"round\" class=\"feather feather-arrow-left-circle\"><circle cx=\"12\" cy=\"12\" r=\"10\"></circle><polyline points=\"12 8 8 12 12 16\"></polyline><line x1=\"16\" y1=\"12\" x2=\"8\" y2=\"12\"></line></svg>";
@@ -1644,8 +1542,6 @@ window._sdpcallbackfunc()
     // if (u.io.addMarkdown) u.io.addMarkdown({ type: 'text', field: 'text' })
   };
 
-  utils.addBlockMainKey('text', 'content');
-
   var css_248z$b = ":root{--embedPadding:0;--embedBackcolor:none;--embedPosterSize:cover;--embedPosterPosition:center}.style_inner__3WOWs{padding:var(--embedPadding);position:relative}.style_frame__28PUh{background-color:var(--embedBackcolor);position:relative}.style_embed__2Pre2,.style_frame__28PUh,.style_inner__3WOWs{width:100%;height:100%}.style_frame__28PUh>iframe{width:100%;height:100%;border:none}.style_loading__1w7wc{position:absolute;top:0;left:0;width:100%;height:100%;display:flex;align-items:center;justify-content:center;color:var(--colorFore);font-family:var(--fontText);background-color:var(--colorBack)}.style_loading__1w7wc mark{background-color:var(--colorAccent);color:var(--colorBack)}.style_blockmouse__3bXSl,.style_poster__1TOx3{position:absolute;top:0;left:0;width:100%;height:100%}.style_poster__1TOx3{background-color:var(--colorBack)}.style_poster__1TOx3 img{width:100%;height:100%;-o-object-fit:var(--embedPosterSize);object-fit:var(--embedPosterSize);-o-object-position:var(--embedPosterPosition);object-position:var(--embedPosterPosition)}";
   var css$b = {"inner":"style_inner__3WOWs","frame":"style_frame__28PUh","embed":"style_embed__2Pre2","loading":"style_loading__1w7wc","blockmouse":"style_blockmouse__3bXSl","poster":"style_poster__1TOx3"};
   styleInject(css_248z$b);
@@ -1724,8 +1620,6 @@ window._sdpcallbackfunc()
     });
   };
 
-  utils.addBlockMainKey('embed', 'url');
-
   var css_248z$a = ":root{--imagePosition:center;--imageFilter:none;--imageScale:1;--imageSize:cover}.style_image__1fZIQ,.style_inner__3tyMU{width:100%;height:100%}.style_inner__3tyMU{display:flex}.style_preimg__2ypvx{flex:1;display:flex;align-items:center;justify-content:center;overflow:hidden}.style_preimg__2ypvx img{width:calc(var(--imageScale)*100%);height:calc(var(--imageScale)*100%);-o-object-fit:var(--imageSize);object-fit:var(--imageSize);-o-object-position:var(--imagePosition);object-position:var(--imagePosition);filter:var(--imageFilter)}";
   var css$a = {"image":"style_image__1fZIQ","inner":"style_inner__3tyMU","preimg":"style_preimg__2ypvx"};
   styleInject(css_248z$a);
@@ -1760,12 +1654,6 @@ window._sdpcallbackfunc()
       img.src = url;
     });
   }; // image.init = () => {
-  //   if (u.io.addPreload) u.io.addPreload({ type: 'image', field: 'url', as: 'image' })
-  //   if (u.io.addBaseurl) u.io.addBaseurl({ type: 'image', field: 'url' })
-  // }
-
-
-  utils.addBlockMainKey('image', 'url');
 
   var css_248z$9 = ":root{--videoSize:cover;--videoPosition:center}.style_video__1qbdJ{width:100%;height:100%;display:flex;align-items:center;justify-content:center}.style_video__1qbdJ video{width:100%;height:100%;-o-object-fit:var(--videoSize);object-fit:var(--videoSize);-o-object-position:var(--videoPosition);object-position:var(--videoPosition);pointer-events:none}";
   var css$9 = {"video":"style_video__1qbdJ"};
@@ -1867,8 +1755,6 @@ window._sdpcallbackfunc()
     });
   };
 
-  utils.addBlockMainKey('video', 'url');
-
   var css_248z$8 = ".style_inner__AjKjt,.style_svg__2xfFu,.style_svg__2xfFu svg{width:100%;height:100%}";
   var css$8 = {"svg":"style_svg__2xfFu","inner":"style_inner__AjKjt"};
   styleInject(css_248z$8);
@@ -1899,8 +1785,6 @@ window._sdpcallbackfunc()
     });
   };
 
-  utils.addBlockMainKey('svg', 'code');
-
   var css_248z$7 = ".style_shape__FgMb3{--shapeColor:var(--colorFore);width:100%;height:100%}.style_el__2h6ux{background:var(--shapeColor);width:100%;height:100%}.style_circle__311fy{-webkit-clip-path:ellipse(50% 50% at 50% 50%);clip-path:ellipse(50% 50% at 50% 50%)}.style_triangle__1SsU5{-webkit-clip-path:polygon(50% 0,0 100%,100% 100%);clip-path:polygon(50% 0,0 100%,100% 100%)}.style_rhombus__30IVZ{-webkit-clip-path:polygon(50% 0,100% 50%,50% 100%,0 50%);clip-path:polygon(50% 0,100% 50%,50% 100%,0 50%)}.style_star__SnUWn{-webkit-clip-path:polygon(50% 0,61% 35%,98% 35%,68% 57%,79% 91%,50% 70%,21% 91%,32% 57%,2% 35%,39% 35%);clip-path:polygon(50% 0,61% 35%,98% 35%,68% 57%,79% 91%,50% 70%,21% 91%,32% 57%,2% 35%,39% 35%)}";
   var css$7 = {"shape":"style_shape__FgMb3","el":"style_el__2h6ux","circle":"style_circle__311fy","triangle":"style_triangle__1SsU5","rhombus":"style_rhombus__30IVZ","star":"style_star__SnUWn"};
   styleInject(css_248z$7);
@@ -1915,8 +1799,6 @@ window._sdpcallbackfunc()
     el.appendChild(child);
   };
 
-  utils.addBlockMainKey('shape', 'color');
-
   var css_248z$6 = ".style_line__2r6B4{--lineColor:var(--colorFore);--lineTickness:1;width:100%;height:100%;display:flex;align-items:center;justify-content:center}.style_horizontal__Q3OSl .style_el__X2-Ln{width:100%;height:var(--lineTickness)}.style_vertical__1ldIK .style_el__X2-Ln{height:100%;width:var(--lineTickness)}.style_el__X2-Ln{background:var(--lineColor)}";
   var css$6 = {"line":"style_line__2r6B4","horizontal":"style_horizontal__Q3OSl","el":"style_el__X2-Ln","vertical":"style_vertical__1ldIK"};
   styleInject(css_248z$6);
@@ -1930,8 +1812,6 @@ window._sdpcallbackfunc()
   </div>`);
     el.appendChild(child);
   };
-
-  utils.addBlockMainKey('line', 'color');
 
   var css_248z$5 = ".style_gtext__1adQa{width:100%;height:100%;position:relative;--textAlign:center;--textVertical:center;--textHorizontal:center;--textSize:1rem;--textWidth:auto;--textFont:var(--fontText);--textBackground:none;--textColor:none;--textPadding:0;--textLineHeight:inherit;--textSpaceChar:inherit;--textBorderTop:none;--textBorderLeft:none;--textBorderRight:none;--textBorderBottom:none;--textBorderRadius:0;--textShadow:none;--textBlend:none;--textClamp:0}.style_promise__J7Q-m{visibility:hidden}.style_inner__1CMje{position:relative;width:100%;height:100%}.style_pretext__39rfL{display:flex;width:100%;height:100%;align-items:var(--textVertical);justify-content:var(--textHorizontal)}.style_textbox__3ByVj{text-align:var(--textAlign);font-size:var(--textSize);font-family:var(--textFont);--backmark:var(--colorAccent);--foremark:var(--colorBack);--textaccentcolor:var(--colorAccent);width:var(--textWidth)}.style_itext__21Sh6{padding:var(--textPadding);background:var(--textBackground);color:var(--textColor);line-height:var(--textLineHeight);letter-spacing:var(--textSpaceChar);border-top:var(--textBorderTop);border-left:var(--textBorderLeft);border-right:var(--textBorderRight);border-bottom:var(--textBorderBottom);border-radius:var(--textBorderRadius);text-shadow:var(--textShadow);mix-blend-mode:var(--textBlend)}.style_marked__PG23h span{background:var(--textAccent);color:var(--textColor)}.style_uppercase__3B-CJ{text-transform:uppercase}.style_underline__L52GP{text-decoration:underline;-webkit-text-decoration-color:var(--textColor);text-decoration-color:var(--textColor)}.style_clamp__2gjUG{overflow:hidden;-webkit-line-clamp:var(--textClamp);display:-webkit-box;-webkit-box-orient:vertical}";
   var css$5 = {"gtext":"style_gtext__1adQa","promise":"style_promise__J7Q-m","inner":"style_inner__1CMje","pretext":"style_pretext__39rfL","textbox":"style_textbox__3ByVj","itext":"style_itext__21Sh6","marked":"style_marked__PG23h","uppercase":"style_uppercase__3B-CJ","underline":"style_underline__L52GP","clamp":"style_clamp__2gjUG"};
@@ -1968,7 +1848,7 @@ window._sdpcallbackfunc()
         clampClass = css$5.clamp;
       }
 
-      const child = utils.div(`<div class="c ${css$5.stext} ${css$5.promise} ${inlineStyleClasses}">
+      const child = utils.div(`<div class="c ${css$5.gtext} ${css$5.promise} ${inlineStyleClasses}">
     <div style="${rawp}" class="${css$5.inner}">
       <div class="pretext ${css$5.pretext}">
         <div class="${css$5.textbox}">
@@ -2037,8 +1917,6 @@ window._sdpcallbackfunc()
       };
     });
   };
-
-  utils.addBlockMainKey('gtext', 'content');
 
   const blocks = {
     text,
@@ -2920,9 +2798,6 @@ window._sdpcallbackfunc()
   Presenta.addGlob = utils.addGlob;
   Presenta.addProp = utils.addProp;
   Presenta.io = utils.io;
-  Presenta.interpolate = interpolate;
-  Presenta.addBlockMainKey = addBlockMainKey;
-  Presenta.blocksMainKey = blocksMainKey;
 
   Presenta.use = plugin => {
     plugin.install(Presenta);

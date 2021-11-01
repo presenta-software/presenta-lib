@@ -7,8 +7,7 @@ import { event } from './utils/event.js'
 import { uid } from './utils/uid.js'
 import { rawProps } from './utils/rawProps.js'
 import { addFontDep } from './utils/addFontDep.js'
-import { interpolate, addBlockMainKey, blocksMainKey } from './utils/interpolateConfig'
 
 const io = {}
 
-export default { select, props, addProp, globs, addGlob, uid, rawProps, addFontDep, div, fit, event, io, interpolate, addBlockMainKey, blocksMainKey }
+export default { select, props, addProp, globs, addGlob, uid, rawProps, addFontDep, div, fit, event, io }

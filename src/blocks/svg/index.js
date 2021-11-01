@@ -25,6 +25,4 @@ svg.init = () => {
   if (u.io.addBaseurl) u.io.addBaseurl({ type: 'svg', field: 'url' })
 }
 
-u.addBlockMainKey('svg', 'code')
-
 export { svg }

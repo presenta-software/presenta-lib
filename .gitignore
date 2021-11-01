@@ -1,5 +1,4 @@
 node_modules
-test/
 .DS_Store
 npm-debug.log
 .env.local

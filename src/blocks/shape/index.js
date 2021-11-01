@@ -13,6 +13,4 @@ const shape = function (el, config) {
   el.appendChild(child)
 }
 
-u.addBlockMainKey('shape', 'color')
-
 export { shape }

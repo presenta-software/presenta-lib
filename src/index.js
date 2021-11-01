@@ -15,8 +15,6 @@ import defaults from './utils/defaults'
 import pluginsInit from './utils/pluginsInit'
 import validate from './utils/validate'
 
-import { interpolate, addBlockMainKey, blocksMainKey } from './utils/interpolateConfig'
-
 const Presenta = function (el, config) {
   if (!el || !config) {
     return new Promise((resolve, reject) => {
@@ -64,10 +62,6 @@ Presenta.addGlob = utils.addGlob
 Presenta.addProp = utils.addProp
 
 Presenta.io = utils.io
-
-Presenta.interpolate = interpolate
-Presenta.addBlockMainKey = addBlockMainKey
-Presenta.blocksMainKey = blocksMainKey
 
 Presenta.use = plugin => {
   plugin.install(Presenta)

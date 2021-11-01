@@ -1,7 +1,7 @@
 {
   "name": "@presenta/lib",
   "homepage": "https://lib.presenta.cc",
-  "version": "0.1.19",
+  "version": "1.0.0",
   "description": "Build presentations, the modern way.",
   "main": "src/index.js",
   "unpkg": "dist/presenta.min.js",
@@ -9,7 +9,6 @@
   "scripts": {
     "start": "rollup -c --watch",
     "build": "rollup -c",
-    "test": "browser-sync start -s -f \"dist/*, test/*\" --startPath test",
     "bump": "npm run build && git add -u && git commit -m \"bump release\" && npm version patch && git push && npm publish && cd ../ && node starterkit.js"
   },
   "keywords": [
@@ -22,7 +21,7 @@
   "author": {
     "name": "Fabio Franchino",
     "email": "hello@fabiofranchino.com",
-    "web": "https://fabiofranchino.com"
+    "web": "https://www.fabiofranchino.com"
   },
   "repository": {
     "type": "git",

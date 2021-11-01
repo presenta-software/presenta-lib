@@ -40,6 +40,4 @@ const image = function (el, config) {
 //   if (u.io.addBaseurl) u.io.addBaseurl({ type: 'image', field: 'url' })
 // }
 
-u.addBlockMainKey('image', 'url')
-
 export { image }

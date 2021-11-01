@@ -13,6 +13,4 @@ const line = function (el, config) {
   el.appendChild(child)
 }
 
-u.addBlockMainKey('line', 'color')
-
 export { line }

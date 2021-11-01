@@ -1,13 +1,10 @@
-<p align="center">
-	<a href="https://lib.presenta.cc/"><img src="teaser.gif"/></a>
-</p>
 
 <h1 align="center">
 	PRESENTA Lib
 </h1>
 
 <h3 align="center"> 
-	👀 A javascript library to build expressive web presentations in seconds. 👀
+	The javascript presentation library for the automation era.
 </h3>
 
 <p align="center">
@@ -24,12 +21,12 @@
 ## Get started
 
 - 📃 [Library documentation](https://lib.presenta.cc/)
-- 🚀 [Quick Starterkit](https://github.com/presenta-software/presenta-lib-starterkit)
-- ⏯ [Online Playground](http://play.presenta.cc/)
+- ⏯ [Basic examples](https://github.com/presenta-software/presenta-lib-examples)
+- 🚀 [Learn about the (upcoming) platform](https://www.presenta.cc/)
 
-## Interact!
+## Interact
 
-To ask any kind of question, use the [Discussions](https://github.com/presenta-software/presenta-lib/discussions) board.
+To ask any kind of question or suggesting a feature, use the [Discussions](https://github.com/presenta-software/presenta-lib/discussions) board.
 
 To fill an issue or bug, use the [Issues](https://github.com/presenta-software/presenta-lib/issues) board.
 
@@ -50,4 +47,4 @@ To build a release:
 
 **PRESENTA Lib** is released under the [3-Clause BSD license](LICENSE).
 
-Copyright © 2020-21 Fabio Franchino, [https://fabiofranchino.com](https://fabiofranchino.com)
+Copyright © 2020-21 Fabio Franchino, [https://www.fabiofranchino.com](fabiofranchino.com)

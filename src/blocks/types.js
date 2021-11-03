@@ -5,7 +5,6 @@ import { video } from './video'
 import { svg } from './svg'
 import { shape } from './shape'
 import { line } from './line'
-import { gtext } from './gtext'
 
 const blocks = {
   text,
@@ -14,8 +13,7 @@ const blocks = {
   video,
   svg,
   shape,
-  line,
-  gtext
+  line
 }
 
 const add = (type, module, override) => {

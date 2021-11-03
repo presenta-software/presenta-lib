@@ -2,38 +2,74 @@ import css from './style.css'
 import u from '../../utils.js'
 
 const props = [
+
+  'background',
+  'color',
+  'accent',
+
   'padding',
   'lineHeight',
+  'spaceChar',
+
+  'borderTop',
+  'borderLeft',
+  'borderRight',
+  'borderBottom',
+  'borderRadius',
+
+  'shadow',
+  'blend',
+
   'align',
   'vertical',
   'horizontal'
+
+]
+
+const inlinestyles = [
+  'marked',
+  'uppercase',
+  'underline'
 ]
 
 const text = function (el, config) {
   const that = this
   return new Promise((resolve, reject) => {
-    const html = config.content || ''
+    let html = config.content || ''
 
     if (!html) return resolve(that)
 
-    const rawp = u.rawProps('text', props, config)
+    if (!config.richText) html = `<span>${html}</span>`
+
+    let rawp = u.rawProps('text', props, config)
 
     let fsize = config.scale
     const autoscale = config.autoscale
 
-    let ccss = ''
-    const uid = u.uid(config)
-    if (config.css) {
-      const rcss = config.css.replace(/\./ig, '.' + uid + ' .')
-      ccss = `<style>${rcss}</style>`
+    let inlineStyleClasses = ''
+    inlinestyles.forEach(s => {
+      if (config[s]) {
+        inlineStyleClasses += css[s] + ' '
+      }
+    })
+
+    if (config.font) {
+      const name = u.addFontDep(config.font)
+      rawp += ` --textFont:${name};`
     }
 
-    const child = u.div(`<div class="c ${uid} ${css.text} ${css.promise}">
-    ${ccss}
+    const clamp = config.lineClamp
+    let clampClass = ''
+    if (clamp) {
+      rawp += '--textClamp: ' + clamp
+      clampClass = css.clamp
+    }
+
+    const child = u.div(`<div class="c ${css.text} ${css.promise} ${inlineStyleClasses}">
     <div style="${rawp}" class="${css.inner}">
       <div class="pretext ${css.pretext}">
         <div class="${css.textbox}">
-          <div class="textContent ${css.itext} ${css.fadein}">
+          <div class="textContent ${css.itext} ${clampClass}">
             ${html}
           </div>
         </div>
@@ -101,20 +137,18 @@ const text = function (el, config) {
       }
     }
 
-    setTimeout(compute)
+    if (config.font) {
+      fetch(config.font).then(res => {
+        setTimeout(compute)
+      })
+    } else {
+      setTimeout(compute)
+    }
 
     that.destroy = () => {
       resizeObserver.disconnect()
     }
   })
-}
-
-text.init = () => {
-  // u.addGlob(['textVar', 'textStyle'])
-  // u.addProp(['textPadding', 'textAlign', 'textFlexAlign', 'textFlexJustify', 'textWidth'])
-
-  // if (u.io.addBaseurl) u.io.addBaseurl({ type: 'text', html: true })
-  // if (u.io.addMarkdown) u.io.addMarkdown({ type: 'text', field: 'text' })
 }
 
 export { text }

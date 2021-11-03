@@ -15,6 +15,7 @@
     --textColor: var(--colorFore);
     --textPadding: 0;    
     --textLineHeight: inherit;
+    --textSpaceChar: inherit;
     --textBorderTop: none;
     --textBorderLeft: none;
     --textBorderRight: none;
@@ -22,19 +23,9 @@
     --textBorderRadius: 0; 
     --textShadow: none;   
     --textBlend: none;   
+    --textClamp: 0;
 }
 
-
-.overlay::before{
-  left:0;
-  top:0;
-  width: 100%;
-  height: 100%;
-  position: absolute;
-  content: '';
-  background: var(--colorBack);
-  opacity: 0.6;
-}
 
 .promise{
   visibility: hidden;
@@ -72,6 +63,7 @@
     background: var(--textBackground);
     color: var(--textColor);
     line-height: var(--textLineHeight);
+    letter-spacing: var(--textSpaceChar);
 
     border-top: var(--textBorderTop);
     border-left: var(--textBorderLeft);
@@ -273,3 +265,22 @@
 
 
 
+/* INLINE STYLES */
+.marked span{
+  background: var(--textAccent);
+  color: var(--textColor);
+}
+.uppercase{
+  text-transform: uppercase;
+}
+.underline{
+  text-decoration: underline;
+  text-decoration-color: var(--textColor);
+}
+
+.clamp{
+  overflow: hidden;
+  -webkit-line-clamp: var(--textClamp);
+  display: -webkit-box;
+  -webkit-box-orient: vertical;
+}

@@ -5,7 +5,7 @@ const applyRawProps = (el, config) => {
   if (typeof config !== 'object') return false
   props.forEach(c => {
     const v = config[c]
-    el.style.setProperty('--block' + upper(c), v)
+    if (v) el.style.setProperty('--block' + upper(c), v)
   })
 }
 

@@ -11,6 +11,10 @@
     height: 100%;
 }
 
+.path{
+    clip-path: var(--shapePath);
+}
+
 .circle{
     clip-path: ellipse(50% 50% at 50% 50%);
 }

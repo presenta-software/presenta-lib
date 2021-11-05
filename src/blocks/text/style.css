@@ -14,13 +14,13 @@
     --textBackground: none;
     --textColor: var(--colorFore);
     --textPadding: 0;    
-    --textLineHeight: inherit;
-    --textSpaceChar: inherit;
-    --textBorderTop: none;
-    --textBorderLeft: none;
-    --textBorderRight: none;
-    --textBorderBottom: none;
-    --textBorderRadius: 0; 
+    --textInterline: inherit;
+    --textSpacing: inherit;
+    --textBorderTop: inherit;
+    --textBorderLeft: inherit;
+    --textBorderRight: inherit;
+    --textBorderBottom: inherit;
+    --textRadius: 0; 
     --textShadow: none;   
     --textBlend: none;   
     --textClamp: 0;
@@ -62,14 +62,14 @@
 
     background: var(--textBackground);
     color: var(--textColor);
-    line-height: var(--textLineHeight);
-    letter-spacing: var(--textSpaceChar);
+    line-height: var(--textInterline);
+    letter-spacing: var(--textSpacing);
 
     border-top: var(--textBorderTop);
     border-left: var(--textBorderLeft);
     border-right: var(--textBorderRight);
     border-bottom: var(--textBorderBottom);
-    border-radius: var(--textBorderRadius);
+    border-radius: var(--textRadius);
     
     box-shadow: var(--textShadow);
     mix-blend-mode: var(--textBlend);

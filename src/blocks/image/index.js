@@ -35,9 +35,4 @@ const image = function (el, config) {
   })
 }
 
-// image.init = () => {
-//   if (u.io.addPreload) u.io.addPreload({ type: 'image', field: 'url', as: 'image' })
-//   if (u.io.addBaseurl) u.io.addBaseurl({ type: 'image', field: 'url' })
-// }
-
 export { image }

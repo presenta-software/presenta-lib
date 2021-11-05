@@ -1,21 +1,23 @@
-const autoplay = function (sceneElement, modConfig, sceneConfig) {
-  if (sceneConfig._mode === 'preview') return
+const autoplay = function (element, mod, config) {
+  if (config._mode === 'preview') return
+  if (config.contextType === 'block') return
 
   let timer = null
-  const router = sceneConfig._router
+  const router = config._router
+  console.log(config, router)
 
   let defdelay = 4000
-  switch (typeof modConfig) {
+  switch (typeof mod) {
     case 'number':
-      defdelay = modConfig
+      defdelay = mod
       break
 
     case 'string':
-      defdelay = +modConfig
+      defdelay = +mod
       break
 
     case 'object':
-      defdelay = +modConfig.delay
+      defdelay = +mod.delay
       break
 
     default:

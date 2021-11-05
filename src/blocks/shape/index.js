@@ -2,9 +2,10 @@ import css from './style.css'
 import u from '../../utils.js'
 
 const shape = function (el, config) {
-  const rawp = u.rawProps('shape', ['color', 'border'], config)
+  const rawp = u.rawProps('shape', ['color', 'path'], config)
 
-  const t = config.shape || 'rect'
+  let t = config.shape || 'rect'
+  if (config.path) t = 'path'
   const tEl = css[t]
 
   const child = u.div(`<div class="${css.shape}">

@@ -2,7 +2,6 @@ import css from './style.css'
 import u from '../../utils.js'
 
 const video = function (el, config) {
-  const previewMode = config._mode === 'preview'
   const presentMode = config._mode === 'present'
 
   const poster = config.poster ? `poster=${config.poster}` : ''
@@ -77,11 +76,5 @@ window.addEventListener("keydown", function(e) {
     }
 }, false);
 */
-
-video.init = () => {
-  u.addProp(['videoSize', 'videoPosition'])
-  if (u.io.addPreload) u.io.addPreload({ type: 'video', field: 'url', as: 'video' })
-  if (u.io.addBaseurl) u.io.addBaseurl({ type: 'video', field: 'url' })
-}
 
 export { video }

@@ -8,14 +8,14 @@ const props = [
   'accent',
 
   'padding',
-  'lineHeight',
-  'spaceChar',
+  'interline',
+  'spacing',
+  'radius',
 
   'borderTop',
   'borderLeft',
   'borderRight',
   'borderBottom',
-  'borderRadius',
 
   'shadow',
   'blend',
@@ -35,11 +35,9 @@ const inlinestyles = [
 const text = function (el, config) {
   const that = this
   return new Promise((resolve, reject) => {
-    let html = config.content || ''
+    const html = config.content || ''
 
     if (!html) return resolve(that)
-
-    if (!config.richText) html = `<span>${html}</span>`
 
     let rawp = u.rawProps('text', props, config)
 
@@ -58,7 +56,7 @@ const text = function (el, config) {
       rawp += ` --textFont:${name};`
     }
 
-    const clamp = config.lineClamp
+    const clamp = config.clamp
     let clampClass = ''
     if (clamp) {
       rawp += '--textClamp: ' + clamp
@@ -70,7 +68,7 @@ const text = function (el, config) {
       <div class="pretext ${css.pretext}">
         <div class="${css.textbox}">
           <div class="textContent ${css.itext} ${clampClass}">
-            ${html}
+            <span>${html}</span>
           </div>
         </div>
       </div>

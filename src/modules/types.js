@@ -10,7 +10,6 @@ import coords from './coords'
 import pagenum from './pagenum'
 import reveal from './reveal'
 import enters from './enters'
-import fabricbridge from './fabricbridge'
 import script from './script'
 
 const modules = {
@@ -26,7 +25,6 @@ const modules = {
   pagenum,
   reveal,
   enters,
-  fabricbridge,
   script
 }
 

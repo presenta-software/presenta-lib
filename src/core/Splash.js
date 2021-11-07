@@ -29,7 +29,7 @@ const Splash = function (rootElement, projectConfig) {
     ${label}
   </div>`)
   rootElement.appendChild(child)
-  u.globs(child, projectConfig)
+  // u.globs(child, projectConfig)
 
   this.destroy = () => {
     rootElement.removeChild(child)

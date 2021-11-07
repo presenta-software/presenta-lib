@@ -20,9 +20,4 @@ const svg = function (el, config) {
   }
 }
 
-svg.init = () => {
-  if (u.io.addCache) u.io.addCache({ type: 'svg', field: 'url' })
-  if (u.io.addBaseurl) u.io.addBaseurl({ type: 'svg', field: 'url' })
-}
-
 export { svg }

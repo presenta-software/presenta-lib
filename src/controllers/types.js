@@ -3,7 +3,6 @@ import { arrows } from './arrows'
 import { black } from './black'
 import { fullscreen } from './fullscreen'
 import { focus } from './focus'
-import { preload } from './preload'
 import { progressbar } from './progressbar'
 import { shuffle } from './shuffle'
 import { loop } from './loop'
@@ -13,9 +12,10 @@ import { hidden } from './hidden'
 import { limitswitch } from './limitswitch'
 import { sync } from './sync'
 import { rsync } from './rsync'
-import { cache } from './cache'
-import { baseurl } from './baseurl'
 import { transitions } from './transitions'
+// import { cache } from './cache'
+// import { baseurl } from './baseurl'
+// import { preload } from './preload'
 
 const controllers = {
   keyboard,
@@ -23,7 +23,6 @@ const controllers = {
   black,
   fullscreen,
   focus,
-  preload,
   progressbar,
   shuffle,
   loop,
@@ -33,9 +32,10 @@ const controllers = {
   limitswitch,
   sync,
   rsync,
-  cache,
-  baseurl,
   transitions
+  // cache,
+  // baseurl,
+  // preload
 }
 
 const add = (type, module, override) => {

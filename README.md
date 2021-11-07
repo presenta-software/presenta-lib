@@ -22,13 +22,20 @@
 
 - 📃 [Library documentation](https://lib.presenta.cc/)
 - ⏯ [Basic examples](https://github.com/presenta-software/presenta-lib-examples)
-- 🚀 [Learn about the (upcoming) platform](https://www.presenta.cc/)
+
+
+## Templates
+
+Custom templates can be created in two ways:
+
+- Writing a JS configuration following the [library documentation](https://lib.presenta.cc/)
+- Using our (upcoming) [visual editor and platform](https://www.presenta.cc/)
 
 ## Interact
 
-To ask any kind of question or suggesting a feature, use the [Discussions](https://github.com/presenta-software/presenta-lib/discussions) board.
+Questions and suggestions: [Discussions board](https://github.com/presenta-software/presenta-lib/discussions).
 
-To fill an issue or bug, use the [Issues](https://github.com/presenta-software/presenta-lib/issues) board.
+Issues and bugs: [Issues section](https://github.com/presenta-software/presenta-lib/issues).
 
 
 ## Contribute

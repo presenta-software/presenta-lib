@@ -5,7 +5,8 @@ const validTrans = ['fadeIn', 'zoomOut', 'zoomIn', 'slideUp', 'slideDown']
 const enters = function (element, mod, config) {
   if (config._mode !== 'present') return
 
-  const transition = mod.transition || validTrans[0]
+  const transition = mod.transition
+  if (!transition) return
   let delay = mod.delay ? parseInt(mod.delay) : 1000
 
   if (mod.stagger) {
@@ -25,7 +26,5 @@ const enters = function (element, mod, config) {
     }, delay)
   }
 }
-
-// enters.runBefore = true
 
 export default enters

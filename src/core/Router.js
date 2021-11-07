@@ -26,8 +26,8 @@ const Router = function (rootElement, projectConfig) {
     child.classList.remove(...child.classList)
     child.classList.add('controller', css.router)
     child.style = null
-    u.globs(child, sceneConfig)
-    u.props(child, sceneConfig)
+    // u.globs(child, sceneConfig)
+    // u.props(child, sceneConfig)
   }
 
   this.next = () => {

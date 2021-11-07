@@ -1,15 +1,17 @@
 import css from './style.css'
 import u from '../../utils.js'
 
-u.addProp(['progressbarHeight', 'progressbarBottom', 'progressbarColor'])
+const props = ['height', 'bottom', 'color']
 
-const progressbar = function (rootElement, router, ctrlConfig, projectConfig) {
+const progressbar = function (element, router, config, projectConfig) {
   if (projectConfig.mode === 'preview') return
 
-  const child = u.div(`<div class="${css.progressbar}"></div>`)
+  const rawp = u.rawProps('progressbar', props, config)
+
+  const child = u.div(`<div class="${css.progressbar}" style="${rawp}"></div>`)
   const bar = u.div(`<div class="${css.bar}"></div>`)
   child.appendChild(bar)
-  rootElement.appendChild(child)
+  element.appendChild(child)
 
   const totalScenes = projectConfig.scenes.length
 

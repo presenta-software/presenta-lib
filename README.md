@@ -1,14 +1,8 @@
 
-<h1 align="center">
-	PRESENTA Lib
-</h1>
+![PRESENTA Lib](cover.png)
 
-<h3 align="center"> 
-	The javascript presentation library for the automation era.
-</h3>
 
 <p align="center">
-	<img src="https://travis-ci.org/presenta-software/presenta-lib.svg?branch=master"/>
 	<img src="https://img.shields.io/npm/v/@presenta/lib"/>
 	<img src="https://badgen.net/github/release/presenta-software/presenta-lib"/>
 	<img src="https://badgen.net/github/stars/presenta-software/presenta-lib"/>

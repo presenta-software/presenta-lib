@@ -1,7 +1,7 @@
 :root{
     --arrowsOpacity: .5;
-    --arrowsflexAlign: center;
-    --arrowsflexJustify: space-between;
+    --arrowsFlexAlign: center;
+    --arrowsFlexJustify: space-between;
     --arrowsPadding: 10px;
     --arrowsDirection: row;
 }
@@ -24,7 +24,7 @@
     display: flex;
     flex-direction: var(--arrowsDirection);
 
-    justify-content: var(--arrowsflexJustify);
+    justify-content: var(--arrowsFlexJustify);
     color: var(--colorFore);
 }
 
@@ -36,7 +36,7 @@
 .left, .right{
     height: 100%;
     display: flex;
-    align-items: var(--arrowsflexAlign);
+    align-items: var(--arrowsFlexAlign);
     justify-content: center;
     cursor: pointer;
 

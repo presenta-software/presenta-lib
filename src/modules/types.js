@@ -9,6 +9,7 @@ import autoplay from './autoplay'
 import coords from './coords'
 import pagenum from './pagenum'
 import reveal from './reveal'
+import link from './link'
 import enters from './enters'
 import script from './script'
 
@@ -25,7 +26,8 @@ const modules = {
   pagenum,
   reveal,
   enters,
-  script
+  script,
+  link
 }
 
 const add = (type, module, override) => {

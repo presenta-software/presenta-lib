@@ -12,4 +12,6 @@ const colors = function (element, mod, config) {
   })
 }
 
+colors.runBefore = true
+
 export default colors

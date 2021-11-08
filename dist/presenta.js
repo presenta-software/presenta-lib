@@ -34,8 +34,8 @@
     }
   }
 
-  var css_248z$r = ":root{--fontHeading:Georgia,\"Times New Roman\",Times,serif;--fontText:\"Trebuchet MS\",\"Lucida Sans Unicode\",\"Lucida Grande\",\"Lucida Sans\",Arial,sans-serif;--colorBack:#fff;--colorFore:#000;--colorAccent:#444;--colorAlt:#ddd;--blockWeight:1;--blockPadding:0;--blockOpacity:1;--blockBlend:unset;--scenePadding:0;--sceneColorBack:#fff}.presenta *{box-sizing:border-box}.presenta{position:relative;--presenta-pw:960;--presenta-w:960px;--presenta-h:540px;--presenta-vp:960;--presenta-fz:1;--presenta-p:calc(var(--presenta-pw)/var(--presenta-vp))}";
-  styleInject(css_248z$r);
+  var css_248z$s = ":root{--fontHeading:Georgia,\"Times New Roman\",Times,serif;--fontText:\"Trebuchet MS\",\"Lucida Sans Unicode\",\"Lucida Grande\",\"Lucida Sans\",Arial,sans-serif;--colorBack:#fff;--colorFore:#000;--colorAccent:#444;--colorAlt:#ddd;--blockWeight:1;--blockPadding:0;--blockOpacity:1;--blockBlend:unset;--scenePadding:0;--sceneColorBack:#fff}.presenta *{box-sizing:border-box}.presenta{position:relative;--presenta-pw:960;--presenta-w:960px;--presenta-h:540px;--presenta-vp:960;--presenta-fz:1;--presenta-p:calc(var(--presenta-pw)/var(--presenta-vp))}";
+  styleInject(css_248z$s);
 
   const keyboard = function (rootElement, router, ctrlConfig, projectConfig) {
     const setKeyListener = e => {
@@ -55,9 +55,9 @@
     rootElement.parentNode.addEventListener('keyup', setKeyListener);
   };
 
-  var css_248z$q = ":root{--arrowsOpacity:.5;--arrowsflexAlign:center;--arrowsflexJustify:space-between;--arrowsPadding:10px;--arrowsDirection:row}.style_arrows__2J_-T{position:absolute;top:0;left:0;width:100%;height:100%;z-index:100;transition:opacity .35s}.style_inner__1f-jA{width:100%;height:100%;display:flex;flex-direction:var(--arrowsDirection);justify-content:var(--arrowsflexJustify);color:var(--colorFore)}.style_vertical__2l0YR .style_inner__1f-jA{flex-direction:column}.style_left__199CL,.style_right__2Bn_p{height:100%;display:flex;align-items:var(--arrowsflexAlign);justify-content:center;cursor:pointer;padding:var(--arrowsPadding);pointer-events:all}.style_vertical__2l0YR .style_left__199CL,.style_vertical__2l0YR .style_right__2Bn_p{height:unset}.style_ui__1jWCU{width:24px;height:24px;transition:background-color .3s ease-in-out;pointer-events:none}.style_ui__1jWCU circle{stroke:none;fill:var(--colorBack);opacity:var(--arrowsOpacity)}.style_hide__4RZI1{opacity:0}";
-  var css$k = {"arrows":"style_arrows__2J_-T","inner":"style_inner__1f-jA","vertical":"style_vertical__2l0YR","left":"style_left__199CL","right":"style_right__2Bn_p","ui":"style_ui__1jWCU","hide":"style_hide__4RZI1"};
-  styleInject(css_248z$q);
+  var css_248z$r = ":root{--arrowsOpacity:.5;--arrowsFlexAlign:center;--arrowsFlexJustify:space-between;--arrowsPadding:10px;--arrowsDirection:row}.style_arrows__2J_-T{position:absolute;top:0;left:0;width:100%;height:100%;z-index:100;transition:opacity .35s}.style_inner__1f-jA{width:100%;height:100%;display:flex;flex-direction:var(--arrowsDirection);justify-content:var(--arrowsFlexJustify);color:var(--colorFore)}.style_vertical__2l0YR .style_inner__1f-jA{flex-direction:column}.style_left__199CL,.style_right__2Bn_p{height:100%;display:flex;align-items:var(--arrowsFlexAlign);justify-content:center;cursor:pointer;padding:var(--arrowsPadding);pointer-events:all}.style_vertical__2l0YR .style_left__199CL,.style_vertical__2l0YR .style_right__2Bn_p{height:unset}.style_ui__1jWCU{width:24px;height:24px;transition:background-color .3s ease-in-out;pointer-events:none}.style_ui__1jWCU circle{stroke:none;fill:var(--colorBack);opacity:var(--arrowsOpacity)}.style_hide__4RZI1{opacity:0}";
+  var css$l = {"arrows":"style_arrows__2J_-T","inner":"style_inner__1f-jA","vertical":"style_vertical__2l0YR","left":"style_left__199CL","right":"style_right__2Bn_p","ui":"style_ui__1jWCU","hide":"style_hide__4RZI1"};
+  styleInject(css_248z$r);
 
   const select = selector => {
     return typeof selector === 'string' ? document.querySelector(selector) : selector;
@@ -178,18 +178,18 @@
   const arrows = function (rootElement, router, ctrlConfig, projectConfig) {
     let timer = null;
     let numInteraction = 0;
-    const vertical = ctrlConfig.direction === 'vertical' ? css$k.vertical : '';
+    const vertical = ctrlConfig.direction === 'vertical' ? css$l.vertical : '';
     const rawp = utils.rawProps('arrows', props$7, ctrlConfig);
     const firstArrow = vertical ? upArrow : leftArrow;
     const lastArrow = vertical ? downArrow : rightArrow;
-    const child = utils.div(`<div class="${css$k.arrows} ${vertical}"></div>`);
-    const inner = utils.div(`<div class="${css$k.inner}" style="${rawp}"></div>`);
-    const left = utils.div(`<div id="evt_trg_ctrl_arrow_left" class="${css$k.left}">
-    <div class="${css$k.ui}">${firstArrow}</div>
+    const child = utils.div(`<div class="${css$l.arrows} ${vertical}"></div>`);
+    const inner = utils.div(`<div class="${css$l.inner}" style="${rawp}"></div>`);
+    const left = utils.div(`<div id="evt_trg_ctrl_arrow_left" class="${css$l.left}">
+    <div class="${css$l.ui}">${firstArrow}</div>
   </div>`);
     inner.appendChild(left);
-    const right = utils.div(`<div id="evt_trg_ctrl_arrow_right" class="${css$k.right}">
-    <div class="${css$k.ui}">${lastArrow}</div>
+    const right = utils.div(`<div id="evt_trg_ctrl_arrow_right" class="${css$l.right}">
+    <div class="${css$l.ui}">${lastArrow}</div>
   </div>`);
     inner.appendChild(right);
     child.appendChild(inner);
@@ -233,9 +233,9 @@
 
     const scheduleForHide = () => {
       clearTimeout(timer);
-      child.classList.remove(css$k.hide);
+      child.classList.remove(css$l.hide);
       timer = setTimeout(() => {
-        child.classList.add(css$k.hide);
+        child.classList.add(css$l.hide);
       }, 1500);
     }; // scheduleForHide()
 
@@ -243,13 +243,13 @@
     this._el = child;
   };
 
-  var css_248z$p = ".style_black__3Nszx{width:100%;height:100%;position:absolute;top:0;left:0;background-color:#000;opacity:0;pointer-events:none;transition:opacity .5s cubic-bezier(.8,.2,.2,.8);z-index:999999}";
-  var css$j = {"black":"style_black__3Nszx"};
-  styleInject(css_248z$p);
+  var css_248z$q = ".style_black__3Nszx{width:100%;height:100%;position:absolute;top:0;left:0;background-color:#000;opacity:0;pointer-events:none;transition:opacity .5s cubic-bezier(.8,.2,.2,.8);z-index:999999}";
+  var css$k = {"black":"style_black__3Nszx"};
+  styleInject(css_248z$q);
 
   const black = function (rootElement, router, ctrlConfig, projectConfig) {
     let visible = false;
-    const child = utils.div(`<div class="${css$j.black}"></div>`);
+    const child = utils.div(`<div class="${css$k.black}"></div>`);
     rootElement.appendChild(child);
     const key = ctrlConfig.key || 'b';
 
@@ -336,17 +336,17 @@
     observer.observe(root);
   };
 
-  var css_248z$o = ":root{--progressbarHeight:5px;--progressbarBottom:initial}.style_progressbar__37EFM{--progressbarColor:var(--colorFore);width:100%;height:100%;pointer-events:none}.style_bar__3nLkk{width:0;height:var(--progressbarHeight);position:absolute;bottom:var(--progressbarBottom);left:0;background-color:var(--progressbarColor);transition:width .5s cubic-bezier(.8,.2,.2,.8)}";
-  var css$i = {"progressbar":"style_progressbar__37EFM","bar":"style_bar__3nLkk"};
-  styleInject(css_248z$o);
+  var css_248z$p = ":root{--progressbarHeight:5px;--progressbarBottom:initial}.style_progressbar__37EFM{--progressbarColor:var(--colorFore);width:100%;height:100%;pointer-events:none}.style_bar__3nLkk{width:0;height:var(--progressbarHeight);position:absolute;bottom:var(--progressbarBottom);left:0;background-color:var(--progressbarColor);transition:width .5s cubic-bezier(.8,.2,.2,.8)}";
+  var css$j = {"progressbar":"style_progressbar__37EFM","bar":"style_bar__3nLkk"};
+  styleInject(css_248z$p);
 
   const props$6 = ['height', 'bottom', 'color'];
 
   const progressbar = function (element, router, config, projectConfig) {
     if (projectConfig.mode === 'preview') return;
     const rawp = utils.rawProps('progressbar', props$6, config);
-    const child = utils.div(`<div class="${css$i.progressbar}" style="${rawp}"></div>`);
-    const bar = utils.div(`<div class="${css$i.bar}"></div>`);
+    const child = utils.div(`<div class="${css$j.progressbar}" style="${rawp}"></div>`);
+    const bar = utils.div(`<div class="${css$j.bar}"></div>`);
     child.appendChild(bar);
     element.appendChild(child);
     const totalScenes = projectConfig.scenes.length;
@@ -414,26 +414,26 @@
     }
   };
 
-  var css_248z$n = ".style_limitswitch__3g8Lq{pointer-events:none;opacity:0;background-color:var(--colorAccent);width:100%;height:100%;position:absolute;top:0;left:0}.style_signalSet__GRA42{opacity:.75}.style_signalOut__2qd5k{transition:opacity .35s ease-out;opacity:0}";
-  var css$h = {"limitswitch":"style_limitswitch__3g8Lq","signalSet":"style_signalSet__GRA42","signalOut":"style_signalOut__2qd5k"};
-  styleInject(css_248z$n);
+  var css_248z$o = ".style_limitswitch__3g8Lq{pointer-events:none;opacity:0;background-color:var(--colorAccent);width:100%;height:100%;position:absolute;top:0;left:0}.style_signalSet__GRA42{opacity:.75}.style_signalOut__2qd5k{transition:opacity .35s ease-out;opacity:0}";
+  var css$i = {"limitswitch":"style_limitswitch__3g8Lq","signalSet":"style_signalSet__GRA42","signalOut":"style_signalOut__2qd5k"};
+  styleInject(css_248z$o);
 
   const limitswitch = function (rootElement, router, ctrlConfig, projectConfig) {
     let timer1;
     let timer2;
-    const child = utils.div(`<div class="${css$h.limitswitch}"></div>`);
+    const child = utils.div(`<div class="${css$i.limitswitch}"></div>`);
     rootElement.appendChild(child);
 
     const signal = () => {
       clearTimeout(timer1);
       clearTimeout(timer2);
-      child.classList.remove(css$h.signalSet, css$h.signalOut);
-      child.classList.add(css$h.signalSet);
+      child.classList.remove(css$i.signalSet, css$i.signalOut);
+      child.classList.add(css$i.signalSet);
       timer1 = setTimeout(() => {
-        child.classList.add(css$h.signalOut);
+        child.classList.add(css$i.signalOut);
       }, 16);
       timer2 = setTimeout(() => {
-        child.classList.remove(css$h.signalSet, css$h.signalOut);
+        child.classList.remove(css$i.signalSet, css$i.signalOut);
       }, 350);
     };
 
@@ -445,9 +445,9 @@
     });
   };
 
-  var css_248z$m = ".style_sync__2HAFR{width:100%;height:100%;position:absolute;top:0;left:0;pointer-events:none}";
-  var css$g = {"sync":"style_sync__2HAFR"};
-  styleInject(css_248z$m);
+  var css_248z$n = ".style_sync__2HAFR{width:100%;height:100%;position:absolute;top:0;left:0;pointer-events:none}";
+  var css$h = {"sync":"style_sync__2HAFR"};
+  styleInject(css_248z$n);
 
   const sync = function (rootElement, router, ctrlConfig, projectConfig) {
     if (!window.BroadcastChannel) {
@@ -456,7 +456,7 @@
     }
 
     const bus = new BroadcastChannel('presenta.sync');
-    const child = utils.div(`<div class="${css$g.sync}"></div>`);
+    const child = utils.div(`<div class="${css$h.sync}"></div>`);
     rootElement.appendChild(child);
 
     bus.onmessage = e => {
@@ -570,17 +570,17 @@
     };
   };
 
-  var css_248z$l = ".transition__fadeIn .p-scene-enter-transition{transition:opacity .75s cubic-bezier(.2,.8,.05,.95)}.transition__fadeIn .to-right.p-scene-enter-start{opacity:0;transform:translate(0)}.transition__fadeIn .to-right.p-scene-enter-end{opacity:1}.transition__fadeIn .to-left.p-scene-enter-start{opacity:0;transform:translate(0)}.transition__fadeIn .to-left.p-scene-enter-end{opacity:1}";
+  var css_248z$m = ".transition__fadeIn .p-scene-enter-transition{transition:opacity .75s cubic-bezier(.2,.8,.05,.95)}.transition__fadeIn .to-right.p-scene-enter-start{opacity:0;transform:translate(0)}.transition__fadeIn .to-right.p-scene-enter-end{opacity:1}.transition__fadeIn .to-left.p-scene-enter-start{opacity:0;transform:translate(0)}.transition__fadeIn .to-left.p-scene-enter-end{opacity:1}";
+  styleInject(css_248z$m);
+
+  var css_248z$l = ".transition__hSlide .p-scene-enter-transition{transition:transform .75s cubic-bezier(.87,0,.13,1)}.transition__hSlide .to-right.p-scene-enter-start{transform:translateX(100%)}.transition__hSlide .to-right.p-scene-enter-end{transform:translateX(0)}.transition__hSlide .to-left.p-scene-enter-start{transform:translateX(-100%)}.transition__hSlide .to-left.p-scene-enter-end{transform:translateX(0)}.transition__hSlide .p-scene-leave-transition{transition:transform .75s cubic-bezier(.87,0,.13,1)}.transition__hSlide .to-right.p-scene-leave-start{transform:translateX(0)}.transition__hSlide .to-right.p-scene-leave-end{transform:translateX(-100%)}.transition__hSlide .to-left.p-scene-leave-start{transform:translateX(0)}.transition__hSlide .to-left.p-scene-leave-end{transform:translateX(100%)}";
   styleInject(css_248z$l);
 
-  var css_248z$k = ".transition__hSlide .p-scene-enter-transition{transition:transform .75s cubic-bezier(.87,0,.13,1)}.transition__hSlide .to-right.p-scene-enter-start{transform:translateX(100%)}.transition__hSlide .to-right.p-scene-enter-end{transform:translateX(0)}.transition__hSlide .to-left.p-scene-enter-start{transform:translateX(-100%)}.transition__hSlide .to-left.p-scene-enter-end{transform:translateX(0)}.transition__hSlide .p-scene-leave-transition{transition:transform .75s cubic-bezier(.87,0,.13,1)}.transition__hSlide .to-right.p-scene-leave-start{transform:translateX(0)}.transition__hSlide .to-right.p-scene-leave-end{transform:translateX(-100%)}.transition__hSlide .to-left.p-scene-leave-start{transform:translateX(0)}.transition__hSlide .to-left.p-scene-leave-end{transform:translateX(100%)}";
+  var css_248z$k = ".transition__vSlide .p-scene-enter-transition{transition:transform .75s cubic-bezier(.87,0,.13,1)}.transition__vSlide .to-right.p-scene-enter-start{transform:translateY(100%)}.transition__vSlide .to-right.p-scene-enter-end{transform:translateY(0)}.transition__vSlide .to-left.p-scene-enter-start{transform:translateY(-100%)}.transition__vSlide .to-left.p-scene-enter-end{transform:translateY(0)}.transition__vSlide .p-scene-leave-transition{transition:transform .75s cubic-bezier(.87,0,.13,1)}.transition__vSlide .to-right.p-scene-leave-start{transform:translateY(0)}.transition__vSlide .to-right.p-scene-leave-end{transform:translateY(-100%)}.transition__vSlide .to-left.p-scene-leave-start{transform:translateY(0)}.transition__vSlide .to-left.p-scene-leave-end{transform:translateY(100%)}";
   styleInject(css_248z$k);
 
-  var css_248z$j = ".transition__vSlide .p-scene-enter-transition{transition:transform .75s cubic-bezier(.87,0,.13,1)}.transition__vSlide .to-right.p-scene-enter-start{transform:translateY(100%)}.transition__vSlide .to-right.p-scene-enter-end{transform:translateY(0)}.transition__vSlide .to-left.p-scene-enter-start{transform:translateY(-100%)}.transition__vSlide .to-left.p-scene-enter-end{transform:translateY(0)}.transition__vSlide .p-scene-leave-transition{transition:transform .75s cubic-bezier(.87,0,.13,1)}.transition__vSlide .to-right.p-scene-leave-start{transform:translateY(0)}.transition__vSlide .to-right.p-scene-leave-end{transform:translateY(-100%)}.transition__vSlide .to-left.p-scene-leave-start{transform:translateY(0)}.transition__vSlide .to-left.p-scene-leave-end{transform:translateY(100%)}";
+  var css_248z$j = ".transition__slideOver .p-scene-enter-transition{transition:all .75s cubic-bezier(.2,.8,.05,.95)}.transition__slideOver .p-scene-enter-start{transform:translateY(-150%)}.transition__slideOver .p-scene-enter-end{transform:translateY(0)}.transition__slideOver .p-scene-leave-transition{transition:all .75s cubic-bezier(.2,.8,.05,.95)}.transition__slideOver .p-scene-leave-start{transform:scale(1)}.transition__slideOver .p-scene-leave-end{transform:scale(.5)}";
   styleInject(css_248z$j);
-
-  var css_248z$i = ".transition__slideOver .p-scene-enter-transition{transition:all .75s cubic-bezier(.2,.8,.05,.95)}.transition__slideOver .p-scene-enter-start{transform:translateY(-150%)}.transition__slideOver .p-scene-enter-end{transform:translateY(0)}.transition__slideOver .p-scene-leave-transition{transition:all .75s cubic-bezier(.2,.8,.05,.95)}.transition__slideOver .p-scene-leave-start{transform:scale(1)}.transition__slideOver .p-scene-leave-end{transform:scale(.5)}";
-  styleInject(css_248z$i);
 
   const presets = ['fadeIn', 'hSlide', 'vSlide', 'slideOver'];
   /*
@@ -633,9 +633,9 @@
     controllers[type] = module;
   };
 
-  var css_248z$h = ".style_stepItem__1Iv29{transition:opacity 1.33s cubic-bezier(.19,1,.22,1),transform 1.33s cubic-bezier(.19,1,.22,1);transform-origin:center}.style_fadeIn__1qNon{opacity:0!important}.style_zoomOut__FobL2{opacity:0!important;transform:scale(1.3)!important}.style_zoomIn__3R2ad{opacity:0!important;transform:scale(.7)!important}.style_slideUp__2aPxJ{opacity:0!important;transform:translateY(40px)!important}.style_slideDown__3Wu--{opacity:0!important;transform:translateY(-40px)!important}";
-  var css$f = {"stepItem":"style_stepItem__1Iv29","fadeIn":"style_fadeIn__1qNon","zoomOut":"style_zoomOut__FobL2","zoomIn":"style_zoomIn__3R2ad","slideUp":"style_slideUp__2aPxJ","slideDown":"style_slideDown__3Wu--"};
-  styleInject(css_248z$h);
+  var css_248z$i = ".style_stepItem__1Iv29{transition:opacity 1.33s cubic-bezier(.19,1,.22,1),transform 1.33s cubic-bezier(.19,1,.22,1);transform-origin:center}.style_fadeIn__1qNon{opacity:0!important}.style_zoomOut__FobL2{opacity:0!important;transform:scale(1.3)!important}.style_zoomIn__3R2ad{opacity:0!important;transform:scale(.7)!important}.style_slideUp__2aPxJ{opacity:0!important;transform:translateY(40px)!important}.style_slideDown__3Wu--{opacity:0!important;transform:translateY(-40px)!important}";
+  var css$g = {"stepItem":"style_stepItem__1Iv29","fadeIn":"style_fadeIn__1qNon","zoomOut":"style_zoomOut__FobL2","zoomIn":"style_zoomIn__3R2ad","slideUp":"style_slideUp__2aPxJ","slideDown":"style_slideDown__3Wu--"};
+  styleInject(css_248z$i);
 
   const validTrans = ['fadeIn', 'zoomOut', 'zoomIn', 'slideUp', 'slideDown'];
   const validModes = ['sequential', 'match'];
@@ -720,7 +720,7 @@
           const els = ob.els;
           allFlatElems = allFlatElems.concat(els);
           els.forEach(el => {
-            el.classList.add(css$f[trans]);
+            el.classList.add(css$g[trans]);
             const id = {
               sandbox: 'steps',
               index,
@@ -759,7 +759,7 @@
     for (const k in allElems) {
       const trans = allElems[k].trans;
       const outs = allElems[k].outs;
-      allElems[k].arr.forEach(el => el.classList.add(css$f[trans]));
+      allElems[k].arr.forEach(el => el.classList.add(css$g[trans]));
       const id = {
         sandbox: 'steps',
         index,
@@ -778,11 +778,11 @@
     setTimeout(() => {
       // routine only for sequential mode
       allFlatElems.forEach(el => {
-        el.classList.add(css$f.stepItem);
+        el.classList.add(css$g.stepItem);
       }); // routine only for match mode
 
       for (const k in allElems) {
-        allElems[k].arr.forEach(el => el.classList.add(css$f.stepItem));
+        allElems[k].arr.forEach(el => el.classList.add(css$g.stepItem));
       }
     }, 100);
 
@@ -791,13 +791,13 @@
         if (prevEls) {
           prevEls.forEach((el, i) => {
             const out = step.outs ? step.outs[i] : step.out;
-            if (out) el.classList.add(css$f[step.trans]);
+            if (out) el.classList.add(css$g[step.trans]);
           });
           prevEls = null;
         }
 
         const els = step.els;
-        els.forEach(el => el.classList.remove(css$f[step.trans]));
+        els.forEach(el => el.classList.remove(css$g[step.trans]));
 
         if (step.out) {
           prevEls = els;
@@ -806,8 +806,8 @@
     };
   };
 
-  var css_248z$g = "[jump]{cursor:pointer}";
-  styleInject(css_248z$g);
+  var css_248z$h = "[jump]{cursor:pointer}";
+  styleInject(css_248z$h);
 
   const jump = function (sceneElement, modConfig, sceneConfig) {
     const dispose = [];
@@ -836,8 +836,8 @@
     };
   };
 
-  var css_248z$f = ".noresize.sceneObject{width:100%;height:100%}.noresize.sceneObject .sceneWrapper{width:100%;height:100%;transform:scale(1)}";
-  styleInject(css_248z$f);
+  var css_248z$g = ".noresize.sceneObject{width:100%;height:100%}.noresize.sceneObject .sceneWrapper{width:100%;height:100%;transform:scale(1)}";
+  styleInject(css_248z$g);
 
   const noresize = function (sceneElement, modConfig, sceneConfig) {
     const noResize = !!(sceneConfig.noresize || modConfig);
@@ -856,6 +856,8 @@
       if (col) element.style.setProperty('--color' + upp(c), mod[c]);
     });
   };
+
+  colors.runBefore = true;
 
   /*
   modules:{
@@ -982,17 +984,17 @@
 
   coords.runBefore = true;
 
-  var css_248z$e = ".style_pagenum__1ycBY{--pagenumTextAlign:right;--pagenumPadding:.75rem;--pagenumFontSize:.9rem;--pagenumBackColor:none;--pagenumFont:var(--fontText);--pagenumColor:var(--colorFore);--pagenumFlexAlign:flex-end;--pagenumFlexJustify:flex-end;width:100%;height:100%;position:absolute;top:0;left:0;padding:var(--containerPaddingTop) var(--containerPaddingRight) var(--containerPaddingBottom) var(--containerPaddingLeft);pointer-events:none}.style_inner__AbrJj{width:100%;height:100%;padding:var(--pagenumPadding);display:flex;align-items:var(--pagenumFlexAlign);justify-content:var(--pagenumFlexJustify)}.style_content__1CXpQ{text-align:var(--pagenumTextAlign);padding:var(--pagenumInnerPadding);font-size:var(--pagenumFontSize);color:var(--pagenumColor);font-family:var(--pagenumFont);background-color:var(--pagenumBackColor);border:var(--pagenumBorder);border-radius:var(--pagenumBorderRadius);transition:all .3s ease-in-out}";
-  var css$e = {"pagenum":"style_pagenum__1ycBY","inner":"style_inner__AbrJj","content":"style_content__1CXpQ"};
-  styleInject(css_248z$e);
+  var css_248z$f = ".style_pagenum__1ycBY{--pagenumTextAlign:right;--pagenumPadding:.75rem;--pagenumFontSize:.9rem;--pagenumBackColor:none;--pagenumFont:var(--fontText);--pagenumColor:var(--colorFore);--pagenumFlexAlign:flex-end;--pagenumFlexJustify:flex-end;width:100%;height:100%;position:absolute;top:0;left:0;padding:var(--containerPaddingTop) var(--containerPaddingRight) var(--containerPaddingBottom) var(--containerPaddingLeft);pointer-events:none}.style_inner__AbrJj{width:100%;height:100%;padding:var(--pagenumPadding);display:flex;align-items:var(--pagenumFlexAlign);justify-content:var(--pagenumFlexJustify)}.style_content__1CXpQ{text-align:var(--pagenumTextAlign);padding:var(--pagenumInnerPadding);font-size:var(--pagenumFontSize);color:var(--pagenumColor);font-family:var(--pagenumFont);background-color:var(--pagenumBackColor);border:var(--pagenumBorder);border-radius:var(--pagenumBorderRadius);transition:all .3s ease-in-out}";
+  var css$f = {"pagenum":"style_pagenum__1ycBY","inner":"style_inner__AbrJj","content":"style_content__1CXpQ"};
+  styleInject(css_248z$f);
 
   const props$3 = ['textAlign', 'padding', 'innerPadding', 'fontSize', 'font', 'backColor', 'color', 'border', 'borderRadius', 'flexAlign', 'flexJustify'];
 
   const pagenum = function (element, mod, config) {
     const rawp = utils.rawProps('pagenum', props$3, mod);
-    const child = utils.div(`<div class="${css$e.pagenum}"></div>`);
-    const inner = utils.div(`<div class="${css$e.inner}" style="${rawp}"></div>`);
-    const content = utils.div(`<div class="${css$e.content}"></div>`);
+    const child = utils.div(`<div class="${css$f.pagenum}"></div>`);
+    const inner = utils.div(`<div class="${css$f.inner}" style="${rawp}"></div>`);
+    const content = utils.div(`<div class="${css$f.content}"></div>`);
     inner.appendChild(content);
     child.appendChild(inner);
     element.querySelector('.sceneWrapper').appendChild(child);
@@ -1005,15 +1007,15 @@
     content.innerHTML = str;
   };
 
-  var css_248z$d = ".style_reveal__3Cs6V{--revealTextAlign:center;--revealPadding:5px;--revealFontSize:2rem;--revealFont:var(--fontText);--revealBackColor:var(--colorFore);--revealColor:var(--colorBack);--revealFlexAlign:center;--revealFlexJustify:center;width:100%;height:100%;position:absolute;top:0;left:0;pointer-events:none;transition-property:opacity,transform;transition-duration:1.33s;transition-timing-function:cubic-bezier(.19,1,.22,1)}.style_inner__3rqnR{width:100%;height:100%;padding:var(--revealPadding);background-color:var(--revealBackColor);display:flex;align-items:var(--revealFlexAlign);justify-content:var(--revealFlexJustify)}.style_content__bTAxU{text-align:var(--revealTextAlign);font-size:var(--revealFontSize);color:var(--revealColor);font-family:var(--revealFont)}.style_preview__2jDoF{opacity:.3}.style_exitSlideUp__s74jg{transform:translateY(-100%)}.style_exitFadeOut__12FkH{opacity:0}";
-  var css$d = {"reveal":"style_reveal__3Cs6V","inner":"style_inner__3rqnR","content":"style_content__bTAxU","preview":"style_preview__2jDoF","exitSlideUp":"style_exitSlideUp__s74jg","exitFadeOut":"style_exitFadeOut__12FkH"};
-  styleInject(css_248z$d);
+  var css_248z$e = ".style_reveal__3Cs6V{--revealTextAlign:center;--revealPadding:5px;--revealFontSize:2rem;--revealFont:var(--fontText);--revealBackColor:var(--colorFore);--revealColor:var(--colorBack);--revealFlexAlign:center;--revealFlexJustify:center;width:100%;height:100%;position:absolute;top:0;left:0;pointer-events:none;transition-property:opacity,transform;transition-duration:1.33s;transition-timing-function:cubic-bezier(.19,1,.22,1)}.style_inner__3rqnR{width:100%;height:100%;padding:var(--revealPadding);background-color:var(--revealBackColor);display:flex;align-items:var(--revealFlexAlign);justify-content:var(--revealFlexJustify)}.style_content__bTAxU{text-align:var(--revealTextAlign);font-size:var(--revealFontSize);color:var(--revealColor);font-family:var(--revealFont)}.style_preview__2jDoF{opacity:.3}.style_exitSlideUp__s74jg{transform:translateY(-100%)}.style_exitFadeOut__12FkH{opacity:0}";
+  var css$e = {"reveal":"style_reveal__3Cs6V","inner":"style_inner__3rqnR","content":"style_content__bTAxU","preview":"style_preview__2jDoF","exitSlideUp":"style_exitSlideUp__s74jg","exitFadeOut":"style_exitFadeOut__12FkH"};
+  styleInject(css_248z$e);
 
   const props$2 = ['textAlign', 'padding', 'fontSize', 'font', 'backColor', 'color', 'flexAlign', 'flexJustify'];
 
   const reveal = function (element, mod, config) {
     let isPreview = '';
-    if (config._mode === 'preview') isPreview = css$d.preview;
+    if (config._mode === 'preview') isPreview = css$e.preview;
     const rawp = utils.rawProps('reveal', props$2, mod);
 
     config._steps.push({
@@ -1021,10 +1023,10 @@
     });
 
     const text = mod.text ? mod.text : '';
-    const exitEffect = mod.effect ? css$d[mod.effect] : css$d.exitSlideUp;
-    const child = utils.div(`<div class="${css$d.reveal} ${isPreview}"></div>`);
-    const inner = utils.div(`<div class="${css$d.inner}" style="${rawp}"></div>`);
-    const content = utils.div(`<div class="${css$d.content}">${text}</div>`);
+    const exitEffect = mod.effect ? css$e[mod.effect] : css$e.exitSlideUp;
+    const child = utils.div(`<div class="${css$e.reveal} ${isPreview}"></div>`);
+    const inner = utils.div(`<div class="${css$e.inner}" style="${rawp}"></div>`);
+    const content = utils.div(`<div class="${css$e.content}">${text}</div>`);
     inner.appendChild(content);
     child.appendChild(inner);
     element.querySelector('.sceneWrapper').appendChild(child);
@@ -1034,6 +1036,20 @@
         child.classList.add(exitEffect);
       }
     };
+  };
+
+  var css_248z$d = ".style_link__1KZmh{cursor:pointer}";
+  var css$d = {"link":"style_link__1KZmh"};
+  styleInject(css_248z$d);
+
+  const link = function (element, mod, config) {
+    if (config._mode !== 'present') return;
+
+    if (config.contextType === 'block') {
+      const el = config._el.querySelector('.blockContainer');
+
+      el.classList.add(css$d.link);
+    }
   };
 
   var css_248z$c = ".style_entersItem__2uGyd{transition:opacity 1.5s cubic-bezier(.19,1,.22,1),transform 1.5s cubic-bezier(.19,1,.22,1);transform-origin:center}.style_fadeIn__10W0K{opacity:0!important;transition-timing-function:ease-in-out}.style_zoomOut__1wM1b{opacity:0!important;transform:scale(1.3)!important}.style_zoomIn__38KfE{opacity:0!important;transform:scale(.7)!important}.style_slideUp__2b3jJ{opacity:0!important;transform:translateY(40px)!important}.style_slideDown__UD-oC{opacity:0!important;transform:translateY(-40px)!important}";
@@ -1150,7 +1166,8 @@ window._sdpcallbackfunc()
     pagenum,
     reveal,
     enters,
-    script
+    script,
+    link
   };
 
   const add$1 = (type, module, override) => {

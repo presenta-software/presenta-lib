@@ -14,9 +14,9 @@
 
 ## Get started
 
-- 🚀 [Quick Overview with Live examples](https://www.presenta.cc/lib)
+- 🚀 [Landing page for a quick overview](https://www.presenta.cc/lib)
 - 📃 [Library documentation](https://lib.presenta.cc/)
-- ⏯ [Examples to get started](examples)
+- ⏯ [Examples to get started](examples.md)
 
 
 

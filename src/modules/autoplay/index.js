@@ -4,7 +4,6 @@ const autoplay = function (element, mod, config) {
 
   let timer = null
   const router = config._router
-  console.log(config, router)
 
   let defdelay = 4000
   switch (typeof mod) {

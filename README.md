@@ -14,16 +14,11 @@
 
 ## Get started
 
+- 🚀 [Quick Overview with Live examples](https://www.presenta.cc/lib)
 - 📃 [Library documentation](https://lib.presenta.cc/)
-- ⏯ [Basic examples](https://github.com/presenta-software/presenta-lib-examples)
+- ⏯ [Examples to get started](examples)
 
 
-## Templates
-
-Custom templates can be created in two ways:
-
-- Writing a JS configuration following the [library documentation](https://lib.presenta.cc/)
-- Using our (upcoming) [visual editor and platform](https://www.presenta.cc/)
 
 ## Interact
 

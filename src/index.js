@@ -36,6 +36,7 @@ const Presenta = function (el, config) {
   defaults(config)
 
   const root = utils.select(el)
+  root.innerHTML = ''
   config._root = root
 
   const splash = new Splash(root, config)

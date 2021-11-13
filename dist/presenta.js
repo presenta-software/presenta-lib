@@ -1,11 +1,11 @@
-// https://lib.presenta.cc v1.0.0 - BSD-3-Clause License - Copyright 2021 Fabio Franchino
+// https://lib.presenta.cc v1.0.1 - BSD-3-Clause License - Copyright 2021 Fabio Franchino
 (function (global, factory) {
   typeof exports === 'object' && typeof module !== 'undefined' ? module.exports = factory() :
   typeof define === 'function' && define.amd ? define(factory) :
   (global = typeof globalThis !== 'undefined' ? globalThis : global || self, global.Presenta = factory());
 })(this, (function () { 'use strict';
 
-  var version = "1.0.0";
+  var version = "1.0.1";
 
   function styleInject(css, ref) {
     if ( ref === void 0 ) ref = {};
@@ -1239,15 +1239,15 @@ window._sdpcallbackfunc()
       //     }
       //   })
       // }
-
-      let isObserved = false;
-      let isComputing = false;
-      const resizeObserver = new ResizeObserver(() => {
-        if (!isComputing) {
-          resizeObserver.disconnect();
-          compute();
-        }
-      }); // this is the iterative scale routine
+      // let isObserved = false
+      // let isComputing = false
+      // const resizeObserver = new ResizeObserver(() => {
+      //   if (!isComputing) {
+      //     resizeObserver.disconnect()
+      //     compute()
+      //   }
+      // })
+      // this is the iterative scale routine
 
       const compute = () => {
         child.style.setProperty('--textSize', `${fsize}rem`);
@@ -1260,26 +1260,23 @@ window._sdpcallbackfunc()
             resolve(that);
           });
           return false;
-        }
+        } // isComputing = true
+        // if (!isObserved) {
+        //   resizeObserver.observe(el)
+        //   isObserved = true
+        // }
 
-        isComputing = true;
-
-        if (!isObserved) {
-          resizeObserver.observe(el);
-          isObserved = true;
-        }
 
         const mbox = mel.getBoundingClientRect();
         const bbox = el.getBoundingClientRect();
 
         if (parseInt(mbox.width) < parseInt(bbox.width) || parseInt(mbox.height) < parseInt(bbox.height)) {
           fsize -= 0.05;
-          return compute();
+          return setTimeout(compute);
         } else {
           setTimeout(() => {
             child.classList.remove(css$b.promise);
-            resolve(that);
-            isComputing = false;
+            resolve(that); // isComputing = false
           });
         }
       };
@@ -1292,8 +1289,7 @@ window._sdpcallbackfunc()
         setTimeout(compute);
       }
 
-      that.destroy = () => {
-        resizeObserver.disconnect();
+      that.destroy = () => {// resizeObserver.disconnect()
       };
     });
   };
@@ -2284,6 +2280,7 @@ window._sdpcallbackfunc()
     if (hasErr.length > 0) hasErr.forEach(e => console.warn(e.message));
     defaults(config);
     const root = utils.select(el);
+    root.innerHTML = '';
     config._root = root;
     const splash = new Splash(root, config);
     return new Promise((resolve, reject) => {

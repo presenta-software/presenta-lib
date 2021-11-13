@@ -89,14 +89,14 @@ const text = function (el, config) {
     //   })
     // }
 
-    let isObserved = false
-    let isComputing = false
-    const resizeObserver = new ResizeObserver(() => {
-      if (!isComputing) {
-        resizeObserver.disconnect()
-        compute()
-      }
-    })
+    // let isObserved = false
+    // let isComputing = false
+    // const resizeObserver = new ResizeObserver(() => {
+    //   if (!isComputing) {
+    //     resizeObserver.disconnect()
+    //     compute()
+    //   }
+    // })
 
     // this is the iterative scale routine
     const compute = () => {
@@ -113,11 +113,11 @@ const text = function (el, config) {
         return false
       }
 
-      isComputing = true
-      if (!isObserved) {
-        resizeObserver.observe(el)
-        isObserved = true
-      }
+      // isComputing = true
+      // if (!isObserved) {
+      //   resizeObserver.observe(el)
+      //   isObserved = true
+      // }
 
       const mbox = mel.getBoundingClientRect()
       const bbox = el.getBoundingClientRect()
@@ -125,12 +125,12 @@ const text = function (el, config) {
       if (parseInt(mbox.width) < parseInt(bbox.width) ||
           parseInt(mbox.height) < parseInt(bbox.height)) {
         fsize -= 0.05
-        return compute()
+        return setTimeout(compute)
       } else {
         setTimeout(() => {
           child.classList.remove(css.promise)
           resolve(that)
-          isComputing = false
+          // isComputing = false
         })
       }
     }
@@ -144,7 +144,7 @@ const text = function (el, config) {
     }
 
     that.destroy = () => {
-      resizeObserver.disconnect()
+      // resizeObserver.disconnect()
     }
   })
 }

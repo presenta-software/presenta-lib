@@ -1,11 +1,11 @@
-// https://lib.presenta.cc v1.0.1 - BSD-3-Clause License - Copyright 2021 Fabio Franchino
+// https://lib.presenta.cc v1.0.2 - BSD-3-Clause License - Copyright 2021 Fabio Franchino
 (function (global, factory) {
   typeof exports === 'object' && typeof module !== 'undefined' ? module.exports = factory() :
   typeof define === 'function' && define.amd ? define(factory) :
   (global = typeof globalThis !== 'undefined' ? globalThis : global || self, global.Presenta = factory());
 })(this, (function () { 'use strict';
 
-  var version = "1.0.1";
+  var version = "1.0.2";
 
   function styleInject(css, ref) {
     if ( ref === void 0 ) ref = {};
@@ -1659,16 +1659,14 @@ window._sdpcallbackfunc()
     };
 
     this.goto = v => {
-      const dir = currentIndex > v ? 'prevIndex' : 'nextIndex';
       currentIndex = v < numScenes() ? v : numScenes();
       currentStep = 0;
-      notify(['goto', dir, 'indexChanged']);
+      notify(['goto', 'indexChanged']);
     };
 
     const notify = evt => {
       const evts = Array.isArray(evt) ? evt : [evt];
       evts.forEach(ev => {
-        // if (ev === 'indexChanged') updateRouterWrapper()
         if (listeners[ev]) {
           listeners[ev].forEach(clb => {
             clb({
@@ -1762,8 +1760,8 @@ window._sdpcallbackfunc()
     });
   };
 
-  var css_248z$1 = ".scene_sceneContainer__IgSpB{width:100%;height:100%;display:flex;align-items:center;justify-content:center;position:relative}.scene_scene__3uvTl{--presenta-sw:calc(var(--presenta-w)/var(--presenta-p)/var(--presenta-fz));--presenta-sh:calc(var(--presenta-h)/var(--presenta-p)/var(--presenta-fz));--presenta-scal:calc(var(--presenta-pw)/var(--presenta-p)/var(--presenta-pw)/var(--presenta-fz));width:var(--presenta-sw);height:var(--presenta-sh);font-family:serif;--sceneColorBack:var(--colorBack)}.scene_promise__24VCP{visibility:hidden}.scene_wrapper__3yr1k{width:var(--presenta-w);height:var(--presenta-h);transform:scale(1);transform:scale(var(--presenta-scal));transform-origin:top left;padding:var(--scenePadding);background:var(--sceneColorBack)}.scene_content__1rJf0{width:100%;height:100%;display:flex;flex-direction:column}.scene_viewport__3uNLS{width:100%;height:100%;position:relative;flex:1;overflow:hidden;display:flex;flex-direction:row}";
-  var css$1 = {"sceneContainer":"scene_sceneContainer__IgSpB","scene":"scene_scene__3uvTl","promise":"scene_promise__24VCP","wrapper":"scene_wrapper__3yr1k","content":"scene_content__1rJf0","viewport":"scene_viewport__3uNLS"};
+  var css_248z$1 = ".scene_sceneContainer__IgSpB{width:100%;height:100%;display:flex;align-items:center;justify-content:center;position:relative;visibility:hidden}.scene_visible__3JU3x{visibility:visible}.scene_scene__3uvTl{--presenta-sw:calc(var(--presenta-w)/var(--presenta-p)/var(--presenta-fz));--presenta-sh:calc(var(--presenta-h)/var(--presenta-p)/var(--presenta-fz));--presenta-scal:calc(var(--presenta-pw)/var(--presenta-p)/var(--presenta-pw)/var(--presenta-fz));width:var(--presenta-sw);height:var(--presenta-sh);font-family:serif;--sceneColorBack:var(--colorBack)}.scene_promise__24VCP{visibility:hidden}.scene_wrapper__3yr1k{width:var(--presenta-w);height:var(--presenta-h);transform:scale(1);transform:scale(var(--presenta-scal));transform-origin:top left;padding:var(--scenePadding);background:var(--sceneColorBack)}.scene_content__1rJf0{width:100%;height:100%;display:flex;flex-direction:column}.scene_viewport__3uNLS{width:100%;height:100%;position:relative;flex:1;overflow:hidden;display:flex;flex-direction:row}";
+  var css$1 = {"sceneContainer":"scene_sceneContainer__IgSpB","visible":"scene_visible__3JU3x","scene":"scene_scene__3uvTl","promise":"scene_promise__24VCP","wrapper":"scene_wrapper__3yr1k","content":"scene_content__1rJf0","viewport":"scene_viewport__3uNLS"};
   styleInject(css_248z$1);
 
   var css_248z = ":root{--left:inherit;--top:inherit;--width:100%;--height:100%;--angle:0;--skew:0;--right:inherit;--bottom:inherit;--position:absolute;--radius:none}.block_block__BWbaZ{top:var(--top);left:var(--left);width:var(--width);height:var(--height);bottom:var(--bottom);right:var(--right);position:var(--position);--blockColor:var(--colorFore);--blockBorder:0;transform-origin:top left;transform:rotate(var(--angle)) skew(var(--skew))}.block_inner__3LS6s{opacity:var(--blockOpacity);mix-blend-mode:var(--blockBlend);-webkit-clip-path:var(--blockClip);clip-path:var(--blockClip);box-shadow:var(--blockShadow);overflow:hidden}.block_subinner__3Mwvc{width:100%;height:100%;background:var(--blockBackground);color:var(--blockColor);padding:var(--blockPadding);border-radius:var(--blockRadius);border-width:var(--blockBorder);border-style:solid;overflow:hidden}.block_inner__3LS6s{top:0;left:0;width:100%;height:100%;position:absolute}";
@@ -1778,8 +1776,7 @@ window._sdpcallbackfunc()
       var blockInstance = null;
       const sceneConfig = blockConfig._sceneConfig || {};
       blockConfig.contextType = 'block';
-      let modInstances = [];
-      const modPromises = [];
+      const modInstances = [];
 
       if (!that.type) {
         return console.warn('No `type` field found in block ' + that.index);
@@ -1803,9 +1800,8 @@ window._sdpcallbackfunc()
         }
       }
 
-      const customSelector = blockConfig.id && blockConfig.id.indexOf('#') === 0 ? `id="${blockConfig.id.replace('#', '')}"` : '';
       const child = utils.div(`<div class="block ${css.block} b b${that.index}">
-      <div ${customSelector} class="blockContainer ${css.inner}"></div>
+      <div class="blockContainer ${css.inner}"></div>
     </div>`);
       const blockContainerWrapper = child.querySelector('.blockContainer');
       const blockContainer = utils.div(`<div class="blockInnerContainer ${css.subinner}">
@@ -1823,8 +1819,7 @@ window._sdpcallbackfunc()
                 if (Mod.runBefore === true && runBefore) {
                   new Mod(child, modConfig, blockConfig);
                 } else if (!Mod.runBefore && !runBefore) {
-                  const mod = new Mod(child, modConfig, blockConfig);
-                  modPromises.push(mod);
+                  new Mod(child, modConfig, blockConfig);
                 }
               }
             }
@@ -1842,11 +1837,11 @@ window._sdpcallbackfunc()
         Promise.all([prom]).then(data => {
           // blockContainerWrapper.appendChild(blockContainer) // this was for alpine
           blockInstance = data[0];
-          initModules(false);
-          Promise.all(modPromises).then(data => {
-            modInstances = data;
-            resolve(that);
-          });
+          resolve(that); // initModules(false)
+          // Promise.all(modPromises).then(data => {
+          //   modInstances = data
+          //   resolve(that)
+          // })
         });
       }
 
@@ -1919,12 +1914,11 @@ window._sdpcallbackfunc()
 
   const Scene = function (cont, sceneConfig, projectConfig, rootElement) {
     const that = this;
-    return new Promise((resolve, reject) => {
+    return new Promise(function (resolve, reject) {
       let blockInstances = [];
-      let modInstances = [];
+      const modInstances = [];
       const blockPromises = [];
       const preModPromises = [];
-      const modPromises = [];
       sceneConfig.contextType = 'scene';
       /*
       Let's notify the user about missing fields
@@ -2006,9 +2000,6 @@ window._sdpcallbackfunc()
               if (modConfig) {
                 if (Mod.runBefore === true && runBefore) {
                   preModPromises.push(new Mod(child, modConfig, sceneConfig));
-                } else if (!Mod.runBefore && !runBefore) {
-                  const mod = new Mod(child, modConfig, sceneConfig);
-                  modPromises.push(mod);
                 }
               }
             }
@@ -2018,16 +2009,14 @@ window._sdpcallbackfunc()
 
       const initTransition = () => {
         const wrap = child.querySelector('.sceneObject');
-        const dir = sceneConfig._presentatransdir === 'backward' ? 'to-left' : 'to-right';
-        Transition(wrap).init(dir);
+        const odir = sceneConfig._presentatransdir === 'backward' ? 'to-right' : 'to-left';
+        const ndir = sceneConfig._presentatransdir === 'backward' ? 'to-left' : 'to-right';
+        Transition(wrap).clear(odir).init(ndir);
       };
 
-      const startTransition = () => {
-        const wrap = child.querySelector('.sceneObject');
-        Transition(wrap).start();
-        setTimeout(() => {
-          Transition(wrap).swap();
-        }, projectConfig._transitionDestroyDelay);
+      that.initTransition = () => {
+        console.log('init trans');
+        initTransition();
       };
       /*
       Public method called by the container to init the destroy phase
@@ -2048,7 +2037,6 @@ window._sdpcallbackfunc()
         });
         setTimeout(() => {
           that.destroy();
-          child.parentNode.removeChild(child);
         }, t);
       };
       /*
@@ -2080,36 +2068,87 @@ window._sdpcallbackfunc()
         blockInstances.forEach(block => {
           if (block.destroy) block.destroy();
         });
-      };
 
-      that.updateBlock = (index, blockConfig) => {
-        blockInstances[index].destroy();
-        blockConfig._index = index;
-        const blocksContainer = child.querySelector('.blocksContainer');
-        const prom = new Block(blocksContainer, blockConfig);
-        Promise.all([prom]).then(data => {
-          blockInstances[index] = data[0];
-          sceneConfig.blocks[index] = blockConfig;
-        });
+        if (child.parentNode) {
+          child.parentNode.removeChild(child);
+        }
       };
 
       that.sceneConfig = sceneConfig;
       initTransition();
+      resolve(that);
       initModules(true);
       Promise.all(preModPromises).then(data => {
         initBlocks();
         Promise.all(blockPromises).then(data => {
-          blockInstances = data;
-          initModules(false);
-          Promise.all(modPromises).then(data => {
-            modInstances = data;
-            startTransition();
-            child.classList.add('presentaSceneMounted');
-            resolve(that);
-          });
+          blockInstances = data; // resolve(that)
         });
       });
     });
+  };
+
+  const MountBlock = function (blockConfig) {
+    const child = blockConfig._el;
+
+    const initModules = runBefore => {
+      if (blockConfig.modules) {
+        for (const k in blockConfig.modules) {
+          const modConfig = blockConfig.modules[k];
+          const Mod = modules[k];
+          if (!Mod) console.log(`Module "${k}" not found in block. Maybe you forgot to include it.`);
+
+          if (Mod) {
+            if (modConfig) {
+              if (!Mod.runBefore && !runBefore) {
+                // eslint-disable-next-line
+                new Mod(child, modConfig, blockConfig);
+              }
+            }
+          }
+        }
+      }
+    };
+
+    initModules(false);
+  };
+
+  const MountScene = scene => {
+    const sceneConfig = scene.sceneConfig;
+    const child = sceneConfig._el;
+    const projectConfig = sceneConfig._projectConfig;
+
+    const initModules = runBefore => {
+      if (sceneConfig.modules) {
+        for (const k in sceneConfig.modules) {
+          const modConfig = sceneConfig.modules[k];
+          const Mod = modules[k];
+          if (!Mod) console.log(`Module "${k}" not found. Maybe you forgot to include it.`);
+
+          if (Mod) {
+            if (modConfig) {
+              if (!Mod.runBefore && !runBefore) {
+                // eslint-disable-next-line
+                new Mod(child, modConfig, sceneConfig);
+              }
+            }
+          }
+        }
+      }
+    };
+
+    const startTransition = () => {
+      child.classList.add(css$1.visible);
+      const wrap = child.querySelector('.sceneObject');
+      Transition(wrap).start();
+      setTimeout(() => {
+        Transition(wrap).swap();
+      }, projectConfig._transitionDestroyDelay);
+    };
+
+    initModules(false);
+    sceneConfig.blocks.forEach(b => MountBlock(b));
+    startTransition();
+    child.classList.add('presentaSceneMounted');
   };
 
   const Container = function (rootElement, projectConfig) {
@@ -2125,27 +2164,77 @@ window._sdpcallbackfunc()
       supercont.appendChild(cont);
       const scenes = projectConfig.scenes;
       scenes.forEach((s, i) => s.index = i);
-      var currentScenes = [];
+      var currentScene = null;
+      var currentSceneComing = null;
+      var prevSceneComing = null;
+      var nextSceneComing = null;
 
       const swapScenes = (index, dir) => {
-        const sceneProms = [];
+        console.log('dir', index, dir, nextSceneComing);
         const idx = index;
+        const dirWord = dir === -1 ? 'backward' : 'foreward';
 
         if (idx < scenes.length) {
+          // current
           const sceneConfig = scenes[idx];
-          sceneConfig._presentatransdir = dir;
+          sceneConfig._presentatransdir = dirWord;
           sceneConfig._router = router;
-          sceneProms.push(new Scene(cont, sceneConfig, projectConfig, child));
+
+          if (dir > 0 && nextSceneComing) {
+            console.log('recycle next scene');
+            currentSceneComing = nextSceneComing;
+            Promise.all([prevSceneComing]).then(scene => {
+              if (scene[0]) scene[0].destroyAfter(projectConfig._transitionDestroyDelay);
+            });
+          }
+
+          if (dir < 0 && prevSceneComing) {
+            console.log('recycle prev scene');
+            currentSceneComing = prevSceneComing;
+            Promise.all([nextSceneComing]).then(scene => {
+              if (scene[0]) scene[0].destroyAfter(projectConfig._transitionDestroyDelay);
+            });
+          }
+
+          if (dir === 0) {
+            console.log('reset recycle');
+            currentSceneComing = null;
+            Promise.all([prevSceneComing, nextSceneComing]).then(scenes => {
+              console.log(scenes);
+              scenes.forEach(scene => {
+                scene.destroyAfter(projectConfig._transitionDestroyDelay);
+              });
+            });
+          }
+
+          if (!currentSceneComing) currentSceneComing = new Scene(cont, sceneConfig, projectConfig, child); // next
+
+          if (idx + 1 < scenes.length) {
+            const nconf = scenes[idx + 1];
+            nconf._presentatransdir = 'foreward';
+            nconf._router = router;
+            console.log('create next scene');
+            nextSceneComing = new Scene(cont, nconf, projectConfig, child);
+          } // prev
+
+
+          if (idx - 1 >= 0) {
+            console.log('create prev scene');
+            const pconf = scenes[idx - 1];
+            pconf._presentatransdir = 'backward';
+            pconf._router = router;
+            prevSceneComing = new Scene(cont, pconf, projectConfig, child);
+          }
         }
 
-        Promise.all(sceneProms).then(data => {
-          currentScenes.forEach(s => {
-            if (s.destroyAfter) {
-              s.sceneConfig._presentatransdir = dir;
-              s.destroyAfter(projectConfig._transitionDestroyDelay);
-            }
-          });
-          currentScenes = data; // if first run
+        Promise.all([currentSceneComing]).then(data => {
+          if (currentScene) {
+            currentScene.sceneConfig._presentatransdir = dirWord;
+            currentScene.destroyAfter(projectConfig._transitionDestroyDelay);
+          }
+
+          currentScene = data[0];
+          MountScene(currentScene); // if first run
           // check if it creates issue
           // added because Countainer wasn't under promise
 
@@ -2154,19 +2243,20 @@ window._sdpcallbackfunc()
       };
 
       const router = new Router(child, projectConfig);
+      router.on('goto', evt => {
+        swapScenes(evt.currentIndex, 0);
+      });
       router.on('nextIndex', evt => {
-        swapScenes(evt.currentIndex, 'foreward');
+        swapScenes(evt.currentIndex, 1);
       });
       router.on('prevIndex', evt => {
-        swapScenes(evt.currentIndex, 'backward');
+        swapScenes(evt.currentIndex, -1);
       });
       router.on('stepChanged', evt => {
-        currentScenes.forEach(s => {
-          s.stepForward();
-        });
+        currentScene.stepForward();
       });
       router.on('init', evt => {
-        swapScenes(evt.currentIndex, 'foreward');
+        swapScenes(evt.currentIndex, 1);
       });
 
       if (window.ResizeObserver) {
@@ -2178,14 +2268,8 @@ window._sdpcallbackfunc()
 
 
       that.destroy = () => {
-        currentScenes.forEach(s => {
-          if (s.destroy) s.destroy();
-        });
+        currentScene.destroy();
         router.destroy();
-      };
-
-      that.updateBlock = (index, blockConfig) => {
-        currentScenes[0].updateBlock(index, blockConfig);
       };
 
       that.router = router;
@@ -2257,7 +2341,43 @@ window._sdpcallbackfunc()
     return err;
   });
 
-  // import pluginsInit from './utils/pluginsInit'
+  const plugInit = (all, plugs, store) => {
+    const activeKeys = Object.keys(plugs);
+    activeKeys.forEach(k => {
+      const p = all[k];
+      if (p && p.init) p.init(plugs[k]);
+      store.push({
+        plugin: p,
+        conf: plugs[k],
+        key: k
+      });
+    });
+  };
+
+  var pluginsInit = (config => {
+    const plugins = [];
+    plugInit(controllers, config.controllers, plugins);
+    plugInit(modules, config.modules, plugins);
+    const blocksKeysArr = [];
+    config.scenes.forEach(s => {
+      s.blocks.forEach(b => {
+        if (blocksKeysArr.indexOf(b.type) === -1) blocksKeysArr.push(b.type);
+      });
+    });
+    const blocksKeys = [];
+    blocksKeysArr.forEach(d => blocksKeys[d] = true);
+    plugInit(blocks, blocksKeys, plugins);
+    const all = [];
+    plugins.forEach(plug => {
+      const p = plug.plugin;
+      const c = plug.conf;
+
+      if (p && p.run) {
+        all.push(p.run(config, c));
+      }
+    });
+    return all;
+  });
 
   const Presenta = function (el, config) {
     if (!el || !config) {
@@ -2285,11 +2405,11 @@ window._sdpcallbackfunc()
     const splash = new Splash(root, config);
     return new Promise((resolve, reject) => {
       // new Install(config.plugins).then(() => {
-      // const all = pluginsInit(config)
-      // Promise.all(all).then(values => {
-      resolve(new Container(root, config));
-      splash.destroy(); // })
-      // })
+      const all = pluginsInit(config);
+      Promise.all(all).then(values => {
+        resolve(new Container(root, config));
+        splash.destroy();
+      }); // })
     });
   };
 

@@ -23,7 +23,6 @@ cache.run = projectConfig => {
     projectConfig.scenes.forEach(scene => {
       scene.blocks.forEach(block => {
         checkBlock(block)
-        if (block.type === 'group') block.blocks.forEach(suBlock => checkBlock(suBlock))
       })
     })
 

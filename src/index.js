@@ -14,7 +14,7 @@ import defaults from './utils/defaults'
 import validate from './utils/validate'
 
 // import { Install } from './core/Install.js'
-// import pluginsInit from './utils/pluginsInit'
+import pluginsInit from './utils/pluginsInit'
 
 const Presenta = function (el, config) {
   if (!el || !config) {
@@ -43,11 +43,11 @@ const Presenta = function (el, config) {
 
   return new Promise((resolve, reject) => {
     // new Install(config.plugins).then(() => {
-    // const all = pluginsInit(config)
-    // Promise.all(all).then(values => {
-    resolve(new Container(root, config))
-    splash.destroy()
-    // })
+    const all = pluginsInit(config)
+    Promise.all(all).then(values => {
+      resolve(new Container(root, config))
+      splash.destroy()
+    })
     // })
   })
 }

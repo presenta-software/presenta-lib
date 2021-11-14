@@ -5,6 +5,11 @@
     align-items: center;
     justify-content: center;
     position: relative;
+    visibility: hidden;
+}
+
+.visible{
+    visibility: visible;
 }
 
 .scene{

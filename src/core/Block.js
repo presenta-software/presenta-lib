@@ -13,7 +13,7 @@ const Block = function (blocksElement, blockConfig) {
 
     blockConfig.contextType = 'block'
 
-    let modInstances = []
+    const modInstances = []
     const modPromises = []
 
     if (!that.type) {
@@ -36,10 +36,8 @@ const Block = function (blocksElement, blockConfig) {
       }
     }
 
-    const customSelector = blockConfig.id && blockConfig.id.indexOf('#') === 0 ? `id="${blockConfig.id.replace('#', '')}"` : ''
-
     const child = u.div(`<div class="block ${css.block} b b${that.index}">
-      <div ${customSelector} class="blockContainer ${css.inner}"></div>
+      <div class="blockContainer ${css.inner}"></div>
     </div>`)
 
     const blockContainerWrapper = child.querySelector('.blockContainer')
@@ -78,11 +76,13 @@ const Block = function (blocksElement, blockConfig) {
       Promise.all([prom]).then(data => {
         // blockContainerWrapper.appendChild(blockContainer) // this was for alpine
         blockInstance = data[0]
-        initModules(false)
-        Promise.all(modPromises).then(data => {
-          modInstances = data
-          resolve(that)
-        })
+
+        resolve(that)
+        // initModules(false)
+        // Promise.all(modPromises).then(data => {
+        //   modInstances = data
+        //   resolve(that)
+        // })
       })
     }
 

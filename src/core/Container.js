@@ -2,6 +2,7 @@ import u from '../utils.js'
 import css from './css/container.css'
 import { Router } from './Router.js'
 import { Scene } from './Scene.js'
+import { MountScene } from './MountScene.js'
 
 const Container = function (rootElement, projectConfig) {
   const that = this
@@ -21,28 +22,66 @@ const Container = function (rootElement, projectConfig) {
 
     scenes.forEach((s, i) => (s.index = i))
 
-    var currentScenes = []
+    var currentScene = null
+    var currentSceneComing = null
+    var prevSceneComing = null
+    var nextSceneComing = null
 
     const swapScenes = (index, dir) => {
-      const sceneProms = []
-
       const idx = index
-      if (idx < scenes.length) {
-        const sceneConfig = scenes[idx]
-        sceneConfig._presentatransdir = dir
-        sceneConfig._router = router
-        sceneProms.push(new Scene(cont, sceneConfig, projectConfig, child))
-      }
+      const dirWord = dir === 1 ? 'foreward' : 'backward'
+      const oDirWord = dir === -1 ? 'foreward' : 'backward'
 
-      Promise.all(sceneProms)
-        .then(data => {
-          currentScenes.forEach(s => {
-            if (s.destroyAfter) {
-              s.sceneConfig._presentatransdir = dir
-              s.destroyAfter(projectConfig._transitionDestroyDelay)
+      if (idx < scenes.length) {
+        // current
+        const sceneConfig = scenes[idx]
+        sceneConfig._presentatransdir = dirWord
+        sceneConfig._router = router
+        if (dir > 0 && nextSceneComing) {
+          currentSceneComing = nextSceneComing
+          Promise.all([prevSceneComing]).then(scene => {
+            if (scene[0]) {
+              scene[0].destroy()
             }
           })
-          currentScenes = data
+        }
+        if (dir < 0 && prevSceneComing) {
+          currentSceneComing = prevSceneComing
+          Promise.all([nextSceneComing]).then(scene => {
+            if (scene[0]) {
+              scene[0].destroy()
+            }
+          })
+        }
+        if (!currentSceneComing) currentSceneComing = new Scene(cont, sceneConfig, projectConfig, child)
+
+        // next
+        if (idx + 1 < scenes.length) {
+          const nconf = scenes[idx + 1]
+          nconf._presentatransdir = dirWord
+          nconf._router = router
+          nextSceneComing = new Scene(cont, nconf, projectConfig, child)
+        }
+
+        // prev
+        if (idx - 1 >= 0) {
+          const pconf = scenes[idx - 1]
+          pconf._presentatransdir = oDirWord
+          pconf._router = router
+          prevSceneComing = new Scene(cont, pconf, projectConfig, child)
+        }
+      }
+
+      Promise.all([currentSceneComing])
+        .then(data => {
+          if (currentScene) {
+            currentScene.sceneConfig._presentatransdir = dirWord
+            currentScene.destroyAfter(projectConfig._transitionDestroyDelay)
+          }
+          currentScene = data[0]
+          currentScene.sceneConfig._presentatransdir = dirWord
+
+          MountScene(currentScene)
 
           // if first run
           // check if it creates issue
@@ -54,21 +93,19 @@ const Container = function (rootElement, projectConfig) {
     const router = new Router(child, projectConfig)
 
     router.on('nextIndex', evt => {
-      swapScenes(evt.currentIndex, 'foreward')
+      swapScenes(evt.currentIndex, 1)
     })
 
     router.on('prevIndex', evt => {
-      swapScenes(evt.currentIndex, 'backward')
+      swapScenes(evt.currentIndex, -1)
     })
 
     router.on('stepChanged', evt => {
-      currentScenes.forEach(s => {
-        s.stepForward()
-      })
+      currentScene.stepForward()
     })
 
     router.on('init', evt => {
-      swapScenes(evt.currentIndex, 'foreward')
+      swapScenes(evt.currentIndex, 1)
     })
 
     if (window.ResizeObserver) {
@@ -81,14 +118,8 @@ const Container = function (rootElement, projectConfig) {
     // u.fit(cont, projectConfig, rootElement)
 
     that.destroy = () => {
-      currentScenes.forEach(s => {
-        if (s.destroy) s.destroy()
-      })
+      currentScene.destroy()
       router.destroy()
-    }
-
-    that.updateBlock = (index, blockConfig) => {
-      currentScenes[0].updateBlock(index, blockConfig)
     }
 
     that.router = router

@@ -6,13 +6,12 @@ import { Transition } from './Transition.js'
 
 const Scene = function (cont, sceneConfig, projectConfig, rootElement) {
   const that = this
-  return new Promise((resolve, reject) => {
+  return new Promise(function (resolve, reject) {
     let blockInstances = []
 
-    let modInstances = []
+    const modInstances = []
     const blockPromises = []
     const preModPromises = []
-    const modPromises = []
 
     sceneConfig.contextType = 'scene'
 
@@ -94,9 +93,6 @@ const Scene = function (cont, sceneConfig, projectConfig, rootElement) {
             if (modConfig) {
               if (Mod.runBefore === true && runBefore) {
                 preModPromises.push(new Mod(child, modConfig, sceneConfig))
-              } else if (!Mod.runBefore && !runBefore) {
-                const mod = new Mod(child, modConfig, sceneConfig)
-                modPromises.push(mod)
               }
             }
           }
@@ -109,17 +105,6 @@ const Scene = function (cont, sceneConfig, projectConfig, rootElement) {
       const dir = sceneConfig._presentatransdir === 'backward' ? 'to-left' : 'to-right'
       Transition(wrap)
         .init(dir)
-    }
-
-    const startTransition = () => {
-      const wrap = child.querySelector('.sceneObject')
-      Transition(wrap)
-        .start()
-
-      setTimeout(() => {
-        Transition(wrap)
-          .swap()
-      }, projectConfig._transitionDestroyDelay)
     }
 
     /*
@@ -139,7 +124,6 @@ const Scene = function (cont, sceneConfig, projectConfig, rootElement) {
 
       setTimeout(() => {
         that.destroy()
-        child.parentNode.removeChild(child)
       }, t)
     }
 
@@ -161,22 +145,12 @@ const Scene = function (cont, sceneConfig, projectConfig, rootElement) {
     that.destroy = () => {
       modInstances.forEach(mod => { if (mod.destroy) mod.destroy() })
       blockInstances.forEach(block => { if (block.destroy) block.destroy() })
-    }
-
-    that.updateBlock = (index, blockConfig) => {
-      blockInstances[index].destroy()
-      blockConfig._index = index
-
-      const blocksContainer = child.querySelector('.blocksContainer')
-      const prom = new Block(blocksContainer, blockConfig)
-      Promise.all([prom]).then(data => {
-        blockInstances[index] = data[0]
-        sceneConfig.blocks[index] = blockConfig
-      })
+      child.parentNode.removeChild(child)
     }
 
     that.sceneConfig = sceneConfig
     initTransition()
+    resolve(that)
     initModules(true)
 
     Promise.all(preModPromises).then(data => {
@@ -184,14 +158,7 @@ const Scene = function (cont, sceneConfig, projectConfig, rootElement) {
 
       Promise.all(blockPromises).then(data => {
         blockInstances = data
-        initModules(false)
-
-        Promise.all(modPromises).then(data => {
-          modInstances = data
-          startTransition()
-          child.classList.add('presentaSceneMounted')
-          resolve(that)
-        })
+        // resolve(that)
       })
     })
   })

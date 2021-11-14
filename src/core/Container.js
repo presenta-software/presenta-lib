@@ -28,7 +28,6 @@ const Container = function (rootElement, projectConfig) {
     var nextSceneComing = null
 
     const swapScenes = (index, dir) => {
-      console.log('dir', index, dir, nextSceneComing)
       const idx = index
       const dirWord = dir === -1 ? 'backward' : 'foreward'
 
@@ -38,14 +37,12 @@ const Container = function (rootElement, projectConfig) {
         sceneConfig._presentatransdir = dirWord
         sceneConfig._router = router
         if (dir > 0 && nextSceneComing) {
-          console.log('recycle next scene')
           currentSceneComing = nextSceneComing
           Promise.all([prevSceneComing]).then(scene => {
             if (scene[0]) scene[0].destroyAfter(projectConfig._transitionDestroyDelay)
           })
         }
         if (dir < 0 && prevSceneComing) {
-          console.log('recycle prev scene')
           currentSceneComing = prevSceneComing
           Promise.all([nextSceneComing]).then(scene => {
             if (scene[0]) scene[0].destroyAfter(projectConfig._transitionDestroyDelay)
@@ -53,7 +50,6 @@ const Container = function (rootElement, projectConfig) {
         }
 
         if (dir === 0) {
-          console.log('reset recycle')
           currentSceneComing = null
           Promise.all([prevSceneComing, nextSceneComing]).then(scenes => {
             console.log(scenes)
@@ -70,13 +66,11 @@ const Container = function (rootElement, projectConfig) {
           const nconf = scenes[idx + 1]
           nconf._presentatransdir = 'foreward'
           nconf._router = router
-          console.log('create next scene')
           nextSceneComing = new Scene(cont, nconf, projectConfig, child)
         }
 
         // prev
         if (idx - 1 >= 0) {
-          console.log('create prev scene')
           const pconf = scenes[idx - 1]
           pconf._presentatransdir = 'backward'
           pconf._router = router

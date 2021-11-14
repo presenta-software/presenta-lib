@@ -159,7 +159,7 @@ const Scene = function (cont, sceneConfig, projectConfig, rootElement) {
 
     that.sceneConfig = sceneConfig
     initTransition()
-    resolve(that)
+    if (!projectConfig.waitForAllPromises) resolve(that)
     initModules(true)
 
     Promise.all(preModPromises).then(data => {
@@ -167,7 +167,7 @@ const Scene = function (cont, sceneConfig, projectConfig, rootElement) {
 
       Promise.all(blockPromises).then(data => {
         blockInstances = data
-        // resolve(that)
+        if (projectConfig.waitForAllPromises) resolve(that)
       })
     })
   })

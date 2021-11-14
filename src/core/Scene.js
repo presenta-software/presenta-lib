@@ -102,9 +102,16 @@ const Scene = function (cont, sceneConfig, projectConfig, rootElement) {
 
     const initTransition = () => {
       const wrap = child.querySelector('.sceneObject')
-      const dir = sceneConfig._presentatransdir === 'backward' ? 'to-left' : 'to-right'
+      const odir = sceneConfig._presentatransdir === 'backward' ? 'to-right' : 'to-left'
+      const ndir = sceneConfig._presentatransdir === 'backward' ? 'to-left' : 'to-right'
       Transition(wrap)
-        .init(dir)
+        .clear(odir)
+        .init(ndir)
+    }
+
+    that.initTransition = () => {
+      console.log('init trans')
+      initTransition()
     }
 
     /*
@@ -145,7 +152,9 @@ const Scene = function (cont, sceneConfig, projectConfig, rootElement) {
     that.destroy = () => {
       modInstances.forEach(mod => { if (mod.destroy) mod.destroy() })
       blockInstances.forEach(block => { if (block.destroy) block.destroy() })
-      child.parentNode.removeChild(child)
+      if (child.parentNode) {
+        child.parentNode.removeChild(child)
+      }
     }
 
     that.sceneConfig = sceneConfig

@@ -21,15 +21,6 @@ const Router = function (rootElement, projectConfig) {
       : 0
   }
 
-  const updateRouterWrapper = () => {
-    const sceneConfig = scenes[currentIndex]
-    child.classList.remove(...child.classList)
-    child.classList.add('controller', css.router)
-    child.style = null
-    // u.globs(child, sceneConfig)
-    // u.props(child, sceneConfig)
-  }
-
   this.next = () => {
     if (currentStep === numSteps()) {
       this.nextIndex()
@@ -70,18 +61,15 @@ const Router = function (rootElement, projectConfig) {
   }
 
   this.goto = v => {
-    const dir = currentIndex > v ? 'prevIndex' : 'nextIndex'
     currentIndex = v < numScenes() ? v : numScenes()
     currentStep = 0
-    notify(['goto', dir, 'indexChanged'])
+    notify(['goto', 'indexChanged'])
   }
 
   const notify = evt => {
     const evts = Array.isArray(evt) ? evt : [evt]
 
     evts.forEach(ev => {
-      // if (ev === 'indexChanged') updateRouterWrapper()
-
       if (listeners[ev]) {
         listeners[ev].forEach(clb => {
           clb({

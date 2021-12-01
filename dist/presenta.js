@@ -1,11 +1,11 @@
-// https://lib.presenta.cc v1.0.2 - BSD-3-Clause License - Copyright 2021 Fabio Franchino
+// https://lib.presenta.cc v1.0.3 - BSD-3-Clause License - Copyright 2021 Fabio Franchino
 (function (global, factory) {
   typeof exports === 'object' && typeof module !== 'undefined' ? module.exports = factory() :
   typeof define === 'function' && define.amd ? define(factory) :
   (global = typeof globalThis !== 'undefined' ? globalThis : global || self, global.Presenta = factory());
 })(this, (function () { 'use strict';
 
-  var version = "1.0.2";
+  var version = "1.0.3";
 
   function styleInject(css, ref) {
     if ( ref === void 0 ) ref = {};
@@ -1188,13 +1188,26 @@ window._sdpcallbackfunc()
   const props$1 = ['background', 'color', 'accent', 'padding', 'interline', 'spacing', 'radius', 'borderTop', 'borderLeft', 'borderRight', 'borderBottom', 'shadow', 'blend', 'align', 'vertical', 'horizontal'];
   const inlinestyles = ['marked', 'uppercase', 'underline'];
 
+  const getUnit = v => {
+    let res = 'rem';
+    if (!v) return res;
+    const s = v + '';
+
+    if (s.match(/rem|px/mig)) {
+      res = '';
+    }
+
+    return res;
+  };
+
   const text = function (el, config) {
     const that = this;
     return new Promise((resolve, reject) => {
       const html = config.content || '';
       if (!html) return resolve(that);
       let rawp = utils.rawProps('text', props$1, config);
-      let fsize = config.scale;
+      let fsize = config.scale || 1;
+      const funit = getUnit(fsize);
       const autoscale = config.autoscale;
       let inlineStyleClasses = '';
       inlinestyles.forEach(s => {
@@ -1250,7 +1263,7 @@ window._sdpcallbackfunc()
       // this is the iterative scale routine
 
       const compute = () => {
-        child.style.setProperty('--textSize', `${fsize}rem`);
+        child.style.setProperty('--textSize', `${fsize}${funit}`);
         const mel = child.querySelector('.' + css$b.inner);
         const el = child.querySelector('.' + css$b.textbox);
 
@@ -1271,6 +1284,7 @@ window._sdpcallbackfunc()
         const bbox = el.getBoundingClientRect();
 
         if (parseInt(mbox.width) < parseInt(bbox.width) || parseInt(mbox.height) < parseInt(bbox.height)) {
+          console.log('reducing........');
           fsize -= 0.05;
           return setTimeout(compute);
         } else {
@@ -2076,12 +2090,13 @@ window._sdpcallbackfunc()
 
       that.sceneConfig = sceneConfig;
       initTransition();
-      resolve(that);
+      if (!projectConfig.waitForAllPromises) resolve(that);
       initModules(true);
       Promise.all(preModPromises).then(data => {
         initBlocks();
         Promise.all(blockPromises).then(data => {
-          blockInstances = data; // resolve(that)
+          blockInstances = data;
+          if (projectConfig.waitForAllPromises) resolve(that);
         });
       });
     });
@@ -2170,7 +2185,6 @@ window._sdpcallbackfunc()
       var nextSceneComing = null;
 
       const swapScenes = (index, dir) => {
-        console.log('dir', index, dir, nextSceneComing);
         const idx = index;
         const dirWord = dir === -1 ? 'backward' : 'foreward';
 
@@ -2181,7 +2195,6 @@ window._sdpcallbackfunc()
           sceneConfig._router = router;
 
           if (dir > 0 && nextSceneComing) {
-            console.log('recycle next scene');
             currentSceneComing = nextSceneComing;
             Promise.all([prevSceneComing]).then(scene => {
               if (scene[0]) scene[0].destroyAfter(projectConfig._transitionDestroyDelay);
@@ -2189,7 +2202,6 @@ window._sdpcallbackfunc()
           }
 
           if (dir < 0 && prevSceneComing) {
-            console.log('recycle prev scene');
             currentSceneComing = prevSceneComing;
             Promise.all([nextSceneComing]).then(scene => {
               if (scene[0]) scene[0].destroyAfter(projectConfig._transitionDestroyDelay);
@@ -2197,7 +2209,6 @@ window._sdpcallbackfunc()
           }
 
           if (dir === 0) {
-            console.log('reset recycle');
             currentSceneComing = null;
             Promise.all([prevSceneComing, nextSceneComing]).then(scenes => {
               console.log(scenes);
@@ -2213,13 +2224,11 @@ window._sdpcallbackfunc()
             const nconf = scenes[idx + 1];
             nconf._presentatransdir = 'foreward';
             nconf._router = router;
-            console.log('create next scene');
             nextSceneComing = new Scene(cont, nconf, projectConfig, child);
           } // prev
 
 
           if (idx - 1 >= 0) {
-            console.log('create prev scene');
             const pconf = scenes[idx - 1];
             pconf._presentatransdir = 'backward';
             pconf._router = router;

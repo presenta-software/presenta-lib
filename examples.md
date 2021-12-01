@@ -15,3 +15,4 @@
 ### Plugins
 
 - [Render QRCodes](https://codepen.io/abusedmedia/pen/xxLzPQB)
+- [Render BarCode](https://codepen.io/abusedmedia/pen/GRvYdER)

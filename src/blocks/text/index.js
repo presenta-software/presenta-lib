@@ -32,6 +32,16 @@ const inlinestyles = [
   'underline'
 ]
 
+const getUnit = v => {
+  let res = 'rem'
+  if (!v) return res
+  const s = v + ''
+  if (s.match(/rem|px/mig)) {
+    res = ''
+  }
+  return res
+}
+
 const text = function (el, config) {
   const that = this
   return new Promise((resolve, reject) => {
@@ -41,7 +51,8 @@ const text = function (el, config) {
 
     let rawp = u.rawProps('text', props, config)
 
-    let fsize = config.scale
+    let fsize = config.scale || 1
+    const funit = getUnit(fsize)
     const autoscale = config.autoscale
 
     let inlineStyleClasses = ''
@@ -100,7 +111,7 @@ const text = function (el, config) {
 
     // this is the iterative scale routine
     const compute = () => {
-      child.style.setProperty('--textSize', `${fsize}rem`)
+      child.style.setProperty('--textSize', `${fsize}${funit}`)
 
       const mel = child.querySelector('.' + css.inner)
       const el = child.querySelector('.' + css.textbox)
@@ -124,6 +135,7 @@ const text = function (el, config) {
 
       if (parseInt(mbox.width) < parseInt(bbox.width) ||
           parseInt(mbox.height) < parseInt(bbox.height)) {
+        console.log('reducing........')
         fsize -= 0.05
         return setTimeout(compute)
       } else {

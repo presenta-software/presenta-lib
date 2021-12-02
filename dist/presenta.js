@@ -1,11 +1,11 @@
-// https://lib.presenta.cc v1.0.3 - BSD-3-Clause License - Copyright 2021 Fabio Franchino
+// https://lib.presenta.cc v1.0.4 - BSD-3-Clause License - Copyright 2021 Fabio Franchino
 (function (global, factory) {
   typeof exports === 'object' && typeof module !== 'undefined' ? module.exports = factory() :
   typeof define === 'function' && define.amd ? define(factory) :
   (global = typeof globalThis !== 'undefined' ? globalThis : global || self, global.Presenta = factory());
 })(this, (function () { 'use strict';
 
-  var version = "1.0.3";
+  var version = "1.0.4";
 
   function styleInject(css, ref) {
     if ( ref === void 0 ) ref = {};
@@ -1188,13 +1188,24 @@ window._sdpcallbackfunc()
   const props$1 = ['background', 'color', 'accent', 'padding', 'interline', 'spacing', 'radius', 'borderTop', 'borderLeft', 'borderRight', 'borderBottom', 'shadow', 'blend', 'align', 'vertical', 'horizontal'];
   const inlinestyles = ['marked', 'uppercase', 'underline'];
 
-  const getUnit = v => {
-    let res = 'rem';
+  const getSize = v => {
+    const res = {
+      v: v,
+      u: 'rem'
+    };
     if (!v) return res;
     const s = v + '';
+    const ext = s.match(/rem|px/mig);
 
-    if (s.match(/rem|px/mig)) {
-      res = '';
+    if (ext) {
+      res.u = ext[0];
+      res.v = s.replace(ext[0], '');
+    }
+
+    if (!(Number(res.v) > 0)) {
+      res.v = null;
+    } else {
+      res.v = +res.v;
     }
 
     return res;
@@ -1206,8 +1217,9 @@ window._sdpcallbackfunc()
       const html = config.content || '';
       if (!html) return resolve(that);
       let rawp = utils.rawProps('text', props$1, config);
-      let fsize = config.scale || 1;
-      const funit = getUnit(fsize);
+      const size = getSize(config.scale);
+      let fsize = size.v;
+      const funit = size.u;
       const autoscale = config.autoscale;
       let inlineStyleClasses = '';
       inlinestyles.forEach(s => {
@@ -1284,7 +1296,6 @@ window._sdpcallbackfunc()
         const bbox = el.getBoundingClientRect();
 
         if (parseInt(mbox.width) < parseInt(bbox.width) || parseInt(mbox.height) < parseInt(bbox.height)) {
-          console.log('reducing........');
           fsize -= 0.05;
           return setTimeout(compute);
         } else {

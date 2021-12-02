@@ -32,12 +32,20 @@ const inlinestyles = [
   'underline'
 ]
 
-const getUnit = v => {
-  let res = 'rem'
+const getSize = v => {
+  const res = { v: v, u: 'rem' }
   if (!v) return res
   const s = v + ''
-  if (s.match(/rem|px/mig)) {
-    res = ''
+  const ext = s.match(/rem|px/mig)
+  if (ext) {
+    res.u = ext[0]
+    res.v = s.replace(ext[0], '')
+  }
+
+  if (!(Number(res.v) > 0)) {
+    res.v = null
+  } else {
+    res.v = +res.v
   }
   return res
 }
@@ -51,8 +59,10 @@ const text = function (el, config) {
 
     let rawp = u.rawProps('text', props, config)
 
-    let fsize = config.scale || 1
-    const funit = getUnit(fsize)
+    const size = getSize(config.scale)
+    let fsize = size.v
+    const funit = size.u
+
     const autoscale = config.autoscale
 
     let inlineStyleClasses = ''
@@ -135,7 +145,6 @@ const text = function (el, config) {
 
       if (parseInt(mbox.width) < parseInt(bbox.width) ||
           parseInt(mbox.height) < parseInt(bbox.height)) {
-        console.log('reducing........')
         fsize -= 0.05
         return setTimeout(compute)
       } else {

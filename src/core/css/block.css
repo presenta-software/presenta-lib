@@ -24,7 +24,7 @@
   /* --blockBackground: var(--colorBack); */
   --blockBorder: 0;
 
-  transform-origin: top left;
+  /* transform-origin: top left; */
   transform: rotate(var(--angle)) skew(var(--skew));
 
 }

@@ -145,7 +145,8 @@ const text = function (el, config) {
 
       if (parseInt(mbox.width) < parseInt(bbox.width) ||
           parseInt(mbox.height) < parseInt(bbox.height)) {
-        fsize -= 0.05
+        const vf = funit === 'px' ? 0.5 : 0.05
+        fsize -= vf
         return setTimeout(compute)
       } else {
         setTimeout(() => {

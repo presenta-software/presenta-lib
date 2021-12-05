@@ -270,10 +270,10 @@
   background: var(--textAccent);
   color: var(--textColor);
 }
-.uppercase{
+.uppercase span{
   text-transform: uppercase;
 }
-.underline{
+.underline span{
   text-decoration: underline;
   text-decoration-color: var(--textColor);
 }

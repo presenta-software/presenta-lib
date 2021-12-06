@@ -1,11 +1,11 @@
-// https://lib.presenta.cc v1.0.5 - BSD-3-Clause License - Copyright 2021 Fabio Franchino
+// https://lib.presenta.cc v1.0.6 - BSD-3-Clause License - Copyright 2021 Fabio Franchino
 (function (global, factory) {
   typeof exports === 'object' && typeof module !== 'undefined' ? module.exports = factory() :
   typeof define === 'function' && define.amd ? define(factory) :
   (global = typeof globalThis !== 'undefined' ? globalThis : global || self, global.Presenta = factory());
 })(this, (function () { 'use strict';
 
-  var version = "1.0.5";
+  var version = "1.0.6";
 
   function styleInject(css, ref) {
     if ( ref === void 0 ) ref = {};
@@ -1514,9 +1514,10 @@ window._sdpcallbackfunc()
   styleInject(css_248z$7);
 
   const svg = function (el, config) {
-    const svg = config._cache || config.code;
+    const svg = config.code;
     if (!svg) return console.log('[block svg]', 'The svg is not present');
     const aspect = config.aspect || null;
+    const query = config.query || null;
     const child = utils.div(`<div class="c ${css$7.svg}">
         <div class="${css$7.inner}">
             ${svg}
@@ -1525,7 +1526,21 @@ window._sdpcallbackfunc()
     el.appendChild(child);
     if (aspect) child.querySelector('svg').setAttribute('preserveAspectRatio', aspect);
 
-    this.beforeDestroy = () => {};
+    if (query) {
+      const s = child.querySelector('svg'); // #rect1:width:100,#rect2:height:20,circle:fill:#ff0000
+
+      const els = query.split(',');
+      els.forEach(el => {
+        const subparts = el.split(':');
+        const sel = subparts[0];
+        const atr = subparts[1];
+        const val = subparts[2];
+        const itm = [...s.querySelectorAll(sel)];
+        itm.forEach(it => {
+          it.setAttribute(atr, val);
+        });
+      });
+    }
   };
 
   var css_248z$6 = ".style_shape__FgMb3{--shapeColor:var(--colorFore);width:100%;height:100%}.style_el__2h6ux{background:var(--shapeColor);width:100%;height:100%}.style_path__2ka5V{-webkit-clip-path:var(--shapePath);clip-path:var(--shapePath)}.style_circle__311fy{-webkit-clip-path:ellipse(50% 50% at 50% 50%);clip-path:ellipse(50% 50% at 50% 50%)}.style_triangle__1SsU5{-webkit-clip-path:polygon(50% 0,0 100%,100% 100%);clip-path:polygon(50% 0,0 100%,100% 100%)}.style_rhombus__30IVZ{-webkit-clip-path:polygon(50% 0,100% 50%,50% 100%,0 50%);clip-path:polygon(50% 0,100% 50%,50% 100%,0 50%)}.style_star__SnUWn{-webkit-clip-path:polygon(50% 0,61% 35%,98% 35%,68% 57%,79% 91%,50% 70%,21% 91%,32% 57%,2% 35%,39% 35%);clip-path:polygon(50% 0,61% 35%,98% 35%,68% 57%,79% 91%,50% 70%,21% 91%,32% 57%,2% 35%,39% 35%)}";

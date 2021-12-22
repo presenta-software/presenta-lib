@@ -12,6 +12,7 @@ import reveal from './reveal'
 import link from './link'
 import enters from './enters'
 import script from './script'
+import showif from './showif'
 
 const modules = {
   coords,
@@ -27,7 +28,8 @@ const modules = {
   reveal,
   enters,
   script,
-  link
+  link,
+  showif
 }
 
 const add = (type, module, override) => {

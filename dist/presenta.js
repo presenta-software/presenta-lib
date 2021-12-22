@@ -1,11 +1,11 @@
-// https://lib.presenta.cc v1.0.6 - BSD-3-Clause License - Copyright 2021 Fabio Franchino
+// https://lib.presenta.cc v1.0.7 - BSD-3-Clause License - Copyright 2021 Fabio Franchino
 (function (global, factory) {
   typeof exports === 'object' && typeof module !== 'undefined' ? module.exports = factory() :
   typeof define === 'function' && define.amd ? define(factory) :
   (global = typeof globalThis !== 'undefined' ? globalThis : global || self, global.Presenta = factory());
 })(this, (function () { 'use strict';
 
-  var version = "1.0.6";
+  var version = "1.0.7";
 
   function styleInject(css, ref) {
     if ( ref === void 0 ) ref = {};
@@ -1152,6 +1152,29 @@ window._sdpcallbackfunc()
 
   script.runBefore = true;
 
+  const showif = function (element, mod, config) {
+    const {
+      key,
+      op,
+      value
+    } = mod;
+    let pass = true;
+
+    switch (op) {
+      case '==':
+        pass = config[key] == value;
+        break;
+
+      case '!=':
+        pass = config[key] != value;
+        break;
+    }
+
+    if (!pass) element.style.display = 'none';
+  };
+
+  showif.runBefore = true;
+
   const modules = {
     coords,
     steps,
@@ -1166,7 +1189,8 @@ window._sdpcallbackfunc()
     reveal,
     enters,
     script,
-    link
+    link,
+    showif
   };
 
   const add$1 = (type, module, override) => {

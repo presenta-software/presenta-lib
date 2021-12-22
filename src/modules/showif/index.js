@@ -1,14 +1,18 @@
 
 const showif = function (element, mod, config) {
   const { key, op, value } = mod
+
+  console.log(key, config._sceneConfig.otherParams)
+  const prop = key.split('.').reduce((o, i) => o[i], config)
+
   let pass = true
   switch (op) {
     case '==':
-      pass = config[key] == value
+      pass = prop === value
       break
 
     case '!=':
-      pass = config[key] != value
+      pass = prop !== value
       break
   }
   if (!pass) element.style.display = 'none'

@@ -1,11 +1,11 @@
-// https://lib.presenta.cc v1.0.8 - BSD-3-Clause License - Copyright 2021 Fabio Franchino
+// https://lib.presenta.cc v1.0.9 - BSD-3-Clause License - Copyright 2021 Fabio Franchino
 (function (global, factory) {
   typeof exports === 'object' && typeof module !== 'undefined' ? module.exports = factory() :
   typeof define === 'function' && define.amd ? define(factory) :
   (global = typeof globalThis !== 'undefined' ? globalThis : global || self, global.Presenta = factory());
 })(this, (function () { 'use strict';
 
-  var version = "1.0.8";
+  var version = "1.0.9";
 
   function styleInject(css, ref) {
     if ( ref === void 0 ) ref = {};
@@ -1158,7 +1158,6 @@ window._sdpcallbackfunc()
       op,
       value
     } = mod;
-    console.log(key, config._sceneConfig.otherParams);
     const prop = key.split('.').reduce((o, i) => o[i], config);
     let pass = true;
 
@@ -1335,6 +1334,9 @@ window._sdpcallbackfunc()
 
       if (config.font) {
         fetch(config.font).then(res => {
+          setTimeout(compute);
+        }).catch(err => {
+          console.log('error on preload font', err);
           setTimeout(compute);
         });
       } else {

@@ -54,7 +54,7 @@
     "@rollup/plugin-node-resolve": "^13.1.1",
     "autoprefixer": "^10.4.0",
     "cssnano": "^5.0.14",
-    "node-sass": "^7.0.0",
+    "node-sass": "^7.0.1",
     "rollup": "^2.61.1",
     "rollup-plugin-postcss": "^4.0.2",
     "rollup-plugin-svg": "^2.0.0",

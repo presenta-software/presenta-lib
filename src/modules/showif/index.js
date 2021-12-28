@@ -2,7 +2,6 @@
 const showif = function (element, mod, config) {
   const { key, op, value } = mod
 
-  console.log(key, config._sceneConfig.otherParams)
   const prop = key.split('.').reduce((o, i) => o[i], config)
 
   let pass = true

@@ -160,6 +160,9 @@ const text = function (el, config) {
     if (config.font) {
       fetch(config.font).then(res => {
         setTimeout(compute)
+      }).catch(err => {
+        console.log('error on preload font', err)
+        setTimeout(compute)
       })
     } else {
       setTimeout(compute)

@@ -33,7 +33,7 @@ const embed = function (el, config) {
 
     const done = () => {
       child.querySelector('.' + css.loading).style.display = 'none'
-      child.querySelector('.' + css.poster).style.display = 'none'
+      if (posterFrame) child.querySelector('.' + css.poster).style.display = 'none'
       resolve(that)
     }
 

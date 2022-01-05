@@ -1,11 +1,11 @@
-// https://lib.presenta.cc v1.0.9 - BSD-3-Clause License - Copyright 2021 Fabio Franchino
+// https://lib.presenta.cc v1.0.10 - BSD-3-Clause License - Copyright 2022 Fabio Franchino
 (function (global, factory) {
   typeof exports === 'object' && typeof module !== 'undefined' ? module.exports = factory() :
   typeof define === 'function' && define.amd ? define(factory) :
   (global = typeof globalThis !== 'undefined' ? globalThis : global || self, global.Presenta = factory());
 })(this, (function () { 'use strict';
 
-  var version = "1.0.9";
+  var version = "1.0.10";
 
   function styleInject(css, ref) {
     if ( ref === void 0 ) ref = {};
@@ -1383,7 +1383,7 @@ window._sdpcallbackfunc()
 
       const done = () => {
         child.querySelector('.' + css$a.loading).style.display = 'none';
-        child.querySelector('.' + css$a.poster).style.display = 'none';
+        if (posterFrame) child.querySelector('.' + css$a.poster).style.display = 'none';
         resolve(that);
       };
 

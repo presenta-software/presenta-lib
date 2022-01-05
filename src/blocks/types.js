@@ -3,17 +3,13 @@ import { embed } from './embed'
 import { image } from './image'
 import { video } from './video'
 import { svg } from './svg'
-import { shape } from './shape'
-import { line } from './line'
 
 const blocks = {
   text,
   embed,
   image,
   video,
-  svg,
-  shape,
-  line
+  svg
 }
 
 const add = (type, module, override) => {

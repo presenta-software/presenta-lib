@@ -1,6 +1,7 @@
-const appendScriptTag = (url, code) => {
+
+const appendScriptTag = (url, code, id) => {
   const ns = document.createElement('script')
-  ns.setAttribute('class', 'sdpmodulescriptcontainer')
+  ns.setAttribute('class', 'sdpmodulescriptcontainer' + id)
   ns.setAttribute('type', 'module')
   ns.setAttribute('async', '')
   ns.innerHTML = code
@@ -9,8 +10,16 @@ const appendScriptTag = (url, code) => {
 }
 
 const script = function (element, mod, config) {
-  if (config._mode === 'preview') return
+  if (!mod.forceRun && config._mode === 'preview') return
   if (config.contextType !== 'scene') return
+
+  const id = '_JSMOD_' + parseInt(Math.random() * 10000)
+  const that = this
+
+  this.destroy = () => {
+    const prev = [...document.querySelectorAll('.sdpmodulescriptcontainer' + id)]
+    prev.forEach(d => document.body.removeChild(d))
+  }
 
   return new Promise((resolve, reject) => {
     const blink = {}
@@ -18,32 +27,30 @@ const script = function (element, mod, config) {
       blink[b.ukey] = b
     })
     blink._otherParams = config.otherParams
-    window._sdpconfigobject = blink
+    window['_sdpconfigobject' + id] = blink
 
-    window._sdpscriptexportedresult = {}
+    window['_sdpscriptexportedresult' + id] = {}
 
-    window._sdpcallbackfunc = () => {
-      console.log('_sdpcallbackfunc')
-      window._sdpcallbackfunc = null
-      window._sdpconfigobject = null
+    window['_sdpcallbackfunc' + id] = () => {
+      console.log('_sdpcallbackfunc' + id)
+      window['_sdpcallbackfunc' + id] = null
+      window['_sdpconfigobject' + id] = null
 
-      resolve()
+      resolve(that)
     }
-
-    // remove previous code modules
-    const prev = [...document.querySelectorAll('.sdpmodulescriptcontainer')]
-    prev.forEach(d => document.body.removeChild(d))
 
     let code = `
 const index = ${config.index}
-const exportedResult = window._sdpscriptexportedresult
+const exportedResult = window._sdpscriptexportedresult${id}
 
-const params = window._sdpconfigobject._otherParams
+const params = window._sdpconfigobject${id}._otherParams
     `
     config.blocks.forEach(b => {
-      code += `
-const ${b.ukey} = window._sdpconfigobject.${b.ukey}
+      if (b.ukey) {
+        code += `
+const ${b.ukey} = window._sdpconfigobject${id}.${b.ukey}
 `
+      }
     })
 
     code += `
@@ -55,22 +62,22 @@ try{
 ${mod.code}
 
 }catch(err){
-console.log('error in module', err)
+   console.log('error in module', err)
 }
 export default {}`
 
     // add the code module
     let url = URL.createObjectURL(new Blob([code], { type: 'application/javascript' }))
-    appendScriptTag(url, code)
+    appendScriptTag(url, code, id)
 
     // add the last module for callback
     const lastModule = `
 import _sdpPrivateInput from '${url}'
-window._sdpcallbackfunc()
+window._sdpcallbackfunc${id}()
 `
 
     url = URL.createObjectURL(new Blob([lastModule], { type: 'application/javascript' }))
-    appendScriptTag(url, lastModule)
+    appendScriptTag(url, lastModule, id)
   })
 }
 

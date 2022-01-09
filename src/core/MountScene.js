@@ -9,6 +9,9 @@ const MountScene = (scene) => {
   const child = sceneConfig._el
   const projectConfig = sceneConfig._projectConfig
 
+  let modInstances = []
+  const modPromises = []
+
   const initModules = (runBefore) => {
     if (sceneConfig.modules) {
       for (const k in sceneConfig.modules) {
@@ -19,7 +22,7 @@ const MountScene = (scene) => {
           if (modConfig) {
             if (!Mod.runBefore && !runBefore) {
               // eslint-disable-next-line
-              new Mod(child, modConfig, sceneConfig)
+              modPromises.push(new Mod(child, modConfig, sceneConfig))
             }
           }
         }
@@ -39,13 +42,16 @@ const MountScene = (scene) => {
     }, projectConfig._transitionDestroyDelay)
   }
 
+  sceneConfig.blocks.forEach(b => MountBlock(b))
   initModules(false)
 
-  sceneConfig.blocks.forEach(b => MountBlock(b))
+  Promise.all(modPromises).then(data => {
+    modInstances = data
 
-  startTransition()
+    startTransition()
 
-  child.classList.add('presentaSceneMounted')
+    child.classList.add('presentaSceneMounted')
+  })
 }
 
 export { MountScene }

@@ -9,7 +9,7 @@ const Scene = function (cont, sceneConfig, projectConfig, rootElement) {
   return new Promise(function (resolve, reject) {
     let blockInstances = []
 
-    const modInstances = []
+    let modInstances = []
     const blockPromises = []
     const preModPromises = []
 
@@ -163,6 +163,7 @@ const Scene = function (cont, sceneConfig, projectConfig, rootElement) {
     initModules(true)
 
     Promise.all(preModPromises).then(data => {
+      modInstances = data
       initBlocks()
 
       Promise.all(blockPromises).then(data => {

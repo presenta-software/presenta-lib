@@ -97,28 +97,6 @@ const text = function (el, config) {
   </div>`)
     el.appendChild(child)
 
-    // if there are images, let's exploit the alt attribute if contains a number
-    // as a scale multiplier
-    // let images = child.querySelectorAll('img')
-    // if (images) {
-    //   images = [...images].forEach(img => {
-    //     const a = img.getAttribute('alt')
-    //     if (a) {
-    //       const val = +a
-    //       if (val > 0) img.style.height = 4 * val + 'em'
-    //     }
-    //   })
-    // }
-
-    // let isObserved = false
-    // let isComputing = false
-    // const resizeObserver = new ResizeObserver(() => {
-    //   if (!isComputing) {
-    //     resizeObserver.disconnect()
-    //     compute()
-    //   }
-    // })
-
     // this is the iterative scale routine
     const compute = () => {
       child.style.setProperty('--textSize', `${fsize}${funit}`)
@@ -134,12 +112,6 @@ const text = function (el, config) {
         return false
       }
 
-      // isComputing = true
-      // if (!isObserved) {
-      //   resizeObserver.observe(el)
-      //   isObserved = true
-      // }
-
       const mbox = mel.getBoundingClientRect()
       const bbox = el.getBoundingClientRect()
 
@@ -152,25 +124,18 @@ const text = function (el, config) {
         setTimeout(() => {
           child.classList.remove(css.promise)
           resolve(that)
-          // isComputing = false
         })
       }
     }
 
     if (config.font) {
-      fetch(config.font).then(res => {
-        setTimeout(compute)
-      }).catch(err => {
-        console.log('error on preload font', err)
+      document.fonts.ready.then(() => {
         setTimeout(compute)
       })
     } else {
       setTimeout(compute)
     }
-
-    that.destroy = () => {
-      // resizeObserver.disconnect()
-    }
+    setTimeout(compute)
   })
 }
 

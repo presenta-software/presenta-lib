@@ -13,7 +13,7 @@ import utils from './utils'
 import defaults from './utils/defaults'
 import validate from './utils/validate'
 
-// import { Install } from './core/Install.js'
+import { Install } from './core/Install.js'
 import pluginsInit from './utils/pluginsInit'
 
 const Presenta = function (el, config) {
@@ -42,13 +42,13 @@ const Presenta = function (el, config) {
   const splash = new Splash(root, config)
 
   return new Promise((resolve, reject) => {
-    // new Install(config.plugins).then(() => {
-    const all = pluginsInit(config)
-    Promise.all(all).then(values => {
-      resolve(new Container(root, config))
-      splash.destroy()
+    new Install(config.plugins).then(() => {
+      const all = pluginsInit(config)
+      Promise.all(all).then(values => {
+        resolve(new Container(root, config))
+        splash.destroy()
+      })
     })
-    // })
   })
 }
 
@@ -59,9 +59,6 @@ Presenta.addController = addController
 Presenta.addModule = addModule
 
 Presenta.installed = { controllers, modules, blocks }
-
-// Presenta.addGlob = utils.addGlob
-// Presenta.addProp = utils.addProp
 
 Presenta.io = utils.io
 

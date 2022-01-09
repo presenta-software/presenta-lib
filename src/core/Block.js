@@ -8,7 +8,7 @@ const Block = function (blocksElement, blockConfig) {
   return new Promise((resolve, reject) => {
     that.type = blockConfig.aliasType || blockConfig.type
     that.index = blockConfig._index
-    var blockInstance = null
+    let blockInstance = null
     const sceneConfig = blockConfig._sceneConfig || {}
 
     blockConfig.contextType = 'block'

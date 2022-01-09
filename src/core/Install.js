@@ -60,8 +60,6 @@ const Install = function (config) {
           resolve()
         }
       }
-
-      // if (len === 0) resolve()
     })
   })
 }

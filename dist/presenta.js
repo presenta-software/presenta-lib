@@ -1,11 +1,11 @@
-// https://lib.presenta.cc v1.0.11 - BSD-3-Clause License - Copyright 2022 Fabio Franchino
+// https://lib.presenta.cc v1.0.12 - BSD-3-Clause License - Copyright 2022 Fabio Franchino
 (function (global, factory) {
   typeof exports === 'object' && typeof module !== 'undefined' ? module.exports = factory() :
   typeof define === 'function' && define.amd ? define(factory) :
   (global = typeof globalThis !== 'undefined' ? globalThis : global || self, global.Presenta = factory());
 })(this, (function () { 'use strict';
 
-  var version = "1.0.11";
+  var version = "1.0.12";
 
   function styleInject(css, ref) {
     if ( ref === void 0 ) ref = {};
@@ -1277,27 +1277,7 @@ window._sdpcallbackfunc()
       </div>
     </div>
   </div>`);
-      el.appendChild(child); // if there are images, let's exploit the alt attribute if contains a number
-      // as a scale multiplier
-      // let images = child.querySelectorAll('img')
-      // if (images) {
-      //   images = [...images].forEach(img => {
-      //     const a = img.getAttribute('alt')
-      //     if (a) {
-      //       const val = +a
-      //       if (val > 0) img.style.height = 4 * val + 'em'
-      //     }
-      //   })
-      // }
-      // let isObserved = false
-      // let isComputing = false
-      // const resizeObserver = new ResizeObserver(() => {
-      //   if (!isComputing) {
-      //     resizeObserver.disconnect()
-      //     compute()
-      //   }
-      // })
-      // this is the iterative scale routine
+      el.appendChild(child); // this is the iterative scale routine
 
       const compute = () => {
         child.style.setProperty('--textSize', `${fsize}${funit}`);
@@ -1310,12 +1290,7 @@ window._sdpcallbackfunc()
             resolve(that);
           });
           return false;
-        } // isComputing = true
-        // if (!isObserved) {
-        //   resizeObserver.observe(el)
-        //   isObserved = true
-        // }
-
+        }
 
         const mbox = mel.getBoundingClientRect();
         const bbox = el.getBoundingClientRect();
@@ -1327,24 +1302,20 @@ window._sdpcallbackfunc()
         } else {
           setTimeout(() => {
             child.classList.remove(css$9.promise);
-            resolve(that); // isComputing = false
+            resolve(that);
           });
         }
       };
 
       if (config.font) {
-        fetch(config.font).then(res => {
-          setTimeout(compute);
-        }).catch(err => {
-          console.log('error on preload font', err);
+        document.fonts.ready.then(() => {
           setTimeout(compute);
         });
       } else {
         setTimeout(compute);
       }
 
-      that.destroy = () => {// resizeObserver.disconnect()
-      };
+      setTimeout(compute);
     });
   };
 
@@ -1811,7 +1782,7 @@ window._sdpcallbackfunc()
     return new Promise((resolve, reject) => {
       that.type = blockConfig.aliasType || blockConfig.type;
       that.index = blockConfig._index;
-      var blockInstance = null;
+      let blockInstance = null;
       const sceneConfig = blockConfig._sceneConfig || {};
       blockConfig.contextType = 'block';
       const modInstances = [];
@@ -2374,6 +2345,73 @@ window._sdpcallbackfunc()
     return err;
   });
 
+  const installed = {};
+  const listeners = [];
+  let loading = false;
+
+  const Install = function (config) {
+    return new Promise((resolve, reject) => {
+      let len = 0;
+      let cnt = 0;
+      if (config.length === 0) resolve();
+      config.forEach(s => {
+        const addSource = url => {
+          setTimeout(() => {
+            const newScript = document.createElement('script');
+
+            newScript.onerror = err => {
+              console.log('[Plugin error]', err);
+              cnt++;
+
+              if (cnt === len) {
+                resolve();
+                listeners.forEach(p => {
+                  p.resolve();
+                });
+                loading = false;
+              }
+            };
+
+            newScript.onload = ldr => {
+              console.log('[Plugin loaded]');
+              cnt++;
+
+              if (cnt === len) {
+                resolve();
+                listeners.forEach(res => {
+                  res();
+                });
+                loading = false;
+              }
+            };
+
+            document.body.appendChild(newScript);
+            newScript.src = url;
+          }, len);
+        };
+
+        const addNotifier = url => {
+          listeners.push(resolve);
+          cnt++;
+        };
+
+        len++;
+
+        if (!installed[s.url]) {
+          loading = true;
+          addSource(s.url);
+          installed[s.url] = s;
+        } else {
+          if (loading) {
+            addNotifier(s.url);
+          } else {
+            resolve();
+          }
+        }
+      });
+    });
+  };
+
   const plugInit = (all, plugs, store) => {
     const activeKeys = Object.keys(plugs);
     activeKeys.forEach(k => {
@@ -2437,12 +2475,13 @@ window._sdpcallbackfunc()
     config._root = root;
     const splash = new Splash(root, config);
     return new Promise((resolve, reject) => {
-      // new Install(config.plugins).then(() => {
-      const all = pluginsInit(config);
-      Promise.all(all).then(values => {
-        resolve(new Container(root, config));
-        splash.destroy();
-      }); // })
+      new Install(config.plugins).then(() => {
+        const all = pluginsInit(config);
+        Promise.all(all).then(values => {
+          resolve(new Container(root, config));
+          splash.destroy();
+        });
+      });
     });
   };
 
@@ -2454,9 +2493,7 @@ window._sdpcallbackfunc()
     controllers,
     modules,
     blocks
-  }; // Presenta.addGlob = utils.addGlob
-  // Presenta.addProp = utils.addProp
-
+  };
   Presenta.io = utils.io;
 
   Presenta.use = plugin => {

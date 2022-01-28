@@ -1,11 +1,11 @@
-// https://lib.presenta.cc v1.0.13 - BSD-3-Clause License - Copyright 2022 Fabio Franchino
+// https://lib.presenta.cc v1.0.14 - BSD-3-Clause License - Copyright 2022 Fabio Franchino
 (function (global, factory) {
   typeof exports === 'object' && typeof module !== 'undefined' ? module.exports = factory() :
   typeof define === 'function' && define.amd ? define(factory) :
   (global = typeof globalThis !== 'undefined' ? globalThis : global || self, global.Presenta = factory());
 })(this, (function () { 'use strict';
 
-  var version = "1.0.13";
+  var version = "1.0.14";
 
   function styleInject(css, ref) {
     if ( ref === void 0 ) ref = {};
@@ -34,8 +34,8 @@
     }
   }
 
-  var css_248z$q = ":root{--fontHeading:Georgia,\"Times New Roman\",Times,serif;--fontText:\"Trebuchet MS\",\"Lucida Sans Unicode\",\"Lucida Grande\",\"Lucida Sans\",Arial,sans-serif;--colorBack:#fff;--colorFore:#000;--colorAccent:#444;--colorAlt:#ddd;--blockWeight:1;--blockPadding:0;--blockOpacity:1;--blockBlend:unset;--scenePadding:0;--sceneColorBack:#fff}.presenta *{box-sizing:border-box}.presenta{--presenta-pw:960;--presenta-w:960px;--presenta-h:540px;--presenta-vp:960;--presenta-fz:1;--presenta-p:calc(var(--presenta-pw)/var(--presenta-vp));position:relative}";
-  styleInject(css_248z$q);
+  var css_248z$p = ":root{--fontHeading:Georgia,\"Times New Roman\",Times,serif;--fontText:\"Trebuchet MS\",\"Lucida Sans Unicode\",\"Lucida Grande\",\"Lucida Sans\",Arial,sans-serif;--colorBack:#fff;--colorFore:#000;--colorAccent:#444;--colorAlt:#ddd;--blockWeight:1;--blockPadding:0;--blockOpacity:1;--blockBlend:unset;--scenePadding:0;--sceneColorBack:#fff}.presenta *{box-sizing:border-box}.presenta{--presenta-pw:960;--presenta-w:960px;--presenta-h:540px;--presenta-vp:960;--presenta-fz:1;--presenta-p:calc(var(--presenta-pw)/var(--presenta-vp));position:relative}";
+  styleInject(css_248z$p);
 
   const keyboard = function (rootElement, router, ctrlConfig, projectConfig) {
     const setKeyListener = e => {
@@ -55,9 +55,9 @@
     rootElement.parentNode.addEventListener('keyup', setKeyListener);
   };
 
-  var css_248z$p = ":root{--arrowsOpacity:.5;--arrowsFlexAlign:center;--arrowsFlexJustify:space-between;--arrowsPadding:10px;--arrowsDirection:row}.style_arrows__2J_-T{height:100%;left:0;position:absolute;top:0;transition:opacity .35s;width:100%;z-index:100}.style_inner__1f-jA{color:var(--colorFore);display:flex;flex-direction:var(--arrowsDirection);height:100%;justify-content:var(--arrowsFlexJustify);width:100%}.style_vertical__2l0YR .style_inner__1f-jA{flex-direction:column}.style_left__199CL,.style_right__2Bn_p{align-items:var(--arrowsFlexAlign);cursor:pointer;display:flex;height:100%;justify-content:center;padding:var(--arrowsPadding);pointer-events:all}.style_vertical__2l0YR .style_left__199CL,.style_vertical__2l0YR .style_right__2Bn_p{height:unset}.style_ui__1jWCU{height:24px;pointer-events:none;transition:background-color .3s ease-in-out;width:24px}.style_ui__1jWCU circle{stroke:none;fill:var(--colorBack);opacity:var(--arrowsOpacity)}.style_hide__4RZI1{opacity:0}";
-  var css$j = {"arrows":"style_arrows__2J_-T","inner":"style_inner__1f-jA","vertical":"style_vertical__2l0YR","left":"style_left__199CL","right":"style_right__2Bn_p","ui":"style_ui__1jWCU","hide":"style_hide__4RZI1"};
-  styleInject(css_248z$p);
+  var css_248z$o = ":root{--arrowsOpacity:.5;--arrowsFlexAlign:center;--arrowsFlexJustify:space-between;--arrowsPadding:10px;--arrowsDirection:row}.style_arrows__2J_-T{height:100%;left:0;position:absolute;top:0;transition:opacity .35s;width:100%;z-index:100}.style_inner__1f-jA{color:var(--colorFore);display:flex;flex-direction:var(--arrowsDirection);height:100%;justify-content:var(--arrowsFlexJustify);width:100%}.style_vertical__2l0YR .style_inner__1f-jA{flex-direction:column}.style_left__199CL,.style_right__2Bn_p{align-items:var(--arrowsFlexAlign);cursor:pointer;display:flex;height:100%;justify-content:center;padding:var(--arrowsPadding);pointer-events:all}.style_vertical__2l0YR .style_left__199CL,.style_vertical__2l0YR .style_right__2Bn_p{height:unset}.style_ui__1jWCU{height:24px;pointer-events:none;transition:background-color .3s ease-in-out;width:24px}.style_ui__1jWCU circle{stroke:none;fill:var(--colorBack);opacity:var(--arrowsOpacity)}.style_hide__4RZI1{opacity:0}";
+  var css$i = {"arrows":"style_arrows__2J_-T","inner":"style_inner__1f-jA","vertical":"style_vertical__2l0YR","left":"style_left__199CL","right":"style_right__2Bn_p","ui":"style_ui__1jWCU","hide":"style_hide__4RZI1"};
+  styleInject(css_248z$o);
 
   const select = selector => {
     return typeof selector === 'string' ? document.querySelector(selector) : selector;
@@ -163,7 +163,7 @@
 
   var downArrow = "<svg xmlns=\"http://www.w3.org/2000/svg\" width=\"24\" height=\"24\" viewBox=\"0 0 24 24\" fill=\"none\" stroke=\"currentColor\" stroke-width=\"1.5\" stroke-linecap=\"round\" stroke-linejoin=\"round\" class=\"feather feather-arrow-down-circle\"><circle cx=\"12\" cy=\"12\" r=\"10\"></circle><polyline points=\"8 12 12 16 16 12\"></polyline><line x1=\"12\" y1=\"8\" x2=\"12\" y2=\"16\"></line></svg>";
 
-  const props$7 = ['opacity', 'direction', 'flexAlign', 'flexJustify', 'padding'];
+  const props$6 = ['opacity', 'direction', 'flexAlign', 'flexJustify', 'padding'];
   /*
   controllers:{
     arrows: {
@@ -178,18 +178,18 @@
   const arrows = function (rootElement, router, ctrlConfig, projectConfig) {
     let timer = null;
     let numInteraction = 0;
-    const vertical = ctrlConfig.direction === 'vertical' ? css$j.vertical : '';
-    const rawp = utils.rawProps('arrows', props$7, ctrlConfig);
+    const vertical = ctrlConfig.direction === 'vertical' ? css$i.vertical : '';
+    const rawp = utils.rawProps('arrows', props$6, ctrlConfig);
     const firstArrow = vertical ? upArrow : leftArrow;
     const lastArrow = vertical ? downArrow : rightArrow;
-    const child = utils.div(`<div class="${css$j.arrows} ${vertical}"></div>`);
-    const inner = utils.div(`<div class="${css$j.inner}" style="${rawp}"></div>`);
-    const left = utils.div(`<div id="evt_trg_ctrl_arrow_left" class="${css$j.left}">
-    <div class="${css$j.ui}">${firstArrow}</div>
+    const child = utils.div(`<div class="${css$i.arrows} ${vertical}"></div>`);
+    const inner = utils.div(`<div class="${css$i.inner}" style="${rawp}"></div>`);
+    const left = utils.div(`<div id="evt_trg_ctrl_arrow_left" class="${css$i.left}">
+    <div class="${css$i.ui}">${firstArrow}</div>
   </div>`);
     inner.appendChild(left);
-    const right = utils.div(`<div id="evt_trg_ctrl_arrow_right" class="${css$j.right}">
-    <div class="${css$j.ui}">${lastArrow}</div>
+    const right = utils.div(`<div id="evt_trg_ctrl_arrow_right" class="${css$i.right}">
+    <div class="${css$i.ui}">${lastArrow}</div>
   </div>`);
     inner.appendChild(right);
     child.appendChild(inner);
@@ -233,9 +233,9 @@
 
     const scheduleForHide = () => {
       clearTimeout(timer);
-      child.classList.remove(css$j.hide);
+      child.classList.remove(css$i.hide);
       timer = setTimeout(() => {
-        child.classList.add(css$j.hide);
+        child.classList.add(css$i.hide);
       }, 1500);
     }; // scheduleForHide()
 
@@ -243,13 +243,13 @@
     this._el = child;
   };
 
-  var css_248z$o = ".style_black__3Nszx{background-color:#000;height:100%;left:0;opacity:0;pointer-events:none;position:absolute;top:0;transition:opacity .5s cubic-bezier(.8,.2,.2,.8);width:100%;z-index:999999}";
-  var css$i = {"black":"style_black__3Nszx"};
-  styleInject(css_248z$o);
+  var css_248z$n = ".style_black__3Nszx{background-color:#000;height:100%;left:0;opacity:0;pointer-events:none;position:absolute;top:0;transition:opacity .5s cubic-bezier(.8,.2,.2,.8);width:100%;z-index:999999}";
+  var css$h = {"black":"style_black__3Nszx"};
+  styleInject(css_248z$n);
 
   const black = function (rootElement, router, ctrlConfig, projectConfig) {
     let visible = false;
-    const child = utils.div(`<div class="${css$i.black}"></div>`);
+    const child = utils.div(`<div class="${css$h.black}"></div>`);
     rootElement.appendChild(child);
     const key = ctrlConfig.key || 'b';
 
@@ -336,17 +336,17 @@
     observer.observe(root);
   };
 
-  var css_248z$n = ":root{--progressbarHeight:5px;--progressbarBottom:initial}.style_progressbar__37EFM{--progressbarColor:var(--colorFore);height:100%;pointer-events:none;width:100%}.style_bar__3nLkk{background-color:var(--progressbarColor);bottom:var(--progressbarBottom);height:var(--progressbarHeight);left:0;position:absolute;transition:width .5s cubic-bezier(.8,.2,.2,.8);width:0}";
-  var css$h = {"progressbar":"style_progressbar__37EFM","bar":"style_bar__3nLkk"};
-  styleInject(css_248z$n);
+  var css_248z$m = ":root{--progressbarHeight:5px;--progressbarBottom:initial}.style_progressbar__37EFM{--progressbarColor:var(--colorFore);height:100%;pointer-events:none;width:100%}.style_bar__3nLkk{background-color:var(--progressbarColor);bottom:var(--progressbarBottom);height:var(--progressbarHeight);left:0;position:absolute;transition:width .5s cubic-bezier(.8,.2,.2,.8);width:0}";
+  var css$g = {"progressbar":"style_progressbar__37EFM","bar":"style_bar__3nLkk"};
+  styleInject(css_248z$m);
 
-  const props$6 = ['height', 'bottom', 'color'];
+  const props$5 = ['height', 'bottom', 'color'];
 
   const progressbar = function (element, router, config, projectConfig) {
     if (projectConfig.mode === 'preview') return;
-    const rawp = utils.rawProps('progressbar', props$6, config);
-    const child = utils.div(`<div class="${css$h.progressbar}" style="${rawp}"></div>`);
-    const bar = utils.div(`<div class="${css$h.bar}"></div>`);
+    const rawp = utils.rawProps('progressbar', props$5, config);
+    const child = utils.div(`<div class="${css$g.progressbar}" style="${rawp}"></div>`);
+    const bar = utils.div(`<div class="${css$g.bar}"></div>`);
     child.appendChild(bar);
     element.appendChild(child);
     const totalScenes = projectConfig.scenes.length;
@@ -389,7 +389,7 @@
     root.style.cursor = 'none';
   };
 
-  const hidden = function (rootElement, router, ctrlConfig, projectConfig) {
+  const hidden$1 = function (rootElement, router, ctrlConfig, projectConfig) {
     const scenesToRemove = [];
     const scenes = projectConfig.scenes;
     scenes.forEach((scene, i) => {
@@ -404,36 +404,36 @@
         });
       }
 
-      for (var j = blocks.length - 1; j >= 0; j--) {
+      for (let j = blocks.length - 1; j >= 0; j--) {
         if (blocksToRemove.indexOf(j) >= 0) blocks.splice(j, 1);
       }
     });
 
-    for (var i = scenes.length - 1; i >= 0; i--) {
+    for (let i = scenes.length - 1; i >= 0; i--) {
       if (scenesToRemove.indexOf(i) >= 0) scenes.splice(i, 1);
     }
   };
 
-  var css_248z$m = ".style_limitswitch__3g8Lq{background-color:var(--colorAccent);height:100%;left:0;opacity:0;pointer-events:none;position:absolute;top:0;width:100%}.style_signalSet__GRA42{opacity:.75}.style_signalOut__2qd5k{opacity:0;transition:opacity .35s ease-out}";
-  var css$g = {"limitswitch":"style_limitswitch__3g8Lq","signalSet":"style_signalSet__GRA42","signalOut":"style_signalOut__2qd5k"};
-  styleInject(css_248z$m);
+  var css_248z$l = ".style_limitswitch__3g8Lq{background-color:var(--colorAccent);height:100%;left:0;opacity:0;pointer-events:none;position:absolute;top:0;width:100%}.style_signalSet__GRA42{opacity:.75}.style_signalOut__2qd5k{opacity:0;transition:opacity .35s ease-out}";
+  var css$f = {"limitswitch":"style_limitswitch__3g8Lq","signalSet":"style_signalSet__GRA42","signalOut":"style_signalOut__2qd5k"};
+  styleInject(css_248z$l);
 
   const limitswitch = function (rootElement, router, ctrlConfig, projectConfig) {
     let timer1;
     let timer2;
-    const child = utils.div(`<div class="${css$g.limitswitch}"></div>`);
+    const child = utils.div(`<div class="${css$f.limitswitch}"></div>`);
     rootElement.appendChild(child);
 
     const signal = () => {
       clearTimeout(timer1);
       clearTimeout(timer2);
-      child.classList.remove(css$g.signalSet, css$g.signalOut);
-      child.classList.add(css$g.signalSet);
+      child.classList.remove(css$f.signalSet, css$f.signalOut);
+      child.classList.add(css$f.signalSet);
       timer1 = setTimeout(() => {
-        child.classList.add(css$g.signalOut);
+        child.classList.add(css$f.signalOut);
       }, 16);
       timer2 = setTimeout(() => {
-        child.classList.remove(css$g.signalSet, css$g.signalOut);
+        child.classList.remove(css$f.signalSet, css$f.signalOut);
       }, 350);
     };
 
@@ -445,9 +445,9 @@
     });
   };
 
-  var css_248z$l = ".style_sync__2HAFR{height:100%;left:0;pointer-events:none;position:absolute;top:0;width:100%}";
-  var css$f = {"sync":"style_sync__2HAFR"};
-  styleInject(css_248z$l);
+  var css_248z$k = ".style_sync__2HAFR{height:100%;left:0;pointer-events:none;position:absolute;top:0;width:100%}";
+  var css$e = {"sync":"style_sync__2HAFR"};
+  styleInject(css_248z$k);
 
   const sync = function (rootElement, router, ctrlConfig, projectConfig) {
     if (!window.BroadcastChannel) {
@@ -456,7 +456,7 @@
     }
 
     const bus = new BroadcastChannel('presenta.sync');
-    const child = utils.div(`<div class="${css$f.sync}"></div>`);
+    const child = utils.div(`<div class="${css$e.sync}"></div>`);
     rootElement.appendChild(child);
 
     bus.onmessage = e => {
@@ -570,17 +570,17 @@
     };
   };
 
-  var css_248z$k = ".transition__fadeIn .p-scene-enter-transition{transition:opacity .75s cubic-bezier(.2,.8,.05,.95)}.transition__fadeIn .to-right.p-scene-enter-start{opacity:0;transform:translate(0)}.transition__fadeIn .to-right.p-scene-enter-end{opacity:1}.transition__fadeIn .to-left.p-scene-enter-start{opacity:0;transform:translate(0)}.transition__fadeIn .to-left.p-scene-enter-end{opacity:1}";
-  styleInject(css_248z$k);
-
-  var css_248z$j = ".transition__hSlide .p-scene-enter-transition{transition:transform .75s cubic-bezier(.87,0,.13,1)}.transition__hSlide .to-right.p-scene-enter-start{transform:translateX(100%)}.transition__hSlide .to-right.p-scene-enter-end{transform:translateX(0)}.transition__hSlide .to-left.p-scene-enter-start{transform:translateX(-100%)}.transition__hSlide .to-left.p-scene-enter-end{transform:translateX(0)}.transition__hSlide .p-scene-leave-transition{transition:transform .75s cubic-bezier(.87,0,.13,1)}.transition__hSlide .to-right.p-scene-leave-start{transform:translateX(0)}.transition__hSlide .to-right.p-scene-leave-end{transform:translateX(-100%)}.transition__hSlide .to-left.p-scene-leave-start{transform:translateX(0)}.transition__hSlide .to-left.p-scene-leave-end{transform:translateX(100%)}";
+  var css_248z$j = ".transition__fadeIn .p-scene-enter-transition{transition:opacity .75s cubic-bezier(.2,.8,.05,.95)}.transition__fadeIn .to-right.p-scene-enter-start{opacity:0;transform:translate(0)}.transition__fadeIn .to-right.p-scene-enter-end{opacity:1}.transition__fadeIn .to-left.p-scene-enter-start{opacity:0;transform:translate(0)}.transition__fadeIn .to-left.p-scene-enter-end{opacity:1}";
   styleInject(css_248z$j);
 
-  var css_248z$i = ".transition__vSlide .p-scene-enter-transition{transition:transform .75s cubic-bezier(.87,0,.13,1)}.transition__vSlide .to-right.p-scene-enter-start{transform:translateY(100%)}.transition__vSlide .to-right.p-scene-enter-end{transform:translateY(0)}.transition__vSlide .to-left.p-scene-enter-start{transform:translateY(-100%)}.transition__vSlide .to-left.p-scene-enter-end{transform:translateY(0)}.transition__vSlide .p-scene-leave-transition{transition:transform .75s cubic-bezier(.87,0,.13,1)}.transition__vSlide .to-right.p-scene-leave-start{transform:translateY(0)}.transition__vSlide .to-right.p-scene-leave-end{transform:translateY(-100%)}.transition__vSlide .to-left.p-scene-leave-start{transform:translateY(0)}.transition__vSlide .to-left.p-scene-leave-end{transform:translateY(100%)}";
+  var css_248z$i = ".transition__hSlide .p-scene-enter-transition{transition:transform .75s cubic-bezier(.87,0,.13,1)}.transition__hSlide .to-right.p-scene-enter-start{transform:translateX(100%)}.transition__hSlide .to-right.p-scene-enter-end{transform:translateX(0)}.transition__hSlide .to-left.p-scene-enter-start{transform:translateX(-100%)}.transition__hSlide .to-left.p-scene-enter-end{transform:translateX(0)}.transition__hSlide .p-scene-leave-transition{transition:transform .75s cubic-bezier(.87,0,.13,1)}.transition__hSlide .to-right.p-scene-leave-start{transform:translateX(0)}.transition__hSlide .to-right.p-scene-leave-end{transform:translateX(-100%)}.transition__hSlide .to-left.p-scene-leave-start{transform:translateX(0)}.transition__hSlide .to-left.p-scene-leave-end{transform:translateX(100%)}";
   styleInject(css_248z$i);
 
-  var css_248z$h = ".transition__slideOver .p-scene-enter-transition{transition:all .75s cubic-bezier(.2,.8,.05,.95)}.transition__slideOver .p-scene-enter-start{transform:translateY(-150%)}.transition__slideOver .p-scene-enter-end{transform:translateY(0)}.transition__slideOver .p-scene-leave-transition{transition:all .75s cubic-bezier(.2,.8,.05,.95)}.transition__slideOver .p-scene-leave-start{transform:scale(1)}.transition__slideOver .p-scene-leave-end{transform:scale(.5)}";
+  var css_248z$h = ".transition__vSlide .p-scene-enter-transition{transition:transform .75s cubic-bezier(.87,0,.13,1)}.transition__vSlide .to-right.p-scene-enter-start{transform:translateY(100%)}.transition__vSlide .to-right.p-scene-enter-end{transform:translateY(0)}.transition__vSlide .to-left.p-scene-enter-start{transform:translateY(-100%)}.transition__vSlide .to-left.p-scene-enter-end{transform:translateY(0)}.transition__vSlide .p-scene-leave-transition{transition:transform .75s cubic-bezier(.87,0,.13,1)}.transition__vSlide .to-right.p-scene-leave-start{transform:translateY(0)}.transition__vSlide .to-right.p-scene-leave-end{transform:translateY(-100%)}.transition__vSlide .to-left.p-scene-leave-start{transform:translateY(0)}.transition__vSlide .to-left.p-scene-leave-end{transform:translateY(100%)}";
   styleInject(css_248z$h);
+
+  var css_248z$g = ".transition__slideOver .p-scene-enter-transition{transition:all .75s cubic-bezier(.2,.8,.05,.95)}.transition__slideOver .p-scene-enter-start{transform:translateY(-150%)}.transition__slideOver .p-scene-enter-end{transform:translateY(0)}.transition__slideOver .p-scene-leave-transition{transition:all .75s cubic-bezier(.2,.8,.05,.95)}.transition__slideOver .p-scene-leave-start{transform:scale(1)}.transition__slideOver .p-scene-leave-end{transform:scale(.5)}";
+  styleInject(css_248z$g);
 
   const presets = ['fadeIn', 'hSlide', 'vSlide', 'slideOver'];
   /*
@@ -611,7 +611,7 @@
     loop,
     current,
     hidecursor,
-    hidden,
+    hidden: hidden$1,
     limitswitch,
     sync,
     rsync,
@@ -633,9 +633,9 @@
     controllers[type] = module;
   };
 
-  var css_248z$g = ".style_stepItem__1Iv29{transform-origin:center;transition:opacity 1.33s cubic-bezier(.19,1,.22,1),transform 1.33s cubic-bezier(.19,1,.22,1)}.style_fadeIn__1qNon{opacity:0!important}.style_zoomOut__FobL2{opacity:0!important;transform:scale(1.3)!important}.style_zoomIn__3R2ad{opacity:0!important;transform:scale(.7)!important}.style_slideUp__2aPxJ{opacity:0!important;transform:translateY(40px)!important}.style_slideDown__3Wu--{opacity:0!important;transform:translateY(-40px)!important}";
-  var css$e = {"stepItem":"style_stepItem__1Iv29","fadeIn":"style_fadeIn__1qNon","zoomOut":"style_zoomOut__FobL2","zoomIn":"style_zoomIn__3R2ad","slideUp":"style_slideUp__2aPxJ","slideDown":"style_slideDown__3Wu--"};
-  styleInject(css_248z$g);
+  var css_248z$f = ".style_stepItem__1Iv29{transform-origin:center;transition:opacity 1.33s cubic-bezier(.19,1,.22,1),transform 1.33s cubic-bezier(.19,1,.22,1)}.style_fadeIn__1qNon{opacity:0!important}.style_zoomOut__FobL2{opacity:0!important;transform:scale(1.3)!important}.style_zoomIn__3R2ad{opacity:0!important;transform:scale(.7)!important}.style_slideUp__2aPxJ{opacity:0!important;transform:translateY(40px)!important}.style_slideDown__3Wu--{opacity:0!important;transform:translateY(-40px)!important}";
+  var css$d = {"stepItem":"style_stepItem__1Iv29","fadeIn":"style_fadeIn__1qNon","zoomOut":"style_zoomOut__FobL2","zoomIn":"style_zoomIn__3R2ad","slideUp":"style_slideUp__2aPxJ","slideDown":"style_slideDown__3Wu--"};
+  styleInject(css_248z$f);
 
   const validTrans = ['fadeIn', 'zoomOut', 'zoomIn', 'slideUp', 'slideDown'];
   const validModes = ['sequential', 'match'];
@@ -720,7 +720,7 @@
           const els = ob.els;
           allFlatElems = allFlatElems.concat(els);
           els.forEach(el => {
-            el.classList.add(css$e[trans]);
+            el.classList.add(css$d[trans]);
             const id = {
               sandbox: 'steps',
               index,
@@ -759,7 +759,7 @@
     for (const k in allElems) {
       const trans = allElems[k].trans;
       const outs = allElems[k].outs;
-      allElems[k].arr.forEach(el => el.classList.add(css$e[trans]));
+      allElems[k].arr.forEach(el => el.classList.add(css$d[trans]));
       const id = {
         sandbox: 'steps',
         index,
@@ -778,11 +778,11 @@
     setTimeout(() => {
       // routine only for sequential mode
       allFlatElems.forEach(el => {
-        el.classList.add(css$e.stepItem);
+        el.classList.add(css$d.stepItem);
       }); // routine only for match mode
 
       for (const k in allElems) {
-        allElems[k].arr.forEach(el => el.classList.add(css$e.stepItem));
+        allElems[k].arr.forEach(el => el.classList.add(css$d.stepItem));
       }
     }, 100);
 
@@ -791,13 +791,13 @@
         if (prevEls) {
           prevEls.forEach((el, i) => {
             const out = step.outs ? step.outs[i] : step.out;
-            if (out) el.classList.add(css$e[step.trans]);
+            if (out) el.classList.add(css$d[step.trans]);
           });
           prevEls = null;
         }
 
         const els = step.els;
-        els.forEach(el => el.classList.remove(css$e[step.trans]));
+        els.forEach(el => el.classList.remove(css$d[step.trans]));
 
         if (step.out) {
           prevEls = els;
@@ -806,8 +806,8 @@
     };
   };
 
-  var css_248z$f = "[jump]{cursor:pointer}";
-  styleInject(css_248z$f);
+  var css_248z$e = "[jump]{cursor:pointer}";
+  styleInject(css_248z$e);
 
   const jump = function (sceneElement, modConfig, sceneConfig) {
     const dispose = [];
@@ -836,8 +836,8 @@
     };
   };
 
-  var css_248z$e = ".noresize.sceneObject{height:100%;width:100%}.noresize.sceneObject .sceneWrapper{height:100%;transform:scale(1);width:100%}";
-  styleInject(css_248z$e);
+  var css_248z$d = ".noresize.sceneObject{height:100%;width:100%}.noresize.sceneObject .sceneWrapper{height:100%;transform:scale(1);width:100%}";
+  styleInject(css_248z$d);
 
   const noresize = function (sceneElement, modConfig, sceneConfig) {
     const noResize = !!(sceneConfig.noresize || modConfig);
@@ -889,20 +889,32 @@
 
   fonts.runBefore = true; // const already = {}
 
-  const props$5 = ['opacity', 'blend', 'radius', 'border', 'padding', 'background', 'color', 'clip', 'shadow'];
+  const props$4 = ['opacity', 'blend', 'radius', 'border', 'padding', 'background', 'color', 'clip', 'shadow'];
 
   const upper = s => s.charAt(0).toUpperCase() + s.slice(1);
 
   const applyRawProps$1 = (el, config) => {
     if (typeof config !== 'object') return false;
-    props$5.forEach(c => {
+    props$4.forEach(c => {
       const v = config[c];
       if (v) el.style.setProperty('--block' + upper(c), v);
     });
   };
 
   const styles = function (element, mod, config) {
+    if (config.contextType !== 'block') return;
     applyRawProps$1(element, mod);
+
+    if (mod.svgClip) {
+      const svg = utils.div(mod.svgClip);
+      const cpath = svg ? svg.querySelector('clipPath') : null;
+      const cid = cpath ? cpath.getAttribute('id') : null;
+
+      if (cid) {
+        element.append(svg);
+        element.style.setProperty('--blockClip', `url(#${cid})`);
+      }
+    }
   };
 
   styles.runBefore = true;
@@ -957,11 +969,11 @@
     });
   };
 
-  const props$4 = ['top', 'left', 'width', 'height', 'angle', 'right', 'bottom', 'skew'];
+  const props$3 = ['top', 'left', 'width', 'height', 'angle', 'right', 'bottom', 'skew'];
 
   const applyRawProps = (el, config) => {
     if (typeof config !== 'object') return false;
-    props$4.forEach(c => {
+    props$3.forEach(c => {
       const v = config[c];
 
       if (v) {
@@ -982,29 +994,6 @@
   };
 
   coords.runBefore = true;
-
-  var css_248z$d = ".style_pagenum__1ycBY{--pagenumTextAlign:right;--pagenumPadding:.75rem;--pagenumFontSize:.9rem;--pagenumBackColor:none;--pagenumFont:var(--fontText);--pagenumColor:var(--colorFore);--pagenumFlexAlign:flex-end;--pagenumFlexJustify:flex-end;height:100%;left:0;padding:var(--containerPaddingTop) var(--containerPaddingRight) var(--containerPaddingBottom) var(--containerPaddingLeft);pointer-events:none;position:absolute;top:0;width:100%}.style_inner__AbrJj{align-items:var(--pagenumFlexAlign);display:flex;height:100%;justify-content:var(--pagenumFlexJustify);padding:var(--pagenumPadding);width:100%}.style_content__1CXpQ{background-color:var(--pagenumBackColor);border:var(--pagenumBorder);border-radius:var(--pagenumBorderRadius);color:var(--pagenumColor);font-family:var(--pagenumFont);font-size:var(--pagenumFontSize);padding:var(--pagenumInnerPadding);text-align:var(--pagenumTextAlign);transition:all .3s ease-in-out}";
-  var css$d = {"pagenum":"style_pagenum__1ycBY","inner":"style_inner__AbrJj","content":"style_content__1CXpQ"};
-  styleInject(css_248z$d);
-
-  const props$3 = ['textAlign', 'padding', 'innerPadding', 'fontSize', 'font', 'backColor', 'color', 'border', 'borderRadius', 'flexAlign', 'flexJustify'];
-
-  const pagenum = function (element, mod, config) {
-    const rawp = utils.rawProps('pagenum', props$3, mod);
-    const child = utils.div(`<div class="${css$d.pagenum}"></div>`);
-    const inner = utils.div(`<div class="${css$d.inner}" style="${rawp}"></div>`);
-    const content = utils.div(`<div class="${css$d.content}"></div>`);
-    inner.appendChild(content);
-    child.appendChild(inner);
-    element.querySelector('.sceneWrapper').appendChild(child);
-    const template = mod.template ? mod.template : '%s / %S';
-    const router = config._router;
-    const curr = router.currentIndex();
-    const tot = router.totalScenes();
-    const index = curr + 1;
-    const str = template.replace(/%s/mg, index).replace(/%S/mg, tot);
-    content.innerHTML = str;
-  };
 
   var css_248z$c = ".style_reveal__3Cs6V{--revealTextAlign:center;--revealPadding:5px;--revealFontSize:2rem;--revealFont:var(--fontText);--revealBackColor:var(--colorFore);--revealColor:var(--colorBack);--revealFlexAlign:center;--revealFlexJustify:center;height:100%;left:0;pointer-events:none;position:absolute;top:0;transition-duration:1.33s;transition-property:opacity,transform;transition-timing-function:cubic-bezier(.19,1,.22,1);width:100%}.style_inner__3rqnR{align-items:var(--revealFlexAlign);background-color:var(--revealBackColor);display:flex;height:100%;justify-content:var(--revealFlexJustify);padding:var(--revealPadding);width:100%}.style_content__bTAxU{color:var(--revealColor);font-family:var(--revealFont);font-size:var(--revealFontSize);text-align:var(--revealTextAlign)}.style_preview__2jDoF{opacity:.3}.style_exitSlideUp__s74jg{transform:translateY(-100%)}.style_exitFadeOut__12FkH{opacity:0}";
   var css$c = {"reveal":"style_reveal__3Cs6V","inner":"style_inner__3rqnR","content":"style_content__bTAxU","preview":"style_preview__2jDoF","exitSlideUp":"style_exitSlideUp__s74jg","exitFadeOut":"style_exitFadeOut__12FkH"};
@@ -1183,6 +1172,14 @@ window._sdpcallbackfunc${id}()
 
   showif.runBefore = true;
 
+  const hidden = function (element, mod, config) {
+    if (config.contextType !== 'block') return;
+    const v = mod.value;
+    if (v) element.style.display = 'none';
+  };
+
+  hidden.runBefore = true;
+
   const modules = {
     coords,
     steps,
@@ -1193,12 +1190,12 @@ window._sdpcallbackfunc${id}()
     styles,
     paddings,
     autoplay,
-    pagenum,
     reveal,
     enters,
     script,
     link,
-    showif
+    showif,
+    hidden
   };
 
   const add$1 = (type, module, override) => {
@@ -1412,6 +1409,7 @@ window._sdpcallbackfunc${id}()
 
   const image = function (el, config) {
     const url = config.url;
+    const noPreload = config.noPreload;
     if (!url) return false;
     const that = this;
     return new Promise((resolve, reject) => {
@@ -1425,17 +1423,23 @@ window._sdpcallbackfunc${id}()
       el.appendChild(child);
       const wrapper = el.querySelector('.' + css$7.preimg);
       const img = new Image();
-
-      img.onload = () => {
-        wrapper.appendChild(img);
-        resolve(that);
-      };
-
-      img.onerror = () => {
-        resolve(that);
-      };
-
       img.src = url;
+
+      if (noPreload) {
+        wrapper.appendChild(img);
+        setTimeout(() => {
+          resolve(that);
+        }, 1);
+      } else {
+        img.onload = () => {
+          wrapper.appendChild(img);
+          resolve(that);
+        };
+
+        img.onerror = () => {
+          resolve(that);
+        };
+      }
     });
   };
 
@@ -2164,8 +2168,8 @@ window._sdpcallbackfunc${id}()
       }, projectConfig._transitionDestroyDelay);
     };
 
-    sceneConfig.blocks.forEach(b => MountBlock(b));
     initModules(false);
+    sceneConfig.blocks.forEach(b => MountBlock(b));
     Promise.all(modPromises).then(data => {
       startTransition();
       child.classList.add('presentaSceneMounted');

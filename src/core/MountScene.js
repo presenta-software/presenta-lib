@@ -42,8 +42,9 @@ const MountScene = (scene) => {
     }, projectConfig._transitionDestroyDelay)
   }
 
-  sceneConfig.blocks.forEach(b => MountBlock(b))
   initModules(false)
+
+  sceneConfig.blocks.forEach(b => MountBlock(b))
 
   Promise.all(modPromises).then(data => {
     modInstances = data

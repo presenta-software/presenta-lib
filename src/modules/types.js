@@ -7,12 +7,12 @@ import styles from './styles'
 import paddings from './paddings'
 import autoplay from './autoplay'
 import coords from './coords'
-import pagenum from './pagenum'
 import reveal from './reveal'
 import link from './link'
 import enters from './enters'
 import script from './script'
 import showif from './showif'
+import hidden from './hidden'
 
 const modules = {
   coords,
@@ -24,12 +24,12 @@ const modules = {
   styles,
   paddings,
   autoplay,
-  pagenum,
   reveal,
   enters,
   script,
   link,
-  showif
+  showif,
+  hidden
 }
 
 const add = (type, module, override) => {

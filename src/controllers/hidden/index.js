@@ -14,12 +14,12 @@ const hidden = function (rootElement, router, ctrlConfig, projectConfig) {
       })
     }
 
-    for (var j = blocks.length - 1; j >= 0; j--) {
+    for (let j = blocks.length - 1; j >= 0; j--) {
       if (blocksToRemove.indexOf(j) >= 0) blocks.splice(j, 1)
     }
   })
 
-  for (var i = scenes.length - 1; i >= 0; i--) {
+  for (let i = scenes.length - 1; i >= 0; i--) {
     if (scenesToRemove.indexOf(i) >= 0) scenes.splice(i, 1)
   }
 }

@@ -5,6 +5,7 @@ const props = ['scale', 'filter', 'position', 'size']
 
 const image = function (el, config) {
   const url = config.url
+  const noPreload = config.noPreload
   if (!url) return false
 
   const that = this
@@ -24,14 +25,22 @@ const image = function (el, config) {
     const wrapper = el.querySelector('.' + css.preimg)
 
     const img = new Image()
-    img.onload = () => {
-      wrapper.appendChild(img)
-      resolve(that)
-    }
-    img.onerror = () => {
-      resolve(that)
-    }
     img.src = url
+
+    if (noPreload) {
+      wrapper.appendChild(img)
+      setTimeout(() => {
+        resolve(that)
+      }, 1)
+    } else {
+      img.onload = () => {
+        wrapper.appendChild(img)
+        resolve(that)
+      }
+      img.onerror = () => {
+        resolve(that)
+      }
+    }
   })
 }
 

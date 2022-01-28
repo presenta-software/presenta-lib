@@ -26,6 +26,7 @@
 
   /* transform-origin: top left; */
   transform: rotate(var(--angle)) skew(var(--skew));
+  mix-blend-mode: var(--blockBlend);
 
 }
 
@@ -34,7 +35,6 @@
   height: 100%;
   
   opacity: var(--blockOpacity);
-  mix-blend-mode: var(--blockBlend);
   clip-path: var(--blockClip);
   box-shadow: var(--blockShadow);
   

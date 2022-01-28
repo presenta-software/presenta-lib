@@ -1,11 +1,11 @@
-// https://lib.presenta.cc v1.0.14 - BSD-3-Clause License - Copyright 2022 Fabio Franchino
+// https://lib.presenta.cc v1.0.15 - BSD-3-Clause License - Copyright 2022 Fabio Franchino
 (function (global, factory) {
   typeof exports === 'object' && typeof module !== 'undefined' ? module.exports = factory() :
   typeof define === 'function' && define.amd ? define(factory) :
   (global = typeof globalThis !== 'undefined' ? globalThis : global || self, global.Presenta = factory());
 })(this, (function () { 'use strict';
 
-  var version = "1.0.14";
+  var version = "1.0.15";
 
   function styleInject(css, ref) {
     if ( ref === void 0 ) ref = {};
@@ -1784,7 +1784,7 @@ window._sdpcallbackfunc${id}()
   var css$1 = {"sceneContainer":"scene_sceneContainer__IgSpB","visible":"scene_visible__3JU3x","scene":"scene_scene__3uvTl","promise":"scene_promise__24VCP","wrapper":"scene_wrapper__3yr1k","content":"scene_content__1rJf0","viewport":"scene_viewport__3uNLS"};
   styleInject(css_248z$1);
 
-  var css_248z = ":root{--left:inherit;--top:inherit;--width:100%;--height:100%;--angle:0;--skew:0;--right:inherit;--bottom:inherit;--position:absolute;--radius:none}.block_block__BWbaZ{--blockColor:var(--colorFore);--blockBorder:0;bottom:var(--bottom);height:var(--height);left:var(--left);position:var(--position);right:var(--right);top:var(--top);transform:rotate(var(--angle)) skew(var(--skew));width:var(--width)}.block_inner__3LS6s{box-shadow:var(--blockShadow);-webkit-clip-path:var(--blockClip);clip-path:var(--blockClip);mix-blend-mode:var(--blockBlend);opacity:var(--blockOpacity);overflow:hidden}.block_subinner__3Mwvc{background:var(--blockBackground);border-radius:var(--blockRadius);border-style:solid;border-width:var(--blockBorder);color:var(--blockColor);height:100%;overflow:hidden;padding:var(--blockPadding);width:100%}.block_inner__3LS6s{height:100%;left:0;position:absolute;top:0;width:100%}";
+  var css_248z = ":root{--left:inherit;--top:inherit;--width:100%;--height:100%;--angle:0;--skew:0;--right:inherit;--bottom:inherit;--position:absolute;--radius:none}.block_block__BWbaZ{--blockColor:var(--colorFore);--blockBorder:0;bottom:var(--bottom);height:var(--height);left:var(--left);mix-blend-mode:var(--blockBlend);position:var(--position);right:var(--right);top:var(--top);transform:rotate(var(--angle)) skew(var(--skew));width:var(--width)}.block_inner__3LS6s{box-shadow:var(--blockShadow);-webkit-clip-path:var(--blockClip);clip-path:var(--blockClip);opacity:var(--blockOpacity);overflow:hidden}.block_subinner__3Mwvc{background:var(--blockBackground);border-radius:var(--blockRadius);border-style:solid;border-width:var(--blockBorder);color:var(--blockColor);height:100%;overflow:hidden;padding:var(--blockPadding);width:100%}.block_inner__3LS6s{height:100%;left:0;position:absolute;top:0;width:100%}";
   var css = {"block":"block_block__BWbaZ","inner":"block_inner__3LS6s","subinner":"block_subinner__3Mwvc"};
   styleInject(css_248z);
 

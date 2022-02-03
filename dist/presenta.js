@@ -1,11 +1,11 @@
-// https://lib.presenta.cc v1.0.16 - BSD-3-Clause License - Copyright 2022 Fabio Franchino
+// https://lib.presenta.cc v1.0.17 - BSD-3-Clause License - Copyright 2022 Fabio Franchino
 (function (global, factory) {
   typeof exports === 'object' && typeof module !== 'undefined' ? module.exports = factory() :
   typeof define === 'function' && define.amd ? define(factory) :
   (global = typeof globalThis !== 'undefined' ? globalThis : global || self, global.Presenta = factory());
 })(this, (function () { 'use strict';
 
-  var version = "1.0.16";
+  var version = "1.0.17";
 
   function styleInject(css, ref) {
     if ( ref === void 0 ) ref = {};
@@ -2307,12 +2307,10 @@ window._sdpcallbackfunc${id}()
   };
 
   const ScriptRun = function (config) {
-    if (config.mode === 'preview') return;
-    if (!config.script) return;
-    const mod = config.script;
-    const id = '_JSCTRL_' + parseInt(Math.random() * 10000);
-    const that = this;
     return new Promise((resolve, reject) => {
+      if (config.mode === 'preview' || !config.script) return resolve();
+      const mod = config.script;
+      const id = '_JSCTRL_' + parseInt(Math.random() * 10000);
       window['_sctconfigobject' + id] = config;
 
       window['_sctcallbackfunc' + id] = () => {
@@ -2320,7 +2318,7 @@ window._sdpcallbackfunc${id}()
         window['_sctconfigobject' + id] = null;
         const prev = [...document.querySelectorAll('.sctcontrollerscriptcontainer' + id)];
         prev.forEach(d => document.body.removeChild(d));
-        resolve(that);
+        resolve();
       };
 
       let code = `

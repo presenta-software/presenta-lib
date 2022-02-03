@@ -9,15 +9,12 @@ const appendScriptTag = (url, code, id) => {
 }
 
 const ScriptRun = function (config) {
-  if (config.mode === 'preview') return
-  if (!config.script) return
-
-  const mod = config.script
-
-  const id = '_JSCTRL_' + parseInt(Math.random() * 10000)
-  const that = this
-
   return new Promise((resolve, reject) => {
+    if (config.mode === 'preview' || !config.script) return resolve()
+
+    const mod = config.script
+    const id = '_JSCTRL_' + parseInt(Math.random() * 10000)
+
     window['_sctconfigobject' + id] = config
 
     window['_sctcallbackfunc' + id] = () => {
@@ -25,7 +22,7 @@ const ScriptRun = function (config) {
       window['_sctconfigobject' + id] = null
       const prev = [...document.querySelectorAll('.sctcontrollerscriptcontainer' + id)]
       prev.forEach(d => document.body.removeChild(d))
-      resolve(that)
+      resolve()
     }
 
     let code = `

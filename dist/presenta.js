@@ -1,11 +1,11 @@
-// https://lib.presenta.cc v1.0.18 - BSD-3-Clause License - Copyright 2022 Fabio Franchino
+// https://lib.presenta.cc v1.0.19 - BSD-3-Clause License - Copyright 2022 Fabio Franchino
 (function (global, factory) {
   typeof exports === 'object' && typeof module !== 'undefined' ? module.exports = factory() :
   typeof define === 'function' && define.amd ? define(factory) :
   (global = typeof globalThis !== 'undefined' ? globalThis : global || self, global.Presenta = factory());
 })(this, (function () { 'use strict';
 
-  var version = "1.0.18";
+  var version = "1.0.19";
 
   function styleInject(css, ref) {
     if ( ref === void 0 ) ref = {};
@@ -70,9 +70,20 @@
     const cw = +bbox.width.split('px')[0];
     const ch = +bbox.height.split('px')[0];
     const aspect = cw / ch;
-    par.style.setProperty('--presenta-h', parseInt(960 / aspect) + 'px');
-    const w = 960;
-    const h = 960 / aspect;
+    let ow = 960;
+
+    if (config.format) {
+      if (config.format.width) {
+        ow = +config.format.width;
+      }
+    }
+
+    par.style.setProperty('--presenta-pw', parseInt(ow));
+    par.style.setProperty('--presenta-vp', parseInt(ow));
+    par.style.setProperty('--presenta-w', parseInt(ow) + 'px');
+    par.style.setProperty('--presenta-h', parseInt(ow / aspect) + 'px');
+    const w = ow;
+    const h = ow / aspect;
     const scaleW = w * 100 / cw;
     const scaleH = h * 100 / ch;
     const scale = Math.max(scaleW, scaleH);
@@ -1094,8 +1105,7 @@
         blink[b.ukey] = b;
       });
       blink._otherParams = config.otherParams;
-      window['_sdpconfigobject' + id] = blink;
-      window['_sdpscriptexportedresult' + id] = {};
+      window['_sdpconfigobject' + id] = blink; // window['_sdpscriptexportedresult' + id] = {}
 
       window['_sdpcallbackfunc' + id] = () => {
         console.log('_sdpcallbackfunc' + id);
@@ -1106,7 +1116,7 @@
 
       let code = `
 const index = ${config.index}
-const exportedResult = window._sdpscriptexportedresult${id}
+//const exportedResult = window._sdpscriptexportedresult${id}
 
 const params = window._sdpconfigobject${id}._otherParams
     `;

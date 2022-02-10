@@ -5,10 +5,20 @@ const fit = (el, config, par) => {
 
   const aspect = cw / ch
 
-  par.style.setProperty('--presenta-h', parseInt(960 / aspect) + 'px')
+  let ow = 960
+  if (config.format) {
+    if (config.format.width) {
+      ow = +config.format.width
+    }
+  }
 
-  const w = 960
-  const h = 960 / aspect
+  par.style.setProperty('--presenta-pw', parseInt(ow))
+  par.style.setProperty('--presenta-vp', parseInt(ow))
+  par.style.setProperty('--presenta-w', parseInt(ow) + 'px')
+  par.style.setProperty('--presenta-h', parseInt(ow / aspect) + 'px')
+
+  const w = ow
+  const h = ow / aspect
   const scaleW = (w) * 100 / cw
   const scaleH = (h) * 100 / ch
   const scale = Math.max(scaleW, scaleH)

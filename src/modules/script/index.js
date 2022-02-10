@@ -29,7 +29,7 @@ const script = function (element, mod, config) {
     blink._otherParams = config.otherParams
     window['_sdpconfigobject' + id] = blink
 
-    window['_sdpscriptexportedresult' + id] = {}
+    // window['_sdpscriptexportedresult' + id] = {}
 
     window['_sdpcallbackfunc' + id] = () => {
       console.log('_sdpcallbackfunc' + id)
@@ -41,7 +41,7 @@ const script = function (element, mod, config) {
 
     let code = `
 const index = ${config.index}
-const exportedResult = window._sdpscriptexportedresult${id}
+//const exportedResult = window._sdpscriptexportedresult${id}
 
 const params = window._sdpconfigobject${id}._otherParams
     `

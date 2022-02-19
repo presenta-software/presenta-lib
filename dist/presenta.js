@@ -1,11 +1,11 @@
-// https://lib.presenta.cc v1.0.19 - BSD-3-Clause License - Copyright 2022 Fabio Franchino
+// https://lib.presenta.cc v1.0.20 - BSD-3-Clause License - Copyright 2022 Fabio Franchino
 (function (global, factory) {
   typeof exports === 'object' && typeof module !== 'undefined' ? module.exports = factory() :
   typeof define === 'function' && define.amd ? define(factory) :
   (global = typeof globalThis !== 'undefined' ? globalThis : global || self, global.Presenta = factory());
 })(this, (function () { 'use strict';
 
-  var version = "1.0.19";
+  var version = "1.0.20";
 
   function styleInject(css, ref) {
     if ( ref === void 0 ) ref = {};
@@ -141,8 +141,9 @@
     const fontUniqueName = uid(url);
     const exists = document.querySelector('.' + fontUniqueName);
     if (exists) return fontUniqueName;
-    const ext = url.split('.').pop();
-    const format = ext && ext !== 'ttf' ? `format("${ext}")` : '';
+    url.split('.').pop();
+    const format = ''; // ext && ext !== 'ttf' ? `format("${ext}")` : ''
+
     const tag = document.createElement('style');
     tag.classList.add(fontUniqueName);
     tag.innerHTML = `
@@ -1322,14 +1323,16 @@ window._sdpcallbackfunc${id}()
       };
 
       if (config.font) {
+        // fetch(config.font).then(data => {
+        //   setTimeout(compute)
+        // })
         document.fonts.ready.then(() => {
           setTimeout(compute);
         });
       } else {
         setTimeout(compute);
-      }
+      } // setTimeout(compute)
 
-      setTimeout(compute);
     });
   };
 
@@ -2199,10 +2202,11 @@ window._sdpcallbackfunc${id}()
       supercont.appendChild(cont);
       const scenes = projectConfig.scenes;
       scenes.forEach((s, i) => s.index = i);
-      var currentScene = null;
-      var currentSceneComing = null;
-      var prevSceneComing = null;
-      var nextSceneComing = null;
+      const presentMode = projectConfig.mode === 'present';
+      let currentScene = null;
+      let currentSceneComing = null;
+      let prevSceneComing = null;
+      let nextSceneComing = null;
 
       const swapScenes = (index, dir) => {
         const idx = index;
@@ -2214,61 +2218,62 @@ window._sdpcallbackfunc${id}()
           sceneConfig._presentatransdir = dirWord;
           sceneConfig._router = router;
 
-          if (dir > 0 && nextSceneComing) {
-            currentSceneComing = nextSceneComing;
-            Promise.all([prevSceneComing]).then(scene => {
-              if (scene[0]) scene[0].destroyAfter(projectConfig._transitionDestroyDelay);
-            });
-          }
-
-          if (dir < 0 && prevSceneComing) {
-            currentSceneComing = prevSceneComing;
-            Promise.all([nextSceneComing]).then(scene => {
-              if (scene[0]) scene[0].destroyAfter(projectConfig._transitionDestroyDelay);
-            });
-          }
-
-          if (dir === 0) {
-            currentSceneComing = null;
-            Promise.all([prevSceneComing, nextSceneComing]).then(scenes => {
-              console.log(scenes);
-              scenes.forEach(scene => {
-                scene.destroyAfter(projectConfig._transitionDestroyDelay);
+          if (presentMode) {
+            if (dir > 0 && nextSceneComing) {
+              currentSceneComing = nextSceneComing;
+              Promise.all([prevSceneComing]).then(scene => {
+                if (scene[0]) scene[0].destroyAfter(projectConfig._transitionDestroyDelay);
               });
-            });
+            }
+
+            if (dir < 0 && prevSceneComing) {
+              currentSceneComing = prevSceneComing;
+              Promise.all([nextSceneComing]).then(scene => {
+                if (scene[0]) scene[0].destroyAfter(projectConfig._transitionDestroyDelay);
+              });
+            }
+
+            if (dir === 0) {
+              currentSceneComing = null;
+              Promise.all([prevSceneComing, nextSceneComing]).then(scenes => {
+                scenes.forEach(scene => {
+                  scene.destroyAfter(projectConfig._transitionDestroyDelay);
+                });
+              });
+            } // next
+
+
+            if (idx + 1 < scenes.length) {
+              const nconf = scenes[idx + 1];
+              nconf._presentatransdir = 'foreward';
+              nconf._router = router;
+              nextSceneComing = new Scene(cont, nconf, projectConfig, child);
+            } // prev
+
+
+            if (idx - 1 >= 0) {
+              const pconf = scenes[idx - 1];
+              pconf._presentatransdir = 'backward';
+              pconf._router = router;
+              prevSceneComing = new Scene(cont, pconf, projectConfig, child);
+            }
           }
 
-          if (!currentSceneComing) currentSceneComing = new Scene(cont, sceneConfig, projectConfig, child); // next
+          if (!currentSceneComing) currentSceneComing = new Scene(cont, sceneConfig, projectConfig, child);
+          Promise.all([currentSceneComing]).then(data => {
+            if (currentScene) {
+              currentScene.sceneConfig._presentatransdir = dirWord;
+              currentScene.destroyAfter(projectConfig._transitionDestroyDelay);
+            }
 
-          if (idx + 1 < scenes.length) {
-            const nconf = scenes[idx + 1];
-            nconf._presentatransdir = 'foreward';
-            nconf._router = router;
-            nextSceneComing = new Scene(cont, nconf, projectConfig, child);
-          } // prev
+            currentScene = data[0];
+            MountScene(currentScene); // if first run
+            // check if it creates issue
+            // added because Countainer wasn't under promise
 
-
-          if (idx - 1 >= 0) {
-            const pconf = scenes[idx - 1];
-            pconf._presentatransdir = 'backward';
-            pconf._router = router;
-            prevSceneComing = new Scene(cont, pconf, projectConfig, child);
-          }
+            resolve(that);
+          });
         }
-
-        Promise.all([currentSceneComing]).then(data => {
-          if (currentScene) {
-            currentScene.sceneConfig._presentatransdir = dirWord;
-            currentScene.destroyAfter(projectConfig._transitionDestroyDelay);
-          }
-
-          currentScene = data[0];
-          MountScene(currentScene); // if first run
-          // check if it creates issue
-          // added because Countainer wasn't under promise
-
-          resolve(that);
-        });
       };
 
       const router = new Router(child, projectConfig);

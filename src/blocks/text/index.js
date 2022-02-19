@@ -129,13 +129,16 @@ const text = function (el, config) {
     }
 
     if (config.font) {
+      // fetch(config.font).then(data => {
+      //   setTimeout(compute)
+      // })
       document.fonts.ready.then(() => {
         setTimeout(compute)
       })
     } else {
       setTimeout(compute)
     }
-    setTimeout(compute)
+    // setTimeout(compute)
   })
 }
 

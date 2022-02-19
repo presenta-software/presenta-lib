@@ -6,7 +6,7 @@ const addFontDep = url => {
   if (exists) return fontUniqueName
 
   const ext = url.split('.').pop()
-  const format = ext && ext !== 'ttf' ? `format("${ext}")` : ''
+  const format = ''// ext && ext !== 'ttf' ? `format("${ext}")` : ''
 
   const tag = document.createElement('style')
   tag.classList.add(fontUniqueName)

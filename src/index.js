@@ -43,15 +43,15 @@ const Presenta = function (el, config) {
   const splash = new Splash(root, config)
 
   return new Promise((resolve, reject) => {
-    new ScriptRun(config).then(() => {
-      new Install(config.plugins).then(() => {
-        const all = pluginsInit(config)
-        Promise.all(all).then(values => {
-          resolve(new Container(root, config))
-          splash.destroy()
-        })
+    // new ScriptRun(config).then(() => {
+    new Install(config.plugins).then(() => {
+      const all = pluginsInit(config)
+      Promise.all(all).then(values => {
+        resolve(new Container(root, config))
+        splash.destroy()
       })
     })
+    // })
   })
 }
 

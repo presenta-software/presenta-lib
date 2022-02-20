@@ -121,10 +121,10 @@ const text = function (el, config) {
         fsize -= vf
         return setTimeout(compute)
       } else {
+        child.classList.remove(css.promise)
         setTimeout(() => {
-          child.classList.remove(css.promise)
           resolve(that)
-        })
+        }, 2)
       }
     }
 

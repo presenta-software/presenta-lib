@@ -1,11 +1,11 @@
-// https://lib.presenta.cc v1.0.20 - BSD-3-Clause License - Copyright 2022 Fabio Franchino
+// https://lib.presenta.cc v1.0.21 - BSD-3-Clause License - Copyright 2022 Fabio Franchino
 (function (global, factory) {
   typeof exports === 'object' && typeof module !== 'undefined' ? module.exports = factory() :
   typeof define === 'function' && define.amd ? define(factory) :
   (global = typeof globalThis !== 'undefined' ? globalThis : global || self, global.Presenta = factory());
 })(this, (function () { 'use strict';
 
-  var version = "1.0.20";
+  var version = "1.0.21";
 
   function styleInject(css, ref) {
     if ( ref === void 0 ) ref = {};
@@ -1079,7 +1079,7 @@
     }
   };
 
-  const appendScriptTag$1 = (url, code, id) => {
+  const appendScriptTag = (url, code, id) => {
     const ns = document.createElement('script');
     ns.setAttribute('class', 'sdpmodulescriptcontainer' + id);
     ns.setAttribute('type', 'module');
@@ -1144,7 +1144,7 @@ export default {}`; // add the code module
       let url = URL.createObjectURL(new Blob([code], {
         type: 'application/javascript'
       }));
-      appendScriptTag$1(url, code, id); // add the last module for callback
+      appendScriptTag(url, code, id); // add the last module for callback
 
       const lastModule = `
 import _sdpPrivateInput from '${url}'
@@ -1153,7 +1153,7 @@ window._sdpcallbackfunc${id}()
       url = URL.createObjectURL(new Blob([lastModule], {
         type: 'application/javascript'
       }));
-      appendScriptTag$1(url, lastModule, id);
+      appendScriptTag(url, lastModule, id);
     });
   };
 
@@ -1315,10 +1315,10 @@ window._sdpcallbackfunc${id}()
           fsize -= vf;
           return setTimeout(compute);
         } else {
+          child.classList.remove(css$9.promise);
           setTimeout(() => {
-            child.classList.remove(css$9.promise);
             resolve(that);
-          });
+          }, 2);
         }
       };
 
@@ -2311,63 +2311,6 @@ window._sdpcallbackfunc${id}()
     });
   };
 
-  const appendScriptTag = (url, code, id) => {
-    const ns = document.createElement('script');
-    ns.setAttribute('class', 'sctcontrollerscriptcontainer' + id);
-    ns.setAttribute('type', 'module');
-    ns.setAttribute('async', '');
-    ns.innerHTML = code;
-    ns.src = url;
-    document.body.appendChild(ns);
-  };
-
-  const ScriptRun = function (config) {
-    return new Promise((resolve, reject) => {
-      if (config.mode === 'preview' || !config.script) return resolve();
-      const mod = config.script;
-      const id = '_JSCTRL_' + parseInt(Math.random() * 10000);
-      window['_sctconfigobject' + id] = config;
-
-      window['_sctcallbackfunc' + id] = () => {
-        window['_sctcallbackfunc' + id] = null;
-        window['_sctconfigobject' + id] = null;
-        const prev = [...document.querySelectorAll('.sctcontrollerscriptcontainer' + id)];
-        prev.forEach(d => document.body.removeChild(d));
-        resolve();
-      };
-
-      let code = `
-const config = window._sctconfigobject${id}
-    `;
-      code += `
-
-${mod.header}
-
-try{
-
-${mod.code}
-
-}catch(err){
-   console.log('error in controller', err)
-}
-export default {}`; // add the code module
-
-      let url = URL.createObjectURL(new Blob([code], {
-        type: 'application/javascript'
-      }));
-      appendScriptTag(url, code, id); // add the last module for callback
-
-      const lastModule = `
-import _sctPrivateInput from '${url}'
-window._sctcallbackfunc${id}()
-`;
-      url = URL.createObjectURL(new Blob([lastModule], {
-        type: 'application/javascript'
-      }));
-      appendScriptTag(url, lastModule, id);
-    });
-  };
-
   var defaults = (config => {
     const defaultConfig = {
       aspect: 1.6,
@@ -2562,15 +2505,14 @@ window._sctcallbackfunc${id}()
     config._root = root;
     const splash = new Splash(root, config);
     return new Promise((resolve, reject) => {
-      new ScriptRun(config).then(() => {
-        new Install(config.plugins).then(() => {
-          const all = pluginsInit(config);
-          Promise.all(all).then(values => {
-            resolve(new Container(root, config));
-            splash.destroy();
-          });
+      // new ScriptRun(config).then(() => {
+      new Install(config.plugins).then(() => {
+        const all = pluginsInit(config);
+        Promise.all(all).then(values => {
+          resolve(new Container(root, config));
+          splash.destroy();
         });
-      });
+      }); // })
     });
   };
 

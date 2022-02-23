@@ -11,6 +11,7 @@ const appendScriptTag = (url, code, id) => {
 
 const script = function (element, mod, config) {
   if (!mod.forceRun && config._mode === 'preview') return
+  if (!mod.code) return
   if (config.contextType !== 'scene') return
 
   const id = '_JSMOD_' + parseInt(Math.random() * 10000)

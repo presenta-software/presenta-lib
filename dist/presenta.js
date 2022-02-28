@@ -1,11 +1,11 @@
-// https://lib.presenta.cc v1.0.22 - BSD-3-Clause License - Copyright 2022 Fabio Franchino
+// https://lib.presenta.cc v1.0.23 - BSD-3-Clause License - Copyright 2022 Fabio Franchino
 (function (global, factory) {
   typeof exports === 'object' && typeof module !== 'undefined' ? module.exports = factory() :
   typeof define === 'function' && define.amd ? define(factory) :
   (global = typeof globalThis !== 'undefined' ? globalThis : global || self, global.Presenta = factory());
 })(this, (function () { 'use strict';
 
-  var version = "1.0.22";
+  var version = "1.0.23";
 
   function styleInject(css, ref) {
     if ( ref === void 0 ) ref = {};
@@ -1079,87 +1079,6 @@
     }
   };
 
-  const appendScriptTag = (url, code, id) => {
-    const ns = document.createElement('script');
-    ns.setAttribute('class', 'sdpmodulescriptcontainer' + id);
-    ns.setAttribute('type', 'module');
-    ns.setAttribute('async', '');
-    ns.innerHTML = code;
-    ns.src = url;
-    document.body.appendChild(ns);
-  };
-
-  const script = function (element, mod, config) {
-    if (!mod.forceRun && config._mode === 'preview') return;
-    if (!mod.code) return;
-    if (config.contextType !== 'scene') return;
-    const id = '_JSMOD_' + parseInt(Math.random() * 10000);
-    const that = this;
-
-    this.destroy = () => {
-      const prev = [...document.querySelectorAll('.sdpmodulescriptcontainer' + id)];
-      prev.forEach(d => document.body.removeChild(d));
-    };
-
-    return new Promise((resolve, reject) => {
-      const blink = {};
-      config.blocks.forEach(b => {
-        blink[b.ukey] = b;
-      });
-      blink._otherParams = config.otherParams;
-      window['_sdpconfigobject' + id] = blink; // window['_sdpscriptexportedresult' + id] = {}
-
-      window['_sdpcallbackfunc' + id] = () => {
-        console.log('_sdpcallbackfunc' + id);
-        window['_sdpcallbackfunc' + id] = null;
-        window['_sdpconfigobject' + id] = null;
-        resolve(that);
-      };
-
-      let code = `
-const index = ${config.index}
-//const exportedResult = window._sdpscriptexportedresult${id}
-
-const params = window._sdpconfigobject${id}._otherParams
-    `;
-      config.blocks.forEach(b => {
-        if (b.ukey) {
-          code += `
-const ${b.ukey} = window._sdpconfigobject${id}.${b.ukey}
-`;
-        }
-      });
-      code += `
-
-${mod.header}
-
-try{
-
-${mod.code}
-
-}catch(err){
-   console.log('error in module', err)
-}
-export default {}`; // add the code module
-
-      let url = URL.createObjectURL(new Blob([code], {
-        type: 'application/javascript'
-      }));
-      appendScriptTag(url, code, id); // add the last module for callback
-
-      const lastModule = `
-import _sdpPrivateInput from '${url}'
-window._sdpcallbackfunc${id}()
-`;
-      url = URL.createObjectURL(new Blob([lastModule], {
-        type: 'application/javascript'
-      }));
-      appendScriptTag(url, lastModule, id);
-    });
-  };
-
-  script.runBefore = true;
-
   const showif = function (element, mod, config) {
     const {
       key,
@@ -1204,7 +1123,6 @@ window._sdpcallbackfunc${id}()
     autoplay,
     reveal,
     enters,
-    script,
     link,
     showif,
     hidden
@@ -2506,14 +2424,13 @@ window._sdpcallbackfunc${id}()
     config._root = root;
     const splash = new Splash(root, config);
     return new Promise((resolve, reject) => {
-      // new ScriptRun(config).then(() => {
       new Install(config.plugins).then(() => {
         const all = pluginsInit(config);
         Promise.all(all).then(values => {
           resolve(new Container(root, config));
           splash.destroy();
         });
-      }); // })
+      });
     });
   };
 

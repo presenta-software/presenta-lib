@@ -10,7 +10,6 @@ import coords from './coords'
 import reveal from './reveal'
 import link from './link'
 import enters from './enters'
-import script from './script'
 import showif from './showif'
 import hidden from './hidden'
 
@@ -26,7 +25,6 @@ const modules = {
   autoplay,
   reveal,
   enters,
-  script,
   link,
   showif,
   hidden

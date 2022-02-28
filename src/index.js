@@ -8,7 +8,6 @@ import { add as addBlock, blocks } from './blocks/types.js'
 
 import { Splash } from './core/Splash.js'
 import { Container } from './core/Container.js'
-import { ScriptRun } from './core/ScriptRun'
 
 import utils from './utils'
 import defaults from './utils/defaults'
@@ -43,7 +42,6 @@ const Presenta = function (el, config) {
   const splash = new Splash(root, config)
 
   return new Promise((resolve, reject) => {
-    // new ScriptRun(config).then(() => {
     new Install(config.plugins).then(() => {
       const all = pluginsInit(config)
       Promise.all(all).then(values => {
@@ -51,7 +49,6 @@ const Presenta = function (el, config) {
         splash.destroy()
       })
     })
-    // })
   })
 }
 

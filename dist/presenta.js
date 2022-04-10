@@ -1,11 +1,11 @@
-// https://lib.presenta.cc v1.0.23 - BSD-3-Clause License - Copyright 2022 Fabio Franchino
+// https://lib.presenta.cc v1.0.24 - BSD-3-Clause License - Copyright 2022 Fabio Franchino
 (function (global, factory) {
   typeof exports === 'object' && typeof module !== 'undefined' ? module.exports = factory() :
   typeof define === 'function' && define.amd ? define(factory) :
   (global = typeof globalThis !== 'undefined' ? globalThis : global || self, global.Presenta = factory());
 })(this, (function () { 'use strict';
 
-  var version = "1.0.23";
+  var version = "1.0.24";
 
   function styleInject(css, ref) {
     if ( ref === void 0 ) ref = {};
@@ -141,15 +141,12 @@
     const fontUniqueName = uid(url);
     const exists = document.querySelector('.' + fontUniqueName);
     if (exists) return fontUniqueName;
-    url.split('.').pop();
-    const format = ''; // ext && ext !== 'ttf' ? `format("${ext}")` : ''
-
     const tag = document.createElement('style');
     tag.classList.add(fontUniqueName);
     tag.innerHTML = `
   @font-face {
     font-family: "${fontUniqueName}";
-    src: url("${url}") ${format};
+    src: url("${url}");
   }`;
     document.head.appendChild(tag);
     return fontUniqueName;
@@ -2444,6 +2441,7 @@
     blocks
   };
   Presenta.io = utils.io;
+  Presenta.utils = utils;
 
   Presenta.use = plugin => {
     plugin.install(Presenta);

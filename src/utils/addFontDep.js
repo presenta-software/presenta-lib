@@ -5,15 +5,12 @@ const addFontDep = url => {
   const exists = document.querySelector('.' + fontUniqueName)
   if (exists) return fontUniqueName
 
-  const ext = url.split('.').pop()
-  const format = ''// ext && ext !== 'ttf' ? `format("${ext}")` : ''
-
   const tag = document.createElement('style')
   tag.classList.add(fontUniqueName)
   tag.innerHTML = `
   @font-face {
     font-family: "${fontUniqueName}";
-    src: url("${url}") ${format};
+    src: url("${url}");
   }`
   document.head.appendChild(tag)
   return fontUniqueName

@@ -61,6 +61,7 @@ Presenta.addModule = addModule
 Presenta.installed = { controllers, modules, blocks }
 
 Presenta.io = utils.io
+Presenta.utils = utils
 
 Presenta.use = plugin => {
   plugin.install(Presenta)
